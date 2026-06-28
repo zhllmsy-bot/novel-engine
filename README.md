@@ -351,6 +351,10 @@ L2 recent prose. See `docs/memory-architecture.md` for the full layer contract.
 It also evaluates the same expectations against a recent-prose-only baseline
 and reports `Baseline` plus `Four-layer gain`, so Phase 0 can show what the
 memory engine recalls beyond a sliding window.
+The report includes a `Phase 0 gate` line and a machine-readable `phase0` object
+in `--json` output. The gate passes only when every recall expectation passes,
+the four-layer plan is not worse than the baseline, and the configured
+`minimum_gain` threshold is met.
 Each case also reports the memory sources that satisfied it, so a passing
 expectation can be traced back to a codex card, chapter summary, or `recall:*`
 entry instead of being a bare green check.

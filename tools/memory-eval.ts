@@ -69,6 +69,17 @@ export type MemoryEvalComparison = {
   lostExpectationIds: string[]
 }
 
+export type MemoryEvalPhase0Gate = {
+  ok: boolean
+  expectationPassRate: number
+  baselinePassRate: number
+  fourLayerPassRate: number
+  gain: number
+  requiredGain: number
+  policyFailed: number
+  failedReasonIds: string[]
+}
+
 export type MemoryEvalReport = {
   rootPath: string
   ok: boolean
@@ -91,6 +102,7 @@ export type MemoryEvalReport = {
   cases: MemoryEvalCaseResult[]
   baselineCases: MemoryEvalCaseResult[]
   comparison: MemoryEvalComparison
+  phase0: MemoryEvalPhase0Gate
   sourceSummary: MemorySourceFamilySummary[]
   policyChecks: MemoryEvalPolicyCheckResult[]
   errors: string[]
@@ -331,11 +343,21 @@ export async function evaluateNarrativeMemory(input: {
   })
   const failed = cases.filter((result) => !result.ok).length
   const policyFailed = policyChecks.filter((result) => !result.ok).length
+  const phase0 = buildPhase0Gate({
+    cases,
+    comparison,
+    errors,
+    policyChecks,
+  })
   const sourceSummary = buildMemorySourceSummary(plan.memories)
 
   return {
     rootPath,
-    ok: errors.length === 0 && failed === 0 && policyFailed === 0,
+    ok:
+      errors.length === 0 &&
+      failed === 0 &&
+      policyFailed === 0 &&
+      phase0.ok,
     title: project.title,
     chapterId: chapter.id,
     budgetChars,
@@ -355,6 +377,7 @@ export async function evaluateNarrativeMemory(input: {
     cases,
     baselineCases,
     comparison,
+    phase0,
     sourceSummary,
     policyChecks,
     errors,
@@ -382,6 +405,7 @@ export function formatMemoryEvalReport(report: MemoryEvalReport): string {
     `Expectations: ${report.stats.passed}/${report.stats.expectations} passed`,
     `Baseline: ${report.comparison.baselinePassed}/${report.stats.expectations} passed`,
     `Four-layer gain: +${report.comparison.gainedExpectationIds.length} (${report.comparison.gainedExpectationIds.join(', ') || 'none'})`,
+    `Phase 0 gate: ${report.phase0.ok ? 'PASS' : 'FAIL'} (${formatPercent(report.phase0.fourLayerPassRate)} four-layer vs ${formatPercent(report.phase0.baselinePassRate)} baseline, gain +${report.phase0.gain}/${report.phase0.requiredGain})${report.phase0.failedReasonIds.length > 0 ? ` reasons=${report.phase0.failedReasonIds.join(',')}` : ''}`,
     `Policy: ${report.stats.policyPassed}/${report.stats.policyChecks} passed`,
     ...report.cases.map((result) => formatCaseResult(result)),
     ...report.policyChecks.map((result) =>
@@ -494,6 +518,49 @@ function compareMemoryEvalCases(
   }
 }
 
+function buildPhase0Gate(input: {
+  cases: MemoryEvalCaseResult[]
+  comparison: MemoryEvalComparison
+  errors: string[]
+  policyChecks: MemoryEvalPolicyCheckResult[]
+}): MemoryEvalPhase0Gate {
+  const expectationCount = input.cases.length
+  const policyFailed = input.policyChecks.filter((result) => !result.ok).length
+  const failedExpectationIds = input.cases
+    .filter((result) => !result.ok)
+    .map((result) => `expectation:${result.id}`)
+  const failedReasonIds = [
+    ...failedExpectationIds,
+    ...input.comparison.lostExpectationIds.map((id) => `lost:${id}`),
+    ...input.policyChecks
+      .filter((result) => !result.ok)
+      .map((result) => `policy:${result.id}`),
+  ]
+
+  if (input.errors.length > 0) {
+    failedReasonIds.push('config-or-project-error')
+  }
+
+  if (input.comparison.fourLayerPassed < input.comparison.baselinePassed) {
+    failedReasonIds.push('worse-than-baseline')
+  }
+
+  if (input.comparison.gainedExpectationIds.length < input.comparison.minimumGain) {
+    failedReasonIds.push('insufficient-gain')
+  }
+
+  return {
+    ok: failedReasonIds.length === 0,
+    expectationPassRate: ratio(input.comparison.fourLayerPassed, expectationCount),
+    baselinePassRate: ratio(input.comparison.baselinePassed, expectationCount),
+    fourLayerPassRate: ratio(input.comparison.fourLayerPassed, expectationCount),
+    gain: input.comparison.gainedExpectationIds.length,
+    requiredGain: input.comparison.minimumGain,
+    policyFailed,
+    failedReasonIds: uniqueStrings(failedReasonIds),
+  }
+}
+
 function annotateCaseDeltas(
   cases: MemoryEvalCaseResult[],
   baselineCases: MemoryEvalCaseResult[],
@@ -572,6 +639,14 @@ function formatMemorySourceSummaryLine(summary: MemorySourceFamilySummary[]) {
         `${item.label}:${item.memoryCount}/${item.sourceCount} (${item.selectedChars} chars)`,
     )
     .join(' · ')}`
+}
+
+function formatPercent(value: number) {
+  return `${Math.round(value * 100)}%`
+}
+
+function ratio(numerator: number, denominator: number) {
+  return denominator > 0 ? numerator / denominator : 0
 }
 
 function evaluateMemoryBudgetPolicy(input: {
@@ -1468,6 +1543,16 @@ function emptyReport(input: {
       minimumGain: 0,
       gainedExpectationIds: [],
       lostExpectationIds: [],
+    },
+    phase0: {
+      ok: false,
+      expectationPassRate: 0,
+      baselinePassRate: 0,
+      fourLayerPassRate: 0,
+      gain: 0,
+      requiredGain: 0,
+      policyFailed: 0,
+      failedReasonIds: ['config-or-project-error'],
     },
     sourceSummary: [],
     policyChecks: [],

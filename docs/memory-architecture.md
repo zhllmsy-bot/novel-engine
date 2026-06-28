@@ -191,8 +191,11 @@ It checks both recall expectations and budget policy invariants:
 - The same expectations are evaluated against a recent-prose-only baseline.
 - The report includes a compact source-family summary over selected memory so a
   contributor can see which evidence classes entered the prompt.
-- `--json` exposes the same data as `sourceSummary`, making provenance checks
-  machine-readable for CI or community benchmark dashboards.
+- `--json` exposes the same data as `sourceSummary` plus a `phase0` gate object,
+  making provenance and baseline-gain checks machine-readable for CI or
+  community benchmark dashboards.
+- `Phase 0 gate` passes only when all recall expectations pass, four-layer
+  recall is not worse than the baseline, and `minimum_gain` is satisfied.
 - The report lists `Baseline` and `Four-layer gain` so improvements are visible.
 - Each expectation is labeled `GAIN`, `KEEP`, `LOSS`, or `MISS` against the baseline, making it clear which continuity checks are newly won by the four-layer engine.
 - Each passing expectation includes matched memory sources, so recall evidence can be traced to specific Markdown files, summaries, state logs, or `recall:*` entries.

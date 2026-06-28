@@ -78,6 +78,16 @@ describe('memory eval tool', () => {
         ],
         lostExpectationIds: [],
       })
+      expect(report.phase0).toEqual({
+        ok: true,
+        expectationPassRate: 1,
+        baselinePassRate: 0.25,
+        fourLayerPassRate: 1,
+        gain: 3,
+        requiredGain: 1,
+        policyFailed: 0,
+        failedReasonIds: [],
+      })
       expect(
         report.sourceSummary.map((summary) => ({
           family: summary.family,
@@ -151,6 +161,9 @@ describe('memory eval tool', () => {
       expect(output).toContain('Baseline: 1/4 passed')
       expect(output).toContain(
         'Four-layer gain: +3 (l0-codex-fact, l3-recall-audit, l1-plot-thread)',
+      )
+      expect(output).toContain(
+        'Phase 0 gate: PASS (100% four-layer vs 25% baseline, gain +3/1)',
       )
       expect(output).toContain('Policy: 12/12 passed')
       expect(output).toContain('KEEP l2-current-prose (L2 风格)')
@@ -627,6 +640,16 @@ keywords: [玄铁剑]
       expect(report.comparison.gainedExpectationIds).toEqual([
         'custom-l3-keyword',
       ])
+      expect(report.phase0).toMatchObject({
+        ok: false,
+        gain: 1,
+        requiredGain: 2,
+        policyFailed: 1,
+        failedReasonIds: [
+          'policy:four-layer-gains-non-l2-recall',
+          'insufficient-gain',
+        ],
+      })
       expect(
         report.policyChecks.find(
           (result) => result.id === 'four-layer-gains-non-l2-recall',
