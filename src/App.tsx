@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   BookOpen,
   Boxes,
@@ -45,6 +45,7 @@ import {
   validateProviderConfig,
 } from './ai/providerRuntime'
 import {
+  applyLoadedProviderApiKey,
   createProviderSecretStore,
   loadProviderSettings,
   saveProviderSettings,
@@ -253,6 +254,7 @@ function App() {
   const [providerConfig, setProviderConfig] = useState(
     () => initialProviderSettings.providerConfig,
   )
+  const providerApiKeyEditRevision = useRef(0)
   const [graphSnapshot, setGraphSnapshot] =
     useState<StoryGraphSnapshot | null>(null)
   const [indexedRecallResults, setIndexedRecallResults] = useState<
@@ -319,6 +321,7 @@ function App() {
 
   useEffect(() => {
     let isMounted = true
+    const loadRevision = providerApiKeyEditRevision.current
 
     setProviderConfig((current) => ({
       ...current,
@@ -329,10 +332,14 @@ function App() {
       .getApiKey(providerMode)
       .then((apiKey) => {
         if (!isMounted) return
-        setProviderConfig((current) => ({
-          ...current,
-          apiKey,
-        }))
+        setProviderConfig((current) =>
+          applyLoadedProviderApiKey({
+            providerConfig: current,
+            loadedApiKey: apiKey,
+            loadRevision,
+            currentRevision: providerApiKeyEditRevision.current,
+          }),
+        )
       })
       .catch((error) => {
         if (!isMounted) return
@@ -386,6 +393,7 @@ function App() {
 
   function updateProviderMode(nextProviderMode: string) {
     setRuntimeError(null)
+    providerApiKeyEditRevision.current += 1
     setProviderConfig((current) => ({
       ...current,
       apiKey: '',
@@ -399,6 +407,7 @@ function App() {
     setProviderConfig(nextProviderConfig)
 
     if (apiKeyChanged) {
+      providerApiKeyEditRevision.current += 1
       void providerSecretStore
         .setApiKey(providerMode, nextProviderConfig.apiKey)
         .catch((error) => {

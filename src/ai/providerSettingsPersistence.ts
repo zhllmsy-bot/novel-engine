@@ -25,6 +25,13 @@ export type ProviderSecretStore = {
   deleteApiKey(providerId: string): Promise<void>
 }
 
+export type LoadedProviderApiKeyInput = {
+  providerConfig: ProviderConfig
+  loadedApiKey: string
+  loadRevision: number
+  currentRevision: number
+}
+
 type PersistedProviderSettings = {
   providerMode?: unknown
   providerConfig?: {
@@ -138,6 +145,22 @@ export function createProviderSecretStore(options: {
     async deleteApiKey(providerId) {
       await deleteStoredApiKey(providerId)
     },
+  }
+}
+
+export function applyLoadedProviderApiKey({
+  providerConfig,
+  loadedApiKey,
+  loadRevision,
+  currentRevision,
+}: LoadedProviderApiKeyInput): ProviderConfig {
+  if (loadRevision !== currentRevision) {
+    return providerConfig
+  }
+
+  return {
+    ...providerConfig,
+    apiKey: loadedApiKey,
   }
 }
 

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  applyLoadedProviderApiKey,
   createProviderSecretStore,
   loadProviderSettings,
   saveProviderSettings,
@@ -142,5 +143,41 @@ describe('provider settings persistence', () => {
     await store.setApiKey('openai', '   ')
 
     expect(calls).toEqual(['delete:openai'])
+  })
+
+  it('does not apply a loaded API key after the user edits during the load', () => {
+    const providerConfig = {
+      baseUrl: 'https://gateway.example.com',
+      model: 'fiction-model',
+      apiKey: 'sk-user-typed',
+    }
+
+    expect(
+      applyLoadedProviderApiKey({
+        providerConfig,
+        loadedApiKey: 'sk-stale-loaded',
+        loadRevision: 1,
+        currentRevision: 2,
+      }),
+    ).toBe(providerConfig)
+  })
+
+  it('applies a loaded API key when no user edit happened during the load', () => {
+    expect(
+      applyLoadedProviderApiKey({
+        providerConfig: {
+          baseUrl: 'https://gateway.example.com',
+          model: 'fiction-model',
+          apiKey: '',
+        },
+        loadedApiKey: 'sk-loaded',
+        loadRevision: 3,
+        currentRevision: 3,
+      }),
+    ).toEqual({
+      baseUrl: 'https://gateway.example.com',
+      model: 'fiction-model',
+      apiKey: 'sk-loaded',
+    })
   })
 })
