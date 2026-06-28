@@ -16,6 +16,9 @@ describe('demo project repository', () => {
     expect(project.codexEntries[0]).toMatchObject({
       name: '李长老',
       path: 'codex/characters/li-zhanglao.md',
+      currentState: {
+        修为: '金丹期',
+      },
     })
   })
 })

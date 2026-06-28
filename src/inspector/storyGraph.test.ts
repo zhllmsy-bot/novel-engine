@@ -33,6 +33,7 @@ const codexEntry: CodexEntry = {
   keywords: ['李长老'],
   body: '玄天宗戒律堂长老。',
   frontmatter: {},
+  currentState: {},
 }
 
 const plotThread: PlotThread = {

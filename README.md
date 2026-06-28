@@ -442,10 +442,18 @@ name: 李长老
 type: character
 aliases: [李长老, 李玄衡]
 keywords: [李长老, 戒律堂, 玄铁剑]
+current_state:
+  location: 戒律堂
+  power_level: 金丹期
 ---
 
 玄天宗戒律堂长老，性格孤傲，重规矩。
 ```
+
+For character cards, `current_state` is optional but recommended for structured
+dynamic facts. The loader also understands a Markdown `## 当前状态` section with
+`- 字段: 值` rows, so authors can keep cards readable while the memory engine
+still receives structured L0 state.
 
 `npm run project:check` fails codex cards without keywords, warns on duplicate
 keywords, and warns when keywords omit the card name. This keeps L0 facts and L3

@@ -59,6 +59,9 @@ describe('narrative memory context builder', () => {
     expect(memories.find((memory) => memory.layer === 'L0 事实')?.body).toContain(
       '李长老',
     )
+    expect(memories.find((memory) => memory.layer === 'L0 事实')?.body).toContain(
+      '当前状态: 修为=金丹期',
+    )
     expect(memories.find((memory) => memory.layer === 'L1 剧情')?.source).toBe(
       'manuscript/volume-001/chapter-001.md',
     )

@@ -16,6 +16,7 @@ export type CodexEntry = {
   keywords: string[]
   body: string
   frontmatter: Record<string, unknown>
+  currentState: Record<string, string>
 }
 
 export type NovelProject = {

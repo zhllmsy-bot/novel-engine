@@ -86,7 +86,11 @@ static: name, aliases, appearance, personality, background
 dynamic: location, power level, items, status, relationships
 ```
 
-Dynamic state is high risk. The model may propose a change, but only a confirmed change becomes a `character_state_log` record and then re-enters the prompt as L0 fact. The runtime filters state logs by chapter order so future state does not leak into earlier chapters.
+Character cards can expose initial dynamic facts with YAML `current_state` or a
+Markdown `## 当前状态` list. The loader normalizes those rows into structured L0
+state before prompt assembly.
+
+Dynamic state changes are high risk. The model may propose a change, but only a confirmed change becomes a `character_state_log` record and then re-enters the prompt as L0 fact. The runtime filters state logs by chapter order so future state does not leak into earlier chapters.
 
 Known risks:
 

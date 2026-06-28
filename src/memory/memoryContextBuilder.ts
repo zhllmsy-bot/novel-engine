@@ -331,11 +331,28 @@ function buildFactMemories(
 
       return {
         layer: 'L0 事实',
-        body: `${entry.name}: ${firstUsefulLines(entry.body, 3)}`,
+        body: formatCodexFactMemory(entry),
         source: entry.path,
         priority: getMemoryLayerPriority('L0 事实', keywordHits * 25),
       }
     })
+}
+
+function formatCodexFactMemory(entry: CodexEntry) {
+  const stateSummary = formatCurrentState(entry.currentState)
+
+  return [
+    `${entry.name}: ${firstUsefulLines(entry.body, 3)}`,
+    stateSummary ? `当前状态: ${stateSummary}` : undefined,
+  ]
+    .filter(Boolean)
+    .join(' ')
+}
+
+function formatCurrentState(currentState: Record<string, string>) {
+  return Object.entries(currentState)
+    .map(([field, value]) => `${field}=${value}`)
+    .join('；')
 }
 
 function buildIntentMemory(

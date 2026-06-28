@@ -133,8 +133,73 @@ function loadCodexEntries(codexFiles: MarkdownFileSource[]): CodexEntry[] {
       keywords: stringArrayField(parsed.frontmatter.keywords),
       body: parsed.body,
       frontmatter: parsed.frontmatter,
+      currentState: parseCurrentState(parsed.frontmatter.current_state, parsed.body),
     }
   })
+}
+
+function parseCurrentState(
+  frontmatterState: unknown,
+  body: string,
+): Record<string, string> {
+  const fromFrontmatter = recordStringFields(frontmatterState)
+  if (Object.keys(fromFrontmatter).length > 0) {
+    return fromFrontmatter
+  }
+
+  return parseCurrentStateSection(body)
+}
+
+function recordStringFields(value: unknown): Record<string, string> {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return {}
+  }
+
+  return Object.fromEntries(
+    Object.entries(value)
+      .map(([key, rawValue]) => [key.trim(), scalarStateValue(rawValue)] as const)
+      .filter(([key, rawValue]) => key && rawValue),
+  )
+}
+
+function scalarStateValue(value: unknown) {
+  if (typeof value === 'string') return value.trim()
+  if (typeof value === 'number' || typeof value === 'boolean') return String(value)
+  return ''
+}
+
+function parseCurrentStateSection(body: string): Record<string, string> {
+  const lines = body.split('\n')
+  const headingIndex = lines.findIndex((line) =>
+    /^#{2,6}\s*当前状态\s*$/.test(line.trim()),
+  )
+
+  if (headingIndex < 0) {
+    return {}
+  }
+
+  const stateEntries: Array<[string, string]> = []
+
+  for (const line of lines.slice(headingIndex + 1)) {
+    const trimmedLine = line.trim()
+
+    if (/^#{1,6}\s+/.test(trimmedLine)) {
+      break
+    }
+
+    const match = trimmedLine.match(/^(?:[-*]\s*)?([^:：]+)[:：]\s*(.+)$/)
+    if (!match) {
+      continue
+    }
+
+    const key = match[1].trim()
+    const value = match[2].trim()
+    if (key && value) {
+      stateEntries.push([key, value])
+    }
+  }
+
+  return Object.fromEntries(stateEntries)
 }
 
 function normalizePath(path: string) {

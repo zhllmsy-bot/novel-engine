@@ -43,6 +43,9 @@ id: char-li
 name: 李长老
 type: character
 keywords: [李长老]
+current_state:
+  location: 戒律堂
+  power_level: 金丹期
 ---
 
 人物设定。
@@ -67,6 +70,51 @@ keywords: [李长老]
       name: '李长老',
       path: 'codex/characters/li.md',
       keywords: ['李长老'],
+      currentState: {
+        location: '戒律堂',
+        power_level: '金丹期',
+      },
+    })
+  })
+
+  it('extracts character current state from a Markdown section when frontmatter is absent', () => {
+    const project = loadProjectFromFiles({
+      manifestSource: JSON.stringify({
+        title: '状态小节测试',
+        source_of_truth: 'markdown',
+        chapters: [],
+      }),
+      chapterFiles: [],
+      codexFiles: [
+        {
+          path: 'codex/characters/jianli.md',
+          content: `---
+id: character-jianli
+name: 简璃
+type: character
+keywords: [简璃]
+---
+
+简璃是镜湖守灯人。
+
+## 当前状态
+
+- 身份: 镜湖守灯人
+- 目标: 确认沈泊是否仍遵守青灯誓
+- 风险: 被黑潮司追捕
+
+## 背景
+
+她曾在废庙交出镜湖钥。
+`,
+        },
+      ],
+    })
+
+    expect(project.codexEntries[0].currentState).toEqual({
+      身份: '镜湖守灯人',
+      目标: '确认沈泊是否仍遵守青灯誓',
+      风险: '被黑潮司追捕',
     })
   })
 })
