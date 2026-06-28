@@ -377,6 +377,7 @@ flexible across projects.
 ```bash
 npm run memory:eval
 npm run memory:eval -- examples/demo-novel
+npm run memory:eval:long
 npm run memory:eval -- examples/long-memory-benchmark
 npm run memory:eval -- --chapter chapter-001 --budget 900
 npm run memory:eval -- --json /path/to/MyNovel
@@ -391,8 +392,11 @@ plans, with L0/L1/L3 gains coming from the full memory engine.
 `examples/long-memory-benchmark` is the stronger smoke corpus: chapter 6 asks
 for chapter-1 oath context outside the recent-prose baseline window, so it should
 show a low baseline score and a passing `Phase 0 gate` through L0/L1/L3 recall.
-That benchmark is also covered by the Vitest suite, while `workspace:check`
-keeps the faster default demo project in the main aggregate report.
+That benchmark is also covered by the Vitest suite. `workspace:check` keeps the
+faster default demo project in the main aggregate report, and
+`npm run workspace:check:long` or `npm run workspace:check -- --benchmark`
+adds the long-memory benchmark when a PR touches recall, budget, or summary
+behavior.
 
 Example `meta/memory-eval.json`:
 

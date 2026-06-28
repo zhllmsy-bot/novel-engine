@@ -220,6 +220,8 @@ The deterministic guardrail is:
 
 ```bash
 npm run memory:eval
+npm run memory:eval:long
+npm run workspace:check:long
 ```
 
 It checks both recall expectations and budget policy invariants:

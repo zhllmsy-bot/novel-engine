@@ -13,6 +13,7 @@
     "extensions:check": "node --experimental-strip-types tools/extensions-check.ts",
     "lint": "oxlint",
     "memory:eval": "node --experimental-strip-types tools/memory-eval.ts",
+    "memory:eval:long": "node --experimental-strip-types tools/memory-eval.ts examples/long-memory-benchmark",
     "project:check": "node --experimental-strip-types tools/project-check.ts",
     "project:new": "node --experimental-strip-types tools/project-new.ts",
     "providers:check": "node --experimental-strip-types tools/provider-check.ts",
@@ -24,7 +25,8 @@
     "typecheck": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit",
     "preview": "vite preview",
     "verify": "npm run workspace:check && npm run test -- --reporter=dot && npm run typecheck && npm run lint && npm run build",
-    "workspace:check": "node --experimental-strip-types tools/workspace-check.ts"
+    "workspace:check": "node --experimental-strip-types tools/workspace-check.ts",
+    "workspace:check:long": "node --experimental-strip-types tools/workspace-check.ts --benchmark"
   },
   "dependencies": {
     "@codemirror/commands": "^6.10.4",

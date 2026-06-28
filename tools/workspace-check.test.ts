@@ -17,6 +17,7 @@ describe('workspace check tool', () => {
     expect(report.project.ok).toBe(true)
     expect(report.memory.ok).toBe(true)
     expect(report.extensions.ok).toBe(true)
+    expect(report.benchmarks).toEqual([])
     expect(output).toContain('Workspace check: OK')
     expect(output).toContain('Project check: OK')
     expect(output).toContain('Memory eval: OK')
@@ -44,5 +45,28 @@ describe('workspace check tool', () => {
     } finally {
       await rm(parent, { recursive: true, force: true })
     }
+  })
+
+  it('can include the long-memory benchmark in the aggregate gate', async () => {
+    const report = await checkWorkspace('examples/demo-novel', {
+      benchmarkPaths: ['examples/long-memory-benchmark'],
+    })
+    const output = formatWorkspaceCheckReport(report)
+
+    expect(report.ok).toBe(true)
+    expect(report.benchmarks).toHaveLength(1)
+    expect(report.benchmarks[0].projectPath).toBe(
+      'examples/long-memory-benchmark',
+    )
+    expect(report.benchmarks[0].memory.phase0).toMatchObject({
+      ok: true,
+      gain: 5,
+      requiredGain: 5,
+    })
+    expect(output).toContain('Benchmark memory eval: OK')
+    expect(output).toContain('Benchmark path: examples/long-memory-benchmark')
+    expect(output).toContain(
+      'Phase 0 gate: PASS (100% four-layer vs 17% baseline, gain +5/5)',
+    )
   })
 })
