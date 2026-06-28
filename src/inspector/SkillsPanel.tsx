@@ -295,6 +295,7 @@ export function SkillsPanel({
   lastResult,
   rewritePatch,
   diffParts,
+  rewriteUnits,
   patchValidation,
   acceptedStateProposalKeys,
   acceptedPlotThreadProposalKeys,
@@ -303,6 +304,7 @@ export function SkillsPanel({
   onConfirmStateProposal,
   onConfirmPlotThreadProposal,
   onAcceptPatch,
+  onAcceptRewriteUnit,
   onRejectPatch,
 }: SkillsPanelProps) {
   const [activeSourceFilter, setActiveSourceFilter] =
@@ -702,6 +704,36 @@ export function SkillsPanel({
                 </span>
               ))}
             </div>
+            {rewriteUnits.length > 0 ? (
+              <div className="diff-units" aria-label="Sentence rewrite units">
+                {rewriteUnits.map((unit, index) => (
+                  <div className="diff-unit" key={unit.id}>
+                    <div className="diff-unit-body">
+                      <small>#{index + 1}</small>
+                      <p>
+                        {unit.diffParts.map((part, partIndex) => (
+                          <span
+                            className={`diff-${part.op}`}
+                            key={`${unit.id}-${part.op}-${partIndex}`}
+                          >
+                            {part.text}
+                          </span>
+                        ))}
+                      </p>
+                    </div>
+                    <Button
+                      disabled={!patchValidation?.ok}
+                      onClick={() => void onAcceptRewriteUnit(unit.id)}
+                      size="sm"
+                      type="button"
+                      variant="outline"
+                    >
+                      接受此句
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            ) : null}
             <div className="diff-actions">
               <Button
                 disabled={!patchValidation?.ok}

@@ -8,6 +8,15 @@ export type DiffPart = {
   text: string
 }
 
+export type RewriteUnit = {
+  id: string
+  originalStart: number
+  originalEnd: number
+  original: string
+  proposed: string
+  diffParts: DiffPart[]
+}
+
 export type PatchValidation = {
   ok: boolean
   reason: string
@@ -47,6 +56,35 @@ export function validateRewritePatch(
   }
 }
 
+export function buildRewriteUnits(patch: RewritePatch): RewriteUnit[] {
+  const originalSegments = splitRewriteSegments(patch.original)
+  const proposedSegments = splitRewriteSegments(patch.proposed)
+  const unitCount = Math.max(originalSegments.length, proposedSegments.length)
+  const units: RewriteUnit[] = []
+
+  for (let index = 0; index < unitCount; index += 1) {
+    const originalSegment = originalSegments[index]
+    const proposedSegment = proposedSegments[index]
+    const original = originalSegment?.text || ''
+    const proposed = proposedSegment?.text || ''
+
+    if (original === proposed || (!original.trim() && !proposed.trim())) {
+      continue
+    }
+
+    units.push({
+      id: `unit-${index}`,
+      originalStart: originalSegment?.start ?? patch.original.length,
+      originalEnd: originalSegment?.end ?? patch.original.length,
+      original,
+      proposed,
+      diffParts: buildDiffParts(original, proposed),
+    })
+  }
+
+  return units
+}
+
 export function applyRewritePatch(
   documentText: string,
   patch: RewritePatch,
@@ -58,4 +96,58 @@ export function applyRewritePatch(
   }
 
   return documentText.replace(patch.original, patch.proposed)
+}
+
+export function applyRewriteUnit(
+  documentText: string,
+  patch: RewritePatch,
+  unitId: string,
+): string {
+  const validation = validateRewritePatch(documentText, patch)
+
+  if (!validation.ok) {
+    throw new Error(validation.reason)
+  }
+
+  const unit = buildRewriteUnits(patch).find(
+    (rewriteUnit) => rewriteUnit.id === unitId,
+  )
+
+  if (!unit) {
+    throw new Error('未找到可应用的单句改写。')
+  }
+
+  const patchStart = documentText.indexOf(patch.original)
+  const unitStart = patchStart + unit.originalStart
+  const unitEnd = patchStart + unit.originalEnd
+
+  return `${documentText.slice(0, unitStart)}${unit.proposed}${documentText.slice(unitEnd)}`
+}
+
+export function acceptRewriteUnitInPatch(
+  patch: RewritePatch,
+  unitId: string,
+): RewritePatch {
+  const unit = buildRewriteUnits(patch).find(
+    (rewriteUnit) => rewriteUnit.id === unitId,
+  )
+
+  if (!unit) {
+    throw new Error('未找到可应用的单句改写。')
+  }
+
+  return {
+    ...patch,
+    original: `${patch.original.slice(0, unit.originalStart)}${unit.proposed}${patch.original.slice(unit.originalEnd)}`,
+  }
+}
+
+function splitRewriteSegments(value: string) {
+  const matches = value.matchAll(/[^。！？!?\s][^。！？!?]*[。！？!?]?/g)
+
+  return [...matches].map((match) => ({
+    text: match[0].trim(),
+    start: match.index || 0,
+    end: (match.index || 0) + match[0].length,
+  }))
 }

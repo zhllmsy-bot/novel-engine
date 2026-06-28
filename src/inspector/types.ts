@@ -2,7 +2,7 @@ import type { ProviderConfig } from '@/ai/providerRuntime'
 import type { ProviderAdapterManifest } from '@/ai/providerManifest'
 import type { NovelAgentToolExecution } from '@/agent-tools/novelAgentRuntime'
 import type { NovelAgentToolName } from '@/agent-tools/novelAgentTools'
-import type { DiffPart, PatchValidation } from '@/diff/safeRewrite'
+import type { DiffPart, PatchValidation, RewriteUnit } from '@/diff/safeRewrite'
 import type { StoryGraphSnapshot } from '@/inspector/storyGraphSnapshot'
 import type { ChapterSummary } from '@/memory/chapterSummaryStore'
 import type { CharacterStateLog } from '@/memory/characterStateLogStore'
@@ -61,6 +61,7 @@ export type SkillsPanelProps = {
   lastResult: SkillRunResult | null
   rewritePatch: RewritePatch | null
   diffParts: DiffPart[]
+  rewriteUnits: RewriteUnit[]
   patchValidation: PatchValidation | null
   acceptedStateProposalKeys: Set<string>
   acceptedPlotThreadProposalKeys: Set<string>
@@ -69,6 +70,7 @@ export type SkillsPanelProps = {
   onConfirmStateProposal: (proposal: CharacterStateChangeProposal) => void
   onConfirmPlotThreadProposal: (proposal: PlotThreadChangeProposal) => void
   onAcceptPatch: () => void | Promise<void>
+  onAcceptRewriteUnit: (unitId: string) => void | Promise<void>
   onRejectPatch: () => void
 }
 

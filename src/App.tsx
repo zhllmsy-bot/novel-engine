@@ -50,8 +50,11 @@ import {
   saveProviderSettings,
 } from './ai/providerSettingsPersistence'
 import {
+  acceptRewriteUnitInPatch,
   applyRewritePatch,
+  applyRewriteUnit,
   buildDiffParts,
+  buildRewriteUnits,
   validateRewritePatch,
 } from './diff/safeRewrite'
 import { MarkdownEditor } from './editor/MarkdownEditor'
@@ -363,6 +366,10 @@ function App() {
         : [],
     [rewritePatch],
   )
+  const rewriteUnits = useMemo(
+    () => (rewritePatch ? buildRewriteUnits(rewritePatch) : []),
+    [rewritePatch],
+  )
   const activeProvider = useMemo(
     () =>
       createModelProvider(
@@ -668,6 +675,32 @@ function App() {
       setVersionRevision((revision) => revision + 1)
       updateDocumentText(nextDocumentText)
       setRewritePatch(null)
+    } catch (error) {
+      setRuntimeError(error instanceof Error ? error.message : String(error))
+    }
+  }
+
+  async function acceptRewriteUnit(unitId: string) {
+    if (!rewritePatch || !activeChapter) return
+    const nextDocumentText = applyRewriteUnit(documentText, rewritePatch, unitId)
+
+    const version = versionStore.createSnapshot({
+      chapterId: activeChapter.id,
+      contentSnapshot: documentText,
+      source: 'ai',
+      operation: 'rewrite_accept',
+      note: '接受 AI 单句改写前自动快照',
+      modelId: activeProvider.id,
+      skillId: rewritePatch.skillId,
+    })
+
+    try {
+      await saveVersionSnapshot(version)
+      setVersionRevision((revision) => revision + 1)
+      updateDocumentText(nextDocumentText)
+      const remainingPatch = acceptRewriteUnitInPatch(rewritePatch, unitId)
+      const remainingUnits = buildRewriteUnits(remainingPatch)
+      setRewritePatch(remainingUnits.length > 0 ? remainingPatch : null)
     } catch (error) {
       setRuntimeError(error instanceof Error ? error.message : String(error))
     }
@@ -1292,6 +1325,7 @@ function App() {
           lastResult={lastResult}
           rewritePatch={rewritePatch}
           diffParts={diffParts}
+          rewriteUnits={rewriteUnits}
           patchValidation={patchValidation}
           acceptedStateProposalKeys={acceptedStateProposalKeys}
           acceptedPlotThreadProposalKeys={acceptedPlotThreadProposalKeys}
@@ -1308,6 +1342,7 @@ function App() {
           onRunSkill={runSkill}
           onPreviewSkill={previewSkill}
           onAcceptPatch={() => void acceptPatch()}
+          onAcceptRewriteUnit={(unitId) => void acceptRewriteUnit(unitId)}
           onRejectPatch={() => setRewritePatch(null)}
           onConfirmStateProposal={confirmStateProposal}
           onConfirmPlotThreadProposal={confirmPlotThreadProposal}
