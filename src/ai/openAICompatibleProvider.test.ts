@@ -124,6 +124,81 @@ describe('OpenAI-compatible provider', () => {
     )
   })
 
+  it('accepts JSON wrapped in a markdown fence or short provider preface', async () => {
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce(
+        new Response(
+          JSON.stringify({
+            choices: [
+              {
+                message: {
+                  content: [
+                    '```json',
+                    JSON.stringify({
+                      type: 'rewrite_patch',
+                      patch: {
+                        original: '沈微停在三步之外，没有行礼。',
+                        proposed: '沈微停在三步之外，没有行礼，只抬眼望向檐下。',
+                        skillId: 'xuanhuan.dialogue_polish',
+                        requiresSnapshot: true,
+                      },
+                      auditTrail: ['skill:xuanhuan.dialogue_polish'],
+                    }),
+                    '```',
+                  ].join('\n'),
+                },
+              },
+            ],
+          }),
+          { status: 200 },
+        ),
+      )
+      .mockResolvedValueOnce(
+        new Response(
+          JSON.stringify({
+            choices: [
+              {
+                message: {
+                  content: `Here is the JSON:\n${JSON.stringify({
+                    type: 'rewrite_patch',
+                    patch: {
+                      original: '沈微停在三步之外，没有行礼。',
+                      proposed: '沈微停在三步之外，仍旧没有行礼。',
+                      skillId: 'xuanhuan.dialogue_polish',
+                      requiresSnapshot: true,
+                    },
+                    auditTrail: ['skill:xuanhuan.dialogue_polish'],
+                  })}`,
+                },
+              },
+            ],
+          }),
+          { status: 200 },
+        ),
+      )
+    vi.stubGlobal('fetch', fetchMock)
+
+    const provider = createOpenAICompatibleProvider({
+      baseUrl: 'https://gateway.example.com',
+      apiKey: 'test-key',
+      model: 'fiction-model',
+    })
+
+    await expect(provider.runSkill(request)).resolves.toMatchObject({
+      type: 'rewrite_patch',
+      patch: {
+        proposed: '沈微停在三步之外，没有行礼，只抬眼望向檐下。',
+      },
+    })
+    await expect(provider.runSkill(request)).resolves.toMatchObject({
+      type: 'rewrite_patch',
+      patch: {
+        proposed: '沈微停在三步之外，仍旧没有行礼。',
+      },
+    })
+  })
+
   it('keeps custom skill instructions in the user payload, not the system contract', () => {
     const messages = buildOpenAICompatibleMessages(request)
 

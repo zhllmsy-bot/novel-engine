@@ -710,6 +710,10 @@ keys.
 The editor audits each adapter-declared config field and shows which values are
 ready or missing, so OpenAI-compatible gateways can be diagnosed before a Skill
 run spends tokens.
+Provider responses are still validated against the declared Skill result schema.
+The parser tolerates common gateway/model wrappers such as Markdown JSON fences
+or a short preface around the JSON object, but malformed JSON or
+schema-mismatched results fail before they can mutate editor state.
 
 The current UI persists non-secret provider settings (`providerMode`, `baseUrl`,
 and `model`) in local browser settings so the editor can survive a refresh. API

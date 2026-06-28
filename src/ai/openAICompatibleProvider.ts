@@ -161,11 +161,28 @@ function resolveTemperature(config: OpenAICompatibleConfig, request: SkillRunReq
 }
 
 function parseJsonObject(content: string): unknown {
+  const jsonText = extractJsonObjectText(content)
+
   try {
-    return JSON.parse(content)
+    return JSON.parse(jsonText)
   } catch (error) {
     throw new Error(`Model returned invalid JSON: ${String(error)}`)
   }
+}
+
+function extractJsonObjectText(content: string) {
+  const trimmed = content.trim()
+  const fenced = trimmed.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/i)
+  const candidate = fenced?.[1].trim() || trimmed
+
+  if (candidate.startsWith('{') && candidate.endsWith('}')) {
+    return candidate
+  }
+
+  const start = candidate.indexOf('{')
+  const end = candidate.lastIndexOf('}')
+
+  return start >= 0 && end > start ? candidate.slice(start, end + 1) : candidate
 }
 
 export function createOpenAICompatibleProvider(
