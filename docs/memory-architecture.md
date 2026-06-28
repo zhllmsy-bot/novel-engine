@@ -44,7 +44,10 @@ L1 is the plot spine. It is generated from chapter Markdown into
 the current chapter. The editor's manual summary action first uses the built-in
 `core.chapter_summary_generate` Skill with the configured provider, expects
 structured `{summary, keyEvents, charactersInvolved}` output, and falls back to
-the local deterministic generator when the provider path fails.
+the local deterministic generator when the provider path fails. That fallback
+scans the whole chapter for codex keyword hits, late reveals, promises,
+prohibitions, state changes, and ending turns, so no-key demo runs still keep
+important L1 signals beyond the first few lines.
 
 Rules:
 

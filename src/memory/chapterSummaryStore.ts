@@ -95,8 +95,7 @@ export function createMemoryChapterSummaryStore(
 export function generateLocalChapterSummary(
   input: GenerateChapterSummaryInput,
 ): ChapterSummary {
-  const sentences = usefulSentences(input.content)
-  const keyEvents = sentences.slice(0, 3)
+  const keyEvents = selectKeyEventSentences(input.content, input.codexEntries)
   const charactersInvolved = input.codexEntries
     .filter((entry) =>
       [entry.name, ...entry.keywords].some((keyword) =>
@@ -129,8 +128,71 @@ function usefulSentences(content: string) {
       .split(/(?<=[。！？!?])\s*/)
       .map((sentence) => sentence.trim())
       .filter(Boolean)
-      .slice(0, 6)
   )
+}
+
+function selectKeyEventSentences(content: string, codexEntries: CodexEntry[]) {
+  const sentences = usefulSentences(content)
+  if (sentences.length <= 3) {
+    return sentences
+  }
+
+  const keywords = uniqueStrings(
+    codexEntries.flatMap((entry) => [entry.name, ...entry.keywords]),
+  )
+  const selectedIndexes = new Set<number>([0])
+  const ranked = sentences
+    .map((sentence, index) => ({
+      index,
+      sentence,
+      score: scoreSummarySentence(sentence, index, sentences.length, keywords),
+    }))
+    .toSorted((left, right) => right.score - left.score || left.index - right.index)
+
+  for (const candidate of ranked) {
+    if (selectedIndexes.size >= 5) break
+    if (candidate.score <= 0 && selectedIndexes.size >= 3) break
+    selectedIndexes.add(candidate.index)
+  }
+
+  return [...selectedIndexes]
+    .toSorted((left, right) => left - right)
+    .map((index) => sentences[index])
+}
+
+function scoreSummarySentence(
+  sentence: string,
+  index: number,
+  total: number,
+  keywords: string[],
+) {
+  let score = 0
+
+  if (index === 0) score += 2
+  if (index >= Math.max(0, total - 2)) score += 2
+  if (/[“”"']/.test(sentence)) score += 1
+
+  const keywordHits = keywords.filter((keyword) => sentence.includes(keyword))
+  score += Math.min(keywordHits.length * 3, 9)
+
+  if (/(终于|忽然|突然|原来|发现|知道|意识到|决定|选择|答应|承诺)/.test(sentence)) {
+    score += 2
+  }
+  if (/(提醒|警告|要求|命令|不能|不要|必须|只会|绝不|如果|有一天)/.test(sentence)) {
+    score += 2
+  }
+  if (/(身份|修为|境界|所在地|目标|风险|伤势|关系|背叛|死亡|失踪)/.test(sentence)) {
+    score += 2
+  }
+  if (/(伏笔|线索|誓言|真相|钥|剑|令|印|封印|黑潮司|戒律堂)/.test(sentence)) {
+    score += 1
+  }
+
+  return score
+}
+
+function uniqueStrings(values: string[]) {
+  return [...new Set(values.map((value) => value.trim()).filter(Boolean))]
 }
 
 function truncateSummary(value: string) {

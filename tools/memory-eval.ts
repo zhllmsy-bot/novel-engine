@@ -15,7 +15,10 @@ import {
 } from '../src/memory/memorySourceSummary.ts'
 import type { NarrativeMemoryPlan } from '../src/memory/memoryContextBuilder.ts'
 import type { MemorySourceFamilySummary } from '../src/memory/memorySourceSummary.ts'
-import type { ChapterSummary } from '../src/memory/chapterSummaryStore.ts'
+import {
+  generateLocalChapterSummary,
+  type ChapterSummary,
+} from '../src/memory/chapterSummaryStore.ts'
 import type { CharacterStateLog } from '../src/memory/characterStateLogStore.ts'
 import type { PlotThread } from '../src/memory/plotThreadStore.ts'
 import type { VolumeSummary } from '../src/memory/volumeSummaryStore.ts'
@@ -245,7 +248,10 @@ export async function evaluateNarrativeMemory(input: {
     })
   }
 
-  const chapterSummaries = buildEvaluationSummaries(project.chapters)
+  const chapterSummaries = buildEvaluationSummaries(
+    project.chapters,
+    project.codexEntries,
+  )
   const plan = buildNarrativeMemoryPlan({
     chapter,
     projectChapters: project.chapters,
@@ -1475,28 +1481,23 @@ function isMemorySourceFamily(value: unknown): value is MemorySourceFamily {
   )
 }
 
-function buildEvaluationSummaries(chapters: ProjectChapter[]): ChapterSummary[] {
-  return chapters.map((chapter) => ({
-    chapterId: chapter.id,
-    chapterTitle: chapter.title,
-    summary: firstUsefulLines(chapter.content, 2),
-    keyEvents: [],
-    charactersInvolved: [],
-    sourceHash: `eval:${chapter.id}`,
-    isEdited: false,
-    updatedAt: '1970-01-01T00:00:00.000Z',
-  }))
-}
+function buildEvaluationSummaries(
+  chapters: ProjectChapter[],
+  codexEntries: CodexEntry[],
+): ChapterSummary[] {
+  return chapters.map((chapter) => {
+    const summary = generateLocalChapterSummary({
+      chapter,
+      content: chapter.content,
+      codexEntries,
+    })
 
-function firstUsefulLines(text: string, maxLines: number) {
-  return (
-    text
-      .split('\n')
-      .map((line) => line.trim())
-      .filter((line) => line && !line.startsWith('#'))
-      .slice(0, maxLines)
-      .join(' ') || '暂无内容。'
-  )
+    return {
+      ...summary,
+      sourceHash: `eval:${summary.sourceHash}`,
+      updatedAt: '1970-01-01T00:00:00.000Z',
+    }
+  })
 }
 
 function fullUsefulText(text: string) {

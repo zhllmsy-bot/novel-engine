@@ -522,8 +522,11 @@ Generated summaries are treated as derived cache data. The editor's chapter
 summary action first runs the built-in `core.chapter_summary_generate` Skill,
 which asks the configured provider for structured `{summary, keyEvents,
 charactersInvolved}` output, then falls back to the local deterministic summary
-generator if provider configuration or model output fails. If a summary is marked
-as edited, neither provider-backed nor local generation will overwrite it.
+generator if provider configuration or model output fails. The fallback scans
+the full chapter for codex keyword hits, late reveals, promises, prohibitions,
+state changes, and ending turns instead of only taking the opening lines. If a
+summary is marked as edited, neither provider-backed nor local generation will
+overwrite it.
 Browser demo runs keep these summaries in memory; the desktop host loads and
 saves them through `.novel/cache.db`.
 

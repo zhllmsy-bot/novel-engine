@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { loadDemoProject } from '../project/demoProjectRepository'
 import { createMemoryChapterSummaryStore } from './chapterSummaryStore'
+import type { CodexEntry, ProjectChapter } from '../project/projectTypes'
 
 describe('chapter summary store', () => {
   it('generates a local chapter summary with key events and involved characters', () => {
@@ -18,6 +19,48 @@ describe('chapter summary store', () => {
     expect(summary.charactersInvolved).toContain('char-li-zhanglao')
     expect(summary.isEdited).toBe(false)
     expect(store.getSummary(chapter.id)).toBe(summary)
+  })
+
+  it('scans the full chapter for late plot signals instead of only taking opening lines', () => {
+    const chapter: ProjectChapter = {
+      id: 'chapter-late-signal',
+      title: '第010章 赤羽令',
+      status: '编辑中',
+      path: 'manuscript/chapter-late-signal.md',
+      order: 10,
+      content: '',
+      wordCount: 0,
+    }
+    const codexEntries: CodexEntry[] = [
+      {
+        id: 'item-red-feather-token',
+        name: '赤羽令',
+        type: 'item',
+        path: 'codex/items/red-feather-token.md',
+        keywords: ['赤羽令', '白塔', '暗河司'],
+        body: '赤羽令不能交给暗河司。',
+        frontmatter: {},
+        currentState: {},
+      },
+    ]
+    const content = [
+      '# 第010章 赤羽令',
+      '',
+      '林澜在雨里走了很久。',
+      '城门安静，茶摊老板只给了他一盏冷茶。',
+      '直到夜尽时，旧友把赤羽令塞给他，提醒他若见到白塔，绝不能交给暗河司。',
+    ].join('\n')
+    const store = createMemoryChapterSummaryStore()
+    const summary = store.upsertGeneratedSummary({
+      chapter,
+      content,
+      codexEntries,
+    })
+
+    expect(summary.summary).toContain('赤羽令')
+    expect(summary.summary).toContain('暗河司')
+    expect(summary.keyEvents.at(-1)).toContain('绝不能交给暗河司')
+    expect(summary.charactersInvolved).toEqual(['item-red-feather-token'])
   })
 
   it('does not overwrite an edited summary with generated content', () => {
