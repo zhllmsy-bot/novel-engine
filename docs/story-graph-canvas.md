@@ -92,6 +92,8 @@ not.
 The MVP graph should be read-only and derived from existing data:
 
 - Chapter nodes from `project.chapters`.
+- Story-time nodes from optional chapter `story_time`, linked into the active
+  chapter so the writing order and in-world order remain visible separately.
 - Codex/entity nodes from `project.codexEntries`.
 - Memory nodes from `runtimeMemoryPlan.memories`.
 - Plot-thread nodes from confirmed `plotThreads`.
@@ -157,6 +159,8 @@ Current persistence boundary:
 
 - `src/project/graphSnapshotPersistence.ts` reads/writes validated snapshots in
   Tauri and no-ops in the browser demo.
+- The snapshot schema allows `story_time` nodes, but still treats them as
+  rebuildable view data derived from `meta/project.json`.
 - `src-tauri/src/project.rs` stores the file under `<project>/.novel/graph.json`.
 - `src/App.tsx` loads the snapshot with other rebuildable project caches when a
   local project is opened.

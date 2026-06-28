@@ -703,7 +703,7 @@
 .story-legend-grid {
   display: grid;
   gap: 6px;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .story-legend-pill {
@@ -734,6 +734,10 @@
 
 .story-legend-pill.story-node-memory {
   border-left-color: var(--chart-4);
+}
+
+.story-legend-pill.story-node-time {
+  border-left-color: var(--chart-5);
 }
 
 .story-legend-pill.story-node-codex {
@@ -858,6 +862,10 @@
   stroke: var(--primary);
 }
 
+.story-node-time rect {
+  stroke: var(--chart-5);
+}
+
 .story-node-memory rect {
   stroke: var(--chart-4);
 }
@@ -915,6 +923,10 @@ button.story-node-card[aria-pressed='true'] {
 
 .story-node-card.story-node-chapter {
   border-left-color: var(--primary);
+}
+
+.story-node-card.story-node-time {
+  border-left-color: var(--chart-5);
 }
 
 .story-node-card.story-node-memory {

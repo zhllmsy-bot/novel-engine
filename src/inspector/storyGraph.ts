@@ -10,6 +10,7 @@ import type { NarrativeMemory, SkillRunResult } from '@/types/domain'
 
 export type StoryGraphNodeKind =
   | 'chapter'
+  | 'story_time'
   | 'memory'
   | 'codex'
   | 'plot_thread'
@@ -89,10 +90,21 @@ export function buildStoryGraph(input: BuildStoryGraphInput): StoryGraph {
     id: activeChapterId,
     kind: 'chapter',
     label: input.activeChapter?.title || '当前章节',
-    detail: input.activeChapter?.path || 'active draft',
+    detail: formatChapterDetail(input.activeChapter),
     x: 246,
     y: 176,
   })
+
+  if (input.activeChapter?.storyTime) {
+    const timeNode = buildStoryTimeNode(input.activeChapter)
+    nodes.push(timeNode)
+    edges.push({
+      id: `${timeNode.id}->${activeChapterId}`,
+      from: timeNode.id,
+      to: activeChapterId,
+      label: '故事时间',
+    })
+  }
 
   const layerCounts = new Map<NarrativeMemory['layer'], number>()
 
@@ -290,12 +302,43 @@ export function summarizeStoryGraph(
 function emptyNodeKindCounts(): Record<StoryGraphNodeKind, number> {
   return {
     chapter: 0,
+    story_time: 0,
     memory: 0,
     codex: 0,
     plot_thread: 0,
     skill_run: 0,
     publish_job: 0,
   }
+}
+
+function buildStoryTimeNode(chapter: ProjectChapter): StoryGraphNode {
+  const storyTime = chapter.storyTime
+  const label = storyTime?.label || `story:${storyTime?.sortKey ?? chapter.order}`
+  const sortDetail =
+    storyTime?.sortKey !== undefined ? `sort:${storyTime.sortKey}` : 'sort:未标记'
+
+  return {
+    id: `story_time:${chapter.id}`,
+    kind: 'story_time',
+    label,
+    detail: `${chapter.title} · ${sortDetail}`,
+    x: 246,
+    y: 112,
+  }
+}
+
+function formatChapterDetail(chapter?: ProjectChapter) {
+  if (!chapter) return 'active draft'
+
+  return [
+    chapter.path,
+    chapter.storyTime?.label ? `故事时间: ${chapter.storyTime.label}` : undefined,
+    (chapter.sceneDefIds || []).length > 0
+      ? `场景设定: ${(chapter.sceneDefIds || []).join('、')}`
+      : undefined,
+  ]
+    .filter(Boolean)
+    .join(' · ')
 }
 
 function memorySourcesInclude(

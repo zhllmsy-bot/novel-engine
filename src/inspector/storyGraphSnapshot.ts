@@ -7,6 +7,7 @@ export const storyGraphSnapshotPath = '.novel/graph.json'
 
 const nodeKindSchema = z.enum([
   'chapter',
+  'story_time',
   'memory',
   'codex',
   'plot_thread',

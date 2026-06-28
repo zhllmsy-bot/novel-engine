@@ -31,6 +31,7 @@ import type { StoryGraphPanelProps } from './types'
 
 const nodeClassByKind: Record<StoryGraphNode['kind'], string> = {
   chapter: 'story-node-chapter',
+  story_time: 'story-node-time',
   memory: 'story-node-memory',
   codex: 'story-node-codex',
   plot_thread: 'story-node-plot',
@@ -40,6 +41,7 @@ const nodeClassByKind: Record<StoryGraphNode['kind'], string> = {
 
 const kindLabel: Record<StoryGraphNode['kind'], string> = {
   chapter: '章节',
+  story_time: '时间',
   memory: '记忆',
   codex: '设定',
   plot_thread: '伏笔',
@@ -49,6 +51,7 @@ const kindLabel: Record<StoryGraphNode['kind'], string> = {
 
 const graphViews: { value: StoryGraphView; label: string }[] = [
   { value: 'all', label: '全部' },
+  { value: 'story_time', label: '时间' },
   { value: 'memory', label: '记忆' },
   { value: 'codex', label: '设定' },
   { value: 'plot_thread', label: '伏笔' },
@@ -389,6 +392,11 @@ function GraphLegend({
   return (
     <div className="story-graph-legend" aria-label="Story graph legend">
       <div className="story-legend-grid">
+        <LegendPill
+          className="story-node-time"
+          label="时间"
+          value={summary.nodesByKind.story_time}
+        />
         <LegendPill
           className="story-node-memory"
           label="记忆"

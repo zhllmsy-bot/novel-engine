@@ -17,6 +17,10 @@ const chapter: ProjectChapter = {
   status: '编辑中',
   path: 'manuscript/volume-001/chapter-001.md',
   order: 1,
+  storyTime: {
+    label: '玄历三百二十一年·春夜',
+    sortKey: 321.1,
+  },
   content: '沈微见到了李长老。',
   wordCount: 10,
 }
@@ -78,12 +82,32 @@ describe('story graph snapshot', () => {
         position: { x: 246, y: 176 },
       }),
     )
-    expect(snapshot.graph.edges[0]).toEqual(
-      expect.objectContaining({
-        from: expect.stringContaining('memory:'),
-        to: 'chapter:chapter-001',
-        label: '注入',
-      }),
+    expect(snapshot.graph.nodes).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: 'story_time:chapter-001',
+          kind: 'story_time',
+          label: '玄历三百二十一年·春夜',
+        }),
+      ]),
+    )
+    expect(snapshot.graph.edges).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          from: 'story_time:chapter-001',
+          to: 'chapter:chapter-001',
+          label: '故事时间',
+        }),
+      ]),
+    )
+    expect(snapshot.graph.edges).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          from: expect.stringContaining('memory:'),
+          to: 'chapter:chapter-001',
+          label: '注入',
+        }),
+      ]),
     )
   })
 

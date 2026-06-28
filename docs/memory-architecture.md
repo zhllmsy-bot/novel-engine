@@ -69,9 +69,10 @@ Rules:
   `order` to be a positive integer with no duplicates.
 - `order` is the writing/reading sequence. Optional `story_time` is the
   in-world sequence hook for later flashbacks, foreshadowed reveals, and
-  timeline contradiction checks. The runtime currently surfaces the label in L3
-  intent memory; deeper time consistency checks should build on this field
-  rather than overloading chapter order.
+  timeline contradiction checks. The runtime surfaces the label in L3 intent
+  memory and the story graph renders it as a separate `story_time` provenance
+  node. Deeper time consistency checks should build on this field rather than
+  overloading chapter order.
 - Optional `scene_def_ids` points from a chapter to codex cards with
   `type: scene_def`. This separates manuscript scene prose from reusable
   scene/location definition cards. The memory builder injects those linked cards

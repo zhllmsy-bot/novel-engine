@@ -21,6 +21,11 @@ const chapter: ProjectChapter = {
   status: '编辑中',
   path: 'manuscript/volume-001/chapter-001.md',
   order: 1,
+  storyTime: {
+    label: '玄历三百二十一年·春夜',
+    sortKey: 321.1,
+  },
+  sceneDefIds: ['scene-xuantianzong-gate'],
   content: '沈微见到了李长老。',
   wordCount: 10,
 }
@@ -191,6 +196,13 @@ describe('story graph', () => {
           id: 'chapter:chapter-001',
           kind: 'chapter',
           label: '第001章 山门雨',
+          detail: expect.stringContaining('故事时间: 玄历三百二十一年·春夜'),
+        }),
+        expect.objectContaining({
+          id: 'story_time:chapter-001',
+          kind: 'story_time',
+          label: '玄历三百二十一年·春夜',
+          detail: expect.stringContaining('sort:321.1'),
         }),
         expect.objectContaining({
           kind: 'memory',
@@ -210,6 +222,11 @@ describe('story graph', () => {
 
     expect(graph.edges).toEqual(
       expect.arrayContaining([
+        expect.objectContaining({
+          from: 'story_time:chapter-001',
+          to: 'chapter:chapter-001',
+          label: '故事时间',
+        }),
         expect.objectContaining({
           from: expect.stringContaining('memory:'),
           to: 'chapter:chapter-001',
@@ -241,6 +258,10 @@ describe('story graph', () => {
 
     expect(chapterContext?.incoming).toEqual(
       expect.arrayContaining([
+        expect.objectContaining({
+          edge: expect.objectContaining({ label: '故事时间' }),
+          node: expect.objectContaining({ kind: 'story_time' }),
+        }),
         expect.objectContaining({
           edge: expect.objectContaining({ label: '注入' }),
           node: expect.objectContaining({ kind: 'memory', label: 'L2 风格' }),
@@ -389,6 +410,37 @@ describe('story graph', () => {
     )
   })
 
+  it('filters the story time view while keeping its chapter edge', () => {
+    const graph = buildStoryGraph({
+      activeChapter: chapter,
+      runtimeMemoryPlan: memoryPlan,
+      codexEntries: [codexEntry],
+      plotThreads: [plotThread],
+    })
+
+    const timeGraph = filterStoryGraphByView(graph, 'story_time')
+
+    expect(timeGraph.nodes).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ id: 'story_time:chapter-001' }),
+        expect.objectContaining({ id: 'chapter:chapter-001' }),
+      ]),
+    )
+    expect(timeGraph.nodes).not.toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ kind: 'memory' }),
+        expect.objectContaining({ kind: 'codex' }),
+      ]),
+    )
+    expect(timeGraph.edges).toEqual([
+      expect.objectContaining({
+        from: 'story_time:chapter-001',
+        to: 'chapter:chapter-001',
+        label: '故事时间',
+      }),
+    ])
+  })
+
   it('summarizes visible graph counts and memory layers', () => {
     const graph = buildStoryGraph({
       activeChapter: chapter,
@@ -404,6 +456,7 @@ describe('story graph', () => {
     expect(summary.visibleNodes).toBe(memoryGraph.nodes.length)
     expect(summary.nodesByKind).toMatchObject({
       chapter: 1,
+      story_time: 1,
       memory: 4,
       codex: 1,
       plot_thread: 1,
