@@ -44,6 +44,10 @@ import {
   validateProviderConfig,
 } from './ai/providerRuntime'
 import {
+  loadProviderSettings,
+  saveProviderSettings,
+} from './ai/providerSettingsPersistence'
+import {
   applyRewritePatch,
   buildDiffParts,
   validateRewritePatch,
@@ -120,6 +124,21 @@ import {
 } from './versioning/chapterVersionStore'
 
 type WorkspaceState = ReturnType<typeof createWorkspaceState>
+type InitialProviderSettings = NonNullable<ReturnType<typeof loadProviderSettings>>
+
+function loadInitialProviderSettings(): InitialProviderSettings {
+  const settings = loadProviderSettings()
+  const adapters = listProviderAdapterManifests()
+  const providerMode =
+    settings && adapters.some((adapter) => adapter.id === settings.providerMode)
+      ? settings.providerMode
+      : getDefaultProviderAdapterId(adapters)
+
+  return {
+    providerMode,
+    providerConfig: settings?.providerConfig || defaultProviderConfig,
+  }
+}
 
 function createWorkspaceState(
   project = loadDemoProject(),
@@ -214,8 +233,13 @@ function App() {
   )
   const [acceptedPlotThreadProposalKeys, setAcceptedPlotThreadProposalKeys] =
     useState(() => new Set<string>())
-  const [providerMode, setProviderMode] = useState(getDefaultProviderAdapterId)
-  const [providerConfig, setProviderConfig] = useState(defaultProviderConfig)
+  const [initialProviderSettings] = useState(loadInitialProviderSettings)
+  const [providerMode, setProviderMode] = useState(
+    () => initialProviderSettings.providerMode,
+  )
+  const [providerConfig, setProviderConfig] = useState(
+    () => initialProviderSettings.providerConfig,
+  )
   const [graphSnapshot, setGraphSnapshot] =
     useState<StoryGraphSnapshot | null>(null)
 
@@ -263,6 +287,13 @@ function App() {
       isMounted = false
     }
   }, [project.rootPath])
+
+  useEffect(() => {
+    saveProviderSettings({
+      providerMode,
+      providerConfig,
+    })
+  }, [providerConfig, providerMode])
 
   const diffParts = useMemo(
     () =>

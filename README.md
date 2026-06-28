@@ -672,6 +672,9 @@ The editor audits each adapter-declared config field and shows which values are
 ready or missing, so OpenAI-compatible gateways can be diagnosed before a Skill
 run spends tokens.
 
-The current UI keeps these values in memory only. Do not commit secrets. A later
-desktop pass should move persistent credentials into a local secure settings
-store.
+The current UI persists non-secret provider settings (`providerMode`, `baseUrl`,
+and `model`) in local browser settings so the editor can survive a refresh. API
+keys are intentionally excluded from that persisted payload and are reset on
+reload. Do not commit secrets. A later desktop pass should move persistent
+credentials into the OS keychain or Tauri Stronghold instead of project files,
+SQLite cache, or browser local storage.

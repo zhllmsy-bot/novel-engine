@@ -1,5 +1,6 @@
 import {
   Field,
+  FieldDescription,
   FieldGroup,
   FieldLabel,
   FieldTitle,
@@ -141,6 +142,13 @@ export function ProviderPanel({
             onProviderConfigChange={onProviderConfigChange}
           />
         ))}
+        {activeAdapter && activeAdapter.configFields.length > 0 ? (
+          <Field>
+            <FieldDescription>
+              Base URL 和 Model 会保留在本机设置；API Key 只保留当前会话，不写入持久化存储。
+            </FieldDescription>
+          </Field>
+        ) : null}
         <div className="provider-config-audit" aria-label="Provider config audit">
           <div className="provider-config-audit-heading">
             <span>配置审计</span>
