@@ -82,6 +82,18 @@ describe('skill new tool', () => {
         help: false,
       }),
     )
+    const chapterSummary = parseSkillManifest(
+      buildSkillTemplate({
+        id: 'community.chapter_summary',
+        name: '章节摘要',
+        outputPath: 'unused.skill.yaml',
+        mode: 'chapter_summary',
+        risk: 'low',
+        category: 'memory',
+        force: false,
+        help: false,
+      }),
+    )
     const exportArtifact = parseSkillManifest(
       buildSkillTemplate({
         id: 'community.export',
@@ -98,6 +110,7 @@ describe('skill new tool', () => {
     expect(plotThread.ok).toBe(true)
     expect(characterState.ok).toBe(true)
     expect(report.ok).toBe(true)
+    expect(chapterSummary.ok).toBe(true)
     expect(exportArtifact.ok).toBe(true)
 
     if (plotThread.ok) {
@@ -127,6 +140,19 @@ describe('skill new tool', () => {
         'volume_summary',
         'plot_thread',
         'character_state_log',
+        'recall',
+      ])
+    }
+    if (chapterSummary.ok) {
+      expect(chapterSummary.manifest).toMatchObject({
+        outputMode: 'chapter_summary',
+        outputSchema: 'chapter_summary',
+      })
+      expect(chapterSummary.manifest.retrieval?.sourceFamilies).toEqual([
+        'manuscript',
+        'codex',
+        'chapter_summary',
+        'plot_thread',
         'recall',
       ])
     }

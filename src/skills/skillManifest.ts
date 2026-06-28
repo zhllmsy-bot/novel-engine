@@ -14,6 +14,7 @@ const outputModes = new Set<SkillOutputMode>([
   'report',
   'rewrite_patch',
   'memory_update_proposal',
+  'chapter_summary',
   'export_artifact',
 ])
 
@@ -25,6 +26,7 @@ const outputSchemasByMode = {
     'plot_thread_proposal',
     'mixed_memory_update',
   ]),
+  chapter_summary: new Set(['chapter_summary']),
   export_artifact: new Set(['export_artifact']),
 } as const satisfies Record<SkillOutputMode, ReadonlySet<string>>
 
@@ -133,7 +135,7 @@ export function parseSkillManifest(source: string): SkillParseResult {
 
   if (typeof outputMode !== 'string' || !outputModes.has(outputMode as SkillOutputMode)) {
     errors.push(
-      'output.mode 必须是 report、rewrite_patch、memory_update_proposal 或 export_artifact。',
+      'output.mode 必须是 report、rewrite_patch、memory_update_proposal、chapter_summary 或 export_artifact。',
     )
   }
 

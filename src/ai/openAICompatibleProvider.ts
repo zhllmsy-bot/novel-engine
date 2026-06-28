@@ -63,6 +63,17 @@ function buildResponseContract(skill: SkillManifest) {
 }`
   }
 
+  if (outputMode === 'chapter_summary') {
+    return `Return only JSON:
+{
+  "type": "chapter_summary",
+  "summary": "200-300 Chinese characters summarizing the chapter's causal plot progress, not just opening lines",
+  "keyEvents": ["important event or decision", "state change or clue", "foreshadowing planted or paid off"],
+  "charactersInvolved": ["character ids or names that appear in this chapter"],
+  "auditTrail": ["skill:<id>", "provider:openai-compatible"]
+}`
+  }
+
   return `Return only JSON:
 {
   "type": "${outputMode}",

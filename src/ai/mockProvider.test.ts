@@ -60,4 +60,41 @@ describe('mock provider', () => {
       })
     }
   })
+
+  it('returns structured chapter summary results for summary Skills', async () => {
+    const result = await mockProvider.runSkill({
+      ...rewriteRequest,
+      skill: {
+        id: 'core.chapter_summary_generate',
+        name: '章节摘要生成',
+        version: '0.1.0',
+        category: 'memory',
+        description: '生成结构化章节摘要。',
+        riskLevel: 'low',
+        outputMode: 'chapter_summary',
+        outputSchema: 'chapter_summary',
+        requiresReview: false,
+      },
+      context: {
+        ...rewriteRequest.context,
+        memories: [
+          {
+            layer: 'L0 事实',
+            body: '李长老是玄天宗长老。',
+            source: 'codex/characters/li-zhanglao.md',
+          },
+        ],
+      },
+    })
+
+    expect(result.type).toBe('chapter_summary')
+    if (result.type === 'chapter_summary') {
+      expect(result.summary).toContain('沈微第一次听见玄铁剑的声音')
+      expect(result.keyEvents.length).toBeGreaterThan(0)
+      expect(result.charactersInvolved).toEqual([
+        'codex/characters/li-zhanglao.md',
+      ])
+      expect(result.auditTrail).toContain('skill:core.chapter_summary_generate')
+    }
+  })
 })

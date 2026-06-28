@@ -39,12 +39,18 @@ Phase 0 policy still protects L2 first because losing recent prose is the fastes
 
 ## L1 Plot Memory
 
-L1 is the plot spine. It is generated from chapter Markdown into `chapter_summary` cache records and then read back in chronological order up to the current chapter.
+L1 is the plot spine. It is generated from chapter Markdown into
+`chapter_summary` cache records and then read back in chronological order up to
+the current chapter. The editor's manual summary action first uses the built-in
+`core.chapter_summary_generate` Skill with the configured provider, expects
+structured `{summary, keyEvents, charactersInvolved}` output, and falls back to
+the local deterministic generator when the provider path fails.
 
 Rules:
 
 - Generated summaries are derived cache, not durable manuscript truth.
-- Edited summaries must not be automatically overwritten.
+- Edited summaries must not be automatically overwritten by provider-backed or
+  local generation.
 - The runtime uses gradient compression: the nearest summaries stay detailed,
   while distant summaries are grouped into compact volume-level signals before
   any hard budget truncation.
@@ -123,7 +129,8 @@ Vector search is optional later, preferably through SQLite-native extensions suc
 When a chapter is saved or a high-risk AI edit is accepted:
 
 1. Save a version snapshot before mutation.
-2. Generate or refresh a chapter summary if the existing summary is not user-edited.
+2. Generate or refresh a chapter summary through the chapter-summary Skill, with
+   local fallback, if the existing summary is not user-edited.
 3. Let Skills propose plot threads or state changes.
 4. Require confirmation for state changes, plot threads, and other high-risk memory mutations.
 5. Store derived data in `.novel/cache.db`; keep Markdown/YAML as the durable truth.

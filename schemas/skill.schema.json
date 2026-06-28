@@ -115,6 +115,7 @@
             "report",
             "rewrite_patch",
             "memory_update_proposal",
+            "chapter_summary",
             "export_artifact"
           ]
         },
@@ -125,6 +126,7 @@
             "character_state_proposal",
             "plot_thread_proposal",
             "mixed_memory_update",
+            "chapter_summary",
             "report",
             "export_artifact"
           ]
@@ -247,6 +249,28 @@
           "output": {
             "properties": {
               "schema": { "const": "export_artifact" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "mode": { "const": "chapter_summary" }
+            },
+            "required": ["mode"]
+          }
+        },
+        "required": ["output"]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "properties": {
+              "schema": { "const": "chapter_summary" }
             }
           }
         }

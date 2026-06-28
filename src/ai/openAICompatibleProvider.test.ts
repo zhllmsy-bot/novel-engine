@@ -169,4 +169,31 @@ describe('OpenAI-compatible provider', () => {
     expect(messages[0].content).toContain('"kind": "character_state"')
     expect(messages[0].content).toContain('"kind": "plot_thread"')
   })
+
+  it('includes a structured chapter summary response contract', () => {
+    const messages = buildOpenAICompatibleMessages({
+      ...request,
+      skill: {
+        ...request.skill,
+        id: 'core.chapter_summary_generate',
+        name: '章节摘要生成',
+        category: 'memory',
+        riskLevel: 'low',
+        outputMode: 'chapter_summary',
+        outputSchema: 'chapter_summary',
+        requiresReview: false,
+        prompt: '生成章节摘要、关键事件和出场人物。',
+        input: {
+          required: ['nearby_text'],
+          optional: ['character_cards', 'plot_memory'],
+        },
+      },
+    })
+
+    expect(messages[0].content).toContain('"type": "chapter_summary"')
+    expect(messages[0].content).toContain('"keyEvents"')
+    expect(messages[0].content).toContain('"charactersInvolved"')
+    expect(messages[0].content).toContain('not just opening lines')
+    expect(messages[1].content).toContain('"outputSchema": "chapter_summary"')
+  })
 })

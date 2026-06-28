@@ -566,7 +566,32 @@ export function SkillsPanel({
         </InspectorSection>
       ) : null}
 
-      {lastResult && lastResult.type !== 'rewrite_patch' ? (
+      {lastResult?.type === 'chapter_summary' ? (
+        <InspectorSection title="chapter_summary">
+          <Card className="skill-result-card" size="sm">
+            <CardHeader>
+              <CardTitle>章节摘要</CardTitle>
+              <CardDescription>
+                {lastResult.charactersInvolved.length > 0
+                  ? lastResult.charactersInvolved.join(' · ')
+                  : '未标记出场人物'}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>{lastResult.summary}</p>
+              <ul className="audit-trail">
+                {lastResult.keyEvents.map((event) => (
+                  <li key={event}>{event}</li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </InspectorSection>
+      ) : null}
+
+      {lastResult &&
+      lastResult.type !== 'rewrite_patch' &&
+      lastResult.type !== 'chapter_summary' ? (
         <InspectorSection title={lastResult.type}>
           <Card className="skill-result-card" size="sm">
             <CardHeader>

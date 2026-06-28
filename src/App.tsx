@@ -86,6 +86,7 @@ import { createPlotThreadPersistence } from './project/plotThreadPersistence'
 import { createProjectPersistence } from './project/projectPersistence'
 import { pickAndLoadTauriProject } from './project/tauriProjectRepository'
 import { createVolumeSummaryPersistence } from './project/volumeSummaryPersistence'
+import type { ProjectChapter } from './project/projectTypes'
 import {
   buildEditorPublishPlan,
   getDefaultEditorDryRunAdapterId,
@@ -96,6 +97,7 @@ import {
   type EditorPublisherAdapterCatalog,
 } from './publisher/editorPublisher'
 import {
+  findChapterSummarySkill,
   findRewriteSkill,
   loadProjectSkillCatalog,
   loadSkillCatalog,
@@ -764,11 +766,9 @@ function App() {
   async function generateActiveSummary() {
     if (!activeChapter) return
 
-    const summary = summaryStore.upsertGeneratedSummary({
-      chapter: activeChapter,
-      content: documentText,
-      codexEntries: project.codexEntries,
-    })
+    setRuntimeError(null)
+
+    const summary = await generateSummaryWithProvider(activeChapter)
     const nextChapterSummaries = [
       ...chapterSummaries.filter(
         (chapterSummary) => chapterSummary.chapterId !== summary.chapterId,
@@ -784,6 +784,72 @@ function App() {
       await summaryPersistence.saveChapterSummary(project.rootPath, summary)
     } catch (error) {
       setRuntimeError(error instanceof Error ? error.message : String(error))
+    }
+  }
+
+  async function generateSummaryWithProvider(chapter: ProjectChapter) {
+    const summarySkill = findChapterSummarySkill(skillCatalog)
+
+    if (!summarySkill) {
+      return summaryStore.upsertGeneratedSummary({
+        chapter,
+        content: documentText,
+        codexEntries: project.codexEntries,
+      })
+    }
+
+    try {
+      const providerConfigError = validateProviderConfig(
+        providerMode,
+        providerConfig,
+        providerAdapters,
+      )
+      if (providerConfigError) {
+        throw new Error(providerConfigError)
+      }
+
+      const preview = previewSkillRun({
+        documentText,
+        selectedText: '',
+        chapterTitle: chapter.title,
+        memories: runtimeMemories,
+        skill: summarySkill,
+        provider: activeProvider,
+      })
+      setLastSkillAudit(preview.audit)
+
+      const result = await runSkillWithProvider(
+        summarySkill,
+        preview.context,
+        activeProvider,
+      )
+      setLastResult(result)
+
+      if (result.type !== 'chapter_summary') {
+        throw new Error(
+          `摘要 Skill 返回了不支持的结果类型: ${result.type}`,
+        )
+      }
+
+      return summaryStore.upsertModelSummary({
+        chapter,
+        content: documentText,
+        summary: result.summary,
+        keyEvents: result.keyEvents,
+        charactersInvolved: result.charactersInvolved,
+      })
+    } catch (error) {
+      setRuntimeError(
+        `AI 摘要失败，已使用本地摘要: ${
+          error instanceof Error ? error.message : String(error)
+        }`,
+      )
+
+      return summaryStore.upsertGeneratedSummary({
+        chapter,
+        content: documentText,
+        codexEntries: project.codexEntries,
+      })
     }
   }
 

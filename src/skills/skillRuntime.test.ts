@@ -710,6 +710,38 @@ describe('skill runtime', () => {
     }
   })
 
+  it('parses chapter summary results at the safe result boundary', () => {
+    const result = parseSkillRunResult({
+      type: 'chapter_summary',
+      summary: '沈微在山门雨中听见玄铁剑震鸣，李长老借戒律堂施压，裂纹伏笔被重新点亮。',
+      keyEvents: [
+        '沈微听见玄铁剑的声音。',
+        '李长老现身并施压。',
+        '玄铁剑裂纹成为后续伏笔。',
+      ],
+      charactersInvolved: ['沈微', '李长老'],
+      auditTrail: ['skill:core.chapter_summary_generate'],
+    })
+
+    expect(result.type).toBe('chapter_summary')
+    if (result.type === 'chapter_summary') {
+      expect(result.keyEvents).toHaveLength(3)
+      expect(result.charactersInvolved).toContain('李长老')
+    }
+  })
+
+  it('rejects chapter summary results without key events', () => {
+    expect(() =>
+      parseSkillRunResult({
+        type: 'chapter_summary',
+        summary: '沈微在山门雨中听见玄铁剑震鸣。',
+        keyEvents: [],
+        charactersInvolved: ['沈微'],
+        auditTrail: ['skill:core.chapter_summary_generate'],
+      }),
+    ).toThrow()
+  })
+
   it('rejects character-state memory proposals without an explicit kind', () => {
     expect(() =>
       parseSkillRunResult({

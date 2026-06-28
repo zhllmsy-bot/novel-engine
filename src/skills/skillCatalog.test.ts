@@ -4,6 +4,7 @@ import {
   buildSkillCatalog,
   describeSkillCatalogSource,
   filterSkillCatalogEntriesBySource,
+  findChapterSummarySkill,
   findRewriteSkill,
   formatSkillCatalogSource,
   loadProjectSkillCatalog,
@@ -30,9 +31,15 @@ describe('skill catalog', () => {
   it('loads example YAML skills and exposes a rewrite skill', () => {
     const catalog = loadSkillCatalog()
     const rewriteSkill = findRewriteSkill(catalog)
+    const summarySkill = findChapterSummarySkill(catalog)
 
     expect(catalog.errors).toEqual([])
     expect(rewriteSkill?.name).toBe('玄幻对白润色')
+    expect(summarySkill).toMatchObject({
+      id: 'core.chapter_summary_generate',
+      outputMode: 'chapter_summary',
+      outputSchema: 'chapter_summary',
+    })
     expect(
       catalog.skills.find(
         (entry) => entry.manifest.id === 'xuanhuan.foreshadowing_thread',
@@ -237,8 +244,8 @@ safety:
     })
 
     expect(summarizeSkillCatalogSources(catalog.skills)).toMatchObject({
-      all: 5,
-      builtin: 2,
+      all: 6,
+      builtin: 3,
       bundled_yaml: 2,
       project_yaml: 1,
     })

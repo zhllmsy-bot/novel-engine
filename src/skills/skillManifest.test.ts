@@ -36,6 +36,9 @@ describe('skill manifest parser', () => {
         }
         output: {
           properties: {
+            mode: {
+              enum: string[]
+            }
             schema: {
               enum: string[]
             }
@@ -52,10 +55,60 @@ describe('skill manifest parser', () => {
     expect(schema.$defs.memorySourceFamily.enum).toContain('recall')
     expect(schema.properties.retrieval.properties.include_recall).toBeTruthy()
     expect(schema.properties.retrieval.properties.source_families).toBeTruthy()
+    expect(schema.properties.output.properties.mode.enum).toContain(
+      'chapter_summary',
+    )
     expect(schema.properties.output.properties.schema.enum).toContain(
       'plot_thread_proposal',
     )
+    expect(schema.properties.output.properties.schema.enum).toContain(
+      'chapter_summary',
+    )
     expect(schema.allOf.length).toBeGreaterThanOrEqual(4)
+  })
+
+  it('parses a chapter summary Skill manifest as a first-class output mode', () => {
+    const result = parseSkillManifest(`
+id: community.chapter_summary
+name: 章节摘要
+version: 0.1.0
+category: memory
+description: 生成结构化章节摘要。
+risk_level: low
+input:
+  required: [nearby_text]
+  optional: [character_cards, plot_memory]
+retrieval:
+  include_recent_chapters: 0
+  include_characters: auto
+  include_worldbuilding: auto
+  include_recall: auto
+  source_families:
+    - manuscript
+    - codex
+    - chapter_summary
+    - plot_thread
+    - recall
+output:
+  mode: chapter_summary
+  schema: chapter_summary
+`)
+
+    expect(result.ok).toBe(true)
+    if (result.ok) {
+      expect(result.manifest).toMatchObject({
+        outputMode: 'chapter_summary',
+        outputSchema: 'chapter_summary',
+        requiresReview: true,
+      })
+      expect(result.manifest.retrieval?.sourceFamilies).toEqual([
+        'manuscript',
+        'codex',
+        'chapter_summary',
+        'plot_thread',
+        'recall',
+      ])
+    }
   })
 
   it('parses a safe YAML skill manifest', () => {
@@ -177,6 +230,27 @@ safety:
         'output.schema 与 output.mode 不匹配',
       )
       expect(result.errors.join('\n')).toContain('rewrite_patch 只能使用: diff_patch')
+    }
+  })
+
+  it('rejects chapter summary Skills with mismatched output schema', () => {
+    const result = parseSkillManifest(`
+id: unsafe.chapter_summary
+name: Unsafe Chapter Summary
+version: 0.1.0
+category: memory
+description: Declares a mismatched schema.
+risk_level: low
+output:
+  mode: chapter_summary
+  schema: report
+`)
+
+    expect(result.ok).toBe(false)
+    if (!result.ok) {
+      expect(result.errors.join('\n')).toContain(
+        'chapter_summary 只能使用: chapter_summary',
+      )
     }
   })
 

@@ -454,7 +454,8 @@ The current memory loop includes a Phase 0 chapter-summary path:
 
 ```text
 chapter Markdown
--> local chapter summary generator
+-> built-in chapter_summary Skill + configured provider
+-> local chapter summary fallback
 -> chapter_summary store
 -> L1 plot memory in the runtime context
 ```
@@ -481,10 +482,14 @@ shares, and whether each candidate memory was included, truncated, or dropped,
 making Skill prompt debugging inspectable instead of a hidden prompt-budget
 guess.
 
-Generated summaries are treated as derived cache data. If a summary is marked as
-edited, automatic generation will not overwrite it. Browser demo runs keep these
-summaries in memory; the desktop host loads and saves them through
-`.novel/cache.db`.
+Generated summaries are treated as derived cache data. The editor's chapter
+summary action first runs the built-in `core.chapter_summary_generate` Skill,
+which asks the configured provider for structured `{summary, keyEvents,
+charactersInvolved}` output, then falls back to the local deterministic summary
+generator if provider configuration or model output fails. If a summary is marked
+as edited, neither provider-backed nor local generation will overwrite it.
+Browser demo runs keep these summaries in memory; the desktop host loads and
+saves them through `.novel/cache.db`.
 
 Volume summaries follow the same derived-memory rule. They compact distant L1
 plot context, remain sourceable as `volume_summary:*` in the memory audit, and
@@ -535,7 +540,7 @@ Skill manifest
 -> host-built SkillContext
 -> ModelProvider
 -> SkillRunResult
--> safe Diff / report / memory proposal / export artifact
+-> safe Diff / report / memory proposal / chapter summary / export artifact
 ```
 
 The editor must not allow a Skill or model provider to directly overwrite prose. Rewrite output is accepted only as a `rewrite_patch`, and the original text is validated before application.
@@ -575,12 +580,13 @@ Skills proposal-shaped instead of direct-write shaped.
 
 Every Skill manifest must declare `output.schema`, and it is tied to
 `output.mode`: rewrite Skills use `diff_patch`,
-report Skills use `report`, export Skills use `export_artifact`, and memory
-proposal Skills use `character_state_proposal`, `plot_thread_proposal`, or
-`mixed_memory_update`. The runtime enforces those memory proposal schemas after
-provider output is parsed: a `plot_thread_proposal` Skill cannot return
-`character_state` proposals, and a `character_state_proposal` Skill cannot return
-`plot_thread` proposals.
+report Skills use `report`, chapter summary Skills use `chapter_summary`, export
+Skills use `export_artifact`, and memory proposal Skills use
+`character_state_proposal`, `plot_thread_proposal`, or `mixed_memory_update`.
+The runtime enforces those memory proposal schemas after provider output is
+parsed: a `plot_thread_proposal` Skill cannot return `character_state`
+proposals, and a `character_state_proposal` Skill cannot return `plot_thread`
+proposals.
 
 `input.required` is enforced before a Skill reaches the provider. Supported
 input names are `selected_text`, `nearby_text`, `chapter_summary`,

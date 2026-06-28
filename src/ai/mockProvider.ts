@@ -80,6 +80,32 @@ export const mockProvider: ModelProvider = {
       }
     }
 
+    if (skill.outputMode === 'chapter_summary') {
+      const body = context.nearbyText
+        .split('\n')
+        .map((line) => line.trim())
+        .filter((line) => line && !line.startsWith('#'))
+        .join(' ')
+      const summary =
+        body.length > 180 ? `${body.slice(0, 179)}…` : body || '本章暂无可摘要正文。'
+
+      return {
+        type: 'chapter_summary',
+        summary,
+        keyEvents: [
+          summary,
+          context.memories.length > 0
+            ? '摘要生成时参考了四层记忆上下文。'
+            : '摘要生成时未检测到额外记忆上下文。',
+        ],
+        charactersInvolved: context.memories
+          .filter((memory) => memory.layer === 'L0 事实')
+          .map((memory) => memory.source)
+          .slice(0, 5),
+        auditTrail,
+      }
+    }
+
     if (skill.outputMode === 'export_artifact') {
       return {
         type: 'export_artifact',

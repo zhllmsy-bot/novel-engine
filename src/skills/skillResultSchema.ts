@@ -52,6 +52,14 @@ const memoryUpdateProposalSchema = z.object({
   auditTrail: auditTrailSchema,
 }).strict()
 
+const chapterSummarySchema = z.object({
+  type: z.literal('chapter_summary'),
+  summary: z.string().min(1).max(600),
+  keyEvents: z.array(z.string().min(1)).min(1).max(12),
+  charactersInvolved: z.array(z.string().min(1)).default([]),
+  auditTrail: auditTrailSchema,
+}).strict()
+
 const exportArtifactSchema = z.object({
   type: z.literal('export_artifact'),
   title: z.string().min(1),
@@ -63,6 +71,7 @@ export const skillRunResultSchema = z.discriminatedUnion('type', [
   rewritePatchSchema,
   reportSchema,
   memoryUpdateProposalSchema,
+  chapterSummarySchema,
   exportArtifactSchema,
 ])
 

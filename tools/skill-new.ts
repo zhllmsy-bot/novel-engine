@@ -23,12 +23,14 @@ type SkillOutputSchema =
   | 'character_state_proposal'
   | 'plot_thread_proposal'
   | 'mixed_memory_update'
+  | 'chapter_summary'
   | 'export_artifact'
 
 const outputModes = new Set<SkillOutputMode>([
   'report',
   'rewrite_patch',
   'memory_update_proposal',
+  'chapter_summary',
   'export_artifact',
 ])
 
@@ -39,6 +41,7 @@ const outputSchemas = new Set<SkillOutputSchema>([
   'character_state_proposal',
   'plot_thread_proposal',
   'mixed_memory_update',
+  'chapter_summary',
   'export_artifact',
 ])
 
@@ -224,6 +227,8 @@ function outputSchemaForMode(mode: SkillOutputMode) {
       return 'diff_patch'
     case 'memory_update_proposal':
       return 'mixed_memory_update'
+    case 'chapter_summary':
+      return 'chapter_summary'
     case 'export_artifact':
       return 'export_artifact'
     case 'report':
@@ -265,6 +270,10 @@ function defaultSourceFamiliesForSkill({
 
   if (mode === 'export_artifact') {
     return ['manuscript', 'project', 'chapter_summary', 'volume_summary']
+  }
+
+  if (mode === 'chapter_summary') {
+    return ['manuscript', 'codex', 'chapter_summary', 'plot_thread', 'recall']
   }
 
   return ['manuscript', 'codex', 'chapter_summary', 'recall']
@@ -362,6 +371,7 @@ Usage:
   npm run skills:new -- --id community.dialogue_polish --name "对白润色"
   npm run skills:new -- --project examples/demo-novel --id demo.foreshadowing --name "本书伏笔体检" --mode memory_update_proposal --schema mixed_memory_update --category memory
   npm run skills:new -- --id xuanhuan.foreshadowing --name "伏笔检查" --mode memory_update_proposal --schema plot_thread_proposal --category memory
+  npm run skills:new -- --id core.chapter_summary --name "章节摘要" --mode chapter_summary --risk low --category memory
   npm run skills:new -- --id community.report --name "章节体检" --mode report --risk low --out skills/report.skill.yaml
 
 Options:
@@ -369,7 +379,7 @@ Options:
   --name <name>      Required. Display name shown in the editor.
   --out <path>       Output path. Defaults to examples/skills/<id>.skill.yaml.
   --project <path>   Novel project root. Defaults output to <project>/skills/<id>.skill.yaml.
-  --mode <mode>      report, rewrite_patch, memory_update_proposal, export_artifact.
+  --mode <mode>      report, rewrite_patch, memory_update_proposal, chapter_summary, export_artifact.
   --schema <schema>  Output schema. Defaults from --mode when omitted.
   --risk <level>     low, medium, or high.
   --category <name>  Free-form category such as rewrite, memory, export.

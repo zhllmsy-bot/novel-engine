@@ -20,6 +20,7 @@ export type SkillOutputMode =
   | 'report'
   | 'rewrite_patch'
   | 'memory_update_proposal'
+  | 'chapter_summary'
   | 'export_artifact'
 
 export type SkillRiskLevel = 'low' | 'medium' | 'high'
@@ -132,6 +133,13 @@ export type SkillRunResult =
       title: string
       body: string
       proposals: MemoryUpdateProposal[]
+      auditTrail: string[]
+    }
+  | {
+      type: 'chapter_summary'
+      summary: string
+      keyEvents: string[]
+      charactersInvolved: string[]
       auditTrail: string[]
     }
   | {

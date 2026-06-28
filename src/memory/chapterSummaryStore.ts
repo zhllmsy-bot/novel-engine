@@ -17,10 +17,19 @@ export type GenerateChapterSummaryInput = {
   codexEntries: CodexEntry[]
 }
 
+export type ModelChapterSummaryInput = {
+  chapter: ProjectChapter
+  content: string
+  summary: string
+  keyEvents: string[]
+  charactersInvolved: string[]
+}
+
 export type ChapterSummaryStore = {
   getSummary(chapterId: string): ChapterSummary | undefined
   listSummaries(): ChapterSummary[]
   upsertGeneratedSummary(input: GenerateChapterSummaryInput): ChapterSummary
+  upsertModelSummary(input: ModelChapterSummaryInput): ChapterSummary
   upsertEditedSummary(summary: ChapterSummary): ChapterSummary
 }
 
@@ -47,6 +56,27 @@ export function createMemoryChapterSummaryStore(
       }
 
       const summary = generateLocalChapterSummary(input)
+      summaries.set(input.chapter.id, summary)
+      return summary
+    },
+    upsertModelSummary(input) {
+      const existingSummary = summaries.get(input.chapter.id)
+      if (existingSummary?.isEdited) {
+        return existingSummary
+      }
+
+      const summary = {
+        chapterId: input.chapter.id,
+        chapterTitle: input.chapter.title,
+        summary: truncateSummary(input.summary),
+        keyEvents: input.keyEvents.map((event) => event.trim()).filter(Boolean),
+        charactersInvolved: input.charactersInvolved
+          .map((character) => character.trim())
+          .filter(Boolean),
+        sourceHash: sourceSignature(input.content),
+        isEdited: false,
+        updatedAt: new Date().toISOString(),
+      }
       summaries.set(input.chapter.id, summary)
       return summary
     },

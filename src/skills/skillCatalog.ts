@@ -149,6 +149,12 @@ export function findRewriteSkill(catalog: SkillCatalog) {
   )?.manifest
 }
 
+export function findChapterSummarySkill(catalog: SkillCatalog) {
+  return catalog.skills.find(
+    (entry) => entry.manifest.outputMode === 'chapter_summary',
+  )?.manifest
+}
+
 export function formatSkillCatalogSource(source: SkillCatalogEntrySource) {
   const labels: Record<SkillCatalogEntrySource, string> = {
     builtin: '内置',
