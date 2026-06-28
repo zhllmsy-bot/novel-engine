@@ -137,7 +137,9 @@ host. It rebuilds from Markdown chapters plus cached summaries, uses FTS5
 memory builder as `indexedRecallResults`; the builder time-slices them against
 chapter order, excludes current/future chapters, and emits concrete
 `recall:index:*` L3 entries. Browser/demo runs still use the in-memory path, so
-the core runtime has no dependency on a separate service.
+the core runtime has no dependency on a separate service. In inspector source
+chips these entries remain in the stable `recall` source family and are labeled
+as `索引召回`, so Skill filters and human debugging both stay readable.
 
 ## Write Path
 

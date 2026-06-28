@@ -19,13 +19,18 @@ describe('memory panel source chips', () => {
   it('labels recall and state-log sources for audit scanning', () => {
     expect(
       parseMemorySourceChips(
-        'recall:chapter_summary:chapter-001;character_state_log:state-1;meta/project.json',
+        'recall:chapter_summary:chapter-001;recall:index:chapter-002;character_state_log:state-1;meta/project.json',
       ),
     ).toEqual([
       {
         kind: 'recall',
         label: '召回',
         detail: 'chapter_summary:chapter-001',
+      },
+      {
+        kind: 'recall',
+        label: '索引召回',
+        detail: 'index:chapter-002',
       },
       { kind: 'character_state_log', label: '状态', detail: 'state-1' },
       {
@@ -73,7 +78,7 @@ describe('memory panel source chips', () => {
           layer: 'L3 意图',
           body: '召回',
           source:
-            'recall:chapter_summary:chapter-001;recall:plot_thread:thread-1',
+            'recall:chapter_summary:chapter-001;recall:plot_thread:thread-1;recall:index:chapter-003',
         },
         {
           layer: 'L1 剧情',
@@ -121,10 +126,11 @@ describe('memory panel source chips', () => {
           family: 'recall',
           label: '召回',
           memoryCount: 1,
-          sourceCount: 2,
+          sourceCount: 3,
           sources: [
             'recall:chapter_summary:chapter-001',
             'recall:plot_thread:thread-1',
+            'recall:index:chapter-003',
           ],
         }),
       ]),

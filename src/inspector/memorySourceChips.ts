@@ -44,13 +44,21 @@ export function parseMemorySourceChips(source: string): MemorySourceChip[] {
         .filter(Boolean)
         .map((detail) => ({
           kind,
-          label: sourceKindLabel(kind),
+          label: sourceKindLabel(kind, undefined, detail),
           detail,
         }))
     })
 }
 
-function sourceKindLabel(kind: string, family?: MemorySourceFamily) {
+function sourceKindLabel(
+  kind: string,
+  family?: MemorySourceFamily,
+  detail?: string,
+) {
+  if (kind === 'recall' && detail?.startsWith('index:')) {
+    return '索引召回'
+  }
+
   const labels: Record<string, string> = {
     chapter_summary: '章摘要',
     volume_summary: '卷摘要',
