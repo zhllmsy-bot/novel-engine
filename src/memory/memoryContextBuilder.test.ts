@@ -354,8 +354,8 @@ describe('narrative memory context builder', () => {
     expect(memoryBudgetPolicy.detailedSummaryRecentCount).toBe(5)
     expect(plotBody).toContain('近期详细')
     expect(plotBody).toContain('远期压缩')
-    expect(plotBody.indexOf('近期详细')).toBeLessThan(
-      plotBody.indexOf('远期压缩'),
+    expect(plotBody.indexOf('远期压缩')).toBeLessThan(
+      plotBody.indexOf('近期详细'),
     )
     expect(plotBody).toContain('第003章 记忆3: 第3章完整摘要')
     expect(plotBody).toContain('第007章 记忆7: 第7章完整摘要')

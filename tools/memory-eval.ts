@@ -113,7 +113,7 @@ export type MemoryEvalReport = {
 type CliOptions = {
   rootPath: string
   chapterId?: string
-  budgetChars: number
+  budgetChars?: number
   json: boolean
   help: boolean
 }
@@ -1620,10 +1620,9 @@ function uniqueStrings(values: string[]) {
   return [...new Set(values.map((value) => value.trim()).filter(Boolean))]
 }
 
-function parseArgs(args: string[]): CliOptions {
+export function parseMemoryEvalArgs(args: string[]): CliOptions {
   const options: CliOptions = {
     rootPath: 'examples/demo-novel',
-    budgetChars: 900,
     json: false,
     help: false,
   }
@@ -1646,8 +1645,11 @@ function parseArgs(args: string[]): CliOptions {
     }
   }
 
-  if (!Number.isFinite(options.budgetChars) || options.budgetChars <= 0) {
-    options.budgetChars = 900
+  if (
+    options.budgetChars !== undefined &&
+    (!Number.isFinite(options.budgetChars) || options.budgetChars <= 0)
+  ) {
+    options.budgetChars = undefined
   }
 
   return options
@@ -1668,7 +1670,7 @@ the four-layer memory builder recalls expected layer content for a project.
 }
 
 async function main() {
-  const options = parseArgs(process.argv.slice(2))
+  const options = parseMemoryEvalArgs(process.argv.slice(2))
 
   if (options.help) {
     printHelp()

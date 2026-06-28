@@ -98,6 +98,7 @@ Before broad product expansion, run a proof experiment:
 - Metrics: callback hit rate, setting violation count, recall precision, and author-rated usability.
 - Deterministic smoke gate: `memory:eval` must show Candidate B is not worse than baseline and meets the configured `minimum_gain`.
 - Community test corpora define recall expectations in `meta/memory-eval.json`, backed by `schemas/memory-eval.schema.json` and checked by `project:check`.
+- Repository benchmark: `examples/long-memory-benchmark` places the active test chapter beyond the recent-prose baseline window, requiring L0/L1/L3 recall to recover chapter-one oath context.
 - Continue only if the memory engine gives a clear improvement over the baseline.
 
 ## Roadmap

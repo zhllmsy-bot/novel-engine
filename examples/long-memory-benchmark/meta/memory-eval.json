@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../schemas/memory-eval.schema.json",
+  "chapter_id": "chapter-006",
+  "budget_chars": 1200,
+  "minimum_gain": 5,
+  "expectations": [
+    {
+      "id": "l2-current-prose",
+      "description": "Baseline and four-layer plans both preserve the active scene prose.",
+      "layer": "L2 风格",
+      "contains": ["当前章节原文", "镜湖钥"]
+    },
+    {
+      "id": "l0-jianli-state",
+      "description": "L0 recalls Jianli's current structured facts from the character card.",
+      "layer": "L0 事实",
+      "contains": ["简璃", "镜湖守灯人"],
+      "source_families": ["codex"]
+    },
+    {
+      "id": "l0-key-rule",
+      "description": "L0 recalls the item rule that the key must answer the old oath.",
+      "layer": "L0 事实",
+      "contains": ["镜湖钥", "回应青灯誓"],
+      "source_families": ["codex"]
+    },
+    {
+      "id": "l1-distant-oath",
+      "description": "L1 keeps the chapter-one oath available beyond the recent-prose window.",
+      "layer": "L1 剧情",
+      "contains": ["第001章 青灯誓", "青灯誓"]
+    },
+    {
+      "id": "l3-summary-recall-oath",
+      "description": "L3 emits a concrete recall item for the distant oath summary.",
+      "layer": "L3 意图",
+      "contains": ["关联召回: 第001章 青灯誓", "命中关键词"],
+      "source_contains": ["recall:chapter_summary:"],
+      "source_families": ["recall"]
+    },
+    {
+      "id": "l3-recall-audit-jianli",
+      "description": "L3 audit makes the keyword hit visible to contributors.",
+      "layer": "L3 意图",
+      "contains": ["命中设定", "简璃"]
+    }
+  ]
+}

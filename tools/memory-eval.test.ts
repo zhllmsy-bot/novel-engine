@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest'
 import {
   evaluateNarrativeMemory,
   formatMemoryEvalReport,
+  parseMemoryEvalArgs,
 } from './memory-eval.ts'
 
 async function writeMemoryProject(root: string) {
@@ -47,6 +48,25 @@ keywords: [李长老, 玄铁剑]
 }
 
 describe('memory eval tool', () => {
+  it('does not override project memory eval budget unless --budget is explicit', () => {
+    const projectArgs = parseMemoryEvalArgs(['examples/long-memory-benchmark'])
+
+    expect(projectArgs).toMatchObject({
+      rootPath: 'examples/long-memory-benchmark',
+    })
+    expect('budgetChars' in projectArgs).toBe(false)
+    expect(
+      parseMemoryEvalArgs([
+        '--budget',
+        '1200',
+        'examples/long-memory-benchmark',
+      ]),
+    ).toMatchObject({
+      rootPath: 'examples/long-memory-benchmark',
+      budgetChars: 1200,
+    })
+  })
+
   it('passes the deterministic four-layer recall expectations', async () => {
     const root = await mkdtemp(join(tmpdir(), 'memory-eval-'))
 

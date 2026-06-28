@@ -537,8 +537,8 @@ function formatLayeredSummaryBody(
 
   return {
     body: [
-    `近期详细: ${detailedBody}`,
-    distantLayer.body ? `远期压缩: ${distantLayer.body}` : undefined,
+      distantLayer.body ? `远期压缩: ${distantLayer.body}` : undefined,
+      `近期详细: ${detailedBody}`,
     ]
       .filter(Boolean)
       .join(' '),

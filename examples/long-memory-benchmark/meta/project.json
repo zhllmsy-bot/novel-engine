@@ -1,0 +1,44 @@
+{
+  "$schema": "../../../schemas/project.schema.json",
+  "schema_version": 1,
+  "title": "青灯镜湖",
+  "source_of_truth": "markdown",
+  "chapters": [
+    {
+      "id": "chapter-001",
+      "title": "第001章 青灯誓",
+      "path": "manuscript/volume-001/chapter-001.md",
+      "order": 1
+    },
+    {
+      "id": "chapter-002",
+      "title": "第002章 雾市失约",
+      "path": "manuscript/volume-001/chapter-002.md",
+      "order": 2
+    },
+    {
+      "id": "chapter-003",
+      "title": "第003章 北渡雪线",
+      "path": "manuscript/volume-001/chapter-003.md",
+      "order": 3
+    },
+    {
+      "id": "chapter-004",
+      "title": "第004章 黑潮来信",
+      "path": "manuscript/volume-002/chapter-004.md",
+      "order": 4
+    },
+    {
+      "id": "chapter-005",
+      "title": "第005章 石塔夜谈",
+      "path": "manuscript/volume-002/chapter-005.md",
+      "order": 5
+    },
+    {
+      "id": "chapter-006",
+      "title": "第006章 镜湖重逢",
+      "path": "manuscript/volume-002/chapter-006.md",
+      "order": 6
+    }
+  ]
+}

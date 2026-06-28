@@ -376,6 +376,7 @@ flexible across projects.
 ```bash
 npm run memory:eval
 npm run memory:eval -- examples/demo-novel
+npm run memory:eval -- examples/long-memory-benchmark
 npm run memory:eval -- --chapter chapter-001 --budget 900
 npm run memory:eval -- --json /path/to/MyNovel
 ```
@@ -386,6 +387,9 @@ that the deterministic memory assembly path still recalls the controlled facts
 before any model is involved, and that the core prompt-budget discipline has not
 drifted. A useful result should show L2 passing in both baseline and four-layer
 plans, with L0/L1/L3 gains coming from the full memory engine.
+`examples/long-memory-benchmark` is the stronger smoke corpus: chapter 6 asks
+for chapter-1 oath context outside the recent-prose baseline window, so it should
+show a low baseline score and a passing `Phase 0 gate` through L0/L1/L3 recall.
 
 Example `meta/memory-eval.json`:
 
