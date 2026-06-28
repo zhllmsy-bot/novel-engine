@@ -14,6 +14,11 @@ export type RawProjectManifest = {
     title?: string
     path?: string
     order?: number
+    story_time?: {
+      label?: unknown
+      sort_key?: unknown
+    }
+    scene_def_ids?: unknown
   }>
 }
 
@@ -65,6 +70,8 @@ function loadChapters(
           path,
           filePath: file?.filePath,
           order: chapter.order || index + 1,
+          storyTime: parseChapterStoryTime(chapter.story_time),
+          sceneDefIds: stringArrayField(chapter.scene_def_ids),
           content: file?.content || '',
           status: '已摘要',
         })
@@ -84,6 +91,7 @@ function loadChapters(
         path: normalizePath(file.path),
         filePath: file.filePath,
         order: index + 1,
+        sceneDefIds: [],
         content: file.content,
         status: '已摘要',
       }),
@@ -101,6 +109,8 @@ function chapterFromSource(input: {
   path: string
   filePath?: string
   order: number
+  storyTime?: ProjectChapter['storyTime']
+  sceneDefIds?: string[]
   content: string
   status: ChapterStatus
 }): ProjectChapter {
@@ -113,8 +123,32 @@ function chapterFromSource(input: {
     path: input.path,
     filePath: input.filePath,
     order: input.order,
+    storyTime: input.storyTime,
+    sceneDefIds: input.sceneDefIds || [],
     content: parsed.body,
     wordCount: parsed.wordCount,
+  }
+}
+
+function parseChapterStoryTime(value: unknown): ProjectChapter['storyTime'] {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return undefined
+  }
+
+  const record = value as Record<string, unknown>
+  const label = stringField(record.label)?.trim()
+  const sortKey =
+    typeof record.sort_key === 'number' && Number.isFinite(record.sort_key)
+      ? record.sort_key
+      : undefined
+
+  if (!label && sortKey === undefined) {
+    return undefined
+  }
+
+  return {
+    label,
+    sortKey,
   }
 }
 

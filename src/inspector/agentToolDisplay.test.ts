@@ -94,7 +94,7 @@ describe('agent tool display helpers', () => {
       '{"includeProviders":true,"includePublisher":true}',
     )
     expect(formatAgentToolResultSummary(execution)).toBe(
-      '2 chapters · 1 codex · 2 pending',
+      '2 chapters · 3 codex · 2 pending',
     )
   })
 
@@ -123,9 +123,7 @@ describe('agent tool display helpers', () => {
     expect(formatAgentToolInput(memoryExecution)).toBe('default')
     expect(formatAgentToolResultSummary(memoryExecution)).toContain('memories')
     expect(formatAgentToolResultSummary(memoryExecution)).not.toContain('filtered')
-    expect(formatAgentToolResultSummary(filteredMemoryExecution)).toContain(
-      '1/',
-    )
+    expect(formatAgentToolResultSummary(filteredMemoryExecution)).toContain('3/')
     expect(formatAgentToolResultSummary(filteredMemoryExecution)).toContain(
       'memories · filtered',
     )

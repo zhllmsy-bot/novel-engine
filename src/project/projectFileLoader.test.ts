@@ -20,6 +20,11 @@ describe('project file loader', () => {
             title: '第一章',
             path: 'manuscript/chapter-001.md',
             order: 1,
+            story_time: {
+              label: '倒叙第一夜',
+              sort_key: 10.1,
+            },
+            scene_def_ids: ['scene-rain-gate'],
           },
         ],
       }),
@@ -36,6 +41,18 @@ describe('project file loader', () => {
         },
       ],
       codexFiles: [
+        {
+          path: 'codex/locations/rain-gate.md',
+          content: `---
+id: scene-rain-gate
+name: 雨中山门
+type: scene_def
+keywords: [雨中山门, 山门]
+---
+
+地点设定。
+`,
+        },
         {
           path: 'codex/characters/li.md',
           content: `---
@@ -64,8 +81,22 @@ current_state:
       filePath: '/novels/demo/manuscript/chapter-001.md',
       status: '编辑中',
       title: '第一章',
+      storyTime: {
+        label: '倒叙第一夜',
+        sortKey: 10.1,
+      },
+      sceneDefIds: ['scene-rain-gate'],
     })
+    expect(project.codexEntries.find((entry) => entry.id === 'scene-rain-gate'))
+      .toMatchObject({
+        name: '雨中山门',
+        type: 'scene_def',
+        path: 'codex/locations/rain-gate.md',
+      })
     expect(project.codexEntries[0]).toMatchObject({
+      id: 'scene-rain-gate',
+    })
+    expect(project.codexEntries[1]).toMatchObject({
       id: 'char-li',
       name: '李长老',
       path: 'codex/characters/li.md',

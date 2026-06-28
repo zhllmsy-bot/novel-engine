@@ -67,6 +67,15 @@ Rules:
   requires each chapter to have a non-empty `path`, rejects duplicate explicit
   or path-derived `id` values and duplicate `path` values, and requires each
   `order` to be a positive integer with no duplicates.
+- `order` is the writing/reading sequence. Optional `story_time` is the
+  in-world sequence hook for later flashbacks, foreshadowed reveals, and
+  timeline contradiction checks. The runtime currently surfaces the label in L3
+  intent memory; deeper time consistency checks should build on this field
+  rather than overloading chapter order.
+- Optional `scene_def_ids` points from a chapter to codex cards with
+  `type: scene_def`. This separates manuscript scene prose from reusable
+  scene/location definition cards. The memory builder injects those linked cards
+  as L0 facts even when the prose does not repeat their keywords.
 - `schemas/project.schema.json` is the public static contract for this
   Markdown-first manifest. Cross-entry and cross-file invariants stay in
   `project:check`, where they can compare derived ids, chapter orders, and
@@ -79,7 +88,9 @@ L1 is intentionally the first layer to compress or drop under tight budget. A we
 
 ## L0 Facts And State
 
-L0 is the codex: characters, factions, locations, items, rules, and confirmed dynamic state. Static facts and dynamic state must stay conceptually separate:
+L0 is the codex: characters, factions, scene definitions, items, rules, and
+confirmed dynamic state. Static facts and dynamic state must stay conceptually
+separate:
 
 ```text
 static: name, aliases, appearance, personality, background
@@ -89,6 +100,13 @@ dynamic: location, power level, items, status, relationships
 Character cards can expose initial dynamic facts with YAML `current_state` or a
 Markdown `## 当前状态` list. The loader normalizes those rows into structured L0
 state before prompt assembly.
+
+Scene/location cards should use `type: scene_def` and live under `codex/` like
+other durable cards. A chapter may reference them through `scene_def_ids` in
+`meta/project.json`; `project:check` rejects missing references or references to
+non-`scene_def` cards. This keeps manuscript scene prose and location definition
+cards separate while still letting the prompt receive location facts
+deterministically.
 
 Dynamic state changes are high risk. The model may propose a change, but only a confirmed change becomes a `character_state_log` record and then re-enters the prompt as L0 fact. The runtime filters state logs by chapter order so future state does not leak into earlier chapters.
 

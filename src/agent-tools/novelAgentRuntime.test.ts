@@ -210,7 +210,7 @@ describe('novel agent tool runtime', () => {
         title: '玄铁剑鸣',
         sourceOfTruth: 'markdown',
         chapterCount: 2,
-        codexCount: 1,
+        codexCount: 3,
       },
     })
     if (execution.result.tool !== 'novel_get_project_state') {
@@ -311,9 +311,13 @@ describe('novel agent tool runtime', () => {
         expect.objectContaining({
           family: 'codex',
           label: '设定',
-          memoryCount: 1,
-          sourceCount: 1,
-          sources: ['codex/characters/li-zhanglao.md'],
+          memoryCount: 3,
+          sourceCount: 3,
+          sources: [
+            'codex/locations/xuantianzong-gate.md',
+            'codex/characters/li-zhanglao.md',
+            'codex/locations/sword-pavilion.md',
+          ],
         }),
       ]),
     )
@@ -374,23 +378,28 @@ describe('novel agent tool runtime', () => {
     if (execution.result.tool !== 'novel_get_memory_plan') {
       throw new Error('unexpected result')
     }
-    expect(execution.result.plan.memories).toHaveLength(1)
-    expect(execution.result.plan.memories[0]).toMatchObject({
-      layer: 'L0 事实',
-      source: 'codex/characters/li-zhanglao.md',
-    })
+    expect(execution.result.plan.memories).toHaveLength(3)
+    expect(execution.result.plan.memories.map((memory) => memory.source)).toEqual([
+      'codex/locations/xuantianzong-gate.md',
+      'codex/characters/li-zhanglao.md',
+      'codex/locations/sword-pavilion.md',
+    ])
     expect(execution.result.filter).toMatchObject({
       sourceFamilies: ['codex'],
-      returnedMemoryCount: 1,
+      returnedMemoryCount: 3,
       filtered: true,
     })
     expect(execution.result.filter.returnedSourceSummary).toEqual([
       expect.objectContaining({
         family: 'codex',
         label: '设定',
-        memoryCount: 1,
-        sourceCount: 1,
-        sources: ['codex/characters/li-zhanglao.md'],
+        memoryCount: 3,
+        sourceCount: 3,
+        sources: [
+          'codex/locations/xuantianzong-gate.md',
+          'codex/characters/li-zhanglao.md',
+          'codex/locations/sword-pavilion.md',
+        ],
       }),
     ])
     expect(execution.result.filter.originalSourceSummary).toEqual(

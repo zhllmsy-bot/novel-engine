@@ -161,7 +161,7 @@ export function buildNarrativeMemoryPlan(
   )
   const weighted: WeightedMemory[] = [
     buildStyleMemory(input.chapter, input.documentText, input.projectChapters),
-    ...buildFactMemories(input.codexEntries, keywordMatches),
+    ...buildFactMemories(input.codexEntries, keywordMatches, input.chapter),
     ...buildDynamicStateMemories(
       relevantCharacterStateLogs(
         input.chapter,
@@ -335,22 +335,27 @@ function buildStyleMemory(
 function buildFactMemories(
   codexEntries: CodexEntry[],
   keywordMatches: KeywordMatch[],
+  chapter: ProjectChapter,
 ): WeightedMemory[] {
   const matchedIds = new Set(keywordMatches.map((match) => match.entry.id))
-  const hasMatches = matchedIds.size > 0
+  const sceneDefIds = new Set(chapter.sceneDefIds || [])
+  const hasMatches = matchedIds.size > 0 || sceneDefIds.size > 0
 
   return codexEntries
-    .filter((entry, index) => (hasMatches ? matchedIds.has(entry.id) : index < 3))
+    .filter((entry, index) =>
+      hasMatches ? matchedIds.has(entry.id) || sceneDefIds.has(entry.id) : index < 3,
+    )
     .map((entry) => {
       const keywordHits =
         keywordMatches.find((match) => match.entry.id === entry.id)?.keywords
           .length || 0
+      const sceneBoost = sceneDefIds.has(entry.id) ? 35 : 0
 
       return {
         layer: 'L0 事实',
         body: formatCodexFactMemory(entry),
         source: entry.path,
-        priority: getMemoryLayerPriority('L0 事实', keywordHits * 25),
+        priority: getMemoryLayerPriority('L0 事实', keywordHits * 25 + sceneBoost),
       }
     })
 }
@@ -415,10 +420,22 @@ function buildIntentMemory(
 
   return {
     layer: 'L3 意图',
-    body: `项目《${projectTitle}》当前正在编辑 ${chapter.title}。输出必须尊重已有 Markdown 正文和设定卡。${recallNote}${recallAudit}`,
+    body: `项目《${projectTitle}》当前正在编辑 ${formatChapterIntentLabel(chapter)}。输出必须尊重已有 Markdown 正文和设定卡。${recallNote}${recallAudit}`,
     source: 'meta/project.json',
     priority: getMemoryLayerPriority('L3 意图'),
   }
+}
+
+function formatChapterIntentLabel(chapter: ProjectChapter) {
+  const storyTime = chapter.storyTime?.label
+    ? `故事时间: ${chapter.storyTime.label}`
+    : undefined
+  const sceneDefs =
+    (chapter.sceneDefIds || []).length > 0
+      ? `场景设定: ${(chapter.sceneDefIds || []).join('、')}`
+      : undefined
+
+  return [chapter.title, storyTime, sceneDefs].filter(Boolean).join('，')
 }
 
 function buildRecallMemories(

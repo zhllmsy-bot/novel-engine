@@ -16,7 +16,7 @@ import {
 import { loadMemoryEvalConfig } from './memory-eval.ts'
 import { loadProjectFromFiles } from '../src/project/projectFileLoader.ts'
 import type { MarkdownFileSource } from '../src/project/projectFileLoader.ts'
-import type { CodexEntry } from '../src/project/projectTypes.ts'
+import type { CodexEntry, ProjectChapter } from '../src/project/projectTypes.ts'
 
 export type ProjectCheckReport = {
   rootPath: string
@@ -24,7 +24,10 @@ export type ProjectCheckReport = {
   title?: string
   stats: {
     chapters: number
+    chaptersWithStoryTime: number
+    chaptersWithSceneDefs: number
     codexEntries: number
+    sceneDefEntries: number
     codexEntriesWithoutKeywords: number
     codexEntriesWithDuplicateKeywords: number
     skillFiles: number
@@ -58,6 +61,8 @@ type RawProjectManifest = {
     title?: string
     path?: string
     order?: unknown
+    story_time?: unknown
+    scene_def_ids?: unknown
   }>
 }
 
@@ -79,6 +84,8 @@ const projectManifestChapterKeys = new Set([
   'title',
   'path',
   'order',
+  'story_time',
+  'scene_def_ids',
 ])
 
 const manifestIdPattern = /^[a-z0-9][a-z0-9_.-]*$/
@@ -91,7 +98,10 @@ export async function checkNovelProject(
   const warnings: string[] = []
   let title: string | undefined
   let chapterCount = 0
+  let chaptersWithStoryTime = 0
+  let chaptersWithSceneDefs = 0
   let codexCount = 0
+  let sceneDefCount = 0
   let codexRecallStats: CodexRecallStats = {
     withoutKeywords: 0,
     withDuplicateKeywords: 0,
@@ -174,11 +184,21 @@ export async function checkNovelProject(
       })
       title = project.title
       chapterCount = project.chapters.length
+      chaptersWithStoryTime = project.chapters.filter(
+        (chapter) => chapter.storyTime,
+      ).length
+      chaptersWithSceneDefs = project.chapters.filter(
+        (chapter) => (chapter.sceneDefIds || []).length > 0,
+      ).length
       codexCount = project.codexEntries.length
+      sceneDefCount = project.codexEntries.filter(
+        (entry) => entry.type === 'scene_def',
+      ).length
 
       if (project.chapters.length === 0) {
         warnings.push('no manuscript Markdown chapters found.')
       }
+      validateSceneDefReferences(project.chapters, project.codexEntries, errors)
       codexRecallStats = validateCodexRecallQuality(
         project.codexEntries,
         errors,
@@ -237,7 +257,10 @@ export async function checkNovelProject(
     title,
     stats: {
       chapters: chapterCount,
+      chaptersWithStoryTime,
+      chaptersWithSceneDefs,
       codexEntries: codexCount,
+      sceneDefEntries: sceneDefCount,
       codexEntriesWithoutKeywords: codexRecallStats.withoutKeywords,
       codexEntriesWithDuplicateKeywords: codexRecallStats.withDuplicateKeywords,
       skillFiles: skillReport?.checked || 0,
@@ -416,6 +439,89 @@ function validateManifestShape(
         )
       }
     }
+
+    validateStoryTimeShape(chapter.story_time, label, errors)
+    validateSceneDefIdShape(chapter.scene_def_ids, label, errors)
+  })
+}
+
+function validateStoryTimeShape(
+  value: unknown,
+  label: string,
+  errors: string[],
+) {
+  if (value === undefined) return
+
+  if (!isRecord(value)) {
+    errors.push(`meta/project.json chapter ${label} story_time must be an object.`)
+    return
+  }
+
+  for (const key of Object.keys(value)) {
+    if (key !== 'label' && key !== 'sort_key') {
+      errors.push(
+        `meta/project.json chapter ${label} story_time unknown field: ${key}.`,
+      )
+    }
+  }
+
+  if (value.label !== undefined && !isNonEmptyString(value.label)) {
+    errors.push(
+      `meta/project.json chapter ${label} story_time.label must be a non-empty string.`,
+    )
+  }
+
+  if (
+    value.sort_key !== undefined &&
+    (typeof value.sort_key !== 'number' || !Number.isFinite(value.sort_key))
+  ) {
+    errors.push(
+      `meta/project.json chapter ${label} story_time.sort_key must be a finite number.`,
+    )
+  }
+
+  if (value.label === undefined && value.sort_key === undefined) {
+    errors.push(
+      `meta/project.json chapter ${label} story_time must include label or sort_key.`,
+    )
+  }
+}
+
+function validateSceneDefIdShape(
+  value: unknown,
+  label: string,
+  errors: string[],
+) {
+  if (value === undefined) return
+
+  if (!Array.isArray(value)) {
+    errors.push(
+      `meta/project.json chapter ${label} scene_def_ids must be an array.`,
+    )
+    return
+  }
+
+  const seen = new Set<string>()
+  value.forEach((id, index) => {
+    if (!isNonEmptyString(id)) {
+      errors.push(
+        `meta/project.json chapter ${label} scene_def_ids[${index}] must be a non-empty string.`,
+      )
+      return
+    }
+
+    if (!manifestIdPattern.test(id)) {
+      errors.push(
+        `meta/project.json chapter ${label} scene_def_ids[${index}] must match /^[a-z0-9][a-z0-9_.-]*$/.`,
+      )
+    }
+
+    if (seen.has(id)) {
+      errors.push(
+        `meta/project.json chapter ${label} scene_def_ids duplicates ${id}.`,
+      )
+    }
+    seen.add(id)
   })
 }
 
@@ -484,6 +590,32 @@ function validateCodexRecallQuality(
   return stats
 }
 
+function validateSceneDefReferences(
+  chapters: ProjectChapter[],
+  codexEntries: CodexEntry[],
+  errors: string[],
+) {
+  const codexEntriesById = new Map(codexEntries.map((entry) => [entry.id, entry]))
+
+  for (const chapter of chapters) {
+    for (const sceneDefId of chapter.sceneDefIds || []) {
+      const entry = codexEntriesById.get(sceneDefId)
+      if (!entry) {
+        errors.push(
+          `${chapter.path}: scene_def_ids references missing scene_def card: ${sceneDefId}.`,
+        )
+        continue
+      }
+
+      if (entry.type !== 'scene_def') {
+        errors.push(
+          `${chapter.path}: scene_def_ids references ${sceneDefId}, but ${entry.path} has type "${entry.type}" instead of "scene_def".`,
+        )
+      }
+    }
+  }
+}
+
 function findDuplicateStrings(values: string[]) {
   const seen = new Set<string>()
   const duplicates = new Set<string>()
@@ -504,7 +636,7 @@ export function formatProjectCheckReport(report: ProjectCheckReport): string {
     `Project check: ${report.ok ? 'OK' : 'FAILED'}`,
     `Root: ${report.rootPath}`,
     report.title ? `Title: ${report.title}` : undefined,
-    `Stats: ${report.stats.chapters} chapters, ${report.stats.codexEntries} codex entries (${report.stats.codexEntriesWithoutKeywords} missing keywords, ${report.stats.codexEntriesWithDuplicateKeywords} duplicate-keyword cards), ${report.stats.memoryEvalExpectations} memory eval expectations, ${report.stats.skillFiles} skill files, ${report.stats.publisherAdapters} publisher adapters, ${report.stats.providerAdapters} provider adapters`,
+    `Stats: ${report.stats.chapters} chapters (${report.stats.chaptersWithStoryTime} story-time tagged, ${report.stats.chaptersWithSceneDefs} scene-linked), ${report.stats.codexEntries} codex entries (${report.stats.sceneDefEntries} scene_def, ${report.stats.codexEntriesWithoutKeywords} missing keywords, ${report.stats.codexEntriesWithDuplicateKeywords} duplicate-keyword cards), ${report.stats.memoryEvalExpectations} memory eval expectations, ${report.stats.skillFiles} skill files, ${report.stats.publisherAdapters} publisher adapters, ${report.stats.providerAdapters} provider adapters`,
     ...report.warnings.map((warning) => `WARN ${warning}`),
     ...report.errors.map((error) => `ERROR ${error}`),
   ].filter((line): line is string => Boolean(line))

@@ -9,6 +9,7 @@ import {
   buildMemoryEvalConfig,
   buildProjectManifest,
   buildStarterCodexCard,
+  buildStarterSceneDefCard,
   createNovelProject,
   parseProjectNewArgs,
 } from './project-new.ts'
@@ -26,7 +27,13 @@ describe('project new tool', () => {
       schema_version: number
       title: string
       source_of_truth: string
-      chapters: Array<{ id: string; path: string; order: number }>
+      chapters: Array<{
+        id: string
+        path: string
+        order: number
+        story_time?: { label: string; sort_key: number }
+        scene_def_ids?: string[]
+      }>
     }
 
     expect(manifest).toMatchObject({
@@ -41,6 +48,11 @@ describe('project new tool', () => {
         title: '第001章 开篇',
         path: 'manuscript/volume-001/chapter-001.md',
         order: 1,
+        story_time: {
+          label: '开篇当日',
+          sort_key: 1,
+        },
+        scene_def_ids: ['scene-opening-gate'],
       },
     ])
   })
@@ -49,6 +61,8 @@ describe('project new tool', () => {
     expect(buildInitialChapter()).toContain('# 第001章 开篇')
     expect(buildInitialChapter()).toContain('主角站在雨中的山门前')
     expect(buildStarterCodexCard()).toContain('keywords: [主角]')
+    expect(buildStarterSceneDefCard()).toContain('type: scene_def')
+    expect(buildStarterSceneDefCard()).toContain('keywords: [开篇场景')
   })
 
   it('builds a starter memory eval config for the generated project', () => {
@@ -74,6 +88,7 @@ describe('project new tool', () => {
     expect(config.expectations.map((expectation) => expectation.layer)).toEqual([
       'L2 风格',
       'L0 事实',
+      'L0 事实',
       'L3 意图',
     ])
     expect(config.expectations[1].contains).toContain('当前状态')
@@ -81,8 +96,11 @@ describe('project new tool', () => {
       'codex/characters/',
     ])
     expect(config.expectations[1].source_families).toEqual(['codex'])
-    expect(config.expectations[2].source_contains).toEqual(['meta/project.json'])
-    expect(config.expectations[2].source_families).toEqual(['project'])
+    expect(config.expectations[2].contains).toContain('开篇场景')
+    expect(config.expectations[2].source_contains).toEqual(['codex/locations/'])
+    expect(config.expectations[2].source_families).toEqual(['codex'])
+    expect(config.expectations[3].source_contains).toEqual(['meta/project.json'])
+    expect(config.expectations[3].source_families).toEqual(['project'])
   })
 
   it('creates a project folder that passes the project health check', async () => {
@@ -120,6 +138,10 @@ describe('project new tool', () => {
         join(root, 'codex', 'characters', 'protagonist.md'),
         'utf8',
       )
+      const sceneDefSource = await readFile(
+        join(root, 'codex', 'locations', 'opening-gate.md'),
+        'utf8',
+      )
       const report = await checkNovelProject(root)
       const memoryReport = await evaluateNarrativeMemory({ rootPath: root })
 
@@ -140,13 +162,17 @@ describe('project new tool', () => {
       )
       expect(chapterSource).toContain('在这里开始第一章正文。')
       expect(codexSource).toContain('keywords: [主角]')
+      expect(sceneDefSource).toContain('type: scene_def')
       expect(report.ok).toBe(true)
       expect(report.stats.chapters).toBe(1)
-      expect(report.stats.codexEntries).toBe(1)
+      expect(report.stats.chaptersWithStoryTime).toBe(1)
+      expect(report.stats.chaptersWithSceneDefs).toBe(1)
+      expect(report.stats.codexEntries).toBe(2)
+      expect(report.stats.sceneDefEntries).toBe(1)
       expect(report.stats.codexEntriesWithoutKeywords).toBe(0)
-      expect(report.stats.memoryEvalExpectations).toBe(3)
+      expect(report.stats.memoryEvalExpectations).toBe(4)
       expect(memoryReport.ok).toBe(true)
-      expect(memoryReport.stats.passed).toBe(3)
+      expect(memoryReport.stats.passed).toBe(4)
       expect(memoryReport.stats.baselinePassed).toBe(1)
       expect(
         memoryReport.cases.find(
@@ -157,6 +183,16 @@ describe('project new tool', () => {
         missingSourceFamilies: [],
         sourceFamilies: ['codex'],
         matchedSources: ['codex/characters/protagonist.md'],
+      })
+      expect(
+        memoryReport.cases.find(
+          (result) => result.id === 'starter-l0-scene-card',
+        ),
+      ).toMatchObject({
+        missingSources: [],
+        missingSourceFamilies: [],
+        sourceFamilies: ['codex'],
+        matchedSources: ['codex/locations/opening-gate.md'],
       })
       expect(
         memoryReport.cases.find(

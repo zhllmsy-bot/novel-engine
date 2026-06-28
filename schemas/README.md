@@ -19,12 +19,14 @@ For the repository-level smoke gate, `npm run workspace:check` aggregates the
 demo project check, deterministic memory evaluation, and extension manifest
 checks.
 
-`project.schema.json` describes the static manifest shape. `project:check`
+`project.schema.json` describes the static manifest shape, including optional
+chapter `story_time` metadata and `scene_def_ids` references. `project:check`
 handles dynamic project invariants that JSON Schema cannot reliably express,
 including duplicate explicit or path-derived chapter ids, duplicate paths,
-duplicate chapter orders, and missing Markdown files. The checker also mirrors
-the schema's static field and path/id rules so project manifests can be gated
-without requiring a JSON Schema runtime.
+duplicate chapter orders, missing Markdown files, and whether each
+`scene_def_ids` entry points at a real codex card with `type: scene_def`. The
+checker also mirrors the schema's static field and path/id rules so project
+manifests can be gated without requiring a JSON Schema runtime.
 
 To scaffold provider or publisher adapter metadata:
 

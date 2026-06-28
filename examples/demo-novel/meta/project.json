@@ -8,13 +8,23 @@
       "id": "chapter-001",
       "title": "第001章 山门雨",
       "path": "manuscript/volume-001/chapter-001.md",
-      "order": 1
+      "order": 1,
+      "story_time": {
+        "label": "玄历三百二十一年·春夜",
+        "sort_key": 321.1
+      },
+      "scene_def_ids": ["scene-xuantianzong-gate"]
     },
     {
       "id": "chapter-002",
       "title": "第002章 剑阁回声",
       "path": "manuscript/volume-001/chapter-002.md",
-      "order": 2
+      "order": 2,
+      "story_time": {
+        "label": "玄历三百二十一年·次日清晨",
+        "sort_key": 321.2
+      },
+      "scene_def_ids": ["scene-sword-pavilion"]
     }
   ]
 }

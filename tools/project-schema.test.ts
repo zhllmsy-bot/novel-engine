@@ -24,6 +24,16 @@ describe('project manifest schema', () => {
             id: { pattern: string }
             path: { minLength: number; pattern: string }
             order: { type: string; minimum: number }
+            story_time: { $ref: string }
+            scene_def_ids: { uniqueItems: boolean }
+          }
+        }
+        story_time: {
+          additionalProperties: boolean
+          anyOf: Array<{ required: string[] }>
+          properties: {
+            label: { minLength: number }
+            sort_key: { type: string }
           }
         }
       }
@@ -50,6 +60,17 @@ describe('project manifest schema', () => {
       type: 'integer',
       minimum: 1,
     })
+    expect(schema.$defs.chapter.properties.story_time.$ref).toBe(
+      '#/$defs/story_time',
+    )
+    expect(schema.$defs.chapter.properties.scene_def_ids.uniqueItems).toBe(true)
+    expect(schema.$defs.story_time.additionalProperties).toBe(false)
+    expect(schema.$defs.story_time.anyOf).toEqual([
+      { required: ['label'] },
+      { required: ['sort_key'] },
+    ])
+    expect(schema.$defs.story_time.properties.label.minLength).toBe(1)
+    expect(schema.$defs.story_time.properties.sort_key.type).toBe('number')
   })
 
   it('keeps the demo project manifest linked to the public schema', async () => {

@@ -325,8 +325,9 @@ npm run project:check -- /path/to/MyNovel
 npm run memory:eval -- /path/to/MyNovel
 ```
 
-The scaffold writes `meta/project.json`, one starter chapter, one starter
-character card with `keywords`, a local `meta/memory-eval.json` smoke test, and
+The scaffold writes `meta/project.json`, one starter chapter with `story_time`
+and `scene_def_ids`, one starter character card with `keywords`, one
+`type: scene_def` location card, a local `meta/memory-eval.json` smoke test, and
 project-local schemas under `.novel/schemas/` so editor completion keeps working
 when the novel folder is moved outside this repository.
 The starter memory eval also includes `source_contains` and `source_families`
@@ -466,6 +467,13 @@ plugin. Loading a real project reads `meta/project.json`, scans
 `manuscript/**/*.md` and `codex/**/*.md`, keeps project-relative paths for UI and
 memory sources, and keeps absolute file paths only for save operations.
 
+Chapter manifest entries can also declare optional `story_time` and
+`scene_def_ids`. `order` remains the writing/order-of-reading timeline, while
+`story_time` is the in-world timeline hook for later flashback and consistency
+checks. `scene_def_ids` points to codex cards with `type: scene_def`; those
+location/scene-definition cards are injected as L0 facts even when the current
+prose does not repeat their keywords.
+
 ## Memory Runtime
 
 The current memory loop includes a Phase 0 chapter-summary path:
@@ -485,7 +493,8 @@ Runtime context assembly now uses the available open project structure:
   nearest summaries detailed, uses matching volume summaries for distant plot
   memory when they cover only past chapters, falls back to deterministic
   volume-level key signals, and includes confirmed open foreshadowing threads.
-- L0 recalls matching codex cards by explicit names and keywords.
+- L0 recalls matching codex cards by explicit names and keywords, and always
+  includes any `scene_def` cards explicitly linked by the active chapter.
 - Confirmed character-state proposals are added back as L0 dynamic facts, filtered
   to the current chapter timeline so future state does not leak backward.
 - L3 records the current project intent plus a recall audit of matched codex cards,

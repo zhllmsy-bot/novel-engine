@@ -53,18 +53,55 @@ describe('narrative memory context builder', () => {
     expect(memories.map((memory) => memory.layer)).toEqual([
       'L2 风格',
       'L0 事实',
+      'L0 事实',
+      'L0 事实',
       'L3 意图',
       'L1 剧情',
     ])
-    expect(memories.find((memory) => memory.layer === 'L0 事实')?.body).toContain(
-      '李长老',
-    )
-    expect(memories.find((memory) => memory.layer === 'L0 事实')?.body).toContain(
-      '当前状态: 修为=金丹期',
-    )
+    expect(
+      memories.find((memory) => memory.source === 'codex/characters/li-zhanglao.md')
+        ?.body,
+    ).toContain('李长老')
+    expect(
+      memories.find((memory) => memory.source === 'codex/characters/li-zhanglao.md')
+        ?.body,
+    ).toContain('当前状态: 修为=金丹期')
+    expect(
+      memories.find((memory) => memory.source === 'codex/locations/xuantianzong-gate.md')
+        ?.body,
+    ).toContain('玄天宗山门')
     expect(memories.find((memory) => memory.layer === 'L1 剧情')?.source).toBe(
       'manuscript/volume-001/chapter-001.md',
     )
+  })
+
+  it('injects declared scene definition cards and story time into memory context', () => {
+    const project = loadDemoProject()
+    const chapter = {
+      ...project.chapters[0],
+      content: '沈微没有直接说出地点名，只听见雨声压过石阶。',
+    }
+    const memories = buildNarrativeMemories({
+      chapter,
+      documentText: chapter.content,
+      codexEntries: project.codexEntries,
+      projectTitle: project.title,
+      budgetChars: 1_200,
+    })
+
+    const sceneMemory = memories.find(
+      (memory) => memory.source === 'codex/locations/xuantianzong-gate.md',
+    )
+    const intentMemory = memories.find(
+      (memory) => memory.source === 'meta/project.json',
+    )
+
+    expect(sceneMemory).toMatchObject({
+      layer: 'L0 事实',
+    })
+    expect(sceneMemory?.body).toContain('玄天宗山门')
+    expect(intentMemory?.body).toContain('故事时间: 玄历三百二十一年·春夜')
+    expect(intentMemory?.body).toContain('场景设定: scene-xuantianzong-gate')
   })
 
   it('keeps recent prose first when the memory budget is tight', () => {

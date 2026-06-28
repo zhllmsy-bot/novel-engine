@@ -11,6 +11,7 @@ export type ProjectNewOptions = {
 
 const initialChapterPath = 'manuscript/volume-001/chapter-001.md'
 const starterCodexPath = 'codex/characters/protagonist.md'
+const starterSceneDefPath = 'codex/locations/opening-gate.md'
 
 export function buildProjectManifest(options: ProjectNewOptions) {
   return `${JSON.stringify(
@@ -25,6 +26,11 @@ export function buildProjectManifest(options: ProjectNewOptions) {
           title: '第001章 开篇',
           path: initialChapterPath,
           order: 1,
+          story_time: {
+            label: '开篇当日',
+            sort_key: 1,
+          },
+          scene_def_ids: ['scene-opening-gate'],
         },
       ],
     },
@@ -53,6 +59,18 @@ keywords: [主角]
 `
 }
 
+export function buildStarterSceneDefCard() {
+  return `---
+id: scene-opening-gate
+name: 开篇场景
+type: scene_def
+keywords: [开篇场景, 山门, 雨中山门]
+---
+
+记录本章主要发生地点、氛围、限制条件和可复用的场面元素。
+`
+}
+
 export function buildMemoryEvalConfig(projectRoot: string) {
   return `${JSON.stringify(
     {
@@ -77,6 +95,14 @@ export function buildMemoryEvalConfig(projectRoot: string) {
           layer: 'L0 事实',
           contains: ['主角', '当前状态'],
           source_contains: ['codex/characters/'],
+          source_families: ['codex'],
+        },
+        {
+          id: 'starter-l0-scene-card',
+          description: 'Starter project injects the declared scene definition card.',
+          layer: 'L0 事实',
+          contains: ['开篇场景', '主要发生地点'],
+          source_contains: ['codex/locations/'],
           source_families: ['codex'],
         },
         {
@@ -112,6 +138,10 @@ export async function createNovelProject(options: ProjectNewOptions) {
     {
       path: resolve(root, starterCodexPath),
       source: buildStarterCodexCard(),
+    },
+    {
+      path: resolve(root, starterSceneDefPath),
+      source: buildStarterSceneDefCard(),
     },
     {
       path: resolve(root, '.gitignore'),

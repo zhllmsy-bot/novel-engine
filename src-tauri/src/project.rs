@@ -223,9 +223,20 @@ pub fn create_project(path: String, title: String) -> Result<(), ProjectError> {
     let project_json = serde_json::json!({
         "schema_version": 1,
         "title": title,
-        "created_at": Utc::now().to_rfc3339(),
         "source_of_truth": "markdown",
-        "chapters": []
+        "chapters": [
+            {
+                "id": "chapter-001",
+                "title": "第001章",
+                "path": "manuscript/volume-001/chapter-001.md",
+                "order": 1,
+                "story_time": {
+                    "label": "开篇当日",
+                    "sort_key": 1
+                },
+                "scene_def_ids": ["scene-opening-gate"]
+            }
+        ]
     });
     fs::write(
         root.join("meta").join("project.json"),
@@ -237,7 +248,29 @@ pub fn create_project(path: String, title: String) -> Result<(), ProjectError> {
         .join("volume-001")
         .join("chapter-001.md");
     if !first_chapter.exists() {
-        fs::write(first_chapter, "# 第001章\n\n从这里开始写作。\n")?;
+        fs::write(first_chapter, "# 第001章\n\n从这里开始写作。主角站在雨中的山门前。\n")?;
+    }
+
+    let protagonist_card = root
+        .join("codex")
+        .join("characters")
+        .join("protagonist.md");
+    if !protagonist_card.exists() {
+        fs::write(
+            protagonist_card,
+            "---\nid: char-protagonist\nname: 主角\ntype: character\naliases: [主角]\nkeywords: [主角]\n---\n\n补充主角的外貌、性格、目标和当前状态。\n",
+        )?;
+    }
+
+    let opening_scene_card = root
+        .join("codex")
+        .join("locations")
+        .join("opening-gate.md");
+    if !opening_scene_card.exists() {
+        fs::write(
+            opening_scene_card,
+            "---\nid: scene-opening-gate\nname: 开篇场景\ntype: scene_def\nkeywords: [开篇场景, 山门, 雨中山门]\n---\n\n记录本章主要发生地点、氛围、限制条件和可复用的场面元素。\n",
+        )?;
     }
 
     init_cache(root.to_string_lossy().to_string())?;
@@ -1322,6 +1355,33 @@ fn parse_json_list(input: &str) -> Vec<String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn create_project_writes_manifest_story_time_and_scene_def_card() {
+        let root = unique_test_project_root("create-project");
+
+        create_project(root.to_string_lossy().to_string(), "新书".to_string()).unwrap();
+
+        let manifest = fs::read_to_string(root.join("meta").join("project.json")).unwrap();
+        assert!(manifest.contains("\"source_of_truth\": \"markdown\""));
+        assert!(manifest.contains("\"story_time\""));
+        assert!(manifest.contains("\"scene_def_ids\""));
+        assert!(!manifest.contains("\"created_at\""));
+
+        let scene_card = fs::read_to_string(
+            root.join("codex").join("locations").join("opening-gate.md"),
+        )
+        .unwrap();
+        assert!(scene_card.contains("type: scene_def"));
+
+        let protagonist_card = fs::read_to_string(
+            root.join("codex").join("characters").join("protagonist.md"),
+        )
+        .unwrap();
+        assert!(protagonist_card.contains("keywords: [主角]"));
+
+        fs::remove_dir_all(root).unwrap();
+    }
 
     #[test]
     fn chapter_search_indexes_scanned_content_and_summaries() {

@@ -42,7 +42,7 @@ The core bet is not "generate a novel in one click." The core bet is that profes
 
 The prompt builder should assemble context from four layers:
 
-- L0 facts: relevant character, item, location, and worldbuilding cards.
+- L0 facts: relevant character, item, `scene_def` location, and worldbuilding cards.
 - L1 plot summaries: chapter or volume summaries for broader continuity.
 - L2 recent prose: current draft plus recent chapters, preserved with minimal compression for style continuity.
 - L3 recall: keyword and later semantic retrieval of related facts, summaries, and early callbacks.
@@ -58,6 +58,13 @@ Budget priority:
 5. L1 summaries, compressed first when over budget.
 
 MVP should not require a vector database. SQLite plus FTS5/keyword matching is enough for the first recall loop; vector search can be added later if keyword recall is measurably insufficient.
+
+Project metadata must keep two timelines separate: chapter `order` is the
+writing/reading sequence, while optional `story_time` is the in-world timeline
+hook for later flashback and contradiction checks. Chapters may also declare
+`scene_def_ids` that point to codex cards with `type: scene_def`, so reusable
+location/scene facts enter L0 without confusing them with manuscript scene
+prose.
 
 ## Data Ownership
 

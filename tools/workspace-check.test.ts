@@ -38,8 +38,8 @@ describe('workspace check tool', () => {
       const report = await checkWorkspace(root)
 
       expect(report.ok).toBe(true)
-      expect(report.project.stats.memoryEvalExpectations).toBe(3)
-      expect(report.memory.stats.passed).toBe(3)
+      expect(report.project.stats.memoryEvalExpectations).toBe(4)
+      expect(report.memory.stats.passed).toBe(4)
       expect(report.extensions.checked).toBe(9)
     } finally {
       await rm(parent, { recursive: true, force: true })

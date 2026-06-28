@@ -19,6 +19,10 @@ async function writeValidProject(root: string) {
           title: '第一章',
           path: 'manuscript/chapter-001.md',
           order: 1,
+          story_time: {
+            label: '开篇雨夜',
+            sort_key: 1.1,
+          },
         },
       ],
     }),
@@ -50,7 +54,10 @@ describe('project check tool', () => {
       expect(report.title).toBe('本地项目')
       expect(report.stats).toMatchObject({
         chapters: 1,
+        chaptersWithStoryTime: 1,
+        chaptersWithSceneDefs: 0,
         codexEntries: 1,
+        sceneDefEntries: 0,
         codexEntriesWithoutKeywords: 0,
         codexEntriesWithDuplicateKeywords: 0,
         memoryEvalExpectations: 0,
@@ -60,6 +67,7 @@ describe('project check tool', () => {
         failedProviderAdapters: 0,
       })
       expect(output).toContain('Project check: OK')
+      expect(output).toContain('1 story-time tagged')
       expect(output).toContain('2 publisher adapters')
       expect(output).toContain('2 provider adapters')
     } finally {
@@ -457,6 +465,99 @@ keywords: [戒律堂, 戒律堂]
       expect(report.ok).toBe(false)
       expect(report.errors.join('\n')).toContain(
         'meta/project.json chapter order 1 is duplicated by chapter-001 and chapter-002.',
+      )
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it('fails when chapter story time metadata has an invalid shape', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'project-check-'))
+
+    try {
+      await writeValidProject(root)
+      await writeFile(
+        join(root, 'meta', 'project.json'),
+        JSON.stringify({
+          title: 'Broken',
+          source_of_truth: 'markdown',
+          chapters: [
+            {
+              id: 'chapter-001',
+              title: '第一章',
+              path: 'manuscript/chapter-001.md',
+              order: 1,
+              story_time: {
+                label: '',
+                sort_key: 'first',
+                calendar: '玄历',
+              },
+            },
+          ],
+        }),
+      )
+
+      const report = await checkNovelProject(root)
+      const errors = report.errors.join('\n')
+
+      expect(report.ok).toBe(false)
+      expect(errors).toContain(
+        'meta/project.json chapter chapter-001 story_time unknown field: calendar.',
+      )
+      expect(errors).toContain(
+        'meta/project.json chapter chapter-001 story_time.label must be a non-empty string.',
+      )
+      expect(errors).toContain(
+        'meta/project.json chapter chapter-001 story_time.sort_key must be a finite number.',
+      )
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it('fails when chapter scene_def_ids do not point at scene definition cards', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'project-check-'))
+
+    try {
+      await writeValidProject(root)
+      await writeFile(
+        join(root, 'meta', 'project.json'),
+        JSON.stringify({
+          title: 'Broken',
+          source_of_truth: 'markdown',
+          chapters: [
+            {
+              id: 'chapter-001',
+              title: '第一章',
+              path: 'manuscript/chapter-001.md',
+              order: 1,
+              scene_def_ids: ['char-li', 'scene-missing'],
+            },
+          ],
+        }),
+      )
+      await writeFile(
+        join(root, 'codex', 'characters', 'li.md'),
+        `---
+id: char-li
+name: 李长老
+type: character
+keywords: [李长老]
+---
+
+人物设定。
+`,
+      )
+
+      const report = await checkNovelProject(root)
+      const errors = report.errors.join('\n')
+
+      expect(report.ok).toBe(false)
+      expect(errors).toContain(
+        'manuscript/chapter-001.md: scene_def_ids references char-li, but codex/characters/li.md has type "character" instead of "scene_def".',
+      )
+      expect(errors).toContain(
+        'manuscript/chapter-001.md: scene_def_ids references missing scene_def card: scene-missing.',
       )
     } finally {
       await rm(root, { recursive: true, force: true })
