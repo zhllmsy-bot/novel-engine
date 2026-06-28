@@ -67,6 +67,37 @@ describe('memory eval tool', () => {
     })
   })
 
+  it('guards the long-memory benchmark against sliding-window regressions', async () => {
+    const report = await evaluateNarrativeMemory({
+      rootPath: 'examples/long-memory-benchmark',
+    })
+
+    expect(report.ok).toBe(true)
+    expect(report.budgetChars).toBe(1200)
+    expect(report.stats).toMatchObject({
+      expectations: 6,
+      passed: 6,
+      failed: 0,
+      baselinePassed: 1,
+      fourLayerPassed: 6,
+      policyPassed: 12,
+      policyFailed: 0,
+    })
+    expect(report.phase0).toMatchObject({
+      ok: true,
+      gain: 5,
+      requiredGain: 5,
+      failedReasonIds: [],
+    })
+    expect(report.comparison.gainedExpectationIds).toEqual([
+      'l0-jianli-state',
+      'l0-key-rule',
+      'l1-distant-oath',
+      'l3-summary-recall-oath',
+      'l3-recall-audit-jianli',
+    ])
+  })
+
   it('passes the deterministic four-layer recall expectations', async () => {
     const root = await mkdtemp(join(tmpdir(), 'memory-eval-'))
 

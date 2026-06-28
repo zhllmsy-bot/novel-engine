@@ -390,6 +390,8 @@ plans, with L0/L1/L3 gains coming from the full memory engine.
 `examples/long-memory-benchmark` is the stronger smoke corpus: chapter 6 asks
 for chapter-1 oath context outside the recent-prose baseline window, so it should
 show a low baseline score and a passing `Phase 0 gate` through L0/L1/L3 recall.
+That benchmark is also covered by the Vitest suite, while `workspace:check`
+keeps the faster default demo project in the main aggregate report.
 
 Example `meta/memory-eval.json`:
 
