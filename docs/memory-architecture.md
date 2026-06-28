@@ -133,10 +133,11 @@ Vector search is optional later, preferably through SQLite-native extensions suc
 The first FTS integration point is `search_project_chapter_index` in the Tauri
 host. It rebuilds from Markdown chapters plus cached summaries, uses FTS5
 `trigram` tokenization for Chinese prose, and returns ranked snippets tagged as
-`content` or `summary`. The current TypeScript memory builder still supports the
-browser/demo in-memory path; desktop L3 can consume the search results as
-`recall:chapter_summary:*` entries without making the core runtime depend on a
-separate service.
+`content` or `summary`. Desktop runtime passes those hits into the TypeScript
+memory builder as `indexedRecallResults`; the builder time-slices them against
+chapter order, excludes current/future chapters, and emits concrete
+`recall:index:*` L3 entries. Browser/demo runs still use the in-memory path, so
+the core runtime has no dependency on a separate service.
 
 ## Write Path
 

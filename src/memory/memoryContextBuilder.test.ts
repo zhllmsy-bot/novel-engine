@@ -776,6 +776,110 @@ describe('narrative memory context builder', () => {
     expect(recallMemory?.body).toContain('命中关键词: 李长老、玄铁剑')
   })
 
+  it('includes indexed desktop search results as concrete L3 recall memory', () => {
+    const project = loadDemoProject()
+    const previousChapter = {
+      ...project.chapters[0],
+      id: 'chapter-001',
+      title: '第001章 青灯誓',
+      path: 'manuscript/volume-001/chapter-001.md',
+      order: 1,
+      content: '简璃在镜湖留下青灯誓。',
+    }
+    const chapter = {
+      ...project.chapters[0],
+      id: 'chapter-003',
+      title: '第003章 镜湖回声',
+      path: 'manuscript/volume-001/chapter-003.md',
+      order: 3,
+      content: '沈微再次提起镜湖钥。',
+    }
+    const memories = buildNarrativeMemories({
+      chapter,
+      projectChapters: [previousChapter, chapter],
+      documentText: chapter.content,
+      codexEntries: project.codexEntries,
+      indexedRecallResults: [
+        {
+          chapterId: previousChapter.id,
+          chapterTitle: previousChapter.title,
+          sourcePath: previousChapter.path,
+          snippet: '简璃在镜湖留下青灯誓。',
+          score: 0.9,
+          source: 'summary',
+        },
+      ],
+      projectTitle: project.title,
+      budgetChars: 1_200,
+    })
+
+    const intentMemory = memories.find((memory) => memory.source === 'meta/project.json')
+    const recallMemory = memories.find(
+      (memory) => memory.source === 'recall:index:chapter-001',
+    )
+
+    expect(intentMemory?.body).toContain('命中索引: 第001章 青灯誓(摘要索引)')
+    expect(recallMemory).toMatchObject({
+      layer: 'L3 意图',
+      source: 'recall:index:chapter-001',
+    })
+    expect(recallMemory?.body).toContain('索引召回: 第001章 青灯誓')
+    expect(recallMemory?.body).toContain('简璃在镜湖留下青灯誓')
+  })
+
+  it('does not leak current or future indexed search results into L3 recall', () => {
+    const project = loadDemoProject()
+    const chapter = {
+      ...project.chapters[0],
+      id: 'chapter-002',
+      title: '第002章 镜湖回声',
+      path: 'manuscript/volume-001/chapter-002.md',
+      order: 2,
+      content: '沈微再次提起镜湖钥。',
+    }
+    const futureChapter = {
+      ...project.chapters[0],
+      id: 'chapter-004',
+      title: '第004章 未来答案',
+      path: 'manuscript/volume-001/chapter-004.md',
+      order: 4,
+      content: '未来才揭示镜湖钥。',
+    }
+    const memories = buildNarrativeMemories({
+      chapter,
+      projectChapters: [chapter, futureChapter],
+      documentText: chapter.content,
+      codexEntries: project.codexEntries,
+      indexedRecallResults: [
+        {
+          chapterId: chapter.id,
+          chapterTitle: chapter.title,
+          sourcePath: chapter.path,
+          snippet: '当前章节不应作为远程召回。',
+          score: 0.9,
+          source: 'content',
+        },
+        {
+          chapterId: futureChapter.id,
+          chapterTitle: futureChapter.title,
+          sourcePath: futureChapter.path,
+          snippet: '未来章节不应泄漏。',
+          score: 0.9,
+          source: 'summary',
+        },
+      ],
+      projectTitle: project.title,
+      budgetChars: 1_200,
+    })
+
+    expect(
+      memories.some((memory) => memory.source.startsWith('recall:index:')),
+    ).toBe(false)
+    expect(memories.map((memory) => memory.body).join('\n')).not.toContain(
+      '未来章节不应泄漏',
+    )
+  })
+
   it('includes open plot threads in L1 plot memory', () => {
     const project = loadDemoProject()
     const chapter = {

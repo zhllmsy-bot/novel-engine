@@ -14,8 +14,18 @@ export type BuildNarrativeMemoryInput = {
   volumeSummaries?: VolumeSummary[]
   characterStateLogs?: CharacterStateLog[]
   plotThreads?: PlotThread[]
+  indexedRecallResults?: IndexedRecallResult[]
   projectTitle: string
   budgetChars: number
+}
+
+export type IndexedRecallResult = {
+  chapterId: string
+  chapterTitle: string
+  sourcePath: string
+  snippet: string
+  score: number
+  source: 'content' | 'summary'
 }
 
 export type MemoryBudgetAuditEntry = {
@@ -144,6 +154,11 @@ export function buildNarrativeMemoryPlan(
     input.documentText,
     keywordMatches,
   )
+  const indexedRecallMatches = relevantIndexedRecallResults(
+    input.chapter,
+    input.indexedRecallResults || [],
+    input.projectChapters || [],
+  )
   const weighted: WeightedMemory[] = [
     buildStyleMemory(input.chapter, input.documentText, input.projectChapters),
     ...buildFactMemories(input.codexEntries, keywordMatches),
@@ -161,10 +176,12 @@ export function buildNarrativeMemoryPlan(
       keywordMatches,
       summaryMatches,
       plotThreadMatches,
+      indexedRecallMatches,
     ),
     ...buildRecallMemories(
       summaryMatches,
       plotThreadMatches,
+      indexedRecallMatches,
       input.chapter,
       input.projectChapters || [],
     ),
@@ -361,6 +378,7 @@ function buildIntentMemory(
   keywordMatches: KeywordMatch[],
   summaryMatches: SummaryMatch[],
   plotThreadMatches: PlotThreadMatch[],
+  indexedRecallMatches: IndexedRecallResult[],
 ): WeightedMemory {
   const matchedKeywords = uniqueStrings(
     keywordMatches.flatMap((match) => match.keywords),
@@ -378,10 +396,17 @@ function buildIntentMemory(
   const plotThreadAudit = plotThreadMatches
     .map((match) => `${match.thread.title}(${match.keywords.join('、')})`)
     .join('；')
+  const indexedAudit = indexedRecallMatches
+    .map(
+      (match) =>
+        `${match.chapterTitle}(${match.source === 'summary' ? '摘要索引' : '正文索引'})`,
+    )
+    .join('；')
   const auditParts = [
     codexAudit ? `命中设定: ${codexAudit}` : undefined,
     summaryAudit ? `命中摘要: ${summaryAudit}` : undefined,
     plotThreadAudit ? `命中伏笔: ${plotThreadAudit}` : undefined,
+    indexedAudit ? `命中索引: ${indexedAudit}` : undefined,
   ].filter(Boolean)
   const recallAudit =
     auditParts.length > 0
@@ -399,6 +424,7 @@ function buildIntentMemory(
 function buildRecallMemories(
   summaryMatches: SummaryMatch[],
   plotThreadMatches: PlotThreadMatch[],
+  indexedRecallMatches: IndexedRecallResult[],
   chapter: ProjectChapter,
   projectChapters: ProjectChapter[],
 ): WeightedMemory[] {
@@ -452,8 +478,30 @@ function buildRecallMemories(
       priority: getMemoryLayerPriority('L3 意图', boost),
     }
   })
+  const indexedRecallMemories: WeightedMemory[] = indexedRecallMatches.map(
+    (match) => {
+      const chapterOrder = chapterOrders.get(match.chapterId) ?? 0
+      const recencyBoost =
+        Number.isFinite(currentOrder) && Number.isFinite(chapterOrder)
+          ? Math.max(0, 10 - Math.max(0, currentOrder - chapterOrder))
+          : 0
+      const scoreBoost = Math.max(0, Math.min(12, Math.round(match.score * 10)))
+      const sourceLabel = match.source === 'summary' ? '摘要索引' : '正文索引'
 
-  return [...summaryRecallMemories, ...plotThreadRecallMemories]
+      return {
+        layer: 'L3 意图',
+        body: `索引召回: ${match.chapterTitle}: ${match.snippet} 来源: ${sourceLabel}`,
+        source: `recall:index:${match.chapterId}`,
+        priority: getMemoryLayerPriority('L3 意图', 10 + scoreBoost + recencyBoost),
+      }
+    },
+  )
+
+  return [
+    ...summaryRecallMemories,
+    ...plotThreadRecallMemories,
+    ...indexedRecallMemories,
+  ]
     .toSorted((left, right) => right.priority - left.priority)
     .slice(0, memoryBudgetPolicy.dynamicRecallTopN)
 }
@@ -786,6 +834,35 @@ type SummaryMatch = {
 type PlotThreadMatch = {
   thread: PlotThread
   keywords: string[]
+}
+
+function relevantIndexedRecallResults(
+  chapter: ProjectChapter,
+  indexedRecallResults: IndexedRecallResult[],
+  projectChapters: ProjectChapter[],
+) {
+  if (indexedRecallResults.length === 0) return []
+
+  const chapterOrders = new Map(
+    [chapter, ...projectChapters].map((projectChapter) => [
+      projectChapter.id,
+      projectChapter.order,
+    ]),
+  )
+  const currentOrder = chapterOrders.get(chapter.id) ?? chapter.order
+
+  return indexedRecallResults
+    .filter((result) => result.chapterId !== chapter.id)
+    .filter((result) => {
+      const resultOrder = chapterOrders.get(result.chapterId)
+      if (!Number.isFinite(currentOrder) || resultOrder === undefined) {
+        return false
+      }
+
+      return resultOrder < currentOrder
+    })
+    .toSorted((left, right) => right.score - left.score)
+    .slice(0, memoryBudgetPolicy.dynamicRecallTopN)
 }
 
 function findKeywordMatches(

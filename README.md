@@ -496,6 +496,8 @@ Runtime context assembly now uses the available open project structure:
 - Desktop cache exposes `search_project_chapter_index`, a rebuildable SQLite
   FTS5 trigram search over chapter title, prose, and cached summary. This is the
   local-first path for scaling L3 recall beyond small in-memory keyword scans.
+  Desktop runtime feeds those results into L3 as time-sliced `recall:index:*`
+  memories while browser/demo runs keep the deterministic in-memory path.
 
 The memory builder also exposes a budget audit alongside the final memories.
 The editor shows used/budget characters, per-layer budget totals versus target

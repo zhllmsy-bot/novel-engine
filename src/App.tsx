@@ -72,7 +72,10 @@ import {
   createCharacterStateLogStore,
   type CharacterStateLog,
 } from './memory/characterStateLogStore'
-import { buildNarrativeMemoryPlan } from './memory/memoryContextBuilder'
+import {
+  buildNarrativeMemoryPlan,
+  type IndexedRecallResult,
+} from './memory/memoryContextBuilder'
 import {
   createPlotThreadStore,
   type PlotThread,
@@ -95,7 +98,11 @@ import { createPlotThreadPersistence } from './project/plotThreadPersistence'
 import { createProjectPersistence } from './project/projectPersistence'
 import { pickAndLoadTauriProject } from './project/tauriProjectRepository'
 import { createVolumeSummaryPersistence } from './project/volumeSummaryPersistence'
-import type { ProjectChapter } from './project/projectTypes'
+import type { CodexEntry, ProjectChapter } from './project/projectTypes'
+import {
+  searchProjectChapterIndex,
+  type ChapterSearchResult,
+} from './platform/tauriProject'
 import {
   buildEditorPublishPlan,
   getDefaultEditorDryRunAdapterId,
@@ -248,6 +255,15 @@ function App() {
   )
   const [graphSnapshot, setGraphSnapshot] =
     useState<StoryGraphSnapshot | null>(null)
+  const [indexedRecallResults, setIndexedRecallResults] = useState<
+    IndexedRecallResult[]
+  >([])
+  const indexedRecallQuery = useMemo(
+    () => buildIndexedRecallQuery(documentText, project.codexEntries),
+    [documentText, project.codexEntries],
+  )
+  const [debouncedIndexedRecallQuery, setDebouncedIndexedRecallQuery] =
+    useState(indexedRecallQuery)
 
   useEffect(() => {
     setActiveChapterId(project.chapters[0]?.id || '')
@@ -332,6 +348,42 @@ function App() {
     }
   }, [providerMode, providerSecretStore])
 
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      setDebouncedIndexedRecallQuery(indexedRecallQuery)
+    }, 250)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [indexedRecallQuery])
+
+  useEffect(() => {
+    if (!project.rootPath || !activeChapter || !debouncedIndexedRecallQuery) {
+      setIndexedRecallResults([])
+      return
+    }
+
+    let isMounted = true
+
+    searchProjectChapterIndex(project.rootPath, debouncedIndexedRecallQuery, 8)
+      .then((results) => {
+        if (!isMounted) return
+        setIndexedRecallResults(mapChapterSearchResults(results))
+      })
+      .catch((error) => {
+        if (!isMounted) return
+        setIndexedRecallResults([])
+        setRuntimeError(
+          `章节索引召回失败: ${
+            error instanceof Error ? error.message : String(error)
+          }`,
+        )
+      })
+
+    return () => {
+      isMounted = false
+    }
+  }, [activeChapter, debouncedIndexedRecallQuery, project.rootPath])
+
   function updateProviderMode(nextProviderMode: string) {
     setRuntimeError(null)
     setProviderConfig((current) => ({
@@ -396,6 +448,7 @@ function App() {
         volumeSummaries,
         characterStateLogs,
         plotThreads,
+        indexedRecallResults,
         projectTitle: project.title,
         budgetChars: 900,
       })
@@ -1357,6 +1410,37 @@ function App() {
       </main>
     </TooltipProvider>
   )
+}
+
+function buildIndexedRecallQuery(documentText: string, codexEntries: CodexEntry[]) {
+  const codexTerms = codexEntries.flatMap((entry) =>
+    [entry.name, ...entry.keywords].filter(
+      (keyword) => keyword && documentText.includes(keyword),
+    ),
+  )
+  const proseTerms = documentText.match(/[\u4e00-\u9fff]{3,8}/g) || []
+  const terms = uniqueStrings([...codexTerms, ...proseTerms])
+    .filter((term) => term.length >= 3)
+    .slice(0, 8)
+
+  return terms.join(' ')
+}
+
+function mapChapterSearchResults(
+  results: ChapterSearchResult[],
+): IndexedRecallResult[] {
+  return results.map((result) => ({
+    chapterId: result.chapter_id,
+    chapterTitle: result.chapter_title,
+    sourcePath: result.file_path,
+    snippet: result.snippet,
+    score: result.score,
+    source: result.source,
+  }))
+}
+
+function uniqueStrings(values: string[]) {
+  return [...new Set(values.map((value) => value.trim()).filter(Boolean))]
 }
 
 export default App
