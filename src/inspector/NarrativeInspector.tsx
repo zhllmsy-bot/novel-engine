@@ -85,6 +85,7 @@ export function NarrativeInspector(props: NarrativeInspectorProps) {
             onConfirmPlotThreadProposal={props.onConfirmPlotThreadProposal}
             onAcceptPatch={props.onAcceptPatch}
             onAcceptRewriteUnit={props.onAcceptRewriteUnit}
+            onRejectRewriteUnit={props.onRejectRewriteUnit}
             onRejectPatch={props.onRejectPatch}
           />
         </InspectorTabContent>

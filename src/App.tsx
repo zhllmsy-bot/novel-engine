@@ -56,6 +56,7 @@ import {
   applyRewriteUnit,
   buildDiffParts,
   buildRewriteUnits,
+  rejectRewriteUnitInPatch,
   validateRewritePatch,
 } from './diff/safeRewrite'
 import { MarkdownEditor } from './editor/MarkdownEditor'
@@ -768,6 +769,18 @@ function App() {
     }
   }
 
+  function rejectRewriteUnit(unitId: string) {
+    if (!rewritePatch) return
+
+    try {
+      const remainingPatch = rejectRewriteUnitInPatch(rewritePatch, unitId)
+      const remainingUnits = buildRewriteUnits(remainingPatch)
+      setRewritePatch(remainingUnits.length > 0 ? remainingPatch : null)
+    } catch (error) {
+      setRuntimeError(error instanceof Error ? error.message : String(error))
+    }
+  }
+
   function updateDocumentText(nextDocumentText: string) {
     if (activeChapter) {
       draftStore.updateDraft(activeChapter.id, nextDocumentText)
@@ -1405,6 +1418,7 @@ function App() {
           onPreviewSkill={previewSkill}
           onAcceptPatch={() => void acceptPatch()}
           onAcceptRewriteUnit={(unitId) => void acceptRewriteUnit(unitId)}
+          onRejectRewriteUnit={rejectRewriteUnit}
           onRejectPatch={() => setRewritePatch(null)}
           onConfirmStateProposal={confirmStateProposal}
           onConfirmPlotThreadProposal={confirmPlotThreadProposal}

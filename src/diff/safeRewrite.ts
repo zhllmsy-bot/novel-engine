@@ -12,6 +12,8 @@ export type RewriteUnit = {
   id: string
   originalStart: number
   originalEnd: number
+  proposedStart: number
+  proposedEnd: number
   original: string
   proposed: string
   diffParts: DiffPart[]
@@ -76,6 +78,8 @@ export function buildRewriteUnits(patch: RewritePatch): RewriteUnit[] {
       id: `unit-${index}`,
       originalStart: originalSegment?.start ?? patch.original.length,
       originalEnd: originalSegment?.end ?? patch.original.length,
+      proposedStart: proposedSegment?.start ?? patch.proposed.length,
+      proposedEnd: proposedSegment?.end ?? patch.proposed.length,
       original,
       proposed,
       diffParts: buildDiffParts(original, proposed),
@@ -139,6 +143,24 @@ export function acceptRewriteUnitInPatch(
   return {
     ...patch,
     original: `${patch.original.slice(0, unit.originalStart)}${unit.proposed}${patch.original.slice(unit.originalEnd)}`,
+  }
+}
+
+export function rejectRewriteUnitInPatch(
+  patch: RewritePatch,
+  unitId: string,
+): RewritePatch {
+  const unit = buildRewriteUnits(patch).find(
+    (rewriteUnit) => rewriteUnit.id === unitId,
+  )
+
+  if (!unit) {
+    throw new Error('未找到可拒绝的单句改写。')
+  }
+
+  return {
+    ...patch,
+    proposed: `${patch.proposed.slice(0, unit.proposedStart)}${unit.original}${patch.proposed.slice(unit.proposedEnd)}`,
   }
 }
 

@@ -71,6 +71,7 @@ export type SkillsPanelProps = {
   onConfirmPlotThreadProposal: (proposal: PlotThreadChangeProposal) => void
   onAcceptPatch: () => void | Promise<void>
   onAcceptRewriteUnit: (unitId: string) => void | Promise<void>
+  onRejectRewriteUnit: (unitId: string) => void
   onRejectPatch: () => void
 }
 

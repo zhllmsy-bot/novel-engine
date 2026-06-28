@@ -2170,6 +2170,12 @@ button.story-node-card[aria-pressed='true'] {
   padding: 8px;
 }
 
+.diff-unit-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .diff-unit-body {
   display: grid;
   gap: 4px;

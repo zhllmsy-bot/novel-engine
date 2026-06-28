@@ -305,6 +305,7 @@ export function SkillsPanel({
   onConfirmPlotThreadProposal,
   onAcceptPatch,
   onAcceptRewriteUnit,
+  onRejectRewriteUnit,
   onRejectPatch,
 }: SkillsPanelProps) {
   const [activeSourceFilter, setActiveSourceFilter] =
@@ -721,15 +722,25 @@ export function SkillsPanel({
                         ))}
                       </p>
                     </div>
-                    <Button
-                      disabled={!patchValidation?.ok}
-                      onClick={() => void onAcceptRewriteUnit(unit.id)}
-                      size="sm"
-                      type="button"
-                      variant="outline"
-                    >
-                      接受此句
-                    </Button>
+                    <div className="diff-unit-actions">
+                      <Button
+                        disabled={!patchValidation?.ok}
+                        onClick={() => void onAcceptRewriteUnit(unit.id)}
+                        size="sm"
+                        type="button"
+                        variant="outline"
+                      >
+                        接受此句
+                      </Button>
+                      <Button
+                        onClick={() => onRejectRewriteUnit(unit.id)}
+                        size="sm"
+                        type="button"
+                        variant="secondary"
+                      >
+                        拒绝此句
+                      </Button>
+                    </div>
                   </div>
                 ))}
               </div>
