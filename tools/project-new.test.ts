@@ -62,6 +62,7 @@ describe('project new tool', () => {
         layer: string
         contains: string[]
         source_contains?: string[]
+        source_families?: string[]
       }>
     }
 
@@ -79,7 +80,9 @@ describe('project new tool', () => {
     expect(config.expectations[1].source_contains).toEqual([
       'codex/characters/',
     ])
+    expect(config.expectations[1].source_families).toEqual(['codex'])
     expect(config.expectations[2].source_contains).toEqual(['meta/project.json'])
+    expect(config.expectations[2].source_families).toEqual(['project'])
   })
 
   it('creates a project folder that passes the project health check', async () => {
@@ -151,6 +154,8 @@ describe('project new tool', () => {
         ),
       ).toMatchObject({
         missingSources: [],
+        missingSourceFamilies: [],
+        sourceFamilies: ['codex'],
         matchedSources: ['codex/characters/protagonist.md'],
       })
       expect(
@@ -159,6 +164,8 @@ describe('project new tool', () => {
         ),
       ).toMatchObject({
         missingSources: [],
+        missingSourceFamilies: [],
+        sourceFamilies: ['project'],
         matchedSources: ['meta/project.json'],
       })
     } finally {

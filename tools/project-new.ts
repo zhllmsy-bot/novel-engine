@@ -77,6 +77,7 @@ export function buildMemoryEvalConfig(projectRoot: string) {
           layer: 'L0 事实',
           contains: ['主角', '当前状态'],
           source_contains: ['codex/characters/'],
+          source_families: ['codex'],
         },
         {
           id: 'starter-l3-recall-audit',
@@ -84,6 +85,7 @@ export function buildMemoryEvalConfig(projectRoot: string) {
           layer: 'L3 意图',
           contains: ['当前命中关键词', '命中设定'],
           source_contains: ['meta/project.json'],
+          source_families: ['project'],
         },
       ],
     },
