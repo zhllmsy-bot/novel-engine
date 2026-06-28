@@ -2,8 +2,15 @@ import {
   defaultProviderConfig,
   type ProviderConfig,
 } from './providerRuntime'
+import {
+  deleteProviderApiKey,
+  getProviderApiKey,
+  setProviderApiKey,
+} from '../platform/tauriProject'
+import { isTauriRuntime } from '../platform/runtime'
 
 const providerSettingsStorageKey = 'novel-engine.provider-settings.v1'
+const browserProviderSecrets = new Map<string, string>()
 
 export type ProviderRuntimeSettings = {
   providerMode: string
@@ -11,6 +18,12 @@ export type ProviderRuntimeSettings = {
 }
 
 export type ProviderSettingsStorage = Pick<Storage, 'getItem' | 'setItem'>
+
+export type ProviderSecretStore = {
+  getApiKey(providerId: string): Promise<string>
+  setApiKey(providerId: string, apiKey: string): Promise<void>
+  deleteApiKey(providerId: string): Promise<void>
+}
 
 type PersistedProviderSettings = {
   providerMode?: unknown
@@ -76,6 +89,56 @@ export function saveProviderSettings(
 
 export function browserProviderSettingsStorage() {
   return typeof window === 'undefined' ? null : window.localStorage
+}
+
+export function createProviderSecretStore(options: {
+  isTauri?: () => boolean
+  getSecret?: typeof getProviderApiKey
+  setSecret?: typeof setProviderApiKey
+  deleteSecret?: typeof deleteProviderApiKey
+  browserSecrets?: Map<string, string>
+} = {}): ProviderSecretStore {
+  const isTauri = options.isTauri || isTauriRuntime
+  const getSecret = options.getSecret || getProviderApiKey
+  const setSecret = options.setSecret || setProviderApiKey
+  const deleteSecret = options.deleteSecret || deleteProviderApiKey
+  const browserSecrets = options.browserSecrets || browserProviderSecrets
+
+  async function deleteStoredApiKey(providerId: string) {
+    if (isTauri()) {
+      await deleteSecret(providerId)
+      return
+    }
+
+    browserSecrets.delete(providerId)
+  }
+
+  return {
+    async getApiKey(providerId) {
+      if (isTauri()) {
+        return (await getSecret(providerId)) || ''
+      }
+
+      return browserSecrets.get(providerId) || ''
+    },
+    async setApiKey(providerId, apiKey) {
+      const trimmedApiKey = apiKey.trim()
+      if (!trimmedApiKey) {
+        await deleteStoredApiKey(providerId)
+        return
+      }
+
+      if (isTauri()) {
+        await setSecret(providerId, trimmedApiKey)
+        return
+      }
+
+      browserSecrets.set(providerId, trimmedApiKey)
+    },
+    async deleteApiKey(providerId) {
+      await deleteStoredApiKey(providerId)
+    },
+  }
 }
 
 function stringOrDefault(value: unknown, fallback: string) {

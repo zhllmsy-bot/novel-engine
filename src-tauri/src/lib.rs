@@ -1,4 +1,5 @@
 mod project;
+mod secrets;
 
 use project::{
     create_project, init_cache, insert_chapter_version, insert_character_state_log,
@@ -13,6 +14,11 @@ use project::{
     ProviderAdapterFileInfo, PublisherAdapterFileInfo, SkillFileInfo,
     VolumeSummaryInfo, VolumeSummaryPayload, upsert_plot_thread, upsert_volume_summary,
 };
+use secrets::{
+    delete_provider_api_key as delete_provider_secret,
+    get_provider_api_key as get_provider_secret,
+    set_provider_api_key as set_provider_secret,
+};
 use serde::Serialize;
 
 #[derive(Debug, Serialize)]
@@ -22,6 +28,14 @@ struct AppError {
 
 impl From<project::ProjectError> for AppError {
     fn from(value: project::ProjectError) -> Self {
+        Self {
+            message: value.to_string(),
+        }
+    }
+}
+
+impl From<secrets::SecretError> for AppError {
+    fn from(value: secrets::SecretError) -> Self {
         Self {
             message: value.to_string(),
         }
@@ -158,6 +172,23 @@ fn upsert_project_plot_thread(path: String, thread: PlotThreadPayload) -> AppRes
     Ok(())
 }
 
+#[tauri::command]
+fn get_provider_api_key(provider_id: String) -> AppResult<Option<String>> {
+    Ok(get_provider_secret(&provider_id)?)
+}
+
+#[tauri::command]
+fn set_provider_api_key(provider_id: String, api_key: String) -> AppResult<()> {
+    set_provider_secret(&provider_id, &api_key)?;
+    Ok(())
+}
+
+#[tauri::command]
+fn delete_provider_api_key(provider_id: String) -> AppResult<()> {
+    delete_provider_secret(&provider_id)?;
+    Ok(())
+}
+
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
@@ -183,7 +214,10 @@ pub fn run() {
             list_project_character_state_logs,
             insert_project_character_state_log,
             list_project_plot_threads,
-            upsert_project_plot_thread
+            upsert_project_plot_thread,
+            get_provider_api_key,
+            set_provider_api_key,
+            delete_provider_api_key
         ])
         .run(tauri::generate_context!())
         .expect("failed to run Novel Engine");

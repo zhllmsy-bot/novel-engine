@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  createProviderSecretStore,
   loadProviderSettings,
   saveProviderSettings,
   type ProviderSettingsStorage,
@@ -78,5 +79,68 @@ describe('provider settings persistence', () => {
     })
 
     expect(loadProviderSettings(storage)).toBeNull()
+  })
+
+  it('stores browser API keys only in the injected session map', async () => {
+    const browserSecrets = new Map<string, string>()
+    const store = createProviderSecretStore({
+      isTauri: () => false,
+      browserSecrets,
+    })
+
+    await store.setApiKey('openai', '  sk-browser-secret  ')
+
+    expect(await store.getApiKey('openai')).toBe('sk-browser-secret')
+    expect(browserSecrets.get('openai')).toBe('sk-browser-secret')
+
+    await store.deleteApiKey('openai')
+
+    expect(await store.getApiKey('openai')).toBe('')
+    expect(browserSecrets.has('openai')).toBe(false)
+  })
+
+  it('uses native secret commands in Tauri runtime', async () => {
+    const calls: string[] = []
+    const store = createProviderSecretStore({
+      isTauri: () => true,
+      getSecret: async (providerId) => {
+        calls.push(`get:${providerId}`)
+        return 'sk-native-secret'
+      },
+      setSecret: async (providerId, apiKey) => {
+        calls.push(`set:${providerId}:${apiKey}`)
+      },
+      deleteSecret: async (providerId) => {
+        calls.push(`delete:${providerId}`)
+      },
+    })
+
+    expect(await store.getApiKey('openai')).toBe('sk-native-secret')
+    await store.setApiKey('openai', '  sk-next-secret  ')
+    await store.deleteApiKey('openai')
+
+    expect(calls).toEqual([
+      'get:openai',
+      'set:openai:sk-next-secret',
+      'delete:openai',
+    ])
+  })
+
+  it('deletes native secrets when the API key is cleared', async () => {
+    const calls: string[] = []
+    const store = createProviderSecretStore({
+      isTauri: () => true,
+      getSecret: async () => null,
+      setSecret: async (providerId, apiKey) => {
+        calls.push(`set:${providerId}:${apiKey}`)
+      },
+      deleteSecret: async (providerId) => {
+        calls.push(`delete:${providerId}`)
+      },
+    })
+
+    await store.setApiKey('openai', '   ')
+
+    expect(calls).toEqual(['delete:openai'])
   })
 })

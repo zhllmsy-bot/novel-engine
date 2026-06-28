@@ -41,9 +41,11 @@ import {
   createModelProvider,
   defaultProviderConfig,
   getDefaultProviderAdapterId,
+  type ProviderConfig,
   validateProviderConfig,
 } from './ai/providerRuntime'
 import {
+  createProviderSecretStore,
   loadProviderSettings,
   saveProviderSettings,
 } from './ai/providerSettingsPersistence'
@@ -182,6 +184,7 @@ function App() {
   const [plotThreadPersistence] = useState(createPlotThreadPersistence)
   const [volumeSummaryPersistence] = useState(createVolumeSummaryPersistence)
   const [graphSnapshotPersistence] = useState(createGraphSnapshotPersistence)
+  const [providerSecretStore] = useState(createProviderSecretStore)
   const [skillCatalog, setSkillCatalog] = useState(loadSkillCatalog)
   const [publisherAdapterCatalog, setPublisherAdapterCatalog] =
     useState<EditorPublisherAdapterCatalog>(() => ({
@@ -294,6 +297,64 @@ function App() {
       providerConfig,
     })
   }, [providerConfig, providerMode])
+
+  useEffect(() => {
+    let isMounted = true
+
+    setProviderConfig((current) => ({
+      ...current,
+      apiKey: '',
+    }))
+
+    providerSecretStore
+      .getApiKey(providerMode)
+      .then((apiKey) => {
+        if (!isMounted) return
+        setProviderConfig((current) => ({
+          ...current,
+          apiKey,
+        }))
+      })
+      .catch((error) => {
+        if (!isMounted) return
+        setRuntimeError(
+          `读取 Provider API Key 失败: ${
+            error instanceof Error ? error.message : String(error)
+          }`,
+        )
+      })
+
+    return () => {
+      isMounted = false
+    }
+  }, [providerMode, providerSecretStore])
+
+  function updateProviderMode(nextProviderMode: string) {
+    setRuntimeError(null)
+    setProviderConfig((current) => ({
+      ...current,
+      apiKey: '',
+    }))
+    setProviderMode(nextProviderMode)
+  }
+
+  function updateProviderConfig(nextProviderConfig: ProviderConfig) {
+    setRuntimeError(null)
+    const apiKeyChanged = nextProviderConfig.apiKey !== providerConfig.apiKey
+    setProviderConfig(nextProviderConfig)
+
+    if (apiKeyChanged) {
+      void providerSecretStore
+        .setApiKey(providerMode, nextProviderConfig.apiKey)
+        .catch((error) => {
+          setRuntimeError(
+            `保存 Provider API Key 失败: ${
+              error instanceof Error ? error.message : String(error)
+            }`,
+          )
+        })
+    }
+  }
 
   const diffParts = useMemo(
     () =>
@@ -1255,8 +1316,8 @@ function App() {
             void runPublisherPreview(adapterId)
           }
           onPublisherAdapterChange={changePublisherAdapter}
-          onProviderModeChange={setProviderMode}
-          onProviderConfigChange={setProviderConfig}
+          onProviderModeChange={updateProviderMode}
+          onProviderConfigChange={updateProviderConfig}
         />
       </main>
     </TooltipProvider>

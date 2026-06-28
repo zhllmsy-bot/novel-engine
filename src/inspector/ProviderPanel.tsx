@@ -17,6 +17,7 @@ import type {
   ProviderAdapterManifest,
   ProviderConfigField,
 } from '@/ai/providerManifest'
+import { isTauriRuntime } from '@/platform/runtime'
 import { InspectorSection } from './components'
 import type { ProviderPanelProps } from './types'
 
@@ -56,6 +57,9 @@ export function ProviderPanel({
   const configAudit = activeAdapter
     ? auditProviderConfig(activeAdapter.id, providerConfig, providerAdapters)
     : null
+  const apiKeyPersistenceLabel = isTauriRuntime()
+    ? 'API Key 会保存在系统凭据库，不写入项目文件、SQLite 或 localStorage。'
+    : '浏览器演示仅在当前页面会话保存 API Key，不写入项目文件、SQLite 或 localStorage。'
 
   return (
     <InspectorSection title="模型配置">
@@ -145,7 +149,7 @@ export function ProviderPanel({
         {activeAdapter && activeAdapter.configFields.length > 0 ? (
           <Field>
             <FieldDescription>
-              Base URL 和 Model 会保留在本机设置；API Key 只保留当前会话，不写入持久化存储。
+              Base URL 和 Model 会保留在本机设置；{apiKeyPersistenceLabel}
             </FieldDescription>
           </Field>
         ) : null}
@@ -195,7 +199,7 @@ function ProviderConfigInput({
 }: {
   field: ProviderConfigField
   providerConfig: ProviderConfig
-  onProviderConfigChange: (config: ProviderConfig) => void
+  onProviderConfigChange: ProviderPanelProps['onProviderConfigChange']
 }) {
   const fieldId = `provider-${field}`
 

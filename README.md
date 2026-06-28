@@ -674,7 +674,8 @@ run spends tokens.
 
 The current UI persists non-secret provider settings (`providerMode`, `baseUrl`,
 and `model`) in local browser settings so the editor can survive a refresh. API
-keys are intentionally excluded from that persisted payload and are reset on
-reload. Do not commit secrets. A later desktop pass should move persistent
-credentials into the OS keychain or Tauri Stronghold instead of project files,
-SQLite cache, or browser local storage.
+keys are intentionally excluded from that persisted payload. In the Tauri
+desktop app, provider API keys are stored through the operating system credential
+store via Rust `keyring`; in the browser demo they remain session-only in memory.
+API keys must never be committed, written into project files, SQLite cache, or
+browser local storage.

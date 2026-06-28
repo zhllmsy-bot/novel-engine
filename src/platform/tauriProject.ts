@@ -161,6 +161,25 @@ export function scanProjectProviderAdapters(path: string) {
   })
 }
 
+export function getProviderApiKey(providerId: string) {
+  return invoke<string | null>('get_provider_api_key', {
+    providerId,
+  })
+}
+
+export function setProviderApiKey(providerId: string, apiKey: string) {
+  return invoke<void>('set_provider_api_key', {
+    providerId,
+    apiKey,
+  })
+}
+
+export function deleteProviderApiKey(providerId: string) {
+  return invoke<void>('delete_provider_api_key', {
+    providerId,
+  })
+}
+
 export function readProjectChapter(path: string) {
   return invoke<string>('read_project_chapter', { path })
 }
