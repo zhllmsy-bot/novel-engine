@@ -2,6 +2,7 @@ use chrono::Utc;
 use rusqlite::{params, Connection, OptionalExtension};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
+use std::collections::BTreeMap;
 use std::fs;
 use std::path::{Path, PathBuf};
 use thiserror::Error;
@@ -175,6 +176,16 @@ pub struct PlotThreadInfo {
     pub source_skill_id: String,
     pub confirmed_at: String,
     pub updated_at: String,
+}
+
+#[derive(Debug, Serialize, Clone)]
+pub struct ChapterSearchResult {
+    pub chapter_id: String,
+    pub chapter_title: String,
+    pub file_path: String,
+    pub snippet: String,
+    pub score: f64,
+    pub source: String,
 }
 
 #[derive(Debug, Deserialize)]
@@ -514,7 +525,63 @@ pub fn upsert_chapter_summary(
             updated_at
         ],
     )?;
+    rebuild_chapter_fts(&conn)?;
     Ok(())
+}
+
+pub fn search_chapter_index(
+    path: String,
+    query: String,
+    limit: usize,
+) -> Result<Vec<ChapterSearchResult>, ProjectError> {
+    let (_root, conn) = open_cache(path)?;
+    let normalized_query = normalize_fts_query(&query);
+
+    if normalized_query.is_empty() {
+        return Ok(Vec::new());
+    }
+
+    let capped_limit = limit.clamp(1, 20) as i64;
+    let mut stmt = conn.prepare(
+        r#"
+        SELECT
+          ch.id,
+          ch.title,
+          ch.file_path,
+          snippet(chapter_fts, 1, '', '', '…', 18) AS content_snippet,
+          snippet(chapter_fts, 2, '', '', '…', 18) AS summary_snippet,
+          bm25(chapter_fts, 4.0, 1.0, 2.5) AS rank
+        FROM chapter_fts
+        JOIN chapter ch ON ch.rowid = chapter_fts.rowid
+        WHERE chapter_fts MATCH ?1
+        ORDER BY rank ASC, ch.order_idx ASC
+        LIMIT ?2
+        "#,
+    )?;
+    let matches = stmt.query_map(params![normalized_query, capped_limit], |row| {
+        let content_snippet: String = row.get(3)?;
+        let summary_snippet: String = row.get(4)?;
+        let rank: f64 = row.get(5)?;
+
+        Ok(ChapterSearchResult {
+            chapter_id: row.get(0)?,
+            chapter_title: row.get(1)?,
+            file_path: row.get(2)?,
+            snippet: pick_snippet(&summary_snippet, &content_snippet),
+            score: -rank,
+            source: if !summary_snippet.trim().is_empty() {
+                "summary".to_string()
+            } else {
+                "content".to_string()
+            },
+        })
+    })?;
+
+    let mut results = Vec::new();
+    for result in matches {
+        results.push(result?);
+    }
+    Ok(results)
 }
 
 pub fn list_volume_summaries(path: String) -> Result<Vec<VolumeSummaryInfo>, ProjectError> {
@@ -1071,8 +1138,10 @@ fn apply_schema(conn: &Connection) -> Result<(), ProjectError> {
           loaded_at TEXT NOT NULL
         );
 
-        CREATE VIRTUAL TABLE IF NOT EXISTS chapter_fts
-        USING fts5(title, content, summary, content='', tokenize='unicode61');
+        DROP TABLE IF EXISTS chapter_fts;
+
+        CREATE VIRTUAL TABLE chapter_fts
+        USING fts5(title, content, summary, tokenize='trigram');
         "#,
     )?;
     Ok(())
@@ -1115,6 +1184,41 @@ fn upsert_scanned_chapters(conn: &Connection, root: &Path) -> Result<(), Project
         )?;
     }
 
+    rebuild_chapter_fts(conn)?;
+    Ok(())
+}
+
+fn rebuild_chapter_fts(conn: &Connection) -> Result<(), ProjectError> {
+    conn.execute("DELETE FROM chapter_fts", [])?;
+    let mut stmt = conn.prepare(
+        r#"
+        SELECT
+          ch.rowid,
+          ch.title,
+          ch.content,
+          COALESCE(cs.summary, '') AS summary
+        FROM chapter ch
+        LEFT JOIN chapter_summary cs ON cs.chapter_id = ch.id
+        ORDER BY ch.order_idx ASC, ch.id ASC
+        "#,
+    )?;
+    let rows = stmt.query_map([], |row| {
+        Ok((
+            row.get::<_, i64>(0)?,
+            row.get::<_, String>(1)?,
+            row.get::<_, String>(2)?,
+            row.get::<_, String>(3)?,
+        ))
+    })?;
+
+    for row in rows {
+        let (rowid, title, content, summary) = row?;
+        conn.execute(
+            "INSERT INTO chapter_fts(rowid, title, content, summary) VALUES (?1, ?2, ?3, ?4)",
+            params![rowid, title, content, summary],
+        )?;
+    }
+
     Ok(())
 }
 
@@ -1145,6 +1249,59 @@ fn chapter_from_file(path: &Path, content: &str) -> ChapterInfo {
     }
 }
 
+fn normalize_fts_query(query: &str) -> String {
+    let mut terms: BTreeMap<String, ()> = BTreeMap::new();
+
+    for term in query
+        .split(|ch: char| ch.is_whitespace() || is_query_separator(ch))
+        .map(str::trim)
+        .filter(|term| !term.is_empty())
+    {
+        terms.insert(term.to_string(), ());
+    }
+
+    terms
+        .keys()
+        .map(|term| format!("\"{}\"", term.replace('"', "\"\"")))
+        .collect::<Vec<_>>()
+        .join(" OR ")
+}
+
+fn is_query_separator(ch: char) -> bool {
+    matches!(
+        ch,
+        ',' | '，'
+            | '、'
+            | ';'
+            | '；'
+            | ':'
+            | '：'
+            | '.'
+            | '。'
+            | '!'
+            | '！'
+            | '?'
+            | '？'
+            | '('
+            | ')'
+            | '（'
+            | '）'
+            | '['
+            | ']'
+            | '【'
+            | '】'
+    )
+}
+
+fn pick_snippet(summary_snippet: &str, content_snippet: &str) -> String {
+    let summary = summary_snippet.trim();
+    if !summary.is_empty() {
+        return summary.to_string();
+    }
+
+    content_snippet.trim().to_string()
+}
+
 fn is_skill_manifest_file(path: &Path) -> bool {
     match path.file_name().and_then(|value| value.to_str()) {
         Some(file_name) => file_name.ends_with(".skill.yaml") || file_name.ends_with(".skill.yml"),
@@ -1160,4 +1317,79 @@ fn sha256(input: &str) -> String {
 
 fn parse_json_list(input: &str) -> Vec<String> {
     serde_json::from_str(input).unwrap_or_default()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn chapter_search_indexes_scanned_content_and_summaries() {
+        let root = unique_test_project_root("chapter-search");
+        fs::create_dir_all(root.join("manuscript").join("volume-001")).unwrap();
+        fs::create_dir_all(root.join("meta")).unwrap();
+        fs::write(
+            root.join("meta").join("project.json"),
+            r#"{"title":"搜索测试","chapters":[]}"#,
+        )
+        .unwrap();
+        fs::write(
+            root.join("manuscript").join("volume-001").join("chapter-001.md"),
+            "# 第一章 雨夜\n\n沈微第一次听见玄铁剑的声音。\n",
+        )
+        .unwrap();
+        fs::write(
+            root.join("manuscript").join("volume-001").join("chapter-002.md"),
+            "# 第二章 剑阁\n\n剑阁里没有人提起镜湖钥。\n",
+        )
+        .unwrap();
+
+        init_cache(root.to_string_lossy().to_string()).unwrap();
+        upsert_chapter_summary(
+            root.to_string_lossy().to_string(),
+            ChapterSummaryPayload {
+                chapter_id: "chapter-002".to_string(),
+                source_hash: "hash".to_string(),
+                summary: "简璃在镜湖留下青灯誓。".to_string(),
+                key_events: vec!["青灯誓".to_string()],
+                characters_involved: vec!["简璃".to_string()],
+                is_edited: false,
+                updated_at: "2026-01-01T00:00:00Z".to_string(),
+            },
+        )
+        .unwrap();
+
+        let content_results = search_chapter_index(
+            root.to_string_lossy().to_string(),
+            "玄铁剑".to_string(),
+            5,
+        )
+        .unwrap();
+        assert_eq!(content_results[0].chapter_id, "chapter-001");
+        assert_eq!(content_results[0].source, "content");
+
+        let summary_results =
+            search_chapter_index(root.to_string_lossy().to_string(), "青灯誓".to_string(), 5)
+                .unwrap();
+        assert_eq!(summary_results[0].chapter_id, "chapter-002");
+        assert_eq!(summary_results[0].source, "summary");
+        assert!(summary_results[0].snippet.contains("青灯誓"));
+
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn chapter_search_sanitizes_punctuation_queries() {
+        let query = normalize_fts_query("玄铁剑, 青灯誓：镜湖钥");
+
+        assert_eq!(query, "\"玄铁剑\" OR \"镜湖钥\" OR \"青灯誓\"");
+    }
+
+    fn unique_test_project_root(name: &str) -> PathBuf {
+        std::env::temp_dir().join(format!(
+            "novel-engine-{}-{}",
+            name,
+            Utc::now().timestamp_nanos_opt().unwrap_or_default()
+        ))
+    }
 }

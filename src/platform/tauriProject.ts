@@ -8,6 +8,15 @@ export type ScannedChapter = {
   word_count: number
 }
 
+export type ChapterSearchResult = {
+  chapter_id: string
+  chapter_title: string
+  file_path: string
+  snippet: string
+  score: number
+  source: 'content' | 'summary'
+}
+
 export type ScannedMarkdownFile = {
   file_path: string
   content: string
@@ -134,6 +143,18 @@ export function initializeProjectCache(path: string) {
 
 export function scanProjectChapters(path: string) {
   return invoke<ScannedChapter[]>('scan_project_chapters', { path })
+}
+
+export function searchProjectChapterIndex(
+  path: string,
+  query: string,
+  limit = 8,
+) {
+  return invoke<ChapterSearchResult[]>('search_project_chapter_index', {
+    path,
+    query,
+    limit,
+  })
 }
 
 export function readProjectManifestFile(path: string) {

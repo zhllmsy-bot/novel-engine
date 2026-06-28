@@ -493,6 +493,9 @@ Runtime context assembly now uses the available open project structure:
   historical summaries and foreshadowing threads are also emitted as concrete
   `recall:chapter_summary:*` and `recall:plot_thread:*` L3 entries, capped by the
   shared memory budget policy.
+- Desktop cache exposes `search_project_chapter_index`, a rebuildable SQLite
+  FTS5 trigram search over chapter title, prose, and cached summary. This is the
+  local-first path for scaling L3 recall beyond small in-memory keyword scans.
 
 The memory builder also exposes a budget audit alongside the final memories.
 The editor shows used/budget characters, per-layer budget totals versus target

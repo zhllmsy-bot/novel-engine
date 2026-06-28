@@ -6,9 +6,9 @@ use project::{
     list_chapter_summaries, list_chapter_versions, list_chapters, list_character_state_logs,
     list_codex_files, list_plot_threads, list_provider_adapter_files,
     list_publisher_adapter_files, list_skill_files, list_volume_summaries, read_chapter_file,
-    read_graph_snapshot, read_project_manifest, upsert_chapter_summary,
+    read_graph_snapshot, read_project_manifest, search_chapter_index, upsert_chapter_summary,
     write_chapter_file, write_graph_snapshot,
-    ChapterInfo, ChapterSummaryInfo,
+    ChapterInfo, ChapterSearchResult, ChapterSummaryInfo,
     ChapterSummaryPayload, ChapterVersionInfo, ChapterVersionPayload, CharacterStateLogInfo,
     CharacterStateLogPayload, MarkdownFileInfo, PlotThreadInfo, PlotThreadPayload,
     ProviderAdapterFileInfo, PublisherAdapterFileInfo, SkillFileInfo,
@@ -59,6 +59,15 @@ fn initialize_project_cache(path: String) -> AppResult<()> {
 #[tauri::command]
 fn scan_project_chapters(path: String) -> AppResult<Vec<ChapterInfo>> {
     Ok(list_chapters(path)?)
+}
+
+#[tauri::command]
+fn search_project_chapter_index(
+    path: String,
+    query: String,
+    limit: usize,
+) -> AppResult<Vec<ChapterSearchResult>> {
+    Ok(search_chapter_index(path, query, limit)?)
 }
 
 #[tauri::command]
@@ -196,6 +205,7 @@ pub fn run() {
             create_novel_project,
             initialize_project_cache,
             scan_project_chapters,
+            search_project_chapter_index,
             read_project_manifest_file,
             scan_project_codex,
             scan_project_skills,

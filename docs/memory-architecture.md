@@ -104,19 +104,21 @@ Codex cards must also stay recallable. The MVP L3 path depends on explicit
 `keywords` in YAML frontmatter, so `npm run project:check` treats missing
 keywords as an error and duplicate keywords as a warning. Keywords should usually
 include the card `name` plus aliases, item names, locations, or motifs that may
-surface in prose. This is the local-first equivalent of maintaining a clean
-search index without introducing a vector database.
+surface in prose. This is the author-visible recall contract. Desktop builds
+also maintain a rebuildable SQLite FTS5 trigram index over chapter title,
+content, and generated summary in `.novel/cache.db`, so Chinese names and object
+motifs can be searched locally without a vector database.
 
 ## L3 Recall
 
 L3 is not a database table. It is the runtime recall action that bridges the gap between "the outline explicitly mentioned this" and "the current prose unexpectedly brought this back."
 
-MVP uses explainable keyword and alias matching over codex entries and summaries. This is enough to prove the workflow without a vector database:
+MVP uses explainable keyword and alias matching over codex entries and summaries. The desktop host now exposes the same recall surface through SQLite FTS5 chapter search, which is the bridge from small in-memory matching to scalable local retrieval without changing the four-layer prompt contract:
 
 ```text
 current draft + chapter intent
 -> names, aliases, item/location keywords
--> L0 codex matches + L1 summary matches
+-> L0 codex matches + SQLite FTS5 chapter/summary matches
 -> recall audit + concrete recall items in the prompt and inspector
 ```
 
@@ -127,6 +129,14 @@ The runtime emits L3 in two forms:
 - `recall:plot_thread:*`: concrete confirmed foreshadowing recalls when the active draft hits their keywords.
 
 Vector search is optional later, preferably through SQLite-native extensions such as sqlite-vec. A separate vector database is not part of the MVP contract because it adds deployment and debugging complexity before keyword recall has been measured.
+
+The first FTS integration point is `search_project_chapter_index` in the Tauri
+host. It rebuilds from Markdown chapters plus cached summaries, uses FTS5
+`trigram` tokenization for Chinese prose, and returns ranked snippets tagged as
+`content` or `summary`. The current TypeScript memory builder still supports the
+browser/demo in-memory path; desktop L3 can consume the search results as
+`recall:chapter_summary:*` entries without making the core runtime depend on a
+separate service.
 
 ## Write Path
 
