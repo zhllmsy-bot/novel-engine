@@ -10,6 +10,7 @@ import {
 } from '@/inspector/storyGraph'
 import {
   buildNarrativeMemoryPlan,
+  type IndexedRecallResult,
   type NarrativeMemoryPlan,
 } from '@/memory/memoryContextBuilder'
 import {
@@ -57,6 +58,7 @@ export type NovelAgentRuntimeContext = {
   volumeSummaries?: VolumeSummary[]
   characterStateLogs?: CharacterStateLog[]
   plotThreads?: PlotThread[]
+  indexedRecallResults?: IndexedRecallResult[]
   skillCatalog?: SkillCatalog
   provider?: ModelProvider
   providerAdapterCatalog?: ProviderAdapterCatalog
@@ -588,6 +590,7 @@ function buildMemoryPlan(
     volumeSummaries: context.volumeSummaries || [],
     characterStateLogs: context.characterStateLogs || [],
     plotThreads: context.plotThreads || [],
+    indexedRecallResults: context.indexedRecallResults || [],
     projectTitle: context.project.title,
     budgetChars,
   })

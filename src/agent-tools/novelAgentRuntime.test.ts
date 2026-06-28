@@ -162,6 +162,36 @@ function createRuntimeWithDerivedMemory() {
   })
 }
 
+function createRuntimeWithIndexedRecall() {
+  const project = loadDemoProject()
+  const draftStore = createChapterDraftStore(project.chapters)
+
+  draftStore.updateDraft(
+    project.chapters[1].id,
+    '沈微抵达剑阁时，再次想起玄铁剑第一次鸣响的雨夜。',
+  )
+
+  return createNovelAgentToolRuntime({
+    project,
+    draftStore,
+    activeChapterId: project.chapters[1].id,
+    skillCatalog: loadSkillCatalog(),
+    provider: mockProvider,
+    providerAdapterCatalog: providerCatalog,
+    publisherAdapterCatalog: publisherCatalog,
+    indexedRecallResults: [
+      {
+        chapterId: project.chapters[0].id,
+        chapterTitle: project.chapters[0].title,
+        sourcePath: project.chapters[0].path,
+        snippet: '沈微第一次听见玄铁剑在山门雨夜里鸣响。',
+        score: 0.91,
+        source: 'content',
+      },
+    ],
+  })
+}
+
 describe('novel agent tool runtime', () => {
   it('reads project state without returning full manuscript by default', async () => {
     const runtime = createRuntime()
@@ -468,6 +498,40 @@ describe('novel agent tool runtime', () => {
           'recall:plot_thread:plot:chapter-001:玄铁剑:1',
           'recall:chapter_summary:chapter-001',
         ],
+      }),
+    ])
+  })
+
+  it('passes indexed recall into agent memory plans as stable recall provenance', async () => {
+    const runtime = createRuntimeWithIndexedRecall()
+    const execution = await runtime.runTool('novel_get_memory_plan', {
+      budgetChars: 2000,
+      sourceFamilies: ['recall'],
+    })
+
+    expect(execution.result.tool).toBe('novel_get_memory_plan')
+    if (execution.result.tool !== 'novel_get_memory_plan') {
+      throw new Error('unexpected result')
+    }
+
+    expect(execution.result.plan.memories).toHaveLength(1)
+    expect(execution.result.plan.memories[0]).toMatchObject({
+      layer: 'L3 意图',
+      source: 'recall:index:chapter-001',
+    })
+    expect(execution.result.plan.memories[0].body).toContain('索引召回')
+    expect(execution.result.filter).toMatchObject({
+      sourceFamilies: ['recall'],
+      filtered: true,
+      returnedMemoryCount: 1,
+    })
+    expect(execution.result.filter.returnedSourceSummary).toEqual([
+      expect.objectContaining({
+        family: 'recall',
+        label: '召回',
+        memoryCount: 1,
+        sourceCount: 1,
+        sources: ['recall:index:chapter-001'],
       }),
     ])
   })
