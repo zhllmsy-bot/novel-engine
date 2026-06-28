@@ -34,6 +34,20 @@
       "type": "string",
       "enum": ["L0 事实", "L1 剧情", "L2 风格", "L3 意图"]
     },
+    "memorySourceFamily": {
+      "type": "string",
+      "enum": [
+        "manuscript",
+        "codex",
+        "project",
+        "chapter_summary",
+        "volume_summary",
+        "plot_thread",
+        "character_state_log",
+        "recall",
+        "other"
+      ]
+    },
     "expectation": {
       "type": "object",
       "additionalProperties": false,
@@ -74,6 +88,14 @@
             "type": "string",
             "minLength": 1
           }
+        },
+        "source_families": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/memorySourceFamily"
+          },
+          "uniqueItems": true
         }
       }
     }

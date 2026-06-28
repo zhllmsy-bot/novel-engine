@@ -329,8 +329,8 @@ The scaffold writes `meta/project.json`, one starter chapter, one starter
 character card with `keywords`, a local `meta/memory-eval.json` smoke test, and
 project-local schemas under `.novel/schemas/` so editor completion keeps working
 when the novel folder is moved outside this repository.
-The starter memory eval also includes `source_contains` checks so the first
-smoke test proves both recall text and recall provenance.
+The starter memory eval also includes `source_contains` and `source_families`
+checks so the first smoke test proves both recall text and recall provenance.
 
 ## Evaluate Narrative Memory
 
@@ -364,8 +364,10 @@ baseline, or if non-L2 expectations exist but the four-layer plan shows no gain.
 Projects can raise that bar with `minimum_gain` in `meta/memory-eval.json`.
 Expectations may also declare `not_contains` to prove that future spoilers or
 known-bad recall tokens did not enter the selected memory context, and
-`source_contains` to require evidence from a specific source family such as
-`recall:chapter_summary:`.
+`source_contains` to require a concrete source path or prefix such as
+`recall:chapter_summary:`. Use `source_families` for stable provenance families
+such as `codex`, `chapter_summary`, or `recall` when the exact path should stay
+flexible across projects.
 
 ```bash
 npm run memory:eval
@@ -396,7 +398,8 @@ Example `meta/memory-eval.json`:
       "layer": "L0 事实",
       "contains": ["李长老", "金丹期"],
       "not_contains": ["未来答案"],
-      "source_contains": ["codex/characters/"]
+      "source_contains": ["codex/characters/"],
+      "source_families": ["codex"]
     }
   ]
 }

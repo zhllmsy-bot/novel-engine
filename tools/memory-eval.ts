@@ -7,7 +7,12 @@ import {
   memoryBudgetLayerOrder,
   memoryBudgetPolicy,
 } from '../src/memory/memoryContextBuilder.ts'
-import { buildMemorySourceSummary } from '../src/memory/memorySourceSummary.ts'
+import {
+  buildMemorySourceSummary,
+  memorySourceFamilyOrder,
+  memorySourceRefs,
+  type MemorySourceFamily,
+} from '../src/memory/memorySourceSummary.ts'
 import type { NarrativeMemoryPlan } from '../src/memory/memoryContextBuilder.ts'
 import type { MemorySourceFamilySummary } from '../src/memory/memorySourceSummary.ts'
 import type { ChapterSummary } from '../src/memory/chapterSummaryStore.ts'
@@ -26,6 +31,7 @@ export type MemoryEvalExpectation = {
   contains: string[]
   notContains?: string[]
   sourceContains?: string[]
+  sourceFamilies?: MemorySourceFamily[]
 }
 
 export type MemoryEvalConfig = {
@@ -43,6 +49,7 @@ export type MemoryEvalCaseResult = MemoryEvalExpectation & {
   missing: string[]
   forbidden: string[]
   missingSources: string[]
+  missingSourceFamilies: MemorySourceFamily[]
   baselineOk?: boolean
   delta?: 'gained' | 'kept' | 'lost' | 'missed'
 }
@@ -149,6 +156,7 @@ const memoryEvalExpectationKeys = new Set([
   'contains',
   'not_contains',
   'source_contains',
+  'source_families',
 ])
 const memoryEvalIdPattern = /^[a-z0-9][a-z0-9_.-]*$/
 const futureSummarySentinel = '__future_summary_sentinel__'
@@ -529,6 +537,9 @@ function formatCaseResult(result: MemoryEvalCaseResult) {
       : undefined,
     result.missingSources.length > 0
       ? `missing sources ${result.missingSources.join(', ')}`
+      : undefined,
+    result.missingSourceFamilies.length > 0
+      ? `missing source families ${result.missingSourceFamilies.join(', ')}`
       : undefined,
   ]
     .filter(Boolean)
@@ -1094,18 +1105,28 @@ function evaluateExpectation(
     (expected) =>
       !matchedSources.some((source) => source.includes(expected)),
   )
+  const matchedSourceFamilies = new Set(
+    matchedSources.flatMap((source) =>
+      memorySourceRefs(source).map((ref) => ref.family),
+    ),
+  )
+  const missingSourceFamilies = (expectation.sourceFamilies || []).filter(
+    (family) => !matchedSourceFamilies.has(family),
+  )
 
   return {
     ...expectation,
     ok:
       missing.length === 0 &&
       forbidden.length === 0 &&
-      missingSources.length === 0,
+      missingSources.length === 0 &&
+      missingSourceFamilies.length === 0,
     matchedLayers,
     matchedSources,
     missing,
     forbidden,
     missingSources,
+    missingSourceFamilies,
   }
 }
 
@@ -1219,6 +1240,7 @@ function parseExpectation(
     contains?: unknown
     not_contains?: unknown
     source_contains?: unknown
+    source_families?: unknown
   }
 
   for (const key of Object.keys(raw)) {
@@ -1291,6 +1313,35 @@ function parseExpectation(
     errors.push(`${path} source_contains must only include non-empty strings.`)
   }
 
+  const sourceFamilies = Array.isArray(raw.source_families)
+    ? raw.source_families.filter((item): item is MemorySourceFamily =>
+        isMemorySourceFamily(item),
+      )
+    : []
+
+  if (
+    raw.source_families !== undefined &&
+    (!Array.isArray(raw.source_families) || raw.source_families.length === 0)
+  ) {
+    errors.push(`${path} source_families must be a non-empty memory source family array when provided.`)
+  }
+
+  if (
+    Array.isArray(raw.source_families) &&
+    sourceFamilies.length !== raw.source_families.length
+  ) {
+    errors.push(
+      `${path} source_families must only include: ${memorySourceFamilyOrder.join(', ')}.`,
+    )
+  }
+
+  if (
+    Array.isArray(raw.source_families) &&
+    new Set(raw.source_families).size !== raw.source_families.length
+  ) {
+    errors.push(`${path} source_families must not include duplicates.`)
+  }
+
   if (errors.length > 0) {
     return {
       expectations: [],
@@ -1314,6 +1365,7 @@ function parseExpectation(
         contains,
         notContains,
         sourceContains,
+        sourceFamilies,
       },
     ],
     errors: [],
@@ -1338,6 +1390,13 @@ function isMemoryLayer(value: unknown): value is MemoryLayer {
     value === 'L1 剧情' ||
     value === 'L2 风格' ||
     value === 'L3 意图'
+  )
+}
+
+function isMemorySourceFamily(value: unknown): value is MemorySourceFamily {
+  return (
+    typeof value === 'string' &&
+    memorySourceFamilyOrder.includes(value as MemorySourceFamily)
   )
 }
 

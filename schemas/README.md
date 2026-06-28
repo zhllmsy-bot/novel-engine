@@ -71,3 +71,9 @@ stable provenance families such as `manuscript`, `codex`, `chapter_summary`,
 community Skill should read only specific kinds of evidence.
 The schema and parser reject required inputs that the declared source families
 make impossible, while optional inputs may still be intentionally filtered out.
+
+Memory eval expectations can use the same stable families through
+`source_families`. Keep `source_contains` for exact source paths or prefixes,
+and prefer `source_families` when a community demo corpus only needs to prove
+that matched evidence came from codex, recall, summaries, plot threads, or other
+portable memory classes.

@@ -14,7 +14,8 @@
       "id": "l0-codex-fact",
       "description": "L0 recalls matching character facts from codex cards.",
       "layer": "L0 事实",
-      "contains": ["李长老", "金丹期"]
+      "contains": ["李长老", "金丹期"],
+      "source_families": ["codex"]
     },
     {
       "id": "l3-recall-audit",
@@ -34,7 +35,8 @@
       "layer": "L3 意图",
       "contains": ["关联召回: 第001章 山门雨", "命中关键词"],
       "not_contains": ["未来答案"],
-      "source_contains": ["recall:chapter_summary:"]
+      "source_contains": ["recall:chapter_summary:"],
+      "source_families": ["recall"]
     }
   ]
 }

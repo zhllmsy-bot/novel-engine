@@ -189,6 +189,9 @@ It checks both recall expectations and budget policy invariants:
 - The report lists `Baseline` and `Four-layer gain` so improvements are visible.
 - Each expectation is labeled `GAIN`, `KEEP`, `LOSS`, or `MISS` against the baseline, making it clear which continuity checks are newly won by the four-layer engine.
 - Each passing expectation includes matched memory sources, so recall evidence can be traced to specific Markdown files, summaries, state logs, or `recall:*` entries.
+- Expectations can require stable `source_families` such as `codex` or
+  `recall`, while `source_contains` remains available for exact path or prefix
+  checks.
 - Four-layer memory must not pass fewer expectations than the baseline.
 - If non-L2 expectations exist, the four-layer plan must show at least one gain.
 - Project-local `meta/memory-eval.json` may set `minimum_gain` to require a stronger improvement.
@@ -206,7 +209,7 @@ It checks both recall expectations and budget policy invariants:
   thread remains visible before the resolution chapter is trustworthy.
 - If the active chapter order cannot be compared, state and plot recall remain
   current-chapter-only.
-- Project-local `meta/memory-eval.json` can add book-specific recall expectations, including `not_contains` guards for spoilers and `source_contains` guards that require evidence from concrete source families such as `recall:chapter_summary:`.
+- Project-local `meta/memory-eval.json` can add book-specific recall expectations, including `not_contains` guards for spoilers, `source_families` guards that require evidence from stable provenance families such as `codex` or `recall`, and `source_contains` guards for concrete source paths or prefixes such as `recall:chapter_summary:`.
 
 `schemas/memory-eval.schema.json` is the public config contract for those
 project-local expectations. `npm run project:check` also validates

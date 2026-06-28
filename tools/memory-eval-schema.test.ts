@@ -19,6 +19,9 @@ describe('memory eval schema', () => {
         memoryLayer: {
           enum: string[]
         }
+        memorySourceFamily: {
+          enum: string[]
+        }
         expectation: {
           required: string[]
           additionalProperties: boolean
@@ -28,6 +31,13 @@ describe('memory eval schema', () => {
             }
             source_contains: {
               minItems: number
+            }
+            source_families: {
+              minItems: number
+              uniqueItems: boolean
+              items: {
+                $ref: string
+              }
             }
           }
         }
@@ -42,6 +52,17 @@ describe('memory eval schema', () => {
       'L2 风格',
       'L3 意图',
     ])
+    expect(schema.$defs.memorySourceFamily.enum).toEqual([
+      'manuscript',
+      'codex',
+      'project',
+      'chapter_summary',
+      'volume_summary',
+      'plot_thread',
+      'character_state_log',
+      'recall',
+      'other',
+    ])
     expect(schema.$defs.expectation.required).toEqual([
       'id',
       'description',
@@ -50,6 +71,11 @@ describe('memory eval schema', () => {
     expect(schema.$defs.expectation.additionalProperties).toBe(false)
     expect(schema.$defs.expectation.properties.not_contains.minItems).toBe(1)
     expect(schema.$defs.expectation.properties.source_contains.minItems).toBe(1)
+    expect(schema.$defs.expectation.properties.source_families.minItems).toBe(1)
+    expect(schema.$defs.expectation.properties.source_families.uniqueItems).toBe(true)
+    expect(schema.$defs.expectation.properties.source_families.items.$ref).toBe(
+      '#/$defs/memorySourceFamily',
+    )
   })
 
   it('keeps the demo memory eval config linked to the public schema', async () => {

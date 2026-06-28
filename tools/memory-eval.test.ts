@@ -389,7 +389,7 @@ keywords: [玄铁剑]
     }
   })
 
-  it('can require matched memory to come from a specific source family', async () => {
+  it('can require matched memory to come from a specific source path fragment', async () => {
     const root = await mkdtemp(join(tmpdir(), 'memory-eval-'))
 
     try {
@@ -424,6 +424,90 @@ keywords: [玄铁剑]
       })
       expect(output).toContain(
         'GAIN source-family-required (L0 事实) sources=codex/characters/li.md',
+      )
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it('can require matched memory to come from stable source families', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'memory-eval-'))
+
+    try {
+      await writeMemoryProject(root)
+      await writeFile(
+        join(root, 'meta', 'memory-eval.json'),
+        JSON.stringify({
+          chapter_id: 'chapter-001',
+          budget_chars: 900,
+          expectations: [
+            {
+              id: 'source-family-codex',
+              description: 'Project config can require a stable source family.',
+              layer: 'L0 事实',
+              contains: ['李长老', '金丹期'],
+              source_families: ['codex'],
+            },
+          ],
+        }),
+      )
+
+      const report = await evaluateNarrativeMemory({ rootPath: root })
+      const output = formatMemoryEvalReport(report)
+
+      expect(report.ok).toBe(true)
+      expect(report.cases[0]).toMatchObject({
+        id: 'source-family-codex',
+        ok: true,
+        sourceFamilies: ['codex'],
+        missingSourceFamilies: [],
+        matchedSources: ['codex/characters/li.md'],
+      })
+      expect(output).toContain(
+        'GAIN source-family-codex (L0 事实) sources=codex/characters/li.md',
+      )
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it('fails when a source family requirement is not satisfied by matched memory', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'memory-eval-'))
+
+    try {
+      await writeMemoryProject(root)
+      await writeFile(
+        join(root, 'meta', 'memory-eval.json'),
+        JSON.stringify({
+          chapter_id: 'chapter-001',
+          budget_chars: 900,
+          expectations: [
+            {
+              id: 'source-family-missing',
+              description: 'Matched text from the wrong source family should fail.',
+              layer: 'L0 事实',
+              contains: ['李长老', '金丹期'],
+              source_families: ['recall'],
+            },
+          ],
+        }),
+      )
+
+      const report = await evaluateNarrativeMemory({ rootPath: root })
+      const output = formatMemoryEvalReport(report)
+
+      expect(report.ok).toBe(false)
+      expect(report.cases[0]).toMatchObject({
+        id: 'source-family-missing',
+        ok: false,
+        missing: [],
+        forbidden: [],
+        missingSources: [],
+        missingSourceFamilies: ['recall'],
+        matchedSources: ['codex/characters/li.md'],
+      })
+      expect(output).toContain(
+        'MISS source-family-missing (L0 事实): missing source families recall sources=codex/characters/li.md',
       )
     } finally {
       await rm(root, { recursive: true, force: true })
@@ -575,6 +659,7 @@ keywords: [玄铁剑]
               contains: [],
               not_contains: ['valid', ''],
               source_contains: ['valid', ''],
+              source_families: ['codex', 'codex', 'invalid'],
             },
           ],
         }),
@@ -604,6 +689,12 @@ keywords: [玄铁剑]
       )
       expect(report.errors).toContain(
         'meta/memory-eval.json expectations[0] source_contains must only include non-empty strings.',
+      )
+      expect(report.errors).toContain(
+        'meta/memory-eval.json expectations[0] source_families must only include: manuscript, codex, project, chapter_summary, volume_summary, plot_thread, character_state_log, recall, other.',
+      )
+      expect(report.errors).toContain(
+        'meta/memory-eval.json expectations[0] source_families must not include duplicates.',
       )
       expect(report.errors).toContain(
         'meta/memory-eval.json minimum_gain must be a non-negative integer.',
