@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://novel-engine.local/schemas/project.schema.json",
+  "title": "Novel Engine Project Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "title", "source_of_truth", "chapters"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_of_truth": {
+      "type": "string",
+      "const": "markdown"
+    },
+    "chapters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/chapter"
+      }
+    }
+  },
+  "$defs": {
+    "chapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "order"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?![A-Za-z]:)(?!/).+\\.md$"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  }
+}

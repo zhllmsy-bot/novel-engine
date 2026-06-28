@@ -1,0 +1,10 @@
+{
+  "$schema": "../../schemas/provider-adapter.schema.json",
+  "id": "openai",
+  "label": "OpenAI Compatible",
+  "kind": "openai-compatible",
+  "description": "兼容 /v1/chat/completions 的网关或模型服务。",
+  "status": "available",
+  "config_fields": ["baseUrl", "model", "apiKey"],
+  "capabilities": ["OpenAI-compatible", "JSON response contract", "BYO-Key"]
+}

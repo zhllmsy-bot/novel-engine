@@ -1,0 +1,4 @@
+interface:
+  display_name: "Novel Engine UI Workbench"
+  short_description: "Polish Novel Engine editor UI"
+  default_prompt: "Use this skill to improve the Novel Engine editor UI while preserving the local-first writing workflow."

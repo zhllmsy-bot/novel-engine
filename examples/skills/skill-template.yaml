@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=../../schemas/skill.schema.json
+id: community.example_skill
+name: 示例 Skill
+version: 0.1.0
+category: rewrite
+description: 一句话描述这个 Skill 的用途和边界。
+risk_level: medium
+prompt: |
+  写清楚模型应该做什么、必须保留什么、禁止新增什么。
+  如果输出 rewrite_patch，original 必须精确匹配输入正文中的连续片段。
+
+input:
+  required:
+    - nearby_text
+  optional:
+    - selected_text
+    - chapter_summary
+    - character_cards
+    - recent_style
+    - recall_audit
+
+retrieval:
+  include_recent_chapters: 1
+  include_characters: auto
+  include_worldbuilding: auto
+  include_recall: auto
+  source_families:
+    - manuscript
+    - codex
+    - chapter_summary
+    - recall
+
+model:
+  profile: balanced
+  temperature: 0.7
+
+output:
+  mode: rewrite_patch
+  schema: diff_patch
+
+safety:
+  require_snapshot_before_apply: true
+  require_user_review: true

@@ -1,0 +1,1 @@
+{"default":{"identifier":"default","description":"Main window capabilities for local project loading.","local":true,"windows":["main"],"permissions":["core:default","dialog:default"]}}

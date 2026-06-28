@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../schemas/project.schema.json",
+  "schema_version": 1,
+  "title": "玄铁剑鸣",
+  "source_of_truth": "markdown",
+  "chapters": [
+    {
+      "id": "chapter-001",
+      "title": "第001章 山门雨",
+      "path": "manuscript/volume-001/chapter-001.md",
+      "order": 1
+    },
+    {
+      "id": "chapter-002",
+      "title": "第002章 剑阁回声",
+      "path": "manuscript/volume-001/chapter-002.md",
+      "order": 2
+    }
+  ]
+}

@@ -1,0 +1,506 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://novel-engine.local/schemas/skill.schema.json",
+  "title": "Novel Engine Skill Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "version",
+    "category",
+    "description",
+    "risk_level",
+    "output"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "prompt": {
+      "type": "string"
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "required": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/inputName"
+          },
+          "uniqueItems": true
+        },
+        "optional": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/inputName"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "retrieval": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "include_recent_chapters": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "include_characters": {
+          "$ref": "#/$defs/autoNone"
+        },
+        "include_worldbuilding": {
+          "$ref": "#/$defs/autoNone"
+        },
+        "include_recall": {
+          "$ref": "#/$defs/autoNone"
+        },
+        "source_families": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/memorySourceFamily"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "profile": {
+          "type": "string",
+          "enum": ["fast", "balanced", "deep"]
+        },
+        "temperature": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "schema"],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "report",
+            "rewrite_patch",
+            "memory_update_proposal",
+            "export_artifact"
+          ]
+        },
+        "schema": {
+          "type": "string",
+          "enum": [
+            "diff_patch",
+            "character_state_proposal",
+            "plot_thread_proposal",
+            "mixed_memory_update",
+            "report",
+            "export_artifact"
+          ]
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "require_snapshot_before_apply": {
+          "type": "boolean"
+        },
+        "require_user_review": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "mode": { "const": "rewrite_patch" }
+            },
+            "required": ["mode"]
+          }
+        },
+        "required": ["output"]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "properties": {
+              "schema": { "const": "diff_patch" }
+            }
+          },
+          "safety": {
+            "properties": {
+              "require_snapshot_before_apply": { "const": true },
+              "require_user_review": { "not": { "const": false } }
+            },
+            "required": ["require_snapshot_before_apply"]
+          }
+        },
+        "required": ["safety"]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "mode": { "const": "memory_update_proposal" }
+            },
+            "required": ["mode"]
+          }
+        },
+        "required": ["output"]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "properties": {
+              "schema": {
+                "enum": [
+                  "character_state_proposal",
+                  "plot_thread_proposal",
+                  "mixed_memory_update"
+                ]
+              }
+            }
+          },
+          "safety": {
+            "properties": {
+              "require_user_review": { "not": { "const": false } }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "mode": { "const": "report" }
+            },
+            "required": ["mode"]
+          }
+        },
+        "required": ["output"]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "properties": {
+              "schema": { "const": "report" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "mode": { "const": "export_artifact" }
+            },
+            "required": ["mode"]
+          }
+        },
+        "required": ["output"]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "properties": {
+              "schema": { "const": "export_artifact" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "input": {
+            "properties": {
+              "required": {
+                "contains": { "const": "recent_style" }
+              }
+            },
+            "required": ["required"]
+          },
+          "retrieval": {
+            "properties": {
+              "include_recent_chapters": { "const": 0 }
+            },
+            "required": ["include_recent_chapters"]
+          }
+        },
+        "required": ["input", "retrieval"]
+      },
+      "then": false
+    },
+    {
+      "if": {
+        "properties": {
+          "input": {
+            "properties": {
+              "required": {
+                "contains": { "const": "character_cards" }
+              }
+            },
+            "required": ["required"]
+          },
+          "retrieval": {
+            "properties": {
+              "include_characters": { "const": "none" }
+            },
+            "required": ["include_characters"]
+          }
+        },
+        "required": ["input", "retrieval"]
+      },
+      "then": false
+    },
+    {
+      "if": {
+        "properties": {
+          "input": {
+            "properties": {
+              "required": {
+                "contains": { "const": "recent_style" }
+              }
+            },
+            "required": ["required"]
+          },
+          "retrieval": {
+            "properties": {
+              "source_families": {
+                "not": {
+                  "contains": { "const": "manuscript" }
+                }
+              }
+            },
+            "required": ["source_families"]
+          }
+        },
+        "required": ["input", "retrieval"]
+      },
+      "then": false
+    },
+    {
+      "if": {
+        "properties": {
+          "input": {
+            "properties": {
+              "required": {
+                "contains": { "const": "character_cards" }
+              }
+            },
+            "required": ["required"]
+          },
+          "retrieval": {
+            "properties": {
+              "source_families": {
+                "not": {
+                  "anyOf": [
+                    { "contains": { "const": "codex" } },
+                    { "contains": { "const": "character_state_log" } }
+                  ]
+                }
+              }
+            },
+            "required": ["source_families"]
+          }
+        },
+        "required": ["input", "retrieval"]
+      },
+      "then": false
+    },
+    {
+      "if": {
+        "properties": {
+          "input": {
+            "properties": {
+              "required": {
+                "contains": { "const": "chapter_summary" }
+              }
+            },
+            "required": ["required"]
+          },
+          "retrieval": {
+            "properties": {
+              "source_families": {
+                "not": {
+                  "anyOf": [
+                    { "contains": { "const": "manuscript" } },
+                    { "contains": { "const": "chapter_summary" } },
+                    { "contains": { "const": "volume_summary" } },
+                    { "contains": { "const": "plot_thread" } }
+                  ]
+                }
+              }
+            },
+            "required": ["source_families"]
+          }
+        },
+        "required": ["input", "retrieval"]
+      },
+      "then": false
+    },
+    {
+      "if": {
+        "properties": {
+          "input": {
+            "properties": {
+              "required": {
+                "contains": { "const": "plot_memory" }
+              }
+            },
+            "required": ["required"]
+          },
+          "retrieval": {
+            "properties": {
+              "source_families": {
+                "not": {
+                  "anyOf": [
+                    { "contains": { "const": "manuscript" } },
+                    { "contains": { "const": "chapter_summary" } },
+                    { "contains": { "const": "volume_summary" } },
+                    { "contains": { "const": "plot_thread" } }
+                  ]
+                }
+              }
+            },
+            "required": ["source_families"]
+          }
+        },
+        "required": ["input", "retrieval"]
+      },
+      "then": false
+    },
+    {
+      "if": {
+        "properties": {
+          "input": {
+            "properties": {
+              "required": {
+                "contains": { "const": "recall_audit" }
+              }
+            },
+            "required": ["required"]
+          },
+          "retrieval": {
+            "properties": {
+              "source_families": {
+                "not": {
+                  "anyOf": [
+                    { "contains": { "const": "project" } },
+                    { "contains": { "const": "recall" } }
+                  ]
+                }
+              }
+            },
+            "required": ["source_families"]
+          }
+        },
+        "required": ["input", "retrieval"]
+      },
+      "then": false
+    },
+    {
+      "if": {
+        "properties": {
+          "input": {
+            "properties": {
+              "required": {
+                "contains": { "const": "recall_audit" }
+              }
+            },
+            "required": ["required"]
+          },
+          "retrieval": {
+            "properties": {
+              "include_recall": { "const": "none" },
+              "source_families": {
+                "not": {
+                  "contains": { "const": "project" }
+                }
+              }
+            },
+            "required": ["include_recall", "source_families"]
+          }
+        },
+        "required": ["input", "retrieval"]
+      },
+      "then": false
+    }
+  ],
+  "$defs": {
+    "autoNone": {
+      "type": "string",
+      "enum": ["auto", "none"]
+    },
+    "inputName": {
+      "type": "string",
+      "enum": [
+        "selected_text",
+        "nearby_text",
+        "chapter_summary",
+        "character_cards",
+        "recent_style",
+        "plot_memory",
+        "recall_audit",
+        "user_instruction"
+      ]
+    },
+    "memorySourceFamily": {
+      "type": "string",
+      "enum": [
+        "manuscript",
+        "codex",
+        "project",
+        "chapter_summary",
+        "volume_summary",
+        "plot_thread",
+        "character_state_log",
+        "recall",
+        "other"
+      ]
+    }
+  }
+}

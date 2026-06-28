@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://novel-engine.local/schemas/publisher-adapter.schema.json",
+  "title": "Novel Engine Publisher Adapter Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "id",
+    "display_name",
+    "description",
+    "status",
+    "runtime",
+    "capabilities"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": ["available", "configured", "planned"]
+    },
+    "config_path": {
+      "type": "string"
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["editor_dry_run"],
+      "properties": {
+        "editor_dry_run": {
+          "type": "boolean"
+        }
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  }
+}

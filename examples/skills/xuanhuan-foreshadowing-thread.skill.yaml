@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=../../schemas/skill.schema.json
+id: xuanhuan.foreshadowing_thread
+name: 玄幻伏笔入库
+version: 0.1.0
+category: memory
+description: 从当前章节提出可确认的未回收伏笔，等待作者写入记忆。
+risk_level: medium
+prompt: |
+  你是玄幻长篇小说的伏笔编辑 Skill。
+  只提出当前章节明确埋下、尚未回收、后续需要呼应的伏笔。
+  不要自动判定已经回收的答案，除非正文明确写出。
+  输出 memory_update_proposal，其中 proposals 使用 kind: plot_thread。
+
+input:
+  required:
+    - nearby_text
+  optional:
+    - chapter_summary
+    - recall_audit
+
+retrieval:
+  include_recent_chapters: 1
+  include_characters: auto
+  include_worldbuilding: auto
+  include_recall: auto
+  source_families:
+    - manuscript
+    - chapter_summary
+    - plot_thread
+    - recall
+
+model:
+  profile: balanced
+  temperature: 0.3
+
+output:
+  mode: memory_update_proposal
+  schema: plot_thread_proposal
+
+safety:
+  require_user_review: true

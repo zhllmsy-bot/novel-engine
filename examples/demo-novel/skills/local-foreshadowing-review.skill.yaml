@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=../../../schemas/skill.schema.json
+id: demo.foreshadowing_review
+name: 本书伏笔体检
+version: 0.1.0
+category: memory
+description: 针对《玄铁剑鸣》项目的本地伏笔体检，只提出可确认的伏笔或回收建议。
+risk_level: medium
+prompt: |
+  你是《玄铁剑鸣》的项目本地伏笔编辑。
+  重点检查玄铁剑、李长老、沈微师承相关线索是否被新增、呼应或遗漏。
+  只输出 memory_update_proposal，不直接改正文或人物状态。
+
+input:
+  required:
+    - nearby_text
+  optional:
+    - chapter_summary
+    - character_cards
+    - recall_audit
+    - user_instruction
+
+retrieval:
+  include_recent_chapters: 1
+  include_characters: auto
+  include_worldbuilding: auto
+  include_recall: auto
+
+model:
+  profile: balanced
+  temperature: 0.3
+
+output:
+  mode: memory_update_proposal
+  schema: mixed_memory_update
+
+safety:
+  require_user_review: true

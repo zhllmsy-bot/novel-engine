@@ -1,0 +1,12 @@
+{
+  "$schema": "../../../schemas/publisher-adapter.schema.json",
+  "id": "community-publisher",
+  "display_name": "Community Publisher",
+  "description": "描述这个上传目标、账号边界、支持的章节来源和当前实现状态。",
+  "status": "planned",
+  "config_path": "publisher/adapters/community/.env.example",
+  "runtime": {
+    "editor_dry_run": false
+  },
+  "capabilities": ["独立 .env 配置", "dry-run 优先", "人工确认后上传"]
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "../../../schemas/memory-eval.schema.json",
+  "chapter_id": "chapter-002",
+  "budget_chars": 900,
+  "minimum_gain": 4,
+  "expectations": [
+    {
+      "id": "l2-current-prose",
+      "description": "L2 preserves current prose and style continuity.",
+      "layer": "L2 风格",
+      "contains": ["当前章节原文", "玄铁剑"]
+    },
+    {
+      "id": "l0-codex-fact",
+      "description": "L0 recalls matching character facts from codex cards.",
+      "layer": "L0 事实",
+      "contains": ["李长老", "金丹期"]
+    },
+    {
+      "id": "l3-recall-audit",
+      "description": "L3 exposes keyword hits and recall audit text.",
+      "layer": "L3 意图",
+      "contains": ["当前命中关键词", "命中设定"]
+    },
+    {
+      "id": "l1-plot-thread",
+      "description": "L1 provides plot continuity through summaries.",
+      "layer": "L1 剧情",
+      "contains": ["第001章 山门雨"]
+    },
+    {
+      "id": "l3-summary-recall-item",
+      "description": "L3 emits a concrete historical summary recall item.",
+      "layer": "L3 意图",
+      "contains": ["关联召回: 第001章 山门雨", "命中关键词"],
+      "not_contains": ["未来答案"],
+      "source_contains": ["recall:chapter_summary:"]
+    }
+  ]
+}

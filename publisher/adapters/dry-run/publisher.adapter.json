@@ -1,0 +1,11 @@
+{
+  "$schema": "../../../schemas/publisher-adapter.schema.json",
+  "id": "dry-run",
+  "display_name": "Dry Run Publisher",
+  "description": "本地预检发布载荷，不触碰平台账号。",
+  "status": "available",
+  "runtime": {
+    "editor_dry_run": true
+  },
+  "capabilities": ["预检章节载荷", "统计待发布章节", "验证发布契约"]
+}

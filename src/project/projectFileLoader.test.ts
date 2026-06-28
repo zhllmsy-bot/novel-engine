@@ -1,0 +1,72 @@
+import { describe, expect, it } from 'vitest'
+import { loadProjectFromFiles } from './projectFileLoader'
+
+describe('project file loader', () => {
+  it('builds a project from manifest, Markdown chapters, and codex files', () => {
+    const project = loadProjectFromFiles({
+      rootPath: '/novels/demo',
+      manifestSource: JSON.stringify({
+        title: '本地小说',
+        source_of_truth: 'markdown',
+        chapters: [
+          {
+            id: 'chapter-002',
+            title: '第二章',
+            path: 'manuscript/chapter-002.md',
+            order: 2,
+          },
+          {
+            id: 'chapter-001',
+            title: '第一章',
+            path: 'manuscript/chapter-001.md',
+            order: 1,
+          },
+        ],
+      }),
+      chapterFiles: [
+        {
+          path: 'manuscript/chapter-001.md',
+          filePath: '/novels/demo/manuscript/chapter-001.md',
+          content: '# 第一章\n\n正文一。',
+        },
+        {
+          path: 'manuscript/chapter-002.md',
+          filePath: '/novels/demo/manuscript/chapter-002.md',
+          content: '# 第二章\n\n正文二。',
+        },
+      ],
+      codexFiles: [
+        {
+          path: 'codex/characters/li.md',
+          content: `---
+id: char-li
+name: 李长老
+type: character
+keywords: [李长老]
+---
+
+人物设定。
+`,
+        },
+      ],
+    })
+
+    expect(project.rootPath).toBe('/novels/demo')
+    expect(project.chapters.map((chapter) => chapter.id)).toEqual([
+      'chapter-001',
+      'chapter-002',
+    ])
+    expect(project.chapters[0]).toMatchObject({
+      path: 'manuscript/chapter-001.md',
+      filePath: '/novels/demo/manuscript/chapter-001.md',
+      status: '编辑中',
+      title: '第一章',
+    })
+    expect(project.codexEntries[0]).toMatchObject({
+      id: 'char-li',
+      name: '李长老',
+      path: 'codex/characters/li.md',
+      keywords: ['李长老'],
+    })
+  })
+})

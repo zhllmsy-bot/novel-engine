@@ -1,0 +1,12 @@
+{
+  "$schema": "../../../schemas/publisher-adapter.schema.json",
+  "id": "fanqie",
+  "display_name": "Fanqie Publisher",
+  "description": "读取独立 .env 配置，后续接入一键上传流程。",
+  "status": "planned",
+  "config_path": "publisher/adapters/fanqie/.env.example",
+  "runtime": {
+    "editor_dry_run": false
+  },
+  "capabilities": ["独立 .env 配置", "章节目录映射", "进度文件隔离"]
+}

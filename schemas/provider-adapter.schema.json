@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://novel-engine.local/schemas/provider-adapter.schema.json",
+  "title": "Novel Engine Provider Adapter Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "id",
+    "label",
+    "kind",
+    "description",
+    "status",
+    "config_fields",
+    "capabilities"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["local", "openai-compatible"]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": ["available", "configured", "planned"]
+    },
+    "config_fields": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["baseUrl", "model", "apiKey"]
+      },
+      "uniqueItems": true
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "openai-compatible" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "config_fields": {
+            "allOf": [
+              { "contains": { "const": "baseUrl" } },
+              { "contains": { "const": "model" } }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "local" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "config_fields": {
+            "not": {
+              "contains": { "const": "apiKey" }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

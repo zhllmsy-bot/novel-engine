@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../schemas/provider-adapter.schema.json",
+  "id": "community-openai-compatible",
+  "label": "Community OpenAI Compatible",
+  "kind": "openai-compatible",
+  "description": "描述这个模型网关或本地模型服务的用途、兼容范围和限制。",
+  "status": "planned",
+  "config_fields": ["baseUrl", "model", "apiKey"],
+  "capabilities": ["OpenAI-compatible", "BYO-Key", "JSON response contract"]
+}
