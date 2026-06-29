@@ -1,0 +1,34 @@
+{
+  "$schema": "../../../schemas/generation-eval.schema.json",
+  "chapter_id": "chapter-006",
+  "budget_chars": 1200,
+  "instruction": "请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。",
+  "max_output_chars": 600,
+  "criteria": [
+    {
+      "id": "callback-oath",
+      "description": "Generated prose should naturally recall the chapter-one oath.",
+      "category": "callback",
+      "contains_any": ["灯灭之前", "我会回来", "青灯誓"]
+    },
+    {
+      "id": "setting-key-rule",
+      "description": "Generated prose should preserve the Mirror Lake Key rule.",
+      "category": "setting",
+      "contains_any": ["镜湖钥", "钥"],
+      "not_contains": ["把镜湖钥交给黑潮司", "将镜湖钥交给黑潮司", "递给黑潮司", "献给黑潮司"]
+    },
+    {
+      "id": "setting-jianli-identity",
+      "description": "Generated prose should not contradict Jianli as the keeper of the lamp.",
+      "category": "setting",
+      "contains_any": ["简璃", "守灯人"]
+    },
+    {
+      "id": "no-future-answer",
+      "description": "Generated prose should not leak a future hidden answer.",
+      "category": "future_leak",
+      "not_contains": ["旧封印松动", "未来答案", "__future"]
+    }
+  ]
+}

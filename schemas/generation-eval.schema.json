@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://novel-engine.local/schemas/generation-eval.schema.json",
+  "title": "Novel Engine Generation Eval Config",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["instruction", "criteria"],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "chapter_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "budget_chars": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "instruction": {
+      "type": "string",
+      "minLength": 1
+    },
+    "max_output_chars": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/criterion"
+      }
+    }
+  },
+  "$defs": {
+    "criterionCategory": {
+      "type": "string",
+      "enum": ["callback", "setting", "future_leak"]
+    },
+    "criterion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "description", "category"],
+      "anyOf": [
+        { "required": ["contains"] },
+        { "required": ["contains_any"] },
+        { "required": ["not_contains"] }
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "$ref": "#/$defs/criterionCategory"
+        },
+        "contains": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "contains_any": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "not_contains": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

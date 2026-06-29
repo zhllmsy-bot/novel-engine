@@ -10,6 +10,7 @@ add without touching core code.
 | `provider-adapter.schema.json` | `providers/*/provider.adapter.json` | Model/provider metadata for OpenAI-compatible and local runtimes |
 | `publisher-adapter.schema.json` | `publisher/adapters/*/publisher.adapter.json` | Upload/publishing adapter metadata and dry-run eligibility |
 | `memory-eval.schema.json` | `meta/memory-eval.json` | Deterministic four-layer memory recall expectations for demo novels and test corpora |
+| `generation-eval.schema.json` | `meta/generation-eval.json` | Real-model A/B continuation criteria for Phase 0 generation experiments |
 
 Runtime checks intentionally stay lightweight and local. Use `npm run
 project:check`, `npm run skills:check`, `npm run providers:check`, `npm run
@@ -79,3 +80,10 @@ Memory eval expectations can use the same stable families through
 and prefer `source_families` when a community demo corpus only needs to prove
 that matched evidence came from codex, recall, summaries, plot threads, or other
 portable memory classes.
+
+Generation eval criteria are intentionally narrower. `generation-eval.schema.json`
+describes a manual or scripted real-model A/B run: the baseline prompt receives
+recent prose only, the candidate prompt receives four-layer memory, and criteria
+track callback hits, setting violations, and future-leak tokens in generated
+text. This is not part of the fast default CI gate because it may call a paid
+OpenAI-compatible endpoint.

@@ -404,6 +404,35 @@ faster default demo project in the main aggregate report, and
 adds the long-memory benchmark when a PR touches recall, budget, or summary
 behavior.
 
+## Evaluate Real Generation
+
+`memory:eval` proves context assembly. The next Phase 0 step is
+`generation:eval`, which builds two prompts for the same benchmark chapter:
+
+- Baseline A receives recent prose only.
+- Candidate B receives the editor's four-layer memory plan.
+
+Use dry-run first to inspect prompts without calling a model:
+
+```bash
+npm run generation:eval:long -- --dry-run
+npm run generation:eval:long -- --dry-run --show-prompts
+```
+
+Then run a real OpenAI-compatible endpoint:
+
+```bash
+NOVEL_ENGINE_EVAL_BASE_URL=http://127.0.0.1:8000 \
+NOVEL_ENGINE_EVAL_API_KEY=... \
+NOVEL_ENGINE_EVAL_MODEL=... \
+npm run generation:eval:long
+```
+
+The report scores generated text with deterministic first-pass criteria for
+callback hits, setting violations, and future leaks. Treat that as triage, not
+as the final product judgment; human or judge-model review still decides whether
+the continuation is natural. See `docs/phase0-generation-eval-plan.md`.
+
 Example `meta/memory-eval.json`:
 
 ```json
