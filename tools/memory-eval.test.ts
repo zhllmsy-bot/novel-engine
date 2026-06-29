@@ -89,6 +89,17 @@ describe('memory eval tool', () => {
       requiredGain: 5,
       failedReasonIds: [],
     })
+    expect(report.phase0Metrics).toEqual({
+      callbackExpectations: 5,
+      callbackHits: 5,
+      baselineCallbackHits: 0,
+      callbackGain: 5,
+      settingExpectations: 2,
+      settingViolations: 0,
+      baselineSettingViolations: 2,
+      futureLeakChecks: 4,
+      futureLeaks: 0,
+    })
     expect(report.comparison.gainedExpectationIds).toEqual([
       'l0-jianli-state',
       'l0-key-rule',
@@ -138,6 +149,17 @@ describe('memory eval tool', () => {
         requiredGain: 1,
         policyFailed: 0,
         failedReasonIds: [],
+      })
+      expect(report.phase0Metrics).toEqual({
+        callbackExpectations: 3,
+        callbackHits: 3,
+        baselineCallbackHits: 0,
+        callbackGain: 3,
+        settingExpectations: 1,
+        settingViolations: 0,
+        baselineSettingViolations: 1,
+        futureLeakChecks: 4,
+        futureLeaks: 0,
       })
       expect(
         report.sourceSummary.map((summary) => ({
@@ -215,6 +237,9 @@ describe('memory eval tool', () => {
       )
       expect(output).toContain(
         'Phase 0 gate: PASS (100% four-layer vs 25% baseline, gain +3/1)',
+      )
+      expect(output).toContain(
+        'Phase 0 metrics: callbacks 3/3 vs 0/3 baseline; setting violations 0 vs 1 baseline; future leaks 0/4',
       )
       expect(output).toContain('Policy: 12/12 passed')
       expect(output).toContain('KEEP l2-current-prose (L2 风格)')

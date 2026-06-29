@@ -83,6 +83,18 @@ export type MemoryEvalPhase0Gate = {
   failedReasonIds: string[]
 }
 
+export type MemoryEvalPhase0Metrics = {
+  callbackExpectations: number
+  callbackHits: number
+  baselineCallbackHits: number
+  callbackGain: number
+  settingExpectations: number
+  settingViolations: number
+  baselineSettingViolations: number
+  futureLeakChecks: number
+  futureLeaks: number
+}
+
 export type MemoryEvalReport = {
   rootPath: string
   ok: boolean
@@ -106,6 +118,7 @@ export type MemoryEvalReport = {
   baselineCases: MemoryEvalCaseResult[]
   comparison: MemoryEvalComparison
   phase0: MemoryEvalPhase0Gate
+  phase0Metrics: MemoryEvalPhase0Metrics
   sourceSummary: MemorySourceFamilySummary[]
   policyChecks: MemoryEvalPolicyCheckResult[]
   errors: string[]
@@ -355,6 +368,11 @@ export async function evaluateNarrativeMemory(input: {
     errors,
     policyChecks,
   })
+  const phase0Metrics = buildPhase0Metrics({
+    cases,
+    baselineCases,
+    policyChecks,
+  })
   const sourceSummary = buildMemorySourceSummary(plan.memories)
 
   return {
@@ -384,6 +402,7 @@ export async function evaluateNarrativeMemory(input: {
     baselineCases,
     comparison,
     phase0,
+    phase0Metrics,
     sourceSummary,
     policyChecks,
     errors,
@@ -412,6 +431,7 @@ export function formatMemoryEvalReport(report: MemoryEvalReport): string {
     `Baseline: ${report.comparison.baselinePassed}/${report.stats.expectations} passed`,
     `Four-layer gain: +${report.comparison.gainedExpectationIds.length} (${report.comparison.gainedExpectationIds.join(', ') || 'none'})`,
     `Phase 0 gate: ${report.phase0.ok ? 'PASS' : 'FAIL'} (${formatPercent(report.phase0.fourLayerPassRate)} four-layer vs ${formatPercent(report.phase0.baselinePassRate)} baseline, gain +${report.phase0.gain}/${report.phase0.requiredGain})${report.phase0.failedReasonIds.length > 0 ? ` reasons=${report.phase0.failedReasonIds.join(',')}` : ''}`,
+    `Phase 0 metrics: callbacks ${report.phase0Metrics.callbackHits}/${report.phase0Metrics.callbackExpectations} vs ${report.phase0Metrics.baselineCallbackHits}/${report.phase0Metrics.callbackExpectations} baseline; setting violations ${report.phase0Metrics.settingViolations} vs ${report.phase0Metrics.baselineSettingViolations} baseline; future leaks ${report.phase0Metrics.futureLeaks}/${report.phase0Metrics.futureLeakChecks}`,
     `Policy: ${report.stats.policyPassed}/${report.stats.policyChecks} passed`,
     ...report.cases.map((result) => formatCaseResult(result)),
     ...report.policyChecks.map((result) =>
@@ -565,6 +585,53 @@ function buildPhase0Gate(input: {
     policyFailed,
     failedReasonIds: uniqueStrings(failedReasonIds),
   }
+}
+
+function buildPhase0Metrics(input: {
+  cases: MemoryEvalCaseResult[]
+  baselineCases: MemoryEvalCaseResult[]
+  policyChecks: MemoryEvalPolicyCheckResult[]
+}): MemoryEvalPhase0Metrics {
+  const baselineById = new Map(input.baselineCases.map((result) => [result.id, result]))
+  const callbackCases = input.cases.filter((result) => result.layer !== 'L2 风格')
+  const settingCases = input.cases.filter((result) => result.layer === 'L0 事实')
+  const baselineSettingCases = settingCases.map((result) =>
+    baselineById.get(result.id),
+  )
+  const futureLeakPolicies = input.policyChecks.filter((result) =>
+    phase0FutureLeakPolicyIds.has(result.id),
+  )
+
+  return {
+    callbackExpectations: callbackCases.length,
+    callbackHits: callbackCases.filter((result) => result.ok).length,
+    baselineCallbackHits: callbackCases.filter(
+      (result) => baselineById.get(result.id)?.ok,
+    ).length,
+    callbackGain: callbackCases.filter(
+      (result) => result.ok && !baselineById.get(result.id)?.ok,
+    ).length,
+    settingExpectations: settingCases.length,
+    settingViolations: countSettingViolations(settingCases),
+    baselineSettingViolations: countSettingViolations(
+      baselineSettingCases.filter(
+        (result): result is MemoryEvalCaseResult => Boolean(result),
+      ),
+    ),
+    futureLeakChecks: futureLeakPolicies.length,
+    futureLeaks: futureLeakPolicies.filter((result) => !result.ok).length,
+  }
+}
+
+const phase0FutureLeakPolicyIds = new Set([
+  'future-summary-time-sliced',
+  'future-volume-summary-time-sliced',
+  'future-state-time-sliced',
+  'future-plot-resolution-time-sliced',
+])
+
+function countSettingViolations(cases: MemoryEvalCaseResult[]) {
+  return cases.filter((result) => !result.ok || result.forbidden.length > 0).length
 }
 
 function annotateCaseDeltas(
@@ -1554,6 +1621,17 @@ function emptyReport(input: {
       requiredGain: 0,
       policyFailed: 0,
       failedReasonIds: ['config-or-project-error'],
+    },
+    phase0Metrics: {
+      callbackExpectations: 0,
+      callbackHits: 0,
+      baselineCallbackHits: 0,
+      callbackGain: 0,
+      settingExpectations: 0,
+      settingViolations: 0,
+      baselineSettingViolations: 0,
+      futureLeakChecks: 0,
+      futureLeaks: 0,
     },
     sourceSummary: [],
     policyChecks: [],

@@ -356,6 +356,10 @@ The report includes a `Phase 0 gate` line and a machine-readable `phase0` object
 in `--json` output. The gate passes only when every recall expectation passes,
 the four-layer plan is not worse than the baseline, and the configured
 `minimum_gain` threshold is met.
+It also prints `Phase 0 metrics` and exposes `phase0Metrics` in `--json`: long
+callback expectations are counted from non-L2 checks, setting violations are
+approximated from failed L0 checks, and future leaks are counted from the
+time-sliced sentinel policies.
 Each case also reports the memory sources that satisfied it, so a passing
 expectation can be traced back to a codex card, chapter summary, or `recall:*`
 entry instead of being a bare green check.
@@ -387,8 +391,10 @@ Use this as a fast guardrail when changing recall, budget, summary, or codex
 matching logic. It is not the full Phase 0 model-quality experiment; it proves
 that the deterministic memory assembly path still recalls the controlled facts
 before any model is involved, and that the core prompt-budget discipline has not
-drifted. A useful result should show L2 passing in both baseline and four-layer
-plans, with L0/L1/L3 gains coming from the full memory engine.
+drifted. The `Phase 0 metrics` line is therefore a context-assembly decision
+signal, not a claim that a model will generate the right answer. A useful result
+should show L2 passing in both baseline and four-layer plans, with L0/L1/L3
+gains coming from the full memory engine.
 `examples/long-memory-benchmark` is the stronger smoke corpus: chapter 6 asks
 for chapter-1 oath context outside the recent-prose baseline window, so it should
 show a low baseline score and a passing `Phase 0 gate` through L0/L1/L3 recall.

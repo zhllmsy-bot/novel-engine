@@ -235,6 +235,10 @@ It checks both recall expectations and budget policy invariants:
 - `--json` exposes the same data as `sourceSummary` plus a `phase0` gate object,
   making provenance and baseline-gain checks machine-readable for CI or
   community benchmark dashboards.
+- `phase0Metrics` and the text `Phase 0 metrics` line summarize the decision
+  numbers for the deterministic assembly gate: non-L2 callback hits versus
+  baseline, L0 setting violations versus baseline, and future-leak sentinel
+  failures.
 - `Phase 0 gate` passes only when all recall expectations pass, four-layer
   recall is not worse than the baseline, and `minimum_gain` is satisfied.
 - The report lists `Baseline` and `Four-layer gain` so improvements are visible.
@@ -274,7 +278,7 @@ The static manifest shape is documented in `schemas/project.schema.json`; the
 health check owns the dynamic rules that require comparing entries or touching
 the project folder.
 
-This does not replace the Phase 0 model-quality experiment. It keeps the assembly path honest before model behavior is evaluated.
+This does not replace the Phase 0 model-quality experiment. It keeps the assembly path honest before model behavior is evaluated, so the metric names should be read as context-assembly signals rather than final generation-quality scores.
 
 ## Open-Source Edge
 
