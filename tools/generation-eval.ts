@@ -2,7 +2,7 @@
 import { execFile as execFileCallback } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import { mkdir, readdir, readFile, stat, writeFile } from 'node:fs/promises'
-import { basename, join, relative, resolve } from 'node:path'
+import { basename, isAbsolute, join, relative, resolve } from 'node:path'
 import { promisify } from 'node:util'
 import { z } from 'zod'
 import {
@@ -1664,30 +1664,31 @@ async function archiveGenerationEvalReport(input: {
   report: GenerationEvalReport
 }) {
   const archivePath = resolve(input.archiveDir)
+  const archivedReport = sanitizeGenerationEvalReportForArchive(input.report)
   await mkdir(archivePath, { recursive: true })
   await writeFile(
     join(archivePath, 'generation-eval-report.json'),
-    `${JSON.stringify(input.report, null, 2)}\n`,
+    `${JSON.stringify(archivedReport, null, 2)}\n`,
   )
   await writeFile(
     join(archivePath, 'generation-eval-summary.md'),
-    buildGenerationEvalSummary(input.report),
+    buildGenerationEvalSummary(archivedReport),
   )
   await writeFile(
     join(archivePath, 'human-review.csv'),
-    buildHumanReviewCsv(input.report),
+    buildHumanReviewCsv(archivedReport),
   )
   await writeFile(
     join(archivePath, 'judge-review-prompts.jsonl'),
-    buildJudgeReviewJsonl(input.report),
+    buildJudgeReviewJsonl(archivedReport),
   )
   await writeFile(
     join(archivePath, 'judge-results.json'),
-    `${JSON.stringify(input.report.judge || emptyJudgeReport(), null, 2)}\n`,
+    `${JSON.stringify(archivedReport.judge || emptyJudgeReport(), null, 2)}\n`,
   )
   await writeFile(
     join(archivePath, 'request-traces.json'),
-    `${JSON.stringify(buildTraceArchive(input.report), null, 2)}\n`,
+    `${JSON.stringify(buildTraceArchive(archivedReport), null, 2)}\n`,
   )
 
   return archivePath
@@ -1698,33 +1699,48 @@ async function archiveGenerationEvalSuite(input: {
   suite: GenerationEvalSuiteReport
 }) {
   const archivePath = resolve(input.archiveDir)
+  const archivedSuite = sanitizeGenerationEvalSuiteForArchive(input.suite)
   await mkdir(archivePath, { recursive: true })
   await writeFile(
     join(archivePath, 'generation-eval-suite.json'),
-    `${JSON.stringify(input.suite, null, 2)}\n`,
+    `${JSON.stringify(archivedSuite, null, 2)}\n`,
   )
   await writeFile(
     join(archivePath, 'generation-eval-suite-summary.md'),
-    buildGenerationEvalSuiteSummary(input.suite),
+    buildGenerationEvalSuiteSummary(archivedSuite),
   )
   await writeFile(
     join(archivePath, 'human-review.csv'),
-    buildSuiteHumanReviewCsv(input.suite),
+    buildSuiteHumanReviewCsv(archivedSuite),
   )
   await writeFile(
     join(archivePath, 'judge-review-prompts.jsonl'),
-    buildSuiteJudgeReviewJsonl(input.suite),
+    buildSuiteJudgeReviewJsonl(archivedSuite),
   )
   await writeFile(
     join(archivePath, 'judge-results.json'),
-    `${JSON.stringify(buildSuiteJudgeResults(input.suite), null, 2)}\n`,
+    `${JSON.stringify(buildSuiteJudgeResults(archivedSuite), null, 2)}\n`,
   )
   await writeFile(
     join(archivePath, 'request-traces.json'),
-    `${JSON.stringify(buildSuiteTraceArchive(input.suite), null, 2)}\n`,
+    `${JSON.stringify(buildSuiteTraceArchive(archivedSuite), null, 2)}\n`,
   )
 
   return archivePath
+}
+
+export async function writeArchivedGenerationEvalArtifacts(input: {
+  archiveDir: string
+  report: GenerationEvalReport
+}) {
+  return archiveGenerationEvalReport(input)
+}
+
+export async function writeArchivedGenerationEvalSuiteArtifacts(input: {
+  archiveDir: string
+  suite: GenerationEvalSuiteReport
+}) {
+  return archiveGenerationEvalSuite(input)
 }
 
 function buildGenerationEvalSummary(report: GenerationEvalReport) {
@@ -2483,18 +2499,96 @@ function sanitizeProviderMetadata(
 function sanitizeEndpoint(endpoint: string) {
   try {
     const url = new URL(endpoint)
-    return `${url.protocol}//${url.host}${url.pathname}`
+    return `${url.protocol}//[REDACTED-HOST]${url.pathname}`
   } catch {
     return sanitizeText(endpoint)
   }
 }
 
+function sanitizeFilesystemPath(path: string) {
+  const absolutePath = resolve(path)
+  const repoRoot = resolve(process.cwd())
+  const relativePath = relative(repoRoot, absolutePath)
+
+  if (relativePath === '') {
+    return '.'
+  }
+
+  if (!relativePath.startsWith('..') && !isAbsolute(relativePath)) {
+    return normalizePath(relativePath)
+  }
+
+  return `[REDACTED-PATH]/${basename(absolutePath)}`
+}
+
+function sanitizeGenerationEvalJudgeReport(
+  judge?: GenerationEvalJudgeReport,
+): GenerationEvalJudgeReport | undefined {
+  if (!judge) {
+    return undefined
+  }
+
+  return {
+    ...judge,
+    provider: judge.provider
+      ? {
+          ...judge.provider,
+          baseUrl: sanitizeEndpoint(judge.provider.baseUrl),
+        }
+      : undefined,
+    results: judge.results.map((result) => ({
+      ...result,
+      reason: sanitizeText(result.reason),
+      error: result.error ? sanitizeText(result.error) : undefined,
+      trace: result.trace ? sanitizeTraceRecord(result.trace) : undefined,
+    })),
+  }
+}
+
+function sanitizeGenerationEvalReportForArchive(
+  report: GenerationEvalReport,
+): GenerationEvalReport {
+  return {
+    ...report,
+    rootPath: sanitizeFilesystemPath(report.rootPath),
+    provider: sanitizeProviderMetadata(report.provider),
+    runs: report.runs.map((run) => ({
+      ...run,
+      arms: run.arms.map((arm) => ({
+        ...arm,
+        error: arm.error ? sanitizeText(arm.error) : undefined,
+        trace: arm.trace ? sanitizeTraceRecord(arm.trace) : undefined,
+      })),
+    })),
+    judge: sanitizeGenerationEvalJudgeReport(report.judge),
+    archivePath: report.archivePath
+      ? sanitizeFilesystemPath(report.archivePath)
+      : undefined,
+    errors: report.errors.map((error) => sanitizeText(error)),
+  }
+}
+
+function sanitizeGenerationEvalSuiteForArchive(
+  suite: GenerationEvalSuiteReport,
+): GenerationEvalSuiteReport {
+  return {
+    ...suite,
+    reports: suite.reports.map((report) =>
+      sanitizeGenerationEvalReportForArchive(report),
+    ),
+    archivePath: suite.archivePath
+      ? sanitizeFilesystemPath(suite.archivePath)
+      : undefined,
+    errors: suite.errors.map((error) => sanitizeText(error)),
+  }
+}
+
 function sanitizeText(value: string) {
   return value
-    .replace(/Bearer\s+[A-Za-z0-9._-]+/gi, 'Bearer [REDACTED]')
-    .replace(/sk-[A-Za-z0-9_-]{12,}/g, 'sk-[REDACTED]')
+    .replace(/Bearer\s+[A-Za-z0-9._-]+/gi, '[REDACTED-AUTH]')
+    .replace(/sk-[A-Za-z0-9_-]{12,}/g, '[REDACTED-KEY]')
     .replace(/\b[A-Za-z0-9]{24,}\b/g, (match) =>
-      looksSensitiveToken(match) ? '[REDACTED]' : match,
+      looksSensitiveToken(match) ? '[REDACTED-TOKEN]' : match,
     )
 }
 

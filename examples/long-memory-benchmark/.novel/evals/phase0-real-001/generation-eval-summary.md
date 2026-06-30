@@ -4,9 +4,9 @@
 - Project: 青灯镜湖
 - Chapter: chapter-006
 - Repeats: 3
-- Provider: openai-compatible model=gpt-5.5 baseUrl=https://sub.kedaya.xyz wire=responses reasoning=xhigh
+- Provider: openai-compatible model=gpt-5.5 baseUrl=https://[REDACTED-HOST]/ wire=responses reasoning=xhigh
 - Fingerprint: git=8a3c1fb135a3f1c37d4ba2124ea845a8bfb843c1-dirty, dataset=305d5b8303492974, config=12a00c6819a1f20b
-- Archive: /Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/long-memory-benchmark/.novel/evals/phase0-real-001
+- Archive: examples/long-memory-benchmark/.novel/evals/phase0-real-001
 
 ## Gate
 

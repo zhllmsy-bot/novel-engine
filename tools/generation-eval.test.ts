@@ -8,6 +8,8 @@ import {
   formatGenerationEvalReport,
   formatGenerationEvalSuiteReport,
   parseGenerationEvalArgs,
+  writeArchivedGenerationEvalArtifacts,
+  type GenerationEvalReport,
 } from './generation-eval.ts'
 import { scoreGenerationOutput } from '../src/eval/generationCriteria.ts'
 
@@ -182,6 +184,182 @@ describe('generation eval tool', () => {
       expect(
         await readFile(join(root, 'generation-eval-suite-summary.md'), 'utf8'),
       ).toContain('Generation Eval Suite Summary')
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it('redacts provider endpoints and absolute paths in archived eval artifacts', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'generation-eval-redaction-'))
+    const repoRoot = process.cwd()
+    const report = {
+      rootPath: join(repoRoot, 'examples', 'long-memory-benchmark'),
+      ok: false,
+      dryRun: false,
+      title: '青灯镜湖',
+      chapterId: 'chapter-006',
+      budgetChars: 1200,
+      repeatCount: 1,
+      provider: {
+        kind: 'openai-compatible',
+        baseUrl: 'https://sub.kedaya.xyz',
+        model: 'gpt-5.5',
+        wireApi: 'responses',
+        reasoningEffort: 'xhigh',
+      },
+      fingerprint: {
+        gitCommit: 'deadbeef',
+        datasetVersion: 'dataset-v1',
+        datasetHash: 'dataset-hash',
+        configHash: 'config-hash',
+      },
+      criteria: [],
+      arms: [],
+      runs: [
+        {
+          id: 'chapter-006-repeat-1',
+          chapterId: 'chapter-006',
+          repeatIndex: 1,
+          arms: [
+            {
+              id: 'four-layer',
+              output: '示例输出',
+              outputChars: 4,
+              trace: {
+                kind: 'generation',
+                wireApi: 'responses',
+                model: 'gpt-5.5',
+                endpoint: 'https://sub.kedaya.xyz/v1/responses',
+                request: {
+                  systemPromptPreview: 'Bearer secret-token',
+                  promptPreview: 'api sk-12345678901234567890',
+                  promptChars: 20,
+                  maxOutputChars: 200,
+                  temperature: 0.4,
+                  reasoningEffort: 'xhigh',
+                  store: false,
+                },
+                response: {
+                  responseId: 'resp_123',
+                  statusCode: 200,
+                  object: 'response',
+                  model: 'gpt-5.5',
+                  finishedStatus: 'completed',
+                  usage: {
+                    inputTokens: 10,
+                    outputTokens: 20,
+                    totalTokens: 30,
+                  },
+                  outputPreview: '正常输出',
+                },
+              },
+            },
+          ],
+        },
+      ],
+      aggregate: {
+        arms: [],
+        comparisons: [],
+      },
+      judge: {
+        enabled: true,
+        provider: {
+          kind: 'openai-compatible',
+          baseUrl: 'https://sub.kedaya.xyz',
+          model: 'gpt-5.5',
+          wireApi: 'responses',
+        },
+        results: [
+          {
+            runId: 'chapter-006-repeat-1',
+            chapterId: 'chapter-006',
+            repeatIndex: 1,
+            pair: 'baseline:four-layer',
+            order: 'candidate-right',
+            leftArm: 'baseline',
+            rightArm: 'four-layer',
+            choice: 'four-layer',
+            rawChoice: 'B',
+            reason: 'Bearer judge-secret',
+            trace: {
+              kind: 'judge',
+              wireApi: 'responses',
+              model: 'gpt-5.5',
+              endpoint: 'https://sub.kedaya.xyz/v1/responses',
+              request: {
+                systemPromptPreview: 'judge system',
+                promptPreview: 'sk-abcdefghijklmnopqrstuvwxyz123456',
+                promptChars: 32,
+                maxOutputChars: 200,
+                temperature: 0,
+                reasoningEffort: 'xhigh',
+                store: false,
+              },
+              response: {
+                statusCode: 200,
+                outputPreview: 'judge output',
+              },
+            },
+          },
+        ],
+        comparisons: [],
+      },
+      archivePath: join(
+        repoRoot,
+        'examples',
+        'long-memory-benchmark',
+        '.novel',
+        'evals',
+        'phase0-real-001',
+      ),
+      gate: {
+        status: 'fail',
+        ok: false,
+        failedReasonIds: ['insufficient-callback-win-vs-baseline'],
+      },
+      errors: ['Bearer top-secret'],
+    } satisfies GenerationEvalReport
+
+    try {
+      await writeArchivedGenerationEvalArtifacts({
+        archiveDir: root,
+        report,
+      })
+
+      const reportArchive = await readFile(
+        join(root, 'generation-eval-report.json'),
+        'utf8',
+      )
+      const summaryArchive = await readFile(
+        join(root, 'generation-eval-summary.md'),
+        'utf8',
+      )
+      const judgeArchive = await readFile(join(root, 'judge-results.json'), 'utf8')
+      const traceArchive = await readFile(
+        join(root, 'request-traces.json'),
+        'utf8',
+      )
+
+      for (const archived of [
+        reportArchive,
+        summaryArchive,
+        judgeArchive,
+        traceArchive,
+      ]) {
+        expect(archived).not.toContain('sub.kedaya.xyz')
+        expect(archived).not.toContain('/Users/admin/Documents/Codex')
+        expect(archived).not.toContain('Bearer ')
+        expect(archived).not.toContain('sk-12345678901234567890')
+        expect(archived).not.toContain('sk-abcdefghijklmnopqrstuvwxyz123456')
+      }
+
+      expect(reportArchive).toContain('[REDACTED-HOST]')
+      expect(traceArchive).toContain('"baseUrl": "https://[REDACTED-HOST]/"')
+      expect(summaryArchive).toContain('baseUrl=https://[REDACTED-HOST]/')
+      expect(reportArchive).toContain('"rootPath": "examples/long-memory-benchmark"')
+      expect(reportArchive).toContain(
+        '"archivePath": "examples/long-memory-benchmark/.novel/evals/phase0-real-001"',
+      )
     } finally {
       await rm(root, { recursive: true, force: true })
     }
