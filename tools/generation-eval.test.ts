@@ -23,6 +23,15 @@ describe('generation eval tool', () => {
         '.novel/evals/test',
         '--model',
         'test-model',
+        '--wire-api',
+        'responses',
+        '--judge',
+        '--judge-model',
+        'judge-model',
+        '--judge-wire-api',
+        'responses',
+        '--reasoning-effort',
+        'xhigh',
         '--benchmark-project',
         'examples/long-memory-benchmark',
         'examples/long-memory-benchmark',
@@ -35,6 +44,11 @@ describe('generation eval tool', () => {
       repeatCount: 5,
       archiveDir: '.novel/evals/test',
       model: 'test-model',
+      wireApi: 'responses',
+      judge: true,
+      judgeModel: 'judge-model',
+      judgeWireApi: 'responses',
+      reasoningEffort: 'xhigh',
     })
   })
 
@@ -51,6 +65,8 @@ describe('generation eval tool', () => {
 
     expect(report.ok).toBe(true)
     expect(report.dryRun).toBe(true)
+    expect(report.fingerprint.datasetHash).not.toBe('unknown')
+    expect(report.fingerprint.configHash).not.toBe('unknown')
     expect(report.chapterId).toBe('chapter-006')
     expect(report.criteria.map((criterion) => criterion.id)).toEqual([
       'callback-oath',
@@ -105,11 +121,15 @@ describe('generation eval tool', () => {
       await expect(
         stat(join(root, 'judge-review-prompts.jsonl')),
       ).resolves.toBeTruthy()
+      await expect(stat(join(root, 'judge-results.json'))).resolves.toBeTruthy()
       expect(
         await readFile(join(root, 'generation-eval-summary.md'), 'utf8'),
       ).toContain('Generation Eval Summary')
       expect(await readFile(join(root, 'human-review.csv'), 'utf8')).toContain(
         'review_preference',
+      )
+      expect(await readFile(join(root, 'judge-results.json'), 'utf8')).toContain(
+        '"enabled": false',
       )
     } finally {
       await rm(root, { recursive: true, force: true })
@@ -140,6 +160,7 @@ describe('generation eval tool', () => {
       await expect(
         stat(join(root, 'judge-review-prompts.jsonl')),
       ).resolves.toBeTruthy()
+      await expect(stat(join(root, 'judge-results.json'))).resolves.toBeTruthy()
       await expect(
         stat(
           join(

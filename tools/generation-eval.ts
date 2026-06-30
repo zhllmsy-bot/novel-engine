@@ -1,6 +1,9 @@
 #!/usr/bin/env node
+import { execFile as execFileCallback } from 'node:child_process'
+import { createHash } from 'node:crypto'
 import { mkdir, readdir, readFile, stat, writeFile } from 'node:fs/promises'
 import { basename, join, relative, resolve } from 'node:path'
+import { promisify } from 'node:util'
 import { z } from 'zod'
 import {
   runGenerationGuards,
@@ -101,6 +104,64 @@ export type GenerationEvalGate = {
   failedReasonIds: string[]
 }
 
+export type OpenAICompatibleWireApi = 'chat' | 'responses'
+
+export type GenerationEvalFingerprint = {
+  gitCommit: string
+  datasetVersion: string
+  datasetHash: string
+  configHash: string
+}
+
+export type GenerationEvalJudgeChoice = 'four-layer' | 'baseline' | 'recent-fill' | 'tie' | 'invalid'
+
+export type GenerationEvalJudgeResult = {
+  runId: string
+  chapterId?: string
+  repeatIndex: number
+  pair: string
+  order: 'candidate-right' | 'candidate-left'
+  leftArm: GenerationEvalArmId
+  rightArm: GenerationEvalArmId
+  choice: GenerationEvalJudgeChoice
+  rawChoice: string
+  reason: string
+  error?: string
+}
+
+export type GenerationEvalJudgeComparison = {
+  baseline: 'baseline' | 'recent-fill'
+  pairedReviews: number
+  fourLayerWins: number
+  baselineWins: number
+  ties: number
+  invalid: number
+  fourLayerWinRate: number
+}
+
+export type GenerationEvalJudgeReport = {
+  enabled: boolean
+  provider?: {
+    kind: 'openai-compatible'
+    baseUrl: string
+    model: string
+    wireApi: OpenAICompatibleWireApi
+  }
+  results: GenerationEvalJudgeResult[]
+  comparisons: GenerationEvalJudgeComparison[]
+}
+
+type GenerationEvalJudgeRow = {
+  runId: string
+  chapterId?: string
+  repeatIndex: number
+  pair: string
+  order: 'candidate-right' | 'candidate-left'
+  leftArm: GenerationEvalArmId
+  rightArm: GenerationEvalArmId
+  prompt: string
+}
+
 export type GenerationEvalReport = {
   rootPath: string
   ok: boolean
@@ -113,11 +174,15 @@ export type GenerationEvalReport = {
     kind: 'openai-compatible' | 'dry-run'
     baseUrl?: string
     model?: string
+    wireApi?: OpenAICompatibleWireApi
+    reasoningEffort?: string
   }
+  fingerprint: GenerationEvalFingerprint
   criteria: GenerationEvalCriterion[]
   arms: GenerationEvalArmReport[]
   runs: GenerationEvalRunReport[]
   aggregate: GenerationEvalAggregate
+  judge?: GenerationEvalJudgeReport
   archivePath?: string
   gate: GenerationEvalGate
   errors: string[]
@@ -156,8 +221,11 @@ type OpenAICompatibleGenerationConfig = {
   baseUrl: string
   apiKey: string
   model: string
+  wireApi: OpenAICompatibleWireApi
   temperature: number
   maxOutputChars: number
+  reasoningEffort?: string
+  store?: boolean
 }
 
 type CliOptions = {
@@ -174,7 +242,12 @@ type CliOptions = {
   baseUrl?: string
   apiKey?: string
   model?: string
+  wireApi?: OpenAICompatibleWireApi
+  judge: boolean
+  judgeModel?: string
+  judgeWireApi?: OpenAICompatibleWireApi
   temperature?: number
+  reasoningEffort?: string
   maxOutputChars?: number
 }
 
@@ -189,8 +262,10 @@ const defaultInstruction =
 const defaultMaxOutputChars = 600
 const defaultBudgetChars = 1_200
 const defaultRepeatCount = 3
+const requestTimeoutMs = 120_000
 const significantCallbackWinRate = 0.6
 const minimumCrediblePairedRuns = 3
+const execFile = promisify(execFileCallback)
 
 const generationCriterionSchema = z
   .object({
@@ -228,11 +303,49 @@ const chatCompletionResponseSchema = z.object({
     .array(
       z.object({
         message: z.object({
-          content: z.string(),
+          content: z.union([
+            z.string(),
+            z.array(
+              z
+                .object({
+                  text: z.string().optional(),
+                })
+                .passthrough(),
+            ),
+          ]),
         }),
       }),
     )
     .min(1),
+})
+
+const responsesApiResponseSchema = z
+  .object({
+    output_text: z.string().optional(),
+    output: z
+      .array(
+        z
+          .object({
+            content: z
+              .array(
+                z
+                  .object({
+                    text: z.string().optional(),
+                    output_text: z.string().optional(),
+                  })
+                  .passthrough(),
+              )
+              .optional(),
+          })
+          .passthrough(),
+      )
+      .optional(),
+  })
+  .passthrough()
+
+const judgeResponseSchema = z.object({
+  choice: z.enum(['A', 'B', 'tie']).catch('tie'),
+  reason: z.string().catch('No reason parsed.'),
 })
 
 export async function evaluateGeneration(input: {
@@ -246,7 +359,12 @@ export async function evaluateGeneration(input: {
   baseUrl?: string
   apiKey?: string
   model?: string
+  wireApi?: OpenAICompatibleWireApi
+  judge?: boolean
+  judgeModel?: string
+  judgeWireApi?: OpenAICompatibleWireApi
   temperature?: number
+  reasoningEffort?: string
   maxOutputChars?: number
 } = {}): Promise<GenerationEvalReport> {
   const rootPath = resolve(input.rootPath || 'examples/long-memory-benchmark')
@@ -337,8 +455,10 @@ export async function evaluateGeneration(input: {
     baseUrl: input.baseUrl,
     apiKey: input.apiKey,
     model: input.model,
+    wireApi: input.wireApi,
     temperature: input.temperature,
     maxOutputChars,
+    reasoningEffort: input.reasoningEffort,
   })
   const arms = [
     buildArmReport({
@@ -433,6 +553,19 @@ export async function evaluateGeneration(input: {
     dryRun,
     aggregate,
   })
+  const fingerprint = await buildGenerationFingerprint({
+    rootPath,
+    chapterId: chapter.id,
+    budgetChars,
+    repeatCount,
+    maxOutputChars,
+    provider: {
+      model: dryRun ? undefined : providerConfig.model,
+      wireApi: dryRun ? undefined : providerConfig.wireApi,
+      reasoningEffort: dryRun ? undefined : providerConfig.reasoningEffort,
+    },
+    criteria: evalConfig.criteria,
+  })
   const ok =
     errors.length === 0 &&
     arms.every((arm) => !arm.error) &&
@@ -455,7 +588,10 @@ export async function evaluateGeneration(input: {
           kind: 'openai-compatible',
           baseUrl: providerConfig.baseUrl,
           model: providerConfig.model,
+          wireApi: providerConfig.wireApi,
+          reasoningEffort: providerConfig.reasoningEffort,
         },
+    fingerprint,
     criteria: evalConfig.criteria,
     arms,
     runs,
@@ -463,6 +599,24 @@ export async function evaluateGeneration(input: {
     archivePath,
     gate,
     errors,
+  }
+
+  if (input.judge && !dryRun && errors.length === 0) {
+    report.judge = await evaluateGenerationJudge({
+      report,
+      providerConfig: resolveProviderConfig({
+        baseUrl: input.baseUrl,
+        apiKey: input.apiKey,
+        model: input.judgeModel || process.env.NOVEL_ENGINE_EVAL_JUDGE_MODEL || input.model,
+        wireApi:
+          input.judgeWireApi ||
+          normalizeWireApi(process.env.NOVEL_ENGINE_EVAL_JUDGE_WIRE_API) ||
+          input.wireApi,
+        temperature: 0,
+        maxOutputChars: 2_000,
+        reasoningEffort: input.reasoningEffort,
+      }),
+    })
   }
 
   if (archivePath) {
@@ -493,6 +647,7 @@ export function formatGenerationEvalReport(report: GenerationEvalReport): string
     `Budget: ${report.budgetChars} chars`,
     `Repeats: ${report.repeatCount}`,
     `Provider: ${formatProvider(report)}`,
+    `Fingerprint: git=${report.fingerprint.gitCommit} dataset=${report.fingerprint.datasetHash} config=${report.fingerprint.configHash}`,
     `Criteria: ${formatCriteriaSummary(report.criteria)}`,
     fourLayerVsBaseline && fourLayerVsBaseline.pairedRuns > 0
       ? `Generation metrics: four-layer vs baseline callback win ${formatPercent(fourLayerVsBaseline.callbackWinRate)}, callback diff ${formatNumber(fourLayerVsBaseline.callbackMeanDiff)}, setting violation diff ${formatNumber(fourLayerVsBaseline.settingViolationMeanDiff)}, future leak diff ${fourLayerVsBaseline.futureLeakDiff}`
@@ -500,6 +655,10 @@ export function formatGenerationEvalReport(report: GenerationEvalReport): string
     fourLayerVsRecentFill && fourLayerVsRecentFill.pairedRuns > 0
       ? `Generation control: four-layer vs recent-fill callback win ${formatPercent(fourLayerVsRecentFill.callbackWinRate)}, callback diff ${formatNumber(fourLayerVsRecentFill.callbackMeanDiff)}, setting violation diff ${formatNumber(fourLayerVsRecentFill.settingViolationMeanDiff)}, future leak diff ${fourLayerVsRecentFill.futureLeakDiff}`
       : undefined,
+    ...(report.judge?.comparisons || []).map(
+      (comparison) =>
+        `Judge: four-layer vs ${comparison.baseline} win ${formatPercent(comparison.fourLayerWinRate)} (${comparison.fourLayerWins}/${comparison.pairedReviews}, baseline wins ${comparison.baselineWins}, ties ${comparison.ties}, invalid ${comparison.invalid})`,
+    ),
     `Gate: ${report.gate.status.toUpperCase()}${report.gate.failedReasonIds.length > 0 ? ` reasons=${report.gate.failedReasonIds.join(',')}` : ''}`,
     report.archivePath ? `Archive: ${report.archivePath}` : undefined,
     ...report.aggregate.arms.map((arm) => formatAggregateArm(arm)),
@@ -521,7 +680,12 @@ export async function evaluateGenerationSuite(input: {
   baseUrl?: string
   apiKey?: string
   model?: string
+  wireApi?: OpenAICompatibleWireApi
+  judge?: boolean
+  judgeModel?: string
+  judgeWireApi?: OpenAICompatibleWireApi
   temperature?: number
+  reasoningEffort?: string
   maxOutputChars?: number
 }): Promise<GenerationEvalSuiteReport> {
   const reports: GenerationEvalReport[] = []
@@ -767,10 +931,28 @@ function buildGenerationGate(input: {
 async function callOpenAICompatibleGeneration(input: {
   config: OpenAICompatibleGenerationConfig
   prompt: string
+  systemPrompt?: string
 }) {
   const baseUrl = normalizeBaseUrl(input.config.baseUrl)
+  const systemPrompt =
+    input.systemPrompt ||
+    [
+      '你是中文长篇小说续写助手。',
+      '只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。',
+      '严格遵守用户提供的上下文；没有依据的未来剧情不要写。',
+    ].join('\n')
+
+  if (input.config.wireApi === 'responses') {
+    return callOpenAICompatibleResponses({
+      config: input.config,
+      prompt: input.prompt,
+      systemPrompt,
+    })
+  }
+
   const response = await fetch(`${baseUrl}/v1/chat/completions`, {
     method: 'POST',
+    signal: AbortSignal.timeout(requestTimeoutMs),
     headers: {
       Authorization: `Bearer ${input.config.apiKey}`,
       'Content-Type': 'application/json',
@@ -782,11 +964,7 @@ async function callOpenAICompatibleGeneration(input: {
       messages: [
         {
           role: 'system',
-          content: [
-            '你是中文长篇小说续写助手。',
-            '只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。',
-            '严格遵守用户提供的上下文；没有依据的未来剧情不要写。',
-          ].join('\n'),
+          content: systemPrompt,
         },
         {
           role: 'user',
@@ -802,7 +980,95 @@ async function callOpenAICompatibleGeneration(input: {
   }
 
   const payload = chatCompletionResponseSchema.parse(await response.json())
-  return trimToChars(payload.choices[0].message.content.trim(), input.config.maxOutputChars)
+  return trimToChars(
+    extractChatCompletionText(payload).trim(),
+    input.config.maxOutputChars,
+  )
+}
+
+async function callOpenAICompatibleResponses(input: {
+  config: OpenAICompatibleGenerationConfig
+  prompt: string
+  systemPrompt: string
+}) {
+  const baseUrl = normalizeBaseUrl(input.config.baseUrl)
+  const body: Record<string, unknown> = {
+    model: input.config.model,
+    input: [
+      {
+        role: 'system',
+        content: input.systemPrompt,
+      },
+      {
+        role: 'user',
+        content: input.prompt,
+      },
+    ],
+    max_output_tokens: Math.max(
+      128,
+      Math.ceil(input.config.maxOutputChars / 1.5),
+    ),
+    store: input.config.store ?? false,
+  }
+  if (Number.isFinite(input.config.temperature)) {
+    body.temperature = input.config.temperature
+  }
+  if (input.config.reasoningEffort) {
+    body.reasoning = {
+      effort: input.config.reasoningEffort,
+    }
+  }
+
+  const response = await fetch(`${baseUrl}/v1/responses`, {
+    method: 'POST',
+    signal: AbortSignal.timeout(requestTimeoutMs),
+    headers: {
+      Authorization: `Bearer ${input.config.apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+
+  if (!response.ok) {
+    const responseBody = await response.text()
+    throw new Error(
+      `OpenAI-compatible responses generation failed: ${response.status} ${responseBody}`,
+    )
+  }
+
+  const payload = responsesApiResponseSchema.parse(await response.json())
+  return trimToChars(
+    extractResponsesApiText(payload).trim(),
+    input.config.maxOutputChars,
+  )
+}
+
+function extractChatCompletionText(
+  payload: z.infer<typeof chatCompletionResponseSchema>,
+) {
+  const content = payload.choices[0].message.content
+  if (typeof content === 'string') {
+    return content
+  }
+
+  return content
+    .map((part) => part.text || '')
+    .filter(Boolean)
+    .join('\n')
+}
+
+function extractResponsesApiText(
+  payload: z.infer<typeof responsesApiResponseSchema>,
+) {
+  if (payload.output_text) {
+    return payload.output_text
+  }
+
+  return (payload.output || [])
+    .flatMap((item) => item.content || [])
+    .map((part) => part.text || part.output_text || '')
+    .filter(Boolean)
+    .join('\n')
 }
 
 async function loadGenerationEvalConfig(rootPath: string): Promise<{
@@ -1106,6 +1372,135 @@ function compareArms(
   }
 }
 
+async function evaluateGenerationJudge(input: {
+  report: GenerationEvalReport
+  providerConfig: OpenAICompatibleGenerationConfig
+}): Promise<GenerationEvalJudgeReport> {
+  const rows = input.report.runs.flatMap((run) => buildJudgeRowsForRun(run))
+  const results: GenerationEvalJudgeResult[] = []
+
+  for (const row of rows) {
+    results.push(
+      await evaluateJudgeRow({
+        row,
+        providerConfig: input.providerConfig,
+      }),
+    )
+  }
+
+  return {
+    enabled: true,
+    provider: {
+      kind: 'openai-compatible',
+      baseUrl: input.providerConfig.baseUrl,
+      model: input.providerConfig.model,
+      wireApi: input.providerConfig.wireApi,
+    },
+    results,
+    comparisons: [
+      buildJudgeComparison('baseline', results),
+      buildJudgeComparison('recent-fill', results),
+    ],
+  }
+}
+
+async function evaluateJudgeRow(input: {
+  row: GenerationEvalJudgeRow
+  providerConfig: OpenAICompatibleGenerationConfig
+}): Promise<GenerationEvalJudgeResult> {
+  try {
+    const rawOutput = await callOpenAICompatibleGeneration({
+      config: input.providerConfig,
+      prompt: input.row.prompt,
+      systemPrompt: [
+        '你是严格的中文长篇小说续写盲评裁判。',
+        '只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。',
+        'choice 只能是 "A"、"B" 或 "tie"。',
+      ].join('\n'),
+    })
+    const parsed = parseJudgeResponse(rawOutput)
+
+    return {
+      runId: input.row.runId,
+      chapterId: input.row.chapterId,
+      repeatIndex: input.row.repeatIndex,
+      pair: input.row.pair,
+      order: input.row.order,
+      leftArm: input.row.leftArm,
+      rightArm: input.row.rightArm,
+      choice: mapJudgeChoice({
+        rawChoice: parsed.choice,
+        leftArm: input.row.leftArm,
+        rightArm: input.row.rightArm,
+      }),
+      rawChoice: parsed.choice,
+      reason: parsed.reason,
+    }
+  } catch (error) {
+    return {
+      runId: input.row.runId,
+      chapterId: input.row.chapterId,
+      repeatIndex: input.row.repeatIndex,
+      pair: input.row.pair,
+      order: input.row.order,
+      leftArm: input.row.leftArm,
+      rightArm: input.row.rightArm,
+      choice: 'invalid',
+      rawChoice: 'invalid',
+      reason: 'Judge response could not be parsed.',
+      error: String(error),
+    }
+  }
+}
+
+function parseJudgeResponse(rawOutput: string) {
+  const trimmed = rawOutput.trim()
+  const jsonText =
+    trimmed.match(/```(?:json)?\s*([\s\S]*?)```/)?.[1]?.trim() ||
+    trimmed.match(/\{[\s\S]*\}/)?.[0] ||
+    trimmed
+  return judgeResponseSchema.parse(JSON.parse(jsonText))
+}
+
+function mapJudgeChoice(input: {
+  rawChoice: 'A' | 'B' | 'tie'
+  leftArm: GenerationEvalArmId
+  rightArm: GenerationEvalArmId
+}): GenerationEvalJudgeChoice {
+  if (input.rawChoice === 'tie') {
+    return 'tie'
+  }
+
+  const selectedArm = input.rawChoice === 'A' ? input.leftArm : input.rightArm
+  return selectedArm === 'four-layer' ? 'four-layer' : selectedArm
+}
+
+function buildJudgeComparison(
+  baseline: 'baseline' | 'recent-fill',
+  results: GenerationEvalJudgeResult[],
+): GenerationEvalJudgeComparison {
+  const pairResults = results.filter((result) =>
+    result.pair.startsWith(`${baseline}:`),
+  )
+  const valid = pairResults.filter((result) => result.choice !== 'invalid')
+  const fourLayerWins = valid.filter(
+    (result) => result.choice === 'four-layer',
+  ).length
+  const baselineWins = valid.filter((result) => result.choice === baseline).length
+  const ties = valid.filter((result) => result.choice === 'tie').length
+  const invalid = pairResults.length - valid.length
+
+  return {
+    baseline,
+    pairedReviews: pairResults.length,
+    fourLayerWins,
+    baselineWins,
+    ties,
+    invalid,
+    fourLayerWinRate: ratio(fourLayerWins, valid.length),
+  }
+}
+
 async function archiveGenerationEvalReport(input: {
   archiveDir: string
   report: GenerationEvalReport
@@ -1127,6 +1522,10 @@ async function archiveGenerationEvalReport(input: {
   await writeFile(
     join(archivePath, 'judge-review-prompts.jsonl'),
     buildJudgeReviewJsonl(input.report),
+  )
+  await writeFile(
+    join(archivePath, 'judge-results.json'),
+    `${JSON.stringify(input.report.judge || emptyJudgeReport(), null, 2)}\n`,
   )
 
   return archivePath
@@ -1153,6 +1552,10 @@ async function archiveGenerationEvalSuite(input: {
   await writeFile(
     join(archivePath, 'judge-review-prompts.jsonl'),
     buildSuiteJudgeReviewJsonl(input.suite),
+  )
+  await writeFile(
+    join(archivePath, 'judge-results.json'),
+    `${JSON.stringify(buildSuiteJudgeResults(input.suite), null, 2)}\n`,
   )
 
   return archivePath
@@ -1181,6 +1584,10 @@ function buildGenerationEvalSummary(report: GenerationEvalReport) {
       ),
     ),
   )
+  const judgeLines = (report.judge?.comparisons || []).map(
+    (comparison) =>
+      `- four-layer vs ${comparison.baseline}: win rate ${formatPercent(comparison.fourLayerWinRate)} (${comparison.fourLayerWins}/${comparison.pairedReviews}), baseline wins ${comparison.baselineWins}, ties ${comparison.ties}, invalid ${comparison.invalid}`,
+  )
 
   return `# Generation Eval Summary
 
@@ -1189,6 +1596,7 @@ function buildGenerationEvalSummary(report: GenerationEvalReport) {
 - Chapter: ${report.chapterId || 'unknown'}
 - Repeats: ${report.repeatCount}
 - Provider: ${formatProvider(report)}
+- Fingerprint: git=${report.fingerprint.gitCommit}, dataset=${report.fingerprint.datasetHash}, config=${report.fingerprint.configHash}
 - Archive: ${report.archivePath || 'not archived'}
 
 ## Gate
@@ -1212,6 +1620,10 @@ ${guardLines.join('\n') || '- none'}
 
 ${comparisonLines.join('\n') || '- none'}
 
+## Judge Review
+
+${judgeLines.join('\n') || '- not run'}
+
 ## Human Review
 
 Use \`human-review.csv\` for blind paired review. Deterministic scores only catch hard failures; naturalness, voice, and callback quality still need review.
@@ -1228,6 +1640,12 @@ function buildGenerationEvalSuiteSummary(suite: GenerationEvalSuiteReport) {
     (report) =>
       `- ${report.title || report.rootPath}: ${report.gate.status}, repeats ${report.repeatCount}, archive ${report.archivePath || 'none'}`,
   )
+  const judgeLines = suite.reports.flatMap((report) =>
+    (report.judge?.comparisons || []).map(
+      (comparison) =>
+        `- ${report.title || report.rootPath} four-layer vs ${comparison.baseline}: win rate ${formatPercent(comparison.fourLayerWinRate)} (${comparison.fourLayerWins}/${comparison.pairedReviews}), baseline wins ${comparison.baselineWins}, ties ${comparison.ties}, invalid ${comparison.invalid}`,
+    ),
+  )
 
   return `# Generation Eval Suite Summary
 
@@ -1243,6 +1661,10 @@ ${comparisonLines.join('\n') || '- none'}
 ## Projects
 
 ${projectLines.join('\n') || '- none'}
+
+## Judge Review
+
+${judgeLines.join('\n') || '- not run'}
 
 ## Human Review
 
@@ -1348,7 +1770,45 @@ function buildSuiteJudgeReviewJsonl(suite: GenerationEvalSuiteReport) {
   return `${rows.map((row) => JSON.stringify(row)).join('\n')}${rows.length > 0 ? '\n' : ''}`
 }
 
-function buildJudgeRowsForRun(run: GenerationEvalRunReport) {
+function buildSuiteJudgeResults(suite: GenerationEvalSuiteReport) {
+  return {
+    enabled: suite.reports.some((report) => report.judge?.enabled),
+    reports: suite.reports.map((report) => ({
+      project: report.title || report.rootPath,
+      archivePath: report.archivePath,
+      judge: report.judge || emptyJudgeReport(),
+    })),
+  }
+}
+
+function emptyJudgeReport(): GenerationEvalJudgeReport {
+  return {
+    enabled: false,
+    results: [],
+    comparisons: [
+      {
+        baseline: 'baseline',
+        pairedReviews: 0,
+        fourLayerWins: 0,
+        baselineWins: 0,
+        ties: 0,
+        invalid: 0,
+        fourLayerWinRate: 0,
+      },
+      {
+        baseline: 'recent-fill',
+        pairedReviews: 0,
+        fourLayerWins: 0,
+        baselineWins: 0,
+        ties: 0,
+        invalid: 0,
+        fourLayerWinRate: 0,
+      },
+    ],
+  }
+}
+
+function buildJudgeRowsForRun(run: GenerationEvalRunReport): GenerationEvalJudgeRow[] {
   const fourLayer = run.arms.find((arm) => arm.id === 'four-layer')
   const baselines = run.arms.filter(
     (arm) => arm.id === 'baseline' || arm.id === 'recent-fill',
@@ -1458,8 +1918,10 @@ function resolveProviderConfig(input: {
   baseUrl?: string
   apiKey?: string
   model?: string
+  wireApi?: OpenAICompatibleWireApi
   temperature?: number
   maxOutputChars: number
+  reasoningEffort?: string
 }): OpenAICompatibleGenerationConfig {
   return {
     baseUrl:
@@ -1475,8 +1937,16 @@ function resolveProviderConfig(input: {
       input.model ||
       process.env.NOVEL_ENGINE_EVAL_MODEL ||
       'gpt-4.1-mini',
+    wireApi:
+      input.wireApi ||
+      normalizeWireApi(process.env.NOVEL_ENGINE_EVAL_WIRE_API) ||
+      'chat',
     temperature: input.temperature ?? Number(process.env.NOVEL_ENGINE_EVAL_TEMPERATURE || 0.4),
     maxOutputChars: input.maxOutputChars,
+    reasoningEffort:
+      input.reasoningEffort ||
+      process.env.NOVEL_ENGINE_EVAL_REASONING_EFFORT,
+    store: false,
   }
 }
 
@@ -1526,7 +1996,7 @@ function formatProvider(report: GenerationEvalReport) {
     return 'dry-run'
   }
 
-  return `${report.provider.kind} model=${report.provider.model} baseUrl=${report.provider.baseUrl}`
+  return `${report.provider.kind} model=${report.provider.model} baseUrl=${report.provider.baseUrl} wire=${report.provider.wireApi || 'chat'}${report.provider.reasoningEffort ? ` reasoning=${report.provider.reasoningEffort}` : ''}`
 }
 
 function formatSourceList(sources: string[]) {
@@ -1560,6 +2030,7 @@ function emptyReport(input: {
     budgetChars: input.budgetChars || defaultBudgetChars,
     repeatCount: defaultRepeatCount,
     provider: input.dryRun ? { kind: 'dry-run' } : { kind: 'openai-compatible' },
+    fingerprint: emptyFingerprint(),
     criteria: [],
     arms: [],
     runs: [],
@@ -1574,6 +2045,134 @@ function emptyReport(input: {
     },
     errors: input.errors,
   }
+}
+
+async function buildGenerationFingerprint(input: {
+  rootPath: string
+  chapterId?: string
+  budgetChars: number
+  repeatCount: number
+  maxOutputChars: number
+  provider: {
+    model?: string
+    wireApi?: OpenAICompatibleWireApi
+    reasoningEffort?: string
+  }
+  criteria: GenerationEvalCriterion[]
+}): Promise<GenerationEvalFingerprint> {
+  const datasetVersion = await readOptionalFile(
+    join(input.rootPath, 'meta', 'project.json'),
+  )
+  const datasetHash = await hashProjectDataset(input.rootPath)
+  const configHash = hashString(
+    JSON.stringify({
+      chapterId: input.chapterId,
+      budgetChars: input.budgetChars,
+      repeatCount: input.repeatCount,
+      maxOutputChars: input.maxOutputChars,
+      provider: input.provider,
+      criteria: input.criteria,
+    }),
+  )
+
+  return {
+    gitCommit: await gitCommitHash(),
+    datasetVersion: hashString(datasetVersion || input.rootPath),
+    datasetHash,
+    configHash,
+  }
+}
+
+function emptyFingerprint(): GenerationEvalFingerprint {
+  return {
+    gitCommit: 'unknown',
+    datasetVersion: 'unknown',
+    datasetHash: 'unknown',
+    configHash: 'unknown',
+  }
+}
+
+async function hashProjectDataset(rootPath: string) {
+  const files: MarkdownFileSource[] = [
+    ...(await collectTextFiles(join(rootPath, 'meta'), rootPath)),
+    ...(await collectTextFiles(join(rootPath, 'manuscript'), rootPath)),
+    ...(await collectTextFiles(join(rootPath, 'codex'), rootPath)),
+  ]
+  return hashString(
+    files
+      .map((file) => `${file.path}\n${file.content}`)
+      .sort()
+      .join('\n---\n'),
+  )
+}
+
+async function collectTextFiles(
+  rootPath: string,
+  projectRoot: string,
+): Promise<MarkdownFileSource[]> {
+  if (!(await pathExists(rootPath))) {
+    return []
+  }
+
+  const files: MarkdownFileSource[] = []
+  await collectTextPath(rootPath, projectRoot, files)
+  return files.sort((left, right) => left.path.localeCompare(right.path))
+}
+
+async function collectTextPath(
+  path: string,
+  projectRoot: string,
+  files: MarkdownFileSource[],
+): Promise<void> {
+  const pathStat = await stat(path)
+
+  if (pathStat.isFile()) {
+    if (path.endsWith('.md') || path.endsWith('.json') || path.endsWith('.yaml')) {
+      files.push({
+        path: normalizePath(relative(projectRoot, path)),
+        filePath: path,
+        content: await readFile(path, 'utf8'),
+      })
+    }
+    return
+  }
+
+  if (!pathStat.isDirectory()) {
+    return
+  }
+
+  const entries = await readdir(path, { withFileTypes: true })
+  await Promise.all(
+    entries.map((entry) => collectTextPath(join(path, entry.name), projectRoot, files)),
+  )
+}
+
+async function readOptionalFile(path: string) {
+  try {
+    return await readFile(path, 'utf8')
+  } catch {
+    return ''
+  }
+}
+
+async function gitCommitHash() {
+  try {
+    const [{ stdout }, { stdout: statusStdout }] = await Promise.all([
+      execFile('git', ['rev-parse', 'HEAD'], {
+        cwd: process.cwd(),
+      }),
+      execFile('git', ['status', '--porcelain'], {
+        cwd: process.cwd(),
+      }),
+    ])
+    return `${stdout.trim()}${statusStdout.trim() ? '-dirty' : ''}`
+  } catch {
+    return 'unknown'
+  }
+}
+
+function hashString(value: string) {
+  return createHash('sha256').update(value).digest('hex').slice(0, 16)
 }
 
 async function collectMarkdownFiles(
@@ -1640,6 +2239,14 @@ function normalizeBaseUrl(baseUrl: string) {
   return baseUrl.replace(/\/+$/, '')
 }
 
+function normalizeWireApi(value?: string): OpenAICompatibleWireApi | undefined {
+  if (value === 'chat' || value === 'responses') {
+    return value
+  }
+
+  return undefined
+}
+
 function trimToChars(text: string, maxChars: number) {
   return text.length <= maxChars ? text : `${text.slice(0, maxChars)}…`
 }
@@ -1661,6 +2268,7 @@ export function parseGenerationEvalArgs(args: string[]): CliOptions {
     json: false,
     help: false,
     showPrompts: false,
+    judge: false,
   }
 
   for (let index = 0; index < args.length; index += 1) {
@@ -1688,6 +2296,20 @@ export function parseGenerationEvalArgs(args: string[]): CliOptions {
       index += 1
     } else if (arg === '--model') {
       options.model = args[index + 1]
+      index += 1
+    } else if (arg === '--wire-api') {
+      options.wireApi = normalizeWireApi(args[index + 1])
+      index += 1
+    } else if (arg === '--judge') {
+      options.judge = true
+    } else if (arg === '--judge-model') {
+      options.judgeModel = args[index + 1]
+      index += 1
+    } else if (arg === '--judge-wire-api') {
+      options.judgeWireApi = normalizeWireApi(args[index + 1])
+      index += 1
+    } else if (arg === '--reasoning-effort') {
+      options.reasoningEffort = args[index + 1]
       index += 1
     } else if (arg === '--temperature') {
       options.temperature = Number(args[index + 1])
@@ -1754,12 +2376,19 @@ Usage:
   NOVEL_ENGINE_EVAL_API_KEY=... \\
   NOVEL_ENGINE_EVAL_MODEL=... \\
     npm run generation:eval:long -- --repeat 3 --archive-dir .novel/evals/run-001
+  NOVEL_ENGINE_EVAL_BASE_URL=https://example.test \\
+  NOVEL_ENGINE_EVAL_MODEL=... \\
+  NOVEL_ENGINE_EVAL_WIRE_API=responses \\
+    npm run generation:eval:long -- --repeat 1 --judge --wire-api responses \\
+      --reasoning-effort high --archive-dir .novel/evals/phase0-real-001
 
 The baseline arm receives recent prose only. The recent-fill control receives
 the same budget filled with plain recent prose. The four-layer arm receives the
 same memory plan used by the editor. Without --dry-run this command calls an
-OpenAI-compatible /v1/chat/completions endpoint. Use --benchmark-project more
-than once to run a suite across frozen benchmark projects.
+OpenAI-compatible /v1/chat/completions endpoint by default. Use
+--wire-api responses for /v1/responses gateways, and --judge to run
+position-swapped pairwise judge-model review. Use --benchmark-project more than
+once to run a suite across frozen benchmark projects.
 `)
 }
 
@@ -1784,7 +2413,12 @@ async function main() {
           baseUrl: options.baseUrl,
           apiKey: options.apiKey,
           model: options.model,
+          wireApi: options.wireApi,
+          judge: options.judge,
+          judgeModel: options.judgeModel,
+          judgeWireApi: options.judgeWireApi,
           temperature: options.temperature,
+          reasoningEffort: options.reasoningEffort,
           maxOutputChars: options.maxOutputChars,
         })
       : await evaluateGeneration({
@@ -1798,7 +2432,12 @@ async function main() {
           baseUrl: options.baseUrl,
           apiKey: options.apiKey,
           model: options.model,
+          wireApi: options.wireApi,
+          judge: options.judge,
+          judgeModel: options.judgeModel,
+          judgeWireApi: options.judgeWireApi,
           temperature: options.temperature,
+          reasoningEffort: options.reasoningEffort,
           maxOutputChars: options.maxOutputChars,
         })
 

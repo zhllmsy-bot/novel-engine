@@ -1,0 +1,175 @@
+{
+  "enabled": true,
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://sub.kedaya.xyz",
+    "model": "gpt-5.5",
+    "wireApi": "responses"
+  },
+  "results": [
+    {
+      "runId": "chapter-006-repeat-1",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "pair": "baseline:four-layer",
+      "order": "candidate-right",
+      "leftArm": "baseline",
+      "rightArm": "four-layer",
+      "choice": "baseline",
+      "rawChoice": "A",
+      "reason": "A围绕镜湖钥与黑潮司的当前矛盾解释动机，承接更自然且较少擅自扩展设定，B中废庙、封冻、铜铃残图等信息显得突兀并有剧透风险。"
+    },
+    {
+      "runId": "chapter-006-repeat-1",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "pair": "baseline:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "baseline",
+      "choice": "baseline",
+      "rawChoice": "B",
+      "reason": "B更自然地承接誓言与镜湖钥的冲突，并回收无名信、旧印、黑潮司等线索而不过度揭开过往设定。"
+    },
+    {
+      "runId": "chapter-006-repeat-1",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-right",
+      "leftArm": "recent-fill",
+      "rightArm": "four-layer",
+      "choice": "four-layer",
+      "rawChoice": "B",
+      "reason": "B承接更流畅，黑潮司、镜湖封冻与誓言等设定回收更自然，人物情绪也比A更顺而不显信息堆叠。"
+    },
+    {
+      "runId": "chapter-006-repeat-1",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "recent-fill",
+      "choice": "recent-fill",
+      "rawChoice": "B",
+      "reason": "B承接更顺畅，能自然回收雾市、石塔、黑潮司来信和镜湖封冻等既有线索，且没有明显越界剧透或突兀新增设定。"
+    },
+    {
+      "runId": "chapter-006-repeat-2",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "pair": "baseline:four-layer",
+      "order": "candidate-right",
+      "leftArm": "baseline",
+      "rightArm": "four-layer",
+      "choice": "four-layer",
+      "rawChoice": "B",
+      "reason": "B对镜湖钥、青灯誓言和黑潮司旧印的回应更连贯且有情绪承接，没有明显违设或剧透；A虽合理但回收较单薄。"
+    },
+    {
+      "runId": "chapter-006-repeat-2",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "pair": "baseline:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "baseline",
+      "choice": "baseline",
+      "rawChoice": "B",
+      "reason": "B更自然地承接了黑潮司无名信、旧印和搜查行囊等既有线索，语气克制且未额外加入可能偏设定的钥霜反应。"
+    },
+    {
+      "runId": "chapter-006-repeat-2",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-right",
+      "leftArm": "recent-fill",
+      "rightArm": "four-layer",
+      "choice": "four-layer",
+      "rawChoice": "B",
+      "reason": "B在保留关键誓言与镜湖钥设定的同时，情绪承接更自然，伏笔回收更顺滑，且没有明显越界剧透。"
+    },
+    {
+      "runId": "chapter-006-repeat-2",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "recent-fill",
+      "choice": "recent-fill",
+      "rawChoice": "B",
+      "reason": "B承接更自然克制，准确回收黑潮司、石塔旧物与镜湖封冻等伏笔，且未额外添加可能偏离设定的新异象。"
+    },
+    {
+      "runId": "chapter-006-repeat-3",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "pair": "baseline:four-layer",
+      "order": "candidate-right",
+      "leftArm": "baseline",
+      "rightArm": "four-layer",
+      "choice": "baseline",
+      "rawChoice": "A",
+      "reason": "A在保留疑问和人物立场的同时自然承接并回收青灯誓与钥的伏笔，B则过早断言黑潮司目的和钥的规则，略有剧透和设定外扩之嫌。"
+    },
+    {
+      "runId": "chapter-006-repeat-3",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "pair": "baseline:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "baseline",
+      "choice": "baseline",
+      "rawChoice": "B",
+      "reason": "B承接更克制自然，既回收青灯誓与镜湖钥的关系，又未擅自揭示黑潮司目的或新增钥的规则。"
+    },
+    {
+      "runId": "chapter-006-repeat-3",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-right",
+      "leftArm": "recent-fill",
+      "rightArm": "four-layer",
+      "choice": "recent-fill",
+      "rawChoice": "A",
+      "reason": "A承接誓言与镜湖钥更稳妥，回收雾市、石塔、黑潮司等伏笔时保留未知感，较少提前揭示黑潮司目的和钥的规则。"
+    },
+    {
+      "runId": "chapter-006-repeat-3",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "recent-fill",
+      "choice": "recent-fill",
+      "rawChoice": "B",
+      "reason": "B更自然地承接誓言与镜湖钥伏笔，保留黑潮司目的的不确定性，设定信息不过度外推，整体更稳妥。"
+    }
+  ],
+  "comparisons": [
+    {
+      "baseline": "baseline",
+      "pairedReviews": 6,
+      "fourLayerWins": 1,
+      "baselineWins": 5,
+      "ties": 0,
+      "invalid": 0,
+      "fourLayerWinRate": 0.16666666666666666
+    },
+    {
+      "baseline": "recent-fill",
+      "pairedReviews": 6,
+      "fourLayerWins": 2,
+      "baselineWins": 4,
+      "ties": 0,
+      "invalid": 0,
+      "fourLayerWinRate": 0.3333333333333333
+    }
+  ]
+}
