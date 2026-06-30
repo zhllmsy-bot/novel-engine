@@ -440,12 +440,17 @@ npm run generation:eval -- --dry-run \
 ```
 
 The report scores generated text with deterministic first-pass criteria for
-callback hits, setting violations, and future leaks. Treat that as triage, not
-as the final product judgment; human or judge-model review still decides whether
-the continuation is natural. `--archive-dir` writes JSON, Markdown, and
-`human-review.csv` so the prompt/output evidence is reproducible. The real-run
-gate requires four-layer memory to beat both baselines by callback win rate,
-without increasing setting violations or future leaks. See
+callback hits, setting violations, and future leaks. It also records reusable
+`src/eval` guard and structure-metric signals: L1 redline guards catch future
+leaks, configured setting contradictions, and prominent unknown entities; L2
+structure metrics show whether setting and callback claim groups are visible in
+the prompt context. Treat these as triage, not as the final product judgment;
+human or judge-model review still decides whether the continuation is natural.
+`--archive-dir` writes JSON, Markdown, `human-review.csv`, and
+`judge-review-prompts.jsonl` so the prompt/output evidence is reproducible and
+ready for position-swapped pairwise review. The real-run gate requires
+four-layer memory to beat both baselines by callback win rate, without
+increasing setting violations or future leaks. See
 `docs/phase0-generation-eval-plan.md`.
 
 Example `meta/memory-eval.json`:

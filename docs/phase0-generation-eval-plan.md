@@ -19,6 +19,8 @@ with recent-prose-only baselines.
 - Repeats: default 3 per arm, enough to avoid single-sample comfort.
 - First-pass scoring: deterministic text criteria for callback hits, setting
   violations, and future leaks.
+- Eval core: reusable `src/eval` functions for L1 guards, L2 structure metrics,
+  and L3 pairwise judge prompts.
 
 The first-pass scoring is only a triage signal. It catches obvious wins and
 obvious failures, but it does not replace human review or a stronger judge model.
@@ -51,8 +53,9 @@ npm run generation:eval -- --dry-run \
 ```
 
 Use `--json` for machine-readable console output. Use `--archive-dir` for the
-real deliverable: prompt, output, score, summary, and `human-review.csv` files
-that can be reviewed and compared later.
+real deliverable: prompt, output, score, guard, structure-metric, summary,
+`human-review.csv`, and `judge-review-prompts.jsonl` files that can be reviewed
+and compared later.
 
 ## Acceptance Line
 
@@ -78,7 +81,14 @@ is the final Phase 0 decision.
 - [x] Add repeat aggregation and underpowered gate.
 - [x] Add result archiving under `.novel/evals/` for repeatable review.
 - [x] Add a human review CSV template for author-facing quality notes.
-- [ ] Add a judge prompt that compares A/B outputs without seeing arm labels.
+- [x] Add reusable L1 redline guards for future leaks, setting contradictions,
+      and prominent entity hallucinations.
+- [x] Add first-pass L2 structure metrics for setting recall and foreshadow
+      coverage in prompt context.
+- [x] Add position-swapped judge prompts that compare outputs without seeing
+      arm labels.
+- [ ] Add promptfoo wrapper config around the reusable guards/metrics once the
+      local harness has enough benchmark projects.
 - [ ] Add at least two more benchmark corpora with different failure modes:
       character state drift and delayed plot-thread payoff.
 

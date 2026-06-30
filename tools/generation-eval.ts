@@ -3,6 +3,20 @@ import { mkdir, readdir, readFile, stat, writeFile } from 'node:fs/promises'
 import { basename, join, relative, resolve } from 'node:path'
 import { z } from 'zod'
 import {
+  runGenerationGuards,
+  type EvalGuardResult,
+} from '../src/eval/domainGuards.ts'
+import {
+  scoreGenerationOutput,
+  type GenerationEvalCriterion,
+  type GenerationEvalScore,
+} from '../src/eval/generationCriteria.ts'
+import { buildPairwiseJudgePrompt } from '../src/eval/judgeReview.ts'
+import {
+  computeGenerationStructureMetrics,
+  type EvalStructureMetric,
+} from '../src/eval/structureMetrics.ts'
+import {
   buildNarrativeMemoryPlan,
   getMemoryLayerPriority,
   memoryBudgetLayerOrder,
@@ -19,39 +33,6 @@ import type { CodexEntry, ProjectChapter } from '../src/project/projectTypes.ts'
 import type { NarrativeMemory } from '../src/types/domain.ts'
 
 export type GenerationEvalArmId = 'baseline' | 'recent-fill' | 'four-layer'
-export type GenerationEvalCriterionCategory =
-  | 'callback'
-  | 'setting'
-  | 'future_leak'
-
-export type GenerationEvalCriterion = {
-  id: string
-  description: string
-  category: GenerationEvalCriterionCategory
-  contains?: string[]
-  containsAny?: string[]
-  notContains?: string[]
-}
-
-export type GenerationEvalCriterionResult = GenerationEvalCriterion & {
-  ok: boolean
-  missing: string[]
-  missingAny: string[]
-  forbidden: string[]
-}
-
-export type GenerationEvalScore = {
-  criteria: number
-  passed: number
-  failed: number
-  callbackExpectations: number
-  callbackHits: number
-  settingExpectations: number
-  settingViolations: number
-  futureLeakChecks: number
-  futureLeaks: number
-  results: GenerationEvalCriterionResult[]
-}
 
 export type GenerationEvalArmReport = {
   id: GenerationEvalArmId
@@ -65,6 +46,8 @@ export type GenerationEvalArmReport = {
   outputChars?: number
   error?: string
   score?: GenerationEvalScore
+  guards?: EvalGuardResult[]
+  structureMetrics?: EvalStructureMetric[]
 }
 
 export type GenerationEvalRunArmReport = {
@@ -73,6 +56,8 @@ export type GenerationEvalRunArmReport = {
   outputChars?: number
   error?: string
   score?: GenerationEvalScore
+  guards?: EvalGuardResult[]
+  structureMetrics?: EvalStructureMetric[]
 }
 
 export type GenerationEvalRunReport = {
@@ -384,6 +369,12 @@ export async function evaluateGeneration(input: {
       includePrompt: input.includePrompts,
     }),
   ]
+  arms.forEach((arm) => {
+    arm.structureMetrics = computeGenerationStructureMetrics({
+      prompt: arm.promptPreview,
+      criteria: evalConfig.criteria,
+    })
+  })
 
   if (!dryRun && !providerConfig.apiKey) {
     errors.push(
@@ -408,6 +399,17 @@ export async function evaluateGeneration(input: {
           runArm.output = output
           runArm.outputChars = output.length
           runArm.score = scoreGenerationOutput(output, evalConfig.criteria)
+          runArm.guards = runGenerationGuards({
+            output,
+            currentChapter: chapter,
+            chapters: project.chapters,
+            codexEntries: project.codexEntries,
+            criteria: evalConfig.criteria,
+          })
+          runArm.structureMetrics = computeGenerationStructureMetrics({
+            prompt: arm.promptPreview,
+            criteria: evalConfig.criteria,
+          })
         } catch (error) {
           runArm.error = String(error)
         }
@@ -471,51 +473,6 @@ export async function evaluateGeneration(input: {
   }
 
   return report
-}
-
-export function scoreGenerationOutput(
-  output: string,
-  criteria: GenerationEvalCriterion[],
-): GenerationEvalScore {
-  const results = criteria.map((criterion) => {
-    const missing = (criterion.contains || []).filter(
-      (expected) => !output.includes(expected),
-    )
-    const hasAny =
-      !criterion.containsAny?.length ||
-      criterion.containsAny.some((expected) => output.includes(expected))
-    const forbidden = (criterion.notContains || []).filter((expected) =>
-      output.includes(expected),
-    )
-
-    return {
-      ...criterion,
-      ok: missing.length === 0 && hasAny && forbidden.length === 0,
-      missing,
-      missingAny: hasAny ? [] : criterion.containsAny || [],
-      forbidden,
-    }
-  })
-  const callbackResults = results.filter((result) => result.category === 'callback')
-  const settingResults = results.filter((result) => result.category === 'setting')
-  const futureLeakResults = results.filter(
-    (result) => result.category === 'future_leak',
-  )
-
-  return {
-    criteria: results.length,
-    passed: results.filter((result) => result.ok).length,
-    failed: results.filter((result) => !result.ok).length,
-    callbackExpectations: callbackResults.length,
-    callbackHits: callbackResults.filter((result) => result.ok).length,
-    settingExpectations: settingResults.length,
-    settingViolations: settingResults.filter((result) => !result.ok).length,
-    futureLeakChecks: futureLeakResults.length,
-    futureLeaks: futureLeakResults.filter(
-      (result) => result.forbidden.length > 0,
-    ).length,
-    results,
-  }
 }
 
 export function formatGenerationEvalReport(report: GenerationEvalReport): string {
@@ -1167,6 +1124,10 @@ async function archiveGenerationEvalReport(input: {
     join(archivePath, 'human-review.csv'),
     buildHumanReviewCsv(input.report),
   )
+  await writeFile(
+    join(archivePath, 'judge-review-prompts.jsonl'),
+    buildJudgeReviewJsonl(input.report),
+  )
 
   return archivePath
 }
@@ -1189,6 +1150,10 @@ async function archiveGenerationEvalSuite(input: {
     join(archivePath, 'human-review.csv'),
     buildSuiteHumanReviewCsv(input.suite),
   )
+  await writeFile(
+    join(archivePath, 'judge-review-prompts.jsonl'),
+    buildSuiteJudgeReviewJsonl(input.suite),
+  )
 
   return archivePath
 }
@@ -1201,6 +1166,20 @@ function buildGenerationEvalSummary(report: GenerationEvalReport) {
   const armLines = report.aggregate.arms.map(
     (arm) =>
       `- ${arm.id}: runs ${arm.runs}, errors ${arm.errors}, score ${formatNumber(arm.scoreMean)}±${formatNumber(arm.scoreStdDev)}, callbacks ${formatNumber(arm.callbackMean)}±${formatNumber(arm.callbackStdDev)}, setting violations ${formatNumber(arm.settingViolationMean)}±${formatNumber(arm.settingViolationStdDev)}, future leaks ${arm.futureLeakTotal}`,
+  )
+  const structureLines = report.arms.flatMap((arm) =>
+    (arm.structureMetrics || []).map(
+      (metric) =>
+        `- ${arm.id} ${metric.id}: ${formatPercent(metric.score)} (${metric.numerator}/${metric.denominator})`,
+    ),
+  )
+  const guardLines = report.runs.flatMap((run) =>
+    run.arms.flatMap((arm) =>
+      (arm.guards || []).map(
+        (guard) =>
+          `- ${run.id} ${arm.id} ${guard.id}: ${guard.pass ? 'PASS' : 'FAIL'} ${guard.reason}`,
+      ),
+    ),
   )
 
   return `# Generation Eval Summary
@@ -1221,6 +1200,14 @@ function buildGenerationEvalSummary(report: GenerationEvalReport) {
 
 ${armLines.join('\n') || '- none'}
 
+## Structure Metrics
+
+${structureLines.join('\n') || '- none'}
+
+## Guards
+
+${guardLines.join('\n') || '- none'}
+
 ## Comparisons
 
 ${comparisonLines.join('\n') || '- none'}
@@ -1228,6 +1215,7 @@ ${comparisonLines.join('\n') || '- none'}
 ## Human Review
 
 Use \`human-review.csv\` for blind paired review. Deterministic scores only catch hard failures; naturalness, voice, and callback quality still need review.
+Use \`judge-review-prompts.jsonl\` for position-swapped judge-model or human pairwise review.
 `
 }
 
@@ -1259,6 +1247,7 @@ ${projectLines.join('\n') || '- none'}
 ## Human Review
 
 Use the top-level \`human-review.csv\` to review all archived samples together. Deterministic scores remain hard-failure triage, not the final prose-quality judgment.
+Use \`judge-review-prompts.jsonl\` for position-swapped judge-model or human pairwise review.
 `
 }
 
@@ -1298,6 +1287,11 @@ function buildHumanReviewCsv(report: GenerationEvalReport) {
   }
 
   return `${rows.map((row) => row.map(csvCell).join(',')).join('\n')}\n`
+}
+
+function buildJudgeReviewJsonl(report: GenerationEvalReport) {
+  const rows = report.runs.flatMap((run) => buildJudgeRowsForRun(run))
+  return `${rows.map((row) => JSON.stringify(row)).join('\n')}${rows.length > 0 ? '\n' : ''}`
 }
 
 function buildSuiteHumanReviewCsv(suite: GenerationEvalSuiteReport) {
@@ -1340,6 +1334,68 @@ function buildSuiteHumanReviewCsv(suite: GenerationEvalSuiteReport) {
   }
 
   return `${rows.map((row) => row.map(csvCell).join(',')).join('\n')}\n`
+}
+
+function buildSuiteJudgeReviewJsonl(suite: GenerationEvalSuiteReport) {
+  const rows = suite.reports.flatMap((report) =>
+    report.runs.flatMap((run) =>
+      buildJudgeRowsForRun(run).map((row) => ({
+        ...row,
+        project: report.title || report.rootPath,
+      })),
+    ),
+  )
+  return `${rows.map((row) => JSON.stringify(row)).join('\n')}${rows.length > 0 ? '\n' : ''}`
+}
+
+function buildJudgeRowsForRun(run: GenerationEvalRunReport) {
+  const fourLayer = run.arms.find((arm) => arm.id === 'four-layer')
+  const baselines = run.arms.filter(
+    (arm) => arm.id === 'baseline' || arm.id === 'recent-fill',
+  )
+  if (!fourLayer?.output) return []
+  const fourLayerOutput = fourLayer.output
+
+  return baselines.flatMap((baseline) => {
+    if (!baseline.output) return []
+    const baselineOutput = baseline.output
+
+    const base = {
+      runId: run.id,
+      chapterId: run.chapterId,
+      repeatIndex: run.repeatIndex,
+      pair: `${baseline.id}:four-layer`,
+    }
+
+    return [
+      {
+        ...base,
+        order: 'candidate-right',
+        leftArm: baseline.id,
+        rightArm: fourLayer.id,
+        prompt: buildPairwiseJudgePrompt({
+          runId: run.id,
+          chapterId: run.chapterId,
+          repeatIndex: run.repeatIndex,
+          leftSample: baselineOutput,
+          rightSample: fourLayerOutput,
+        }),
+      },
+      {
+        ...base,
+        order: 'candidate-left',
+        leftArm: fourLayer.id,
+        rightArm: baseline.id,
+        prompt: buildPairwiseJudgePrompt({
+          runId: run.id,
+          chapterId: run.chapterId,
+          repeatIndex: run.repeatIndex,
+          leftSample: fourLayerOutput,
+          rightSample: baselineOutput,
+        }),
+      },
+    ]
+  })
 }
 
 function mean(values: number[]) {
@@ -1434,6 +1490,14 @@ function formatArmReport(arm: GenerationEvalArmReport) {
       ? `Score ${arm.id}: ${arm.score.passed}/${arm.score.criteria} criteria, callbacks ${arm.score.callbackHits}/${arm.score.callbackExpectations}, setting violations ${arm.score.settingViolations}, future leaks ${arm.score.futureLeaks}`
       : undefined,
     arm.error ? `ERROR arm:${arm.id} ${arm.error}` : undefined,
+    ...(arm.structureMetrics || []).map(
+      (metric) =>
+        `Structure ${arm.id}:${metric.id} ${formatPercent(metric.score)} (${metric.numerator}/${metric.denominator})`,
+    ),
+    ...(arm.guards || []).map(
+      (guard) =>
+        `Guard ${arm.id}:${guard.id} ${guard.pass ? 'PASS' : 'FAIL'} ${guard.reason}`,
+    ),
     arm.prompt ? `Prompt ${arm.id}:\n${arm.prompt}` : undefined,
     arm.output ? `Text ${arm.id}:\n${arm.output}` : undefined,
   ]

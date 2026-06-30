@@ -8,8 +8,8 @@ import {
   formatGenerationEvalReport,
   formatGenerationEvalSuiteReport,
   parseGenerationEvalArgs,
-  scoreGenerationOutput,
 } from './generation-eval.ts'
+import { scoreGenerationOutput } from '../src/eval/generationCriteria.ts'
 
 describe('generation eval tool', () => {
   it('parses dry-run generation eval options', () => {
@@ -70,6 +70,12 @@ describe('generation eval tool', () => {
       baseline?.promptChars || 0,
     )
     expect(fourLayer?.memoryCount).toBeGreaterThan(1)
+    expect(fourLayer?.structureMetrics).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ id: 'setting_recall' }),
+        expect.objectContaining({ id: 'foreshadow_coverage' }),
+      ]),
+    )
     expect(baseline?.prompt).toContain('第006章 镜湖重逢')
     expect(baseline?.prompt).not.toContain('灯灭之前')
     expect(fourLayer?.prompt).toContain('灯灭之前')
@@ -96,6 +102,9 @@ describe('generation eval tool', () => {
       await expect(stat(join(root, 'generation-eval-report.json'))).resolves.toBeTruthy()
       await expect(stat(join(root, 'generation-eval-summary.md'))).resolves.toBeTruthy()
       await expect(stat(join(root, 'human-review.csv'))).resolves.toBeTruthy()
+      await expect(
+        stat(join(root, 'judge-review-prompts.jsonl')),
+      ).resolves.toBeTruthy()
       expect(
         await readFile(join(root, 'generation-eval-summary.md'), 'utf8'),
       ).toContain('Generation Eval Summary')
@@ -128,6 +137,9 @@ describe('generation eval tool', () => {
         stat(join(root, 'generation-eval-suite-summary.md')),
       ).resolves.toBeTruthy()
       await expect(stat(join(root, 'human-review.csv'))).resolves.toBeTruthy()
+      await expect(
+        stat(join(root, 'judge-review-prompts.jsonl')),
+      ).resolves.toBeTruthy()
       await expect(
         stat(
           join(
