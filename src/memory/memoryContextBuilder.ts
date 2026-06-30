@@ -80,7 +80,12 @@ export const memoryBudgetLayerOrder = [
 export const memoryBudgetPolicy = {
   safetyWindowRatio: 0.6,
   recentChapterCount: 3,
-  dynamicRecallTopN: 3,
+  dynamicRecallTopN: 6,
+  dynamicRecallGuaranteedTopN: {
+    chapterSummary: 1,
+    plotThread: 1,
+    indexed: 2,
+  },
   detailedSummaryRecentCount: 5,
   distantSummaryMaxSignals: 4,
   promptOrder: ['用户指令', ...memoryBudgetLayerOrder],
@@ -114,6 +119,11 @@ export const memoryBudgetPolicy = {
   safetyWindowRatio: number
   recentChapterCount: number
   dynamicRecallTopN: number
+  dynamicRecallGuaranteedTopN: {
+    chapterSummary: number
+    plotThread: number
+    indexed: number
+  }
   detailedSummaryRecentCount: number
   distantSummaryMaxSignals: number
   promptOrder: readonly ('用户指令' | NarrativeMemory['layer'])[]
@@ -514,13 +524,20 @@ function buildRecallMemories(
     },
   )
 
-  return [
-    ...summaryRecallMemories,
-    ...plotThreadRecallMemories,
-    ...indexedRecallMemories,
-  ]
-    .toSorted((left, right) => right.priority - left.priority)
-    .slice(0, memoryBudgetPolicy.dynamicRecallTopN)
+  return selectRecallMemories([
+    {
+      guaranteedTopN: memoryBudgetPolicy.dynamicRecallGuaranteedTopN.chapterSummary,
+      memories: summaryRecallMemories,
+    },
+    {
+      guaranteedTopN: memoryBudgetPolicy.dynamicRecallGuaranteedTopN.plotThread,
+      memories: plotThreadRecallMemories,
+    },
+    {
+      guaranteedTopN: memoryBudgetPolicy.dynamicRecallGuaranteedTopN.indexed,
+      memories: indexedRecallMemories,
+    },
+  ])
 }
 
 function buildPlotMemory(
@@ -734,30 +751,65 @@ function applyMemoryBudget(
   budgetChars: number,
 ): NarrativeMemoryPlan {
   const sorted = [...memories].sort((left, right) => right.priority - left.priority)
-  const selected: NarrativeMemory[] = []
+  const allocatedCharsByIndex = new Map<number, number>()
   const entries: MemoryBudgetAuditEntry[] = []
+
+  const guaranteedBudget = Math.min(
+    budgetChars,
+    Math.round(budgetChars * memoryBudgetPolicy.safetyWindowRatio),
+  )
+  const layerMinimumBudgets = buildLayerMinimumBudgets(sorted, guaranteedBudget)
+
+  for (const layer of memoryBudgetLayerOrder) {
+    const layerBudget = layerMinimumBudgets[layer]
+    if (layerBudget <= 0) {
+      continue
+    }
+
+    consumeBudgetForLayer({
+      layer,
+      sorted,
+      allocatedCharsByIndex,
+      budgetChars: layerBudget,
+    })
+  }
+
+  const usedAfterMinimums = sumBy(
+    [...allocatedCharsByIndex.values()],
+    (value) => value,
+  )
+  const remainingBudget = Math.max(0, budgetChars - usedAfterMinimums)
+  if (remainingBudget > 0) {
+    consumeBudgetForLayer({
+      sorted,
+      allocatedCharsByIndex,
+      budgetChars: remainingBudget,
+    })
+  }
+
+  const selectedByIndex = new Map<number, NarrativeMemory>()
   let used = 0
 
-  for (const memory of sorted) {
-    const remaining = budgetChars - used
-    if (remaining <= 0) {
+  for (const [index, memory] of sorted.entries()) {
+    const allocatedChars = allocatedCharsByIndex.get(index) || 0
+    if (allocatedChars <= 0) {
       entries.push(auditEntry(memory, 0, 'dropped'))
       continue
     }
 
-    const body =
-      memory.body.length <= remaining
-        ? memory.body
-        : `${memory.body.slice(0, Math.max(0, remaining - 1))}…`
+    const body = renderBudgetedBody(memory.body, allocatedChars)
+    if (!body) {
+      entries.push(auditEntry(memory, 0, 'dropped'))
+      continue
+    }
 
-    if (!body.trim()) continue
-
-    selected.push({
+    selectedByIndex.set(index, {
       layer: memory.layer,
       body,
       source: memory.source,
     })
     used += body.length
+
     entries.push(
       auditEntry(
         memory,
@@ -768,7 +820,7 @@ function applyMemoryBudget(
   }
 
   return {
-    memories: selected.sort(
+    memories: [...selectedByIndex.values()].sort(
       (left, right) =>
         getMemoryLayerPriority(right.layer) - getMemoryLayerPriority(left.layer),
     ),
@@ -780,6 +832,130 @@ function applyMemoryBudget(
       entries,
     },
   }
+}
+
+function buildLayerMinimumBudgets(
+  memories: WeightedMemory[],
+  totalBudget: number,
+) {
+  const presentLayers = new Set(memories.map((memory) => memory.layer))
+  const rawTargets = Object.fromEntries(
+    memoryBudgetLayerOrder.map((layer) => [
+      layer,
+      presentLayers.has(layer)
+        ? Math.round(
+            memoryBudgetPolicy.layers[layer].targetBudgetShare[0] * totalBudget,
+          )
+        : 0,
+    ]),
+  ) as Record<NarrativeMemory['layer'], number>
+
+  let assigned = sumBy(Object.values(rawTargets), (value) => value)
+  if (assigned <= totalBudget) {
+    return rawTargets
+  }
+
+  const adjusted = { ...rawTargets }
+
+  for (const layer of [...memoryBudgetLayerOrder].toReversed()) {
+    if (assigned <= totalBudget) {
+      break
+    }
+
+    const removable = Math.min(adjusted[layer], assigned - totalBudget)
+    adjusted[layer] -= removable
+    assigned -= removable
+  }
+
+  return adjusted
+}
+
+function consumeBudgetForLayer(input: {
+  layer?: NarrativeMemory['layer']
+  sorted: WeightedMemory[]
+  allocatedCharsByIndex: Map<number, number>
+  budgetChars: number
+}) {
+  let spent = 0
+
+  for (const [index, memory] of input.sorted.entries()) {
+    if (input.layer && memory.layer !== input.layer) {
+      continue
+    }
+
+    const alreadyAllocated = input.allocatedCharsByIndex.get(index) || 0
+    const remainingCharsInMemory = Math.max(0, memory.body.length - alreadyAllocated)
+    if (remainingCharsInMemory <= 0) {
+      continue
+    }
+
+    const remainingBudget = input.budgetChars - spent
+    if (remainingBudget <= 0) {
+      break
+    }
+
+    const nextAllocation = Math.min(remainingCharsInMemory, remainingBudget)
+    if (nextAllocation <= 0) {
+      continue
+    }
+
+    input.allocatedCharsByIndex.set(index, alreadyAllocated + nextAllocation)
+    spent += nextAllocation
+  }
+
+  return spent
+}
+
+function renderBudgetedBody(body: string, allocatedChars: number) {
+  if (allocatedChars <= 0) {
+    return ''
+  }
+
+  if (body.length <= allocatedChars) {
+    return body
+  }
+
+  if (allocatedChars === 1) {
+    return '…'
+  }
+
+  const hardLimit = allocatedChars - 1
+  const slice = body.slice(0, hardLimit).trimEnd()
+
+  return slice ? `${slice}…` : '…'
+}
+
+function selectRecallMemories(
+  channels: {
+    guaranteedTopN: number
+    memories: WeightedMemory[]
+  }[],
+) {
+  const guaranteed: WeightedMemory[] = []
+  const leftovers: WeightedMemory[] = []
+
+  for (const channel of channels) {
+    const sorted = [...channel.memories].toSorted(
+      (left, right) => right.priority - left.priority,
+    )
+    guaranteed.push(...sorted.slice(0, channel.guaranteedTopN))
+    leftovers.push(...sorted.slice(channel.guaranteedTopN))
+  }
+
+  const combined = [...guaranteed].toSorted(
+    (left, right) => right.priority - left.priority,
+  )
+  const remainingSlots = Math.max(
+    0,
+    memoryBudgetPolicy.dynamicRecallTopN - combined.length,
+  )
+
+  return [
+    ...combined,
+    ...leftovers
+      .toSorted((left, right) => right.priority - left.priority)
+      .slice(0, remainingSlots),
+  ]
 }
 
 function buildLayerBudgetSummaries(

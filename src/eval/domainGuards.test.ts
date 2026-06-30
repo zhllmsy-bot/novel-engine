@@ -29,8 +29,18 @@ const codexEntry: CodexEntry = {
   name: '镜湖钥',
   type: 'item',
   path: 'codex/items/key.md',
-  keywords: ['镜湖钥'],
+  keywords: ['镜湖钥', '黑潮司'],
   body: '镜湖钥不能交给黑潮司。',
+  frontmatter: {},
+  currentState: {},
+}
+const characterEntry: CodexEntry = {
+  id: 'character-shenbo',
+  name: '沈泊',
+  type: 'character',
+  path: 'codex/characters/shenbo.md',
+  keywords: ['沈泊'],
+  body: '守灯人。',
   frontmatter: {},
   currentState: {},
 }
@@ -77,11 +87,22 @@ describe('domain guards', () => {
   it('flags unknown prominent entities while allowing codex entities', () => {
     const result = entityHallucinationGuard({
       output: '镜湖钥和玄霜宗同时出现。',
-      codexEntries: [codexEntry],
+      codexEntries: [codexEntry, characterEntry],
     })
 
     expect(result.pass).toBe(false)
     expect(result.matches).toContain('玄霜宗')
     expect(result.matches).not.toContain('镜湖钥')
+  })
+
+  it('does not flag narrative clauses as hallucinated entities', () => {
+    const result = entityHallucinationGuard({
+      output:
+        '这把钥不是黑潮司的。沈泊把镜湖钥握得更紧，只说自己不会失约。',
+      codexEntries: [codexEntry, characterEntry],
+    })
+
+    expect(result.pass).toBe(true)
+    expect(result.matches).toEqual([])
   })
 })

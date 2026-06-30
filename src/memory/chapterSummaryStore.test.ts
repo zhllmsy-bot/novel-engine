@@ -59,8 +59,55 @@ describe('chapter summary store', () => {
 
     expect(summary.summary).toContain('赤羽令')
     expect(summary.summary).toContain('暗河司')
+    expect(summary.summary).toContain('起因:')
+    expect(summary.summary).toContain('结果:')
     expect(summary.keyEvents.at(-1)).toContain('绝不能交给暗河司')
     expect(summary.charactersInvolved).toEqual(['item-red-feather-token'])
+  })
+
+  it('builds a structured fallback summary that preserves causal progression', () => {
+    const chapter: ProjectChapter = {
+      id: 'chapter-causal-summary',
+      title: '第011章 灯下问誓',
+      status: '编辑中',
+      path: 'manuscript/chapter-causal-summary.md',
+      order: 11,
+      content: '',
+      wordCount: 0,
+    }
+    const codexEntries: CodexEntry[] = [
+      {
+        id: 'char-jianli',
+        name: '简璃',
+        type: 'character',
+        path: 'codex/characters/jianli.md',
+        keywords: ['简璃', '青灯誓', '镜湖钥'],
+        body: '简璃守着青灯誓。',
+        frontmatter: {},
+        currentState: {},
+      },
+    ]
+    const content = [
+      '# 第011章 灯下问誓',
+      '',
+      '简璃在镜湖边重新点亮旧灯。',
+      '因为青灯誓再次震动，她意识到镜湖钥并没有沉底。',
+      '于是她决定当夜回城查旧卷。',
+      '临走前她提醒沈微，若有人提前问起镜湖钥，绝不能先交底。',
+    ].join('\n')
+    const store = createMemoryChapterSummaryStore()
+    const summary = store.upsertGeneratedSummary({
+      chapter,
+      content,
+      codexEntries,
+    })
+
+    expect(summary.summary).toContain('起因:')
+    expect(summary.summary).toContain('推进:')
+    expect(summary.summary).toContain('结果:')
+    expect(summary.summary).toContain('伏笔:')
+    expect(summary.summary).toContain('因为青灯誓再次震动')
+    expect(summary.summary).toContain('绝不能先交底')
   })
 
   it('does not overwrite an edited summary with generated content', () => {

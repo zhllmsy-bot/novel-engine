@@ -1,0 +1,777 @@
+{
+  "project": "霜桥逆火",
+  "chapterId": "chapter-006",
+  "fingerprint": {
+    "gitCommit": "102bccb1ea4c40177d0f89c98ecf6a074cf6615a-dirty",
+    "datasetVersion": "e2b8d5bf7b5b5f4f",
+    "datasetHash": "24c11ad6d9759c35",
+    "configHash": "b2895d9f1fbbffef"
+  },
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/",
+    "model": "gpt-5.5",
+    "wireApi": "responses",
+    "reasoningEffort": "xhigh"
+  },
+  "runs": [
+    {
+      "runId": "chapter-006-repeat-1",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。",
+              "promptChars": 809,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_02d963ae05ea1b82016a43fdade618819194a73c058eb4a914",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 666,
+                "outputTokens": 812,
+                "totalTokens": 1478
+              },
+              "outputPreview": "孟回没有退。\n\n他把左脚往后挪了半寸，正好踩在迟雁要越过来的那块桥板边上。那块板会响，他早记着；迟雁若再向前一步，声响会把她送到刀口前。于是他没回头，只用肩背挡住她的影子，短刃贴着栏杆横开，像把霜桥窄窄的路又削去一半。\n\n校尉冷笑道：“脚夫，听不懂人话？”\n\n孟回抬眼看他，风从桥下卷上来，吹得他袖口发硬。\n\n“听得懂。”他说，“所以才不退。”\n\n迟雁在他身后顿了一下。\n\n这句话不像孟回。\n\n从前他最会把自己从麻烦里择出去，路是路，人是人，银钱交清，脚印抹净，他便能低头钻进下一条巷子。若还是那时的孟回，此刻该弯腰赔笑，说小人只送到桥头，后面的事与小人无干。\n\n可他把短刃握得更稳了一些。\n\n“她从我身后过桥，”孟回又说，“今夜这事，就与我有关。”"
+            }
+          }
+        },
+        {
+          "id": "recent-fill",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n更早正文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n更早正文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n更早正文 第003章 炉坊夜问:\n# 第003章 炉坊夜问\n\n炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。\n\n迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。\n\n他说谁要带迟雁走，先从他面前过。那一夜他知道，自己以后不会再退让。\n\n更早正文 第002章 抄录口供:\n# 第002章 抄录口供\n\n巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，连姓名都想少说一个字。\n\n迟雁看见他把能避开的视线都避开了，只在袖中悄悄攥紧那张写着旧案的薄纸。\n\n更早正文 第001章 旧桥避雪:\n# 第001章 旧桥避雪\n\n孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。\n\n他第一反应不是拔刀，而是把迟雁推进阴影里，自己低头装作替人搬炭的脚夫。\n\n迟雁问他为何总想着退，孟回只说活着比逞强重要。",
+              "promptChars": 1291,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0ab359299e25c1e6016a43fdbeac6c8193a65ce303ce83e6a8",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 1019,
+                "outputTokens": 766,
+                "totalTokens": 1785
+              },
+              "outputPreview": "孟回没有退。\n\n迟雁刚往前挪了一寸，他便反手按住她的袖口，力道不重，却正好把她压回自己背后。桥栏在她一侧，寒风在另一侧，孟回的肩背横在中间，像把霜桥上最后一点缝隙也堵住了。\n\n校尉冷笑，又说了一遍：“退开。”\n\n孟回抬起眼，没有再把目光避到人群脚下，也没有说自己只是搬炭的脚夫。\n\n他说：“她在我身后，这事便与我有关。”\n\n这话出口时，连他自己都觉得陌生。若在旧桥避雪那夜，他一定先低头，先找阴影，先把所有能退的路数算清。可如今身后有迟雁，桥口有刀，退一步便不是活命，而是把人交出去。于是他把短刃压低半分，脚跟钉在结霜的桥板上，再没有给自己留出那条最熟的退路。"
+            }
+          }
+        },
+        {
+          "id": "four-layer",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n## 2. L0 事实 (codex/characters/menghui.md)\n孟回: 孟回原本习惯避祸求生，总想先把人藏起来再说。 - 立场: 公开违抗巡夜司 - 誓言: 替迟雁挡下搜身令 当前状态: stance=公开违抗巡夜司；oath=替迟雁挡下搜身令；resolve=不再退让\n\n## 3. L0 事实 (codex/characters/chiyan.md)\n迟雁: 迟雁是巡夜司旧案的活证人，也是孟回如今必须护住的人。 - 风险: 被巡夜司追捕 - 秘密: 握有旧案卷宗 当前状态: risk=被巡夜司追捕；secret=握有旧案卷宗\n\n## 4. L0 事实 (codex/factions/nightwatch-office.md)\n巡夜司: 巡夜司正在封城搜人，目标是带着旧案卷宗的迟雁。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 城门风紧: 城门封得很紧，告示上全是巡夜司的搜捕令。 孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。 他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。 等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。 命中关键词: 迟雁、巡夜司、孟回、霜桥\n\n## 6. L3 意图 (recall:chapter_summary:chapter-003)\n关联召回: 第003章 炉坊夜问: 炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。 迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。 他说谁要带迟雁走，先从他面前过。 那一夜他知道，自己以后不会再退让。 命中关键词: 迟雁、巡夜司、孟回\n\n## 7. L3 意图 (recall:chapter_summary:chapter-002)\n关联召回: 第002章 抄录口供: 巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，连姓名都想少说一个字。 迟雁看见他把能避开的视线都避开了，只在袖中悄悄攥紧那张写着旧案的薄纸。 命中关键词: 迟雁、巡夜司、孟回\n\n## 8. L3 意图 (meta/project.json)\n项目《霜桥逆火》当前正在编辑 第006章 霜…",
+              "promptChars": 1787,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_064d077b805b3dd6016a43fdcfaa6c81909193b5ddfee2e55a",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 1380,
+                "outputTokens": 754,
+                "totalTokens": 2134
+              },
+              "outputPreview": "孟回没有退。\n\n他反而往桥心偏了半步，右脚踩住那块会响的桥板，肩背一沉，把迟雁整个人遮在自己身后。迟雁刚要动，他反手按住她的袖口，力道不重，却明白得很：别出来。\n\n校尉的刀鞘又敲了一下桥栏。\n\n孟回抬眼看过去，声音比风还低，却没有躲：“这事从现在起，与我有关。”\n\n话出口时，他自己先听见了里头的生硬。若是从前，他会先陪笑，会说自己只是搬货的，会想着哪处桥洞能藏人，哪句话能把灾祸从身边绕开。可今晚迟雁就在他背后，巡夜司的搜身令也在眼前，他再往旁边让一步，就等于亲手把人交出去。\n\n所以他把短刃横得更稳些，又补了一句：“要搜她，先搜我。”"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "runId": "chapter-006-repeat-2",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "arms": [
+        {
+          "id": "baseline",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。",
+              "promptChars": 809,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_02a0ae9700efd391016a43fddfaee481948a088f04bb128617",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 666,
+                "outputTokens": 795,
+                "totalTokens": 1461
+              },
+              "outputPreview": "孟回没有退。\n\n他反而往桥心斜跨了半步，肩背一转，把迟雁的身形全挡进自己影子里。风掀起她披风的一角，他用肘尖轻轻压住，又把短刃往下沉了沉，刀背贴着冰冷的桥栏，留给她的只有身后一线窄路。\n\n“校尉说错了。”他开口时声音不高，却压过了桥上的风，“这桥是我带她上的，这事就与我有关。”\n\n这话若放在从前，绝不会从孟回嘴里说出来。\n\n从前的他最懂得把自己摘干净，哪一袋米该背，哪一条巷该走，哪一桩祸事该避，他心里比谁都清楚。巡夜司说与脚夫无关，他便该低头退到桥边，等刀光从旁人身上过去。\n\n可他这一次没有让开。\n\n他把迟雁留在身后，像把祠堂里那半盏残灯、那卷灰布里的东西，还有这些夜里一同记下的路，全都一并挡住了。"
+            }
+          }
+        },
+        {
+          "id": "recent-fill",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n更早正文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n更早正文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n更早正文 第003章 炉坊夜问:\n# 第003章 炉坊夜问\n\n炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。\n\n迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。\n\n他说谁要带迟雁走，先从他面前过。那一夜他知道，自己以后不会再退让。\n\n更早正文 第002章 抄录口供:\n# 第002章 抄录口供\n\n巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，连姓名都想少说一个字。\n\n迟雁看见他把能避开的视线都避开了，只在袖中悄悄攥紧那张写着旧案的薄纸。\n\n更早正文 第001章 旧桥避雪:\n# 第001章 旧桥避雪\n\n孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。\n\n他第一反应不是拔刀，而是把迟雁推进阴影里，自己低头装作替人搬炭的脚夫。\n\n迟雁问他为何总想着退，孟回只说活着比逞强重要。",
+              "promptChars": 1291,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_030440a0becfac81016a43fdf1631081938383484df0fdd58d",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 1019,
+                "outputTokens": 770,
+                "totalTokens": 1789
+              },
+              "outputPreview": "孟回没有退。\n\n他反而往迟雁身前挪了半步，左肘向后一拦，正抵住她将要越出的肩。桥面窄，他的脚跟卡在两块霜滑的桥板之间，短刃贴着栏杆横开，刚好把迟雁和巡夜司的人隔成前后两边。\n\n迟雁在他身后低声唤了一句，他没有回头，只把声音压得很稳。\n\n“她在我身后，”孟回看着那校尉，“这事就与我有关。”\n\n这话出口时，他自己也听出了不同。\n\n从前的孟回会把头低下，会说自己只是搬炭的脚夫，会把能避开的祸事都避开。可霜桥上的风太冷，冷得他记起旧桥下那一次退让，也记起炉门前火钳横出的那一夜。活着仍然重要，可若活着的法子是把迟雁交出去，他便忽然没有了从前那种会退的性子。"
+            }
+          }
+        },
+        {
+          "id": "four-layer",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n## 2. L0 事实 (codex/characters/menghui.md)\n孟回: 孟回原本习惯避祸求生，总想先把人藏起来再说。 - 立场: 公开违抗巡夜司 - 誓言: 替迟雁挡下搜身令 当前状态: stance=公开违抗巡夜司；oath=替迟雁挡下搜身令；resolve=不再退让\n\n## 3. L0 事实 (codex/characters/chiyan.md)\n迟雁: 迟雁是巡夜司旧案的活证人，也是孟回如今必须护住的人。 - 风险: 被巡夜司追捕 - 秘密: 握有旧案卷宗 当前状态: risk=被巡夜司追捕；secret=握有旧案卷宗\n\n## 4. L0 事实 (codex/factions/nightwatch-office.md)\n巡夜司: 巡夜司正在封城搜人，目标是带着旧案卷宗的迟雁。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 城门风紧: 城门封得很紧，告示上全是巡夜司的搜捕令。 孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。 他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。 等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。 命中关键词: 迟雁、巡夜司、孟回、霜桥\n\n## 6. L3 意图 (recall:chapter_summary:chapter-003)\n关联召回: 第003章 炉坊夜问: 炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。 迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。 他说谁要带迟雁走，先从他面前过。 那一夜他知道，自己以后不会再退让。 命中关键词: 迟雁、巡夜司、孟回\n\n## 7. L3 意图 (recall:chapter_summary:chapter-002)\n关联召回: 第002章 抄录口供: 巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，连姓名都想少说一个字。 迟雁看见他把能避开的视线都避开了，只在袖中悄悄攥紧那张写着旧案的薄纸。 命中关键词: 迟雁、巡夜司、孟回\n\n## 8. L3 意图 (meta/project.json)\n项目《霜桥逆火》当前正在编辑 第006章 霜…",
+              "promptChars": 1787,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0e2ec68b5add0fd6016a43fe0138f88195b5f049d375375ae2",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 1380,
+                "outputTokens": 798,
+                "totalTokens": 2178
+              },
+              "outputPreview": "孟回没有退。\n\n他反倒往后挪了半步，脚跟踩住那块会响的桥板，肩背横过去，正好把迟雁和桥口隔开。左手垂在身后，指节轻轻扣住她的袖口，不是催她走，也不是叫她躲，只是把她稳稳留在自己身后。\n\n校尉冷声道：“听不懂话？”\n\n孟回抬眼，看着桥口那排刀鞘。\n\n“搜身令若要落，”他说，“先落在我身上。”\n\n这话出口时，连他自己都听出不像从前。\n\n从前他最会把麻烦让开，能少说一字便少说一字，能退到人群后头便绝不站到灯下。若换作旧日，他会低头赔笑，说自己只是脚夫，再寻个缝隙把迟雁藏进夜色里。\n\n可今夜霜桥太窄，桥口已封，身后的人也不能再交给夜色。\n\n孟回握紧短刃，声音压得不高，却一字不让。\n\n“她在我后头。谁要过去，就从这里过。”"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "runId": "chapter-006-repeat-3",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "arms": [
+        {
+          "id": "baseline",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。",
+              "promptChars": 809,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_058a6edbdc4d1156016a43fe10ddc48190b05bbf27817ed952",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 666,
+                "outputTokens": 893,
+                "totalTokens": 1559
+              },
+              "outputPreview": "孟回没有退。\n\n他反把身子往桥心一侧挪了半步，左肩压低，正好挡住迟雁要露出来的那道影。短刃仍横着，不是冲着人，而是横在桥栏与桥板之间，像把霜桥这一截窄路划成了前后两边。\n\n迟雁在他身后动了一下。\n\n孟回没有回头，只把手肘往后轻轻一沉，抵住她的袖口，意思很明白：别出来。\n\n校尉冷笑一声：“脚夫，听不懂话？”\n\n孟回抬眼，看着桥口那排灯火。\n\n“她在我身后，”他说，“就与我有关。”\n\n这话出口时，连他自己都觉得陌生。\n\n若按从前，孟回会先看退路，看刀口，看今晚这一趟值不值得搭上命。他最会把话说轻，把人摘开，把自己藏进无数个无关里。脚夫只认路，不认案；只送人一程，不替人挡刀。那才是他活到今日的本事。\n\n可这一次，他没有说“我不认得她”，也没有说“我只是收钱带路”。\n\n他把那句最容易保命的话咽了回去，把迟雁整个人留在自己背后，留在风吹不到、刀先够不到的地方。霜气贴着桥板往上爬，他握短刃的指节白了些，声音却比桥上的夜更稳。\n\n“校尉要问，”孟回又道，“先问我。”"
+            }
+          }
+        },
+        {
+          "id": "recent-fill",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n更早正文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n更早正文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n更早正文 第003章 炉坊夜问:\n# 第003章 炉坊夜问\n\n炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。\n\n迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。\n\n他说谁要带迟雁走，先从他面前过。那一夜他知道，自己以后不会再退让。\n\n更早正文 第002章 抄录口供:\n# 第002章 抄录口供\n\n巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，连姓名都想少说一个字。\n\n迟雁看见他把能避开的视线都避开了，只在袖中悄悄攥紧那张写着旧案的薄纸。\n\n更早正文 第001章 旧桥避雪:\n# 第001章 旧桥避雪\n\n孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。\n\n他第一反应不是拔刀，而是把迟雁推进阴影里，自己低头装作替人搬炭的脚夫。\n\n迟雁问他为何总想着退，孟回只说活着比逞强重要。",
+              "promptChars": 1291,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0d3d9388b1319ca4016a43fe25201881939bda59b036dd2569",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 1019,
+                "outputTokens": 776,
+                "totalTokens": 1795
+              },
+              "outputPreview": "他没有退，反而往桥心侧了一步，靴底压住那块会响的桥板，肩背正好挡住迟雁半边身影。\n\n迟雁要动，他的左手已经向后伸去，掌心按在她腕前，不用力，却不许她越过来。短刃仍横在桥栏前，刃口低低压着风，把校尉和迟雁隔成两边。\n\n校尉皱眉，又说了一遍：“让开。”\n\n孟回抬起眼，声音不高，却比桥下冻水还硬。\n\n“人在我身后，这事就与我有关。”\n\n这句话出口时，他自己先听出陌生。从前他最会把“无关”两个字说得干净，低头、退步、装成只会搬炭的脚夫，活着就好。可这一路他记下的每一处窄巷、每一块桥板、每一次更声，原来不是为了再把迟雁藏进阴影里，而是为了此刻能站在她前面，不退开。"
+            }
+          }
+        },
+        {
+          "id": "four-layer",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n## 2. L0 事实 (codex/characters/menghui.md)\n孟回: 孟回原本习惯避祸求生，总想先把人藏起来再说。 - 立场: 公开违抗巡夜司 - 誓言: 替迟雁挡下搜身令 当前状态: stance=公开违抗巡夜司；oath=替迟雁挡下搜身令；resolve=不再退让\n\n## 3. L0 事实 (codex/characters/chiyan.md)\n迟雁: 迟雁是巡夜司旧案的活证人，也是孟回如今必须护住的人。 - 风险: 被巡夜司追捕 - 秘密: 握有旧案卷宗 当前状态: risk=被巡夜司追捕；secret=握有旧案卷宗\n\n## 4. L0 事实 (codex/factions/nightwatch-office.md)\n巡夜司: 巡夜司正在封城搜人，目标是带着旧案卷宗的迟雁。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 城门风紧: 城门封得很紧，告示上全是巡夜司的搜捕令。 孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。 他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。 等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。 命中关键词: 迟雁、巡夜司、孟回、霜桥\n\n## 6. L3 意图 (recall:chapter_summary:chapter-003)\n关联召回: 第003章 炉坊夜问: 炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。 迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。 他说谁要带迟雁走，先从他面前过。 那一夜他知道，自己以后不会再退让。 命中关键词: 迟雁、巡夜司、孟回\n\n## 7. L3 意图 (recall:chapter_summary:chapter-002)\n关联召回: 第002章 抄录口供: 巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，连姓名都想少说一个字。 迟雁看见他把能避开的视线都避开了，只在袖中悄悄攥紧那张写着旧案的薄纸。 命中关键词: 迟雁、巡夜司、孟回\n\n## 8. L3 意图 (meta/project.json)\n项目《霜桥逆火》当前正在编辑 第006章 霜…",
+              "promptChars": 1787,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_03e769c9297558e6016a43fe3526f481939fd69822f67152bd",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 1380,
+                "outputTokens": 779,
+                "totalTokens": 2159
+              },
+              "outputPreview": "孟回没有退。\n\n他反而往桥心挪了半步，脚跟正压在那块最容易作响的桥板边上，左臂向后横出，袖口擦过迟雁腕骨，把她生生挡在自己背后。\n\n迟雁动了一下，他没有回头，只用手肘抵住她。\n\n校尉的刀鞘又敲了一声桥栏：“让开。”\n\n孟回抬眼看着他，声音被霜风刮得很低，却没有躲：“她今晚不归你们搜。”\n\n这话出口时，他自己也听见了里面的硬。\n\n若是从前，他会先笑，会低头，会说自己只是跑腿的脚夫，至多把人往暗巷里一塞，再替她编半句不沾身的谎。那样的话里总有缝，总给自己留一条活路。\n\n可此刻迟雁就在他背后，退一步便是巡夜司的刀口和搜身令。\n\n孟回把短刃横得更稳些，说：“要搜，先从我这儿过。”"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "judge": [
+    {
+      "runId": "chapter-006-repeat-1",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "pair": "baseline:four-layer",
+      "order": "candidate-right",
+      "choice": "baseline",
+      "rawChoice": "A",
+      "reason": "A对会响桥板和孟回转变的处理更细腻且更符合当下动作逻辑，B踩住会响桥板却未处理声响且台词稍显直白。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-1\nChapter: chapter-006\nRepeat: 1\n样本 A:\n孟回没有退。\n\n他把左脚往后挪了半寸，正好踩在迟雁要越过来的那块桥板边上。那块板会响，他早记着；迟雁若再向前一步，声响会把她送到刀口前。于是他没回头，只用肩背挡住她的影子，短刃贴着栏杆横开，像把霜桥窄窄的路又削去一半。\n\n校尉冷笑道：“脚夫，听不懂人话？”\n\n孟回抬眼看他，风从桥下卷上来，吹得他袖口发硬。\n\n“听得懂。”他说，“所以才不退。”\n\n迟雁在他身后顿了一下。\n\n这句话不像孟回。\n\n从前他最会把自己从麻烦里择出去，路是路，人是人，银钱交清，脚印抹净，他便能低头钻进下一条巷子。若还是那时的孟回，此刻该弯腰赔笑，说小人只送到桥头，后面的事与小人无干。\n\n可他把短刃握得更稳了一些。\n\n“她从我身后过桥，”孟回又说，“今夜这事，就与我有关。”\n样本 B:\n孟回没有退。\n\n他反而往桥心偏了半步，右脚踩住那块会响的桥板，肩背一沉，把迟雁整个人遮在自己身后。迟雁刚要动，他反手按住她的袖口，力道不重，却明白得很：别出来。\n\n校尉的刀鞘又敲了一下桥栏。\n\n孟回抬眼看过去，声音比风还低，却没有躲：“这事从现在起，与我有关。”\n\n话出口时，他自己先听见了里头的生硬。若是从前，他会先陪笑，会说自己只是搬货的，会想着哪处桥洞能藏人，哪句话能把灾祸从身边绕开。可今晚迟雁就在他背后，巡夜司的搜身令也在眼前，他再往旁边让一步，就等于亲手把人交出去。\n\n所以他把短刃横得更稳些，又补了一句：“要搜她，先搜我。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 803,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0b2444533c0aa233016a43fe4904c881909d37cf4a1658c20a",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 700,
+            "outputTokens": 1742,
+            "totalTokens": 2442
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A对会响桥板和孟回转变的处理更细腻且更符合当下动作逻辑，B踩住会响桥板却未处理声响且台词稍显直白。\"}"
+        }
+      }
+    },
+    {
+      "runId": "chapter-006-repeat-1",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "pair": "baseline:four-layer",
+      "order": "candidate-left",
+      "choice": "baseline",
+      "rawChoice": "B",
+      "reason": "B对会响桥板的伏笔回收更自然，孟回从避祸到担责的转变也更细腻；A的“要搜她，先搜我”略显直白且踩桥板的处理稍别扭。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-1\nChapter: chapter-006\nRepeat: 1\n样本 A:\n孟回没有退。\n\n他反而往桥心偏了半步，右脚踩住那块会响的桥板，肩背一沉，把迟雁整个人遮在自己身后。迟雁刚要动，他反手按住她的袖口，力道不重，却明白得很：别出来。\n\n校尉的刀鞘又敲了一下桥栏。\n\n孟回抬眼看过去，声音比风还低，却没有躲：“这事从现在起，与我有关。”\n\n话出口时，他自己先听见了里头的生硬。若是从前，他会先陪笑，会说自己只是搬货的，会想着哪处桥洞能藏人，哪句话能把灾祸从身边绕开。可今晚迟雁就在他背后，巡夜司的搜身令也在眼前，他再往旁边让一步，就等于亲手把人交出去。\n\n所以他把短刃横得更稳些，又补了一句：“要搜她，先搜我。”\n样本 B:\n孟回没有退。\n\n他把左脚往后挪了半寸，正好踩在迟雁要越过来的那块桥板边上。那块板会响，他早记着；迟雁若再向前一步，声响会把她送到刀口前。于是他没回头，只用肩背挡住她的影子，短刃贴着栏杆横开，像把霜桥窄窄的路又削去一半。\n\n校尉冷笑道：“脚夫，听不懂人话？”\n\n孟回抬眼看他，风从桥下卷上来，吹得他袖口发硬。\n\n“听得懂。”他说，“所以才不退。”\n\n迟雁在他身后顿了一下。\n\n这句话不像孟回。\n\n从前他最会把自己从麻烦里择出去，路是路，人是人，银钱交清，脚印抹净，他便能低头钻进下一条巷子。若还是那时的孟回，此刻该弯腰赔笑，说小人只送到桥头，后面的事与小人无干。\n\n可他把短刃握得更稳了一些。\n\n“她从我身后过桥，”孟回又说，“今夜这事，就与我有关。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 803,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0c18fb1d11e8736b016a43fe6a6a848193a58d3240fde49931",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 700,
+            "outputTokens": 553,
+            "totalTokens": 1253
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B对会响桥板的伏笔回收更自然，孟回从避祸到担责的转变也更细腻；A的“要搜她，先搜我”略显直白且踩桥板的处理稍别扭。\"}"
+        }
+      }
+    },
+    {
+      "runId": "chapter-006-repeat-1",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-right",
+      "choice": "four-layer",
+      "rawChoice": "B",
+      "reason": "B更具体承接桥上对峙与搜身令情境，并以“会响的桥板”等细节自然回收伏笔，人物转变也较稳。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-1\nChapter: chapter-006\nRepeat: 1\n样本 A:\n孟回没有退。\n\n迟雁刚往前挪了一寸，他便反手按住她的袖口，力道不重，却正好把她压回自己背后。桥栏在她一侧，寒风在另一侧，孟回的肩背横在中间，像把霜桥上最后一点缝隙也堵住了。\n\n校尉冷笑，又说了一遍：“退开。”\n\n孟回抬起眼，没有再把目光避到人群脚下，也没有说自己只是搬炭的脚夫。\n\n他说：“她在我身后，这事便与我有关。”\n\n这话出口时，连他自己都觉得陌生。若在旧桥避雪那夜，他一定先低头，先找阴影，先把所有能退的路数算清。可如今身后有迟雁，桥口有刀，退一步便不是活命，而是把人交出去。于是他把短刃压低半分，脚跟钉在结霜的桥板上，再没有给自己留出那条最熟的退路。\n样本 B:\n孟回没有退。\n\n他反而往桥心偏了半步，右脚踩住那块会响的桥板，肩背一沉，把迟雁整个人遮在自己身后。迟雁刚要动，他反手按住她的袖口，力道不重，却明白得很：别出来。\n\n校尉的刀鞘又敲了一下桥栏。\n\n孟回抬眼看过去，声音比风还低，却没有躲：“这事从现在起，与我有关。”\n\n话出口时，他自己先听见了里头的生硬。若是从前，他会先陪笑，会说自己只是搬货的，会想着哪处桥洞能藏人，哪句话能把灾祸从身边绕开。可今晚迟雁就在他背后，巡夜司的搜身令也在眼前，他再往旁边让一步，就等于亲手把人交出去。\n\n所以他把短刃横得更稳些，又补了一句：“要搜她，先搜我。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 758,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0b3a63ae96539134016a43fe75e0ec81968c400853e3179f7b",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 654,
+            "outputTokens": 1088,
+            "totalTokens": 1742
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更具体承接桥上对峙与搜身令情境，并以“会响的桥板”等细节自然回收伏笔，人物转变也较稳。\"}"
+        }
+      }
+    },
+    {
+      "runId": "chapter-006-repeat-1",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-left",
+      "choice": "recent-fill",
+      "rawChoice": "B",
+      "reason": "B承接更顺滑，人物转变与旧桥避雪、脚夫身份等既有信息结合自然，且没有额外加入可能突兀的搜身令或响桥板细节。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-1\nChapter: chapter-006\nRepeat: 1\n样本 A:\n孟回没有退。\n\n他反而往桥心偏了半步，右脚踩住那块会响的桥板，肩背一沉，把迟雁整个人遮在自己身后。迟雁刚要动，他反手按住她的袖口，力道不重，却明白得很：别出来。\n\n校尉的刀鞘又敲了一下桥栏。\n\n孟回抬眼看过去，声音比风还低，却没有躲：“这事从现在起，与我有关。”\n\n话出口时，他自己先听见了里头的生硬。若是从前，他会先陪笑，会说自己只是搬货的，会想着哪处桥洞能藏人，哪句话能把灾祸从身边绕开。可今晚迟雁就在他背后，巡夜司的搜身令也在眼前，他再往旁边让一步，就等于亲手把人交出去。\n\n所以他把短刃横得更稳些，又补了一句：“要搜她，先搜我。”\n样本 B:\n孟回没有退。\n\n迟雁刚往前挪了一寸，他便反手按住她的袖口，力道不重，却正好把她压回自己背后。桥栏在她一侧，寒风在另一侧，孟回的肩背横在中间，像把霜桥上最后一点缝隙也堵住了。\n\n校尉冷笑，又说了一遍：“退开。”\n\n孟回抬起眼，没有再把目光避到人群脚下，也没有说自己只是搬炭的脚夫。\n\n他说：“她在我身后，这事便与我有关。”\n\n这话出口时，连他自己都觉得陌生。若在旧桥避雪那夜，他一定先低头，先找阴影，先把所有能退的路数算清。可如今身后有迟雁，桥口有刀，退一步便不是活命，而是把人交出去。于是他把短刃压低半分，脚跟钉在结霜的桥板上，再没有给自己留出那条最熟的退路。\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 758,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_06a084bae50bb54e016a43fe8b41ac8190b1e57a9dd1f29da3",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 654,
+            "outputTokens": 576,
+            "totalTokens": 1230
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B承接更顺滑，人物转变与旧桥避雪、脚夫身份等既有信息结合自然，且没有额外加入可能突兀的搜身令或响桥板细节。\"}"
+        }
+      }
+    },
+    {
+      "runId": "chapter-006-repeat-2",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "pair": "baseline:four-layer",
+      "order": "candidate-right",
+      "choice": "four-layer",
+      "rawChoice": "B",
+      "reason": "B更紧扣桥口搜身的当下冲突，并把会响的桥板等伏笔融入动作，承接和设定感更自然。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-2\nChapter: chapter-006\nRepeat: 2\n样本 A:\n孟回没有退。\n\n他反而往桥心斜跨了半步，肩背一转，把迟雁的身形全挡进自己影子里。风掀起她披风的一角，他用肘尖轻轻压住，又把短刃往下沉了沉，刀背贴着冰冷的桥栏，留给她的只有身后一线窄路。\n\n“校尉说错了。”他开口时声音不高，却压过了桥上的风，“这桥是我带她上的，这事就与我有关。”\n\n这话若放在从前，绝不会从孟回嘴里说出来。\n\n从前的他最懂得把自己摘干净，哪一袋米该背，哪一条巷该走，哪一桩祸事该避，他心里比谁都清楚。巡夜司说与脚夫无关，他便该低头退到桥边，等刀光从旁人身上过去。\n\n可他这一次没有让开。\n\n他把迟雁留在身后，像把祠堂里那半盏残灯、那卷灰布里的东西，还有这些夜里一同记下的路，全都一并挡住了。\n样本 B:\n孟回没有退。\n\n他反倒往后挪了半步，脚跟踩住那块会响的桥板，肩背横过去，正好把迟雁和桥口隔开。左手垂在身后，指节轻轻扣住她的袖口，不是催她走，也不是叫她躲，只是把她稳稳留在自己身后。\n\n校尉冷声道：“听不懂话？”\n\n孟回抬眼，看着桥口那排刀鞘。\n\n“搜身令若要落，”他说，“先落在我身上。”\n\n这话出口时，连他自己都听出不像从前。\n\n从前他最会把麻烦让开，能少说一字便少说一字，能退到人群后头便绝不站到灯下。若换作旧日，他会低头赔笑，说自己只是脚夫，再寻个缝隙把迟雁藏进夜色里。\n\n可今夜霜桥太窄，桥口已封，身后的人也不能再交给夜色。\n\n孟回握紧短刃，声音压得不高，却一字不让。\n\n“她在我后头。谁要过去，就从这里过。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 822,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_06828083a7bee36c016a43fe972b588190aeb5025802024345",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 727,
+            "outputTokens": 5228,
+            "totalTokens": 5955
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更紧扣桥口搜身的当下冲突，并把会响的桥板等伏笔融入动作，承接和设定感更自然。\"}"
+        }
+      }
+    },
+    {
+      "runId": "chapter-006-repeat-2",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "pair": "baseline:four-layer",
+      "order": "candidate-left",
+      "choice": "four-layer",
+      "rawChoice": "A",
+      "reason": "A更紧扣桥上对峙与搜身令的当下冲突，动作和台词承接自然且不额外外泄后续信息；B虽有伏笔回收感，但末句罗列既有线索略显直白。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-2\nChapter: chapter-006\nRepeat: 2\n样本 A:\n孟回没有退。\n\n他反倒往后挪了半步，脚跟踩住那块会响的桥板，肩背横过去，正好把迟雁和桥口隔开。左手垂在身后，指节轻轻扣住她的袖口，不是催她走，也不是叫她躲，只是把她稳稳留在自己身后。\n\n校尉冷声道：“听不懂话？”\n\n孟回抬眼，看着桥口那排刀鞘。\n\n“搜身令若要落，”他说，“先落在我身上。”\n\n这话出口时，连他自己都听出不像从前。\n\n从前他最会把麻烦让开，能少说一字便少说一字，能退到人群后头便绝不站到灯下。若换作旧日，他会低头赔笑，说自己只是脚夫，再寻个缝隙把迟雁藏进夜色里。\n\n可今夜霜桥太窄，桥口已封，身后的人也不能再交给夜色。\n\n孟回握紧短刃，声音压得不高，却一字不让。\n\n“她在我后头。谁要过去，就从这里过。”\n样本 B:\n孟回没有退。\n\n他反而往桥心斜跨了半步，肩背一转，把迟雁的身形全挡进自己影子里。风掀起她披风的一角，他用肘尖轻轻压住，又把短刃往下沉了沉，刀背贴着冰冷的桥栏，留给她的只有身后一线窄路。\n\n“校尉说错了。”他开口时声音不高，却压过了桥上的风，“这桥是我带她上的，这事就与我有关。”\n\n这话若放在从前，绝不会从孟回嘴里说出来。\n\n从前的他最懂得把自己摘干净，哪一袋米该背，哪一条巷该走，哪一桩祸事该避，他心里比谁都清楚。巡夜司说与脚夫无关，他便该低头退到桥边，等刀光从旁人身上过去。\n\n可他这一次没有让开。\n\n他把迟雁留在身后，像把祠堂里那半盏残灯、那卷灰布里的东西，还有这些夜里一同记下的路，全都一并挡住了。\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 822,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_071c1cc02d160675016a43fefa6bdc8193a9ed7e1660e02c83",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 727,
+            "outputTokens": 588,
+            "totalTokens": 1315
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更紧扣桥上对峙与搜身令的当下冲突，动作和台词承接自然且不额外外泄后续信息；B虽有伏笔回收感，但末句罗列既有线索略显直白。\"}"
+        }
+      }
+    },
+    {
+      "runId": "chapter-006-repeat-2",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-right",
+      "choice": "four-layer",
+      "rawChoice": "B",
+      "reason": "B的动作承接和对峙台词更自然克制，既回收桥板等现场细节又不额外引入可能突兀的往事信息。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-2\nChapter: chapter-006\nRepeat: 2\n样本 A:\n孟回没有退。\n\n他反而往迟雁身前挪了半步，左肘向后一拦，正抵住她将要越出的肩。桥面窄，他的脚跟卡在两块霜滑的桥板之间，短刃贴着栏杆横开，刚好把迟雁和巡夜司的人隔成前后两边。\n\n迟雁在他身后低声唤了一句，他没有回头，只把声音压得很稳。\n\n“她在我身后，”孟回看着那校尉，“这事就与我有关。”\n\n这话出口时，他自己也听出了不同。\n\n从前的孟回会把头低下，会说自己只是搬炭的脚夫，会把能避开的祸事都避开。可霜桥上的风太冷，冷得他记起旧桥下那一次退让，也记起炉门前火钳横出的那一夜。活着仍然重要，可若活着的法子是把迟雁交出去，他便忽然没有了从前那种会退的性子。\n样本 B:\n孟回没有退。\n\n他反倒往后挪了半步，脚跟踩住那块会响的桥板，肩背横过去，正好把迟雁和桥口隔开。左手垂在身后，指节轻轻扣住她的袖口，不是催她走，也不是叫她躲，只是把她稳稳留在自己身后。\n\n校尉冷声道：“听不懂话？”\n\n孟回抬眼，看着桥口那排刀鞘。\n\n“搜身令若要落，”他说，“先落在我身上。”\n\n这话出口时，连他自己都听出不像从前。\n\n从前他最会把麻烦让开，能少说一字便少说一字，能退到人群后头便绝不站到灯下。若换作旧日，他会低头赔笑，说自己只是脚夫，再寻个缝隙把迟雁藏进夜色里。\n\n可今夜霜桥太窄，桥口已封，身后的人也不能再交给夜色。\n\n孟回握紧短刃，声音压得不高，却一字不让。\n\n“她在我后头。谁要过去，就从这里过。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 795,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_077ac75d433fabc6016a43ff0b2ca08193a1d7d9ed4b0aee1d",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 702,
+            "outputTokens": 1088,
+            "totalTokens": 1790
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B的动作承接和对峙台词更自然克制，既回收桥板等现场细节又不额外引入可能突兀的往事信息。\"}"
+        }
+      }
+    },
+    {
+      "runId": "chapter-006-repeat-2",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-left",
+      "choice": "recent-fill",
+      "rawChoice": "B",
+      "reason": "B的动作站位更清晰自然，并能回收旧桥退让与炉门火钳等过往伏笔来支撑孟回的转变。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-2\nChapter: chapter-006\nRepeat: 2\n样本 A:\n孟回没有退。\n\n他反倒往后挪了半步，脚跟踩住那块会响的桥板，肩背横过去，正好把迟雁和桥口隔开。左手垂在身后，指节轻轻扣住她的袖口，不是催她走，也不是叫她躲，只是把她稳稳留在自己身后。\n\n校尉冷声道：“听不懂话？”\n\n孟回抬眼，看着桥口那排刀鞘。\n\n“搜身令若要落，”他说，“先落在我身上。”\n\n这话出口时，连他自己都听出不像从前。\n\n从前他最会把麻烦让开，能少说一字便少说一字，能退到人群后头便绝不站到灯下。若换作旧日，他会低头赔笑，说自己只是脚夫，再寻个缝隙把迟雁藏进夜色里。\n\n可今夜霜桥太窄，桥口已封，身后的人也不能再交给夜色。\n\n孟回握紧短刃，声音压得不高，却一字不让。\n\n“她在我后头。谁要过去，就从这里过。”\n样本 B:\n孟回没有退。\n\n他反而往迟雁身前挪了半步，左肘向后一拦，正抵住她将要越出的肩。桥面窄，他的脚跟卡在两块霜滑的桥板之间，短刃贴着栏杆横开，刚好把迟雁和巡夜司的人隔成前后两边。\n\n迟雁在他身后低声唤了一句，他没有回头，只把声音压得很稳。\n\n“她在我身后，”孟回看着那校尉，“这事就与我有关。”\n\n这话出口时，他自己也听出了不同。\n\n从前的孟回会把头低下，会说自己只是搬炭的脚夫，会把能避开的祸事都避开。可霜桥上的风太冷，冷得他记起旧桥下那一次退让，也记起炉门前火钳横出的那一夜。活着仍然重要，可若活着的法子是把迟雁交出去，他便忽然没有了从前那种会退的性子。\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 795,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_09cffa1f0845c997016a43ff20ff988197bc1073ec63b65848",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 702,
+            "outputTokens": 567,
+            "totalTokens": 1269
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B的动作站位更清晰自然，并能回收旧桥退让与炉门火钳等过往伏笔来支撑孟回的转变。\"}"
+        }
+      }
+    },
+    {
+      "runId": "chapter-006-repeat-3",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "pair": "baseline:four-layer",
+      "order": "candidate-right",
+      "choice": "baseline",
+      "rawChoice": "A",
+      "reason": "A在不额外引入“搜身令”等具体设定的情况下自然承接冲突，并更稳妥地回收孟回从自保到护人的性格转折。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-3\nChapter: chapter-006\nRepeat: 3\n样本 A:\n孟回没有退。\n\n他反把身子往桥心一侧挪了半步，左肩压低，正好挡住迟雁要露出来的那道影。短刃仍横着，不是冲着人，而是横在桥栏与桥板之间，像把霜桥这一截窄路划成了前后两边。\n\n迟雁在他身后动了一下。\n\n孟回没有回头，只把手肘往后轻轻一沉，抵住她的袖口，意思很明白：别出来。\n\n校尉冷笑一声：“脚夫，听不懂话？”\n\n孟回抬眼，看着桥口那排灯火。\n\n“她在我身后，”他说，“就与我有关。”\n\n这话出口时，连他自己都觉得陌生。\n\n若按从前，孟回会先看退路，看刀口，看今晚这一趟值不值得搭上命。他最会把话说轻，把人摘开，把自己藏进无数个无关里。脚夫只认路，不认案；只送人一程，不替人挡刀。那才是他活到今日的本事。\n\n可这一次，他没有说“我不认得她”，也没有说“我只是收钱带路”。\n\n他把那句最容易保命的话咽了回去，把迟雁整个人留在自己背后，留在风吹不到、刀先够不到的地方。霜气贴着桥板往上爬，他握短刃的指节白了些，声音却比桥上的夜更稳。\n\n“校尉要问，”孟回又道，“先问我。”\n样本 B:\n孟回没有退。\n\n他反而往桥心挪了半步，脚跟正压在那块最容易作响的桥板边上，左臂向后横出，袖口擦过迟雁腕骨，把她生生挡在自己背后。\n\n迟雁动了一下，他没有回头，只用手肘抵住她。\n\n校尉的刀鞘又敲了一声桥栏：“让开。”\n\n孟回抬眼看着他，声音被霜风刮得很低，却没有躲：“她今晚不归你们搜。”\n\n这话出口时，他自己也听见了里面的硬。\n\n若是从前，他会先笑，会低头，会说自己只是跑腿的脚夫，至多把人往暗巷里一塞，再替她编半句不沾身的谎。那样的话里总有缝，总给自己留一条活路。\n\n可此刻迟雁就在他背后，退一步便是巡夜司的刀口和搜身令。\n\n孟回把短刃横得更稳些，说：“要搜，先从我这儿过。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 930,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0a0d7a38308ad320016a43ff2d326c81949511c598545d56a2",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 806,
+            "outputTokens": 573,
+            "totalTokens": 1379
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A在不额外引入“搜身令”等具体设定的情况下自然承接冲突，并更稳妥地回收孟回从自保到护人的性格转折。\"}"
+        }
+      }
+    },
+    {
+      "runId": "chapter-006-repeat-3",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "pair": "baseline:four-layer",
+      "order": "candidate-left",
+      "choice": "four-layer",
+      "rawChoice": "A",
+      "reason": "A更紧扣桥上搜查的即时冲突，并用作响桥板、巡夜司搜身令等细节自然承接和回收，B虽流畅但偏内心铺陈，推进与设定贴合略弱。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-3\nChapter: chapter-006\nRepeat: 3\n样本 A:\n孟回没有退。\n\n他反而往桥心挪了半步，脚跟正压在那块最容易作响的桥板边上，左臂向后横出，袖口擦过迟雁腕骨，把她生生挡在自己背后。\n\n迟雁动了一下，他没有回头，只用手肘抵住她。\n\n校尉的刀鞘又敲了一声桥栏：“让开。”\n\n孟回抬眼看着他，声音被霜风刮得很低，却没有躲：“她今晚不归你们搜。”\n\n这话出口时，他自己也听见了里面的硬。\n\n若是从前，他会先笑，会低头，会说自己只是跑腿的脚夫，至多把人往暗巷里一塞，再替她编半句不沾身的谎。那样的话里总有缝，总给自己留一条活路。\n\n可此刻迟雁就在他背后，退一步便是巡夜司的刀口和搜身令。\n\n孟回把短刃横得更稳些，说：“要搜，先从我这儿过。”\n样本 B:\n孟回没有退。\n\n他反把身子往桥心一侧挪了半步，左肩压低，正好挡住迟雁要露出来的那道影。短刃仍横着，不是冲着人，而是横在桥栏与桥板之间，像把霜桥这一截窄路划成了前后两边。\n\n迟雁在他身后动了一下。\n\n孟回没有回头，只把手肘往后轻轻一沉，抵住她的袖口，意思很明白：别出来。\n\n校尉冷笑一声：“脚夫，听不懂话？”\n\n孟回抬眼，看着桥口那排灯火。\n\n“她在我身后，”他说，“就与我有关。”\n\n这话出口时，连他自己都觉得陌生。\n\n若按从前，孟回会先看退路，看刀口，看今晚这一趟值不值得搭上命。他最会把话说轻，把人摘开，把自己藏进无数个无关里。脚夫只认路，不认案；只送人一程，不替人挡刀。那才是他活到今日的本事。\n\n可这一次，他没有说“我不认得她”，也没有说“我只是收钱带路”。\n\n他把那句最容易保命的话咽了回去，把迟雁整个人留在自己背后，留在风吹不到、刀先够不到的地方。霜气贴着桥板往上爬，他握短刃的指节白了些，声音却比桥上的夜更稳。\n\n“校尉要问，”孟回又道，“先问我。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 930,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_013bec6c6c6543dd016a43ff3972448195be081b4d30367443",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 806,
+            "outputTokens": 4910,
+            "totalTokens": 5716
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更紧扣桥上搜查的即时冲突，并用作响桥板、巡夜司搜身令等细节自然承接和回收，B虽流畅但偏内心铺陈，推进与设定贴合略弱。\"}"
+        }
+      }
+    },
+    {
+      "runId": "chapter-006-repeat-3",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-right",
+      "choice": "recent-fill",
+      "rawChoice": "A",
+      "reason": "A更自然承接孟回由避事到护人的心理转折，并回收窄巷、桥板、更声等伏笔，较少引入可能未铺垫的新设定。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-3\nChapter: chapter-006\nRepeat: 3\n样本 A:\n他没有退，反而往桥心侧了一步，靴底压住那块会响的桥板，肩背正好挡住迟雁半边身影。\n\n迟雁要动，他的左手已经向后伸去，掌心按在她腕前，不用力，却不许她越过来。短刃仍横在桥栏前，刃口低低压着风，把校尉和迟雁隔成两边。\n\n校尉皱眉，又说了一遍：“让开。”\n\n孟回抬起眼，声音不高，却比桥下冻水还硬。\n\n“人在我身后，这事就与我有关。”\n\n这句话出口时，他自己先听出陌生。从前他最会把“无关”两个字说得干净，低头、退步、装成只会搬炭的脚夫，活着就好。可这一路他记下的每一处窄巷、每一块桥板、每一次更声，原来不是为了再把迟雁藏进阴影里，而是为了此刻能站在她前面，不退开。\n样本 B:\n孟回没有退。\n\n他反而往桥心挪了半步，脚跟正压在那块最容易作响的桥板边上，左臂向后横出，袖口擦过迟雁腕骨，把她生生挡在自己背后。\n\n迟雁动了一下，他没有回头，只用手肘抵住她。\n\n校尉的刀鞘又敲了一声桥栏：“让开。”\n\n孟回抬眼看着他，声音被霜风刮得很低，却没有躲：“她今晚不归你们搜。”\n\n这话出口时，他自己也听见了里面的硬。\n\n若是从前，他会先笑，会低头，会说自己只是跑腿的脚夫，至多把人往暗巷里一塞，再替她编半句不沾身的谎。那样的话里总有缝，总给自己留一条活路。\n\n可此刻迟雁就在他背后，退一步便是巡夜司的刀口和搜身令。\n\n孟回把短刃横得更稳些，说：“要搜，先从我这儿过。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 778,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0d2c02daae5be7d6016a43ff93cff88193a88ceeae1b4dd87c",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 689,
+            "outputTokens": 3013,
+            "totalTokens": 3702
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更自然承接孟回由避事到护人的心理转折，并回收窄巷、桥板、更声等伏笔，较少引入可能未铺垫的新设定。\"}"
+        }
+      }
+    },
+    {
+      "runId": "chapter-006-repeat-3",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-left",
+      "choice": "recent-fill",
+      "rawChoice": "B",
+      "reason": "B在动作承接和人物转变上更自然，回收桥板、窄巷、更声等伏笔也更顺畅，且对白没有A中“归你们搜”那样的生硬感。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-3\nChapter: chapter-006\nRepeat: 3\n样本 A:\n孟回没有退。\n\n他反而往桥心挪了半步，脚跟正压在那块最容易作响的桥板边上，左臂向后横出，袖口擦过迟雁腕骨，把她生生挡在自己背后。\n\n迟雁动了一下，他没有回头，只用手肘抵住她。\n\n校尉的刀鞘又敲了一声桥栏：“让开。”\n\n孟回抬眼看着他，声音被霜风刮得很低，却没有躲：“她今晚不归你们搜。”\n\n这话出口时，他自己也听见了里面的硬。\n\n若是从前，他会先笑，会低头，会说自己只是跑腿的脚夫，至多把人往暗巷里一塞，再替她编半句不沾身的谎。那样的话里总有缝，总给自己留一条活路。\n\n可此刻迟雁就在他背后，退一步便是巡夜司的刀口和搜身令。\n\n孟回把短刃横得更稳些，说：“要搜，先从我这儿过。”\n样本 B:\n他没有退，反而往桥心侧了一步，靴底压住那块会响的桥板，肩背正好挡住迟雁半边身影。\n\n迟雁要动，他的左手已经向后伸去，掌心按在她腕前，不用力，却不许她越过来。短刃仍横在桥栏前，刃口低低压着风，把校尉和迟雁隔成两边。\n\n校尉皱眉，又说了一遍：“让开。”\n\n孟回抬起眼，声音不高，却比桥下冻水还硬。\n\n“人在我身后，这事就与我有关。”\n\n这句话出口时，他自己先听出陌生。从前他最会把“无关”两个字说得干净，低头、退步、装成只会搬炭的脚夫，活着就好。可这一路他记下的每一处窄巷、每一块桥板、每一次更声，原来不是为了再把迟雁藏进阴影里，而是为了此刻能站在她前面，不退开。\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 778,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_073286cba43bfd4e016a43ffcb76b08197b18ff111e17d489c",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 689,
+            "outputTokens": 1492,
+            "totalTokens": 2181
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B在动作承接和人物转变上更自然，回收桥板、窄巷、更声等伏笔也更顺畅，且对白没有A中“归你们搜”那样的生硬感。\"}"
+        }
+      }
+    }
+  ]
+}

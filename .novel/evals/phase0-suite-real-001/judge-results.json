@@ -1,0 +1,107 @@
+{
+  "enabled": true,
+  "reports": [
+    {
+      "project": "青灯镜湖",
+      "archivePath": ".novel/evals/phase0-suite-real-001/long-memory-benchmark",
+      "judge": {
+        "enabled": true,
+        "provider": {
+          "kind": "openai-compatible",
+          "baseUrl": "https://[REDACTED-HOST]/",
+          "model": "gpt-5.5",
+          "wireApi": "responses"
+        },
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "霜桥逆火",
+      "archivePath": ".novel/evals/phase0-suite-real-001/state-drift-benchmark",
+      "judge": {
+        "enabled": true,
+        "provider": {
+          "kind": "openai-compatible",
+          "baseUrl": "https://[REDACTED-HOST]/",
+          "model": "gpt-5.5",
+          "wireApi": "responses"
+        },
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "纸鸢旧约",
+      "archivePath": ".novel/evals/phase0-suite-real-001/delayed-payoff-benchmark",
+      "judge": {
+        "enabled": true,
+        "provider": {
+          "kind": "openai-compatible",
+          "baseUrl": "https://[REDACTED-HOST]/",
+          "model": "gpt-5.5",
+          "wireApi": "responses"
+        },
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    }
+  ]
+}

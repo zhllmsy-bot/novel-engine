@@ -52,13 +52,7 @@ export function codexViolationGuard(context: EvalGuardContext): EvalGuardResult 
 export function entityHallucinationGuard(
   context: EvalGuardContext,
 ): EvalGuardResult {
-  const codexTerms = new Set(
-    (context.codexEntries || []).flatMap((entry) => [
-      entry.name,
-      ...entry.keywords,
-      ...Object.values(entry.currentState),
-    ]),
-  )
+  const codexTerms = new Set(buildKnownEntityTerms(context.codexEntries || []))
   const candidateTerms = extractChineseProperTerms(context.output)
   const matches = candidateTerms.filter(
     (term) => term.length >= 2 && !codexTerms.has(term),
@@ -116,15 +110,51 @@ function guardResult(input: {
 }
 
 function extractChineseProperTerms(text: string) {
-  return Array.from(
-    text
-      .replace(/[和与及、，。！？；：\s]+/g, '\n')
-      .matchAll(/[一-龥]{1,7}(?:司|宗|门|派|城|湖|钥|剑|誓|人)/g),
-  ).map((match) => match[0])
+  const normalized = text.replace(/[和与及、，。！？；：\s]+/g, '\n')
+  const segments = normalized
+    .split('\n')
+    .map((segment) => segment.trim())
+    .filter(Boolean)
+  const matches = segments.flatMap((segment) =>
+    Array.from(segment.matchAll(/[一-龥]{1,4}(?:司|宗|门|派|城|山|阁|殿|楼|府|洲|谷|塔|寺|坊)/g)).map(
+      (match) => match[0],
+    ),
+  )
+
+  return uniqueStrings(matches.filter(isLikelyStandaloneEntity))
 }
 
 function uniqueStrings(values: string[]) {
   return Array.from(new Set(values))
+}
+
+function buildKnownEntityTerms(codexEntries: CodexEntry[]) {
+  return codexEntries.flatMap((entry) => {
+    const currentStateValues = Object.values(entry.currentState || {}).filter(
+      (value): value is string => typeof value === 'string' && value.trim().length > 0,
+    )
+    return [entry.name, ...entry.keywords, ...currentStateValues].flatMap(
+      (value) => extractChineseProperTerms(value),
+    )
+  })
+}
+
+function isLikelyStandaloneEntity(term: string) {
+  if (term.length < 2 || term.length > 6) {
+    return false
+  }
+
+  if (term.includes('的') || term.includes('了') || term.includes('这')) {
+    return false
+  }
+
+  if (/[把将向从在对给与和及说问看听让替是着过又便都并才还再只不没若可但因被会能要拿送交守留退握压护挡认等藏记道先后]/.test(term)) {
+    return false
+  }
+
+  return !/^[不没别只将把被又来去说问看听让给替从向对并若可但便都也很仍太先再因为是他她它你我其该会能想要应]|^(他们|她们|我们|你们)/.test(
+    term,
+  )
 }
 
 function criteriaForbiddenTerms(

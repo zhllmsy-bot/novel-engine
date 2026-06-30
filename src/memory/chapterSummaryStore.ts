@@ -107,7 +107,7 @@ export function generateLocalChapterSummary(
   return {
     chapterId: input.chapter.id,
     chapterTitle: input.chapter.title,
-    summary: truncateSummary(keyEvents.join(' ')),
+    summary: truncateSummary(buildStructuredSummary(keyEvents)),
     keyEvents,
     charactersInvolved,
     sourceHash: sourceSignature(input.content),
@@ -140,7 +140,7 @@ function selectKeyEventSentences(content: string, codexEntries: CodexEntry[]) {
   const keywords = uniqueStrings(
     codexEntries.flatMap((entry) => [entry.name, ...entry.keywords]),
   )
-  const selectedIndexes = new Set<number>([0])
+  const selectedIndexes = new Set<number>([0, sentences.length - 1])
   const ranked = sentences
     .map((sentence, index) => ({
       index,
@@ -178,6 +178,9 @@ function scoreSummarySentence(
   if (/(终于|忽然|突然|原来|发现|知道|意识到|决定|选择|答应|承诺)/.test(sentence)) {
     score += 2
   }
+  if (/(因为|所以|于是|随后|却|但|然而|为此|结果|最终)/.test(sentence)) {
+    score += 3
+  }
   if (/(提醒|警告|要求|命令|不能|不要|必须|只会|绝不|如果|有一天)/.test(sentence)) {
     score += 2
   }
@@ -189,6 +192,53 @@ function scoreSummarySentence(
   }
 
   return score
+}
+
+function buildStructuredSummary(keyEvents: string[]) {
+  const events = uniqueStrings(keyEvents.map((event) => event.trim()).filter(Boolean))
+  if (events.length === 0) {
+    return '暂无摘要。'
+  }
+
+  if (events.length === 1) {
+    return events[0]
+  }
+
+  const opening = events[0]
+  const ending = events.at(-1) || opening
+  const middleEvents = events.slice(1, -1)
+  const pivot =
+    middleEvents.find((event) => /(因为|所以|于是|随后|却|但|然而|发现|意识到|决定|结果|最终)/.test(event)) ||
+    middleEvents[0]
+  const foreshadow =
+    [...events]
+      .reverse()
+      .find((event) =>
+        /(提醒|警告|不能|不要|必须|伏笔|线索|誓言|真相|钥|剑|令|印|封印)/.test(
+          event,
+        ),
+      ) || undefined
+
+  const parts = [`起因: ${opening}`]
+
+  if (pivot && pivot !== opening && pivot !== ending) {
+    parts.push(`推进: ${pivot}`)
+  }
+
+  if (ending !== opening) {
+    parts.push(`结果: ${ending}`)
+  }
+
+  if (
+    foreshadow &&
+    foreshadow !== opening &&
+    foreshadow !== pivot &&
+    foreshadow !== ending
+  ) {
+    parts.push(`伏笔: ${foreshadow}`)
+  }
+
+  return parts.join(' ')
 }
 
 function uniqueStrings(values: string[]) {
