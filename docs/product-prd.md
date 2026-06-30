@@ -107,7 +107,10 @@ Before broad product expansion, run a proof experiment:
 - Deterministic gate metrics: `phase0Metrics` reports non-L2 callback hits, L0 setting violations, and future-leak sentinel failures before any model is called.
 - Real-generation gate: `generation:eval` builds the same A/B prompts and can call an OpenAI-compatible model, then triages generated text for callback hits, setting violations, and future leaks before human review.
 - Community test corpora define recall expectations in `meta/memory-eval.json`, backed by `schemas/memory-eval.schema.json` and checked by `project:check`.
-- Repository benchmark: `examples/long-memory-benchmark` places the active test chapter beyond the recent-prose baseline window, requiring L0/L1/L3 recall to recover chapter-one oath context.
+- Repository benchmarks:
+  - `examples/long-memory-benchmark` places the active test chapter beyond the recent-prose baseline window, requiring L0/L1/L3 recall to recover chapter-one oath context.
+  - `examples/state-drift-benchmark` checks whether four-layer memory preserves a later character state reversal instead of regressing to earlier timid behavior.
+  - `examples/delayed-payoff-benchmark` checks whether an early promise can still be paid off after several chapters of recent logistical noise.
 - Continue only if the memory engine gives a clear improvement over the baseline.
 
 ## Roadmap

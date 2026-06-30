@@ -395,14 +395,18 @@ drifted. The `Phase 0 metrics` line is therefore a context-assembly decision
 signal, not a claim that a model will generate the right answer. A useful result
 should show L2 passing in both baseline and four-layer plans, with L0/L1/L3
 gains coming from the full memory engine.
-`examples/long-memory-benchmark` is the stronger smoke corpus: chapter 6 asks
-for chapter-1 oath context outside the recent-prose baseline window, so it should
-show a low baseline score and a passing `Phase 0 gate` through L0/L1/L3 recall.
-That benchmark is also covered by the Vitest suite. `workspace:check` keeps the
-faster default demo project in the main aggregate report, and
-`npm run workspace:check:long` or `npm run workspace:check -- --benchmark`
-adds the long-memory benchmark when a PR touches recall, budget, or summary
-behavior.
+`examples/long-memory-benchmark` is the first stronger smoke corpus: chapter 6
+asks for chapter-1 oath context outside the recent-prose baseline window, so it
+should show a low baseline score and a passing `Phase 0 gate` through
+L0/L1/L3 recall. The repository now ships two more frozen benchmark corpora:
+`examples/state-drift-benchmark` tests whether four-layer memory preserves a
+later character state reversal instead of regressing to an early timid persona,
+and `examples/delayed-payoff-benchmark` tests whether an early promise can be
+recovered after several chapters of recent logistical noise. These benchmarks
+are covered by the Vitest suite. `workspace:check` keeps the faster default demo
+project in the main aggregate report, and `npm run workspace:check:long` or
+`npm run workspace:check -- --benchmark` adds the repository benchmark suite
+when a PR touches recall, budget, or summary behavior.
 
 ## Evaluate Real Generation
 
@@ -436,6 +440,8 @@ projects:
 ```bash
 npm run generation:eval -- --dry-run \
   --benchmark-project examples/long-memory-benchmark \
+  --benchmark-project examples/state-drift-benchmark \
+  --benchmark-project examples/delayed-payoff-benchmark \
   --archive-dir .novel/evals/suite-dry-run
 ```
 

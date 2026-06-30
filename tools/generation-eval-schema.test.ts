@@ -76,4 +76,36 @@ describe('generation eval schema', () => {
 
     expect(raw.$schema).toBe('../../../schemas/generation-eval.schema.json')
   })
+
+  it('keeps the state-drift generation eval config linked to the public schema', async () => {
+    const source = await readFile(
+      join(
+        process.cwd(),
+        'examples',
+        'state-drift-benchmark',
+        'meta',
+        'generation-eval.json',
+      ),
+      'utf8',
+    )
+    const raw = JSON.parse(source) as { $schema?: string }
+
+    expect(raw.$schema).toBe('../../../schemas/generation-eval.schema.json')
+  })
+
+  it('keeps the delayed-payoff generation eval config linked to the public schema', async () => {
+    const source = await readFile(
+      join(
+        process.cwd(),
+        'examples',
+        'delayed-payoff-benchmark',
+        'meta',
+        'generation-eval.json',
+      ),
+      'utf8',
+    )
+    const raw = JSON.parse(source) as { $schema?: string }
+
+    expect(raw.$schema).toBe('../../../schemas/generation-eval.schema.json')
+  })
 })

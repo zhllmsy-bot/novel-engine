@@ -1,0 +1,42 @@
+{
+  "$schema": "../../../schemas/memory-eval.schema.json",
+  "chapter_id": "chapter-006",
+  "budget_chars": 1400,
+  "minimum_gain": 4,
+  "expectations": [
+    {
+      "id": "l2-current-prose",
+      "description": "Baseline and four-layer plans both preserve the active confrontation scene.",
+      "layer": "L2 风格",
+      "contains": ["当前章节原文", "孟回已经把短刃横在桥栏前"]
+    },
+    {
+      "id": "l0-menghui-current-state",
+      "description": "L0 exposes Meng Hui's current state as openly defiant rather than avoidant.",
+      "layer": "L0 事实",
+      "contains": ["孟回", "公开违抗巡夜司", "不再退让"],
+      "source_families": ["codex"]
+    },
+    {
+      "id": "l0-oath-target",
+      "description": "L0 keeps the vow target visible so the continuation knows who is being protected.",
+      "layer": "L0 事实",
+      "contains": ["迟雁", "替迟雁挡下搜身令"],
+      "source_families": ["codex"]
+    },
+    {
+      "id": "l3-state-recall-item",
+      "description": "L3 produces a concrete recall item for the state shift chapter.",
+      "layer": "L3 意图",
+      "contains": ["关联召回: 第003章 炉坊夜问", "命中关键词"],
+      "source_contains": ["recall:chapter_summary:chapter-003"],
+      "source_families": ["recall"]
+    },
+    {
+      "id": "l3-recall-audit-menghui",
+      "description": "L3 audit makes Meng Hui and Chi Yan keyword hits inspectable.",
+      "layer": "L3 意图",
+      "contains": ["命中设定", "孟回", "迟雁"]
+    }
+  ]
+}

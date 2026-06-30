@@ -15,7 +15,9 @@ with recent-prose-only baselines.
 - Control C: the same budget filled with plain recent prose.
 - Candidate B: the same four-layer context used by the editor.
 - Provider: any OpenAI-compatible `/v1/chat/completions` endpoint.
-- Corpus: `examples/long-memory-benchmark` first, then more controlled corpora.
+- Corpus: `examples/long-memory-benchmark`,
+  `examples/state-drift-benchmark`, and
+  `examples/delayed-payoff-benchmark` as the initial frozen suite.
 - Repeats: default 3 per arm, enough to avoid single-sample comfort.
 - First-pass scoring: deterministic text criteria for callback hits, setting
   violations, and future leaks.
@@ -49,6 +51,8 @@ Run a suite across benchmark projects:
 ```bash
 npm run generation:eval -- --dry-run \
   --benchmark-project examples/long-memory-benchmark \
+  --benchmark-project examples/state-drift-benchmark \
+  --benchmark-project examples/delayed-payoff-benchmark \
   --archive-dir .novel/evals/suite-dry-run
 ```
 
@@ -89,7 +93,7 @@ is the final Phase 0 decision.
       arm labels.
 - [ ] Add promptfoo wrapper config around the reusable guards/metrics once the
       local harness has enough benchmark projects.
-- [ ] Add at least two more benchmark corpora with different failure modes:
+- [x] Add at least two more benchmark corpora with different failure modes:
       character state drift and delayed plot-thread payoff.
 
 ## Frozen Until Phase 0 Generates Real Evidence

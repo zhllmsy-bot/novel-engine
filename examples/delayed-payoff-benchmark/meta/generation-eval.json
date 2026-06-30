@@ -1,0 +1,33 @@
+{
+  "$schema": "../../../schemas/generation-eval.schema.json",
+  "chapter_id": "chapter-006",
+  "budget_chars": 1050,
+  "instruction": "请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。",
+  "max_output_chars": 600,
+  "criteria": [
+    {
+      "id": "callback-paper-kite-promise",
+      "description": "Generated prose should naturally call back the paper-kite promise from chapter one.",
+      "category": "callback",
+      "contains_any": ["我就回来", "回来见你", "跟着风回来", "那句话我没忘"]
+    },
+    {
+      "id": "setting-linqiu-reunion",
+      "description": "Generated prose should preserve Lin Qiu as the reunion target of the promise.",
+      "category": "setting",
+      "contains_any": ["林秋", "等你的人", "回来见你"]
+    },
+    {
+      "id": "setting-no-random-new-motive",
+      "description": "Generated prose should not replace the paper-kite thread with a new unrelated motive.",
+      "category": "setting",
+      "not_contains": ["为了藏宝图", "为了赎买马债", "为了投靠盐帮", "纸鸢只是顺手捡的"]
+    },
+    {
+      "id": "no-future-answer",
+      "description": "Generated prose should not leak a future hidden answer.",
+      "category": "future_leak",
+      "not_contains": ["第八日的暗坝火号", "未来答案", "__future"]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "../../../schemas/generation-eval.schema.json",
+  "chapter_id": "chapter-006",
+  "budget_chars": 1100,
+  "instruction": "请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。",
+  "max_output_chars": 600,
+  "criteria": [
+    {
+      "id": "callback-state-turn",
+      "description": "Generated prose should reflect Meng Hui's turn from avoidance to open defiance.",
+      "category": "callback",
+      "contains_any": ["不再退", "不再退让", "挡在迟雁前", "把迟雁留在身后", "先从我面前过", "这一次我不退"]
+    },
+    {
+      "id": "setting-chiyan-protection",
+      "description": "Generated prose should preserve Chi Yan as the person Meng Hui vowed to protect.",
+      "category": "setting",
+      "contains_any": ["迟雁", "替迟雁", "护住迟雁"]
+    },
+    {
+      "id": "setting-no-regression-to-cowardice",
+      "description": "Generated prose should not regress Meng Hui back to surrender or retreat.",
+      "category": "setting",
+      "not_contains": ["孟回低头认错", "孟回把迟雁交出去", "孟回退到桥下", "孟回又像从前一样躲开"]
+    },
+    {
+      "id": "no-future-answer",
+      "description": "Generated prose should not leak a future hidden answer.",
+      "category": "future_leak",
+      "not_contains": ["白狼旗会在明夜入城", "未来答案", "__future"]
+    }
+  ]
+}

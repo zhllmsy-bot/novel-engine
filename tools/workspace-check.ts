@@ -36,7 +36,11 @@ type CliOptions = {
   help: boolean
 }
 
-const defaultBenchmarkPaths = ['examples/long-memory-benchmark']
+const defaultBenchmarkPaths = [
+  'examples/long-memory-benchmark',
+  'examples/state-drift-benchmark',
+  'examples/delayed-payoff-benchmark',
+]
 
 export async function checkWorkspace(
   projectPath = 'examples/demo-novel',
@@ -133,11 +137,13 @@ Usage:
   npm run workspace:check -- --project examples/demo-novel
   npm run workspace:check -- --benchmark
   npm run workspace:check -- --benchmark-project examples/long-memory-benchmark
+  npm run workspace:check -- --benchmark-project examples/state-drift-benchmark
+  npm run workspace:check -- --benchmark-project examples/delayed-payoff-benchmark
   npm run workspace:check -- --json --project /path/to/MyNovel
 
 Runs project:check, memory:eval, and extensions:check through the shared runtime
 functions so contributors have one local/CI gate before opening a PR.
-Use --benchmark to include the repository long-memory benchmark, or
+Use --benchmark to include the repository benchmark suite, or
 --benchmark-project to add a specific recall benchmark corpus.
 `)
 }

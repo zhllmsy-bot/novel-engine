@@ -1,0 +1,42 @@
+{
+  "$schema": "../../../schemas/memory-eval.schema.json",
+  "chapter_id": "chapter-006",
+  "budget_chars": 1400,
+  "minimum_gain": 4,
+  "expectations": [
+    {
+      "id": "l2-current-prose",
+      "description": "Baseline and four-layer plans both preserve the active river-gate reunion scene.",
+      "layer": "L2 风格",
+      "contains": ["当前章节原文", "柳七把那只潮湿的纸鸢从袖里取了出来"]
+    },
+    {
+      "id": "l0-paper-kite-rule",
+      "description": "L0 keeps the original paper-kite promise visible as a current fact.",
+      "layer": "L0 事实",
+      "contains": ["白尾纸鸢", "纸鸢旧约", "我就回来"],
+      "source_families": ["codex"]
+    },
+    {
+      "id": "l0-linqiu-identity",
+      "description": "L0 exposes Lin Qiu as the person tied to the delayed promise.",
+      "layer": "L0 事实",
+      "contains": ["林秋", "纸鸢旧约"],
+      "source_families": ["codex"]
+    },
+    {
+      "id": "l3-promise-recall-item",
+      "description": "L3 emits a recall item for the early paper-kite promise.",
+      "layer": "L3 意图",
+      "contains": ["关联召回: 第001章 河埠纸鸢", "命中关键词"],
+      "source_contains": ["recall:chapter_summary:chapter-001"],
+      "source_families": ["recall"]
+    },
+    {
+      "id": "l3-recall-audit-paper-kite",
+      "description": "L3 audit shows the paper-kite thread and Lin Qiu keyword hits.",
+      "layer": "L3 意图",
+      "contains": ["命中设定", "林秋", "白尾纸鸢"]
+    }
+  ]
+}

@@ -47,26 +47,49 @@ describe('workspace check tool', () => {
     }
   })
 
-  it('can include the long-memory benchmark in the aggregate gate', async () => {
+  it('can include the repository benchmark suite in the aggregate gate', async () => {
     const report = await checkWorkspace('examples/demo-novel', {
-      benchmarkPaths: ['examples/long-memory-benchmark'],
+      benchmarkPaths: [
+        'examples/long-memory-benchmark',
+        'examples/state-drift-benchmark',
+        'examples/delayed-payoff-benchmark',
+      ],
     })
     const output = formatWorkspaceCheckReport(report)
 
     expect(report.ok).toBe(true)
-    expect(report.benchmarks).toHaveLength(1)
-    expect(report.benchmarks[0].projectPath).toBe(
+    expect(report.benchmarks).toHaveLength(3)
+    expect(report.benchmarks.map((benchmark) => benchmark.projectPath)).toEqual([
       'examples/long-memory-benchmark',
-    )
-    expect(report.benchmarks[0].memory.phase0).toMatchObject({
-      ok: true,
-      gain: 5,
-      requiredGain: 5,
-    })
+      'examples/state-drift-benchmark',
+      'examples/delayed-payoff-benchmark',
+    ])
+    expect(report.benchmarks.map((benchmark) => benchmark.memory.phase0)).toEqual([
+      expect.objectContaining({
+        ok: true,
+        gain: 5,
+        requiredGain: 5,
+      }),
+      expect.objectContaining({
+        ok: true,
+        gain: 4,
+        requiredGain: 4,
+      }),
+      expect.objectContaining({
+        ok: true,
+        gain: 4,
+        requiredGain: 4,
+      }),
+    ])
     expect(output).toContain('Benchmark memory eval: OK')
     expect(output).toContain('Benchmark path: examples/long-memory-benchmark')
+    expect(output).toContain('Benchmark path: examples/state-drift-benchmark')
+    expect(output).toContain('Benchmark path: examples/delayed-payoff-benchmark')
     expect(output).toContain(
       'Phase 0 gate: PASS (100% four-layer vs 17% baseline, gain +5/5)',
+    )
+    expect(output).toContain(
+      'Phase 0 gate: PASS (100% four-layer vs 20% baseline, gain +4/4)',
     )
   })
 })

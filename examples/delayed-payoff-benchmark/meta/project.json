@@ -1,0 +1,68 @@
+{
+  "$schema": "../../../schemas/project.schema.json",
+  "schema_version": 1,
+  "title": "纸鸢旧约",
+  "source_of_truth": "markdown",
+  "chapters": [
+    {
+      "id": "chapter-001",
+      "title": "第001章 河埠纸鸢",
+      "path": "manuscript/volume-001/chapter-001.md",
+      "order": 1,
+      "story_time": {
+        "label": "汀州纪·春汛前",
+        "sort_key": 1
+      }
+    },
+    {
+      "id": "chapter-002",
+      "title": "第002章 渡口盘账",
+      "path": "manuscript/volume-001/chapter-002.md",
+      "order": 2,
+      "story_time": {
+        "label": "汀州纪·次日午后",
+        "sort_key": 2
+      }
+    },
+    {
+      "id": "chapter-003",
+      "title": "第003章 北仓借宿",
+      "path": "manuscript/volume-001/chapter-003.md",
+      "order": 3,
+      "story_time": {
+        "label": "汀州纪·第三日夜",
+        "sort_key": 3
+      }
+    },
+    {
+      "id": "chapter-004",
+      "title": "第004章 堤灯误信",
+      "path": "manuscript/volume-002/chapter-004.md",
+      "order": 4,
+      "story_time": {
+        "label": "汀州纪·第五日夜",
+        "sort_key": 4
+      }
+    },
+    {
+      "id": "chapter-005",
+      "title": "第005章 雨驿换马",
+      "path": "manuscript/volume-002/chapter-005.md",
+      "order": 5,
+      "story_time": {
+        "label": "汀州纪·第六日清晨",
+        "sort_key": 5
+      }
+    },
+    {
+      "id": "chapter-006",
+      "title": "第006章 河闸再会",
+      "path": "manuscript/volume-002/chapter-006.md",
+      "order": 6,
+      "story_time": {
+        "label": "汀州纪·第七日黄昏",
+        "sort_key": 6
+      }
+    }
+  ]
+}
