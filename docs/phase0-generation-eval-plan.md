@@ -7,14 +7,16 @@ repeatable value judgment.
 ## Goal
 
 Prove whether four-layer memory improves actual continuation quality compared
-with a recent-prose-only baseline.
+with recent-prose-only baselines.
 
 ## Current Scope
 
 - Baseline A: recent prose only, built from L2 current and near chapters.
+- Control C: the same budget filled with plain recent prose.
 - Candidate B: the same four-layer context used by the editor.
 - Provider: any OpenAI-compatible `/v1/chat/completions` endpoint.
 - Corpus: `examples/long-memory-benchmark` first, then more controlled corpora.
+- Repeats: default 3 per arm, enough to avoid single-sample comfort.
 - First-pass scoring: deterministic text criteria for callback hits, setting
   violations, and future leaks.
 
@@ -28,6 +30,7 @@ Dry-run the A/B prompts without spending tokens:
 ```bash
 npm run generation:eval:long -- --dry-run
 npm run generation:eval:long -- --dry-run --show-prompts
+npm run generation:eval:long -- --dry-run --archive-dir .novel/evals/dry-run
 ```
 
 Run a real model through an OpenAI-compatible gateway:
@@ -36,20 +39,32 @@ Run a real model through an OpenAI-compatible gateway:
 NOVEL_ENGINE_EVAL_BASE_URL=http://127.0.0.1:8000 \
 NOVEL_ENGINE_EVAL_API_KEY=... \
 NOVEL_ENGINE_EVAL_MODEL=... \
-npm run generation:eval:long
+npm run generation:eval:long -- --repeat 3 --archive-dir .novel/evals/run-001
 ```
 
-Use `--json` to archive prompt, output, and score data for manual review.
+Run a suite across benchmark projects:
+
+```bash
+npm run generation:eval -- --dry-run \
+  --benchmark-project examples/long-memory-benchmark \
+  --archive-dir .novel/evals/suite-dry-run
+```
+
+Use `--json` for machine-readable console output. Use `--archive-dir` for the
+real deliverable: prompt, output, score, summary, and `human-review.csv` files
+that can be reviewed and compared later.
 
 ## Acceptance Line
 
-For the long-memory benchmark, Candidate B should:
+For real runs, Candidate B should:
 
-- beat Baseline A on callback hits,
+- beat Baseline A and Control C with at least a 60% paired callback win rate,
 - not increase setting violations,
 - have zero future-leak hits,
 - produce prose that a human reviewer judges as a natural continuation.
 
+Runs with fewer than 3 scored paired samples are marked `underpowered` instead
+of passed. A tie is not success; the memory engine has to earn its complexity.
 The deterministic gate can pass while prose quality is still weak. Human review
 is the final Phase 0 decision.
 
@@ -59,11 +74,13 @@ is the final Phase 0 decision.
 - [x] Add OpenAI-compatible real-generation path.
 - [x] Add `meta/generation-eval.json` criteria for the long-memory benchmark.
 - [x] Add deterministic first-pass scoring for generated text.
-- [ ] Add result archiving under `.novel/evals/` for repeatable review.
+- [x] Add A/B/C arms with same-budget recent-prose control.
+- [x] Add repeat aggregation and underpowered gate.
+- [x] Add result archiving under `.novel/evals/` for repeatable review.
+- [x] Add a human review CSV template for author-facing quality notes.
 - [ ] Add a judge prompt that compares A/B outputs without seeing arm labels.
 - [ ] Add at least two more benchmark corpora with different failure modes:
       character state drift and delayed plot-thread payoff.
-- [ ] Add a human review template for author-facing quality notes.
 
 ## Frozen Until Phase 0 Generates Real Evidence
 

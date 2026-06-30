@@ -1,9 +1,12 @@
-import { readFile } from 'node:fs/promises'
+import { mkdtemp, readFile, rm, stat } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import {
   evaluateGeneration,
+  evaluateGenerationSuite,
   formatGenerationEvalReport,
+  formatGenerationEvalSuiteReport,
   parseGenerationEvalArgs,
   scoreGenerationOutput,
 } from './generation-eval.ts'
@@ -14,14 +17,23 @@ describe('generation eval tool', () => {
       parseGenerationEvalArgs([
         '--dry-run',
         '--show-prompts',
+        '--repeat',
+        '5',
+        '--archive-dir',
+        '.novel/evals/test',
         '--model',
         'test-model',
+        '--benchmark-project',
+        'examples/long-memory-benchmark',
         'examples/long-memory-benchmark',
       ]),
     ).toMatchObject({
       rootPath: 'examples/long-memory-benchmark',
+      benchmarkProjects: ['examples/long-memory-benchmark'],
       dryRun: true,
       showPrompts: true,
+      repeatCount: 5,
+      archiveDir: '.novel/evals/test',
       model: 'test-model',
     })
   })
@@ -34,6 +46,7 @@ describe('generation eval tool', () => {
     })
     const output = formatGenerationEvalReport(report)
     const baseline = report.arms.find((arm) => arm.id === 'baseline')
+    const recentFill = report.arms.find((arm) => arm.id === 'recent-fill')
     const fourLayer = report.arms.find((arm) => arm.id === 'four-layer')
 
     expect(report.ok).toBe(true)
@@ -49,14 +62,87 @@ describe('generation eval tool', () => {
       id: 'baseline',
       memoryCount: 1,
     })
+    expect(recentFill).toMatchObject({
+      id: 'recent-fill',
+      memoryCount: 1,
+    })
+    expect(recentFill?.promptChars).toBeGreaterThanOrEqual(
+      baseline?.promptChars || 0,
+    )
     expect(fourLayer?.memoryCount).toBeGreaterThan(1)
     expect(baseline?.prompt).toContain('第006章 镜湖重逢')
     expect(baseline?.prompt).not.toContain('灯灭之前')
     expect(fourLayer?.prompt).toContain('灯灭之前')
     expect(fourLayer?.memorySources).toContain('recall:chapter_summary:chapter-001')
     expect(output).toContain('Generation eval: DRY-RUN')
+    expect(output).toContain('Repeats: 3')
     expect(output).toContain('Criteria: 4 total')
     expect(output).toContain('Gate: NOT-RUN')
+  })
+
+  it('archives dry-run prompts for reproducible review', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'generation-eval-'))
+
+    try {
+      const report = await evaluateGeneration({
+        rootPath: 'examples/long-memory-benchmark',
+        dryRun: true,
+        includePrompts: true,
+        archiveDir: root,
+      })
+
+      expect(report.ok).toBe(true)
+      expect(report.archivePath).toBe(root)
+      await expect(stat(join(root, 'generation-eval-report.json'))).resolves.toBeTruthy()
+      await expect(stat(join(root, 'generation-eval-summary.md'))).resolves.toBeTruthy()
+      await expect(stat(join(root, 'human-review.csv'))).resolves.toBeTruthy()
+      expect(
+        await readFile(join(root, 'generation-eval-summary.md'), 'utf8'),
+      ).toContain('Generation Eval Summary')
+      expect(await readFile(join(root, 'human-review.csv'), 'utf8')).toContain(
+        'review_preference',
+      )
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it('archives dry-run suites for cross-project review', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'generation-eval-suite-'))
+
+    try {
+      const suite = await evaluateGenerationSuite({
+        rootPaths: ['examples/long-memory-benchmark'],
+        dryRun: true,
+        includePrompts: true,
+        archiveDir: root,
+      })
+      const output = formatGenerationEvalSuiteReport(suite)
+
+      expect(suite.ok).toBe(true)
+      expect(suite.projectCount).toBe(1)
+      expect(suite.archivePath).toBe(root)
+      expect(output).toContain('Generation eval suite: DRY-RUN')
+      await expect(stat(join(root, 'generation-eval-suite.json'))).resolves.toBeTruthy()
+      await expect(
+        stat(join(root, 'generation-eval-suite-summary.md')),
+      ).resolves.toBeTruthy()
+      await expect(stat(join(root, 'human-review.csv'))).resolves.toBeTruthy()
+      await expect(
+        stat(
+          join(
+            root,
+            'long-memory-benchmark',
+            'generation-eval-report.json',
+          ),
+        ),
+      ).resolves.toBeTruthy()
+      expect(
+        await readFile(join(root, 'generation-eval-suite-summary.md'), 'utf8'),
+      ).toContain('Generation Eval Suite Summary')
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
   })
 
   it('scores generated text with callback, setting, and future leak criteria', async () => {

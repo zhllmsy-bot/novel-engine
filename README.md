@@ -407,9 +407,10 @@ behavior.
 ## Evaluate Real Generation
 
 `memory:eval` proves context assembly. The next Phase 0 step is
-`generation:eval`, which builds two prompts for the same benchmark chapter:
+`generation:eval`, which builds three prompts for the same benchmark chapter:
 
 - Baseline A receives recent prose only.
+- Control C receives the same budget filled with plain recent prose.
 - Candidate B receives the editor's four-layer memory plan.
 
 Use dry-run first to inspect prompts without calling a model:
@@ -417,21 +418,35 @@ Use dry-run first to inspect prompts without calling a model:
 ```bash
 npm run generation:eval:long -- --dry-run
 npm run generation:eval:long -- --dry-run --show-prompts
+npm run generation:eval:long -- --dry-run --archive-dir .novel/evals/dry-run
 ```
 
-Then run a real OpenAI-compatible endpoint:
+Then run a repeated real-model experiment through an OpenAI-compatible endpoint:
 
 ```bash
 NOVEL_ENGINE_EVAL_BASE_URL=http://127.0.0.1:8000 \
 NOVEL_ENGINE_EVAL_API_KEY=... \
 NOVEL_ENGINE_EVAL_MODEL=... \
-npm run generation:eval:long
+npm run generation:eval:long -- --repeat 3 --archive-dir .novel/evals/run-001
+```
+
+Use `--benchmark-project` more than once to run a suite across frozen benchmark
+projects:
+
+```bash
+npm run generation:eval -- --dry-run \
+  --benchmark-project examples/long-memory-benchmark \
+  --archive-dir .novel/evals/suite-dry-run
 ```
 
 The report scores generated text with deterministic first-pass criteria for
 callback hits, setting violations, and future leaks. Treat that as triage, not
 as the final product judgment; human or judge-model review still decides whether
-the continuation is natural. See `docs/phase0-generation-eval-plan.md`.
+the continuation is natural. `--archive-dir` writes JSON, Markdown, and
+`human-review.csv` so the prompt/output evidence is reproducible. The real-run
+gate requires four-layer memory to beat both baselines by callback win rate,
+without increasing setting violations or future leaks. See
+`docs/phase0-generation-eval-plan.md`.
 
 Example `meta/memory-eval.json`:
 
