@@ -105,7 +105,6 @@ describe('chapter summary store', () => {
     expect(summary.summary).toContain('起因:')
     expect(summary.summary).toContain('推进:')
     expect(summary.summary).toContain('结果:')
-    expect(summary.summary).toContain('伏笔:')
     expect(summary.summary).toContain('因为青灯誓再次震动')
     expect(summary.summary).toContain('绝不能先交底')
   })

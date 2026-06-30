@@ -24,7 +24,7 @@ describe('narrative memory context builder', () => {
       'L1 剧情',
     ])
     expect(memoryBudgetPolicy.recentChapterCount).toBe(3)
-    expect(memoryBudgetPolicy.dynamicRecallTopN).toBe(3)
+    expect(memoryBudgetPolicy.dynamicRecallTopN).toBe(6)
     expect(memoryBudgetPolicy.detailedSummaryRecentCount).toBe(5)
     expect(memoryBudgetPolicy.distantSummaryMaxSignals).toBe(4)
     expect(memoryBudgetPolicy.layers['L2 风格'].targetBudgetShare).toEqual([
@@ -118,6 +118,29 @@ describe('narrative memory context builder', () => {
     expect(memories[0].layer).toBe('L2 风格')
     expect(memories[0].body).toContain('当前章节原文')
     expect(memories[0].body.length).toBeLessThanOrEqual(60)
+  })
+
+  it('keeps minimum coverage for all four layers when the budget is tight', () => {
+    const project = loadDemoProject()
+    const chapter = project.chapters[0]
+    const plan = buildNarrativeMemoryPlan({
+      chapter,
+      documentText: chapter.content,
+      codexEntries: project.codexEntries,
+      projectTitle: project.title,
+      budgetChars: 60,
+    })
+
+    const nonEmptyLayers = new Set(
+      plan.memories.filter((memory) => memory.body.trim()).map((memory) => memory.layer),
+    )
+
+    expect(nonEmptyLayers).toEqual(
+      new Set(['L2 风格', 'L0 事实', 'L3 意图', 'L1 剧情']),
+    )
+    expect(
+      plan.audit.layerSummaries.every((summary) => summary.selectedChars > 0),
+    ).toBe(true)
   })
 
   it('builds an inspectable memory budget audit', () => {
@@ -1170,7 +1193,7 @@ describe('narrative memory context builder', () => {
     ).toBe(false)
   })
 
-  it('caps L3 summary recall entries to the policy top N', () => {
+  it('keeps available L3 summary recall entries when no other channel competes', () => {
     const project = loadDemoProject()
     const chapter = {
       ...project.chapters[0],
@@ -1210,11 +1233,95 @@ describe('narrative memory context builder', () => {
       memory.source.startsWith('recall:chapter_summary:'),
     )
 
-    expect(recallMemories).toHaveLength(memoryBudgetPolicy.dynamicRecallTopN)
+    expect(recallMemories).toHaveLength(previousChapters.length)
     expect(recallMemories.map((memory) => memory.source)).toEqual([
       'recall:chapter_summary:chapter-005',
       'recall:chapter_summary:chapter-004',
       'recall:chapter_summary:chapter-003',
+      'recall:chapter_summary:chapter-002',
+      'recall:chapter_summary:chapter-001',
     ])
+  })
+
+  it('reserves L3 recall slots for indexed and plot-thread channels before filling with summary recalls', () => {
+    const project = loadDemoProject()
+    const chapter = {
+      ...project.chapters[0],
+      id: 'chapter-006',
+      title: '第006章 镜湖折返',
+      path: 'manuscript/volume-001/chapter-006.md',
+      order: 6,
+      content: '沈微握住玄铁剑，镜湖钥和裂纹旧事一齐涌回心头。',
+    }
+    const previousChapters = Array.from({ length: 5 }, (_, index) => ({
+      ...project.chapters[0],
+      id: `chapter-00${index + 1}`,
+      title: `第00${index + 1}章 旧事${index + 1}`,
+      path: `manuscript/volume-001/chapter-00${index + 1}.md`,
+      order: index + 1,
+      content: `第${index + 1}段旧事里，玄铁剑和李长老留下线索。`,
+    }))
+    const memories = buildNarrativeMemories({
+      chapter,
+      projectChapters: [...previousChapters, chapter],
+      documentText: chapter.content,
+      codexEntries: project.codexEntries,
+      chapterSummaries: previousChapters.map((previousChapter) => ({
+        chapterId: previousChapter.id,
+        chapterTitle: previousChapter.title,
+        summary: `${previousChapter.title}里，玄铁剑和李长老留下不同线索。`,
+        keyEvents: [],
+        charactersInvolved: [],
+        sourceHash: previousChapter.id,
+        isEdited: false,
+        updatedAt: '2026-06-25T00:00:00.000Z',
+      })),
+      plotThreads: [
+        {
+          id: 'thread-1',
+          title: '玄铁剑裂纹',
+          content: '玄铁剑第一次低鸣时出现裂纹，来源尚未揭示。',
+          plantedChapterId: previousChapters[0].id,
+          plantedChapterTitle: previousChapters[0].title,
+          keywords: ['玄铁剑', '裂纹'],
+          status: 'open',
+          confirmed: true,
+          sourceSkillId: 'xuanhuan.foreshadowing_review',
+          confirmedAt: '2026-06-25T00:00:00.000Z',
+          updatedAt: '2026-06-25T00:00:00.000Z',
+        },
+      ],
+      indexedRecallResults: [
+        {
+          chapterId: previousChapters[0].id,
+          chapterTitle: previousChapters[0].title,
+          sourcePath: previousChapters[0].path,
+          snippet: '镜湖钥第一次在旧誓里被提及。',
+          score: 0.95,
+          source: 'summary',
+        },
+        {
+          chapterId: previousChapters[1].id,
+          chapterTitle: previousChapters[1].title,
+          sourcePath: previousChapters[1].path,
+          snippet: '沈微在石阶背面看见镜湖旧刻。',
+          score: 0.92,
+          source: 'content',
+        },
+      ],
+      projectTitle: project.title,
+      budgetChars: 2_800,
+    })
+
+    const recallSources = memories
+      .filter((memory) => memory.source.startsWith('recall:'))
+      .map((memory) => memory.source)
+
+    expect(recallSources).toContain('recall:plot_thread:thread-1')
+    expect(recallSources).toContain('recall:index:chapter-001')
+    expect(recallSources).toContain('recall:index:chapter-002')
+    expect(
+      recallSources.some((source) => source.startsWith('recall:chapter_summary:')),
+    ).toBe(true)
   })
 })
