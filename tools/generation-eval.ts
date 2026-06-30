@@ -58,6 +58,7 @@ export type GenerationEvalRunArmReport = {
   output?: string
   outputChars?: number
   error?: string
+  trace?: GenerationEvalTraceRecord
   score?: GenerationEvalScore
   guards?: EvalGuardResult[]
   structureMetrics?: EvalStructureMetric[]
@@ -127,6 +128,7 @@ export type GenerationEvalJudgeResult = {
   rawChoice: string
   reason: string
   error?: string
+  trace?: GenerationEvalTraceRecord
 }
 
 export type GenerationEvalJudgeComparison = {
@@ -149,6 +151,38 @@ export type GenerationEvalJudgeReport = {
   }
   results: GenerationEvalJudgeResult[]
   comparisons: GenerationEvalJudgeComparison[]
+}
+
+export type GenerationEvalUsage = {
+  inputTokens?: number
+  outputTokens?: number
+  totalTokens?: number
+}
+
+export type GenerationEvalTraceRecord = {
+  kind: 'generation' | 'judge'
+  wireApi: OpenAICompatibleWireApi
+  model: string
+  endpoint: string
+  request: {
+    systemPromptPreview: string
+    promptPreview: string
+    promptChars: number
+    maxOutputChars: number
+    temperature: number
+    reasoningEffort?: string
+    store?: boolean
+  }
+  response?: {
+    responseId?: string
+    statusCode: number
+    object?: string
+    model?: string
+    finishedStatus?: string
+    usage?: GenerationEvalUsage
+    outputPreview?: string
+  }
+  error?: string
 }
 
 type GenerationEvalJudgeRow = {
@@ -226,6 +260,11 @@ type OpenAICompatibleGenerationConfig = {
   maxOutputChars: number
   reasoningEffort?: string
   store?: boolean
+}
+
+type OpenAICompatibleGenerationResult = {
+  output: string
+  trace: GenerationEvalTraceRecord
 }
 
 type CliOptions = {
@@ -321,7 +360,18 @@ const chatCompletionResponseSchema = z.object({
 
 const responsesApiResponseSchema = z
   .object({
+    id: z.string().optional(),
+    object: z.string().optional(),
+    status: z.string().optional(),
     output_text: z.string().optional(),
+    usage: z
+      .object({
+        input_tokens: z.number().int().nonnegative().optional(),
+        output_tokens: z.number().int().nonnegative().optional(),
+        total_tokens: z.number().int().nonnegative().optional(),
+      })
+      .partial()
+      .optional(),
     output: z
       .array(
         z
@@ -346,6 +396,38 @@ const responsesApiResponseSchema = z
 const judgeResponseSchema = z.object({
   choice: z.enum(['A', 'B', 'tie']).catch('tie'),
   reason: z.string().catch('No reason parsed.'),
+})
+
+const chatCompletionResponseWithUsageSchema = z.object({
+  id: z.string().optional(),
+  object: z.string().optional(),
+  model: z.string().optional(),
+  choices: z
+    .array(
+      z.object({
+        message: z.object({
+          content: z.union([
+            z.string(),
+            z.array(
+              z
+                .object({
+                  text: z.string().optional(),
+                })
+                .passthrough(),
+            ),
+          ]),
+        }),
+      }),
+    )
+    .min(1),
+  usage: z
+    .object({
+      prompt_tokens: z.number().int().nonnegative().optional(),
+      completion_tokens: z.number().int().nonnegative().optional(),
+      total_tokens: z.number().int().nonnegative().optional(),
+    })
+    .partial()
+    .optional(),
 })
 
 export async function evaluateGeneration(input: {
@@ -512,12 +594,15 @@ export async function evaluateGeneration(input: {
         const runArm: GenerationEvalRunArmReport = { id: arm.id }
 
         try {
-          const output = await callOpenAICompatibleGeneration({
+          const result = await callOpenAICompatibleGeneration({
             config: providerConfig,
             prompt: arm.promptPreview,
+            kind: 'generation',
           })
+          const output = result.output
           runArm.output = output
           runArm.outputChars = output.length
+          runArm.trace = result.trace
           runArm.score = scoreGenerationOutput(output, evalConfig.criteria)
           runArm.guards = runGenerationGuards({
             output,
@@ -932,7 +1017,8 @@ async function callOpenAICompatibleGeneration(input: {
   config: OpenAICompatibleGenerationConfig
   prompt: string
   systemPrompt?: string
-}) {
+  kind?: 'generation' | 'judge'
+}): Promise<OpenAICompatibleGenerationResult> {
   const baseUrl = normalizeBaseUrl(input.config.baseUrl)
   const systemPrompt =
     input.systemPrompt ||
@@ -947,7 +1033,24 @@ async function callOpenAICompatibleGeneration(input: {
       config: input.config,
       prompt: input.prompt,
       systemPrompt,
+      kind: input.kind || 'generation',
     })
+  }
+
+  const requestBody = {
+    model: input.config.model,
+    temperature: input.config.temperature,
+    max_tokens: Math.max(128, Math.ceil(input.config.maxOutputChars / 1.5)),
+    messages: [
+      {
+        role: 'system',
+        content: systemPrompt,
+      },
+      {
+        role: 'user',
+        content: input.prompt,
+      },
+    ],
   }
 
   const response = await fetch(`${baseUrl}/v1/chat/completions`, {
@@ -957,40 +1060,60 @@ async function callOpenAICompatibleGeneration(input: {
       Authorization: `Bearer ${input.config.apiKey}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      model: input.config.model,
-      temperature: input.config.temperature,
-      max_tokens: Math.max(128, Math.ceil(input.config.maxOutputChars / 1.5)),
-      messages: [
-        {
-          role: 'system',
-          content: systemPrompt,
-        },
-        {
-          role: 'user',
-          content: input.prompt,
-        },
-      ],
-    }),
+    body: JSON.stringify(requestBody),
   })
 
   if (!response.ok) {
     const body = await response.text()
-    throw new Error(`OpenAI-compatible generation failed: ${response.status} ${body}`)
+    throw new Error(
+      `OpenAI-compatible generation failed: ${response.status} ${sanitizeText(body)}`,
+    )
   }
 
-  const payload = chatCompletionResponseSchema.parse(await response.json())
-  return trimToChars(
+  const payload = chatCompletionResponseWithUsageSchema.parse(await response.json())
+  const output = trimToChars(
     extractChatCompletionText(payload).trim(),
     input.config.maxOutputChars,
   )
+
+  return {
+    output,
+    trace: sanitizeTraceRecord({
+      kind: input.kind || 'generation',
+      wireApi: 'chat',
+      model: input.config.model,
+      endpoint: `${baseUrl}/v1/chat/completions`,
+      request: {
+        systemPromptPreview: systemPrompt,
+        promptPreview: input.prompt,
+        promptChars: input.prompt.length,
+        maxOutputChars: input.config.maxOutputChars,
+        temperature: input.config.temperature,
+        reasoningEffort: input.config.reasoningEffort,
+        store: input.config.store,
+      },
+      response: {
+        responseId: payload.id,
+        statusCode: response.status,
+        object: payload.object,
+        model: payload.model,
+        usage: {
+          inputTokens: payload.usage?.prompt_tokens,
+          outputTokens: payload.usage?.completion_tokens,
+          totalTokens: payload.usage?.total_tokens,
+        },
+        outputPreview: output,
+      },
+    }),
+  }
 }
 
 async function callOpenAICompatibleResponses(input: {
   config: OpenAICompatibleGenerationConfig
   prompt: string
   systemPrompt: string
-}) {
+  kind: 'generation' | 'judge'
+}): Promise<OpenAICompatibleGenerationResult> {
   const baseUrl = normalizeBaseUrl(input.config.baseUrl)
   const body: Record<string, unknown> = {
     model: input.config.model,
@@ -1032,15 +1155,47 @@ async function callOpenAICompatibleResponses(input: {
   if (!response.ok) {
     const responseBody = await response.text()
     throw new Error(
-      `OpenAI-compatible responses generation failed: ${response.status} ${responseBody}`,
+      `OpenAI-compatible responses generation failed: ${response.status} ${sanitizeText(responseBody)}`,
     )
   }
 
   const payload = responsesApiResponseSchema.parse(await response.json())
-  return trimToChars(
+  const output = trimToChars(
     extractResponsesApiText(payload).trim(),
     input.config.maxOutputChars,
   )
+
+  return {
+    output,
+    trace: sanitizeTraceRecord({
+      kind: input.kind,
+      wireApi: 'responses',
+      model: input.config.model,
+      endpoint: `${baseUrl}/v1/responses`,
+      request: {
+        systemPromptPreview: input.systemPrompt,
+        promptPreview: input.prompt,
+        promptChars: input.prompt.length,
+        maxOutputChars: input.config.maxOutputChars,
+        temperature: input.config.temperature,
+        reasoningEffort: input.config.reasoningEffort,
+        store: input.config.store,
+      },
+      response: {
+        responseId: payload.id,
+        statusCode: response.status,
+        object: payload.object,
+        model: input.config.model,
+        finishedStatus: payload.status,
+        usage: {
+          inputTokens: payload.usage?.input_tokens,
+          outputTokens: payload.usage?.output_tokens,
+          totalTokens: payload.usage?.total_tokens,
+        },
+        outputPreview: output,
+      },
+    }),
+  }
 }
 
 function extractChatCompletionText(
@@ -1409,15 +1564,17 @@ async function evaluateJudgeRow(input: {
   providerConfig: OpenAICompatibleGenerationConfig
 }): Promise<GenerationEvalJudgeResult> {
   try {
-    const rawOutput = await callOpenAICompatibleGeneration({
+    const result = await callOpenAICompatibleGeneration({
       config: input.providerConfig,
       prompt: input.row.prompt,
+      kind: 'judge',
       systemPrompt: [
         '你是严格的中文长篇小说续写盲评裁判。',
         '只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。',
         'choice 只能是 "A"、"B" 或 "tie"。',
       ].join('\n'),
     })
+    const rawOutput = result.output
     const parsed = parseJudgeResponse(rawOutput)
 
     return {
@@ -1435,6 +1592,7 @@ async function evaluateJudgeRow(input: {
       }),
       rawChoice: parsed.choice,
       reason: parsed.reason,
+      trace: result.trace,
     }
   } catch (error) {
     return {
@@ -1448,7 +1606,7 @@ async function evaluateJudgeRow(input: {
       choice: 'invalid',
       rawChoice: 'invalid',
       reason: 'Judge response could not be parsed.',
-      error: String(error),
+      error: sanitizeText(String(error)),
     }
   }
 }
@@ -1527,6 +1685,10 @@ async function archiveGenerationEvalReport(input: {
     join(archivePath, 'judge-results.json'),
     `${JSON.stringify(input.report.judge || emptyJudgeReport(), null, 2)}\n`,
   )
+  await writeFile(
+    join(archivePath, 'request-traces.json'),
+    `${JSON.stringify(buildTraceArchive(input.report), null, 2)}\n`,
+  )
 
   return archivePath
 }
@@ -1556,6 +1718,10 @@ async function archiveGenerationEvalSuite(input: {
   await writeFile(
     join(archivePath, 'judge-results.json'),
     `${JSON.stringify(buildSuiteJudgeResults(input.suite), null, 2)}\n`,
+  )
+  await writeFile(
+    join(archivePath, 'request-traces.json'),
+    `${JSON.stringify(buildSuiteTraceArchive(input.suite), null, 2)}\n`,
   )
 
   return archivePath
@@ -1778,6 +1944,45 @@ function buildSuiteJudgeResults(suite: GenerationEvalSuiteReport) {
       archivePath: report.archivePath,
       judge: report.judge || emptyJudgeReport(),
     })),
+  }
+}
+
+function buildTraceArchive(report: GenerationEvalReport) {
+  return {
+    project: report.title || report.rootPath,
+    chapterId: report.chapterId,
+    fingerprint: report.fingerprint,
+    provider: sanitizeProviderMetadata(report.provider),
+    runs: report.runs.map((run) => ({
+      runId: run.id,
+      chapterId: run.chapterId,
+      repeatIndex: run.repeatIndex,
+      arms: run.arms.map((arm) => ({
+        id: arm.id,
+        error: arm.error ? sanitizeText(arm.error) : undefined,
+        trace: arm.trace,
+      })),
+    })),
+    judge:
+      report.judge?.results.map((result) => ({
+        runId: result.runId,
+        chapterId: result.chapterId,
+        repeatIndex: result.repeatIndex,
+        pair: result.pair,
+        order: result.order,
+        choice: result.choice,
+        rawChoice: result.rawChoice,
+        reason: sanitizeText(result.reason),
+        error: result.error ? sanitizeText(result.error) : undefined,
+        trace: result.trace,
+      })) || [],
+  }
+}
+
+function buildSuiteTraceArchive(suite: GenerationEvalSuiteReport) {
+  return {
+    projectCount: suite.projectCount,
+    reports: suite.reports.map((report) => buildTraceArchive(report)),
   }
 }
 
@@ -2237,6 +2442,70 @@ function normalizePath(path: string) {
 
 function normalizeBaseUrl(baseUrl: string) {
   return baseUrl.replace(/\/+$/, '')
+}
+
+function sanitizeTraceRecord(
+  trace: GenerationEvalTraceRecord,
+): GenerationEvalTraceRecord {
+  return {
+    ...trace,
+    endpoint: sanitizeEndpoint(trace.endpoint),
+    request: {
+      ...trace.request,
+      systemPromptPreview: sanitizeText(trimPreview(trace.request.systemPromptPreview)),
+      promptPreview: sanitizeText(trimPreview(trace.request.promptPreview)),
+    },
+    response: trace.response
+      ? {
+          ...trace.response,
+          outputPreview: trace.response.outputPreview
+            ? sanitizeText(trimPreview(trace.response.outputPreview))
+            : undefined,
+        }
+      : undefined,
+    error: trace.error ? sanitizeText(trace.error) : undefined,
+  }
+}
+
+function sanitizeProviderMetadata(
+  provider: GenerationEvalReport['provider'],
+): GenerationEvalReport['provider'] {
+  if (provider.kind === 'dry-run') {
+    return provider
+  }
+
+  return {
+    ...provider,
+    baseUrl: provider.baseUrl ? sanitizeEndpoint(provider.baseUrl) : undefined,
+  }
+}
+
+function sanitizeEndpoint(endpoint: string) {
+  try {
+    const url = new URL(endpoint)
+    return `${url.protocol}//${url.host}${url.pathname}`
+  } catch {
+    return sanitizeText(endpoint)
+  }
+}
+
+function sanitizeText(value: string) {
+  return value
+    .replace(/Bearer\s+[A-Za-z0-9._-]+/gi, 'Bearer [REDACTED]')
+    .replace(/sk-[A-Za-z0-9_-]{12,}/g, 'sk-[REDACTED]')
+    .replace(/\b[A-Za-z0-9]{24,}\b/g, (match) =>
+      looksSensitiveToken(match) ? '[REDACTED]' : match,
+    )
+}
+
+function looksSensitiveToken(value: string) {
+  const hasLetter = /[A-Za-z]/.test(value)
+  const hasDigit = /\d/.test(value)
+  return hasLetter && hasDigit
+}
+
+function trimPreview(value: string, maxChars = 2_000) {
+  return value.length <= maxChars ? value : `${value.slice(0, maxChars)}…`
 }
 
 function normalizeWireApi(value?: string): OpenAICompatibleWireApi | undefined {

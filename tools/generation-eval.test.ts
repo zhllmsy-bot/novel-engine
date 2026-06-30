@@ -122,6 +122,7 @@ describe('generation eval tool', () => {
         stat(join(root, 'judge-review-prompts.jsonl')),
       ).resolves.toBeTruthy()
       await expect(stat(join(root, 'judge-results.json'))).resolves.toBeTruthy()
+      await expect(stat(join(root, 'request-traces.json'))).resolves.toBeTruthy()
       expect(
         await readFile(join(root, 'generation-eval-summary.md'), 'utf8'),
       ).toContain('Generation Eval Summary')
@@ -131,6 +132,13 @@ describe('generation eval tool', () => {
       expect(await readFile(join(root, 'judge-results.json'), 'utf8')).toContain(
         '"enabled": false',
       )
+      const traceArchive = await readFile(
+        join(root, 'request-traces.json'),
+        'utf8',
+      )
+      expect(traceArchive).toContain('"runs"')
+      expect(traceArchive).not.toContain('Bearer ')
+      expect(traceArchive).not.toContain('sk-')
     } finally {
       await rm(root, { recursive: true, force: true })
     }
@@ -161,6 +169,7 @@ describe('generation eval tool', () => {
         stat(join(root, 'judge-review-prompts.jsonl')),
       ).resolves.toBeTruthy()
       await expect(stat(join(root, 'judge-results.json'))).resolves.toBeTruthy()
+      await expect(stat(join(root, 'request-traces.json'))).resolves.toBeTruthy()
       await expect(
         stat(
           join(

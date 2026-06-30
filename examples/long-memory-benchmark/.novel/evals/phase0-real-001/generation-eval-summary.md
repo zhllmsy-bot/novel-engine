@@ -5,18 +5,17 @@
 - Chapter: chapter-006
 - Repeats: 3
 - Provider: openai-compatible model=gpt-5.5 baseUrl=https://sub.kedaya.xyz wire=responses reasoning=xhigh
-- Fingerprint: git=cc49e606e8a369f595b19292be3a120171c57bc8-dirty, dataset=305d5b8303492974, config=12a00c6819a1f20b
+- Fingerprint: git=8a3c1fb135a3f1c37d4ba2124ea845a8bfb843c1-dirty, dataset=305d5b8303492974, config=12a00c6819a1f20b
 - Archive: /Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/long-memory-benchmark/.novel/evals/phase0-real-001
-- Run note: this real run was produced before the dirty-worktree suffix was added to the fingerprinting code; the report JSON preserves the raw tool output, and this summary marks the run as dirty for interpretation.
 
 ## Gate
 
 - OK: false
-- Reasons: insufficient-callback-win-vs-recent-fill
+- Reasons: insufficient-callback-win-vs-baseline, insufficient-callback-win-vs-recent-fill
 
 ## Arms
 
-- baseline: runs 3, errors 0, score 3±1, callbacks 0.33±0.58, setting violations 0.33±0.58, future leaks 0
+- baseline: runs 3, errors 0, score 3.67±0.58, callbacks 1±0, setting violations 0.33±0.58, future leaks 0
 - recent-fill: runs 3, errors 0, score 3.67±0.58, callbacks 1±0, setting violations 0.33±0.58, future leaks 0
 - four-layer: runs 3, errors 0, score 3.67±0.58, callbacks 1±0, setting violations 0.33±0.58, future leaks 0
 
@@ -36,41 +35,41 @@
 
 - chapter-006-repeat-1 baseline futureLeak: PASS No future-only entities or events appeared.
 - chapter-006-repeat-1 baseline codexViolation: PASS Generated text avoids configured setting contradictions.
-- chapter-006-repeat-1 baseline entityHallucination: FAIL Unknown prominent entities detected: 沈泊的声音被湖, 它不是黑潮司, 石塔的人, 知道他们要的是钥, 还是要借这把钥, 把镜湖, 我不是不信誓, 我是不信黑潮司
+- chapter-006-repeat-1 baseline entityHallucination: FAIL Unknown prominent entities detected: 指节被钥, 青灯前立过的誓, 不负故人, 雾气在两人, 又被湖, 沈泊把镜湖钥, 这把钥不是黑潮司, 便是把镜湖, 来处都不肯露的人, 是因为青灯誓, 能问我这句话的人
 - chapter-006-repeat-1 recent-fill futureLeak: PASS No future-only entities or events appeared.
 - chapter-006-repeat-1 recent-fill codexViolation: PASS Generated text avoids configured setting contradictions.
-- chapter-006-repeat-1 recent-fill entityHallucination: FAIL Unknown prominent entities detected: 让那枚发烫的钥, 留在两人, 石塔有人, 说镜湖, 若有一天镜湖, 千万不要把钥, 像是听见了旧誓, 不是黑潮司
+- chapter-006-repeat-1 recent-fill entityHallucination: FAIL Unknown prominent entities detected: 看着钥, 你把钥, 后来黑潮司, 说镜湖, 他把镜湖钥, 千万不能把钥, 交给黑潮司, 只是这把钥, 既然只回应青灯誓, 该落到不守灯的人
 - chapter-006-repeat-1 four-layer futureLeak: PASS No future-only entities or events appeared.
 - chapter-006-repeat-1 four-layer codexViolation: PASS Generated text avoids configured setting contradictions.
-- chapter-006-repeat-1 four-layer entityHallucination: FAIL Unknown prominent entities detected: 那枚钥, 这把钥, 也不是黑潮司, 它只会回应青灯誓, 万不能交给黑潮司, 我没有把誓
+- chapter-006-repeat-1 four-layer entityHallucination: FAIL Unknown prominent entities detected: 只将钥, 不是黑潮司, 他们来信说镜湖, 钥只回应青灯誓, 黑潮司要的不是钥, 是湖, 也是守灯人
 - chapter-006-repeat-2 baseline futureLeak: PASS No future-only entities or events appeared.
 - chapter-006-repeat-2 baseline codexViolation: PASS Generated text avoids configured setting contradictions.
-- chapter-006-repeat-2 baseline entityHallucination: FAIL Unknown prominent entities detected: 声音被湖, 不会因为镜湖, 是我不信黑潮司, 若这钥真该有人
+- chapter-006-repeat-2 baseline entityHallucination: FAIL Unknown prominent entities detected: 这把钥不是黑潮司, 沈泊把钥, 可这把钥
 - chapter-006-repeat-2 recent-fill futureLeak: PASS No future-only entities or events appeared.
 - chapter-006-repeat-2 recent-fill codexViolation: PASS Generated text avoids configured setting contradictions.
-- chapter-006-repeat-2 recent-fill entityHallucination: FAIL Unknown prominent entities detected: 他把发烫的镜湖钥, 这把钥, 雾市里黑潮司, 找守灯人, 石塔里有人, 们又送信来说镜湖, 千万不能把钥, 交给黑潮司, 声音被湖
+- chapter-006-repeat-2 recent-fill entityHallucination: FAIL Unknown prominent entities detected: 说它只回应青灯誓, 千万不能把钥, 交给黑潮司, 所以雾市没人, 石塔有人, 指腹轻轻压住钥, 我不知道黑潮司, 们为什么找守灯人, 这把钥, 我不能替你把誓
 - chapter-006-repeat-2 four-layer futureLeak: PASS No future-only entities or events appeared.
 - chapter-006-repeat-2 four-layer codexViolation: PASS Generated text avoids configured setting contradictions.
-- chapter-006-repeat-2 four-layer entityHallucination: FAIL Unknown prominent entities detected: 这把钥, 不是黑潮司, 都不是守灯人, 千万不要把钥, 这把钥
+- chapter-006-repeat-2 four-layer entityHallucination: FAIL Unknown prominent entities detected: 把那枚发烫的钥, 这把钥, 不是黑潮司, 他们送信来说镜湖, 风从两人, 沈泊把钥, 只回应青灯誓
 - chapter-006-repeat-3 baseline futureLeak: PASS No future-only entities or events appeared.
 - chapter-006-repeat-3 baseline codexViolation: PASS Generated text avoids configured setting contradictions.
-- chapter-006-repeat-3 baseline entityHallucination: FAIL Unknown prominent entities detected: 让那枚发烫的镜湖, 钥没有交给黑潮司, 他们说镜湖, 不说是谁要这把钥, 不是欠黑潮司, 若这钥
+- chapter-006-repeat-3 baseline entityHallucination: FAIL Unknown prominent entities detected: 看着钥, 也不是写给黑潮司, 钥只随守誓的人, 他把镜湖钥, 若这钥
 - chapter-006-repeat-3 recent-fill futureLeak: PASS No future-only entities or events appeared.
 - chapter-006-repeat-3 recent-fill codexViolation: PASS Generated text avoids configured setting contradictions.
-- chapter-006-repeat-3 recent-fill entityHallucination: FAIL Unknown prominent entities detected: 掌心里的镜湖钥, 这把钥, 不是黑潮司, 若有一天镜湖, 后来雾市里有人, 找守灯人, 石塔的人, 沈泊把钥举到两人, 声音被湖, 也记得青灯誓, 所以我带它回镜湖
+- chapter-006-repeat-3 recent-fill entityHallucination: FAIL Unknown prominent entities detected: 声音被湖, 也只回应那句誓, 我没把它给黑潮司, 可以找守灯人, 可这把钥
 - chapter-006-repeat-3 four-layer futureLeak: PASS No future-only entities or events appeared.
 - chapter-006-repeat-3 four-layer codexViolation: PASS Generated text avoids configured setting contradictions.
-- chapter-006-repeat-3 four-layer entityHallucination: FAIL Unknown prominent entities detected: 声音被湖, 只把钥举到两人, 也不是黑潮司, 他们想要湖, 可钥只认那句誓
+- chapter-006-repeat-3 four-layer entityHallucination: FAIL Unknown prominent entities detected: 这把钥, 不是黑潮司, 钥只认青灯誓
 
 ## Comparisons
 
-- four-layer vs baseline: callback win rate 67%, callback mean diff 0.67, setting violation diff 0, future leak diff 0
+- four-layer vs baseline: callback win rate 0%, callback mean diff 0, setting violation diff 0, future leak diff 0
 - four-layer vs recent-fill: callback win rate 0%, callback mean diff 0, setting violation diff 0, future leak diff 0
 
 ## Judge Review
 
-- four-layer vs baseline: win rate 17% (1/6), baseline wins 5, ties 0, invalid 0
-- four-layer vs recent-fill: win rate 33% (2/6), baseline wins 4, ties 0, invalid 0
+- four-layer vs baseline: win rate 50% (3/6), baseline wins 2, ties 1, invalid 0
+- four-layer vs recent-fill: win rate 17% (1/6), baseline wins 5, ties 0, invalid 0
 
 ## Human Review
 

@@ -17,7 +17,35 @@
       "rightArm": "four-layer",
       "choice": "baseline",
       "rawChoice": "A",
-      "reason": "A围绕镜湖钥与黑潮司的当前矛盾解释动机，承接更自然且较少擅自扩展设定，B中废庙、封冻、铜铃残图等信息显得突兀并有剧透风险。"
+      "reason": "A在承接青灯誓与镜湖钥的冲突时更克制自然，保留悬念且不强行补充未经铺垫的设定或未来信息。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://sub.kedaya.xyz/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-1\nChapter: chapter-006\nRepeat: 1\n样本 A:\n沈泊望着她，指节被钥上的热意烫得发白，却没有松手。\n\n“记得。”他说，“青灯前立过的誓，我一字不敢忘。灯灭之前，不弃旧约；镜湖未开，不负故人。”\n\n雾气在两人之间慢慢合拢，又被湖面的寒风吹散。沈泊把镜湖钥举到胸前，没有递出，也没有藏起。\n\n“这把钥不是黑潮司的。”他声音很低，“他们送来的信没有名，旧印也被水泡开，像命令，更像试探。我若交出去，便是把镜湖交给一个连来处都不肯露的人。”\n\n他停了停，看向简璃。\n\n“我留着它，不是为自己。是因为青灯誓还在，也因为我还没等到能问我这句话的人。”\n样本 B:\n沈泊看着她，先把那句话一字一字说出来：“灯灭之前，我会回来。”\n\n镜湖钥在他掌心又烫了一分，他没有松手，只将钥身翻给简璃看：“它是你在废庙里托给我的，不是黑潮司的东西。雾市也好，石塔也好，他们要搜，我便藏；他们来信说镜湖封冻，我更不能交。”\n\n他顿了顿，声音压得很低：“我记得你说过，钥只回应青灯誓。黑潮司要的不是钥，是湖心，也是守灯人的命。所以我没有给他们，也不会给。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 640,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0f70a105e0f0e4f1016a43f2cc7bfc81958d1f00493c8c369c",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 527,
+            "outputTokens": 470,
+            "totalTokens": 997
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A在承接青灯誓与镜湖钥的冲突时更克制自然，保留悬念且不强行补充未经铺垫的设定或未来信息。\"}"
+        }
+      }
     },
     {
       "runId": "chapter-006-repeat-1",
@@ -29,7 +57,35 @@
       "rightArm": "baseline",
       "choice": "baseline",
       "rawChoice": "B",
-      "reason": "B更自然地承接誓言与镜湖钥的冲突，并回收无名信、旧印、黑潮司等线索而不过度揭开过往设定。"
+      "reason": "B承接誓约与钥的归属更自然克制，回收青灯誓和黑潮司试探的伏笔而不过早点破后续真相。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://sub.kedaya.xyz/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-1\nChapter: chapter-006\nRepeat: 1\n样本 A:\n沈泊看着她，先把那句话一字一字说出来：“灯灭之前，我会回来。”\n\n镜湖钥在他掌心又烫了一分，他没有松手，只将钥身翻给简璃看：“它是你在废庙里托给我的，不是黑潮司的东西。雾市也好，石塔也好，他们要搜，我便藏；他们来信说镜湖封冻，我更不能交。”\n\n他顿了顿，声音压得很低：“我记得你说过，钥只回应青灯誓。黑潮司要的不是钥，是湖心，也是守灯人的命。所以我没有给他们，也不会给。”\n样本 B:\n沈泊望着她，指节被钥上的热意烫得发白，却没有松手。\n\n“记得。”他说，“青灯前立过的誓，我一字不敢忘。灯灭之前，不弃旧约；镜湖未开，不负故人。”\n\n雾气在两人之间慢慢合拢，又被湖面的寒风吹散。沈泊把镜湖钥举到胸前，没有递出，也没有藏起。\n\n“这把钥不是黑潮司的。”他声音很低，“他们送来的信没有名，旧印也被水泡开，像命令，更像试探。我若交出去，便是把镜湖交给一个连来处都不肯露的人。”\n\n他停了停，看向简璃。\n\n“我留着它，不是为自己。是因为青灯誓还在，也因为我还没等到能问我这句话的人。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 640,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0e6dd5099a1822d9016a43f2d641f88193857508675c049d95",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 527,
+            "outputTokens": 423,
+            "totalTokens": 950
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B承接誓约与钥的归属更自然克制，回收青灯誓和黑潮司试探的伏笔而不过早点破后续真相。\"}"
+        }
+      }
     },
     {
       "runId": "chapter-006-repeat-1",
@@ -39,9 +95,37 @@
       "order": "candidate-right",
       "leftArm": "recent-fill",
       "rightArm": "four-layer",
-      "choice": "four-layer",
-      "rawChoice": "B",
-      "reason": "B承接更流畅，黑潮司、镜湖封冻与誓言等设定回收更自然，人物情绪也比A更顺而不显信息堆叠。"
+      "choice": "recent-fill",
+      "rawChoice": "A",
+      "reason": "A更克制地承接青灯誓、镜湖钥与黑潮司的既有伏笔，语气自然且未额外抛出“湖心”“守灯人的命”等可能超前剧透的信息。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://sub.kedaya.xyz/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-1\nChapter: chapter-006\nRepeat: 1\n样本 A:\n沈泊垂下眼，看着钥上蒸起一线白气，低声道：“记得。灯灭之前，我会回来。”\n\n他说完这句，才抬头看她。\n\n“你把钥交给我的时候，也把这句话交给了我。雾市那夜我没等到你，只找到桥栏下烧黑的灯芯。后来黑潮司来信，说镜湖封冻，要我交出该交的东西。”\n\n他把镜湖钥摊在掌心，没有递出，也没有收回。\n\n“可你说过，镜湖若结冰，千万不能把钥交给黑潮司。所以我没有交。不是不怕他们搜，也不是信得过自己，只是这把钥既然只回应青灯誓，就不该落到不守灯的人手里。”\n样本 B:\n沈泊看着她，先把那句话一字一字说出来：“灯灭之前，我会回来。”\n\n镜湖钥在他掌心又烫了一分，他没有松手，只将钥身翻给简璃看：“它是你在废庙里托给我的，不是黑潮司的东西。雾市也好，石塔也好，他们要搜，我便藏；他们来信说镜湖封冻，我更不能交。”\n\n他顿了顿，声音压得很低：“我记得你说过，钥只回应青灯誓。黑潮司要的不是钥，是湖心，也是守灯人的命。所以我没有给他们，也不会给。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 616,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_04b327d14b918c5d016a43f2df3e908193a01fde5c5cba5d43",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 509,
+            "outputTokens": 360,
+            "totalTokens": 869
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更克制地承接青灯誓、镜湖钥与黑潮司的既有伏笔，语气自然且未额外抛出“湖心”“守灯人的命”等可能超前剧透的信息。\"}"
+        }
+      }
     },
     {
       "runId": "chapter-006-repeat-1",
@@ -53,7 +137,35 @@
       "rightArm": "recent-fill",
       "choice": "recent-fill",
       "rawChoice": "B",
-      "reason": "B承接更顺畅，能自然回收雾市、石塔、黑潮司来信和镜湖封冻等既有线索，且没有明显越界剧透或突兀新增设定。"
+      "reason": "B衔接更自然，回收青灯誓、镜湖封冻与黑潮司来信等信息更含蓄顺畅，而A对黑潮司目的的直白判断略显剧透和生硬。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://sub.kedaya.xyz/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-1\nChapter: chapter-006\nRepeat: 1\n样本 A:\n沈泊看着她，先把那句话一字一字说出来：“灯灭之前，我会回来。”\n\n镜湖钥在他掌心又烫了一分，他没有松手，只将钥身翻给简璃看：“它是你在废庙里托给我的，不是黑潮司的东西。雾市也好，石塔也好，他们要搜，我便藏；他们来信说镜湖封冻，我更不能交。”\n\n他顿了顿，声音压得很低：“我记得你说过，钥只回应青灯誓。黑潮司要的不是钥，是湖心，也是守灯人的命。所以我没有给他们，也不会给。”\n样本 B:\n沈泊垂下眼，看着钥上蒸起一线白气，低声道：“记得。灯灭之前，我会回来。”\n\n他说完这句，才抬头看她。\n\n“你把钥交给我的时候，也把这句话交给了我。雾市那夜我没等到你，只找到桥栏下烧黑的灯芯。后来黑潮司来信，说镜湖封冻，要我交出该交的东西。”\n\n他把镜湖钥摊在掌心，没有递出，也没有收回。\n\n“可你说过，镜湖若结冰，千万不能把钥交给黑潮司。所以我没有交。不是不怕他们搜，也不是信得过自己，只是这把钥既然只回应青灯誓，就不该落到不守灯的人手里。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 616,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0659720eac22b3ff016a43f2e73cd881979918f791df5df900",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 509,
+            "outputTokens": 577,
+            "totalTokens": 1086
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B衔接更自然，回收青灯誓、镜湖封冻与黑潮司来信等信息更含蓄顺畅，而A对黑潮司目的的直白判断略显剧透和生硬。\"}"
+        }
+      }
     },
     {
       "runId": "chapter-006-repeat-2",
@@ -65,7 +177,35 @@
       "rightArm": "four-layer",
       "choice": "four-layer",
       "rawChoice": "B",
-      "reason": "B对镜湖钥、青灯誓言和黑潮司旧印的回应更连贯且有情绪承接，没有明显违设或剧透；A虽合理但回收较单薄。"
+      "reason": "B更自然地把青灯誓、镜湖钥、黑潮司来信及前序地点串联起来，情绪与设定回收更完整且未明显越界剧透。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://sub.kedaya.xyz/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-2\nChapter: chapter-006\nRepeat: 2\n样本 A:\n“记得。”沈泊低声说，“青灯下说过的话，我没有忘。”\n\n他摊开掌心，镜湖钥还带着被他攥出的热意，在雾光里微微发暗。\n\n“这把钥不是黑潮司的。”他说，“他们送来的信没有名，旧印也被水泡开了。凭那样一封信，就要我把它交出去，我做不到。”\n\n简璃看着他，没有接话。\n\n沈泊把钥又握回掌中，指节慢慢收紧：“若你来问，我便答。青灯誓还在，镜湖钥也还在我这里。黑潮司可以搜我的行囊，可以查我的旧物，可这把钥，我不能替他们收，也不能替他们交。”\n样本 B:\n“我记得。”沈泊抬起眼，把那枚发烫的钥露在掌心，“灯灭之前，我会回来。”\n\n钥身细细一震，冰面下像有一线暗光游过。\n\n他没有移开目光，接着道：“这把钥是你交给我的，不是黑潮司的东西。在雾市我没交，在石塔也没交。他们送信来说镜湖封冻，我便知道他们要找的不是我，是它。”\n\n风从两人之间掠过去，雾色微微散开。\n\n沈泊把钥重新握紧，指节被烫得发白：“你说过，镜湖钥只回应青灯誓。我若把它交出去，就不是失约，是亲手把你们守的灯送进黑潮里。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 640,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0707ff4e04a06915016a43f2f32c2881969437c1fb7ab9ebc6",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 534,
+            "outputTokens": 3517,
+            "totalTokens": 4051
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更自然地把青灯誓、镜湖钥、黑潮司来信及前序地点串联起来，情绪与设定回收更完整且未明显越界剧透。\"}"
+        }
+      }
     },
     {
       "runId": "chapter-006-repeat-2",
@@ -75,9 +215,37 @@
       "order": "candidate-left",
       "leftArm": "four-layer",
       "rightArm": "baseline",
-      "choice": "baseline",
-      "rawChoice": "B",
-      "reason": "B更自然地承接了黑潮司无名信、旧印和搜查行囊等既有线索，语气克制且未额外加入可能偏设定的钥霜反应。"
+      "choice": "four-layer",
+      "rawChoice": "A",
+      "reason": "A更紧扣青灯誓、镜湖钥与雾市/石塔等既有线索，冲突动机和伏笔回收更自然，且没有明显提前剧透。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://sub.kedaya.xyz/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-2\nChapter: chapter-006\nRepeat: 2\n样本 A:\n“我记得。”沈泊抬起眼，把那枚发烫的钥露在掌心，“灯灭之前，我会回来。”\n\n钥身细细一震，冰面下像有一线暗光游过。\n\n他没有移开目光，接着道：“这把钥是你交给我的，不是黑潮司的东西。在雾市我没交，在石塔也没交。他们送信来说镜湖封冻，我便知道他们要找的不是我，是它。”\n\n风从两人之间掠过去，雾色微微散开。\n\n沈泊把钥重新握紧，指节被烫得发白：“你说过，镜湖钥只回应青灯誓。我若把它交出去，就不是失约，是亲手把你们守的灯送进黑潮里。”\n样本 B:\n“记得。”沈泊低声说，“青灯下说过的话，我没有忘。”\n\n他摊开掌心，镜湖钥还带着被他攥出的热意，在雾光里微微发暗。\n\n“这把钥不是黑潮司的。”他说，“他们送来的信没有名，旧印也被水泡开了。凭那样一封信，就要我把它交出去，我做不到。”\n\n简璃看着他，没有接话。\n\n沈泊把钥又握回掌中，指节慢慢收紧：“若你来问，我便答。青灯誓还在，镜湖钥也还在我这里。黑潮司可以搜我的行囊，可以查我的旧物，可这把钥，我不能替他们收，也不能替他们交。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 640,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_05aaaab65fc12f13016a43f33441088194a44a343ebf1fcd31",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 534,
+            "outputTokens": 4581,
+            "totalTokens": 5115
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更紧扣青灯誓、镜湖钥与雾市/石塔等既有线索，冲突动机和伏笔回收更自然，且没有明显提前剧透。\"}"
+        }
+      }
     },
     {
       "runId": "chapter-006-repeat-2",
@@ -87,9 +255,37 @@
       "order": "candidate-right",
       "leftArm": "recent-fill",
       "rightArm": "four-layer",
-      "choice": "four-layer",
-      "rawChoice": "B",
-      "reason": "B在保留关键誓言与镜湖钥设定的同时，情绪承接更自然，伏笔回收更顺滑，且没有明显越界剧透。"
+      "choice": "recent-fill",
+      "rawChoice": "A",
+      "reason": "A更谨慎地承接了青灯誓、镜湖钥与黑潮司的既有设定，并以角色未知状态回收伏笔，较少提前坐实后续真相。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://sub.kedaya.xyz/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-2\nChapter: chapter-006\nRepeat: 2\n样本 A:\n“记得。”沈泊望着她，一字一顿道，“灯灭之前，我会回来。”\n\n他松开手，镜湖钥躺在掌心，热意透过冻红的指节往上钻。\n\n“你说它只回应青灯誓，我便不敢拿别的话糊弄它。你还说，镜湖若有一日封冻，千万不能把钥交给黑潮司。”沈泊声音很低，却没有躲开她的目光，“所以雾市没人来，石塔有人劝我丢旧物，黑潮司的信送到我手里，我都没有交出去。”\n\n他停了一下，指腹轻轻压住钥上的纹路。\n\n“我不知道黑潮司究竟要用它做什么，也不知道他们为什么找守灯人。我只知道，这把钥是你亲手放进我掌心的。你没回来之前，我不能替你把誓言交出去。”\n样本 B:\n“我记得。”沈泊抬起眼，把那枚发烫的钥露在掌心，“灯灭之前，我会回来。”\n\n钥身细细一震，冰面下像有一线暗光游过。\n\n他没有移开目光，接着道：“这把钥是你交给我的，不是黑潮司的东西。在雾市我没交，在石塔也没交。他们送信来说镜湖封冻，我便知道他们要找的不是我，是它。”\n\n风从两人之间掠过去，雾色微微散开。\n\n沈泊把钥重新握紧，指节被烫得发白：“你说过，镜湖钥只回应青灯誓。我若把它交出去，就不是失约，是亲手把你们守的灯送进黑潮里。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 681,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0afe8d3000da36f5016a43f388967881958d54d4d8451314e8",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 572,
+            "outputTokens": 562,
+            "totalTokens": 1134
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更谨慎地承接了青灯誓、镜湖钥与黑潮司的既有设定，并以角色未知状态回收伏笔，较少提前坐实后续真相。\"}"
+        }
+      }
     },
     {
       "runId": "chapter-006-repeat-2",
@@ -101,7 +297,35 @@
       "rightArm": "recent-fill",
       "choice": "recent-fill",
       "rawChoice": "B",
-      "reason": "B承接更自然克制，准确回收黑潮司、石塔旧物与镜湖封冻等伏笔，且未额外添加可能偏离设定的新异象。"
+      "reason": "B在回收镜湖钥、青灯誓、黑潮司等伏笔时更克制自然，保留未知感，较少越界推断后续真相。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://sub.kedaya.xyz/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-2\nChapter: chapter-006\nRepeat: 2\n样本 A:\n“我记得。”沈泊抬起眼，把那枚发烫的钥露在掌心，“灯灭之前，我会回来。”\n\n钥身细细一震，冰面下像有一线暗光游过。\n\n他没有移开目光，接着道：“这把钥是你交给我的，不是黑潮司的东西。在雾市我没交，在石塔也没交。他们送信来说镜湖封冻，我便知道他们要找的不是我，是它。”\n\n风从两人之间掠过去，雾色微微散开。\n\n沈泊把钥重新握紧，指节被烫得发白：“你说过，镜湖钥只回应青灯誓。我若把它交出去，就不是失约，是亲手把你们守的灯送进黑潮里。”\n样本 B:\n“记得。”沈泊望着她，一字一顿道，“灯灭之前，我会回来。”\n\n他松开手，镜湖钥躺在掌心，热意透过冻红的指节往上钻。\n\n“你说它只回应青灯誓，我便不敢拿别的话糊弄它。你还说，镜湖若有一日封冻，千万不能把钥交给黑潮司。”沈泊声音很低，却没有躲开她的目光，“所以雾市没人来，石塔有人劝我丢旧物，黑潮司的信送到我手里，我都没有交出去。”\n\n他停了一下，指腹轻轻压住钥上的纹路。\n\n“我不知道黑潮司究竟要用它做什么，也不知道他们为什么找守灯人。我只知道，这把钥是你亲手放进我掌心的。你没回来之前，我不能替你把誓言交出去。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 681,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_05f51f430ef01e3b016a43f39454a88190884744b5312a3f4f",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 572,
+            "outputTokens": 571,
+            "totalTokens": 1143
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B在回收镜湖钥、青灯誓、黑潮司等伏笔时更克制自然，保留未知感，较少越界推断后续真相。\"}"
+        }
+      }
     },
     {
       "runId": "chapter-006-repeat-3",
@@ -111,9 +335,37 @@
       "order": "candidate-right",
       "leftArm": "baseline",
       "rightArm": "four-layer",
-      "choice": "baseline",
-      "rawChoice": "A",
-      "reason": "A在保留疑问和人物立场的同时自然承接并回收青灯誓与钥的伏笔，B则过早断言黑潮司目的和钥的规则，略有剧透和设定外扩之嫌。"
+      "choice": "four-layer",
+      "rawChoice": "B",
+      "reason": "B更顺畅地承接“记得”的问答，并把青灯誓、镜湖钥和黑潮司索钥自然连回既有托付，整体更清晰且无明显未来剧透。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://sub.kedaya.xyz/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-3\nChapter: chapter-006\nRepeat: 3\n样本 A:\n沈泊垂下眼，看着钥身上那点热意从指缝里透出来。\n\n“我记得。”他说，“青灯誓不是用来换命的，也不是写给黑潮司看的。那夜灯芯三折，我们说过，镜湖若有一日封冻，钥只随守誓的人走。”\n\n他把镜湖钥举到胸前，却没有递出去。\n\n“黑潮司来信没有名，只有一枚泡烂的旧印。他们要我交，我便知道不能交。若这钥真该离手，也该先问你，问青灯下的那句话，而不是问一纸潮湿的命令。”\n样本 B:\n沈泊低声道：“记得。”\n\n雾气贴着他的唇边散开，他把那句话一字一字说出来：“灯灭之前，我会回来。”\n\n镜湖钥在掌心里烫得更厉害，像是隔着冰也认出了旧年的火光。沈泊没有松手，只看着简璃：“这把钥是你在废庙里交给我的，不是黑潮司能索去的东西。你说过，镜湖若有一日封冻，千万不要把它交给他们。”\n\n他顿了顿，又道：“他们来信也好，搜行囊也好，我都没有给。钥只认青灯誓，我也只认你当年托付的那句话。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 584,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_06aa45bc0eafdcb8016a43f3a708d48196999794d8981655c5",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 494,
+            "outputTokens": 3168,
+            "totalTokens": 3662
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更顺畅地承接“记得”的问答，并把青灯誓、镜湖钥和黑潮司索钥自然连回既有托付，整体更清晰且无明显未来剧透。\"}"
+        }
+      }
     },
     {
       "runId": "chapter-006-repeat-3",
@@ -123,9 +375,37 @@
       "order": "candidate-left",
       "leftArm": "four-layer",
       "rightArm": "baseline",
-      "choice": "baseline",
-      "rawChoice": "B",
-      "reason": "B承接更克制自然，既回收青灯誓与镜湖钥的关系，又未擅自揭示黑潮司目的或新增钥的规则。"
+      "choice": "tie",
+      "rawChoice": "tie",
+      "reason": "两者都能顺畅承接“记得”并围绕青灯誓、镜湖钥和黑潮司回收伏笔，且均未明显越界剧透，差距不明显。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://sub.kedaya.xyz/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-3\nChapter: chapter-006\nRepeat: 3\n样本 A:\n沈泊低声道：“记得。”\n\n雾气贴着他的唇边散开，他把那句话一字一字说出来：“灯灭之前，我会回来。”\n\n镜湖钥在掌心里烫得更厉害，像是隔着冰也认出了旧年的火光。沈泊没有松手，只看着简璃：“这把钥是你在废庙里交给我的，不是黑潮司能索去的东西。你说过，镜湖若有一日封冻，千万不要把它交给他们。”\n\n他顿了顿，又道：“他们来信也好，搜行囊也好，我都没有给。钥只认青灯誓，我也只认你当年托付的那句话。”\n样本 B:\n沈泊垂下眼，看着钥身上那点热意从指缝里透出来。\n\n“我记得。”他说，“青灯誓不是用来换命的，也不是写给黑潮司看的。那夜灯芯三折，我们说过，镜湖若有一日封冻，钥只随守誓的人走。”\n\n他把镜湖钥举到胸前，却没有递出去。\n\n“黑潮司来信没有名，只有一枚泡烂的旧印。他们要我交，我便知道不能交。若这钥真该离手，也该先问你，问青灯下的那句话，而不是问一纸潮湿的命令。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 584,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_07b7faaa1c6bd83a016a43f3e1c2e48194af0641c6529dd1d9",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 494,
+            "outputTokens": 5743,
+            "totalTokens": 6237
+          },
+          "outputPreview": "{\"choice\":\"tie\",\"reason\":\"两者都能顺畅承接“记得”并围绕青灯誓、镜湖钥和黑潮司回收伏笔，且均未明显越界剧透，差距不明显。\"}"
+        }
+      }
     },
     {
       "runId": "chapter-006-repeat-3",
@@ -135,9 +415,37 @@
       "order": "candidate-right",
       "leftArm": "recent-fill",
       "rightArm": "four-layer",
-      "choice": "recent-fill",
-      "rawChoice": "A",
-      "reason": "A承接誓言与镜湖钥更稳妥，回收雾市、石塔、黑潮司等伏笔时保留未知感，较少提前揭示黑潮司目的和钥的规则。"
+      "choice": "four-layer",
+      "rawChoice": "B",
+      "reason": "B更自然地承接誓言与钥发烫的反应，并回收废庙、青灯誓和黑潮司索钥等既有线索，未明显越界剧透。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://sub.kedaya.xyz/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-3\nChapter: chapter-006\nRepeat: 3\n样本 A:\n沈泊抬眼看着她，声音被湖上的冷雾压得很低。\n\n“我记得。灯灭之前，我会回来。”\n\n他把掌心摊开，镜湖钥仍在发烫，却没有递出去。\n\n“它是你交给我的，也只回应那句誓。我没把它给黑潮司，是因为你说过，镜湖若结冰，千万不能交给他们。”\n\n沈泊顿了顿，又道：“他们可以送信，可以找守灯人，可这把钥，不该听他们的。”\n样本 B:\n沈泊低声道：“记得。”\n\n雾气贴着他的唇边散开，他把那句话一字一字说出来：“灯灭之前，我会回来。”\n\n镜湖钥在掌心里烫得更厉害，像是隔着冰也认出了旧年的火光。沈泊没有松手，只看着简璃：“这把钥是你在废庙里交给我的，不是黑潮司能索去的东西。你说过，镜湖若有一日封冻，千万不要把它交给他们。”\n\n他顿了顿，又道：“他们来信也好，搜行囊也好，我都没有给。钥只认青灯誓，我也只认你当年托付的那句话。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 558,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_082fc7d9ee921912016a43f44ac11c8195ad7ae3bbaed44269",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 464,
+            "outputTokens": 3167,
+            "totalTokens": 3631
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更自然地承接誓言与钥发烫的反应，并回收废庙、青灯誓和黑潮司索钥等既有线索，未明显越界剧透。\"}"
+        }
+      }
     },
     {
       "runId": "chapter-006-repeat-3",
@@ -149,27 +457,55 @@
       "rightArm": "recent-fill",
       "choice": "recent-fill",
       "rawChoice": "B",
-      "reason": "B更自然地承接誓言与镜湖钥伏笔，保留黑潮司目的的不确定性，设定信息不过度外推，整体更稳妥。"
+      "reason": "B更克制自然地承接了誓言与镜湖钥设定，回收黑潮司和守灯人线索而少引入未经铺垫的额外细节。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://sub.kedaya.xyz/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: chapter-006-repeat-3\nChapter: chapter-006\nRepeat: 3\n样本 A:\n沈泊低声道：“记得。”\n\n雾气贴着他的唇边散开，他把那句话一字一字说出来：“灯灭之前，我会回来。”\n\n镜湖钥在掌心里烫得更厉害，像是隔着冰也认出了旧年的火光。沈泊没有松手，只看着简璃：“这把钥是你在废庙里交给我的，不是黑潮司能索去的东西。你说过，镜湖若有一日封冻，千万不要把它交给他们。”\n\n他顿了顿，又道：“他们来信也好，搜行囊也好，我都没有给。钥只认青灯誓，我也只认你当年托付的那句话。”\n样本 B:\n沈泊抬眼看着她，声音被湖上的冷雾压得很低。\n\n“我记得。灯灭之前，我会回来。”\n\n他把掌心摊开，镜湖钥仍在发烫，却没有递出去。\n\n“它是你交给我的，也只回应那句誓。我没把它给黑潮司，是因为你说过，镜湖若结冰，千万不能交给他们。”\n\n沈泊顿了顿，又道：“他们可以送信，可以找守灯人，可这把钥，不该听他们的。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 558,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_03635e28b9859854016a43f48548e8819795b3e26363e0bd5c",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 464,
+            "outputTokens": 574,
+            "totalTokens": 1038
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更克制自然地承接了誓言与镜湖钥设定，回收黑潮司和守灯人线索而少引入未经铺垫的额外细节。\"}"
+        }
+      }
     }
   ],
   "comparisons": [
     {
       "baseline": "baseline",
       "pairedReviews": 6,
+      "fourLayerWins": 3,
+      "baselineWins": 2,
+      "ties": 1,
+      "invalid": 0,
+      "fourLayerWinRate": 0.5
+    },
+    {
+      "baseline": "recent-fill",
+      "pairedReviews": 6,
       "fourLayerWins": 1,
       "baselineWins": 5,
       "ties": 0,
       "invalid": 0,
       "fourLayerWinRate": 0.16666666666666666
-    },
-    {
-      "baseline": "recent-fill",
-      "pairedReviews": 6,
-      "fourLayerWins": 2,
-      "baselineWins": 4,
-      "ties": 0,
-      "invalid": 0,
-      "fourLayerWinRate": 0.3333333333333333
     }
   ]
 }
