@@ -1,7 +1,7 @@
 import { mkdtemp, readFile, rm, stat } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   evaluateGeneration,
   evaluateGenerationSuite,
@@ -14,6 +14,13 @@ import {
 import { scoreGenerationOutput } from '../src/eval/generationCriteria.ts'
 
 describe('generation eval tool', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    vi.restoreAllMocks()
+    delete process.env.NOVEL_ENGINE_EVAL_MAX_RETRIES
+    delete process.env.NOVEL_ENGINE_EVAL_REQUEST_DELAY_MS
+  })
+
   it('parses dry-run generation eval options', () => {
     expect(
       parseGenerationEvalArgs([
@@ -52,6 +59,47 @@ describe('generation eval tool', () => {
       judgeWireApi: 'responses',
       reasoningEffort: 'xhigh',
     })
+  })
+
+  it('retries retryable provider responses during real generation', async () => {
+    process.env.NOVEL_ENGINE_EVAL_MAX_RETRIES = '1'
+    const successPayload = JSON.stringify({
+      id: 'resp_mock',
+      object: 'response',
+      status: 'completed',
+      output_text: '灯灭之前，我会回来。沈泊握着镜湖钥，看向简璃这个守灯人。',
+      usage: {
+        input_tokens: 10,
+        output_tokens: 20,
+        total_tokens: 30,
+      },
+    })
+    const fetchMock = vi
+      .fn<typeof fetch>()
+      .mockResolvedValueOnce(new Response('rate limited', { status: 429 }))
+      .mockImplementation(() =>
+        Promise.resolve(
+          new Response(successPayload, {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' },
+          }),
+        ),
+      )
+    vi.stubGlobal('fetch', fetchMock)
+
+    const report = await evaluateGeneration({
+      rootPath: 'examples/long-memory-benchmark',
+      dryRun: false,
+      repeatCount: 1,
+      baseUrl: 'https://provider.test',
+      apiKey: 'test-key',
+      model: 'gpt-5.5',
+      wireApi: 'responses',
+    })
+
+    expect(fetchMock).toHaveBeenCalledTimes(4)
+    expect(report.runs[0].arms.every((arm) => !arm.error)).toBe(true)
+    expect(report.runs[0].arms[0].output).toContain('镜湖钥')
   })
 
   it('builds baseline and four-layer prompts for the long benchmark', async () => {

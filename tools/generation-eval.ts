@@ -311,9 +311,22 @@ const defaultMaxOutputChars = 600
 const defaultBudgetChars = 1_200
 const defaultRepeatCount = 3
 const requestTimeoutMs = 120_000
+const retryableProviderStatusCodes = new Set([
+  408, 409, 425, 429, 500, 502, 503, 504,
+])
 const significantCallbackWinRate = 0.6
 const minimumCrediblePairedRuns = 3
 const execFile = promisify(execFileCallback)
+
+class ProviderHttpError extends Error {
+  readonly statusCode: number
+
+  constructor(message: string, statusCode: number) {
+    super(message)
+    this.statusCode = statusCode
+    this.name = 'ProviderHttpError'
+  }
+}
 
 const generationCriterionSchema = z
   .object({
@@ -1103,20 +1116,23 @@ async function callOpenAICompatibleGeneration(input: {
     ],
   }
 
-  const response = await fetch(`${baseUrl}/v1/chat/completions`, {
-    method: 'POST',
-    signal: AbortSignal.timeout(requestTimeoutMs),
-    headers: {
-      Authorization: `Bearer ${input.config.apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(requestBody),
-  })
+  const response = await withProviderRetry(() =>
+    fetch(`${baseUrl}/v1/chat/completions`, {
+      method: 'POST',
+      signal: AbortSignal.timeout(requestTimeoutMs),
+      headers: {
+        Authorization: `Bearer ${input.config.apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody),
+    }),
+  )
 
   if (!response.ok) {
     const body = await response.text()
-    throw new Error(
+    throw new ProviderHttpError(
       `OpenAI-compatible generation failed: ${response.status} ${sanitizeText(body)}`,
+      response.status,
     )
   }
 
@@ -1192,20 +1208,23 @@ async function callOpenAICompatibleResponses(input: {
     }
   }
 
-  const response = await fetch(`${baseUrl}/v1/responses`, {
-    method: 'POST',
-    signal: AbortSignal.timeout(requestTimeoutMs),
-    headers: {
-      Authorization: `Bearer ${input.config.apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  })
+  const response = await withProviderRetry(() =>
+    fetch(`${baseUrl}/v1/responses`, {
+      method: 'POST',
+      signal: AbortSignal.timeout(requestTimeoutMs),
+      headers: {
+        Authorization: `Bearer ${input.config.apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    }),
+  )
 
   if (!response.ok) {
     const responseBody = await response.text()
-    throw new Error(
+    throw new ProviderHttpError(
       `OpenAI-compatible responses generation failed: ${response.status} ${sanitizeText(responseBody)}`,
+      response.status,
     )
   }
 
@@ -1274,6 +1293,56 @@ function extractResponsesApiText(
     .map((part) => part.text || part.output_text || '')
     .filter(Boolean)
     .join('\n')
+}
+
+async function withProviderRetry(
+  request: () => Promise<Response>,
+): Promise<Response> {
+  const delayMs = nonNegativeIntegerFromEnv(
+    'NOVEL_ENGINE_EVAL_REQUEST_DELAY_MS',
+    0,
+  )
+  const maxRetries = nonNegativeIntegerFromEnv(
+    'NOVEL_ENGINE_EVAL_MAX_RETRIES',
+    0,
+  )
+  let attempt = 0
+
+  while (true) {
+    if (delayMs > 0) {
+      await sleep(delayMs)
+    }
+
+    let response: Response
+    try {
+      response = await request()
+    } catch (error) {
+      if (attempt >= maxRetries) {
+        throw error
+      }
+      attempt += 1
+      continue
+    }
+
+    if (
+      response.ok ||
+      !retryableProviderStatusCodes.has(response.status) ||
+      attempt >= maxRetries
+    ) {
+      return response
+    }
+
+    attempt += 1
+  }
+}
+
+function nonNegativeIntegerFromEnv(name: string, fallback: number) {
+  const parsed = Number(process.env[name])
+  return Number.isFinite(parsed) && parsed >= 0 ? Math.floor(parsed) : fallback
+}
+
+function sleep(ms: number) {
+  return new Promise((resolveSleep) => setTimeout(resolveSleep, ms))
 }
 
 async function loadGenerationEvalConfig(rootPath: string): Promise<{
