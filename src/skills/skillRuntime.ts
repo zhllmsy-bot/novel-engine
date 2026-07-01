@@ -91,6 +91,12 @@ export type SkillRunPreview = {
   canRun: boolean
 }
 
+export type SkillRunWithFallbackResult = {
+  result: SkillRunResult
+  usedFallbackProvider: boolean
+  primaryError: Error | null
+}
+
 export function buildSkillContext(input: BuildContextInput): SkillContext {
   const memoryFilter = input.skill
     ? filterSkillMemoriesWithAudit(input.skill, input.memories)
@@ -295,6 +301,45 @@ export async function runSkillWithProvider(
   return result
 }
 
+export async function runSkillWithFallbackProviders(input: {
+  skill: SkillManifest
+  context: SkillContext
+  primaryProvider: ModelProvider
+  fallbackProvider: ModelProvider
+}): Promise<SkillRunWithFallbackResult> {
+  try {
+    return {
+      result: await runSkillWithProvider(
+        input.skill,
+        input.context,
+        input.primaryProvider,
+      ),
+      usedFallbackProvider: false,
+      primaryError: null,
+    }
+  } catch (error) {
+    if (input.primaryProvider.id === input.fallbackProvider.id) {
+      throw error
+    }
+
+    try {
+      return {
+        result: await runSkillWithProvider(
+          input.skill,
+          input.context,
+          input.fallbackProvider,
+        ),
+        usedFallbackProvider: true,
+        primaryError: normalizeSkillRunError(error),
+      }
+    } catch (fallbackError) {
+      throw new Error(
+        `Primary provider failed: ${formatSkillRunError(error)}; fallback provider failed: ${formatSkillRunError(fallbackError)}`,
+      )
+    }
+  }
+}
+
 function validateSkillResultSchema(skill: SkillManifest, result: SkillRunResult) {
   if (result.type !== 'memory_update_proposal') return
 
@@ -378,6 +423,14 @@ function dropMemory(
     source: memory.source,
     reason,
   }
+}
+
+function normalizeSkillRunError(error: unknown) {
+  return error instanceof Error ? error : new Error(String(error))
+}
+
+function formatSkillRunError(error: unknown) {
+  return normalizeSkillRunError(error).message
 }
 
 function emptyMemoryFilterAudit(memoryCount: number): SkillMemoryFilterAudit {

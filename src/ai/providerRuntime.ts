@@ -25,6 +25,12 @@ export type ProviderConfigAudit = {
   ready: boolean
 }
 
+export type SummaryProviderResolution = {
+  provider: ModelProvider
+  usedFallbackProvider: boolean
+  configError: string | null
+}
+
 export const defaultProviderConfig: ProviderConfig = {
   baseUrl: 'http://127.0.0.1:8000',
   apiKey: '',
@@ -66,6 +72,30 @@ export function createModelProvider(
   }
 
   return createOpenAICompatibleProvider(config)
+}
+
+export function resolveSummaryProvider(
+  providerId: string,
+  config: ProviderConfig,
+  adapters = listRuntimeProviderAdapters(),
+): SummaryProviderResolution {
+  const configError = validateProviderConfig(providerId, config, adapters)
+
+  if (!configError) {
+    return {
+      provider: createModelProvider(providerId, config, adapters),
+      usedFallbackProvider: false,
+      configError: null,
+    }
+  }
+
+  const fallbackProviderId = getDefaultProviderAdapterId(adapters)
+
+  return {
+    provider: createModelProvider(fallbackProviderId, defaultProviderConfig, adapters),
+    usedFallbackProvider: true,
+    configError,
+  }
 }
 
 export function validateProviderConfig(

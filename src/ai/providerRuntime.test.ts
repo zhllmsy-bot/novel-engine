@@ -5,6 +5,7 @@ import {
   defaultProviderConfig,
   getDefaultProviderAdapterId,
   listRuntimeProviderAdapters,
+  resolveSummaryProvider,
   validateProviderConfig,
 } from './providerRuntime'
 import type { ProviderAdapterManifest } from './providerManifest'
@@ -109,5 +110,35 @@ describe('provider runtime', () => {
     expect(() =>
       createModelProvider('missing', defaultProviderConfig, adapters),
     ).toThrow('Unknown provider adapter: missing')
+  })
+
+  it('falls back to the local summary provider when the active provider config is not ready', () => {
+    const resolution = resolveSummaryProvider(
+      'custom-openai',
+      {
+        ...defaultProviderConfig,
+        apiKey: '',
+      },
+      adapters,
+    )
+
+    expect(resolution.usedFallbackProvider).toBe(true)
+    expect(resolution.provider.id).toBe('mock.local')
+    expect(resolution.configError).toBe('Custom OpenAI requires API Key.')
+  })
+
+  it('keeps the active provider for summaries when the config is ready', () => {
+    const resolution = resolveSummaryProvider(
+      'custom-openai',
+      {
+        ...defaultProviderConfig,
+        apiKey: 'test-key',
+      },
+      adapters,
+    )
+
+    expect(resolution.usedFallbackProvider).toBe(false)
+    expect(resolution.provider.id).toBe('openai-compatible')
+    expect(resolution.configError).toBeNull()
   })
 })

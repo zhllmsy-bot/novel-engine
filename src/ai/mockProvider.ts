@@ -86,18 +86,41 @@ export const mockProvider: ModelProvider = {
         .map((line) => line.trim())
         .filter((line) => line && !line.startsWith('#'))
         .join(' ')
-      const summary =
-        body.length > 180 ? `${body.slice(0, 179)}…` : body || '本章暂无可摘要正文。'
+      const sentences = body
+        .split(/(?<=[。！？!?])\s*/)
+        .map((sentence) => sentence.trim())
+        .filter(Boolean)
+      const opening = sentences[0] || '本章暂无可摘要正文。'
+      const pivot =
+        sentences.find((sentence) =>
+          /(因为|所以|于是|随后|却|但|然而|发现|意识到|决定|结果|最终)/.test(
+            sentence,
+          ),
+        ) || sentences[1]
+      const ending = sentences.at(-1) || opening
+      const summaryParts = [`起因: ${opening}`]
+
+      if (pivot && pivot !== opening && pivot !== ending) {
+        summaryParts.push(`推进: ${pivot}`)
+      }
+      if (ending !== opening) {
+        summaryParts.push(`结果: ${ending}`)
+      }
+
+      const summary = summaryParts.join(' ')
+      const keyEvents = [
+        opening,
+        pivot && pivot !== opening ? pivot : undefined,
+        ending !== opening ? ending : undefined,
+        context.memories.length > 0
+          ? '摘要生成时参考了四层记忆上下文。'
+          : '摘要生成时未检测到额外记忆上下文。',
+      ].filter((event): event is string => Boolean(event))
 
       return {
         type: 'chapter_summary',
         summary,
-        keyEvents: [
-          summary,
-          context.memories.length > 0
-            ? '摘要生成时参考了四层记忆上下文。'
-            : '摘要生成时未检测到额外记忆上下文。',
-        ],
+        keyEvents,
         charactersInvolved: context.memories
           .filter((memory) => memory.layer === 'L0 事实')
           .map((memory) => memory.source)

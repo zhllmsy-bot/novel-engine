@@ -8,6 +8,7 @@ import {
   filterSkillMemoriesWithAudit,
   previewSkillRun,
   resolveSkillInputs,
+  runSkillWithFallbackProviders,
   runSkillWithProvider,
 } from './skillRuntime'
 import { parseSkillRunResult } from './skillResultSchema'
@@ -421,6 +422,77 @@ describe('skill runtime', () => {
       available: ['nearby_text'],
       missingRequired: ['selected_text'],
     })
+  })
+
+  it('falls back to the secondary provider when the primary provider fails', async () => {
+    const fallbackProvider: ModelProvider = {
+      id: 'mock.local',
+      label: 'Mock Provider',
+      async runSkill() {
+        return {
+          type: 'rewrite_patch',
+          patch: {
+            original: '原文',
+            proposed: '改写',
+            skillId: rewriteSkill.id,
+            requiresSnapshot: true,
+          },
+          auditTrail: ['skill:xuanhuan.dialogue_polish', 'provider:mock.local'],
+        }
+      },
+    }
+
+    const result = await runSkillWithFallbackProviders({
+      skill: rewriteSkill,
+      context: buildSkillContext({
+        documentText: '原文',
+        selectedText: '原文',
+        chapterTitle: '第十二章',
+        memories: [],
+      }),
+      primaryProvider: {
+        id: 'broken.remote',
+        label: 'Broken Remote',
+        async runSkill() {
+          throw new Error('remote provider unavailable')
+        },
+      },
+      fallbackProvider,
+    })
+
+    expect(result.usedFallbackProvider).toBe(true)
+    expect(result.primaryError?.message).toBe('remote provider unavailable')
+    expect(result.result.type).toBe('rewrite_patch')
+  })
+
+  it('surfaces both errors when the primary and fallback providers fail', async () => {
+    await expect(
+      runSkillWithFallbackProviders({
+        skill: rewriteSkill,
+        context: buildSkillContext({
+          documentText: '原文',
+          selectedText: '原文',
+          chapterTitle: '第十二章',
+          memories: [],
+        }),
+        primaryProvider: {
+          id: 'broken.remote',
+          label: 'Broken Remote',
+          async runSkill() {
+            throw new Error('remote provider unavailable')
+          },
+        },
+        fallbackProvider: {
+          id: 'mock.local',
+          label: 'Mock Provider',
+          async runSkill() {
+            throw new Error('local fallback unavailable')
+          },
+        },
+      }),
+    ).rejects.toThrow(
+      'Primary provider failed: remote provider unavailable; fallback provider failed: local fallback unavailable',
+    )
   })
 
   it('only marks character_cards available for character or state memories', () => {

@@ -89,6 +89,7 @@ describe('mock provider', () => {
 
     expect(result.type).toBe('chapter_summary')
     if (result.type === 'chapter_summary') {
+      expect(result.summary).toContain('起因:')
       expect(result.summary).toContain('沈微第一次听见玄铁剑的声音')
       expect(result.keyEvents.length).toBeGreaterThan(0)
       expect(result.charactersInvolved).toEqual([

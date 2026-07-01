@@ -42,6 +42,7 @@ import {
   defaultProviderConfig,
   getDefaultProviderAdapterId,
   type ProviderConfig,
+  resolveSummaryProvider,
   validateProviderConfig,
 } from './ai/providerRuntime'
 import {
@@ -78,6 +79,7 @@ import {
   buildNarrativeMemoryPlan,
   type IndexedRecallResult,
 } from './memory/memoryContextBuilder'
+import { buildIndexedRecallQuery } from './memory/indexedRecallQuery'
 import {
   createPlotThreadStore,
   type PlotThread,
@@ -100,7 +102,7 @@ import { createPlotThreadPersistence } from './project/plotThreadPersistence'
 import { createProjectPersistence } from './project/projectPersistence'
 import { pickAndLoadTauriProject } from './project/tauriProjectRepository'
 import { createVolumeSummaryPersistence } from './project/volumeSummaryPersistence'
-import type { CodexEntry, ProjectChapter } from './project/projectTypes'
+import type { ProjectChapter } from './project/projectTypes'
 import {
   searchProjectChapterIndex,
   type ChapterSearchResult,
@@ -122,6 +124,7 @@ import {
 } from './skills/skillCatalog'
 import {
   previewSkillRun,
+  runSkillWithFallbackProviders,
   runSkillWithProvider,
   type SkillRunAudit,
 } from './skills/skillRuntime'
@@ -999,14 +1002,16 @@ function App() {
     }
 
     try {
-      const providerConfigError = validateProviderConfig(
+      const primaryResolution = resolveSummaryProvider(
         providerMode,
         providerConfig,
         providerAdapters,
       )
-      if (providerConfigError) {
-        throw new Error(providerConfigError)
-      }
+      const fallbackResolution = resolveSummaryProvider(
+        getDefaultProviderAdapterId(providerAdapters),
+        defaultProviderConfig,
+        providerAdapters,
+      )
 
       const preview = previewSkillRun({
         documentText,
@@ -1014,20 +1019,32 @@ function App() {
         chapterTitle: chapter.title,
         memories: runtimeMemories,
         skill: summarySkill,
-        provider: activeProvider,
+        provider: primaryResolution.provider,
       })
       setLastSkillAudit(preview.audit)
 
-      const result = await runSkillWithProvider(
-        summarySkill,
-        preview.context,
-        activeProvider,
-      )
+      const execution = await runSkillWithFallbackProviders({
+        skill: summarySkill,
+        context: preview.context,
+        primaryProvider: primaryResolution.provider,
+        fallbackProvider: fallbackResolution.provider,
+      })
+      const result = execution.result
       setLastResult(result)
 
       if (result.type !== 'chapter_summary') {
         throw new Error(
           `摘要 Skill 返回了不支持的结果类型: ${result.type}`,
+        )
+      }
+
+      if (primaryResolution.usedFallbackProvider && primaryResolution.configError) {
+        setRuntimeError(
+          `摘要 Provider 未就绪，已回退到本地结构化 Skill Provider: ${primaryResolution.configError}`,
+        )
+      } else if (execution.usedFallbackProvider && execution.primaryError) {
+        setRuntimeError(
+          `AI 摘要失败，已回退到本地结构化 Skill Provider: ${execution.primaryError.message}`,
         )
       }
 
@@ -1435,20 +1452,6 @@ function App() {
   )
 }
 
-function buildIndexedRecallQuery(documentText: string, codexEntries: CodexEntry[]) {
-  const codexTerms = codexEntries.flatMap((entry) =>
-    [entry.name, ...entry.keywords].filter(
-      (keyword) => keyword && documentText.includes(keyword),
-    ),
-  )
-  const proseTerms = documentText.match(/[\u4e00-\u9fff]{3,8}/g) || []
-  const terms = uniqueStrings([...codexTerms, ...proseTerms])
-    .filter((term) => term.length >= 3)
-    .slice(0, 8)
-
-  return terms.join(' ')
-}
-
 function mapChapterSearchResults(
   results: ChapterSearchResult[],
 ): IndexedRecallResult[] {
@@ -1460,10 +1463,6 @@ function mapChapterSearchResults(
     score: result.score,
     source: result.source,
   }))
-}
-
-function uniqueStrings(values: string[]) {
-  return [...new Set(values.map((value) => value.trim()).filter(Boolean))]
 }
 
 export default App
