@@ -1,0 +1,4 @@
+"run_id","chapter_id","repeat_index","arm_id","blind_label","output","callback_hits","setting_violations","future_leaks","review_preference","review_notes"
+"chapter-006-repeat-1","chapter-006","1","baseline","sample-1","","","","","",""
+"chapter-006-repeat-1","chapter-006","1","recent-fill","sample-2","","","","","",""
+"chapter-006-repeat-1","chapter-006","1","four-layer","sample-3","","","","","",""

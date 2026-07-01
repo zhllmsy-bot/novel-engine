@@ -1,0 +1,52 @@
+G3b clean non-dry-run smoke record
+Recorded at: 2026-07-01 22:05:55 CST
+
+[git status --short before]
+
+[git rev-parse HEAD]
+3f2c7a3b364abfd4f57aaf5d564d7f0d924b3ed7
+
+Command: NOVEL_ENGINE_EVAL_BASE_URL=$OPENAI_BASE_URL NOVEL_ENGINE_EVAL_API_KEY=$OPENAI_API_KEY npm run generation:eval -- --model gpt-5.5 --repeat 1 --archive-dir /Users/admin/Documents/Codex/2026-07-01/l0-codex-body-currentstate-characterstatelog-field/outputs/four-layer-g3b-clean-smoke-20260701-gpt55/archive --benchmark-project examples/delayed-payoff-benchmark
+
+
+> novel-engine@0.0.0 generation:eval
+> node --experimental-strip-types tools/generation-eval.ts --model gpt-5.5 --repeat 1 --archive-dir /Users/admin/Documents/Codex/2026-07-01/l0-codex-body-currentstate-characterstatelog-field/outputs/four-layer-g3b-clean-smoke-20260701-gpt55/archive --benchmark-project examples/delayed-payoff-benchmark
+
+Generation eval suite: FAILED
+Projects: 1
+Readiness: PASS loaded 1/1, prompt-ready 1/1, errors 0
+Archive: /Users/admin/Documents/Codex/2026-07-01/l0-codex-body-currentstate-characterstatelog-field/outputs/four-layer-g3b-clean-smoke-20260701-gpt55/archive
+Suite four-layer vs baseline: projects 1, paired runs 0, callback win 0%, callback diff 0, setting violation diff 0, future leak diff 0
+Suite four-layer vs recent-fill: projects 1, paired runs 0, callback win 0%, callback diff 0, setting violation diff 0, future leak diff 0
+--- 纸鸢旧约 ---
+Generation eval: UNDERPOWERED
+Root: /Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/delayed-payoff-benchmark
+Title: 纸鸢旧约
+Chapter: chapter-006
+Budget: 1050 chars
+Repeats: 1
+Provider: openai-compatible model=gpt-5.5 baseUrl=https://zzshu.cc wire=chat
+Fingerprint: git=3f2c7a3b364abfd4f57aaf5d564d7f0d924b3ed7 dataset=ee9a6b190cd7dba3 config=355bdb3e202cc8fb
+Criteria: 4 total (1 callback, 2 setting, 1 future leak)
+Gate: UNDERPOWERED reasons=insufficient-callback-win-vs-baseline,underpowered-vs-baseline,insufficient-callback-win-vs-recent-fill,underpowered-vs-recent-fill
+Archive: /Users/admin/Documents/Codex/2026-07-01/l0-codex-body-currentstate-characterstatelog-field/outputs/four-layer-g3b-clean-smoke-20260701-gpt55/archive/delayed-payoff-benchmark
+Aggregate baseline: runs 0, errors 1, score 0±0, callbacks 0±0, setting violations 0±0, future leaks 0
+Aggregate recent-fill: runs 0, errors 1, score 0±0, callbacks 0±0, setting violations 0±0, future leaks 0
+Aggregate four-layer: runs 0, errors 1, score 0±0, callbacks 0±0, setting violations 0±0, future leaks 0
+Arm baseline: prompt 782 chars, memories 1, sources=manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md
+ERROR arm:baseline Error: OpenAI-compatible generation failed: 403 {"error":{"message":"用户额度不足, 剩余额度: ＄-0.018184 (request id: [REDACTED-TOKEN])","type":"new_api_error","param":"","code":"insufficient_user_quota"}}
+Structure baseline:setting_recall 100% (1/1)
+Structure baseline:foreshadow_coverage 0% (0/1)
+Structure baseline:future_guard_coverage 0% (0/0)
+Arm recent-fill: prompt 1279 chars, memories 1, sources=manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md
+ERROR arm:recent-fill Error: OpenAI-compatible generation failed: 403 {"error":{"message":"用户额度不足, 剩余额度: ＄-0.018184 (request id: [REDACTED-TOKEN])","type":"new_api_error","param":"","code":"insufficient_user_quota"}}
+Structure recent-fill:setting_recall 100% (1/1)
+Structure recent-fill:foreshadow_coverage 100% (1/1)
+Structure recent-fill:future_guard_coverage 0% (0/0)
+Arm four-layer: prompt 1790 chars, memories 8, sources=manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md,codex/characters/liuqi.md,codex/characters/linqiu.md,+5 more
+ERROR arm:four-layer Error: OpenAI-compatible generation failed: 403 {"error":{"message":"用户额度不足, 剩余额度: ＄-0.018184 (request id: [REDACTED-TOKEN])","type":"new_api_error","param":"","code":"insufficient_user_quota"}}
+Structure four-layer:setting_recall 100% (1/1)
+Structure four-layer:foreshadow_coverage 100% (1/1)
+Structure four-layer:future_guard_coverage 0% (0/0)
+
+[git status --short after]

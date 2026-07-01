@@ -1,0 +1,38 @@
+{
+  "project": "纸鸢旧约",
+  "chapterId": "chapter-006",
+  "fingerprint": {
+    "gitCommit": "3f2c7a3b364abfd4f57aaf5d564d7f0d924b3ed7",
+    "datasetVersion": "25601457a0792866",
+    "datasetHash": "ee9a6b190cd7dba3",
+    "configHash": "355bdb3e202cc8fb"
+  },
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/",
+    "model": "gpt-5.5",
+    "wireApi": "chat"
+  },
+  "runs": [
+    {
+      "runId": "chapter-006-repeat-1",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "Error: OpenAI-compatible generation failed: 403 {\"error\":{\"message\":\"用户额度不足, 剩余额度: ＄-0.018184 (request id: [REDACTED-TOKEN])\",\"type\":\"new_api_error\",\"param\":\"\",\"code\":\"insufficient_user_quota\"}}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "Error: OpenAI-compatible generation failed: 403 {\"error\":{\"message\":\"用户额度不足, 剩余额度: ＄-0.018184 (request id: [REDACTED-TOKEN])\",\"type\":\"new_api_error\",\"param\":\"\",\"code\":\"insufficient_user_quota\"}}"
+        },
+        {
+          "id": "four-layer",
+          "error": "Error: OpenAI-compatible generation failed: 403 {\"error\":{\"message\":\"用户额度不足, 剩余额度: ＄-0.018184 (request id: [REDACTED-TOKEN])\",\"type\":\"new_api_error\",\"param\":\"\",\"code\":\"insufficient_user_quota\"}}"
+        }
+      ]
+    }
+  ],
+  "judge": []
+}
