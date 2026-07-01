@@ -160,8 +160,19 @@ describe('generation eval tool', () => {
 
       expect(suite.ok).toBe(true)
       expect(suite.projectCount).toBe(1)
+      expect(suite.readiness).toMatchObject({
+        ok: true,
+        projectCount: 1,
+        loadedProjects: 1,
+        promptReadyProjects: 1,
+        errorCount: 0,
+      })
       expect(suite.archivePath).toBe(root)
       expect(output).toContain('Generation eval suite: DRY-RUN')
+      expect(output).toContain('Readiness: PASS loaded 1/1')
+      expect(output).toContain(
+        'Paired-run gate: deferred until non-dry-run generation',
+      )
       await expect(stat(join(root, 'generation-eval-suite.json'))).resolves.toBeTruthy()
       await expect(
         stat(join(root, 'generation-eval-suite-summary.md')),
@@ -183,7 +194,10 @@ describe('generation eval tool', () => {
       ).resolves.toBeTruthy()
       expect(
         await readFile(join(root, 'generation-eval-suite-summary.md'), 'utf8'),
-      ).toContain('Generation Eval Suite Summary')
+      ).toContain('Paired-run gate: deferred until non-dry-run generation')
+      expect(
+        await readFile(join(root, 'generation-eval-suite.json'), 'utf8'),
+      ).toContain('"readiness"')
     } finally {
       await rm(root, { recursive: true, force: true })
     }

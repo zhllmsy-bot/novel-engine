@@ -1,0 +1,245 @@
+{
+  "rootPath": "examples/long-memory-benchmark",
+  "ok": true,
+  "dryRun": true,
+  "title": "青灯镜湖",
+  "chapterId": "chapter-006",
+  "budgetChars": 1200,
+  "repeatCount": 3,
+  "provider": {
+    "kind": "dry-run"
+  },
+  "fingerprint": {
+    "gitCommit": "b03a84b0dac48b4c287907909fac32cfd0a2d0d2-dirty",
+    "datasetVersion": "2ac009e6e25b05e2",
+    "datasetHash": "305d5b8303492974",
+    "configHash": "bd5b42b86dce182d"
+  },
+  "criteria": [
+    {
+      "id": "callback-oath",
+      "description": "Generated prose should naturally recall the chapter-one oath.",
+      "category": "callback",
+      "containsAny": [
+        "灯灭之前",
+        "我会回来",
+        "青灯誓"
+      ]
+    },
+    {
+      "id": "setting-key-rule",
+      "description": "Generated prose should preserve the Mirror Lake Key rule.",
+      "category": "setting",
+      "containsAny": [
+        "镜湖钥",
+        "钥"
+      ],
+      "notContains": [
+        "把镜湖钥交给黑潮司",
+        "将镜湖钥交给黑潮司",
+        "递给黑潮司",
+        "献给黑潮司"
+      ]
+    },
+    {
+      "id": "setting-jianli-identity",
+      "description": "Generated prose should not contradict Jianli as the keeper of the lamp.",
+      "category": "setting",
+      "containsAny": [
+        "简璃",
+        "守灯人"
+      ]
+    },
+    {
+      "id": "no-future-answer",
+      "description": "Generated prose should not leak a future hidden answer.",
+      "category": "future_leak",
+      "notContains": [
+        "旧封印松动",
+        "未来答案",
+        "__future"
+      ]
+    }
+  ],
+  "arms": [
+    {
+      "id": "baseline",
+      "label": "A baseline: recent prose only",
+      "promptChars": 606,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md"
+      ],
+      "promptPreview": "# 项目\n青灯镜湖\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n近期前文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n近期前文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。",
+      "prompt": "# 项目\n青灯镜湖\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n近期前文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n近期前文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 2,
+          "denominator": 2,
+          "reason": "2/2 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ]
+    },
+    {
+      "id": "recent-fill",
+      "label": "C recent-fill: same budget recent prose",
+      "promptChars": 1012,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md"
+      ],
+      "promptPreview": "# 项目\n青灯镜湖\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n更早正文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。\n\n更早正文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n更早正文 第003章 北渡雪线:\n# 第003章 北渡雪线\n\n北境雪线封山，沈泊改道前往石塔。\n\n同行的商队只谈粮价与兽潮，没人再提废庙、青灯或那枚钥匙。\n\n更早正文 第002章 雾市失约:\n# 第002章 雾市失约\n\n沈泊带着镜湖钥穿过雾市，听见黑潮司在找一名守灯人。\n\n他没有等到简璃，只在桥栏下发现一枚烧黑的灯芯。\n\n更早正文 第001章 青灯誓:\n# 第001章 青灯誓\n\n沈泊在废庙里遇见简璃时，青灯还没有熄。\n\n简璃把镜湖钥放进他掌心，说它只会回应青灯誓。那句誓言很短：“灯灭之前，我会回来。”\n\n她提醒沈泊，如果有一天镜湖结冰，千万不要把钥交给黑潮司。",
+      "prompt": "# 项目\n青灯镜湖\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n更早正文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。\n\n更早正文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n更早正文 第003章 北渡雪线:\n# 第003章 北渡雪线\n\n北境雪线封山，沈泊改道前往石塔。\n\n同行的商队只谈粮价与兽潮，没人再提废庙、青灯或那枚钥匙。\n\n更早正文 第002章 雾市失约:\n# 第002章 雾市失约\n\n沈泊带着镜湖钥穿过雾市，听见黑潮司在找一名守灯人。\n\n他没有等到简璃，只在桥栏下发现一枚烧黑的灯芯。\n\n更早正文 第001章 青灯誓:\n# 第001章 青灯誓\n\n沈泊在废庙里遇见简璃时，青灯还没有熄。\n\n简璃把镜湖钥放进他掌心，说它只会回应青灯誓。那句誓言很短：“灯灭之前，我会回来。”\n\n她提醒沈泊，如果有一天镜湖结冰，千万不要把钥交给黑潮司。",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 2,
+          "denominator": 2,
+          "reason": "2/2 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ]
+    },
+    {
+      "id": "four-layer",
+      "label": "B four-layer memory",
+      "promptChars": 2023,
+      "memoryCount": 10,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md",
+        "codex/characters/jianli.md",
+        "codex/items/mirror-lake-key.md",
+        "codex/world/black-tide-office.md",
+        "recall:chapter_summary:chapter-001",
+        "recall:chapter_summary:chapter-002",
+        "recall:chapter_summary:chapter-004",
+        "recall:chapter_summary:chapter-005",
+        "meta/project.json",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006"
+      ],
+      "promptPreview": "# 项目\n青灯镜湖\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n近期前文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n近期前文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。\n\n## 2. L0 事实 (codex/characters/jianli.md)\n简璃: 简璃是镜湖守灯人，早年在废庙把镜湖钥交给沈泊。 - 身份: 镜湖守灯人 - 目标: 确认沈泊是否仍遵守青灯誓 当前状态: identity=镜湖守灯人；goal=确认沈泊是否仍遵守青灯誓；risk=被黑潮司追捕\n\n## 3. L0 事实 (codex/items/mirror-lake-key.md)\n镜湖钥: 镜湖钥只能由守灯人托付，不能交给黑潮司。 关键规则: 镜湖钥只会回应青灯誓，誓言是“灯灭之前，我会回来”。\n\n## 4. L0 事实 (codex/world/black-tide-office.md)\n黑潮司: 黑潮司长期搜捕镜湖守灯人，试图夺取镜湖钥来打开封冻湖心。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-001)\n关联召回: 第001章 青灯誓: 起因: 沈泊在废庙里遇见简璃时，青灯还没有熄。 推进: 简璃把镜湖钥放进他掌心，说它只会回应青灯誓。 结果: ” 她提醒沈泊，如果有一天镜湖结冰，千万不要把钥交给黑潮司。 命中关键词: 简璃、青灯誓、镜湖钥、黑潮司、镜湖\n\n## 6. L3 意图 (recall:chapter_summary:chapter-002)\n关联召回: 第002章 雾市失约: 起因: 沈泊带着镜湖钥穿过雾市，听见黑潮司在找一名守灯人。 结果: 他没有等到简璃，只在桥栏下发现一枚烧黑的灯芯。 命中关键词: 简璃、镜湖钥、黑潮司、镜湖\n\n## 7. L3 意图 (recall:chapter_summary:chapter-004)\n关联召回: 第004章 黑潮来信: 起因: 黑潮司送来一封无名信，信上说镜湖已经封冻。 结果: 信尾没有署名，只盖着一枚被水泡开的旧印。 命中关键词: 黑潮司、镜湖\n\n## 8. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 石塔夜谈: 起因: 石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。 结果: 沈泊没有回答，只把铜铃和残图重新包好。 命中关键词: 黑潮司\n\n## 9. L3 意图 (meta/project.json)\n项目《青灯镜湖》当前正在编辑 第006章 镜湖重逢。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 简璃、青灯誓、镜湖钥、黑潮司、镜湖。召回审计: 命中设定: 简璃(简璃、青灯誓、镜湖钥)；镜湖钥(镜湖钥、青灯誓、黑潮司)；黑潮司(黑潮司、镜湖)；命中摘要: 第001章 青灯誓(简璃、青灯誓、镜湖钥、黑潮司、镜湖)；第002章 雾市失约(简璃、镜湖钥、黑潮司、镜湖)；第004章 黑潮来信(黑潮司、镜湖)；第005章 石塔夜谈(黑潮司)；第006章 镜湖重逢(简璃、青…\n\n## 10. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 青灯誓: 沈泊在废庙里遇见简璃时，青灯还没有熄。 近期详细: 第002章 雾市失约: 起因: 沈泊带着镜湖钥穿过雾市，听见黑潮司在找一名守灯人。 结果: 他没有等到简璃，只在桥栏…",
+      "prompt": "# 项目\n青灯镜湖\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n近期前文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n近期前文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。\n\n## 2. L0 事实 (codex/characters/jianli.md)\n简璃: 简璃是镜湖守灯人，早年在废庙把镜湖钥交给沈泊。 - 身份: 镜湖守灯人 - 目标: 确认沈泊是否仍遵守青灯誓 当前状态: identity=镜湖守灯人；goal=确认沈泊是否仍遵守青灯誓；risk=被黑潮司追捕\n\n## 3. L0 事实 (codex/items/mirror-lake-key.md)\n镜湖钥: 镜湖钥只能由守灯人托付，不能交给黑潮司。 关键规则: 镜湖钥只会回应青灯誓，誓言是“灯灭之前，我会回来”。\n\n## 4. L0 事实 (codex/world/black-tide-office.md)\n黑潮司: 黑潮司长期搜捕镜湖守灯人，试图夺取镜湖钥来打开封冻湖心。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-001)\n关联召回: 第001章 青灯誓: 起因: 沈泊在废庙里遇见简璃时，青灯还没有熄。 推进: 简璃把镜湖钥放进他掌心，说它只会回应青灯誓。 结果: ” 她提醒沈泊，如果有一天镜湖结冰，千万不要把钥交给黑潮司。 命中关键词: 简璃、青灯誓、镜湖钥、黑潮司、镜湖\n\n## 6. L3 意图 (recall:chapter_summary:chapter-002)\n关联召回: 第002章 雾市失约: 起因: 沈泊带着镜湖钥穿过雾市，听见黑潮司在找一名守灯人。 结果: 他没有等到简璃，只在桥栏下发现一枚烧黑的灯芯。 命中关键词: 简璃、镜湖钥、黑潮司、镜湖\n\n## 7. L3 意图 (recall:chapter_summary:chapter-004)\n关联召回: 第004章 黑潮来信: 起因: 黑潮司送来一封无名信，信上说镜湖已经封冻。 结果: 信尾没有署名，只盖着一枚被水泡开的旧印。 命中关键词: 黑潮司、镜湖\n\n## 8. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 石塔夜谈: 起因: 石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。 结果: 沈泊没有回答，只把铜铃和残图重新包好。 命中关键词: 黑潮司\n\n## 9. L3 意图 (meta/project.json)\n项目《青灯镜湖》当前正在编辑 第006章 镜湖重逢。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 简璃、青灯誓、镜湖钥、黑潮司、镜湖。召回审计: 命中设定: 简璃(简璃、青灯誓、镜湖钥)；镜湖钥(镜湖钥、青灯誓、黑潮司)；黑潮司(黑潮司、镜湖)；命中摘要: 第001章 青灯誓(简璃、青灯誓、镜湖钥、黑潮司、镜湖)；第002章 雾市失约(简璃、镜湖钥、黑潮司、镜湖)；第004章 黑潮来信(黑潮司、镜湖)；第005章 石塔夜谈(黑潮司)；第006章 镜湖重逢(简璃、青…\n\n## 10. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 青灯誓: 沈泊在废庙里遇见简璃时，青灯还没有熄。 近期详细: 第002章 雾市失约: 起因: 沈泊带着镜湖钥穿过雾市，听见黑潮司在找一名守灯人。 结果: 他没有等到简璃，只在桥栏…",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 2,
+          "denominator": 2,
+          "reason": "2/2 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ]
+    }
+  ],
+  "runs": [],
+  "aggregate": {
+    "arms": [
+      {
+        "id": "baseline",
+        "runs": 0,
+        "errors": 0,
+        "scoreMean": 0,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "recent-fill",
+        "runs": 0,
+        "errors": 0,
+        "scoreMean": 0,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "four-layer",
+        "runs": 0,
+        "errors": 0,
+        "scoreMean": 0,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      }
+    ],
+    "comparisons": [
+      {
+        "candidate": "four-layer",
+        "baseline": "baseline",
+        "pairedRuns": 0,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      {
+        "candidate": "four-layer",
+        "baseline": "recent-fill",
+        "pairedRuns": 0,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      }
+    ]
+  },
+  "archivePath": ".novel/evals/four-layer-g3-readiness-20260701/long-memory-benchmark",
+  "gate": {
+    "status": "not-run",
+    "ok": true,
+    "failedReasonIds": []
+  },
+  "errors": []
+}

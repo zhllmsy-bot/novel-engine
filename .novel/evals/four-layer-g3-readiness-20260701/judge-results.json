@@ -1,0 +1,89 @@
+{
+  "enabled": false,
+  "reports": [
+    {
+      "project": "纸鸢旧约",
+      "archivePath": ".novel/evals/four-layer-g3-readiness-20260701/delayed-payoff-benchmark",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "霜桥逆火",
+      "archivePath": ".novel/evals/four-layer-g3-readiness-20260701/state-drift-benchmark",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "青灯镜湖",
+      "archivePath": ".novel/evals/four-layer-g3-readiness-20260701/long-memory-benchmark",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    }
+  ]
+}

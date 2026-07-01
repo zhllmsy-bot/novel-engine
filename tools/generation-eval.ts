@@ -233,12 +233,21 @@ export type GenerationEvalSuiteComparison = {
   futureLeakDiff: number
 }
 
+export type GenerationEvalSuiteReadiness = {
+  ok: boolean
+  projectCount: number
+  loadedProjects: number
+  promptReadyProjects: number
+  errorCount: number
+}
+
 export type GenerationEvalSuiteReport = {
   ok: boolean
   dryRun: boolean
   projectCount: number
   reports: GenerationEvalReport[]
   comparisons: GenerationEvalSuiteComparison[]
+  readiness: GenerationEvalSuiteReadiness
   archivePath?: string
   errors: string[]
 }
@@ -790,10 +799,11 @@ export async function evaluateGenerationSuite(input: {
 
   const comparisons = buildSuiteComparisons(reports)
   const errors = reports.flatMap((report) => report.errors)
+  const readiness = buildSuiteReadiness(reports, errors)
   const suite: GenerationEvalSuiteReport = {
     ok:
       input.dryRun === true
-        ? reports.length > 0 && reports.every((report) => report.ok)
+        ? readiness.ok
         : reports.length > 0 &&
           reports.every((report) => report.ok) &&
           comparisons.every(
@@ -807,6 +817,7 @@ export async function evaluateGenerationSuite(input: {
     projectCount: reports.length,
     reports,
     comparisons,
+    readiness,
     archivePath: input.archiveDir ? resolve(input.archiveDir) : undefined,
     errors,
   }
@@ -827,6 +838,10 @@ export function formatGenerationEvalSuiteReport(
   const lines = [
     `Generation eval suite: ${suite.dryRun ? 'DRY-RUN' : suite.ok ? 'PASS' : 'FAILED'}`,
     `Projects: ${suite.projectCount}`,
+    `Readiness: ${suite.readiness.ok ? 'PASS' : 'FAIL'} loaded ${suite.readiness.loadedProjects}/${suite.readiness.projectCount}, prompt-ready ${suite.readiness.promptReadyProjects}/${suite.readiness.projectCount}, errors ${suite.readiness.errorCount}`,
+    suite.dryRun
+      ? 'Paired-run gate: deferred until non-dry-run generation'
+      : undefined,
     suite.archivePath ? `Archive: ${suite.archivePath}` : undefined,
     ...suite.comparisons.map(
       (comparison) =>
@@ -840,6 +855,41 @@ export function formatGenerationEvalSuiteReport(
   ].filter((line): line is string => Boolean(line))
 
   return lines.join('\n')
+}
+
+function buildSuiteReadiness(
+  reports: GenerationEvalReport[],
+  errors: string[],
+): GenerationEvalSuiteReadiness {
+  const loadedProjects = reports.filter(
+    (report) => report.errors.length === 0 && report.chapterId,
+  ).length
+  const promptReadyProjects = reports.filter(isPromptReadyReport).length
+
+  return {
+    ok:
+      reports.length > 0 &&
+      errors.length === 0 &&
+      loadedProjects === reports.length &&
+      promptReadyProjects === reports.length,
+    projectCount: reports.length,
+    loadedProjects,
+    promptReadyProjects,
+    errorCount: errors.length,
+  }
+}
+
+function isPromptReadyReport(report: GenerationEvalReport) {
+  const expectedArmIds: GenerationEvalArmId[] = [
+    'baseline',
+    'recent-fill',
+    'four-layer',
+  ]
+
+  return expectedArmIds.every((id) => {
+    const arm = report.arms.find((candidate) => candidate.id === id)
+    return Boolean(arm && arm.promptChars > 0 && arm.promptPreview.trim())
+  })
 }
 
 function buildSuiteComparisons(
@@ -1834,6 +1884,8 @@ function buildGenerationEvalSuiteSummary(suite: GenerationEvalSuiteReport) {
 - Status: ${suite.ok ? 'pass' : 'fail'}
 - Dry run: ${String(suite.dryRun)}
 - Projects: ${suite.projectCount}
+- Readiness: ${suite.readiness.ok ? 'pass' : 'fail'} (${suite.readiness.loadedProjects}/${suite.readiness.projectCount} loaded, ${suite.readiness.promptReadyProjects}/${suite.readiness.projectCount} prompt-ready, ${suite.readiness.errorCount} errors)
+- Paired-run gate: ${suite.dryRun ? 'deferred until non-dry-run generation' : 'checked from generated paired runs'}
 - Archive: ${suite.archivePath || 'not archived'}
 
 ## Comparisons

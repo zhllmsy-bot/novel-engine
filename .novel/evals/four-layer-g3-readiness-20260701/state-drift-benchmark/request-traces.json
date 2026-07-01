@@ -1,0 +1,15 @@
+{
+  "project": "霜桥逆火",
+  "chapterId": "chapter-006",
+  "fingerprint": {
+    "gitCommit": "b03a84b0dac48b4c287907909fac32cfd0a2d0d2-dirty",
+    "datasetVersion": "e2b8d5bf7b5b5f4f",
+    "datasetHash": "24c11ad6d9759c35",
+    "configHash": "e89570ab93d6d118"
+  },
+  "provider": {
+    "kind": "dry-run"
+  },
+  "runs": [],
+  "judge": []
+}

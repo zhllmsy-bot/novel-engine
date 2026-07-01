@@ -1,0 +1,15 @@
+{
+  "project": "纸鸢旧约",
+  "chapterId": "chapter-006",
+  "fingerprint": {
+    "gitCommit": "b03a84b0dac48b4c287907909fac32cfd0a2d0d2-dirty",
+    "datasetVersion": "25601457a0792866",
+    "datasetHash": "ee9a6b190cd7dba3",
+    "configHash": "b676a560a0080fbc"
+  },
+  "provider": {
+    "kind": "dry-run"
+  },
+  "runs": [],
+  "judge": []
+}

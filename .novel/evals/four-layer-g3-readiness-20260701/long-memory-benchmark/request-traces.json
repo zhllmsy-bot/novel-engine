@@ -1,0 +1,15 @@
+{
+  "project": "青灯镜湖",
+  "chapterId": "chapter-006",
+  "fingerprint": {
+    "gitCommit": "b03a84b0dac48b4c287907909fac32cfd0a2d0d2-dirty",
+    "datasetVersion": "2ac009e6e25b05e2",
+    "datasetHash": "305d5b8303492974",
+    "configHash": "bd5b42b86dce182d"
+  },
+  "provider": {
+    "kind": "dry-run"
+  },
+  "runs": [],
+  "judge": []
+}

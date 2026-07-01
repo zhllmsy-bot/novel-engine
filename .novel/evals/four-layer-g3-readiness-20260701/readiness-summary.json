@@ -1,0 +1,24 @@
+{
+  "ok": true,
+  "dryRun": true,
+  "projectCount": 3,
+  "readiness": {
+    "ok": true,
+    "projectCount": 3,
+    "loadedProjects": 3,
+    "promptReadyProjects": 3,
+    "errorCount": 0
+  },
+  "comparisons": [
+    {
+      "candidate": "four-layer",
+      "baseline": "baseline",
+      "pairedRuns": 0
+    },
+    {
+      "candidate": "four-layer",
+      "baseline": "recent-fill",
+      "pairedRuns": 0
+    }
+  ]
+}
