@@ -1,0 +1,83 @@
+G3 paired-runs summary from archived suite
+Recorded at: 2026-07-01 21:40:50 CST
+
+
+{
+  "dryRun": true,
+  "ok": true,
+  "projectCount": 3,
+  "errors": [],
+  "comparisons": [
+    {
+      "candidate": "four-layer",
+      "baseline": "baseline",
+      "projectCount": 3,
+      "pairedRuns": 0
+    },
+    {
+      "candidate": "four-layer",
+      "baseline": "recent-fill",
+      "projectCount": 3,
+      "pairedRuns": 0
+    }
+  ],
+  "reports": [
+    {
+      "title": "纸鸢旧约",
+      "chapterId": "chapter-006",
+      "runs": 0,
+      "errors": [],
+      "gateStatus": "not-run",
+      "comparisons": [
+        {
+          "candidate": "four-layer",
+          "baseline": "baseline",
+          "pairedRuns": 0
+        },
+        {
+          "candidate": "four-layer",
+          "baseline": "recent-fill",
+          "pairedRuns": 0
+        }
+      ]
+    },
+    {
+      "title": "霜桥逆火",
+      "chapterId": "chapter-006",
+      "runs": 0,
+      "errors": [],
+      "gateStatus": "not-run",
+      "comparisons": [
+        {
+          "candidate": "four-layer",
+          "baseline": "baseline",
+          "pairedRuns": 0
+        },
+        {
+          "candidate": "four-layer",
+          "baseline": "recent-fill",
+          "pairedRuns": 0
+        }
+      ]
+    },
+    {
+      "title": "青灯镜湖",
+      "chapterId": "chapter-006",
+      "runs": 0,
+      "errors": [],
+      "gateStatus": "not-run",
+      "comparisons": [
+        {
+          "candidate": "four-layer",
+          "baseline": "baseline",
+          "pairedRuns": 0
+        },
+        {
+          "candidate": "four-layer",
+          "baseline": "recent-fill",
+          "pairedRuns": 0
+        }
+      ]
+    }
+  ]
+}

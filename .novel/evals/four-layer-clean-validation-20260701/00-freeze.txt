@@ -1,0 +1,26 @@
+Four-layer clean validation freeze record
+Recorded at: 2026-07-01 21:37:25 CST
+
+Repository: /Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine
+
+[git status --porcelain=v1]
+
+[git rev-parse HEAD]
+5fa8f9e87c513f17025b10533a71e767a1cdf476
+
+[git log --oneline -5]
+5fa8f9e refactor: 重构摘要生成逻辑，添加provider fallback支持
+cfa4bc6 test: 更新记忆相关测试用例与配置
+f56c580 refactor: 优化章节摘要生成与实体检测逻辑，调整记忆预算策略
+102bccb Add state-drift and delayed-payoff benchmarks
+1e488e3 Redact archived generation eval metadata
+
+[git diff --stat]
+
+[git diff --cached --stat]
+
+[node --version]
+v22.22.1
+
+[npm --version]
+10.9.4

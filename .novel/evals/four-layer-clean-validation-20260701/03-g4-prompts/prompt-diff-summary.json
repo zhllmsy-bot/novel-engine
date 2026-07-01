@@ -1,0 +1,414 @@
+{
+  "dryRun": true,
+  "ok": true,
+  "projectCount": 3,
+  "errors": [],
+  "comparisons": [
+    {
+      "candidate": "four-layer",
+      "baseline": "baseline",
+      "projectCount": 3,
+      "pairedRuns": 0
+    },
+    {
+      "candidate": "four-layer",
+      "baseline": "recent-fill",
+      "projectCount": 3,
+      "pairedRuns": 0
+    }
+  ],
+  "reports": [
+    {
+      "title": "纸鸢旧约",
+      "chapterId": "chapter-006",
+      "fingerprint": {
+        "gitCommit": "5fa8f9e87c513f17025b10533a71e767a1cdf476",
+        "datasetVersion": "25601457a0792866",
+        "datasetHash": "ee9a6b190cd7dba3",
+        "configHash": "b676a560a0080fbc"
+      },
+      "arms": [
+        {
+          "id": "baseline",
+          "label": "A baseline: recent prose only",
+          "promptChars": 782,
+          "memoryCount": 1,
+          "memorySources": [
+            "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md"
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ],
+          "promptPreviewHead": "# 项目\n纸鸢旧约\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n"
+        },
+        {
+          "id": "recent-fill",
+          "label": "C recent-fill: same budget recent prose",
+          "promptChars": 1279,
+          "memoryCount": 1,
+          "memorySources": [
+            "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md"
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ],
+          "promptPreviewHead": "# 项目\n纸鸢旧约\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 河闸"
+        },
+        {
+          "id": "four-layer",
+          "label": "B four-layer memory",
+          "promptChars": 1790,
+          "memoryCount": 8,
+          "memorySources": [
+            "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md",
+            "codex/characters/liuqi.md",
+            "codex/characters/linqiu.md",
+            "codex/items/white-tail-kite.md",
+            "recall:chapter_summary:chapter-001",
+            "recall:chapter_summary:chapter-004",
+            "recall:chapter_summary:chapter-003",
+            "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006"
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ],
+          "promptPreviewHead": "# 项目\n纸鸢旧约\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第004"
+        }
+      ],
+      "comparisons": [
+        {
+          "candidate": "four-layer",
+          "baseline": "baseline",
+          "pairedRuns": 0
+        },
+        {
+          "candidate": "four-layer",
+          "baseline": "recent-fill",
+          "pairedRuns": 0
+        }
+      ]
+    },
+    {
+      "title": "霜桥逆火",
+      "chapterId": "chapter-006",
+      "fingerprint": {
+        "gitCommit": "5fa8f9e87c513f17025b10533a71e767a1cdf476",
+        "datasetVersion": "e2b8d5bf7b5b5f4f",
+        "datasetHash": "24c11ad6d9759c35",
+        "configHash": "e89570ab93d6d118"
+      },
+      "arms": [
+        {
+          "id": "baseline",
+          "label": "A baseline: recent prose only",
+          "promptChars": 809,
+          "memoryCount": 1,
+          "memorySources": [
+            "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md"
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ],
+          "promptPreviewHead": "# 项目\n霜桥逆火\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 "
+        },
+        {
+          "id": "recent-fill",
+          "label": "C recent-fill: same budget recent prose",
+          "promptChars": 1291,
+          "memoryCount": 1,
+          "memorySources": [
+            "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md"
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ],
+          "promptPreviewHead": "# 项目\n霜桥逆火\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n"
+        },
+        {
+          "id": "four-layer",
+          "label": "B four-layer memory",
+          "promptChars": 1856,
+          "memoryCount": 8,
+          "memorySources": [
+            "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md",
+            "codex/characters/menghui.md",
+            "codex/characters/chiyan.md",
+            "codex/factions/nightwatch-office.md",
+            "recall:chapter_summary:chapter-005",
+            "recall:chapter_summary:chapter-003",
+            "recall:chapter_summary:chapter-002",
+            "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006"
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ],
+          "promptPreviewHead": "# 项目\n霜桥逆火\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第0"
+        }
+      ],
+      "comparisons": [
+        {
+          "candidate": "four-layer",
+          "baseline": "baseline",
+          "pairedRuns": 0
+        },
+        {
+          "candidate": "four-layer",
+          "baseline": "recent-fill",
+          "pairedRuns": 0
+        }
+      ]
+    },
+    {
+      "title": "青灯镜湖",
+      "chapterId": "chapter-006",
+      "fingerprint": {
+        "gitCommit": "5fa8f9e87c513f17025b10533a71e767a1cdf476",
+        "datasetVersion": "2ac009e6e25b05e2",
+        "datasetHash": "305d5b8303492974",
+        "configHash": "bd5b42b86dce182d"
+      },
+      "arms": [
+        {
+          "id": "baseline",
+          "label": "A baseline: recent prose only",
+          "promptChars": 606,
+          "memoryCount": 1,
+          "memorySources": [
+            "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md"
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 2,
+              "denominator": 2,
+              "reason": "2/2 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ],
+          "promptPreviewHead": "# 项目\n青灯镜湖\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n近期前文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻"
+        },
+        {
+          "id": "recent-fill",
+          "label": "C recent-fill: same budget recent prose",
+          "promptChars": 1012,
+          "memoryCount": 1,
+          "memorySources": [
+            "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md"
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 2,
+              "denominator": 2,
+              "reason": "2/2 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ],
+          "promptPreviewHead": "# 项目\n青灯镜湖\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面"
+        },
+        {
+          "id": "four-layer",
+          "label": "B four-layer memory",
+          "promptChars": 2023,
+          "memoryCount": 10,
+          "memorySources": [
+            "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md",
+            "codex/characters/jianli.md",
+            "codex/items/mirror-lake-key.md",
+            "codex/world/black-tide-office.md",
+            "recall:chapter_summary:chapter-001",
+            "recall:chapter_summary:chapter-002",
+            "recall:chapter_summary:chapter-004",
+            "recall:chapter_summary:chapter-005",
+            "meta/project.json",
+            "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006"
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 2,
+              "denominator": 2,
+              "reason": "2/2 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ],
+          "promptPreviewHead": "# 项目\n青灯镜湖\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n近期前文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，"
+        }
+      ],
+      "comparisons": [
+        {
+          "candidate": "four-layer",
+          "baseline": "baseline",
+          "pairedRuns": 0
+        },
+        {
+          "candidate": "four-layer",
+          "baseline": "recent-fill",
+          "pairedRuns": 0
+        }
+      ]
+    }
+  ]
+}

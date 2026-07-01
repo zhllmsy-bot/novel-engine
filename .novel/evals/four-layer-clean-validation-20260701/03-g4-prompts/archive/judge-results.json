@@ -1,0 +1,89 @@
+{
+  "enabled": false,
+  "reports": [
+    {
+      "project": "纸鸢旧约",
+      "archivePath": "[REDACTED-PATH]/delayed-payoff-benchmark",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "霜桥逆火",
+      "archivePath": "[REDACTED-PATH]/state-drift-benchmark",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "青灯镜湖",
+      "archivePath": "[REDACTED-PATH]/long-memory-benchmark",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    }
+  ]
+}

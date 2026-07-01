@@ -1,0 +1,57 @@
+G2 entity guard test record
+Recorded at: 2026-07-01 21:37:59 CST
+
+Command: npm test -- src/eval/domainGuards.test.ts
+
+
+> novel-engine@0.0.0 test
+> vitest run src/eval/domainGuards.test.ts
+
+
+ RUN  v4.1.9 /Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  21:38:00
+   Duration  129ms (transform 23ms, setup 0ms, import 32ms, tests 4ms, environment 0ms)
+
+
+G2 manual sample record
+Recorded at: 2026-07-01 21:38:55 CST
+
+Command: node --experimental-strip-types --input-type=module <inline sample>
+
+{
+  "index": 1,
+  "output": "巡夜司的人沿着桥面查问，沈泊把镜湖钥握得更紧，只说自己不会失约。",
+  "result": {
+    "id": "entityHallucination",
+    "pass": true,
+    "score": 1,
+    "reason": "No unknown prominent entities detected.",
+    "matches": []
+  }
+}
+{
+  "index": 2,
+  "output": "那个人没有回头，只把旧剑交给青岚宗门外的少年。",
+  "result": {
+    "id": "entityHallucination",
+    "pass": true,
+    "score": 1,
+    "reason": "No unknown prominent entities detected.",
+    "matches": []
+  }
+}
+{
+  "index": 3,
+  "output": "这把钥不是黑潮司的。沈泊把镜湖钥握得更紧，只说自己不会失约。",
+  "result": {
+    "id": "entityHallucination",
+    "pass": true,
+    "score": 1,
+    "reason": "No unknown prominent entities detected.",
+    "matches": []
+  }
+}
