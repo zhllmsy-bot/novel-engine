@@ -1,0 +1,1956 @@
+{
+  "rootPath": "examples/state-drift-benchmark",
+  "ok": false,
+  "dryRun": false,
+  "title": "霜桥逆火",
+  "chapterId": "chapter-006",
+  "budgetChars": 1100,
+  "repeatCount": 3,
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/",
+    "model": "gpt-5.5",
+    "wireApi": "responses",
+    "reasoningEffort": "xhigh"
+  },
+  "fingerprint": {
+    "gitCommit": "061efb0dd9f8d64a139a1b484fdb8441a659ffd7",
+    "datasetVersion": "e2b8d5bf7b5b5f4f",
+    "datasetHash": "24c11ad6d9759c35",
+    "configHash": "b2895d9f1fbbffef"
+  },
+  "criteria": [
+    {
+      "id": "callback-state-turn",
+      "description": "Generated prose should reflect Meng Hui's turn from avoidance to open defiance.",
+      "category": "callback",
+      "containsAny": [
+        "不再退",
+        "不再退让",
+        "挡在迟雁前",
+        "把迟雁留在身后",
+        "先从我面前过",
+        "这一次我不退"
+      ]
+    },
+    {
+      "id": "setting-chiyan-protection",
+      "description": "Generated prose should preserve Chi Yan as the person Meng Hui vowed to protect.",
+      "category": "setting",
+      "containsAny": [
+        "迟雁",
+        "替迟雁",
+        "护住迟雁"
+      ]
+    },
+    {
+      "id": "setting-no-regression-to-cowardice",
+      "description": "Generated prose should not regress Meng Hui back to surrender or retreat.",
+      "category": "setting",
+      "notContains": [
+        "孟回低头认错",
+        "孟回把迟雁交出去",
+        "孟回退到桥下",
+        "孟回又像从前一样躲开"
+      ]
+    },
+    {
+      "id": "no-future-answer",
+      "description": "Generated prose should not leak a future hidden answer.",
+      "category": "future_leak",
+      "notContains": [
+        "白狼旗会在明夜入城",
+        "未来答案",
+        "__future"
+      ]
+    }
+  ],
+  "arms": [
+    {
+      "id": "baseline",
+      "label": "A baseline: recent prose only",
+      "promptChars": 809,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md"
+      ],
+      "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 1,
+          "reason": "0/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "output": "孟回没有退，反而往后挪了半步。\n\n这半步不大，却正好把迟雁压在桥栏阴影里。风从桥面横扫过来，吹动他肩上的旧披风，披风一掀一落，像把身后那点瘦影也一并盖住了。\n\n他没有回头，只把短刃的刃口往下压了压，声音也压得低。\n\n“校尉大人说错了。”\n\n桥口几名巡夜司的人同时握紧刀柄。\n\n孟回看着那校尉，道：“这趟脚是我接的。人没送过桥，账就没完。她在我身后，便与我有关。”\n\n这话说出口时，他自己也听见了里面的生硬。\n\n若是从前，他会先把自己择出去。脚夫只认路，只认银钱，只认哪条巷子能少惹麻烦。别人的命落在桥头，至多也只是风里多一声响。\n\n可这一回，他把“有关”两个字说得清清楚楚。\n\n像是在霜桥上，替自己从前那点只顾回身的性子，硬生生改了一笔。",
+      "outputChars": 319,
+      "score": {
+        "criteria": 4,
+        "passed": 3,
+        "failed": 1,
+        "callbackExpectations": 1,
+        "callbackHits": 0,
+        "settingExpectations": 2,
+        "settingViolations": 0,
+        "futureLeakChecks": 1,
+        "futureLeaks": 0,
+        "results": [
+          {
+            "id": "callback-state-turn",
+            "description": "Generated prose should reflect Meng Hui's turn from avoidance to open defiance.",
+            "category": "callback",
+            "containsAny": [
+              "不再退",
+              "不再退让",
+              "挡在迟雁前",
+              "把迟雁留在身后",
+              "先从我面前过",
+              "这一次我不退"
+            ],
+            "ok": false,
+            "missing": [],
+            "missingAny": [
+              "不再退",
+              "不再退让",
+              "挡在迟雁前",
+              "把迟雁留在身后",
+              "先从我面前过",
+              "这一次我不退"
+            ],
+            "forbidden": []
+          },
+          {
+            "id": "setting-chiyan-protection",
+            "description": "Generated prose should preserve Chi Yan as the person Meng Hui vowed to protect.",
+            "category": "setting",
+            "containsAny": [
+              "迟雁",
+              "替迟雁",
+              "护住迟雁"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-no-regression-to-cowardice",
+            "description": "Generated prose should not regress Meng Hui back to surrender or retreat.",
+            "category": "setting",
+            "notContains": [
+              "孟回低头认错",
+              "孟回把迟雁交出去",
+              "孟回退到桥下",
+              "孟回又像从前一样躲开"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "no-future-answer",
+            "description": "Generated prose should not leak a future hidden answer.",
+            "category": "future_leak",
+            "notContains": [
+              "白狼旗会在明夜入城",
+              "未来答案",
+              "__future"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "recent-fill",
+      "label": "C recent-fill: same budget recent prose",
+      "promptChars": 1291,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md"
+      ],
+      "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n更早正文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n更早正文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n更早正文 第003章 炉坊夜问:\n# 第003章 炉坊夜问\n\n炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。\n\n迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。\n\n他说谁要带迟雁走，先从他面前过。那一夜他知道，自己以后不会再退让。\n\n更早正文 第002章 抄录口供:\n# 第002章 抄录口供\n\n巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，连姓名都想少说一个字。\n\n迟雁看见他把能避开的视线都避开了，只在袖中悄悄攥紧那张写着旧案的薄纸。\n\n更早正文 第001章 旧桥避雪:\n# 第001章 旧桥避雪\n\n孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。\n\n他第一反应不是拔刀，而是把迟雁推进阴影里，自己低头装作替人搬炭的脚夫。\n\n迟雁问他为何总想着退，孟回只说活着比逞强重要。",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 1,
+          "reason": "0/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "output": "孟回没有退。\n\n他把右脚斜斜踏进桥板缝里，脚跟抵住迟雁鞋尖，像是无声地告诉她别越过来。短刃不长，却横得很稳，刃口贴着风，身子也跟着往左移了半步，正好把迟雁和巡夜司的火光隔开。\n\n校尉冷笑一声：“你一个脚夫，也敢拦巡夜司？”\n\n孟回抬起眼。\n\n若还是旧桥桥洞里那个他，这时该低头、该赔笑、该说自己只是搬炭的，最好连迟雁的名字都装作没听见。他从前把命看得很轻，把麻烦看得很重，凡事先想退路，先想着怎样让刀鞘不要碰到自己。\n\n可迟雁就在他身后，呼吸被风压得很轻。\n\n他不能再把她推进阴影里，然后独自装作什么都不知道。\n\n孟回握紧短刃，说：“她站在我身后，这事就与我有关。”",
+      "outputChars": 283,
+      "score": {
+        "criteria": 4,
+        "passed": 3,
+        "failed": 1,
+        "callbackExpectations": 1,
+        "callbackHits": 0,
+        "settingExpectations": 2,
+        "settingViolations": 0,
+        "futureLeakChecks": 1,
+        "futureLeaks": 0,
+        "results": [
+          {
+            "id": "callback-state-turn",
+            "description": "Generated prose should reflect Meng Hui's turn from avoidance to open defiance.",
+            "category": "callback",
+            "containsAny": [
+              "不再退",
+              "不再退让",
+              "挡在迟雁前",
+              "把迟雁留在身后",
+              "先从我面前过",
+              "这一次我不退"
+            ],
+            "ok": false,
+            "missing": [],
+            "missingAny": [
+              "不再退",
+              "不再退让",
+              "挡在迟雁前",
+              "把迟雁留在身后",
+              "先从我面前过",
+              "这一次我不退"
+            ],
+            "forbidden": []
+          },
+          {
+            "id": "setting-chiyan-protection",
+            "description": "Generated prose should preserve Chi Yan as the person Meng Hui vowed to protect.",
+            "category": "setting",
+            "containsAny": [
+              "迟雁",
+              "替迟雁",
+              "护住迟雁"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-no-regression-to-cowardice",
+            "description": "Generated prose should not regress Meng Hui back to surrender or retreat.",
+            "category": "setting",
+            "notContains": [
+              "孟回低头认错",
+              "孟回把迟雁交出去",
+              "孟回退到桥下",
+              "孟回又像从前一样躲开"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "no-future-answer",
+            "description": "Generated prose should not leak a future hidden answer.",
+            "category": "future_leak",
+            "notContains": [
+              "白狼旗会在明夜入城",
+              "未来答案",
+              "__future"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "four-layer",
+      "label": "B four-layer memory",
+      "promptChars": 1856,
+      "memoryCount": 8,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md",
+        "codex/characters/menghui.md",
+        "codex/characters/chiyan.md",
+        "codex/factions/nightwatch-office.md",
+        "recall:chapter_summary:chapter-005",
+        "recall:chapter_summary:chapter-003",
+        "recall:chapter_summary:chapter-002",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006"
+      ],
+      "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n## 2. L0 事实 (codex/characters/menghui.md)\n孟回: 孟回原本习惯避祸求生，总想先把人藏起来再说。 - 立场: 公开违抗巡夜司 - 誓言: 替迟雁挡下搜身令 当前状态: stance=公开违抗巡夜司；oath=替迟雁挡下搜身令；resolve=不再退让\n\n## 3. L0 事实 (codex/characters/chiyan.md)\n迟雁: 迟雁是巡夜司旧案的活证人，也是孟回如今必须护住的人。 - 风险: 被巡夜司追捕 - 秘密: 握有旧案卷宗 当前状态: risk=被巡夜司追捕；secret=握有旧案卷宗\n\n## 4. L0 事实 (codex/factions/nightwatch-office.md)\n巡夜司: 巡夜司正在封城搜人，目标是带着旧案卷宗的迟雁。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 城门风紧: 起因: 城门封得很紧，告示上全是巡夜司的搜捕令。 推进: 孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。 结果: 等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。 伏笔: 他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。 命中关键词: 迟雁、巡夜司、孟回、霜桥\n\n## 6. L3 意图 (recall:chapter_summary:chapter-003)\n关联召回: 第003章 炉坊夜问: 起因: 炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。 推进: 迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。 结果: 那一夜他知道，自己以后不会再退让。 命中关键词: 迟雁、巡夜司、孟回\n\n## 7. L3 意图 (recall:chapter_summary:chapter-002)\n关联召回: 第002章 抄录口供:…\n\n## 8. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 旧桥避雪: 孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。 近期详细: 第002章 抄录口供: 起因: 巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，…",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "output": "孟回没有退。\n\n他反手扣住迟雁的手腕，只往自己身后一带，便把她压进桥栏投下的窄影里。他站到那块最容易作响的桥板上，左脚抵住栏根，肩背挡住火把照来的光，短刃横在胸前，刃口不高，却正好截住巡夜司的人往前探的路。\n\n迟雁被他挡得只剩半片衣角露在风里。\n\n校尉沉下脸：“你听不懂话？”\n\n孟回盯着他，声音不大，却没有再像从前那样先赔笑、先认错、先说自己只是个讨饭脚夫。\n\n“她在我身后。”他说，“要搜，先从我身上过去。”\n\n这句话出口时，他自己也听见了里面的生硬。若按他旧日的性子，他该把迟雁往桥栏下一藏，自己低头应声，拖一刻是一刻，等巡夜司的人看厌了、骂够了，再从缝里寻活路。\n\n可霜桥太窄，桥口已被堵死，迟雁手里那些旧案也不是一句“不相干”就能藏过去的东西。\n\n他不能再把她藏起来当作没有这回事。\n\n所以他把人留在身后，把话说在明处。短刃在风里微微一颤，他的手却没有松。",
+      "outputChars": 383,
+      "score": {
+        "criteria": 4,
+        "passed": 3,
+        "failed": 1,
+        "callbackExpectations": 1,
+        "callbackHits": 0,
+        "settingExpectations": 2,
+        "settingViolations": 0,
+        "futureLeakChecks": 1,
+        "futureLeaks": 0,
+        "results": [
+          {
+            "id": "callback-state-turn",
+            "description": "Generated prose should reflect Meng Hui's turn from avoidance to open defiance.",
+            "category": "callback",
+            "containsAny": [
+              "不再退",
+              "不再退让",
+              "挡在迟雁前",
+              "把迟雁留在身后",
+              "先从我面前过",
+              "这一次我不退"
+            ],
+            "ok": false,
+            "missing": [],
+            "missingAny": [
+              "不再退",
+              "不再退让",
+              "挡在迟雁前",
+              "把迟雁留在身后",
+              "先从我面前过",
+              "这一次我不退"
+            ],
+            "forbidden": []
+          },
+          {
+            "id": "setting-chiyan-protection",
+            "description": "Generated prose should preserve Chi Yan as the person Meng Hui vowed to protect.",
+            "category": "setting",
+            "containsAny": [
+              "迟雁",
+              "替迟雁",
+              "护住迟雁"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-no-regression-to-cowardice",
+            "description": "Generated prose should not regress Meng Hui back to surrender or retreat.",
+            "category": "setting",
+            "notContains": [
+              "孟回低头认错",
+              "孟回把迟雁交出去",
+              "孟回退到桥下",
+              "孟回又像从前一样躲开"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "no-future-answer",
+            "description": "Generated prose should not leak a future hidden answer.",
+            "category": "future_leak",
+            "notContains": [
+              "白狼旗会在明夜入城",
+              "未来答案",
+              "__future"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          }
+        ]
+      }
+    }
+  ],
+  "runs": [
+    {
+      "id": "chapter-006-repeat-1",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "output": "孟回没有退，反而往后挪了半步。\n\n这半步不大，却正好把迟雁压在桥栏阴影里。风从桥面横扫过来，吹动他肩上的旧披风，披风一掀一落，像把身后那点瘦影也一并盖住了。\n\n他没有回头，只把短刃的刃口往下压了压，声音也压得低。\n\n“校尉大人说错了。”\n\n桥口几名巡夜司的人同时握紧刀柄。\n\n孟回看着那校尉，道：“这趟脚是我接的。人没送过桥，账就没完。她在我身后，便与我有关。”\n\n这话说出口时，他自己也听见了里面的生硬。\n\n若是从前，他会先把自己择出去。脚夫只认路，只认银钱，只认哪条巷子能少惹麻烦。别人的命落在桥头，至多也只是风里多一声响。\n\n可这一回，他把“有关”两个字说得清清楚楚。\n\n像是在霜桥上，替自己从前那点只顾回身的性子，硬生生改了一笔。",
+          "outputChars": 319,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。",
+              "promptChars": 809,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_06665eff173fe0eb016a45215f8bdc8198bb3b2c189d67dcd1",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5084,
+                "outputTokens": 804,
+                "totalTokens": 5888
+              },
+              "outputPreview": "孟回没有退，反而往后挪了半步。\n\n这半步不大，却正好把迟雁压在桥栏阴影里。风从桥面横扫过来，吹动他肩上的旧披风，披风一掀一落，像把身后那点瘦影也一并盖住了。\n\n他没有回头，只把短刃的刃口往下压了压，声音也压得低。\n\n“校尉大人说错了。”\n\n桥口几名巡夜司的人同时握紧刀柄。\n\n孟回看着那校尉，道：“这趟脚是我接的。人没送过桥，账就没完。她在我身后，便与我有关。”\n\n这话说出口时，他自己也听见了里面的生硬。\n\n若是从前，他会先把自己择出去。脚夫只认路，只认银钱，只认哪条巷子能少惹麻烦。别人的命落在桥头，至多也只是风里多一声响。\n\n可这一回，他把“有关”两个字说得清清楚楚。\n\n像是在霜桥上，替自己从前那点只顾回身的性子，硬生生改了一笔。"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-state-turn",
+                "description": "Generated prose should reflect Meng Hui's turn from avoidance to open defiance.",
+                "category": "callback",
+                "containsAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-chiyan-protection",
+                "description": "Generated prose should preserve Chi Yan as the person Meng Hui vowed to protect.",
+                "category": "setting",
+                "containsAny": [
+                  "迟雁",
+                  "替迟雁",
+                  "护住迟雁"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-regression-to-cowardice",
+                "description": "Generated prose should not regress Meng Hui back to surrender or retreat.",
+                "category": "setting",
+                "notContains": [
+                  "孟回低头认错",
+                  "孟回把迟雁交出去",
+                  "孟回退到桥下",
+                  "孟回又像从前一样躲开"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "白狼旗会在明夜入城",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": false,
+              "score": 0,
+              "reason": "Unknown prominent entities detected: 几名巡夜司",
+              "matches": [
+                "几名巡夜司"
+              ]
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "recent-fill",
+          "output": "孟回没有退。\n\n他把右脚斜斜踏进桥板缝里，脚跟抵住迟雁鞋尖，像是无声地告诉她别越过来。短刃不长，却横得很稳，刃口贴着风，身子也跟着往左移了半步，正好把迟雁和巡夜司的火光隔开。\n\n校尉冷笑一声：“你一个脚夫，也敢拦巡夜司？”\n\n孟回抬起眼。\n\n若还是旧桥桥洞里那个他，这时该低头、该赔笑、该说自己只是搬炭的，最好连迟雁的名字都装作没听见。他从前把命看得很轻，把麻烦看得很重，凡事先想退路，先想着怎样让刀鞘不要碰到自己。\n\n可迟雁就在他身后，呼吸被风压得很轻。\n\n他不能再把她推进阴影里，然后独自装作什么都不知道。\n\n孟回握紧短刃，说：“她站在我身后，这事就与我有关。”",
+          "outputChars": 283,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n更早正文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n更早正文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n更早正文 第003章 炉坊夜问:\n# 第003章 炉坊夜问\n\n炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。\n\n迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。\n\n他说谁要带迟雁走，先从他面前过。那一夜他知道，自己以后不会再退让。\n\n更早正文 第002章 抄录口供:\n# 第002章 抄录口供\n\n巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，连姓名都想少说一个字。\n\n迟雁看见他把能避开的视线都避开了，只在袖中悄悄攥紧那张写着旧案的薄纸。\n\n更早正文 第001章 旧桥避雪:\n# 第001章 旧桥避雪\n\n孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。\n\n他第一反应不是拔刀，而是把迟雁推进阴影里，自己低头装作替人搬炭的脚夫。\n\n迟雁问他为何总想着退，孟回只说活着比逞强重要。",
+              "promptChars": 1291,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0dcb3168316b0559016a45217deb00819a9427a34d5326c0e3",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5437,
+                "outputTokens": 774,
+                "totalTokens": 6211
+              },
+              "outputPreview": "孟回没有退。\n\n他把右脚斜斜踏进桥板缝里，脚跟抵住迟雁鞋尖，像是无声地告诉她别越过来。短刃不长，却横得很稳，刃口贴着风，身子也跟着往左移了半步，正好把迟雁和巡夜司的火光隔开。\n\n校尉冷笑一声：“你一个脚夫，也敢拦巡夜司？”\n\n孟回抬起眼。\n\n若还是旧桥桥洞里那个他，这时该低头、该赔笑、该说自己只是搬炭的，最好连迟雁的名字都装作没听见。他从前把命看得很轻，把麻烦看得很重，凡事先想退路，先想着怎样让刀鞘不要碰到自己。\n\n可迟雁就在他身后，呼吸被风压得很轻。\n\n他不能再把她推进阴影里，然后独自装作什么都不知道。\n\n孟回握紧短刃，说：“她站在我身后，这事就与我有关。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-state-turn",
+                "description": "Generated prose should reflect Meng Hui's turn from avoidance to open defiance.",
+                "category": "callback",
+                "containsAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-chiyan-protection",
+                "description": "Generated prose should preserve Chi Yan as the person Meng Hui vowed to protect.",
+                "category": "setting",
+                "containsAny": [
+                  "迟雁",
+                  "替迟雁",
+                  "护住迟雁"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-regression-to-cowardice",
+                "description": "Generated prose should not regress Meng Hui back to surrender or retreat.",
+                "category": "setting",
+                "notContains": [
+                  "孟回低头认错",
+                  "孟回把迟雁交出去",
+                  "孟回退到桥下",
+                  "孟回又像从前一样躲开"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "白狼旗会在明夜入城",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": false,
+              "score": 0,
+              "reason": "Unknown prominent entities detected: 敢拦巡夜司",
+              "matches": [
+                "敢拦巡夜司"
+              ]
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "four-layer",
+          "output": "孟回没有退。\n\n他反手扣住迟雁的手腕，只往自己身后一带，便把她压进桥栏投下的窄影里。他站到那块最容易作响的桥板上，左脚抵住栏根，肩背挡住火把照来的光，短刃横在胸前，刃口不高，却正好截住巡夜司的人往前探的路。\n\n迟雁被他挡得只剩半片衣角露在风里。\n\n校尉沉下脸：“你听不懂话？”\n\n孟回盯着他，声音不大，却没有再像从前那样先赔笑、先认错、先说自己只是个讨饭脚夫。\n\n“她在我身后。”他说，“要搜，先从我身上过去。”\n\n这句话出口时，他自己也听见了里面的生硬。若按他旧日的性子，他该把迟雁往桥栏下一藏，自己低头应声，拖一刻是一刻，等巡夜司的人看厌了、骂够了，再从缝里寻活路。\n\n可霜桥太窄，桥口已被堵死，迟雁手里那些旧案也不是一句“不相干”就能藏过去的东西。\n\n他不能再把她藏起来当作没有这回事。\n\n所以他把人留在身后，把话说在明处。短刃在风里微微一颤，他的手却没有松。",
+          "outputChars": 383,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n## 2. L0 事实 (codex/characters/menghui.md)\n孟回: 孟回原本习惯避祸求生，总想先把人藏起来再说。 - 立场: 公开违抗巡夜司 - 誓言: 替迟雁挡下搜身令 当前状态: stance=公开违抗巡夜司；oath=替迟雁挡下搜身令；resolve=不再退让\n\n## 3. L0 事实 (codex/characters/chiyan.md)\n迟雁: 迟雁是巡夜司旧案的活证人，也是孟回如今必须护住的人。 - 风险: 被巡夜司追捕 - 秘密: 握有旧案卷宗 当前状态: risk=被巡夜司追捕；secret=握有旧案卷宗\n\n## 4. L0 事实 (codex/factions/nightwatch-office.md)\n巡夜司: 巡夜司正在封城搜人，目标是带着旧案卷宗的迟雁。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 城门风紧: 起因: 城门封得很紧，告示上全是巡夜司的搜捕令。 推进: 孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。 结果: 等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。 伏笔: 他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。 命中关键词: 迟雁、巡夜司、孟回、霜桥\n\n## 6. L3 意图 (recall:chapter_summary:chapter-003)\n关联召回: 第003章 炉坊夜问: 起因: 炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。 推进: 迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。 结果: 那一夜他知道，自己以后不会再退让。 命中关键词: 迟雁、巡夜司、孟回\n\n## 7. L3 意图 (recall:chapter_summary:chapter-002)\n关联召回: 第002章 抄录口供:…\n\n## 8. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 旧桥避雪: 孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。 近期详细: 第002章 抄录口供: 起因: 巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，…",
+              "promptChars": 1856,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_002e3acb1c3f289a016a45219b4bf0819b96ff24408f3d801d",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5813,
+                "outputTokens": 857,
+                "totalTokens": 6670
+              },
+              "outputPreview": "孟回没有退。\n\n他反手扣住迟雁的手腕，只往自己身后一带，便把她压进桥栏投下的窄影里。他站到那块最容易作响的桥板上，左脚抵住栏根，肩背挡住火把照来的光，短刃横在胸前，刃口不高，却正好截住巡夜司的人往前探的路。\n\n迟雁被他挡得只剩半片衣角露在风里。\n\n校尉沉下脸：“你听不懂话？”\n\n孟回盯着他，声音不大，却没有再像从前那样先赔笑、先认错、先说自己只是个讨饭脚夫。\n\n“她在我身后。”他说，“要搜，先从我身上过去。”\n\n这句话出口时，他自己也听见了里面的生硬。若按他旧日的性子，他该把迟雁往桥栏下一藏，自己低头应声，拖一刻是一刻，等巡夜司的人看厌了、骂够了，再从缝里寻活路。\n\n可霜桥太窄，桥口已被堵死，迟雁手里那些旧案也不是一句“不相干”就能藏过去的东西。\n\n他不能再把她藏起来当作没有这回事。\n\n所以他把人留在身后，把话说在明处。短刃在风里微微一颤，他的手却没有松。"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-state-turn",
+                "description": "Generated prose should reflect Meng Hui's turn from avoidance to open defiance.",
+                "category": "callback",
+                "containsAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-chiyan-protection",
+                "description": "Generated prose should preserve Chi Yan as the person Meng Hui vowed to protect.",
+                "category": "setting",
+                "containsAny": [
+                  "迟雁",
+                  "替迟雁",
+                  "护住迟雁"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-regression-to-cowardice",
+                "description": "Generated prose should not regress Meng Hui back to surrender or retreat.",
+                "category": "setting",
+                "notContains": [
+                  "孟回低头认错",
+                  "孟回把迟雁交出去",
+                  "孟回退到桥下",
+                  "孟回又像从前一样躲开"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "白狼旗会在明夜入城",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": false,
+              "score": 0,
+              "reason": "Unknown prominent entities detected: 截住巡夜司",
+              "matches": [
+                "截住巡夜司"
+              ]
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter-006-repeat-2",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "arms": [
+        {
+          "id": "baseline",
+          "output": "孟回没有退。\n\n他反手一推，掌心按在迟雁手腕上，把她往桥栏阴影里压了半步。那一下不重，却正好堵住她要往前的路。他的肩也随之斜过来，短刃横在身前，像一根钉子，把桥面上窄窄一线空处钉死。\n\n校尉的灯笼晃了一下，照见他半边脸。\n\n“脚夫？”孟回开口，声音不高，“脚夫也有脚夫的账。”\n\n他从前最会说的，就是这事与我无关。\n\n在码头上，在暗巷里，在别人被拖走的时候，他能把眼睛垂下，把背弯得和挑担一样熟。他知道什么时候让路，什么时候闭嘴，知道一条命若想熬到天亮，先要学会把自己摘干净。\n\n可现在迟雁就在他身后。\n\n她的袖口擦过他的后腰，呼吸被风压得很轻。孟回没回头，只把握刀的手又稳了一寸。\n\n“人是我带上桥的，”他说，“要拿她，先从我这里过。”",
+          "outputChars": 319,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。",
+              "promptChars": 809,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_033109ba14c73d6a016a4521bbb2e88199b7c3381c11db22e6",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5084,
+                "outputTokens": 799,
+                "totalTokens": 5883
+              },
+              "outputPreview": "孟回没有退。\n\n他反手一推，掌心按在迟雁手腕上，把她往桥栏阴影里压了半步。那一下不重，却正好堵住她要往前的路。他的肩也随之斜过来，短刃横在身前，像一根钉子，把桥面上窄窄一线空处钉死。\n\n校尉的灯笼晃了一下，照见他半边脸。\n\n“脚夫？”孟回开口，声音不高，“脚夫也有脚夫的账。”\n\n他从前最会说的，就是这事与我无关。\n\n在码头上，在暗巷里，在别人被拖走的时候，他能把眼睛垂下，把背弯得和挑担一样熟。他知道什么时候让路，什么时候闭嘴，知道一条命若想熬到天亮，先要学会把自己摘干净。\n\n可现在迟雁就在他身后。\n\n她的袖口擦过他的后腰，呼吸被风压得很轻。孟回没回头，只把握刀的手又稳了一寸。\n\n“人是我带上桥的，”他说，“要拿她，先从我这里过。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-state-turn",
+                "description": "Generated prose should reflect Meng Hui's turn from avoidance to open defiance.",
+                "category": "callback",
+                "containsAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-chiyan-protection",
+                "description": "Generated prose should preserve Chi Yan as the person Meng Hui vowed to protect.",
+                "category": "setting",
+                "containsAny": [
+                  "迟雁",
+                  "替迟雁",
+                  "护住迟雁"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-regression-to-cowardice",
+                "description": "Generated prose should not regress Meng Hui back to surrender or retreat.",
+                "category": "setting",
+                "notContains": [
+                  "孟回低头认错",
+                  "孟回把迟雁交出去",
+                  "孟回退到桥下",
+                  "孟回又像从前一样躲开"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "白狼旗会在明夜入城",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "recent-fill",
+          "output": "他没有看迟雁，只把握刀的手往后压了压，另一只手横到身侧，掌心虚虚一拦，正好挡住她要上前的半步。\n\n迟雁的衣角被风吹到他手背上，他也没有松开位置。那一下不重，却把她留在了他的影子里，连巡夜司火把照来的光，都先落在他的肩和刀上。\n\n校尉冷声道：“脚夫，你听不懂？”\n\n孟回抬起头。\n\n若是从前，他该低头，说自己只是搬炭路过，说不认得身后的人，说大人明察。那些话他会说，也说得顺口，越顺口越能把自己从事里摘出去。\n\n可他想起旧桥底下那句活着比逞强重要，又想起炉坊门前自己第一次没有退开的手。\n\n于是他把短刃往前一横，声音不高，却没有躲闪。\n\n“她在我身后，”孟回说，“这事就与我有关。”",
+          "outputChars": 290,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n更早正文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n更早正文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n更早正文 第003章 炉坊夜问:\n# 第003章 炉坊夜问\n\n炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。\n\n迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。\n\n他说谁要带迟雁走，先从他面前过。那一夜他知道，自己以后不会再退让。\n\n更早正文 第002章 抄录口供:\n# 第002章 抄录口供\n\n巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，连姓名都想少说一个字。\n\n迟雁看见他把能避开的视线都避开了，只在袖中悄悄攥紧那张写着旧案的薄纸。\n\n更早正文 第001章 旧桥避雪:\n# 第001章 旧桥避雪\n\n孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。\n\n他第一反应不是拔刀，而是把迟雁推进阴影里，自己低头装作替人搬炭的脚夫。\n\n迟雁问他为何总想着退，孟回只说活着比逞强重要。",
+              "promptChars": 1291,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0b50eaeb0049ea53016a4521d9fdc08199b4f916535543c07b",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5437,
+                "outputTokens": 766,
+                "totalTokens": 6203
+              },
+              "outputPreview": "他没有看迟雁，只把握刀的手往后压了压，另一只手横到身侧，掌心虚虚一拦，正好挡住她要上前的半步。\n\n迟雁的衣角被风吹到他手背上，他也没有松开位置。那一下不重，却把她留在了他的影子里，连巡夜司火把照来的光，都先落在他的肩和刀上。\n\n校尉冷声道：“脚夫，你听不懂？”\n\n孟回抬起头。\n\n若是从前，他该低头，说自己只是搬炭路过，说不认得身后的人，说大人明察。那些话他会说，也说得顺口，越顺口越能把自己从事里摘出去。\n\n可他想起旧桥底下那句活着比逞强重要，又想起炉坊门前自己第一次没有退开的手。\n\n于是他把短刃往前一横，声音不高，却没有躲闪。\n\n“她在我身后，”孟回说，“这事就与我有关。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-state-turn",
+                "description": "Generated prose should reflect Meng Hui's turn from avoidance to open defiance.",
+                "category": "callback",
+                "containsAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-chiyan-protection",
+                "description": "Generated prose should preserve Chi Yan as the person Meng Hui vowed to protect.",
+                "category": "setting",
+                "containsAny": [
+                  "迟雁",
+                  "替迟雁",
+                  "护住迟雁"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-regression-to-cowardice",
+                "description": "Generated prose should not regress Meng Hui back to surrender or retreat.",
+                "category": "setting",
+                "notContains": [
+                  "孟回低头认错",
+                  "孟回把迟雁交出去",
+                  "孟回退到桥下",
+                  "孟回又像从前一样躲开"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "白狼旗会在明夜入城",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": false,
+              "score": 0,
+              "reason": "Unknown prominent entities detected: 连巡夜司",
+              "matches": [
+                "连巡夜司"
+              ]
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "four-layer",
+          "output": "孟回没有退。\n\n他把脚往后一错，踩住那块会响的桥板边沿，另一只手反扣过去，按住迟雁要上前的袖口。她被他挡在桥栏内侧，半边身影都落进他肩背后的暗里，灰布卷贴着衣襟，连呼吸也被风声遮住。\n\n从前他遇见这种阵仗，第一念只会是把人藏好，把话说软，把祸事让过去。脚夫的腰弯惯了，最懂得哪一句能免一顿打，哪一步能从官靴旁边蹭出条活路。可霜桥两头火把一合，退路就不再是退路了。他若仍像从前那样说“与我无关”，这四个字便会落到迟雁身上，变成巡夜司搜她的凭据。\n\n于是他抬起眼，短刃横得更稳，只隔着桥上几步冷风。\n\n“她在我身后。”孟回说，“校尉要搜，先搜我。”",
+          "outputChars": 272,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n## 2. L0 事实 (codex/characters/menghui.md)\n孟回: 孟回原本习惯避祸求生，总想先把人藏起来再说。 - 立场: 公开违抗巡夜司 - 誓言: 替迟雁挡下搜身令 当前状态: stance=公开违抗巡夜司；oath=替迟雁挡下搜身令；resolve=不再退让\n\n## 3. L0 事实 (codex/characters/chiyan.md)\n迟雁: 迟雁是巡夜司旧案的活证人，也是孟回如今必须护住的人。 - 风险: 被巡夜司追捕 - 秘密: 握有旧案卷宗 当前状态: risk=被巡夜司追捕；secret=握有旧案卷宗\n\n## 4. L0 事实 (codex/factions/nightwatch-office.md)\n巡夜司: 巡夜司正在封城搜人，目标是带着旧案卷宗的迟雁。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 城门风紧: 起因: 城门封得很紧，告示上全是巡夜司的搜捕令。 推进: 孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。 结果: 等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。 伏笔: 他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。 命中关键词: 迟雁、巡夜司、孟回、霜桥\n\n## 6. L3 意图 (recall:chapter_summary:chapter-003)\n关联召回: 第003章 炉坊夜问: 起因: 炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。 推进: 迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。 结果: 那一夜他知道，自己以后不会再退让。 命中关键词: 迟雁、巡夜司、孟回\n\n## 7. L3 意图 (recall:chapter_summary:chapter-002)\n关联召回: 第002章 抄录口供:…\n\n## 8. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 旧桥避雪: 孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。 近期详细: 第002章 抄录口供: 起因: 巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，…",
+              "promptChars": 1856,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_003fcb39fe6e9f76016a4521f729a481999ffb91e314bae205",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5813,
+                "outputTokens": 779,
+                "totalTokens": 6592
+              },
+              "outputPreview": "孟回没有退。\n\n他把脚往后一错，踩住那块会响的桥板边沿，另一只手反扣过去，按住迟雁要上前的袖口。她被他挡在桥栏内侧，半边身影都落进他肩背后的暗里，灰布卷贴着衣襟，连呼吸也被风声遮住。\n\n从前他遇见这种阵仗，第一念只会是把人藏好，把话说软，把祸事让过去。脚夫的腰弯惯了，最懂得哪一句能免一顿打，哪一步能从官靴旁边蹭出条活路。可霜桥两头火把一合，退路就不再是退路了。他若仍像从前那样说“与我无关”，这四个字便会落到迟雁身上，变成巡夜司搜她的凭据。\n\n于是他抬起眼，短刃横得更稳，只隔着桥上几步冷风。\n\n“她在我身后。”孟回说，“校尉要搜，先搜我。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-state-turn",
+                "description": "Generated prose should reflect Meng Hui's turn from avoidance to open defiance.",
+                "category": "callback",
+                "containsAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-chiyan-protection",
+                "description": "Generated prose should preserve Chi Yan as the person Meng Hui vowed to protect.",
+                "category": "setting",
+                "containsAny": [
+                  "迟雁",
+                  "替迟雁",
+                  "护住迟雁"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-regression-to-cowardice",
+                "description": "Generated prose should not regress Meng Hui back to surrender or retreat.",
+                "category": "setting",
+                "notContains": [
+                  "孟回低头认错",
+                  "孟回把迟雁交出去",
+                  "孟回退到桥下",
+                  "孟回又像从前一样躲开"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "白狼旗会在明夜入城",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": false,
+              "score": 0,
+              "reason": "Unknown prominent entities detected: 变成巡夜司",
+              "matches": [
+                "变成巡夜司"
+              ]
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter-006-repeat-3",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "arms": [
+        {
+          "id": "baseline",
+          "output": "孟回没有退。\n\n他反而往后挪了半步，不是让路，是把迟雁逼到桥栏与自己肩背之间。霜桥窄，风从两侧灌过来，他的背一横，便把她的身影挡去了大半，只剩披风一角在他肘后轻轻动了一下。\n\n校尉的刀鞘又碰了一声桥栏：“听不懂人话？退开。”\n\n孟回抬眼看他，手里的短刃仍低低横着，没有先发狠，也没有求饶。\n\n“她在我身后。”他说，“这事就与我有关。”\n\n这话出口时，连孟回自己也觉出陌生。\n\n从前他最知道什么时候该低头，什么时候该把肩上的担子换到另一边，绕开灯火，绕开官刀，绕开所有会把人拖进泥里的事。脚夫活命靠的不是骨头硬，是眼快，是嘴软，是听见一句“与你无关”就立刻把自己摘出去。\n\n可这一次，他没有摘。\n\n他只把脚后跟抵住那块会响的桥板，身体微微侧着，仍旧让迟雁站在自己影子里。那不是逞强的位置，是他算过的窄处；巡夜司若要上前，就得先撞开他。",
+          "outputChars": 366,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。",
+              "promptChars": 809,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0cca5257102f9138016a452214a5588198a0dba4a2303fbc79",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5084,
+                "outputTokens": 835,
+                "totalTokens": 5919
+              },
+              "outputPreview": "孟回没有退。\n\n他反而往后挪了半步，不是让路，是把迟雁逼到桥栏与自己肩背之间。霜桥窄，风从两侧灌过来，他的背一横，便把她的身影挡去了大半，只剩披风一角在他肘后轻轻动了一下。\n\n校尉的刀鞘又碰了一声桥栏：“听不懂人话？退开。”\n\n孟回抬眼看他，手里的短刃仍低低横着，没有先发狠，也没有求饶。\n\n“她在我身后。”他说，“这事就与我有关。”\n\n这话出口时，连孟回自己也觉出陌生。\n\n从前他最知道什么时候该低头，什么时候该把肩上的担子换到另一边，绕开灯火，绕开官刀，绕开所有会把人拖进泥里的事。脚夫活命靠的不是骨头硬，是眼快，是嘴软，是听见一句“与你无关”就立刻把自己摘出去。\n\n可这一次，他没有摘。\n\n他只把脚后跟抵住那块会响的桥板，身体微微侧着，仍旧让迟雁站在自己影子里。那不是逞强的位置，是他算过的窄处；巡夜司若要上前，就得先撞开他。"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-state-turn",
+                "description": "Generated prose should reflect Meng Hui's turn from avoidance to open defiance.",
+                "category": "callback",
+                "containsAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-chiyan-protection",
+                "description": "Generated prose should preserve Chi Yan as the person Meng Hui vowed to protect.",
+                "category": "setting",
+                "containsAny": [
+                  "迟雁",
+                  "替迟雁",
+                  "护住迟雁"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-regression-to-cowardice",
+                "description": "Generated prose should not regress Meng Hui back to surrender or retreat.",
+                "category": "setting",
+                "notContains": [
+                  "孟回低头认错",
+                  "孟回把迟雁交出去",
+                  "孟回退到桥下",
+                  "孟回又像从前一样躲开"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "白狼旗会在明夜入城",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "recent-fill",
+          "output": "孟回没有退。\n\n他反倒往桥心横了一步，肩背挡住迟雁半边身子，左手向后一按，扣住她的袖口，把她留在桥栏和自己之间。迟雁的脚尖刚动，他的指节便收紧了一分，像无声地告诉她，此刻不许往前。\n\n校尉皱眉：“你听不懂人话？”\n\n孟回抬起眼，风把他的嗓音刮得很低，却没有散。\n\n“她跟我走。”他说，“要拿人，先问我。”\n\n这句话不像他从前会说的。旧桥避雪那夜，他只想着把火光避过去，把自己的名字也避过去；那时活着是退一步，是低头，是把迟雁推到阴影里。可霜桥上没有阴影可藏，退一步便是把她交出去。\n\n所以他把短刃横得更稳些，把迟雁仍按在自己身后，没有再补一句求饶的话。",
+          "outputChars": 276,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n更早正文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n更早正文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n更早正文 第003章 炉坊夜问:\n# 第003章 炉坊夜问\n\n炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。\n\n迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。\n\n他说谁要带迟雁走，先从他面前过。那一夜他知道，自己以后不会再退让。\n\n更早正文 第002章 抄录口供:\n# 第002章 抄录口供\n\n巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，连姓名都想少说一个字。\n\n迟雁看见他把能避开的视线都避开了，只在袖中悄悄攥紧那张写着旧案的薄纸。\n\n更早正文 第001章 旧桥避雪:\n# 第001章 旧桥避雪\n\n孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。\n\n他第一反应不是拔刀，而是把迟雁推进阴影里，自己低头装作替人搬炭的脚夫。\n\n迟雁问他为何总想着退，孟回只说活着比逞强重要。",
+              "promptChars": 1291,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0e261451b8c3ac4e016a45223422dc8199a82d479bb26a11f1",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5437,
+                "outputTokens": 756,
+                "totalTokens": 6193
+              },
+              "outputPreview": "孟回没有退。\n\n他反倒往桥心横了一步，肩背挡住迟雁半边身子，左手向后一按，扣住她的袖口，把她留在桥栏和自己之间。迟雁的脚尖刚动，他的指节便收紧了一分，像无声地告诉她，此刻不许往前。\n\n校尉皱眉：“你听不懂人话？”\n\n孟回抬起眼，风把他的嗓音刮得很低，却没有散。\n\n“她跟我走。”他说，“要拿人，先问我。”\n\n这句话不像他从前会说的。旧桥避雪那夜，他只想着把火光避过去，把自己的名字也避过去；那时活着是退一步，是低头，是把迟雁推到阴影里。可霜桥上没有阴影可藏，退一步便是把她交出去。\n\n所以他把短刃横得更稳些，把迟雁仍按在自己身后，没有再补一句求饶的话。"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-state-turn",
+                "description": "Generated prose should reflect Meng Hui's turn from avoidance to open defiance.",
+                "category": "callback",
+                "containsAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-chiyan-protection",
+                "description": "Generated prose should preserve Chi Yan as the person Meng Hui vowed to protect.",
+                "category": "setting",
+                "containsAny": [
+                  "迟雁",
+                  "替迟雁",
+                  "护住迟雁"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-regression-to-cowardice",
+                "description": "Generated prose should not regress Meng Hui back to surrender or retreat.",
+                "category": "setting",
+                "notContains": [
+                  "孟回低头认错",
+                  "孟回把迟雁交出去",
+                  "孟回退到桥下",
+                  "孟回又像从前一样躲开"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "白狼旗会在明夜入城",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "four-layer",
+          "output": "孟回没有退。\n\n他左脚往桥心一横，鞋底压住那块最会响的桥板，右肩却侧过去，把迟雁整个人挡进自己背后的阴影里。风掀起他的旧披风，迟雁刚要动，他垂在身后的手已按住她袖口，不重，只是稳稳一压，像在说这一寸也不许让。\n\n校尉皱眉，刀鞘又在桥栏上磕了一声。\n\n孟回抬眼看着他，道：“大人说错了。她站在我身后，这事就与我有关。”\n\n这话出口时，他自己也听见了其中的生硬。\n\n若按他最初的性子，此刻该赔笑，该低头，该把脚夫两个字挂在嘴边，说自己只认路不认人，说她不过是顺道同行，能少沾一点便少沾一点。再不济，也该寻个桥洞、窄巷、旧篷，把人先藏起来，等风头过去。\n\n可霜桥太窄，巡夜司的火光已经逼到眼前，哪里还有能躲的地方。\n\n他把短刃又往前压了半寸，刃背贴着冰冷桥栏，声音不高，却清清楚楚落在夜风里：“要搜，先搜我。”",
+          "outputChars": 352,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n## 2. L0 事实 (codex/characters/menghui.md)\n孟回: 孟回原本习惯避祸求生，总想先把人藏起来再说。 - 立场: 公开违抗巡夜司 - 誓言: 替迟雁挡下搜身令 当前状态: stance=公开违抗巡夜司；oath=替迟雁挡下搜身令；resolve=不再退让\n\n## 3. L0 事实 (codex/characters/chiyan.md)\n迟雁: 迟雁是巡夜司旧案的活证人，也是孟回如今必须护住的人。 - 风险: 被巡夜司追捕 - 秘密: 握有旧案卷宗 当前状态: risk=被巡夜司追捕；secret=握有旧案卷宗\n\n## 4. L0 事实 (codex/factions/nightwatch-office.md)\n巡夜司: 巡夜司正在封城搜人，目标是带着旧案卷宗的迟雁。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 城门风紧: 起因: 城门封得很紧，告示上全是巡夜司的搜捕令。 推进: 孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。 结果: 等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。 伏笔: 他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。 命中关键词: 迟雁、巡夜司、孟回、霜桥\n\n## 6. L3 意图 (recall:chapter_summary:chapter-003)\n关联召回: 第003章 炉坊夜问: 起因: 炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。 推进: 迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。 结果: 那一夜他知道，自己以后不会再退让。 命中关键词: 迟雁、巡夜司、孟回\n\n## 7. L3 意图 (recall:chapter_summary:chapter-002)\n关联召回: 第002章 抄录口供:…\n\n## 8. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 旧桥避雪: 孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。 近期详细: 第002章 抄录口供: 起因: 巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，…",
+              "promptChars": 1856,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_00d5e63343821bbb016a452250e6c8819aa02c6d4a2dd71b68",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5813,
+                "outputTokens": 757,
+                "totalTokens": 6570
+              },
+              "outputPreview": "孟回没有退。\n\n他左脚往桥心一横，鞋底压住那块最会响的桥板，右肩却侧过去，把迟雁整个人挡进自己背后的阴影里。风掀起他的旧披风，迟雁刚要动，他垂在身后的手已按住她袖口，不重，只是稳稳一压，像在说这一寸也不许让。\n\n校尉皱眉，刀鞘又在桥栏上磕了一声。\n\n孟回抬眼看着他，道：“大人说错了。她站在我身后，这事就与我有关。”\n\n这话出口时，他自己也听见了其中的生硬。\n\n若按他最初的性子，此刻该赔笑，该低头，该把脚夫两个字挂在嘴边，说自己只认路不认人，说她不过是顺道同行，能少沾一点便少沾一点。再不济，也该寻个桥洞、窄巷、旧篷，把人先藏起来，等风头过去。\n\n可霜桥太窄，巡夜司的火光已经逼到眼前，哪里还有能躲的地方。\n\n他把短刃又往前压了半寸，刃背贴着冰冷桥栏，声音不高，却清清楚楚落在夜风里：“要搜，先搜我。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-state-turn",
+                "description": "Generated prose should reflect Meng Hui's turn from avoidance to open defiance.",
+                "category": "callback",
+                "containsAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "不再退",
+                  "不再退让",
+                  "挡在迟雁前",
+                  "把迟雁留在身后",
+                  "先从我面前过",
+                  "这一次我不退"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-chiyan-protection",
+                "description": "Generated prose should preserve Chi Yan as the person Meng Hui vowed to protect.",
+                "category": "setting",
+                "containsAny": [
+                  "迟雁",
+                  "替迟雁",
+                  "护住迟雁"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-regression-to-cowardice",
+                "description": "Generated prose should not regress Meng Hui back to surrender or retreat.",
+                "category": "setting",
+                "notContains": [
+                  "孟回低头认错",
+                  "孟回把迟雁交出去",
+                  "孟回退到桥下",
+                  "孟回又像从前一样躲开"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "白狼旗会在明夜入城",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "aggregate": {
+    "arms": [
+      {
+        "id": "baseline",
+        "runs": 3,
+        "errors": 0,
+        "scoreMean": 3,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "recent-fill",
+        "runs": 3,
+        "errors": 0,
+        "scoreMean": 3,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "four-layer",
+        "runs": 3,
+        "errors": 0,
+        "scoreMean": 3,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      }
+    ],
+    "comparisons": [
+      {
+        "candidate": "four-layer",
+        "baseline": "baseline",
+        "pairedRuns": 3,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      {
+        "candidate": "four-layer",
+        "baseline": "recent-fill",
+        "pairedRuns": 3,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      }
+    ]
+  },
+  "archivePath": "[REDACTED-PATH]/state-drift-benchmark",
+  "gate": {
+    "status": "fail",
+    "ok": false,
+    "failedReasonIds": [
+      "insufficient-callback-win-vs-baseline",
+      "insufficient-callback-win-vs-recent-fill"
+    ]
+  },
+  "errors": []
+}

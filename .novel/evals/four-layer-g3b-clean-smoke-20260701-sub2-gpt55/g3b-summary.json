@@ -1,0 +1,90 @@
+{
+  "ok": false,
+  "dryRun": false,
+  "projectCount": 1,
+  "readiness": {
+    "ok": true,
+    "projectCount": 1,
+    "loadedProjects": 1,
+    "promptReadyProjects": 1,
+    "errorCount": 0
+  },
+  "errors": [],
+  "archivePath": "[REDACTED-PATH]/archive",
+  "comparisons": [
+    {
+      "candidate": "four-layer",
+      "baseline": "baseline",
+      "pairedRuns": 1,
+      "callbackWinRateMean": 1,
+      "callbackMeanDiff": 1,
+      "settingViolationMeanDiff": 0,
+      "futureLeakDiff": 0
+    },
+    {
+      "candidate": "four-layer",
+      "baseline": "recent-fill",
+      "pairedRuns": 1,
+      "callbackWinRateMean": 0,
+      "callbackMeanDiff": 0,
+      "settingViolationMeanDiff": 0,
+      "futureLeakDiff": 0
+    }
+  ],
+  "reports": [
+    {
+      "title": "纸鸢旧约",
+      "ok": false,
+      "gate": {
+        "status": "underpowered",
+        "ok": false,
+        "failedReasonIds": [
+          "underpowered-vs-baseline",
+          "insufficient-callback-win-vs-recent-fill",
+          "underpowered-vs-recent-fill"
+        ]
+      },
+      "fingerprint": {
+        "gitCommit": "061efb0dd9f8d64a139a1b484fdb8441a659ffd7",
+        "datasetVersion": "25601457a0792866",
+        "datasetHash": "ee9a6b190cd7dba3",
+        "configHash": "ab6dc6d4b8212007"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": 1,
+      "errors": [],
+      "arms": [
+        {
+          "id": "baseline",
+          "runs": 1,
+          "errors": 0,
+          "callbackMean": 0,
+          "settingViolationMean": 0,
+          "futureLeakTotal": 0
+        },
+        {
+          "id": "recent-fill",
+          "runs": 1,
+          "errors": 0,
+          "callbackMean": 1,
+          "settingViolationMean": 0,
+          "futureLeakTotal": 0
+        },
+        {
+          "id": "four-layer",
+          "runs": 1,
+          "errors": 0,
+          "callbackMean": 1,
+          "settingViolationMean": 0,
+          "futureLeakTotal": 0
+        }
+      ]
+    }
+  ]
+}

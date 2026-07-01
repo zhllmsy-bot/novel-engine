@@ -1,0 +1,120 @@
+{
+  "project": "纸鸢旧约",
+  "chapterId": "chapter-006",
+  "fingerprint": {
+    "gitCommit": "061efb0dd9f8d64a139a1b484fdb8441a659ffd7",
+    "datasetVersion": "25601457a0792866",
+    "datasetHash": "ee9a6b190cd7dba3",
+    "configHash": "ab6dc6d4b8212007"
+  },
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/",
+    "model": "gpt-5.5",
+    "wireApi": "responses",
+    "reasoningEffort": "xhigh"
+  },
+  "runs": [
+    {
+      "runId": "chapter-006-repeat-1",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n近期前文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。",
+              "promptChars": 782,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0f0ef2aa5ff607d3016a451fee74a8819aae864e37b05374b1",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5041,
+                "outputTokens": 782,
+                "totalTokens": 5823
+              },
+              "outputPreview": "柳七低头看着纸鸢上被水浸软的白尾，过了片刻才说：“我留着它，不是因为这张纸多要紧。信会错，驿签会改，船牌也有人记混，连一个人还等不等，都能被几行字说成另一回事。我怕我一松手，就也跟着信上那句话走了。”\n\n他把纸鸢握得更紧些，指节被风吹得发白。\n\n“我回河闸，是因为当年话是在水边断的。水往哪边走，闸门说了算，可我往哪边走，不能只听别人递来的信。”柳七抬眼看她，“林秋，我回来不是为了问你还肯不肯等，也不是为了证明我这些天没有走错路。我只是欠你一句明白话。”\n\n他停了停，声音低下去，却没有再避开她的目光。\n\n“这只纸鸢我一直留着，是留给我自己看的。看见它，我就记得还有一个地方不能绕过去，还有一个人不能只让她听见风声和传话。”"
+            }
+          }
+        },
+        {
+          "id": "recent-fill",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n更早正文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n更早正文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n更早正文 第003章 北仓借宿:\n# 第003章 北仓借宿\n\n北仓的夜风灌进窗缝，柳七只记得明早要替船队换篷布、清旧账。\n\n同行脚夫说河闸近日封得紧，谁也别想着回头找人。\n\n柳七半夜被催起来去清点漏水的木箱，又被叫去替人誊抄潮粮数目，直到天亮都没合过眼。\n\n更早正文 第002章 渡口盘账:\n# 第002章 渡口盘账\n\n柳七在渡口替人盘账，满纸都是欠米、短绳和翻湿的货签。\n\n林秋没再出现，纸鸢也一直压在他贴身的布袋最里层。\n\n他整夜都在对船牌、抄旧账、替人分拣发霉的麻绳，耳边全是河埠上最琐碎的叫卖声。\n\n更早正文 第001章 河埠纸鸢:\n# 第001章 河埠纸鸢\n\n林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。\n\n她说如果哪天这只纸鸢先到河闸，他就得跟着风回来见她。\n\n柳七把纸鸢收进袖里，笑着应了一句：“白尾纸鸢一到河闸，我就回来。”",
+              "promptChars": 1279,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0b9eaa877bdb7bc9016a45200c7a148199a9f3c0fbd78585ce",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5417,
+                "outputTokens": 758,
+                "totalTokens": 6175
+              },
+              "outputPreview": "他捏着那截已经洇软的白尾，低声说：“我一直留着它，不是因为它还像只纸鸢。”\n\n河闸下的水撞着木板，一声一声，像把旧话又推回岸边。\n\n“这些天我手里全是别人的路单、船牌、账目，哪一样都催着人往前走。只有它不是催我赶路的，是提醒我还有一句话没还。”柳七把纸鸢放在掌心里，纸面皱得厉害，他却没有松手，“我怕我一丢，就连自己当日应过什么也能装作忘了。”\n\n他抬眼看向林秋，又看向她身后的闸门阴影。\n\n“所以我偏偏回到河闸。不是别处不够近，是只有这里算数。”他说，“你说白尾纸鸢先到河闸，我就得跟着风回来。如今它湿成这样，也还在我袖里，我就只能把自己也带回来。”"
+            }
+          }
+        },
+        {
+          "id": "four-layer",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n近期前文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n## 2. L0 事实 (codex/characters/liuqi.md)\n柳七: 柳七一直把白尾纸鸢收在袖里最深处，没有把它当成寻常旧物。 - 信物: 白尾纸鸢 - 动机: 按纸鸢旧约回到河闸 当前状态: keepsake=白尾纸鸢；motive=按纸鸢旧约回到河闸\n\n## 3. L0 事实 (codex/characters/linqiu.md)\n林秋: 林秋在河埠把白尾纸鸢交给柳七，也是那句旧约真正要回去见的人。 - 关联: 纸鸢旧约的发起者 - 疑问: 还在等柳七是否回来 当前状态: tie=纸鸢旧约的发起者；question=还在等柳七是否回来\n\n## 4. L0 事实 (codex/items/white-tail-kite.md)\n白尾纸鸢: 白尾纸鸢不是随手捡来的旧物，而是林秋和柳七约定重逢的信物。 关键规则: 柳七答应过，只要白尾纸鸢先到河闸，“我就回来”。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-001)\n关联召回: 第001章 河埠纸鸢: 起因: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。 推进: 她说如果哪天这只纸鸢先到河闸，他就得跟着风回来见她。 结果: ” 命中关键词: 林秋、白尾纸鸢、柳七、河闸\n\n## 6. L3 意图 (recall:chapter_summary:chapter-004)\n关联召回: 第004章 堤灯误信: 起因: 堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。 推进: 柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。 结果: 他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。 命中关键词: 林秋、柳七\n\n## 7. L3 意图 (recall:chapter_summary:chapter-003)\n关联召回: 第003章 北仓借宿: 起…\n\n## 8. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 河埠纸鸢: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。 近期详细: 第002章 渡口盘账: 起因: 柳七在渡口替人盘账，满纸都是欠米、短绳和翻…",
+              "promptChars": 1790,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0a963df4ab0dd51b016a45202988fc8199b463ff8cdbff2c97",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5736,
+                "outputTokens": 532,
+                "totalTokens": 6268
+              },
+              "outputPreview": "“我不丢它，”柳七低声说，“不是舍不得一张纸。它在我袖里，就像你当年那句话还在风里。旁人说你走了，说你不等了，我都可以听见，也可以装作信了，可这只纸鸢还在，我答应过的话就还没有完。”\n\n他把白尾纸鸢托在掌心，湿透的尾角贴着指节，轻得像一口气。\n\n“你说过，若有一日它先到河闸，我就得跟着风回来。林秋，我这些天记船牌、换马、盘账，走的都是别人的路，只有回到这里，才算走我自己的路。”\n\n柳七抬眼看她，河闸下的水声一阵紧过一阵。\n\n“我回来不是为那封信，也不是为谁催我。是因为这只纸鸢还在，是因为你在这里等过我。它没丢，我就不能把你留下的约也丢了。”"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "judge": []
+}

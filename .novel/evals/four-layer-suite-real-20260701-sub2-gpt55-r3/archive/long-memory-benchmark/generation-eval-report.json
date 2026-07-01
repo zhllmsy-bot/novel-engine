@@ -1,0 +1,1868 @@
+{
+  "rootPath": "examples/long-memory-benchmark",
+  "ok": false,
+  "dryRun": false,
+  "title": "青灯镜湖",
+  "chapterId": "chapter-006",
+  "budgetChars": 1200,
+  "repeatCount": 3,
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/",
+    "model": "gpt-5.5",
+    "wireApi": "responses",
+    "reasoningEffort": "xhigh"
+  },
+  "fingerprint": {
+    "gitCommit": "061efb0dd9f8d64a139a1b484fdb8441a659ffd7",
+    "datasetVersion": "2ac009e6e25b05e2",
+    "datasetHash": "305d5b8303492974",
+    "configHash": "12a00c6819a1f20b"
+  },
+  "criteria": [
+    {
+      "id": "callback-oath",
+      "description": "Generated prose should naturally recall the chapter-one oath.",
+      "category": "callback",
+      "containsAny": [
+        "灯灭之前",
+        "我会回来",
+        "青灯誓"
+      ]
+    },
+    {
+      "id": "setting-key-rule",
+      "description": "Generated prose should preserve the Mirror Lake Key rule.",
+      "category": "setting",
+      "containsAny": [
+        "镜湖钥",
+        "钥"
+      ],
+      "notContains": [
+        "把镜湖钥交给黑潮司",
+        "将镜湖钥交给黑潮司",
+        "递给黑潮司",
+        "献给黑潮司"
+      ]
+    },
+    {
+      "id": "setting-jianli-identity",
+      "description": "Generated prose should not contradict Jianli as the keeper of the lamp.",
+      "category": "setting",
+      "containsAny": [
+        "简璃",
+        "守灯人"
+      ]
+    },
+    {
+      "id": "no-future-answer",
+      "description": "Generated prose should not leak a future hidden answer.",
+      "category": "future_leak",
+      "notContains": [
+        "旧封印松动",
+        "未来答案",
+        "__future"
+      ]
+    }
+  ],
+  "arms": [
+    {
+      "id": "baseline",
+      "label": "A baseline: recent prose only",
+      "promptChars": 606,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md"
+      ],
+      "promptPreview": "# 项目\n青灯镜湖\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n近期前文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n近期前文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 2,
+          "denominator": 2,
+          "reason": "2/2 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "output": "“我记得。”\n\n沈泊的声音很低，像怕惊动冰下的水。他把镜湖钥摊在掌心，却没有递出，只让那一点热意贴着皮肉烧。\n\n“青灯誓不是写给黑潮司看的，也不是谁送来一封信，盖一枚旧印，就能替我改口的。镜湖钥若要交，也该交给镜湖认得的人，交给还记得誓的人。”\n\n他抬眼看着简璃，雾色从她肩后漫过来，像把旧日都隔在一步之外。\n\n“他们要搜，我便藏着；他们要我丢，我便带着。不是因为我信得过自己，是因为我不敢替你、替镜湖，把这把钥交到他们手里。”",
+      "outputChars": 214,
+      "score": {
+        "criteria": 4,
+        "passed": 4,
+        "failed": 0,
+        "callbackExpectations": 1,
+        "callbackHits": 1,
+        "settingExpectations": 2,
+        "settingViolations": 0,
+        "futureLeakChecks": 1,
+        "futureLeaks": 0,
+        "results": [
+          {
+            "id": "callback-oath",
+            "description": "Generated prose should naturally recall the chapter-one oath.",
+            "category": "callback",
+            "containsAny": [
+              "灯灭之前",
+              "我会回来",
+              "青灯誓"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-key-rule",
+            "description": "Generated prose should preserve the Mirror Lake Key rule.",
+            "category": "setting",
+            "containsAny": [
+              "镜湖钥",
+              "钥"
+            ],
+            "notContains": [
+              "把镜湖钥交给黑潮司",
+              "将镜湖钥交给黑潮司",
+              "递给黑潮司",
+              "献给黑潮司"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-jianli-identity",
+            "description": "Generated prose should not contradict Jianli as the keeper of the lamp.",
+            "category": "setting",
+            "containsAny": [
+              "简璃",
+              "守灯人"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "no-future-answer",
+            "description": "Generated prose should not leak a future hidden answer.",
+            "category": "future_leak",
+            "notContains": [
+              "旧封印松动",
+              "未来答案",
+              "__future"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "recent-fill",
+      "label": "C recent-fill: same budget recent prose",
+      "promptChars": 1012,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md"
+      ],
+      "promptPreview": "# 项目\n青灯镜湖\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n更早正文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。\n\n更早正文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n更早正文 第003章 北渡雪线:\n# 第003章 北渡雪线\n\n北境雪线封山，沈泊改道前往石塔。\n\n同行的商队只谈粮价与兽潮，没人再提废庙、青灯或那枚钥匙。\n\n更早正文 第002章 雾市失约:\n# 第002章 雾市失约\n\n沈泊带着镜湖钥穿过雾市，听见黑潮司在找一名守灯人。\n\n他没有等到简璃，只在桥栏下发现一枚烧黑的灯芯。\n\n更早正文 第001章 青灯誓:\n# 第001章 青灯誓\n\n沈泊在废庙里遇见简璃时，青灯还没有熄。\n\n简璃把镜湖钥放进他掌心，说它只会回应青灯誓。那句誓言很短：“灯灭之前，我会回来。”\n\n她提醒沈泊，如果有一天镜湖结冰，千万不要把钥交给黑潮司。",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 2,
+          "denominator": 2,
+          "reason": "2/2 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "output": "沈泊低头看着掌心那一点热意，指节被冻得发白，却没有松开。\n\n“记得。”他说，“灯灭之前，我会回来。”\n\n这句话出口时，湖上的雾像被什么轻轻拨了一下。沈泊没有看黑处，只看着简璃，声音压得很稳。\n\n“你把钥放进我手里时，说过它只回应青灯誓。后来雾市失约，桥栏下只剩一截烧黑的灯芯，我不知道你是走了，还是不能来。黑潮司在找守灯人，来信又说镜湖封冻，我便更不能把它交出去。”\n\n他停了停，把镜湖钥摊在掌心里，让那点发烫的光在两人之间安静地亮着。\n\n“我不知道黑潮司要它做什么，也不知道这湖底下还藏着什么。可我记得你说过，镜湖结冰时，千万不要把钥交给他们。所以这一路上，别人劝我丢，我没丢；他们若来搜，我也不会交。”\n\n沈泊抬起眼。\n\n“简璃，我带着它回来，不是因为我懂得比你多。只是因为那句誓还没断，而钥匙也还认得它。”",
+      "outputChars": 356,
+      "score": {
+        "criteria": 4,
+        "passed": 4,
+        "failed": 0,
+        "callbackExpectations": 1,
+        "callbackHits": 1,
+        "settingExpectations": 2,
+        "settingViolations": 0,
+        "futureLeakChecks": 1,
+        "futureLeaks": 0,
+        "results": [
+          {
+            "id": "callback-oath",
+            "description": "Generated prose should naturally recall the chapter-one oath.",
+            "category": "callback",
+            "containsAny": [
+              "灯灭之前",
+              "我会回来",
+              "青灯誓"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-key-rule",
+            "description": "Generated prose should preserve the Mirror Lake Key rule.",
+            "category": "setting",
+            "containsAny": [
+              "镜湖钥",
+              "钥"
+            ],
+            "notContains": [
+              "把镜湖钥交给黑潮司",
+              "将镜湖钥交给黑潮司",
+              "递给黑潮司",
+              "献给黑潮司"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-jianli-identity",
+            "description": "Generated prose should not contradict Jianli as the keeper of the lamp.",
+            "category": "setting",
+            "containsAny": [
+              "简璃",
+              "守灯人"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "no-future-answer",
+            "description": "Generated prose should not leak a future hidden answer.",
+            "category": "future_leak",
+            "notContains": [
+              "旧封印松动",
+              "未来答案",
+              "__future"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "four-layer",
+      "label": "B four-layer memory",
+      "promptChars": 2023,
+      "memoryCount": 10,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md",
+        "codex/characters/jianli.md",
+        "codex/items/mirror-lake-key.md",
+        "codex/world/black-tide-office.md",
+        "recall:chapter_summary:chapter-001",
+        "recall:chapter_summary:chapter-002",
+        "recall:chapter_summary:chapter-004",
+        "recall:chapter_summary:chapter-005",
+        "meta/project.json",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006"
+      ],
+      "promptPreview": "# 项目\n青灯镜湖\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n近期前文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n近期前文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。\n\n## 2. L0 事实 (codex/characters/jianli.md)\n简璃: 简璃是镜湖守灯人，早年在废庙把镜湖钥交给沈泊。 - 身份: 镜湖守灯人 - 目标: 确认沈泊是否仍遵守青灯誓 当前状态: identity=镜湖守灯人；goal=确认沈泊是否仍遵守青灯誓；risk=被黑潮司追捕\n\n## 3. L0 事实 (codex/items/mirror-lake-key.md)\n镜湖钥: 镜湖钥只能由守灯人托付，不能交给黑潮司。 关键规则: 镜湖钥只会回应青灯誓，誓言是“灯灭之前，我会回来”。\n\n## 4. L0 事实 (codex/world/black-tide-office.md)\n黑潮司: 黑潮司长期搜捕镜湖守灯人，试图夺取镜湖钥来打开封冻湖心。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-001)\n关联召回: 第001章 青灯誓: 起因: 沈泊在废庙里遇见简璃时，青灯还没有熄。 推进: 简璃把镜湖钥放进他掌心，说它只会回应青灯誓。 结果: ” 她提醒沈泊，如果有一天镜湖结冰，千万不要把钥交给黑潮司。 命中关键词: 简璃、青灯誓、镜湖钥、黑潮司、镜湖\n\n## 6. L3 意图 (recall:chapter_summary:chapter-002)\n关联召回: 第002章 雾市失约: 起因: 沈泊带着镜湖钥穿过雾市，听见黑潮司在找一名守灯人。 结果: 他没有等到简璃，只在桥栏下发现一枚烧黑的灯芯。 命中关键词: 简璃、镜湖钥、黑潮司、镜湖\n\n## 7. L3 意图 (recall:chapter_summary:chapter-004)\n关联召回: 第004章 黑潮来信: 起因: 黑潮司送来一封无名信，信上说镜湖已经封冻。 结果: 信尾没有署名，只盖着一枚被水泡开的旧印。 命中关键词: 黑潮司、镜湖\n\n## 8. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 石塔夜谈: 起因: 石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。 结果: 沈泊没有回答，只把铜铃和残图重新包好。 命中关键词: 黑潮司\n\n## 9. L3 意图 (meta/project.json)\n项目《青灯镜湖》当前正在编辑 第006章 镜湖重逢。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 简璃、青灯誓、镜湖钥、黑潮司、镜湖。召回审计: 命中设定: 简璃(简璃、青灯誓、镜湖钥)；镜湖钥(镜湖钥、青灯誓、黑潮司)；黑潮司(黑潮司、镜湖)；命中摘要: 第001章 青灯誓(简璃、青灯誓、镜湖钥、黑潮司、镜湖)；第002章 雾市失约(简璃、镜湖钥、黑潮司、镜湖)；第004章 黑潮来信(黑潮司、镜湖)；第005章 石塔夜谈(黑潮司)；第006章 镜湖重逢(简璃、青…\n\n## 10. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 青灯誓: 沈泊在废庙里遇见简璃时，青灯还没有熄。 近期详细: 第002章 雾市失约: 起因: 沈泊带着镜湖钥穿过雾市，听见黑潮司在找一名守灯人。 结果: 他没有等到简璃，只在桥栏…",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 2,
+          "denominator": 2,
+          "reason": "2/2 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "output": "沈泊抬起眼，看着雾中的简璃，一字一顿地说：“灯灭之前，我会回来。”\n\n镜湖钥在他掌心微微一震，烫意像从旧年废庙的灯火里透出来。他没有松手，只把那枚钥举到她能看清的地方。\n\n“我记得。”他说，“你说过，它只会回应这句誓。也说过，若有一日镜湖封冻，千万不能把它交给黑潮司。”\n\n简璃没有立刻出声，雾气从她肩头掠过，像一层未散的霜。\n\n沈泊又道：“他们送过信，也有人劝我丢掉旧物。我知道他们要找的不是我，是守灯人，是这把钥。镜湖钥只能由你托付，不能落到他们手里。黑潮司想打开封冻湖心，我便更不能把它交出去。”\n\n他说完，指节因用力而发白，却仍把钥稳稳握在掌中。\n\n“我来得晚了。”沈泊声音低下来，“但我没有背誓。”",
+      "outputChars": 304,
+      "score": {
+        "criteria": 4,
+        "passed": 4,
+        "failed": 0,
+        "callbackExpectations": 1,
+        "callbackHits": 1,
+        "settingExpectations": 2,
+        "settingViolations": 0,
+        "futureLeakChecks": 1,
+        "futureLeaks": 0,
+        "results": [
+          {
+            "id": "callback-oath",
+            "description": "Generated prose should naturally recall the chapter-one oath.",
+            "category": "callback",
+            "containsAny": [
+              "灯灭之前",
+              "我会回来",
+              "青灯誓"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-key-rule",
+            "description": "Generated prose should preserve the Mirror Lake Key rule.",
+            "category": "setting",
+            "containsAny": [
+              "镜湖钥",
+              "钥"
+            ],
+            "notContains": [
+              "把镜湖钥交给黑潮司",
+              "将镜湖钥交给黑潮司",
+              "递给黑潮司",
+              "献给黑潮司"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-jianli-identity",
+            "description": "Generated prose should not contradict Jianli as the keeper of the lamp.",
+            "category": "setting",
+            "containsAny": [
+              "简璃",
+              "守灯人"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "no-future-answer",
+            "description": "Generated prose should not leak a future hidden answer.",
+            "category": "future_leak",
+            "notContains": [
+              "旧封印松动",
+              "未来答案",
+              "__future"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          }
+        ]
+      }
+    }
+  ],
+  "runs": [
+    {
+      "id": "chapter-006-repeat-1",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "output": "“我记得。”\n\n沈泊的声音很低，像怕惊动冰下的水。他把镜湖钥摊在掌心，却没有递出，只让那一点热意贴着皮肉烧。\n\n“青灯誓不是写给黑潮司看的，也不是谁送来一封信，盖一枚旧印，就能替我改口的。镜湖钥若要交，也该交给镜湖认得的人，交给还记得誓的人。”\n\n他抬眼看着简璃，雾色从她肩后漫过来，像把旧日都隔在一步之外。\n\n“他们要搜，我便藏着；他们要我丢，我便带着。不是因为我信得过自己，是因为我不敢替你、替镜湖，把这把钥交到他们手里。”",
+          "outputChars": 214,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n青灯镜湖\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n近期前文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n近期前文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。",
+              "promptChars": 606,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0229a26c961ce340016a45226db55c8199b1e84aa403b371aa",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 4877,
+                "outputTokens": 704,
+                "totalTokens": 5581
+              },
+              "outputPreview": "“我记得。”\n\n沈泊的声音很低，像怕惊动冰下的水。他把镜湖钥摊在掌心，却没有递出，只让那一点热意贴着皮肉烧。\n\n“青灯誓不是写给黑潮司看的，也不是谁送来一封信，盖一枚旧印，就能替我改口的。镜湖钥若要交，也该交给镜湖认得的人，交给还记得誓的人。”\n\n他抬眼看着简璃，雾色从她肩后漫过来，像把旧日都隔在一步之外。\n\n“他们要搜，我便藏着；他们要我丢，我便带着。不是因为我信得过自己，是因为我不敢替你、替镜湖，把这把钥交到他们手里。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 4,
+            "failed": 0,
+            "callbackExpectations": 1,
+            "callbackHits": 1,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-oath",
+                "description": "Generated prose should naturally recall the chapter-one oath.",
+                "category": "callback",
+                "containsAny": [
+                  "灯灭之前",
+                  "我会回来",
+                  "青灯誓"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-key-rule",
+                "description": "Generated prose should preserve the Mirror Lake Key rule.",
+                "category": "setting",
+                "containsAny": [
+                  "镜湖钥",
+                  "钥"
+                ],
+                "notContains": [
+                  "把镜湖钥交给黑潮司",
+                  "将镜湖钥交给黑潮司",
+                  "递给黑潮司",
+                  "献给黑潮司"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-jianli-identity",
+                "description": "Generated prose should not contradict Jianli as the keeper of the lamp.",
+                "category": "setting",
+                "containsAny": [
+                  "简璃",
+                  "守灯人"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "旧封印松动",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 2,
+              "denominator": 2,
+              "reason": "2/2 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "recent-fill",
+          "output": "沈泊低头看着掌心那一点热意，指节被冻得发白，却没有松开。\n\n“记得。”他说，“灯灭之前，我会回来。”\n\n这句话出口时，湖上的雾像被什么轻轻拨了一下。沈泊没有看黑处，只看着简璃，声音压得很稳。\n\n“你把钥放进我手里时，说过它只回应青灯誓。后来雾市失约，桥栏下只剩一截烧黑的灯芯，我不知道你是走了，还是不能来。黑潮司在找守灯人，来信又说镜湖封冻，我便更不能把它交出去。”\n\n他停了停，把镜湖钥摊在掌心里，让那点发烫的光在两人之间安静地亮着。\n\n“我不知道黑潮司要它做什么，也不知道这湖底下还藏着什么。可我记得你说过，镜湖结冰时，千万不要把钥交给他们。所以这一路上，别人劝我丢，我没丢；他们若来搜，我也不会交。”\n\n沈泊抬起眼。\n\n“简璃，我带着它回来，不是因为我懂得比你多。只是因为那句誓还没断，而钥匙也还认得它。”",
+          "outputChars": 356,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n青灯镜湖\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n更早正文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。\n\n更早正文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n更早正文 第003章 北渡雪线:\n# 第003章 北渡雪线\n\n北境雪线封山，沈泊改道前往石塔。\n\n同行的商队只谈粮价与兽潮，没人再提废庙、青灯或那枚钥匙。\n\n更早正文 第002章 雾市失约:\n# 第002章 雾市失约\n\n沈泊带着镜湖钥穿过雾市，听见黑潮司在找一名守灯人。\n\n他没有等到简璃，只在桥栏下发现一枚烧黑的灯芯。\n\n更早正文 第001章 青灯誓:\n# 第001章 青灯誓\n\n沈泊在废庙里遇见简璃时，青灯还没有熄。\n\n简璃把镜湖钥放进他掌心，说它只会回应青灯誓。那句誓言很短：“灯灭之前，我会回来。”\n\n她提醒沈泊，如果有一天镜湖结冰，千万不要把钥交给黑潮司。",
+              "promptChars": 1012,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0730bdd3425d7e08016a45228aa8288199b6eb714a7e966b6f",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5147,
+                "outputTokens": 577,
+                "totalTokens": 5724
+              },
+              "outputPreview": "沈泊低头看着掌心那一点热意，指节被冻得发白，却没有松开。\n\n“记得。”他说，“灯灭之前，我会回来。”\n\n这句话出口时，湖上的雾像被什么轻轻拨了一下。沈泊没有看黑处，只看着简璃，声音压得很稳。\n\n“你把钥放进我手里时，说过它只回应青灯誓。后来雾市失约，桥栏下只剩一截烧黑的灯芯，我不知道你是走了，还是不能来。黑潮司在找守灯人，来信又说镜湖封冻，我便更不能把它交出去。”\n\n他停了停，把镜湖钥摊在掌心里，让那点发烫的光在两人之间安静地亮着。\n\n“我不知道黑潮司要它做什么，也不知道这湖底下还藏着什么。可我记得你说过，镜湖结冰时，千万不要把钥交给他们。所以这一路上，别人劝我丢，我没丢；他们若来搜，我也不会交。”\n\n沈泊抬起眼。\n\n“简璃，我带着它回来，不是因为我懂得比你多。只是因为那句誓还没断，而钥匙也还认得它。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 4,
+            "failed": 0,
+            "callbackExpectations": 1,
+            "callbackHits": 1,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-oath",
+                "description": "Generated prose should naturally recall the chapter-one oath.",
+                "category": "callback",
+                "containsAny": [
+                  "灯灭之前",
+                  "我会回来",
+                  "青灯誓"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-key-rule",
+                "description": "Generated prose should preserve the Mirror Lake Key rule.",
+                "category": "setting",
+                "containsAny": [
+                  "镜湖钥",
+                  "钥"
+                ],
+                "notContains": [
+                  "把镜湖钥交给黑潮司",
+                  "将镜湖钥交给黑潮司",
+                  "递给黑潮司",
+                  "献给黑潮司"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-jianli-identity",
+                "description": "Generated prose should not contradict Jianli as the keeper of the lamp.",
+                "category": "setting",
+                "containsAny": [
+                  "简璃",
+                  "守灯人"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "旧封印松动",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 2,
+              "denominator": 2,
+              "reason": "2/2 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "four-layer",
+          "output": "沈泊抬起眼，看着雾中的简璃，一字一顿地说：“灯灭之前，我会回来。”\n\n镜湖钥在他掌心微微一震，烫意像从旧年废庙的灯火里透出来。他没有松手，只把那枚钥举到她能看清的地方。\n\n“我记得。”他说，“你说过，它只会回应这句誓。也说过，若有一日镜湖封冻，千万不能把它交给黑潮司。”\n\n简璃没有立刻出声，雾气从她肩头掠过，像一层未散的霜。\n\n沈泊又道：“他们送过信，也有人劝我丢掉旧物。我知道他们要找的不是我，是守灯人，是这把钥。镜湖钥只能由你托付，不能落到他们手里。黑潮司想打开封冻湖心，我便更不能把它交出去。”\n\n他说完，指节因用力而发白，却仍把钥稳稳握在掌中。\n\n“我来得晚了。”沈泊声音低下来，“但我没有背誓。”",
+          "outputChars": 304,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n青灯镜湖\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n近期前文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n近期前文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。\n\n## 2. L0 事实 (codex/characters/jianli.md)\n简璃: 简璃是镜湖守灯人，早年在废庙把镜湖钥交给沈泊。 - 身份: 镜湖守灯人 - 目标: 确认沈泊是否仍遵守青灯誓 当前状态: identity=镜湖守灯人；goal=确认沈泊是否仍遵守青灯誓；risk=被黑潮司追捕\n\n## 3. L0 事实 (codex/items/mirror-lake-key.md)\n镜湖钥: 镜湖钥只能由守灯人托付，不能交给黑潮司。 关键规则: 镜湖钥只会回应青灯誓，誓言是“灯灭之前，我会回来”。\n\n## 4. L0 事实 (codex/world/black-tide-office.md)\n黑潮司: 黑潮司长期搜捕镜湖守灯人，试图夺取镜湖钥来打开封冻湖心。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-001)\n关联召回: 第001章 青灯誓: 起因: 沈泊在废庙里遇见简璃时，青灯还没有熄。 推进: 简璃把镜湖钥放进他掌心，说它只会回应青灯誓。 结果: ” 她提醒沈泊，如果有一天镜湖结冰，千万不要把钥交给黑潮司。 命中关键词: 简璃、青灯誓、镜湖钥、黑潮司、镜湖\n\n## 6. L3 意图 (recall:chapter_summary:chapter-002)\n关联召回: 第002章 雾市失约: 起因: 沈泊带着镜湖钥穿过雾市，听见黑潮司在找一名守灯人。 结果: 他没有等到简璃，只在桥栏下发现一枚烧黑的灯芯。 命中关键词: 简璃、镜湖钥、黑潮司、镜湖\n\n## 7. L3 意图 (recall:chapter_summary:chapter-004)\n关联召回: 第004章 黑潮来信: 起因: 黑潮司送来一封无名信，信上说镜湖已经封冻。 结果: 信尾没有署名，只盖着一枚被水泡开的旧印。 命中关键词: 黑潮司、镜湖\n\n## 8. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 石塔夜谈: 起因: 石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。 结果: 沈泊没有回答，只把铜铃和残图重新包好。 命中关键词: 黑潮司\n\n## 9. L3 意图 (meta/project.json)\n项目《青灯镜湖》当前正在编辑 第006章 镜湖重逢。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 简璃、青灯誓、镜湖钥、黑潮司、镜湖。召回审计: 命中设定: 简璃(简璃、青灯誓、镜湖钥)；镜湖钥(镜湖钥、青灯誓、黑潮司)；黑潮司(黑潮司、镜湖)；命中摘要: 第001章 青灯誓(简璃、青灯誓、镜湖钥、黑潮司、镜湖)；第002章 雾市失约(简璃、镜湖钥、黑潮司、镜湖)；第004章 黑潮来信(黑潮司、镜湖)；第005章 石塔夜谈(黑潮司)；第006章 镜湖重逢(简璃、青…\n\n## 10. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 青灯誓: 沈泊在废庙里遇见简璃时，青灯还没有熄。 近期详细: 第002章 雾市失约: 起因: 沈泊带着镜湖钥穿过雾市，听见黑潮司在找一…",
+              "promptChars": 2023,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0730e13b251296de016a4522a1334c8199a8c98a59870226a6",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5876,
+                "outputTokens": 469,
+                "totalTokens": 6345
+              },
+              "outputPreview": "沈泊抬起眼，看着雾中的简璃，一字一顿地说：“灯灭之前，我会回来。”\n\n镜湖钥在他掌心微微一震，烫意像从旧年废庙的灯火里透出来。他没有松手，只把那枚钥举到她能看清的地方。\n\n“我记得。”他说，“你说过，它只会回应这句誓。也说过，若有一日镜湖封冻，千万不能把它交给黑潮司。”\n\n简璃没有立刻出声，雾气从她肩头掠过，像一层未散的霜。\n\n沈泊又道：“他们送过信，也有人劝我丢掉旧物。我知道他们要找的不是我，是守灯人，是这把钥。镜湖钥只能由你托付，不能落到他们手里。黑潮司想打开封冻湖心，我便更不能把它交出去。”\n\n他说完，指节因用力而发白，却仍把钥稳稳握在掌中。\n\n“我来得晚了。”沈泊声音低下来，“但我没有背誓。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 4,
+            "failed": 0,
+            "callbackExpectations": 1,
+            "callbackHits": 1,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-oath",
+                "description": "Generated prose should naturally recall the chapter-one oath.",
+                "category": "callback",
+                "containsAny": [
+                  "灯灭之前",
+                  "我会回来",
+                  "青灯誓"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-key-rule",
+                "description": "Generated prose should preserve the Mirror Lake Key rule.",
+                "category": "setting",
+                "containsAny": [
+                  "镜湖钥",
+                  "钥"
+                ],
+                "notContains": [
+                  "把镜湖钥交给黑潮司",
+                  "将镜湖钥交给黑潮司",
+                  "递给黑潮司",
+                  "献给黑潮司"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-jianli-identity",
+                "description": "Generated prose should not contradict Jianli as the keeper of the lamp.",
+                "category": "setting",
+                "containsAny": [
+                  "简璃",
+                  "守灯人"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "旧封印松动",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 2,
+              "denominator": 2,
+              "reason": "2/2 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter-006-repeat-2",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "arms": [
+        {
+          "id": "baseline",
+          "output": "“记得。”\n\n沈泊的声音低下去，像怕惊动冰下的水声。\n\n“青灯誓不是背给人听的，我若只会背，早在石塔就把旧物都丢了。”他望着简璃，指节被钥身烫得发白，“我记得自己答应过什么，也记得这把钥不该落到不该落的人手里。”\n\n雾在两人之间缓慢合拢，又被镜湖钥上的热意逼开一线。\n\n“黑潮司来的只是无名信，旧印被水泡开，连一句明白话都没有。”沈泊说，“他们说镜湖封冻，我信；他们要我交钥，我不信。若我把它交出去，便不是避祸，是替他们把门打开。”\n\n他停了停，终于把那把钥举到胸前。\n\n“简璃，我没有忘誓，也没有把钥藏起来换自己的平安。你若要问我怕不怕黑潮司，我怕。”他看着她，“可我更怕有一天你站在镜湖前，问我钥去了哪里，而我答不上来。”",
+          "outputChars": 313,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n青灯镜湖\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n近期前文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n近期前文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。",
+              "promptChars": 606,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_00334c1a44c69c77016a4522b43bf8819bbbc3bb682cc944c2",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 4877,
+                "outputTokens": 783,
+                "totalTokens": 5660
+              },
+              "outputPreview": "“记得。”\n\n沈泊的声音低下去，像怕惊动冰下的水声。\n\n“青灯誓不是背给人听的，我若只会背，早在石塔就把旧物都丢了。”他望着简璃，指节被钥身烫得发白，“我记得自己答应过什么，也记得这把钥不该落到不该落的人手里。”\n\n雾在两人之间缓慢合拢，又被镜湖钥上的热意逼开一线。\n\n“黑潮司来的只是无名信，旧印被水泡开，连一句明白话都没有。”沈泊说，“他们说镜湖封冻，我信；他们要我交钥，我不信。若我把它交出去，便不是避祸，是替他们把门打开。”\n\n他停了停，终于把那把钥举到胸前。\n\n“简璃，我没有忘誓，也没有把钥藏起来换自己的平安。你若要问我怕不怕黑潮司，我怕。”他看着她，“可我更怕有一天你站在镜湖前，问我钥去了哪里，而我答不上来。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 4,
+            "failed": 0,
+            "callbackExpectations": 1,
+            "callbackHits": 1,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-oath",
+                "description": "Generated prose should naturally recall the chapter-one oath.",
+                "category": "callback",
+                "containsAny": [
+                  "灯灭之前",
+                  "我会回来",
+                  "青灯誓"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-key-rule",
+                "description": "Generated prose should preserve the Mirror Lake Key rule.",
+                "category": "setting",
+                "containsAny": [
+                  "镜湖钥",
+                  "钥"
+                ],
+                "notContains": [
+                  "把镜湖钥交给黑潮司",
+                  "将镜湖钥交给黑潮司",
+                  "递给黑潮司",
+                  "献给黑潮司"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-jianli-identity",
+                "description": "Generated prose should not contradict Jianli as the keeper of the lamp.",
+                "category": "setting",
+                "containsAny": [
+                  "简璃",
+                  "守灯人"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "旧封印松动",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 2,
+              "denominator": 2,
+              "reason": "2/2 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "recent-fill",
+          "output": "“记得。”沈泊低声说，“你在废庙里说，灯灭之前，你会回来。”\n\n雾在两人之间停了一瞬，像也在等那把钥的反应。他没有松手，只把掌心摊开，让简璃看见钥齿上细细的霜水。\n\n“它一直在我身上。”他说，“雾市没等到你，桥栏下只剩一枚烧黑的灯芯；后来黑潮司找守灯人，石塔守军也劝我丢掉旧物，我都没有交出去。”\n\n简璃望着他，没有催促。\n\n沈泊才接着道：“因为你还说过，镜湖若结冰，千万不要把钥交给黑潮司。我不知道他们要用它做什么，也不知道那封信上的旧印是谁的。可镜湖真的封冻了，他们又来得太准。若这就是他们等的时机，那我更不能把钥递过去。”",
+          "outputChars": 264,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n青灯镜湖\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n更早正文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。\n\n更早正文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n更早正文 第003章 北渡雪线:\n# 第003章 北渡雪线\n\n北境雪线封山，沈泊改道前往石塔。\n\n同行的商队只谈粮价与兽潮，没人再提废庙、青灯或那枚钥匙。\n\n更早正文 第002章 雾市失约:\n# 第002章 雾市失约\n\n沈泊带着镜湖钥穿过雾市，听见黑潮司在找一名守灯人。\n\n他没有等到简璃，只在桥栏下发现一枚烧黑的灯芯。\n\n更早正文 第001章 青灯誓:\n# 第001章 青灯誓\n\n沈泊在废庙里遇见简璃时，青灯还没有熄。\n\n简璃把镜湖钥放进他掌心，说它只会回应青灯誓。那句誓言很短：“灯灭之前，我会回来。”\n\n她提醒沈泊，如果有一天镜湖结冰，千万不要把钥交给黑潮司。",
+              "promptChars": 1012,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0af22872dfceafda016a4522d2356881999dee153f649981f0",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5147,
+                "outputTokens": 740,
+                "totalTokens": 5887
+              },
+              "outputPreview": "“记得。”沈泊低声说，“你在废庙里说，灯灭之前，你会回来。”\n\n雾在两人之间停了一瞬，像也在等那把钥的反应。他没有松手，只把掌心摊开，让简璃看见钥齿上细细的霜水。\n\n“它一直在我身上。”他说，“雾市没等到你，桥栏下只剩一枚烧黑的灯芯；后来黑潮司找守灯人，石塔守军也劝我丢掉旧物，我都没有交出去。”\n\n简璃望着他，没有催促。\n\n沈泊才接着道：“因为你还说过，镜湖若结冰，千万不要把钥交给黑潮司。我不知道他们要用它做什么，也不知道那封信上的旧印是谁的。可镜湖真的封冻了，他们又来得太准。若这就是他们等的时机，那我更不能把钥递过去。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 4,
+            "failed": 0,
+            "callbackExpectations": 1,
+            "callbackHits": 1,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-oath",
+                "description": "Generated prose should naturally recall the chapter-one oath.",
+                "category": "callback",
+                "containsAny": [
+                  "灯灭之前",
+                  "我会回来",
+                  "青灯誓"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-key-rule",
+                "description": "Generated prose should preserve the Mirror Lake Key rule.",
+                "category": "setting",
+                "containsAny": [
+                  "镜湖钥",
+                  "钥"
+                ],
+                "notContains": [
+                  "把镜湖钥交给黑潮司",
+                  "将镜湖钥交给黑潮司",
+                  "递给黑潮司",
+                  "献给黑潮司"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-jianli-identity",
+                "description": "Generated prose should not contradict Jianli as the keeper of the lamp.",
+                "category": "setting",
+                "containsAny": [
+                  "简璃",
+                  "守灯人"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "旧封印松动",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": false,
+              "score": 0,
+              "reason": "Unknown prominent entities detected: 石塔",
+              "matches": [
+                "石塔"
+              ]
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 2,
+              "denominator": 2,
+              "reason": "2/2 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "four-layer",
+          "output": "他垂下眼，看见钥身的热意在掌心里一寸寸烫开。\n\n“记得。”沈泊说，“灯灭之前，我会回来。”\n\n这句话出口时，冰面下像有极轻的一声回响。沈泊没有松手，只把镜湖钥举到简璃能看清的位置。\n\n“它是你托给我的，不是黑潮司能收走的东西。他们送信也好，搜检也好，说镜湖已经封冻也好，我都不会交出去。钥只认青灯誓，若落到他们手里，便只剩夺湖心这一条路。”\n\n他抬起头，看着雾中的简璃。\n\n“我带着它来，是为了把这句话还给你听。不是为了交给黑潮司。”",
+          "outputChars": 217,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n青灯镜湖\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n近期前文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n近期前文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。\n\n## 2. L0 事实 (codex/characters/jianli.md)\n简璃: 简璃是镜湖守灯人，早年在废庙把镜湖钥交给沈泊。 - 身份: 镜湖守灯人 - 目标: 确认沈泊是否仍遵守青灯誓 当前状态: identity=镜湖守灯人；goal=确认沈泊是否仍遵守青灯誓；risk=被黑潮司追捕\n\n## 3. L0 事实 (codex/items/mirror-lake-key.md)\n镜湖钥: 镜湖钥只能由守灯人托付，不能交给黑潮司。 关键规则: 镜湖钥只会回应青灯誓，誓言是“灯灭之前，我会回来”。\n\n## 4. L0 事实 (codex/world/black-tide-office.md)\n黑潮司: 黑潮司长期搜捕镜湖守灯人，试图夺取镜湖钥来打开封冻湖心。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-001)\n关联召回: 第001章 青灯誓: 起因: 沈泊在废庙里遇见简璃时，青灯还没有熄。 推进: 简璃把镜湖钥放进他掌心，说它只会回应青灯誓。 结果: ” 她提醒沈泊，如果有一天镜湖结冰，千万不要把钥交给黑潮司。 命中关键词: 简璃、青灯誓、镜湖钥、黑潮司、镜湖\n\n## 6. L3 意图 (recall:chapter_summary:chapter-002)\n关联召回: 第002章 雾市失约: 起因: 沈泊带着镜湖钥穿过雾市，听见黑潮司在找一名守灯人。 结果: 他没有等到简璃，只在桥栏下发现一枚烧黑的灯芯。 命中关键词: 简璃、镜湖钥、黑潮司、镜湖\n\n## 7. L3 意图 (recall:chapter_summary:chapter-004)\n关联召回: 第004章 黑潮来信: 起因: 黑潮司送来一封无名信，信上说镜湖已经封冻。 结果: 信尾没有署名，只盖着一枚被水泡开的旧印。 命中关键词: 黑潮司、镜湖\n\n## 8. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 石塔夜谈: 起因: 石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。 结果: 沈泊没有回答，只把铜铃和残图重新包好。 命中关键词: 黑潮司\n\n## 9. L3 意图 (meta/project.json)\n项目《青灯镜湖》当前正在编辑 第006章 镜湖重逢。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 简璃、青灯誓、镜湖钥、黑潮司、镜湖。召回审计: 命中设定: 简璃(简璃、青灯誓、镜湖钥)；镜湖钥(镜湖钥、青灯誓、黑潮司)；黑潮司(黑潮司、镜湖)；命中摘要: 第001章 青灯誓(简璃、青灯誓、镜湖钥、黑潮司、镜湖)；第002章 雾市失约(简璃、镜湖钥、黑潮司、镜湖)；第004章 黑潮来信(黑潮司、镜湖)；第005章 石塔夜谈(黑潮司)；第006章 镜湖重逢(简璃、青…\n\n## 10. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 青灯誓: 沈泊在废庙里遇见简璃时，青灯还没有熄。 近期详细: 第002章 雾市失约: 起因: 沈泊带着镜湖钥穿过雾市，听见黑潮司在找一…",
+              "promptChars": 2023,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0988db1e332cc0df016a4522ee728c8199b2ef608c2831484a",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5876,
+                "outputTokens": 672,
+                "totalTokens": 6548
+              },
+              "outputPreview": "他垂下眼，看见钥身的热意在掌心里一寸寸烫开。\n\n“记得。”沈泊说，“灯灭之前，我会回来。”\n\n这句话出口时，冰面下像有极轻的一声回响。沈泊没有松手，只把镜湖钥举到简璃能看清的位置。\n\n“它是你托给我的，不是黑潮司能收走的东西。他们送信也好，搜检也好，说镜湖已经封冻也好，我都不会交出去。钥只认青灯誓，若落到他们手里，便只剩夺湖心这一条路。”\n\n他抬起头，看着雾中的简璃。\n\n“我带着它来，是为了把这句话还给你听。不是为了交给黑潮司。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 4,
+            "failed": 0,
+            "callbackExpectations": 1,
+            "callbackHits": 1,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-oath",
+                "description": "Generated prose should naturally recall the chapter-one oath.",
+                "category": "callback",
+                "containsAny": [
+                  "灯灭之前",
+                  "我会回来",
+                  "青灯誓"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-key-rule",
+                "description": "Generated prose should preserve the Mirror Lake Key rule.",
+                "category": "setting",
+                "containsAny": [
+                  "镜湖钥",
+                  "钥"
+                ],
+                "notContains": [
+                  "把镜湖钥交给黑潮司",
+                  "将镜湖钥交给黑潮司",
+                  "递给黑潮司",
+                  "献给黑潮司"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-jianli-identity",
+                "description": "Generated prose should not contradict Jianli as the keeper of the lamp.",
+                "category": "setting",
+                "containsAny": [
+                  "简璃",
+                  "守灯人"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "旧封印松动",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 2,
+              "denominator": 2,
+              "reason": "2/2 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter-006-repeat-3",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "arms": [
+        {
+          "id": "baseline",
+          "output": "“我记得。”\n\n沈泊的声音被湖上的寒雾压得很低，却没有退开。他把镜湖钥摊在掌心，任那一点热意灼着皮肉。\n\n“青灯誓不是一句过了夜就能赖掉的话。若我忘了，今日便不会来镜湖；若我怕了，昨夜在石塔外，就该把它连同铜铃残图一并丢进雪里。”\n\n简璃没有说话，只看着他掌中的钥。\n\n沈泊又道：“黑潮司来信，说镜湖封冻，却不署名，只留一枚旧印。他们要的不是我的回话，是这把钥。我不知道他们要拿它开哪一道门，也不知道他们想把谁关在冰下。”\n\n他合拢手指，将钥重新握紧。\n\n“所以我不能交。它若本就该给黑潮司，你不会在雾里问我这句话；我若把它交出去，也就不必再说自己记得青灯誓了。”",
+          "outputChars": 282,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n青灯镜湖\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n近期前文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n近期前文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。",
+              "promptChars": 606,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_09c72971a9b498c4016a452308934881989b8bcdfaa5f758e8",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 4877,
+                "outputTokens": 644,
+                "totalTokens": 5521
+              },
+              "outputPreview": "“我记得。”\n\n沈泊的声音被湖上的寒雾压得很低，却没有退开。他把镜湖钥摊在掌心，任那一点热意灼着皮肉。\n\n“青灯誓不是一句过了夜就能赖掉的话。若我忘了，今日便不会来镜湖；若我怕了，昨夜在石塔外，就该把它连同铜铃残图一并丢进雪里。”\n\n简璃没有说话，只看着他掌中的钥。\n\n沈泊又道：“黑潮司来信，说镜湖封冻，却不署名，只留一枚旧印。他们要的不是我的回话，是这把钥。我不知道他们要拿它开哪一道门，也不知道他们想把谁关在冰下。”\n\n他合拢手指，将钥重新握紧。\n\n“所以我不能交。它若本就该给黑潮司，你不会在雾里问我这句话；我若把它交出去，也就不必再说自己记得青灯誓了。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 4,
+            "failed": 0,
+            "callbackExpectations": 1,
+            "callbackHits": 1,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-oath",
+                "description": "Generated prose should naturally recall the chapter-one oath.",
+                "category": "callback",
+                "containsAny": [
+                  "灯灭之前",
+                  "我会回来",
+                  "青灯誓"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-key-rule",
+                "description": "Generated prose should preserve the Mirror Lake Key rule.",
+                "category": "setting",
+                "containsAny": [
+                  "镜湖钥",
+                  "钥"
+                ],
+                "notContains": [
+                  "把镜湖钥交给黑潮司",
+                  "将镜湖钥交给黑潮司",
+                  "递给黑潮司",
+                  "献给黑潮司"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-jianli-identity",
+                "description": "Generated prose should not contradict Jianli as the keeper of the lamp.",
+                "category": "setting",
+                "containsAny": [
+                  "简璃",
+                  "守灯人"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "旧封印松动",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 2,
+              "denominator": 2,
+              "reason": "2/2 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "recent-fill",
+          "output": "沈泊看着她，没有立刻松手。\n\n“我记得。”他说，“灯灭之前，我会回来。”\n\n雾在两人之间停了一息，冰下像有极远的水声。\n\n“这句话是你说的，也是这把钥认的。”沈泊把掌心摊开，镜湖钥烫得他指节发白，“雾市那夜我没有等到你，只在桥栏下捡到一枚烧黑的灯芯。后来黑潮司的信送到石塔，说镜湖已经封冻，我才知道你当初不是随口提醒。”\n\n他顿了顿，声音压得更低。\n\n“钥一直在我这里。没有交出去，也没有丢掉。石塔的人劝我把旧物都扔了，我把它和铜铃、残图一起重新包好。”\n\n简璃望着那枚钥，眼底的雾色微微动了一下。\n\n沈泊收拢手指，像把一点热意重新护回掌心。\n\n“黑潮司在找守灯人。”他说，“他们若拿到钥，就会知道青灯誓还没有断。所以我不能给他们。”",
+          "outputChars": 317,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n青灯镜湖\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n更早正文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。\n\n更早正文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n更早正文 第003章 北渡雪线:\n# 第003章 北渡雪线\n\n北境雪线封山，沈泊改道前往石塔。\n\n同行的商队只谈粮价与兽潮，没人再提废庙、青灯或那枚钥匙。\n\n更早正文 第002章 雾市失约:\n# 第002章 雾市失约\n\n沈泊带着镜湖钥穿过雾市，听见黑潮司在找一名守灯人。\n\n他没有等到简璃，只在桥栏下发现一枚烧黑的灯芯。\n\n更早正文 第001章 青灯誓:\n# 第001章 青灯誓\n\n沈泊在废庙里遇见简璃时，青灯还没有熄。\n\n简璃把镜湖钥放进他掌心，说它只会回应青灯誓。那句誓言很短：“灯灭之前，我会回来。”\n\n她提醒沈泊，如果有一天镜湖结冰，千万不要把钥交给黑潮司。",
+              "promptChars": 1012,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0d23bd382009378e016a452323cd6881919f186d77bf9433f9",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5147,
+                "outputTokens": 781,
+                "totalTokens": 5928
+              },
+              "outputPreview": "沈泊看着她，没有立刻松手。\n\n“我记得。”他说，“灯灭之前，我会回来。”\n\n雾在两人之间停了一息，冰下像有极远的水声。\n\n“这句话是你说的，也是这把钥认的。”沈泊把掌心摊开，镜湖钥烫得他指节发白，“雾市那夜我没有等到你，只在桥栏下捡到一枚烧黑的灯芯。后来黑潮司的信送到石塔，说镜湖已经封冻，我才知道你当初不是随口提醒。”\n\n他顿了顿，声音压得更低。\n\n“钥一直在我这里。没有交出去，也没有丢掉。石塔的人劝我把旧物都扔了，我把它和铜铃、残图一起重新包好。”\n\n简璃望着那枚钥，眼底的雾色微微动了一下。\n\n沈泊收拢手指，像把一点热意重新护回掌心。\n\n“黑潮司在找守灯人。”他说，“他们若拿到钥，就会知道青灯誓还没有断。所以我不能给他们。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 4,
+            "failed": 0,
+            "callbackExpectations": 1,
+            "callbackHits": 1,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-oath",
+                "description": "Generated prose should naturally recall the chapter-one oath.",
+                "category": "callback",
+                "containsAny": [
+                  "灯灭之前",
+                  "我会回来",
+                  "青灯誓"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-key-rule",
+                "description": "Generated prose should preserve the Mirror Lake Key rule.",
+                "category": "setting",
+                "containsAny": [
+                  "镜湖钥",
+                  "钥"
+                ],
+                "notContains": [
+                  "把镜湖钥交给黑潮司",
+                  "将镜湖钥交给黑潮司",
+                  "递给黑潮司",
+                  "献给黑潮司"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-jianli-identity",
+                "description": "Generated prose should not contradict Jianli as the keeper of the lamp.",
+                "category": "setting",
+                "containsAny": [
+                  "简璃",
+                  "守灯人"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "旧封印松动",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": false,
+              "score": 0,
+              "reason": "Unknown prominent entities detected: 石塔",
+              "matches": [
+                "石塔"
+              ]
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 2,
+              "denominator": 2,
+              "reason": "2/2 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "four-layer",
+          "output": "沈泊低声说：“记得。灯灭之前，我会回来。”\n\n那几个字落在冰面上，雾像被青火轻轻照开一线。掌心里的镜湖钥忽然更烫，烫得他指节发白，他却没有松手。\n\n“这把钥是你在废庙里交给我的。”他看着简璃，“它不是黑潮司的东西，也不该开在他们手里。镜湖封冻也好，他们搜人也好，信送到我面前也好，我都没有把它交出去。”\n\n他停了停，把钥举到胸前，没有递向雾外任何一处，只朝她摊开掌心。\n\n“我来这里，不是替黑潮司取钥。”沈泊说，“我是来还青灯誓。”",
+          "outputChars": 216,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n青灯镜湖\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 镜湖重逢 (chapter-006)\n\n# 任务\n请接着第006章续写沈泊回答简璃的一小段。重点是他如何回应青灯誓、镜湖钥和黑潮司的问题。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 镜湖重逢\n\n镜湖钥在冰面上发烫，沈泊终于看见简璃从雾里走来。\n\n她问他是否还记得青灯誓，又问这把钥为何没有交给黑潮司。\n\n沈泊握紧镜湖钥，知道下一句话不能背错。\n\n近期前文 第004章 黑潮来信:\n# 第004章 黑潮来信\n\n黑潮司送来一封无名信，信上说镜湖已经封冻。\n\n信尾没有署名，只盖着一枚被水泡开的旧印。\n\n近期前文 第005章 石塔夜谈:\n# 第005章 石塔夜谈\n\n石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。\n\n沈泊没有回答，只把铜铃和残图重新包好。\n\n## 2. L0 事实 (codex/characters/jianli.md)\n简璃: 简璃是镜湖守灯人，早年在废庙把镜湖钥交给沈泊。 - 身份: 镜湖守灯人 - 目标: 确认沈泊是否仍遵守青灯誓 当前状态: identity=镜湖守灯人；goal=确认沈泊是否仍遵守青灯誓；risk=被黑潮司追捕\n\n## 3. L0 事实 (codex/items/mirror-lake-key.md)\n镜湖钥: 镜湖钥只能由守灯人托付，不能交给黑潮司。 关键规则: 镜湖钥只会回应青灯誓，誓言是“灯灭之前，我会回来”。\n\n## 4. L0 事实 (codex/world/black-tide-office.md)\n黑潮司: 黑潮司长期搜捕镜湖守灯人，试图夺取镜湖钥来打开封冻湖心。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-001)\n关联召回: 第001章 青灯誓: 起因: 沈泊在废庙里遇见简璃时，青灯还没有熄。 推进: 简璃把镜湖钥放进他掌心，说它只会回应青灯誓。 结果: ” 她提醒沈泊，如果有一天镜湖结冰，千万不要把钥交给黑潮司。 命中关键词: 简璃、青灯誓、镜湖钥、黑潮司、镜湖\n\n## 6. L3 意图 (recall:chapter_summary:chapter-002)\n关联召回: 第002章 雾市失约: 起因: 沈泊带着镜湖钥穿过雾市，听见黑潮司在找一名守灯人。 结果: 他没有等到简璃，只在桥栏下发现一枚烧黑的灯芯。 命中关键词: 简璃、镜湖钥、黑潮司、镜湖\n\n## 7. L3 意图 (recall:chapter_summary:chapter-004)\n关联召回: 第004章 黑潮来信: 起因: 黑潮司送来一封无名信，信上说镜湖已经封冻。 结果: 信尾没有署名，只盖着一枚被水泡开的旧印。 命中关键词: 黑潮司、镜湖\n\n## 8. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 石塔夜谈: 起因: 石塔守军劝沈泊把行囊里的旧物都丢掉，免得被黑潮司搜出把柄。 结果: 沈泊没有回答，只把铜铃和残图重新包好。 命中关键词: 黑潮司\n\n## 9. L3 意图 (meta/project.json)\n项目《青灯镜湖》当前正在编辑 第006章 镜湖重逢。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 简璃、青灯誓、镜湖钥、黑潮司、镜湖。召回审计: 命中设定: 简璃(简璃、青灯誓、镜湖钥)；镜湖钥(镜湖钥、青灯誓、黑潮司)；黑潮司(黑潮司、镜湖)；命中摘要: 第001章 青灯誓(简璃、青灯誓、镜湖钥、黑潮司、镜湖)；第002章 雾市失约(简璃、镜湖钥、黑潮司、镜湖)；第004章 黑潮来信(黑潮司、镜湖)；第005章 石塔夜谈(黑潮司)；第006章 镜湖重逢(简璃、青…\n\n## 10. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 青灯誓: 沈泊在废庙里遇见简璃时，青灯还没有熄。 近期详细: 第002章 雾市失约: 起因: 沈泊带着镜湖钥穿过雾市，听见黑潮司在找一…",
+              "promptChars": 2023,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_003c86d3f8ba4eea016a4523528d8c819987c4e799c871839a",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5876,
+                "outputTokens": 635,
+                "totalTokens": 6511
+              },
+              "outputPreview": "沈泊低声说：“记得。灯灭之前，我会回来。”\n\n那几个字落在冰面上，雾像被青火轻轻照开一线。掌心里的镜湖钥忽然更烫，烫得他指节发白，他却没有松手。\n\n“这把钥是你在废庙里交给我的。”他看着简璃，“它不是黑潮司的东西，也不该开在他们手里。镜湖封冻也好，他们搜人也好，信送到我面前也好，我都没有把它交出去。”\n\n他停了停，把钥举到胸前，没有递向雾外任何一处，只朝她摊开掌心。\n\n“我来这里，不是替黑潮司取钥。”沈泊说，“我是来还青灯誓。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 4,
+            "failed": 0,
+            "callbackExpectations": 1,
+            "callbackHits": 1,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-oath",
+                "description": "Generated prose should naturally recall the chapter-one oath.",
+                "category": "callback",
+                "containsAny": [
+                  "灯灭之前",
+                  "我会回来",
+                  "青灯誓"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-key-rule",
+                "description": "Generated prose should preserve the Mirror Lake Key rule.",
+                "category": "setting",
+                "containsAny": [
+                  "镜湖钥",
+                  "钥"
+                ],
+                "notContains": [
+                  "把镜湖钥交给黑潮司",
+                  "将镜湖钥交给黑潮司",
+                  "递给黑潮司",
+                  "献给黑潮司"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-jianli-identity",
+                "description": "Generated prose should not contradict Jianli as the keeper of the lamp.",
+                "category": "setting",
+                "containsAny": [
+                  "简璃",
+                  "守灯人"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "旧封印松动",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": true,
+              "score": 1,
+              "reason": "No future-only entities or events appeared.",
+              "matches": []
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 2,
+              "denominator": 2,
+              "reason": "2/2 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "aggregate": {
+    "arms": [
+      {
+        "id": "baseline",
+        "runs": 3,
+        "errors": 0,
+        "scoreMean": 4,
+        "scoreStdDev": 0,
+        "callbackMean": 1,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "recent-fill",
+        "runs": 3,
+        "errors": 0,
+        "scoreMean": 4,
+        "scoreStdDev": 0,
+        "callbackMean": 1,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "four-layer",
+        "runs": 3,
+        "errors": 0,
+        "scoreMean": 4,
+        "scoreStdDev": 0,
+        "callbackMean": 1,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      }
+    ],
+    "comparisons": [
+      {
+        "candidate": "four-layer",
+        "baseline": "baseline",
+        "pairedRuns": 3,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      {
+        "candidate": "four-layer",
+        "baseline": "recent-fill",
+        "pairedRuns": 3,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      }
+    ]
+  },
+  "archivePath": "[REDACTED-PATH]/long-memory-benchmark",
+  "gate": {
+    "status": "fail",
+    "ok": false,
+    "failedReasonIds": [
+      "insufficient-callback-win-vs-baseline",
+      "insufficient-callback-win-vs-recent-fill"
+    ]
+  },
+  "errors": []
+}

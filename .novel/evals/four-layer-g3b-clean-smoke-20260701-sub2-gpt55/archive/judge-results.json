@@ -1,0 +1,33 @@
+{
+  "enabled": false,
+  "reports": [
+    {
+      "project": "纸鸢旧约",
+      "archivePath": "[REDACTED-PATH]/delayed-payoff-benchmark",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    }
+  ]
+}

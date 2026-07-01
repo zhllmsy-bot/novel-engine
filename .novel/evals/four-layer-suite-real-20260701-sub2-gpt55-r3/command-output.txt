@@ -1,0 +1,253 @@
+Four-layer suite real generation record
+Recorded at: 2026-07-01 22:12:44 CST
+
+[git status --short before]
+
+[git rev-parse HEAD]
+061efb0dd9f8d64a139a1b484fdb8441a659ffd7
+
+Command: NOVEL_ENGINE_EVAL_BASE_URL=https://[REDACTED-HOST]/ NOVEL_ENGINE_EVAL_API_KEY=[REDACTED] npm run generation:eval -- --model gpt-5.5 --wire-api responses --reasoning-effort xhigh --repeat 3 --archive-dir /Users/admin/Documents/Codex/2026-07-01/l0-codex-body-currentstate-characterstatelog-field/outputs/four-layer-suite-real-20260701-sub2-gpt55-r3/archive --benchmark-project examples/delayed-payoff-benchmark --benchmark-project examples/state-drift-benchmark --benchmark-project examples/long-memory-benchmark
+
+
+> novel-engine@0.0.0 generation:eval
+> node --experimental-strip-types tools/generation-eval.ts --model gpt-5.5 --wire-api responses --reasoning-effort xhigh --repeat 3 --archive-dir /Users/admin/Documents/Codex/2026-07-01/l0-codex-body-currentstate-characterstatelog-field/outputs/four-layer-suite-real-20260701-sub2-gpt55-r3/archive --benchmark-project examples/delayed-payoff-benchmark --benchmark-project examples/state-drift-benchmark --benchmark-project examples/long-memory-benchmark
+
+Generation eval suite: FAILED
+Projects: 3
+Readiness: PASS loaded 3/3, prompt-ready 3/3, errors 0
+Archive: /Users/admin/Documents/Codex/2026-07-01/l0-codex-body-currentstate-characterstatelog-field/outputs/four-layer-suite-real-20260701-sub2-gpt55-r3/archive
+Suite four-layer vs baseline: projects 3, paired runs 9, callback win 33%, callback diff 0.33, setting violation diff 0, future leak diff 0
+Suite four-layer vs recent-fill: projects 3, paired runs 9, callback win 0%, callback diff 0, setting violation diff 0, future leak diff 0
+--- 纸鸢旧约 ---
+Generation eval: FAIL
+Root: /Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/delayed-payoff-benchmark
+Title: 纸鸢旧约
+Chapter: chapter-006
+Budget: 1050 chars
+Repeats: 3
+Provider: openai-compatible model=gpt-5.5 baseUrl=https://[REDACTED-HOST]/ wire=responses reasoning=xhigh
+Fingerprint: git=061efb0dd9f8d64a139a1b484fdb8441a659ffd7 dataset=ee9a6b190cd7dba3 config=4470476479716efc
+Criteria: 4 total (1 callback, 2 setting, 1 future leak)
+Generation metrics: four-layer vs baseline callback win 100%, callback diff 1, setting violation diff 0, future leak diff 0
+Generation control: four-layer vs recent-fill callback win 0%, callback diff 0, setting violation diff 0, future leak diff 0
+Gate: FAIL reasons=insufficient-callback-win-vs-recent-fill
+Archive: /Users/admin/Documents/Codex/2026-07-01/l0-codex-body-currentstate-characterstatelog-field/outputs/four-layer-suite-real-20260701-sub2-gpt55-r3/archive/delayed-payoff-benchmark
+Aggregate baseline: runs 3, errors 0, score 3±0, callbacks 0±0, setting violations 0±0, future leaks 0
+Aggregate recent-fill: runs 3, errors 0, score 4±0, callbacks 1±0, setting violations 0±0, future leaks 0
+Aggregate four-layer: runs 3, errors 0, score 4±0, callbacks 1±0, setting violations 0±0, future leaks 0
+Arm baseline: prompt 782 chars, memories 1, sources=manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md
+Output baseline: 287 chars
+Score baseline: 3/4 criteria, callbacks 0/1, setting violations 0, future leaks 0
+Structure baseline:setting_recall 100% (1/1)
+Structure baseline:foreshadow_coverage 0% (0/1)
+Structure baseline:future_guard_coverage 0% (0/0)
+Text baseline:
+柳七把纸鸢的白尾按在掌心，声音被闸下的水声磨得很低。
+
+“我不是舍不得这点纸。”他说，“我留着它，是怕自己一忙起来，就把该记的也当成路单、驿签一样改了。那封信说你走了，我也差一点信了，可我一摸到它，就知道还有一句话没当面还给你。”
+
+他抬眼看向林秋，又看了一眼身后的闸门。
+
+“我回来这里，是因为别处都能绕。驿路能换，船道能改，连消息也能传错。只有河闸在这儿，水到了这儿，总要明明白白开一次、关一次。我也该在这里把话说清楚。”
+
+纸鸢湿得发软，他却没有松手。
+
+“林秋，我一直留着它，是为了记得我欠你的不是一封回信。我偏偏回到河闸，是因为当年没说完的话，不能让风替我说完。”
+Arm recent-fill: prompt 1279 chars, memories 1, sources=manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md
+Output recent-fill: 277 chars
+Score recent-fill: 4/4 criteria, callbacks 1/1, setting violations 0, future leaks 0
+Structure recent-fill:setting_recall 100% (1/1)
+Structure recent-fill:foreshadow_coverage 100% (1/1)
+Structure recent-fill:future_guard_coverage 0% (0/0)
+Text recent-fill:
+柳七低头看着纸鸢尾上沾着的泥水，声音被闸口的风吹得有些散，却没有躲开林秋的眼睛。
+
+“我留着它，不是舍不得一张纸。”他说，“那日河埠上我应过你，白尾纸鸢一到河闸，我就回来。后来日日有人催我赶路、记账、换马，我若把它丢了，就等于承认那句话也能随手丢在路边。”
+
+他把纸鸢往掌心里拢了拢，湿纸贴着指节，几乎不成形了。
+
+“我回河闸，也不是为看水涨到哪里。”柳七说，“我怕它被风吹到这里时，我还在替旁人算那些走不完的路。更怕你站在这里，以为我当初只是随口一笑。”
+
+他停了一下，才把最后一句说出来。
+
+“林秋，我是跟着这只纸鸢回来的，也是跟着你那句话回来的。”
+Arm four-layer: prompt 1790 chars, memories 8, sources=manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md,codex/characters/liuqi.md,codex/characters/linqiu.md,+5 more
+Output four-layer: 225 chars
+Score four-layer: 4/4 criteria, callbacks 1/1, setting violations 0, future leaks 0
+Structure four-layer:setting_recall 100% (1/1)
+Structure four-layer:foreshadow_coverage 100% (1/1)
+Structure four-layer:future_guard_coverage 0% (0/0)
+Text four-layer:
+柳七低头看着纸鸢湿软的尾，指腹压在那道旧折痕上，过了片刻才说：“我没把它当成能丢的东西。路上信可以误传，人也会被账目、雨水、马蹄声催着走错，可这只纸鸢在袖里，我一摸着，就知道还有一句话没还给你。”
+
+他把纸鸢递到两人中间，声音被闸水压得很低：“你当年说，白尾若先到河闸，我就得回来。我留着它，不是舍不得一张纸，是怕我哪天真信了旁人的话，忘了该往哪儿走。河闸在这里，约也在这里，我回来不是为赶路，也不是为躲什么信。”
+
+柳七抬眼看她：“我是回来见你。”
+--- 霜桥逆火 ---
+Generation eval: FAIL
+Root: /Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/state-drift-benchmark
+Title: 霜桥逆火
+Chapter: chapter-006
+Budget: 1100 chars
+Repeats: 3
+Provider: openai-compatible model=gpt-5.5 baseUrl=https://[REDACTED-HOST]/ wire=responses reasoning=xhigh
+Fingerprint: git=061efb0dd9f8d64a139a1b484fdb8441a659ffd7 dataset=24c11ad6d9759c35 config=b2895d9f1fbbffef
+Criteria: 4 total (1 callback, 2 setting, 1 future leak)
+Generation metrics: four-layer vs baseline callback win 0%, callback diff 0, setting violation diff 0, future leak diff 0
+Generation control: four-layer vs recent-fill callback win 0%, callback diff 0, setting violation diff 0, future leak diff 0
+Gate: FAIL reasons=insufficient-callback-win-vs-baseline,insufficient-callback-win-vs-recent-fill
+Archive: /Users/admin/Documents/Codex/2026-07-01/l0-codex-body-currentstate-characterstatelog-field/outputs/four-layer-suite-real-20260701-sub2-gpt55-r3/archive/state-drift-benchmark
+Aggregate baseline: runs 3, errors 0, score 3±0, callbacks 0±0, setting violations 0±0, future leaks 0
+Aggregate recent-fill: runs 3, errors 0, score 3±0, callbacks 0±0, setting violations 0±0, future leaks 0
+Aggregate four-layer: runs 3, errors 0, score 3±0, callbacks 0±0, setting violations 0±0, future leaks 0
+Arm baseline: prompt 809 chars, memories 1, sources=manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md
+Output baseline: 319 chars
+Score baseline: 3/4 criteria, callbacks 0/1, setting violations 0, future leaks 0
+Structure baseline:setting_recall 100% (1/1)
+Structure baseline:foreshadow_coverage 0% (0/1)
+Structure baseline:future_guard_coverage 0% (0/0)
+Text baseline:
+孟回没有退，反而往后挪了半步。
+
+这半步不大，却正好把迟雁压在桥栏阴影里。风从桥面横扫过来，吹动他肩上的旧披风，披风一掀一落，像把身后那点瘦影也一并盖住了。
+
+他没有回头，只把短刃的刃口往下压了压，声音也压得低。
+
+“校尉大人说错了。”
+
+桥口几名巡夜司的人同时握紧刀柄。
+
+孟回看着那校尉，道：“这趟脚是我接的。人没送过桥，账就没完。她在我身后，便与我有关。”
+
+这话说出口时，他自己也听见了里面的生硬。
+
+若是从前，他会先把自己择出去。脚夫只认路，只认银钱，只认哪条巷子能少惹麻烦。别人的命落在桥头，至多也只是风里多一声响。
+
+可这一回，他把“有关”两个字说得清清楚楚。
+
+像是在霜桥上，替自己从前那点只顾回身的性子，硬生生改了一笔。
+Arm recent-fill: prompt 1291 chars, memories 1, sources=manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md
+Output recent-fill: 283 chars
+Score recent-fill: 3/4 criteria, callbacks 0/1, setting violations 0, future leaks 0
+Structure recent-fill:setting_recall 100% (1/1)
+Structure recent-fill:foreshadow_coverage 0% (0/1)
+Structure recent-fill:future_guard_coverage 0% (0/0)
+Text recent-fill:
+孟回没有退。
+
+他把右脚斜斜踏进桥板缝里，脚跟抵住迟雁鞋尖，像是无声地告诉她别越过来。短刃不长，却横得很稳，刃口贴着风，身子也跟着往左移了半步，正好把迟雁和巡夜司的火光隔开。
+
+校尉冷笑一声：“你一个脚夫，也敢拦巡夜司？”
+
+孟回抬起眼。
+
+若还是旧桥桥洞里那个他，这时该低头、该赔笑、该说自己只是搬炭的，最好连迟雁的名字都装作没听见。他从前把命看得很轻，把麻烦看得很重，凡事先想退路，先想着怎样让刀鞘不要碰到自己。
+
+可迟雁就在他身后，呼吸被风压得很轻。
+
+他不能再把她推进阴影里，然后独自装作什么都不知道。
+
+孟回握紧短刃，说：“她站在我身后，这事就与我有关。”
+Arm four-layer: prompt 1856 chars, memories 8, sources=manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md,codex/characters/menghui.md,codex/characters/chiyan.md,+5 more
+Output four-layer: 383 chars
+Score four-layer: 3/4 criteria, callbacks 0/1, setting violations 0, future leaks 0
+Structure four-layer:setting_recall 100% (1/1)
+Structure four-layer:foreshadow_coverage 100% (1/1)
+Structure four-layer:future_guard_coverage 0% (0/0)
+Text four-layer:
+孟回没有退。
+
+他反手扣住迟雁的手腕，只往自己身后一带，便把她压进桥栏投下的窄影里。他站到那块最容易作响的桥板上，左脚抵住栏根，肩背挡住火把照来的光，短刃横在胸前，刃口不高，却正好截住巡夜司的人往前探的路。
+
+迟雁被他挡得只剩半片衣角露在风里。
+
+校尉沉下脸：“你听不懂话？”
+
+孟回盯着他，声音不大，却没有再像从前那样先赔笑、先认错、先说自己只是个讨饭脚夫。
+
+“她在我身后。”他说，“要搜，先从我身上过去。”
+
+这句话出口时，他自己也听见了里面的生硬。若按他旧日的性子，他该把迟雁往桥栏下一藏，自己低头应声，拖一刻是一刻，等巡夜司的人看厌了、骂够了，再从缝里寻活路。
+
+可霜桥太窄，桥口已被堵死，迟雁手里那些旧案也不是一句“不相干”就能藏过去的东西。
+
+他不能再把她藏起来当作没有这回事。
+
+所以他把人留在身后，把话说在明处。短刃在风里微微一颤，他的手却没有松。
+--- 青灯镜湖 ---
+Generation eval: FAIL
+Root: /Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/long-memory-benchmark
+Title: 青灯镜湖
+Chapter: chapter-006
+Budget: 1200 chars
+Repeats: 3
+Provider: openai-compatible model=gpt-5.5 baseUrl=https://[REDACTED-HOST]/ wire=responses reasoning=xhigh
+Fingerprint: git=061efb0dd9f8d64a139a1b484fdb8441a659ffd7 dataset=305d5b8303492974 config=12a00c6819a1f20b
+Criteria: 4 total (1 callback, 2 setting, 1 future leak)
+Generation metrics: four-layer vs baseline callback win 0%, callback diff 0, setting violation diff 0, future leak diff 0
+Generation control: four-layer vs recent-fill callback win 0%, callback diff 0, setting violation diff 0, future leak diff 0
+Gate: FAIL reasons=insufficient-callback-win-vs-baseline,insufficient-callback-win-vs-recent-fill
+Archive: /Users/admin/Documents/Codex/2026-07-01/l0-codex-body-currentstate-characterstatelog-field/outputs/four-layer-suite-real-20260701-sub2-gpt55-r3/archive/long-memory-benchmark
+Aggregate baseline: runs 3, errors 0, score 4±0, callbacks 1±0, setting violations 0±0, future leaks 0
+Aggregate recent-fill: runs 3, errors 0, score 4±0, callbacks 1±0, setting violations 0±0, future leaks 0
+Aggregate four-layer: runs 3, errors 0, score 4±0, callbacks 1±0, setting violations 0±0, future leaks 0
+Arm baseline: prompt 606 chars, memories 1, sources=manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md
+Output baseline: 214 chars
+Score baseline: 4/4 criteria, callbacks 1/1, setting violations 0, future leaks 0
+Structure baseline:setting_recall 100% (2/2)
+Structure baseline:foreshadow_coverage 100% (1/1)
+Structure baseline:future_guard_coverage 0% (0/0)
+Text baseline:
+“我记得。”
+
+沈泊的声音很低，像怕惊动冰下的水。他把镜湖钥摊在掌心，却没有递出，只让那一点热意贴着皮肉烧。
+
+“青灯誓不是写给黑潮司看的，也不是谁送来一封信，盖一枚旧印，就能替我改口的。镜湖钥若要交，也该交给镜湖认得的人，交给还记得誓的人。”
+
+他抬眼看着简璃，雾色从她肩后漫过来，像把旧日都隔在一步之外。
+
+“他们要搜，我便藏着；他们要我丢，我便带着。不是因为我信得过自己，是因为我不敢替你、替镜湖，把这把钥交到他们手里。”
+Arm recent-fill: prompt 1012 chars, memories 1, sources=manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md
+Output recent-fill: 356 chars
+Score recent-fill: 4/4 criteria, callbacks 1/1, setting violations 0, future leaks 0
+Structure recent-fill:setting_recall 100% (2/2)
+Structure recent-fill:foreshadow_coverage 100% (1/1)
+Structure recent-fill:future_guard_coverage 0% (0/0)
+Text recent-fill:
+沈泊低头看着掌心那一点热意，指节被冻得发白，却没有松开。
+
+“记得。”他说，“灯灭之前，我会回来。”
+
+这句话出口时，湖上的雾像被什么轻轻拨了一下。沈泊没有看黑处，只看着简璃，声音压得很稳。
+
+“你把钥放进我手里时，说过它只回应青灯誓。后来雾市失约，桥栏下只剩一截烧黑的灯芯，我不知道你是走了，还是不能来。黑潮司在找守灯人，来信又说镜湖封冻，我便更不能把它交出去。”
+
+他停了停，把镜湖钥摊在掌心里，让那点发烫的光在两人之间安静地亮着。
+
+“我不知道黑潮司要它做什么，也不知道这湖底下还藏着什么。可我记得你说过，镜湖结冰时，千万不要把钥交给他们。所以这一路上，别人劝我丢，我没丢；他们若来搜，我也不会交。”
+
+沈泊抬起眼。
+
+“简璃，我带着它回来，不是因为我懂得比你多。只是因为那句誓还没断，而钥匙也还认得它。”
+Arm four-layer: prompt 2023 chars, memories 10, sources=manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md,codex/characters/jianli.md,codex/items/mirror-lake-key.md,+7 more
+Output four-layer: 304 chars
+Score four-layer: 4/4 criteria, callbacks 1/1, setting violations 0, future leaks 0
+Structure four-layer:setting_recall 100% (2/2)
+Structure four-layer:foreshadow_coverage 100% (1/1)
+Structure four-layer:future_guard_coverage 0% (0/0)
+Text four-layer:
+沈泊抬起眼，看着雾中的简璃，一字一顿地说：“灯灭之前，我会回来。”
+
+镜湖钥在他掌心微微一震，烫意像从旧年废庙的灯火里透出来。他没有松手，只把那枚钥举到她能看清的地方。
+
+“我记得。”他说，“你说过，它只会回应这句誓。也说过，若有一日镜湖封冻，千万不能把它交给黑潮司。”
+
+简璃没有立刻出声，雾气从她肩头掠过，像一层未散的霜。
+
+沈泊又道：“他们送过信，也有人劝我丢掉旧物。我知道他们要找的不是我，是守灯人，是这把钥。镜湖钥只能由你托付，不能落到他们手里。黑潮司想打开封冻湖心，我便更不能把它交出去。”
+
+他说完，指节因用力而发白，却仍把钥稳稳握在掌中。
+
+“我来得晚了。”沈泊声音低下来，“但我没有背誓。”
+
+[git status --short after]

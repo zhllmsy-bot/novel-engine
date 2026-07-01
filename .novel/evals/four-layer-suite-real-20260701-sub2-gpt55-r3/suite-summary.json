@@ -1,0 +1,262 @@
+{
+  "ok": false,
+  "dryRun": false,
+  "projectCount": 3,
+  "readiness": {
+    "ok": true,
+    "projectCount": 3,
+    "loadedProjects": 3,
+    "promptReadyProjects": 3,
+    "errorCount": 0
+  },
+  "errors": [],
+  "comparisons": [
+    {
+      "candidate": "four-layer",
+      "baseline": "baseline",
+      "pairedRuns": 9,
+      "callbackWinRateMean": 0.3333333333333333,
+      "callbackMeanDiff": 0.3333333333333333,
+      "settingViolationMeanDiff": 0,
+      "futureLeakDiff": 0
+    },
+    {
+      "candidate": "four-layer",
+      "baseline": "recent-fill",
+      "pairedRuns": 9,
+      "callbackWinRateMean": 0,
+      "callbackMeanDiff": 0,
+      "settingViolationMeanDiff": 0,
+      "futureLeakDiff": 0
+    }
+  ],
+  "reports": [
+    {
+      "title": "纸鸢旧约",
+      "ok": false,
+      "gate": {
+        "status": "fail",
+        "ok": false,
+        "failedReasonIds": [
+          "insufficient-callback-win-vs-recent-fill"
+        ]
+      },
+      "fingerprint": {
+        "gitCommit": "061efb0dd9f8d64a139a1b484fdb8441a659ffd7",
+        "datasetVersion": "25601457a0792866",
+        "datasetHash": "ee9a6b190cd7dba3",
+        "configHash": "4470476479716efc"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": 3,
+      "errors": [],
+      "comparisons": [
+        {
+          "candidate": "four-layer",
+          "baseline": "baseline",
+          "pairedRuns": 3,
+          "callbackWinRate": 1,
+          "callbackMeanDiff": 1,
+          "settingViolationMeanDiff": 0,
+          "futureLeakDiff": 0
+        },
+        {
+          "candidate": "four-layer",
+          "baseline": "recent-fill",
+          "pairedRuns": 3,
+          "callbackWinRate": 0,
+          "callbackMeanDiff": 0,
+          "settingViolationMeanDiff": 0,
+          "futureLeakDiff": 0
+        }
+      ],
+      "arms": [
+        {
+          "id": "baseline",
+          "runs": 3,
+          "errors": 0,
+          "scoreMean": 3,
+          "callbackMean": 0,
+          "settingViolationMean": 0,
+          "futureLeakTotal": 0
+        },
+        {
+          "id": "recent-fill",
+          "runs": 3,
+          "errors": 0,
+          "scoreMean": 4,
+          "callbackMean": 1,
+          "settingViolationMean": 0,
+          "futureLeakTotal": 0
+        },
+        {
+          "id": "four-layer",
+          "runs": 3,
+          "errors": 0,
+          "scoreMean": 4,
+          "callbackMean": 1,
+          "settingViolationMean": 0,
+          "futureLeakTotal": 0
+        }
+      ]
+    },
+    {
+      "title": "霜桥逆火",
+      "ok": false,
+      "gate": {
+        "status": "fail",
+        "ok": false,
+        "failedReasonIds": [
+          "insufficient-callback-win-vs-baseline",
+          "insufficient-callback-win-vs-recent-fill"
+        ]
+      },
+      "fingerprint": {
+        "gitCommit": "061efb0dd9f8d64a139a1b484fdb8441a659ffd7",
+        "datasetVersion": "e2b8d5bf7b5b5f4f",
+        "datasetHash": "24c11ad6d9759c35",
+        "configHash": "b2895d9f1fbbffef"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": 3,
+      "errors": [],
+      "comparisons": [
+        {
+          "candidate": "four-layer",
+          "baseline": "baseline",
+          "pairedRuns": 3,
+          "callbackWinRate": 0,
+          "callbackMeanDiff": 0,
+          "settingViolationMeanDiff": 0,
+          "futureLeakDiff": 0
+        },
+        {
+          "candidate": "four-layer",
+          "baseline": "recent-fill",
+          "pairedRuns": 3,
+          "callbackWinRate": 0,
+          "callbackMeanDiff": 0,
+          "settingViolationMeanDiff": 0,
+          "futureLeakDiff": 0
+        }
+      ],
+      "arms": [
+        {
+          "id": "baseline",
+          "runs": 3,
+          "errors": 0,
+          "scoreMean": 3,
+          "callbackMean": 0,
+          "settingViolationMean": 0,
+          "futureLeakTotal": 0
+        },
+        {
+          "id": "recent-fill",
+          "runs": 3,
+          "errors": 0,
+          "scoreMean": 3,
+          "callbackMean": 0,
+          "settingViolationMean": 0,
+          "futureLeakTotal": 0
+        },
+        {
+          "id": "four-layer",
+          "runs": 3,
+          "errors": 0,
+          "scoreMean": 3,
+          "callbackMean": 0,
+          "settingViolationMean": 0,
+          "futureLeakTotal": 0
+        }
+      ]
+    },
+    {
+      "title": "青灯镜湖",
+      "ok": false,
+      "gate": {
+        "status": "fail",
+        "ok": false,
+        "failedReasonIds": [
+          "insufficient-callback-win-vs-baseline",
+          "insufficient-callback-win-vs-recent-fill"
+        ]
+      },
+      "fingerprint": {
+        "gitCommit": "061efb0dd9f8d64a139a1b484fdb8441a659ffd7",
+        "datasetVersion": "2ac009e6e25b05e2",
+        "datasetHash": "305d5b8303492974",
+        "configHash": "12a00c6819a1f20b"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": 3,
+      "errors": [],
+      "comparisons": [
+        {
+          "candidate": "four-layer",
+          "baseline": "baseline",
+          "pairedRuns": 3,
+          "callbackWinRate": 0,
+          "callbackMeanDiff": 0,
+          "settingViolationMeanDiff": 0,
+          "futureLeakDiff": 0
+        },
+        {
+          "candidate": "four-layer",
+          "baseline": "recent-fill",
+          "pairedRuns": 3,
+          "callbackWinRate": 0,
+          "callbackMeanDiff": 0,
+          "settingViolationMeanDiff": 0,
+          "futureLeakDiff": 0
+        }
+      ],
+      "arms": [
+        {
+          "id": "baseline",
+          "runs": 3,
+          "errors": 0,
+          "scoreMean": 4,
+          "callbackMean": 1,
+          "settingViolationMean": 0,
+          "futureLeakTotal": 0
+        },
+        {
+          "id": "recent-fill",
+          "runs": 3,
+          "errors": 0,
+          "scoreMean": 4,
+          "callbackMean": 1,
+          "settingViolationMean": 0,
+          "futureLeakTotal": 0
+        },
+        {
+          "id": "four-layer",
+          "runs": 3,
+          "errors": 0,
+          "scoreMean": 4,
+          "callbackMean": 1,
+          "settingViolationMean": 0,
+          "futureLeakTotal": 0
+        }
+      ]
+    }
+  ]
+}
