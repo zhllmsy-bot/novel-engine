@@ -662,12 +662,17 @@ export async function evaluateGeneration(input: {
   }
 
   const runs: GenerationEvalRunReport[] = []
+  const providerConcurrency = positiveIntegerFromEnv(
+    'NOVEL_ENGINE_EVAL_PROVIDER_CONCURRENCY',
+    1,
+  )
 
   if (!dryRun && errors.length === 0) {
     for (let repeatIndex = 0; repeatIndex < repeatCount; repeatIndex += 1) {
-      const runArms: GenerationEvalRunArmReport[] = []
-
-      for (const arm of arms) {
+      const runArms = await mapWithConcurrency(
+        arms,
+        providerConcurrency,
+        async (arm): Promise<GenerationEvalRunArmReport> => {
         const runArm: GenerationEvalRunArmReport = { id: arm.id }
 
         try {
@@ -696,8 +701,9 @@ export async function evaluateGeneration(input: {
           runArm.error = String(error)
         }
 
-        runArms.push(runArm)
-      }
+        return runArm
+      },
+      )
 
       runs.push({
         id: `${evalConfig.caseId ? `${evalConfig.caseId}-` : ''}${chapter.id}-repeat-${repeatIndex + 1}`,
@@ -860,7 +866,11 @@ export async function evaluateGenerationSuite(input: {
   maxOutputChars?: number
   fingerprintIgnorePaths?: string[]
 }): Promise<GenerationEvalSuiteReport> {
-  const reports: GenerationEvalReport[] = []
+  const reportInputs: Array<{
+    rootPath: string
+    caseId?: string
+    archiveDir?: string
+  }> = []
 
   for (const rootPath of input.rootPaths) {
     const cases = input.caseId
@@ -871,17 +881,26 @@ export async function evaluateGenerationSuite(input: {
       const projectArchiveDir = input.archiveDir
         ? join(input.archiveDir, safeArchiveSegmentWithCase(rootPath, generationCase.caseId))
         : undefined
-      reports.push(
-        await evaluateGeneration({
-          ...input,
-          rootPath,
-          caseId: generationCase.caseId,
-          archiveDir: projectArchiveDir,
-          fingerprintIgnorePaths: input.archiveDir ? [input.archiveDir] : undefined,
-        }),
-      )
+      reportInputs.push({
+        rootPath,
+        caseId: generationCase.caseId,
+        archiveDir: projectArchiveDir,
+      })
     }
   }
+
+  const reports = await mapWithConcurrency(
+    reportInputs,
+    positiveIntegerFromEnv('NOVEL_ENGINE_EVAL_REPORT_CONCURRENCY', 1),
+    (reportInput) =>
+      evaluateGeneration({
+        ...input,
+        rootPath: reportInput.rootPath,
+        caseId: reportInput.caseId,
+        archiveDir: reportInput.archiveDir,
+        fingerprintIgnorePaths: input.archiveDir ? [input.archiveDir] : undefined,
+      }),
+  )
 
   const comparisons = buildSuiteComparisons(reports)
   const errors = reports.flatMap((report) => report.errors)
@@ -1509,8 +1528,37 @@ function nonNegativeIntegerFromEnv(name: string, fallback: number) {
   return Number.isFinite(parsed) && parsed >= 0 ? Math.floor(parsed) : fallback
 }
 
+function positiveIntegerFromEnv(name: string, fallback: number) {
+  const parsed = Number(process.env[name])
+  return Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : fallback
+}
+
 function sleep(ms: number) {
   return new Promise((resolveSleep) => setTimeout(resolveSleep, ms))
+}
+
+async function mapWithConcurrency<T, U>(
+  values: T[],
+  concurrency: number,
+  mapper: (value: T, index: number) => Promise<U>,
+): Promise<U[]> {
+  const limit = Math.max(1, Math.floor(concurrency))
+  const results = new Array<U>(values.length)
+  let nextIndex = 0
+
+  async function worker() {
+    while (nextIndex < values.length) {
+      const index = nextIndex
+      nextIndex += 1
+      results[index] = await mapper(values[index], index)
+    }
+  }
+
+  await Promise.all(
+    Array.from({ length: Math.min(limit, values.length) }, () => worker()),
+  )
+
+  return results
 }
 
 async function loadGenerationEvalConfig(rootPath: string): Promise<{
@@ -1883,16 +1931,15 @@ async function evaluateGenerationJudge(input: {
   providerConfig: OpenAICompatibleGenerationConfig
 }): Promise<GenerationEvalJudgeReport> {
   const rows = input.report.runs.flatMap((run) => buildJudgeRowsForRun(run))
-  const results: GenerationEvalJudgeResult[] = []
-
-  for (const row of rows) {
-    results.push(
-      await evaluateJudgeRow({
+  const results = await mapWithConcurrency(
+    rows,
+    positiveIntegerFromEnv('NOVEL_ENGINE_EVAL_PROVIDER_CONCURRENCY', 1),
+    (row) =>
+      evaluateJudgeRow({
         row,
         providerConfig: input.providerConfig,
       }),
-    )
-  }
+  )
 
   return {
     enabled: true,
