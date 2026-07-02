@@ -1,0 +1,17 @@
+{
+  "archiveDir": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/.novel/evals/four-layer-suite-real-20260703-cleanwt-gpt55-full-r3",
+  "humanCsvPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/.novel/evals/four-layer-suite-real-20260703-cleanwt-gpt55-full-r3/human-pairwise-review.csv",
+  "judgeResultsPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/.novel/evals/four-layer-suite-real-20260703-cleanwt-gpt55-full-r3/judge-results.json",
+  "labeledRows": 0,
+  "matchedRows": 0,
+  "usableRows": 0,
+  "blankHumanRows": 230,
+  "missingJudgeRows": 0,
+  "invalidJudgeRows": 0,
+  "observedAgreement": null,
+  "expectedAgreement": null,
+  "kappa": null,
+  "minimumHumanLabels": 10,
+  "kappaThreshold": 0.6,
+  "okToTrustJudge": false
+}

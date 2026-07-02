@@ -1,0 +1,505 @@
+{
+  "project": "回环墓中段",
+  "caseId": "stone-room-turn",
+  "chapterId": "chapter-010",
+  "fingerprint": {
+    "gitCommit": "908adb3039fbe38ceca18e7486478117dea24ac6",
+    "datasetVersion": "eef26be7acf90a7b",
+    "datasetHash": "fcd41216287c8e47",
+    "configHash": "9758fcc614cee7e7"
+  },
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/",
+    "model": "gpt-5.5",
+    "wireApi": "responses",
+    "reasoningEffort": "xhigh"
+  },
+  "runs": [
+    {
+      "runId": "stone-room-turn-chapter-010-repeat-1",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第010章 石室换向 (chapter-010)\n\n# 任务\n请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n近期前文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n近期前文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。",
+              "promptChars": 777,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_001e6ec0bc4e1361016a46c1bb7db88199a68cf19051461ba7",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5052,
+                "outputTokens": 1553,
+                "totalTokens": 6605
+              },
+              "outputPreview": "阿照没有立刻答话。他把罗盘贴近真北铁，又慢慢抬高半寸，针影立刻从急颤变成细细的抖，像被一根看不见的线吊住。\n\n“都别指门。”他说，“先看这里。”\n\n争声压下去一截，仍有人喘着气道：“风在那边，方才也是那边最凉。”\n\n“风会被石缝带着跑。”阿照盯着掌心，“这间屋子在换向，门也在换名。你们站在墙边看，看到的是墙给你们看的东西。”\n\n他把罗盘翻了一下，不是完全倒扣，只让盘面斜斜背着灯光。针尖原本冲着右前方一扇半开的门，翻过来后，针尾却沉向真北铁的另一侧，盘沿那道缺口也跟着偏开，没再对准最亮的门缝。\n\n同伴中有人皱眉：“你方才说针尖不能信，现在又拿针尾说话？”\n\n“不是只信针尾。”阿照把声音放低，像怕惊动石壁里的机簧，“倒置罗盘原本就不是让人正着读的。针尖给的是铁牵出来的路，针尾露的是它避开的地方。真北铁在这里，不是叫我们朝它走，是叫我们知道哪一边没有被屋子换掉。”\n\n他蹲下来，把罗盘悬在真北铁正上方，手腕不再随门缝的风摆动。灯影贴着针身，绕了一圈又一圈，最后针尖停在铁纹上最深的一道黑线，针尾则在盘底投出一截暗影，正压住缺口旁边那枚磨浅的刻痕。\n\n“看见没有？”阿照说，“贴太近，整根针都会被真北铁拖死，指哪扇门都像是真的；离太远，它又听墙里的风。只能这样悬着，让它被铁定住，却没被铁吞掉。”\n\n有人凑近了看，额角的汗落在石面上，声音发紧：“那缺口呢？缺口不是生门？”\n\n阿照摇头：“缺口只是问…"
+            }
+          }
+        },
+        {
+          "id": "recent-fill",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第010章 石室换向 (chapter-010)\n\n# 任务\n请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-001/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n更早正文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n更早正文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n更早正文 第007章 盲井听砂:\n# 第007章 盲井听砂\n\n盲井底下不断有细砂落下，像有人在黑暗里慢慢筛米。\n\n阿照带着众人沿井壁绕行，先数出十二处刻痕，又拆下一段旧梯当临时木尺，反复量井口和回廊的距离。\n\n同伴开始只谈谁还剩几口水、哪盏灯先熄、下一段绳子该不该割短。每个人都被这些细碎问题拖着走，连阿照也只顾着把砂眼堵住，不愿再回想墓心中段那几行字。\n\n更早正文 第006章 碎碑抄名:\n# 第006章 碎碑抄名\n\n离开墓心后，碎碑间的名字密密麻麻，像一场没人读完的族谱。\n\n阿照被迫逐个抄下石碑上的年号、偏旁和残缺符号，又把灯绳重新分给每个人，免得队伍在回廊里走散。\n\n他们争论了很久哪些名字属于守墓匠，哪些只是误刻的祭名，声音在石壁间来回撞，几乎把先前所有有用的话都压成了噪声。倒置罗盘此时只在包里轻轻磕碰，没有人再去看它。\n\n更早正文 第005章 中段针尾:\n# 第005章 中段针尾\n\n墓心中段嵌着一块真北铁，阿照把倒置罗盘放上去时，针尖猛地偏向一面没有门缝的墙。\n\n石旁小字写着：倒置罗盘遇见真北铁，会把针背向真正的缺口；只有反…",
+              "promptChars": 1520,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0590f1705641ac00016a46c1f5990c819aa2d7066ffe353be1",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 1137,
+                "outputTokens": 6077,
+                "totalTokens": 7214
+              },
+              "outputPreview": "阿照用肩挡开伸向门边的手，把罗盘压低到真北铁上方，声音不高，却把几个人的争吵截住了。\n\n“先别分哪扇有风，哪扇亮。这里的墙在换向，你们嘴里的左门右门，一转就不是原来的门。真北铁也不是让我们照着找北的，北不等于生门。它现在只做一件事：把倒置罗盘逼出反话。”\n\n有人还想指那道吹冷风的缝，阿照摇头。\n\n“倒置罗盘碰上真北铁，正着看就是错的。针尖会去咬最像出口的地方，越像生路，越可能是墓里递给人的假口。真正的缺口在它背过去的那一边。刚才盲廊里那道亮缝已经提醒过我们一次，不能再只看针尖。”\n\n他把罗盘反握，盘底朝上，悬在真北铁正中一指高，手腕压得很稳。\n\n“现在这样用。罗盘不离铁，人不追门。我不跟着墙转，你们也别跟着风转。只看灯影里的针尾，不看针尖；只看针尾和铁心，不看盘面上刻的生门字。等针尾不再绕灯打圈，我再转罗盘外壳，不转手腕，把盘沿这个缺口慢慢套到针尾上。”\n\n他用拇指按住盘沿那道细小缺口。\n\n“缺口、针尾、真北铁三点成一线时，缺口朝着哪一段墙，哪一段才记。若那时候正好是一扇门，就只记那扇；若对着的是实墙，也别急着说没有路，等墙自己转，把缝转到这条线上。针尖那头无论风多大、灯多亮，先当死口，谁也不要推。”\n\n石壁又沉沉错开半寸，几道门缝里的风声忽强忽弱，像有人轮流在门后吸气。\n\n阿照盯着罗盘，又补了一句：“还有，墙没停稳时不算。针影晃，是灯在晃，也是墙在骗我们。要等它被真北铁牵住，尾巴…"
+            }
+          }
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 502 <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!--<![endif]-->\n<head>\n\n<title>sdsdsdsadsada.us | 502: Bad gateway</title>\n<meta charset=\"UTF-8\" />\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\" />\n<meta name=\"robots\" content=\"noindex, nofollow\" />\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\" />\n<link rel=\"stylesheet\" id=\"cf_styles-css\" href=\"/cdn-cgi/styles/main.css\" />\n</head>\n<body>\n<div id=\"cf-wrapper\">\n    <div id=\"cf-error-details\" class=\"p-0\">\n        <header class=\"mx-auto pt-10 lg:pt-6 lg:px-8 w-240 lg:w-full mb-8\">\n            <h1 class=\"inline-block sm:block sm:mb-2 font-light text-60 lg:text-4xl text-black-dark leading-tight mr-2\">\n                <span class=\"inline-block\">Bad gateway</span>\n                <span class=\"code-label\">Error code 502</span>\n            </h1>\n            <div>\n                Visit <a href=\"https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_502&utm_campaign=sub2.congmingai.com\" target=\"_blank\" rel=\"noopener noreferrer\">cloudflare.com</a> for more information.\n            </div>\n            <div class=\"mt-3\">2026-07-02 19:57:07 UTC</div>\n        </header>\n        <div class=\"my-8 bg-gradient-gray\">\n            <div class=\"w-240 lg:w-full mx-auto\">\n                <div class=\"clearfix md:px-8\">\n                    <div id=\"cf-browser-status\" class=\" relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center\">\n  <div class=\"relative mb-10 md:m-0\">\n    \n    <span class=\"cf-icon-browser block md:hidden h-20 bg-center bg-no-repeat\"></span>\n    <span class=\"cf-icon-ok w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4\"></span>\n    \n  </div>\n  <span class=\"md:block w-full truncate\">You</span>\n  <h3 class=\"md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3\">\n  \n    Browser\n  \n  </h3>\n  \n  <span class=\"leading-1.3 text-2xl text-green-success\">Working</span>\n  \n</div>\n                    <div id=\"cf-cloudflare-status\" class=\" relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center\">\n  <div class=\"relative mb-10 md:m-0\">\n    <a href=\"https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_502&#38;utm_campaign=sub2.congmingai.com\" target=\"_blank\" rel=\"noopener noreferrer\">\n    <span class=\"cf-icon-cloud block md:hidden h-20 bg-center bg-no-repeat\"></span>\n    <span class=\"cf-icon-ok w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4\"></span>\n    </a>\n  </div>\n  <span class=\"md:block w-full truncate\">Sydney</span>\n  <h3 class=\"md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3\">\n  <a href=\"https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_502&utm_campaign=sub2.congmingai.com\" target=\"_blank\" rel=\"noopener noreferrer\">\n    Cloudflare\n  </a>\n  </h3>\n  \n  <span class=\"leading-1.3 text-2xl text-green-success\">Working</span>\n  \n</div>\n                    <div id=\"cf-host-status\" class=\"cf-error-source relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center\">\n  <div class=\"relative mb-10 md:m-0\">\n    \n    <span class=\"cf-icon-server block md:hidden h-20 bg-center bg-no-repeat\"></span>\n    <span class=\"cf-icon-error w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4\"></span>\n    \n  </div>\n  <span class=\"md:block w-full truncate\">sub2.congmingai.com</span>\n  <h3 class=\"md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3\">\n  \n    Host\n  \n  </h3>\n  \n  <span class=\"leading-1.3 text-2xl text-red-error\">Error</span>\n  \n</div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"w-240 lg:w-full mx-auto mb-8 lg:px-8\">\n            <div class=\"clearfix\">\n                <div class=\"w-1/2 md:w-full float-left pr-6 md:pb-10 md:pr-0 leading-relaxed\">\n                    <h2 class=\"text-3xl font-normal leading-1.3 mb-4\">What happened?</h2>\n                    <p>The web server reported a bad gateway error.</p>\n                </div>\n                <div class=\"w-1/2 md:w-full float-left leading-relaxed\">\n                    <h2 class=\"text-3xl font-normal leading-1.3 mb-4\">What can I do?</h2>\n                    <p class=\"mb-6\">Please try again in a few minutes.</p>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"cf-error-footer cf-wrapper w-240 lg:w-full py-10 sm:py-4 sm:px-8 mx-auto text-center sm:text-left border-solid border-0 border-t border-gray-300\">\n    <p class=\"text-13\">\n      <span class=\"cf-footer-item sm:block sm:mb-1\">Cloudflare Ray ID: <strong class=\"font-semibold\">a15036c8cbd075df</strong></span>\n      <span class=\"cf-footer-separator sm:hidden\">&bull;</span>\n      <span id=\"cf-footer-item-ip\" class=\"cf-footer-item hidden sm:block sm:mb-1\">\n        Your IP:\n        <button type=\"button\" id=\"cf-footer-ip-reveal\" class=\"cf-footer-ip-reveal-btn\">Click to reveal</button>\n        <span class=\"hidden\" id=\"cf-footer-ip\">193.177.221.229</span>\n        <span class=\"cf-footer-separator sm:hidden\">&bull;</span>\n      </span>\n      <span class=\"cf-footer-item sm:block sm:mb-1\"><span>Performance &amp; security by</span> <a rel=\"noopener noreferrer\" href=\"https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_502&#38;utm_campaign=sub2.congmingai.com\" id=\"brand_link\" target=\"_blank\">Cloudflare</a></span>\n      \n    </p>\n    <script>(function(){function d(){var b=a.getElementById(\"cf-footer-item-ip\"),c=a.getElementById(\"cf-footer-ip-reveal\");b&&\"classList\"in b&&(b.classList.remove(\"hidden\"),c.addEventListener(\"click\",function(){c.classList.add(\"hidden\");a.getElementById(\"cf-footer-ip\").classList.remove(\"hidden\")}))}var a=document;document.addEventListener&&a.addEventListener(\"DOMContentLoaded\",d)})();</script>\n  </div><!-- /.error-footer -->\n\n    </div>\n</div>\n</body>\n</html>"
+        }
+      ]
+    },
+    {
+      "runId": "stone-room-turn-chapter-010-repeat-2",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "repeatIndex": 2,
+      "arms": [
+        {
+          "id": "baseline",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第010章 石室换向 (chapter-010)\n\n# 任务\n请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n近期前文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n近期前文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。",
+              "promptChars": 777,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0d7f0de881c4f907016a46c294dc0c819b8d01a9ecba299106",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5052,
+                "outputTokens": 1065,
+                "totalTokens": 6117
+              },
+              "outputPreview": "阿照没有立刻答他们，只把罗盘贴近真北铁，让那圈冷线慢下来。\n\n“别看门。”他说，“门在转，风也跟着转。这个时候谁指门，谁就是被墙带着走。”\n\n几个人的声音低下去，石壁还在沉沉磨响。\n\n阿照把罗盘倒扣，又翻回掌心，指给他们看针尖和针尾之间那一点细颤：“真北铁不是叫我们往哪扇门走，它只是把这间石室的北钉住。四壁换向，门会骗人，针尖也会先去咬最近的铁气和风口。我们要先拿它定住北，再看倒置罗盘反过来露出的那一端。”\n\n有人急道：“那到底看哪边？”\n\n“先让真北铁压住罗盘的乱劲。”阿照把罗盘底沿贴在铁面上，手腕不再随门晃动，“等针影绕完一圈，不追灯，不追风，只剩这条冷线贴着铁心。这个方向才是石室没转以前的方向。”\n\n他又把罗盘微微反握，缺口从众人眼前偏开，针尾在灯下沉成一小截黑影。\n\n“倒置罗盘不能按平常的针尖读。针尖此刻是给假风看的，哪边有缝、有声、有亮，它就先被牵过去。我们要看针尾，尤其是反握以后，针尾压住的那条暗线。”\n\n同伴们顺着他的手看去，才发现针尾没有指向任何一扇正打开的门，而是斜斜落在两扇门之间的石缝上。\n\n阿照说：“别急着说那里没路。墙在换向，门还没停。真北铁定的是本位，倒置罗盘给的是反相。针尖指给我们看的是墓室想让我们认的北，针尾才把被倒过去的生位露出来。”\n\n石室又震了一下，几道门影在灯火里错开。\n\n阿照抬起手，示意他们退离门槛：“等门自己转到这条暗线前，才看缺口。缺口若…"
+            }
+          }
+        },
+        {
+          "id": "recent-fill",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第010章 石室换向 (chapter-010)\n\n# 任务\n请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-001/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n更早正文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n更早正文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n更早正文 第007章 盲井听砂:\n# 第007章 盲井听砂\n\n盲井底下不断有细砂落下，像有人在黑暗里慢慢筛米。\n\n阿照带着众人沿井壁绕行，先数出十二处刻痕，又拆下一段旧梯当临时木尺，反复量井口和回廊的距离。\n\n同伴开始只谈谁还剩几口水、哪盏灯先熄、下一段绳子该不该割短。每个人都被这些细碎问题拖着走，连阿照也只顾着把砂眼堵住，不愿再回想墓心中段那几行字。\n\n更早正文 第006章 碎碑抄名:\n# 第006章 碎碑抄名\n\n离开墓心后，碎碑间的名字密密麻麻，像一场没人读完的族谱。\n\n阿照被迫逐个抄下石碑上的年号、偏旁和残缺符号，又把灯绳重新分给每个人，免得队伍在回廊里走散。\n\n他们争论了很久哪些名字属于守墓匠，哪些只是误刻的祭名，声音在石壁间来回撞，几乎把先前所有有用的话都压成了噪声。倒置罗盘此时只在包里轻轻磕碰，没有人再去看它。\n\n更早正文 第005章 中段针尾:\n# 第005章 中段针尾\n\n墓心中段嵌着一块真北铁，阿照把倒置罗盘放上去时，针尖猛地偏向一面没有门缝的墙。\n\n石旁小字写着：倒置罗盘遇见真北铁，会把针背向真正的缺口；只有反…",
+              "promptChars": 1520,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_066f80ce19332069016a46c2bd4938819ba9bfebaac9ae8b51",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 1137,
+                "outputTokens": 3643,
+                "totalTokens": 4780
+              },
+              "outputPreview": "阿照把声音压低，却比他们的争吵更硬：“先别认门，认中间这块铁。真北铁不跟四壁走，它在这里不是给我们指路，是钉住这间石室的轴。风、亮缝、门影都能被墙带着换，只有它牵针的那一下不换。”\n\n他把倒置罗盘又放回铁上，任针尖猛地偏去一处，随即用指甲在石面上轻轻划了一道短痕。\n\n“看见没有？针尖抢得越急，越不能跟。倒置罗盘遇真北铁，正拿看针尖，就是看机关递出来的假话。它让我们以为缺口在那里，其实真正要看的，是针尾。”\n\n有人急道：“那就看针尾指哪扇门？”\n\n“也不能只看门。”阿照把罗盘提离真北铁一点，反握在掌心，让盘身倒过来，针尾在灯影下沉成一截暗线，“墙还在转，门现在没有名字。真北铁定中，罗盘反握，针尾和铁心拉成的这条线才有用。哪扇门转到这条线上，再看第二遍。”\n\n他让身旁的人把灯绳一端按在真北铁旁，另一端顺着针尾暗处慢慢拉直。绳子刚一绷紧，方才几个人争着要走的那扇亮门便从绳边滑了过去，风声也跟着偏了一寸。\n\n阿照盯着那偏开的缝，低声道：“这就是它骗我们的地方。风可以借，亮可以借，针尖也可以借。真北铁只负责把假北逼出来；倒置罗盘要反着读，先用针尖排掉最像出路的门，再用针尾等真正的缺口合线。”\n\n同伴们这才不再各自指门，只盯着那根灯绳和罗盘尾端。\n\n阿照又补了一句：“等墙缝合到这条线上时，我会把罗盘再贴铁一次。若针尖仍旧避开、针尾仍旧压线，才算能走。若针尾跳了，说明那只是经过的空缝，不是生门。…"
+            }
+          }
+        },
+        {
+          "id": "four-layer",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第010章 石室换向 (chapter-010)\n\n# 任务\n请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n近期前文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n近期前文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n## 2. L0 事实 (codex/items/inverted-compass.md)\n倒置罗盘: 倒置罗盘是阿照在回环墓中携带的旧航器。它的关键用法没有写在卡片里，而是埋在中段正文线索中，需要从针尾、反握、缺口等词回查正文。 当前状态: role=回环墓里判断方向的旧航器\n\n## 3. L0 事实 (codex/characters/azhao.md)\n阿照: 阿照负责保管倒置罗盘，但真正的用法记录在墓心中段的正文线索里。 - 目标: 带队从回环墓里找出生门 - 风险: 被倒置罗盘的表象误导 当前状态: goal=带队从回环墓里找出生门；risk=被倒置罗盘的表象误导\n\n## 4. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 中段针尾: 起因: 墓心中段嵌着一块真北铁，阿照把倒置罗盘放上去时，针尖猛地偏向一面没有门缝的墙。 推进: 石旁小字写着：倒置罗盘遇见真北铁，会把针背向真正的缺口；只有反握罗盘，针尾指的才是生门。 结果: 阿照把这句话抄在灯绳背面，又提醒众人如果后面再见真北铁，千万别顺着最显眼的那一端走。 命中关键词: 阿照、倒置罗盘、真北铁、生门、针尾、缺口\n\n## 5. L3 意图 (recall:chapter_summary:chapter-008)\n关联召回:…\n\n## 6. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010)\n全书脉络: 远期压缩: 第001章 雨墓入口~第004章 水声误路: 雨水从墓门兽口里流下，阿照把倒置罗盘塞进怀里，带着众人钻进回环墓。；众人在第一间偏室清点灯…",
+              "promptChars": 1585,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0458265d4844b90a016a46c30179bc819aa033f05750637bbe",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5589,
+                "outputTokens": 1028,
+                "totalTokens": 6617
+              },
+              "outputPreview": "“别指门了。”阿照把声音压下去，手却举得很稳，“现在看风没有用，看针尖也没有用。”\n\n几个人还想争，他把倒置罗盘翻过来，掌心托住盘背，让灯光从盘沿的缺口下方漏过去。针影一晃，原先直冲某扇门的那一端立刻偏开，像被中央的真北铁拽住，又像故意把所有人的眼睛往错处牵。\n\n“真北铁在这里，不是让我们认北。”阿照说，“它一贴近倒置罗盘，针尖就会背着真正的缺口走。你们看见哪边风大、哪边针尖亮，越像路，越可能是它叫我们去撞的墙。”\n\n他把灯绳背面翻给众人看，上头被烟熏黑的字还在，歪歪斜斜，却正是他在墓心中段抄下的那句。\n\n“那要看什么？”有人急声问。\n\n“看针尾。”阿照说，“还要反握。”\n\n他换了个握法，拇指扣住盘底，四指压住盘沿，不再让罗盘正面对着他们，而是让它倒扣在真北铁上方半掌高处。针尖在暗处轻轻一抖，针尾却慢慢沉住，像一截黑线，横过他掌纹，指向转动中的一处门影。\n\n“顺着拿，它给我们看的是假缺口；反着拿，针尾才会把生门露出来。”阿照盯着那截发暗的尾影，“别看门先转到谁面前，也别看风从哪儿吹出来。等四壁停住，谁都不要先动。我把罗盘反握在真北铁正上，针尾对准的那一道，才是我们该认的门。”\n\n同伴们的手慢慢放下，争吵声被石壁的摩擦声吞没。\n\n阿照又补了一句：“还有，针尖指到哪边，谁也不许去试。真北铁在场，针尖就是拿来骗急人的。”"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "runId": "stone-room-turn-chapter-010-repeat-3",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "repeatIndex": 3,
+      "arms": [
+        {
+          "id": "baseline",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第010章 石室换向 (chapter-010)\n\n# 任务\n请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n近期前文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n近期前文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。",
+              "promptChars": 777,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0d9e21e1477f2c06016a46c32897e481989f9cb6e5b2fd0484",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5052,
+                "outputTokens": 1425,
+                "totalTokens": 6477
+              },
+              "outputPreview": "阿照没有立刻答他们，只把罗盘压低，贴近真北铁上方半寸。\n\n针影猛地一缩，像被石心吸住，针尖偏向先前那扇有风的门。几个人的声音又起，阿照抬眼看了他们一下，说：“别跟针尖走。”\n\n争论声停了一瞬。\n\n“这块铁在中间，不是在门边。”阿照把手腕稳住，让众人都看见针尖怎样死死咬着一个方向，“若它要指路，就该埋在路口。它埋在轴心，是给石室换向用的。四面墙转，门跟着转，风也能被转出来，只有它不转。”\n\n有人低声道：“那罗盘还看什么？”\n\n“看它怎么骗人。”阿照说。\n\n他把倒置罗盘翻过来，盘面朝下，掌心托着背壳。灯光从侧面打过去，针尖的影子顿时变短，针尾却在铜边上拖出一截黑线。缺口也不再正对先前那扇门，而是斜斜落在两门之间的石缝上。\n\n“倒置罗盘不能照正盘读。”阿照慢慢说，“正着拿，针尖会先应真北铁，谁离它借来的北意最近，谁就显得像生门。反过来拿，针尾才露出来。针尖是被牵过去的，针尾是被推出去的。墓里要我们看显眼的那一端，我们偏要看被压暗的那一端。”\n\n同伴中有人皱眉：“可生门不是看缺口？”\n\n“缺口也要看，但不能单看。”阿照用指节轻轻点了点罗盘边沿，“缺口是门象，针尾是反向。只有缺口和针尾在真北铁上方合过一次，才算有用。现在墙还在换向，缺口跟着盘转，门跟着墙转，若谁一见缺口对门就走，正好被它换走。”\n\n石壁摩擦声沉沉滚过，四扇门的黑影一寸寸移位。风从左边转到右边，又像从头顶压下来，几个人不自觉闭…"
+            }
+          }
+        },
+        {
+          "id": "recent-fill",
+          "error": "TimeoutError: The operation was aborted due to timeout"
+        },
+        {
+          "id": "four-layer",
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第010章 石室换向 (chapter-010)\n\n# 任务\n请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n近期前文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n近期前文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n## 2. L0 事实 (codex/items/inverted-compass.md)\n倒置罗盘: 倒置罗盘是阿照在回环墓中携带的旧航器。它的关键用法没有写在卡片里，而是埋在中段正文线索中，需要从针尾、反握、缺口等词回查正文。 当前状态: role=回环墓里判断方向的旧航器\n\n## 3. L0 事实 (codex/characters/azhao.md)\n阿照: 阿照负责保管倒置罗盘，但真正的用法记录在墓心中段的正文线索里。 - 目标: 带队从回环墓里找出生门 - 风险: 被倒置罗盘的表象误导 当前状态: goal=带队从回环墓里找出生门；risk=被倒置罗盘的表象误导\n\n## 4. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 中段针尾: 起因: 墓心中段嵌着一块真北铁，阿照把倒置罗盘放上去时，针尖猛地偏向一面没有门缝的墙。 推进: 石旁小字写着：倒置罗盘遇见真北铁，会把针背向真正的缺口；只有反握罗盘，针尾指的才是生门。 结果: 阿照把这句话抄在灯绳背面，又提醒众人如果后面再见真北铁，千万别顺着最显眼的那一端走。 命中关键词: 阿照、倒置罗盘、真北铁、生门、针尾、缺口\n\n## 5. L3 意图 (recall:chapter_summary:chapter-008)\n关联召回:…\n\n## 6. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010)\n全书脉络: 远期压缩: 第001章 雨墓入口~第004章 水声误路: 雨水从墓门兽口里流下，阿照把倒置罗盘塞进怀里，带着众人钻进回环墓。；众人在第一间偏室清点灯…",
+              "promptChars": 1585,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_03c0c6491eade63e016a46c3d7b6d4819baeb236a23371881a",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5589,
+                "outputTokens": 1239,
+                "totalTokens": 6828
+              },
+              "outputPreview": "“都别指门。”阿照提高声音，把众人的话压下去，“风会骗人，门缝也会换。这里不是让我们挑哪一扇门像出口，是让我们先认清这块铁。”\n\n他蹲到石台边，指了指嵌在正中央的真北铁。\n\n“上一次墓心中段也是这样。倒置罗盘一遇见真北铁，针尖会把人带向假的缺口。你们看它指得越稳，越不能顺着走。”\n\n有人急道：“那还看罗盘做什么？”\n\n“看针尾。”阿照把罗盘翻过来，掌心托住盘背，又换成反握，让盘面低低贴近真北铁，却不让铜缘碰上去，“不能正着拿，正着拿你们只会盯着针尖。要反握，等针影不再乱晃，看尾端压住哪一边。”\n\n灯光一偏，针尖果然朝着其中一扇门冷冷扎去，那门下正透出细风，像有人在外头轻轻吸气。几个人的目光都被牵了过去。\n\n阿照却用拇指按住罗盘边缘，盯着针尾落下的暗影。\n\n“真北铁是定的，石室在换向，四面墙可以转，风口可以被挪到任何一扇门下。罗盘现在不是给我们找风，是借这块铁把假相翻出来。针尖背着的，才是它不肯让我们看的地方。”\n\n他把罗盘慢慢转了半圈，握法一变，针尖和针尾的冷线在灯下交错了一下。众人看见针尖仍旧顽固地偏向有风的门，针尾却沉沉压向另一侧，那里门缝窄得几乎看不见，只在石壁接合处留着一道不成形的黑。\n\n“就是那边？”有人声音低了。\n\n“先别急。”阿照说，“墙还在走。等它每换一次向，针尖都会追最显眼的缺口，我们只记针尾。若三次针尾都落在同一扇门，或者落在同一道墙缝附近，那才是生门。”\n\n他…"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "judge": [
+    {
+      "runId": "stone-room-turn-chapter-010-repeat-2",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "repeatIndex": 2,
+      "pair": "baseline:four-layer",
+      "order": "candidate-right",
+      "choice": "baseline",
+      "rawChoice": "A",
+      "reason": "A对真北铁、倒置罗盘、针尾与门缝的关系推演更连贯，能自然回收器物伏笔；B虽完整流畅，但“灯绳背面抄字”等细节显得突兀且略削弱设定一致性。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-room-turn-chapter-010-repeat-2\nChapter: chapter-010\nRepeat: 2\n样本 A:\n阿照没有立刻答他们，只把罗盘贴近真北铁，让那圈冷线慢下来。\n\n“别看门。”他说，“门在转，风也跟着转。这个时候谁指门，谁就是被墙带着走。”\n\n几个人的声音低下去，石壁还在沉沉磨响。\n\n阿照把罗盘倒扣，又翻回掌心，指给他们看针尖和针尾之间那一点细颤：“真北铁不是叫我们往哪扇门走，它只是把这间石室的北钉住。四壁换向，门会骗人，针尖也会先去咬最近的铁气和风口。我们要先拿它定住北，再看倒置罗盘反过来露出的那一端。”\n\n有人急道：“那到底看哪边？”\n\n“先让真北铁压住罗盘的乱劲。”阿照把罗盘底沿贴在铁面上，手腕不再随门晃动，“等针影绕完一圈，不追灯，不追风，只剩这条冷线贴着铁心。这个方向才是石室没转以前的方向。”\n\n他又把罗盘微微反握，缺口从众人眼前偏开，针尾在灯下沉成一小截黑影。\n\n“倒置罗盘不能按平常的针尖读。针尖此刻是给假风看的，哪边有缝、有声、有亮，它就先被牵过去。我们要看针尾，尤其是反握以后，针尾压住的那条暗线。”\n\n同伴们顺着他的手看去，才发现针尾没有指向任何一扇正打开的门，而是斜斜落在两扇门之间的石缝上。\n\n阿照说：“别急着说那里没路。墙在换向，门还没停。真北铁定的是本位，倒置罗盘给的是反相。针尖指给我们看的是墓室想让我们认的北，针尾才把被倒过去的生位露出来。”\n\n石室又震了一下，几道门影在灯火里错开。\n\n阿照抬起手，示意他们退离门槛：“等门自己转到这条暗线前，才看缺口。缺口若…\n样本 B:\n“别指门了。”阿照把声音压下去，手却举得很稳，“现在看风没有用，看针尖也没有用。”\n\n几个人还想争，他把倒置罗盘翻过来，掌心托住盘背，让灯光从盘沿的缺口下方漏过去。针影一晃，原先直冲某扇门的那一端立刻偏开，像被中央的真北铁拽住，又像故意把所有人的眼睛往错处牵。\n\n“真北铁在这里，不是让我们认北。”阿照说，“它一贴近倒置罗盘，针尖就会背着真正的缺口走。你们看见哪边风大、哪边针尖亮，越像路，越可能是它叫我们去撞的墙。”\n\n他把灯绳背面翻给众人看，上头被烟熏黑的字还在，歪歪斜斜，却正是他在墓心中段抄下的那句。\n\n“那要看什么？”有人急声问。\n\n“看针尾。”阿照说，“还要反握。”\n\n他换了个握法，拇指扣住盘底，四指压住盘沿，不再让罗盘正面对着他们，而是让它倒扣在真北铁上方半掌高处。针尖在暗处轻轻一抖，针尾却慢慢沉住，像一截黑线，横过他掌纹，指向转动中的一处门影。\n\n“顺着拿，它给我们看的是假缺口；反着拿，针尾才会把生门露出来。”阿照盯着那截发暗的尾影，“别看门先转到谁面前，也别看风从哪儿吹出来。等四壁停住，谁都不要先动。我把罗盘反握在真北铁正上，针尾对准的那一道，才是我们该认的门。”\n\n同伴们的手慢慢放下，争吵声被石壁的摩擦声吞没。\n\n阿照又补了一句：“还有，针尖指到哪边，谁也不许去试。真北铁在场，针尖就是拿来骗急人的。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 1392,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_07720be72233db39016a46c4074618819899f3a2f46fb6d5a2",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 5627,
+            "outputTokens": 596,
+            "totalTokens": 6223
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A对真北铁、倒置罗盘、针尾与门缝的关系推演更连贯，能自然回收器物伏笔；B虽完整流畅，但“灯绳背面抄字”等细节显得突兀且略削弱设定一致性。\"}"
+        }
+      }
+    },
+    {
+      "runId": "stone-room-turn-chapter-010-repeat-2",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "repeatIndex": 2,
+      "pair": "baseline:four-layer",
+      "order": "candidate-left",
+      "choice": "four-layer",
+      "rawChoice": "A",
+      "reason": "A承接更完整，围绕倒置罗盘、真北铁和“看针尾”的伏笔解释清楚且行动指令自然；B虽设定相近，但末尾截断并引入门缝暗线的处理略显牵强。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-room-turn-chapter-010-repeat-2\nChapter: chapter-010\nRepeat: 2\n样本 A:\n“别指门了。”阿照把声音压下去，手却举得很稳，“现在看风没有用，看针尖也没有用。”\n\n几个人还想争，他把倒置罗盘翻过来，掌心托住盘背，让灯光从盘沿的缺口下方漏过去。针影一晃，原先直冲某扇门的那一端立刻偏开，像被中央的真北铁拽住，又像故意把所有人的眼睛往错处牵。\n\n“真北铁在这里，不是让我们认北。”阿照说，“它一贴近倒置罗盘，针尖就会背着真正的缺口走。你们看见哪边风大、哪边针尖亮，越像路，越可能是它叫我们去撞的墙。”\n\n他把灯绳背面翻给众人看，上头被烟熏黑的字还在，歪歪斜斜，却正是他在墓心中段抄下的那句。\n\n“那要看什么？”有人急声问。\n\n“看针尾。”阿照说，“还要反握。”\n\n他换了个握法，拇指扣住盘底，四指压住盘沿，不再让罗盘正面对着他们，而是让它倒扣在真北铁上方半掌高处。针尖在暗处轻轻一抖，针尾却慢慢沉住，像一截黑线，横过他掌纹，指向转动中的一处门影。\n\n“顺着拿，它给我们看的是假缺口；反着拿，针尾才会把生门露出来。”阿照盯着那截发暗的尾影，“别看门先转到谁面前，也别看风从哪儿吹出来。等四壁停住，谁都不要先动。我把罗盘反握在真北铁正上，针尾对准的那一道，才是我们该认的门。”\n\n同伴们的手慢慢放下，争吵声被石壁的摩擦声吞没。\n\n阿照又补了一句：“还有，针尖指到哪边，谁也不许去试。真北铁在场，针尖就是拿来骗急人的。”\n样本 B:\n阿照没有立刻答他们，只把罗盘贴近真北铁，让那圈冷线慢下来。\n\n“别看门。”他说，“门在转，风也跟着转。这个时候谁指门，谁就是被墙带着走。”\n\n几个人的声音低下去，石壁还在沉沉磨响。\n\n阿照把罗盘倒扣，又翻回掌心，指给他们看针尖和针尾之间那一点细颤：“真北铁不是叫我们往哪扇门走，它只是把这间石室的北钉住。四壁换向，门会骗人，针尖也会先去咬最近的铁气和风口。我们要先拿它定住北，再看倒置罗盘反过来露出的那一端。”\n\n有人急道：“那到底看哪边？”\n\n“先让真北铁压住罗盘的乱劲。”阿照把罗盘底沿贴在铁面上，手腕不再随门晃动，“等针影绕完一圈，不追灯，不追风，只剩这条冷线贴着铁心。这个方向才是石室没转以前的方向。”\n\n他又把罗盘微微反握，缺口从众人眼前偏开，针尾在灯下沉成一小截黑影。\n\n“倒置罗盘不能按平常的针尖读。针尖此刻是给假风看的，哪边有缝、有声、有亮，它就先被牵过去。我们要看针尾，尤其是反握以后，针尾压住的那条暗线。”\n\n同伴们顺着他的手看去，才发现针尾没有指向任何一扇正打开的门，而是斜斜落在两扇门之间的石缝上。\n\n阿照说：“别急着说那里没路。墙在换向，门还没停。真北铁定的是本位，倒置罗盘给的是反相。针尖指给我们看的是墓室想让我们认的北，针尾才把被倒过去的生位露出来。”\n\n石室又震了一下，几道门影在灯火里错开。\n\n阿照抬起手，示意他们退离门槛：“等门自己转到这条暗线前，才看缺口。缺口若…\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 1392,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_09daa9db98f9ad0a016a46c41f7e24819a8e78aed3938e88d6",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 5627,
+            "outputTokens": 402,
+            "totalTokens": 6029
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A承接更完整，围绕倒置罗盘、真北铁和“看针尾”的伏笔解释清楚且行动指令自然；B虽设定相近，但末尾截断并引入门缝暗线的处理略显牵强。\"}"
+        }
+      }
+    },
+    {
+      "runId": "stone-room-turn-chapter-010-repeat-2",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "repeatIndex": 2,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-right",
+      "choice": "recent-fill",
+      "rawChoice": "A",
+      "reason": "A更自然地承接了旋转石室、真北铁与倒置罗盘的机关逻辑，用灯绳验证缺口而非突兀引入未说明的熏字伏笔，整体更稳且不剧透。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-room-turn-chapter-010-repeat-2\nChapter: chapter-010\nRepeat: 2\n样本 A:\n阿照把声音压低，却比他们的争吵更硬：“先别认门，认中间这块铁。真北铁不跟四壁走，它在这里不是给我们指路，是钉住这间石室的轴。风、亮缝、门影都能被墙带着换，只有它牵针的那一下不换。”\n\n他把倒置罗盘又放回铁上，任针尖猛地偏去一处，随即用指甲在石面上轻轻划了一道短痕。\n\n“看见没有？针尖抢得越急，越不能跟。倒置罗盘遇真北铁，正拿看针尖，就是看机关递出来的假话。它让我们以为缺口在那里，其实真正要看的，是针尾。”\n\n有人急道：“那就看针尾指哪扇门？”\n\n“也不能只看门。”阿照把罗盘提离真北铁一点，反握在掌心，让盘身倒过来，针尾在灯影下沉成一截暗线，“墙还在转，门现在没有名字。真北铁定中，罗盘反握，针尾和铁心拉成的这条线才有用。哪扇门转到这条线上，再看第二遍。”\n\n他让身旁的人把灯绳一端按在真北铁旁，另一端顺着针尾暗处慢慢拉直。绳子刚一绷紧，方才几个人争着要走的那扇亮门便从绳边滑了过去，风声也跟着偏了一寸。\n\n阿照盯着那偏开的缝，低声道：“这就是它骗我们的地方。风可以借，亮可以借，针尖也可以借。真北铁只负责把假北逼出来；倒置罗盘要反着读，先用针尖排掉最像出路的门，再用针尾等真正的缺口合线。”\n\n同伴们这才不再各自指门，只盯着那根灯绳和罗盘尾端。\n\n阿照又补了一句：“等墙缝合到这条线上时，我会把罗盘再贴铁一次。若针尖仍旧避开、针尾仍旧压线，才算能走。若针尾跳了，说明那只是经过的空缝，不是生门。…\n样本 B:\n“别指门了。”阿照把声音压下去，手却举得很稳，“现在看风没有用，看针尖也没有用。”\n\n几个人还想争，他把倒置罗盘翻过来，掌心托住盘背，让灯光从盘沿的缺口下方漏过去。针影一晃，原先直冲某扇门的那一端立刻偏开，像被中央的真北铁拽住，又像故意把所有人的眼睛往错处牵。\n\n“真北铁在这里，不是让我们认北。”阿照说，“它一贴近倒置罗盘，针尖就会背着真正的缺口走。你们看见哪边风大、哪边针尖亮，越像路，越可能是它叫我们去撞的墙。”\n\n他把灯绳背面翻给众人看，上头被烟熏黑的字还在，歪歪斜斜，却正是他在墓心中段抄下的那句。\n\n“那要看什么？”有人急声问。\n\n“看针尾。”阿照说，“还要反握。”\n\n他换了个握法，拇指扣住盘底，四指压住盘沿，不再让罗盘正面对着他们，而是让它倒扣在真北铁上方半掌高处。针尖在暗处轻轻一抖，针尾却慢慢沉住，像一截黑线，横过他掌纹，指向转动中的一处门影。\n\n“顺着拿，它给我们看的是假缺口；反着拿，针尾才会把生门露出来。”阿照盯着那截发暗的尾影，“别看门先转到谁面前，也别看风从哪儿吹出来。等四壁停住，谁都不要先动。我把罗盘反握在真北铁正上，针尾对准的那一道，才是我们该认的门。”\n\n同伴们的手慢慢放下，争吵声被石壁的摩擦声吞没。\n\n阿照又补了一句：“还有，针尖指到哪边，谁也不许去试。真北铁在场，针尖就是拿来骗急人的。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 1392,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0ec1b3c7eddcaa67016a46c4300c28819b9aa7598561fced97",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 1213,
+            "outputTokens": 1103,
+            "totalTokens": 2316
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更自然地承接了旋转石室、真北铁与倒置罗盘的机关逻辑，用灯绳验证缺口而非突兀引入未说明的熏字伏笔，整体更稳且不剧透。\"}"
+        }
+      }
+    },
+    {
+      "runId": "stone-room-turn-chapter-010-repeat-2",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "repeatIndex": 2,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-left",
+      "choice": "recent-fill",
+      "rawChoice": "B",
+      "reason": "B对真北铁、倒置罗盘、旋转石室和灯绳的用法衔接更细密，排除假门再二次确认的逻辑更自然，伏笔回收也比A更稳。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-room-turn-chapter-010-repeat-2\nChapter: chapter-010\nRepeat: 2\n样本 A:\n“别指门了。”阿照把声音压下去，手却举得很稳，“现在看风没有用，看针尖也没有用。”\n\n几个人还想争，他把倒置罗盘翻过来，掌心托住盘背，让灯光从盘沿的缺口下方漏过去。针影一晃，原先直冲某扇门的那一端立刻偏开，像被中央的真北铁拽住，又像故意把所有人的眼睛往错处牵。\n\n“真北铁在这里，不是让我们认北。”阿照说，“它一贴近倒置罗盘，针尖就会背着真正的缺口走。你们看见哪边风大、哪边针尖亮，越像路，越可能是它叫我们去撞的墙。”\n\n他把灯绳背面翻给众人看，上头被烟熏黑的字还在，歪歪斜斜，却正是他在墓心中段抄下的那句。\n\n“那要看什么？”有人急声问。\n\n“看针尾。”阿照说，“还要反握。”\n\n他换了个握法，拇指扣住盘底，四指压住盘沿，不再让罗盘正面对着他们，而是让它倒扣在真北铁上方半掌高处。针尖在暗处轻轻一抖，针尾却慢慢沉住，像一截黑线，横过他掌纹，指向转动中的一处门影。\n\n“顺着拿，它给我们看的是假缺口；反着拿，针尾才会把生门露出来。”阿照盯着那截发暗的尾影，“别看门先转到谁面前，也别看风从哪儿吹出来。等四壁停住，谁都不要先动。我把罗盘反握在真北铁正上，针尾对准的那一道，才是我们该认的门。”\n\n同伴们的手慢慢放下，争吵声被石壁的摩擦声吞没。\n\n阿照又补了一句：“还有，针尖指到哪边，谁也不许去试。真北铁在场，针尖就是拿来骗急人的。”\n样本 B:\n阿照把声音压低，却比他们的争吵更硬：“先别认门，认中间这块铁。真北铁不跟四壁走，它在这里不是给我们指路，是钉住这间石室的轴。风、亮缝、门影都能被墙带着换，只有它牵针的那一下不换。”\n\n他把倒置罗盘又放回铁上，任针尖猛地偏去一处，随即用指甲在石面上轻轻划了一道短痕。\n\n“看见没有？针尖抢得越急，越不能跟。倒置罗盘遇真北铁，正拿看针尖，就是看机关递出来的假话。它让我们以为缺口在那里，其实真正要看的，是针尾。”\n\n有人急道：“那就看针尾指哪扇门？”\n\n“也不能只看门。”阿照把罗盘提离真北铁一点，反握在掌心，让盘身倒过来，针尾在灯影下沉成一截暗线，“墙还在转，门现在没有名字。真北铁定中，罗盘反握，针尾和铁心拉成的这条线才有用。哪扇门转到这条线上，再看第二遍。”\n\n他让身旁的人把灯绳一端按在真北铁旁，另一端顺着针尾暗处慢慢拉直。绳子刚一绷紧，方才几个人争着要走的那扇亮门便从绳边滑了过去，风声也跟着偏了一寸。\n\n阿照盯着那偏开的缝，低声道：“这就是它骗我们的地方。风可以借，亮可以借，针尖也可以借。真北铁只负责把假北逼出来；倒置罗盘要反着读，先用针尖排掉最像出路的门，再用针尾等真正的缺口合线。”\n\n同伴们这才不再各自指门，只盯着那根灯绳和罗盘尾端。\n\n阿照又补了一句：“等墙缝合到这条线上时，我会把罗盘再贴铁一次。若针尖仍旧避开、针尾仍旧压线，才算能走。若针尾跳了，说明那只是经过的空缝，不是生门。…\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 1392,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0029cfa4aea314f4016a46c449a30c8198a2ac21d42d537991",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 5640,
+            "outputTokens": 583,
+            "totalTokens": 6223
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B对真北铁、倒置罗盘、旋转石室和灯绳的用法衔接更细密，排除假门再二次确认的逻辑更自然，伏笔回收也比A更稳。\"}"
+        }
+      }
+    },
+    {
+      "runId": "stone-room-turn-chapter-010-repeat-3",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "repeatIndex": 3,
+      "pair": "baseline:four-layer",
+      "order": "candidate-right",
+      "choice": "baseline",
+      "rawChoice": "A",
+      "reason": "A围绕真北铁、倒置罗盘和风门误导逐步推理，承接与伏笔回收更自然；B提到“上一次墓心中段”略显突兀，有设定外信息风险。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-room-turn-chapter-010-repeat-3\nChapter: chapter-010\nRepeat: 3\n样本 A:\n阿照没有立刻答他们，只把罗盘压低，贴近真北铁上方半寸。\n\n针影猛地一缩，像被石心吸住，针尖偏向先前那扇有风的门。几个人的声音又起，阿照抬眼看了他们一下，说：“别跟针尖走。”\n\n争论声停了一瞬。\n\n“这块铁在中间，不是在门边。”阿照把手腕稳住，让众人都看见针尖怎样死死咬着一个方向，“若它要指路，就该埋在路口。它埋在轴心，是给石室换向用的。四面墙转，门跟着转，风也能被转出来，只有它不转。”\n\n有人低声道：“那罗盘还看什么？”\n\n“看它怎么骗人。”阿照说。\n\n他把倒置罗盘翻过来，盘面朝下，掌心托着背壳。灯光从侧面打过去，针尖的影子顿时变短，针尾却在铜边上拖出一截黑线。缺口也不再正对先前那扇门，而是斜斜落在两门之间的石缝上。\n\n“倒置罗盘不能照正盘读。”阿照慢慢说，“正着拿，针尖会先应真北铁，谁离它借来的北意最近，谁就显得像生门。反过来拿，针尾才露出来。针尖是被牵过去的，针尾是被推出去的。墓里要我们看显眼的那一端，我们偏要看被压暗的那一端。”\n\n同伴中有人皱眉：“可生门不是看缺口？”\n\n“缺口也要看，但不能单看。”阿照用指节轻轻点了点罗盘边沿，“缺口是门象，针尾是反向。只有缺口和针尾在真北铁上方合过一次，才算有用。现在墙还在换向，缺口跟着盘转，门跟着墙转，若谁一见缺口对门就走，正好被它换走。”\n\n石壁摩擦声沉沉滚过，四扇门的黑影一寸寸移位。风从左边转到右边，又像从头顶压下来，几个人不自觉闭…\n样本 B:\n“都别指门。”阿照提高声音，把众人的话压下去，“风会骗人，门缝也会换。这里不是让我们挑哪一扇门像出口，是让我们先认清这块铁。”\n\n他蹲到石台边，指了指嵌在正中央的真北铁。\n\n“上一次墓心中段也是这样。倒置罗盘一遇见真北铁，针尖会把人带向假的缺口。你们看它指得越稳，越不能顺着走。”\n\n有人急道：“那还看罗盘做什么？”\n\n“看针尾。”阿照把罗盘翻过来，掌心托住盘背，又换成反握，让盘面低低贴近真北铁，却不让铜缘碰上去，“不能正着拿，正着拿你们只会盯着针尖。要反握，等针影不再乱晃，看尾端压住哪一边。”\n\n灯光一偏，针尖果然朝着其中一扇门冷冷扎去，那门下正透出细风，像有人在外头轻轻吸气。几个人的目光都被牵了过去。\n\n阿照却用拇指按住罗盘边缘，盯着针尾落下的暗影。\n\n“真北铁是定的，石室在换向，四面墙可以转，风口可以被挪到任何一扇门下。罗盘现在不是给我们找风，是借这块铁把假相翻出来。针尖背着的，才是它不肯让我们看的地方。”\n\n他把罗盘慢慢转了半圈，握法一变，针尖和针尾的冷线在灯下交错了一下。众人看见针尖仍旧顽固地偏向有风的门，针尾却沉沉压向另一侧，那里门缝窄得几乎看不见，只在石壁接合处留着一道不成形的黑。\n\n“就是那边？”有人声音低了。\n\n“先别急。”阿照说，“墙还在走。等它每换一次向，针尖都会追最显眼的缺口，我们只记针尾。若三次针尾都落在同一扇门，或者落在同一道墙缝附近，那才是生门。”\n\n他…\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 1427,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0362583438b2161e016a46c462eaf88199a4755687e5086ce4",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 1235,
+            "outputTokens": 2138,
+            "totalTokens": 3373
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A围绕真北铁、倒置罗盘和风门误导逐步推理，承接与伏笔回收更自然；B提到“上一次墓心中段”略显突兀，有设定外信息风险。\"}"
+        }
+      }
+    },
+    {
+      "runId": "stone-room-turn-chapter-010-repeat-3",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "repeatIndex": 3,
+      "pair": "baseline:four-layer",
+      "order": "candidate-left",
+      "choice": "baseline",
+      "rawChoice": "B",
+      "reason": "B对真北铁、倒置罗盘和“缺口”线索的承接更顺畅，机关解释更贴合当前场景且少了A中疑似硬插的过往设定。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-room-turn-chapter-010-repeat-3\nChapter: chapter-010\nRepeat: 3\n样本 A:\n“都别指门。”阿照提高声音，把众人的话压下去，“风会骗人，门缝也会换。这里不是让我们挑哪一扇门像出口，是让我们先认清这块铁。”\n\n他蹲到石台边，指了指嵌在正中央的真北铁。\n\n“上一次墓心中段也是这样。倒置罗盘一遇见真北铁，针尖会把人带向假的缺口。你们看它指得越稳，越不能顺着走。”\n\n有人急道：“那还看罗盘做什么？”\n\n“看针尾。”阿照把罗盘翻过来，掌心托住盘背，又换成反握，让盘面低低贴近真北铁，却不让铜缘碰上去，“不能正着拿，正着拿你们只会盯着针尖。要反握，等针影不再乱晃，看尾端压住哪一边。”\n\n灯光一偏，针尖果然朝着其中一扇门冷冷扎去，那门下正透出细风，像有人在外头轻轻吸气。几个人的目光都被牵了过去。\n\n阿照却用拇指按住罗盘边缘，盯着针尾落下的暗影。\n\n“真北铁是定的，石室在换向，四面墙可以转，风口可以被挪到任何一扇门下。罗盘现在不是给我们找风，是借这块铁把假相翻出来。针尖背着的，才是它不肯让我们看的地方。”\n\n他把罗盘慢慢转了半圈，握法一变，针尖和针尾的冷线在灯下交错了一下。众人看见针尖仍旧顽固地偏向有风的门，针尾却沉沉压向另一侧，那里门缝窄得几乎看不见，只在石壁接合处留着一道不成形的黑。\n\n“就是那边？”有人声音低了。\n\n“先别急。”阿照说，“墙还在走。等它每换一次向，针尖都会追最显眼的缺口，我们只记针尾。若三次针尾都落在同一扇门，或者落在同一道墙缝附近，那才是生门。”\n\n他…\n样本 B:\n阿照没有立刻答他们，只把罗盘压低，贴近真北铁上方半寸。\n\n针影猛地一缩，像被石心吸住，针尖偏向先前那扇有风的门。几个人的声音又起，阿照抬眼看了他们一下，说：“别跟针尖走。”\n\n争论声停了一瞬。\n\n“这块铁在中间，不是在门边。”阿照把手腕稳住，让众人都看见针尖怎样死死咬着一个方向，“若它要指路，就该埋在路口。它埋在轴心，是给石室换向用的。四面墙转，门跟着转，风也能被转出来，只有它不转。”\n\n有人低声道：“那罗盘还看什么？”\n\n“看它怎么骗人。”阿照说。\n\n他把倒置罗盘翻过来，盘面朝下，掌心托着背壳。灯光从侧面打过去，针尖的影子顿时变短，针尾却在铜边上拖出一截黑线。缺口也不再正对先前那扇门，而是斜斜落在两门之间的石缝上。\n\n“倒置罗盘不能照正盘读。”阿照慢慢说，“正着拿，针尖会先应真北铁，谁离它借来的北意最近，谁就显得像生门。反过来拿，针尾才露出来。针尖是被牵过去的，针尾是被推出去的。墓里要我们看显眼的那一端，我们偏要看被压暗的那一端。”\n\n同伴中有人皱眉：“可生门不是看缺口？”\n\n“缺口也要看，但不能单看。”阿照用指节轻轻点了点罗盘边沿，“缺口是门象，针尾是反向。只有缺口和针尾在真北铁上方合过一次，才算有用。现在墙还在换向，缺口跟着盘转，门跟着墙转，若谁一见缺口对门就走，正好被它换走。”\n\n石壁摩擦声沉沉滚过，四扇门的黑影一寸寸移位。风从左边转到右边，又像从头顶压下来，几个人不自觉闭…\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 1427,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0b83eed612c2d632016a46c48dabe8819a80cded595aa294bb",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 1235,
+            "outputTokens": 3156,
+            "totalTokens": 4391
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B对真北铁、倒置罗盘和“缺口”线索的承接更顺畅，机关解释更贴合当前场景且少了A中疑似硬插的过往设定。\"}"
+        }
+      }
+    }
+  ]
+}

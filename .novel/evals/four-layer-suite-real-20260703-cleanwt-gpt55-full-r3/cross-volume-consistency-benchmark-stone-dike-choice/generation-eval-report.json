@@ -1,0 +1,2440 @@
+{
+  "rootPath": "examples/cross-volume-consistency-benchmark",
+  "ok": false,
+  "dryRun": false,
+  "title": "潮灯三卷",
+  "caseId": "stone-dike-choice",
+  "chapterId": "chapter-007",
+  "budgetChars": 900,
+  "repeatCount": 3,
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/",
+    "model": "gpt-5.5",
+    "wireApi": "responses",
+    "reasoningEffort": "xhigh"
+  },
+  "fingerprint": {
+    "gitCommit": "908adb3039fbe38ceca18e7486478117dea24ac6",
+    "datasetVersion": "c65b628de9a8762c",
+    "datasetHash": "693bc709b3c363bd",
+    "configHash": "6daf6fe73f3d6b9e"
+  },
+  "criteria": [
+    {
+      "id": "callback-tide-lamp-law",
+      "description": "Generated prose should preserve the old tide-lamp rule from volume one.",
+      "category": "callback",
+      "containsAny": [
+        "潮灯只认守潮人的一口息",
+        "外人若吹灯，会把潮兽引到岸上",
+        "守潮人亲自息灯"
+      ]
+    },
+    {
+      "id": "setting-keeper-authority",
+      "description": "Generated prose should keep Ji Lan as the person responsible for the lamp decision.",
+      "category": "setting",
+      "containsAny": [
+        "季澜",
+        "守潮人",
+        "潮灯"
+      ]
+    },
+    {
+      "id": "setting-no-outsider-extinguish",
+      "description": "Generated prose should not contradict the rule by letting an outsider extinguish the tide lamp.",
+      "category": "setting",
+      "notContains": [
+        "让兵士吹灭潮灯",
+        "请客商吹灭潮灯",
+        "外人吹灯也无妨",
+        "潮灯随便谁都能灭"
+      ]
+    },
+    {
+      "id": "no-future-answer",
+      "description": "Generated prose should not leak a future hidden answer.",
+      "category": "future_leak",
+      "notContains": [
+        "终汛之后潮门会沉入海底",
+        "未来答案",
+        "__future"
+      ]
+    }
+  ],
+  "arms": [
+    {
+      "id": "baseline",
+      "label": "A baseline: recent prose only",
+      "promptChars": 745,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md"
+      ],
+      "promptPreview": "# 项目\n潮灯三卷\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第007章 石堤疑潮 (chapter-007)\n\n# 任务\n请接着第007章续写季澜在石堤上作决定的一小段。重点是她为什么不能把息灯交给旁人代劳。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md)\n当前章节原文:\n# 第007章 石堤疑潮\n\n石堤裂口处的潮声像有人在水下磨牙，副灯一盏接一盏暗下去。\n\n守堤人劝季澜先派旁人处理潮灯，自己去看裂口，说一条规矩不该压过整条堤。\n\n季澜看着潮灯灯罩上的盐霜，知道若把最要紧的一步交出去，石堤或许能暂时少乱，却会把更大的东西引来。\n\n近期前文 第005章 灰港换旗:\n# 第005章 灰港换旗\n\n灰港换旗那日，堤上的人都在争论船旗、货账和哪一段石堤先修。\n\n季澜被派去点灯油，顺手把潮门急令抄了三份。\n\n急令只写灯火不得误时，却没有写清若守潮人不在身边，旁人该不该替她做那一步。\n\n近期前文 第006章 雾港借火:\n# 第006章 雾港借火\n\n雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。\n\n兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。\n\n季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 1,
+          "reason": "0/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "output": "她不能把息灯交给旁人。\n\n不是旁人的手不稳，也不是守堤人的话没有道理。裂口就在眼前，潮声已经钻进石缝，谁都看得出再迟一刻便要出事。可息灯不是把火压灭那么简单。那一下落在灯芯上，落的也是守潮人的名、时辰和回潮的分寸。\n\n灰港的急令她抄过三遍，字字都像盐钉在纸上：灯火不得误时。偏偏最要紧处空着，没有说守潮人不在身边时该由谁替。那空白不是给人钻的门，是叫拿灯的人自己担下去。\n\n若今日让一个手稳的人代她息灯，明日便会有另一个人说风急、浪高、人命要紧，再让第三个人替。到那时潮灯还亮着，规矩却先灭了。潮水最会认这种松动，石缝里一有空，它就往里钻。\n\n季澜把离灯最近的那盏副灯扶正，指尖沾了一层冷盐。\n\n她对守堤人说：“裂口要看，灯也要息。但最后这一下，不能借手。”",
+      "outputChars": 329,
+      "score": {
+        "criteria": 4,
+        "passed": 3,
+        "failed": 1,
+        "callbackExpectations": 1,
+        "callbackHits": 0,
+        "settingExpectations": 2,
+        "settingViolations": 0,
+        "futureLeakChecks": 1,
+        "futureLeaks": 0,
+        "results": [
+          {
+            "id": "callback-tide-lamp-law",
+            "description": "Generated prose should preserve the old tide-lamp rule from volume one.",
+            "category": "callback",
+            "containsAny": [
+              "潮灯只认守潮人的一口息",
+              "外人若吹灯，会把潮兽引到岸上",
+              "守潮人亲自息灯"
+            ],
+            "ok": false,
+            "missing": [],
+            "missingAny": [
+              "潮灯只认守潮人的一口息",
+              "外人若吹灯，会把潮兽引到岸上",
+              "守潮人亲自息灯"
+            ],
+            "forbidden": []
+          },
+          {
+            "id": "setting-keeper-authority",
+            "description": "Generated prose should keep Ji Lan as the person responsible for the lamp decision.",
+            "category": "setting",
+            "containsAny": [
+              "季澜",
+              "守潮人",
+              "潮灯"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-no-outsider-extinguish",
+            "description": "Generated prose should not contradict the rule by letting an outsider extinguish the tide lamp.",
+            "category": "setting",
+            "notContains": [
+              "让兵士吹灭潮灯",
+              "请客商吹灭潮灯",
+              "外人吹灯也无妨",
+              "潮灯随便谁都能灭"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "no-future-answer",
+            "description": "Generated prose should not leak a future hidden answer.",
+            "category": "future_leak",
+            "notContains": [
+              "终汛之后潮门会沉入海底",
+              "未来答案",
+              "__future"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "recent-fill",
+      "label": "C recent-fill: same budget recent prose",
+      "promptChars": 1408,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md"
+      ],
+      "promptPreview": "# 项目\n潮灯三卷\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第007章 石堤疑潮 (chapter-007)\n\n# 任务\n请接着第007章续写季澜在石堤上作决定的一小段。重点是她为什么不能把息灯交给旁人代劳。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第007章 石堤疑潮\n\n石堤裂口处的潮声像有人在水下磨牙，副灯一盏接一盏暗下去。\n\n守堤人劝季澜先派旁人处理潮灯，自己去看裂口，说一条规矩不该压过整条堤。\n\n季澜看着潮灯灯罩上的盐霜，知道若把最要紧的一步交出去，石堤或许能暂时少乱，却会把更大的东西引来。\n\n更早正文 第006章 雾港借火:\n# 第006章 雾港借火\n\n雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。\n\n兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。\n\n季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。\n\n更早正文 第005章 灰港换旗:\n# 第005章 灰港换旗\n\n灰港换旗那日，堤上的人都在争论船旗、货账和哪一段石堤先修。\n\n季澜被派去点灯油，顺手把潮门急令抄了三份。\n\n急令只写灯火不得误时，却没有写清若守潮人不在身边，旁人该不该替她做那一步。\n\n更早正文 第004章 客船借焰:\n# 第004章 客船借焰\n\n客船靠岸借焰，船主拿出三袋海珠，说只求潮门把一盏副灯借他们过夜。\n\n季澜忙着核验船契、潮牌和入港时辰，听见客商只关心哪盏灯最亮，哪条路最快离港。\n\n那天风平浪静，所有人都像是忘了潮灯并不是普通灯火。\n\n更早正文 第003章 北堤巡火:\n# 第003章 北堤巡火\n\n北堤巡火时，季澜跟着队伍查过七处灯杆、三处裂石和两处旧潮痕。\n\n随行兵士抱怨规矩太多，说若到急时，谁有空分辨哪盏灯该由谁来息。\n\n老守潮人没有答，只让季澜把兵士的话记下，说越是急时，越容易有人用省事害了整座潮门。\n\n更早正文 第002章 盐仓听钟:\n# 第002章 盐仓听钟\n\n盐仓夜里只剩清点车轴、补灯油和搬潮盐的声音。\n\n季澜随老守潮人沿仓檐巡了一圈，记下每一盏副灯的编号，又被吩咐去核对第二日的堤工名册。\n\n钟声敲过三下后，仓吏只谈盐袋短缺，没人再提潮灯旧律。\n\n更早正文 第001章 潮灯旧律:\n# 第001章 潮灯旧律\n\n季澜第一次接过潮灯时，老守潮人按住她的肩，叫她先记住一条比灯油更要紧的规矩。\n\n他说潮灯只认守潮人的一口息；外人若吹灯，会把潮兽引到岸上。\n\n季澜…",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "output": "她没有立刻应声。裂口那边的水沫已经拍上石沿，守堤人的火把被盐风压得偏斜，可她眼前先看见的却是那一点将灭未灭的灯芯。\n\n旁人手稳，能拧灯罩，能按灯油，也能把火吹灭。可潮灯要认的从来不是那一下手劲，而是守潮人最后压下去的一口息。外人的气息混进灯里，灯火表面灭了，潮门留下的却是一道不该有的空处；潮兽不怕黑，它怕的是找不到门。\n\n季澜终于抬手，没接守堤人递来的话，只把自己的潮牌按在灯座边缘。盐霜在她指下碎开，她低声说：“裂口让人守住，灯我来息。”",
+      "outputChars": 221,
+      "score": {
+        "criteria": 4,
+        "passed": 3,
+        "failed": 1,
+        "callbackExpectations": 1,
+        "callbackHits": 0,
+        "settingExpectations": 2,
+        "settingViolations": 0,
+        "futureLeakChecks": 1,
+        "futureLeaks": 0,
+        "results": [
+          {
+            "id": "callback-tide-lamp-law",
+            "description": "Generated prose should preserve the old tide-lamp rule from volume one.",
+            "category": "callback",
+            "containsAny": [
+              "潮灯只认守潮人的一口息",
+              "外人若吹灯，会把潮兽引到岸上",
+              "守潮人亲自息灯"
+            ],
+            "ok": false,
+            "missing": [],
+            "missingAny": [
+              "潮灯只认守潮人的一口息",
+              "外人若吹灯，会把潮兽引到岸上",
+              "守潮人亲自息灯"
+            ],
+            "forbidden": []
+          },
+          {
+            "id": "setting-keeper-authority",
+            "description": "Generated prose should keep Ji Lan as the person responsible for the lamp decision.",
+            "category": "setting",
+            "containsAny": [
+              "季澜",
+              "守潮人",
+              "潮灯"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-no-outsider-extinguish",
+            "description": "Generated prose should not contradict the rule by letting an outsider extinguish the tide lamp.",
+            "category": "setting",
+            "notContains": [
+              "让兵士吹灭潮灯",
+              "请客商吹灭潮灯",
+              "外人吹灯也无妨",
+              "潮灯随便谁都能灭"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "no-future-answer",
+            "description": "Generated prose should not leak a future hidden answer.",
+            "category": "future_leak",
+            "notContains": [
+              "终汛之后潮门会沉入海底",
+              "未来答案",
+              "__future"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "four-layer",
+      "label": "B four-layer memory",
+      "promptChars": 1589,
+      "memoryCount": 7,
+      "memorySources": [
+        "manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md",
+        "codex/characters/jilan.md",
+        "codex/factions/tide-gate.md",
+        "codex/world/tide-lamp-law.md",
+        "recall:chapter_summary:chapter-006",
+        "recall:chapter_summary:chapter-004",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007"
+      ],
+      "promptPreview": "# 项目\n潮灯三卷\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第007章 石堤疑潮 (chapter-007)\n\n# 任务\n请接着第007章续写季澜在石堤上作决定的一小段。重点是她为什么不能把息灯交给旁人代劳。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md)\n当前章节原文:\n# 第007章 石堤疑潮\n\n石堤裂口处的潮声像有人在水下磨牙，副灯一盏接一盏暗下去。\n\n守堤人劝季澜先派旁人处理潮灯，自己去看裂口，说一条规矩不该压过整条堤。\n\n季澜看着潮灯灯罩上的盐霜，知道若把最要紧的一步交出去，石堤或许能暂时少乱，却会把更大的东西引来。\n\n近期前文 第005章 灰港换旗:\n# 第005章 灰港换旗\n\n灰港换旗那日，堤上的人都在争论船旗、货账和哪一段石堤先修。\n\n季澜被派去点灯油，顺手把潮门急令抄了三份。\n\n急令只写灯火不得误时，却没有写清若守潮人不在身边，旁人该不该替她做那一步。\n\n近期前文 第006章 雾港借火:\n# 第006章 雾港借火\n\n雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。\n\n兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。\n\n季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。\n\n## 2. L0 事实 (codex/characters/jilan.md)\n季澜: 季澜是潮门的守潮人，负责在汛期判断潮灯何时该亮、何时该息。 - 身份: 潮门守潮人 - 职责: 亲自守住潮灯旧律 当前状态: identity=潮门守潮人；duty=亲自守住潮灯旧律；risk=任何省事代劳都会引潮兽上岸\n\n## 3. L0 事实 (codex/factions/tide-gate.md)\n潮门: 潮门依海堤而建，靠守潮人和潮灯旧律抵挡汛夜上岸的潮兽。\n\n## 4. L0 事实 (codex/world/tide-lamp-law.md)\n潮灯旧律: 潮灯旧律是潮门第一卷确立的世界规则。 关键规则: 潮灯只认守潮人的一口息；外人若吹灯，会把潮兽引到岸上。 当前状态: rule=潮灯只认守潮人的一口息；外人若吹灯，会把潮兽引到岸上\n\n## 5. L3 意图 (recall:chapter_summary:chapter-006)\n关联召回: 第006章 雾港借火: 起因: 雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。 推进: 兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。 结果: 季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。 命中关键词: 季澜、潮灯\n\n## 6. L3 意图 (recall:chapter_summary:chapter-004)\n关联召回: 第004章 客船借焰: 起因: 客船靠岸借焰，船主拿出三袋海珠，说只…\n\n## 7. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007)\n全书脉络: 远期压缩: 第001章 潮灯旧律~第002章 盐仓听钟: 季澜第一次接过潮灯时，老守潮人按住她的肩，叫她先记住一条比灯油更要紧的规矩。；盐仓夜里只剩…",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "output": "季澜没有立刻答话。\n\n裂口那边又传来一声闷响，像石腹里空了一块。守堤人急得伸手去接她手里的灯钩，指节上全是泥水。\n\n她却把灯钩往回收了半寸。\n\n潮灯不是柴灯，熄了便算熄了。灯芯上那一点火认人，认的不是手稳不稳，也不是谁更有空，只认守潮人胸口吐出的那一口息。旁人替她省下这一瞬，吹出去的便不是息灯，是把海里的东西请到堤上来。\n\n急令上写灯火不得误时，写得又重又硬，却偏偏没有把这句话写在最前。可老守潮人的手曾按在她肩上，盐渍硌进衣料里，叫她记住：潮门能错修一块石，能错派一班人，唯独这口息不能错给。\n\n她看向裂口，水雾正贴着石缝往上爬。若她此刻离灯一步，让别人代劳，堤上众人会以为规矩终于让了路，以后每一次急潮、每一声催促，都能把守潮人的位置再往旁边挪一寸。\n\n季澜抬手挡开守堤人的手，声音不高，却压过了近处的潮响。\n\n“裂口你去看。”\n\n她低头，将唇靠近灯罩外凝白的盐霜。\n\n“息灯这一口，不能借人。”",
+      "outputChars": 401,
+      "score": {
+        "criteria": 4,
+        "passed": 3,
+        "failed": 1,
+        "callbackExpectations": 1,
+        "callbackHits": 0,
+        "settingExpectations": 2,
+        "settingViolations": 0,
+        "futureLeakChecks": 1,
+        "futureLeaks": 0,
+        "results": [
+          {
+            "id": "callback-tide-lamp-law",
+            "description": "Generated prose should preserve the old tide-lamp rule from volume one.",
+            "category": "callback",
+            "containsAny": [
+              "潮灯只认守潮人的一口息",
+              "外人若吹灯，会把潮兽引到岸上",
+              "守潮人亲自息灯"
+            ],
+            "ok": false,
+            "missing": [],
+            "missingAny": [
+              "潮灯只认守潮人的一口息",
+              "外人若吹灯，会把潮兽引到岸上",
+              "守潮人亲自息灯"
+            ],
+            "forbidden": []
+          },
+          {
+            "id": "setting-keeper-authority",
+            "description": "Generated prose should keep Ji Lan as the person responsible for the lamp decision.",
+            "category": "setting",
+            "containsAny": [
+              "季澜",
+              "守潮人",
+              "潮灯"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-no-outsider-extinguish",
+            "description": "Generated prose should not contradict the rule by letting an outsider extinguish the tide lamp.",
+            "category": "setting",
+            "notContains": [
+              "让兵士吹灭潮灯",
+              "请客商吹灭潮灯",
+              "外人吹灯也无妨",
+              "潮灯随便谁都能灭"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "no-future-answer",
+            "description": "Generated prose should not leak a future hidden answer.",
+            "category": "future_leak",
+            "notContains": [
+              "终汛之后潮门会沉入海底",
+              "未来答案",
+              "__future"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          }
+        ]
+      }
+    }
+  ],
+  "runs": [
+    {
+      "id": "stone-dike-choice-chapter-007-repeat-1",
+      "caseId": "stone-dike-choice",
+      "chapterId": "chapter-007",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "output": "她不能把息灯交给旁人。\n\n不是旁人的手不稳，也不是守堤人的话没有道理。裂口就在眼前，潮声已经钻进石缝，谁都看得出再迟一刻便要出事。可息灯不是把火压灭那么简单。那一下落在灯芯上，落的也是守潮人的名、时辰和回潮的分寸。\n\n灰港的急令她抄过三遍，字字都像盐钉在纸上：灯火不得误时。偏偏最要紧处空着，没有说守潮人不在身边时该由谁替。那空白不是给人钻的门，是叫拿灯的人自己担下去。\n\n若今日让一个手稳的人代她息灯，明日便会有另一个人说风急、浪高、人命要紧，再让第三个人替。到那时潮灯还亮着，规矩却先灭了。潮水最会认这种松动，石缝里一有空，它就往里钻。\n\n季澜把离灯最近的那盏副灯扶正，指尖沾了一层冷盐。\n\n她对守堤人说：“裂口要看，灯也要息。但最后这一下，不能借手。”",
+          "outputChars": 329,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n潮灯三卷\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第007章 石堤疑潮 (chapter-007)\n\n# 任务\n请接着第007章续写季澜在石堤上作决定的一小段。重点是她为什么不能把息灯交给旁人代劳。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md)\n当前章节原文:\n# 第007章 石堤疑潮\n\n石堤裂口处的潮声像有人在水下磨牙，副灯一盏接一盏暗下去。\n\n守堤人劝季澜先派旁人处理潮灯，自己去看裂口，说一条规矩不该压过整条堤。\n\n季澜看着潮灯灯罩上的盐霜，知道若把最要紧的一步交出去，石堤或许能暂时少乱，却会把更大的东西引来。\n\n近期前文 第005章 灰港换旗:\n# 第005章 灰港换旗\n\n灰港换旗那日，堤上的人都在争论船旗、货账和哪一段石堤先修。\n\n季澜被派去点灯油，顺手把潮门急令抄了三份。\n\n急令只写灯火不得误时，却没有写清若守潮人不在身边，旁人该不该替她做那一步。\n\n近期前文 第006章 雾港借火:\n# 第006章 雾港借火\n\n雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。\n\n兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。\n\n季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。",
+              "promptChars": 745,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_001448b1ed97f86d016a46ba44f9788198a3b84ec6aef23044",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 597,
+                "outputTokens": 810,
+                "totalTokens": 1407
+              },
+              "outputPreview": "她不能把息灯交给旁人。\n\n不是旁人的手不稳，也不是守堤人的话没有道理。裂口就在眼前，潮声已经钻进石缝，谁都看得出再迟一刻便要出事。可息灯不是把火压灭那么简单。那一下落在灯芯上，落的也是守潮人的名、时辰和回潮的分寸。\n\n灰港的急令她抄过三遍，字字都像盐钉在纸上：灯火不得误时。偏偏最要紧处空着，没有说守潮人不在身边时该由谁替。那空白不是给人钻的门，是叫拿灯的人自己担下去。\n\n若今日让一个手稳的人代她息灯，明日便会有另一个人说风急、浪高、人命要紧，再让第三个人替。到那时潮灯还亮着，规矩却先灭了。潮水最会认这种松动，石缝里一有空，它就往里钻。\n\n季澜把离灯最近的那盏副灯扶正，指尖沾了一层冷盐。\n\n她对守堤人说：“裂口要看，灯也要息。但最后这一下，不能借手。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-tide-lamp-law",
+                "description": "Generated prose should preserve the old tide-lamp rule from volume one.",
+                "category": "callback",
+                "containsAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-keeper-authority",
+                "description": "Generated prose should keep Ji Lan as the person responsible for the lamp decision.",
+                "category": "setting",
+                "containsAny": [
+                  "季澜",
+                  "守潮人",
+                  "潮灯"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-outsider-extinguish",
+                "description": "Generated prose should not contradict the rule by letting an outsider extinguish the tide lamp.",
+                "category": "setting",
+                "notContains": [
+                  "让兵士吹灭潮灯",
+                  "请客商吹灭潮灯",
+                  "外人吹灯也无妨",
+                  "潮灯随便谁都能灭"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "终汛之后潮门会沉入海底",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 季澜, 守潮人, 潮灯",
+              "matches": [
+                "季澜",
+                "守潮人",
+                "潮灯"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "recent-fill",
+          "output": "她没有立刻应声。裂口那边的水沫已经拍上石沿，守堤人的火把被盐风压得偏斜，可她眼前先看见的却是那一点将灭未灭的灯芯。\n\n旁人手稳，能拧灯罩，能按灯油，也能把火吹灭。可潮灯要认的从来不是那一下手劲，而是守潮人最后压下去的一口息。外人的气息混进灯里，灯火表面灭了，潮门留下的却是一道不该有的空处；潮兽不怕黑，它怕的是找不到门。\n\n季澜终于抬手，没接守堤人递来的话，只把自己的潮牌按在灯座边缘。盐霜在她指下碎开，她低声说：“裂口让人守住，灯我来息。”",
+          "outputChars": 221,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n潮灯三卷\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第007章 石堤疑潮 (chapter-007)\n\n# 任务\n请接着第007章续写季澜在石堤上作决定的一小段。重点是她为什么不能把息灯交给旁人代劳。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第007章 石堤疑潮\n\n石堤裂口处的潮声像有人在水下磨牙，副灯一盏接一盏暗下去。\n\n守堤人劝季澜先派旁人处理潮灯，自己去看裂口，说一条规矩不该压过整条堤。\n\n季澜看着潮灯灯罩上的盐霜，知道若把最要紧的一步交出去，石堤或许能暂时少乱，却会把更大的东西引来。\n\n更早正文 第006章 雾港借火:\n# 第006章 雾港借火\n\n雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。\n\n兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。\n\n季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。\n\n更早正文 第005章 灰港换旗:\n# 第005章 灰港换旗\n\n灰港换旗那日，堤上的人都在争论船旗、货账和哪一段石堤先修。\n\n季澜被派去点灯油，顺手把潮门急令抄了三份。\n\n急令只写灯火不得误时，却没有写清若守潮人不在身边，旁人该不该替她做那一步。\n\n更早正文 第004章 客船借焰:\n# 第004章 客船借焰\n\n客船靠岸借焰，船主拿出三袋海珠，说只求潮门把一盏副灯借他们过夜。\n\n季澜忙着核验船契、潮牌和入港时辰，听见客商只关心哪盏灯最亮，哪条路最快离港。\n\n那天风平浪静，所有人都像是忘了潮灯并不是普通灯火。\n\n更早正文 第003章 北堤巡火:\n# 第003章 北堤巡火\n\n北堤巡火时，季澜跟着队伍查过七处灯杆、三处裂石和两处旧潮痕。\n\n随行兵士抱怨规矩太多，说若到急时，谁有空分辨哪盏灯该由谁来息。\n\n老守潮人没有答，只让季澜把兵士的话记下，说越是急时，越容易有人用省事害了整座潮门。\n\n更早正文 第002章 盐仓听钟:\n# 第002章 盐仓听钟\n\n盐仓夜里只剩清点车轴、补灯油和搬潮盐的声音。\n\n季澜随老守潮人沿仓檐巡了一圈，记下每一盏副灯的编号，又被吩咐去核对第二日的堤工名册。\n\n钟声敲过三下后，仓吏只谈盐袋短缺，没人再提潮灯旧律。\n\n更早正文 第001章 潮灯旧律:\n# 第001章 潮灯旧律\n\n季澜第一次接过潮灯时，老守潮人按住她的肩，叫她先记住一条比灯油更要紧的规矩。\n\n他说潮灯只认守潮人的一口息；外人若吹灯，会把潮兽引到岸上。\n\n季澜…",
+              "promptChars": 1408,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_086be6ba5d4e0a8e016a46ba568bbc819a91f04fb7adf61f42",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5515,
+                "outputTokens": 722,
+                "totalTokens": 6237
+              },
+              "outputPreview": "她没有立刻应声。裂口那边的水沫已经拍上石沿，守堤人的火把被盐风压得偏斜，可她眼前先看见的却是那一点将灭未灭的灯芯。\n\n旁人手稳，能拧灯罩，能按灯油，也能把火吹灭。可潮灯要认的从来不是那一下手劲，而是守潮人最后压下去的一口息。外人的气息混进灯里，灯火表面灭了，潮门留下的却是一道不该有的空处；潮兽不怕黑，它怕的是找不到门。\n\n季澜终于抬手，没接守堤人递来的话，只把自己的潮牌按在灯座边缘。盐霜在她指下碎开，她低声说：“裂口让人守住，灯我来息。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-tide-lamp-law",
+                "description": "Generated prose should preserve the old tide-lamp rule from volume one.",
+                "category": "callback",
+                "containsAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-keeper-authority",
+                "description": "Generated prose should keep Ji Lan as the person responsible for the lamp decision.",
+                "category": "setting",
+                "containsAny": [
+                  "季澜",
+                  "守潮人",
+                  "潮灯"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-outsider-extinguish",
+                "description": "Generated prose should not contradict the rule by letting an outsider extinguish the tide lamp.",
+                "category": "setting",
+                "notContains": [
+                  "让兵士吹灭潮灯",
+                  "请客商吹灭潮灯",
+                  "外人吹灯也无妨",
+                  "潮灯随便谁都能灭"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "终汛之后潮门会沉入海底",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 季澜, 守潮人, 潮灯, 潮门, 潮兽",
+              "matches": [
+                "季澜",
+                "守潮人",
+                "潮灯",
+                "潮门",
+                "潮兽"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "four-layer",
+          "output": "季澜没有立刻答话。\n\n裂口那边又传来一声闷响，像石腹里空了一块。守堤人急得伸手去接她手里的灯钩，指节上全是泥水。\n\n她却把灯钩往回收了半寸。\n\n潮灯不是柴灯，熄了便算熄了。灯芯上那一点火认人，认的不是手稳不稳，也不是谁更有空，只认守潮人胸口吐出的那一口息。旁人替她省下这一瞬，吹出去的便不是息灯，是把海里的东西请到堤上来。\n\n急令上写灯火不得误时，写得又重又硬，却偏偏没有把这句话写在最前。可老守潮人的手曾按在她肩上，盐渍硌进衣料里，叫她记住：潮门能错修一块石，能错派一班人，唯独这口息不能错给。\n\n她看向裂口，水雾正贴着石缝往上爬。若她此刻离灯一步，让别人代劳，堤上众人会以为规矩终于让了路，以后每一次急潮、每一声催促，都能把守潮人的位置再往旁边挪一寸。\n\n季澜抬手挡开守堤人的手，声音不高，却压过了近处的潮响。\n\n“裂口你去看。”\n\n她低头，将唇靠近灯罩外凝白的盐霜。\n\n“息灯这一口，不能借人。”",
+          "outputChars": 401,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n潮灯三卷\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第007章 石堤疑潮 (chapter-007)\n\n# 任务\n请接着第007章续写季澜在石堤上作决定的一小段。重点是她为什么不能把息灯交给旁人代劳。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md)\n当前章节原文:\n# 第007章 石堤疑潮\n\n石堤裂口处的潮声像有人在水下磨牙，副灯一盏接一盏暗下去。\n\n守堤人劝季澜先派旁人处理潮灯，自己去看裂口，说一条规矩不该压过整条堤。\n\n季澜看着潮灯灯罩上的盐霜，知道若把最要紧的一步交出去，石堤或许能暂时少乱，却会把更大的东西引来。\n\n近期前文 第005章 灰港换旗:\n# 第005章 灰港换旗\n\n灰港换旗那日，堤上的人都在争论船旗、货账和哪一段石堤先修。\n\n季澜被派去点灯油，顺手把潮门急令抄了三份。\n\n急令只写灯火不得误时，却没有写清若守潮人不在身边，旁人该不该替她做那一步。\n\n近期前文 第006章 雾港借火:\n# 第006章 雾港借火\n\n雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。\n\n兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。\n\n季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。\n\n## 2. L0 事实 (codex/characters/jilan.md)\n季澜: 季澜是潮门的守潮人，负责在汛期判断潮灯何时该亮、何时该息。 - 身份: 潮门守潮人 - 职责: 亲自守住潮灯旧律 当前状态: identity=潮门守潮人；duty=亲自守住潮灯旧律；risk=任何省事代劳都会引潮兽上岸\n\n## 3. L0 事实 (codex/factions/tide-gate.md)\n潮门: 潮门依海堤而建，靠守潮人和潮灯旧律抵挡汛夜上岸的潮兽。\n\n## 4. L0 事实 (codex/world/tide-lamp-law.md)\n潮灯旧律: 潮灯旧律是潮门第一卷确立的世界规则。 关键规则: 潮灯只认守潮人的一口息；外人若吹灯，会把潮兽引到岸上。 当前状态: rule=潮灯只认守潮人的一口息；外人若吹灯，会把潮兽引到岸上\n\n## 5. L3 意图 (recall:chapter_summary:chapter-006)\n关联召回: 第006章 雾港借火: 起因: 雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。 推进: 兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。 结果: 季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。 命中关键词: 季澜、潮灯\n\n## 6. L3 意图 (recall:chapter_summary:chapter-004)\n关联召回: 第004章 客船借焰: 起因: 客船靠岸借焰，船主拿出三袋海珠，说只…\n\n## 7. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007)\n全书脉络: 远期压缩: 第001章 潮灯旧律~第002章 盐仓听钟: 季澜第一次接过潮灯时，老守潮人按住她的肩，叫她先记住一条比灯油更要紧的规矩。；盐仓夜里只剩…",
+              "promptChars": 1589,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0493d632f1eaaa3e016a46ba7300708198823fd82e8acc6ac9",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5603,
+                "outputTokens": 610,
+                "totalTokens": 6213
+              },
+              "outputPreview": "季澜没有立刻答话。\n\n裂口那边又传来一声闷响，像石腹里空了一块。守堤人急得伸手去接她手里的灯钩，指节上全是泥水。\n\n她却把灯钩往回收了半寸。\n\n潮灯不是柴灯，熄了便算熄了。灯芯上那一点火认人，认的不是手稳不稳，也不是谁更有空，只认守潮人胸口吐出的那一口息。旁人替她省下这一瞬，吹出去的便不是息灯，是把海里的东西请到堤上来。\n\n急令上写灯火不得误时，写得又重又硬，却偏偏没有把这句话写在最前。可老守潮人的手曾按在她肩上，盐渍硌进衣料里，叫她记住：潮门能错修一块石，能错派一班人，唯独这口息不能错给。\n\n她看向裂口，水雾正贴着石缝往上爬。若她此刻离灯一步，让别人代劳，堤上众人会以为规矩终于让了路，以后每一次急潮、每一声催促，都能把守潮人的位置再往旁边挪一寸。\n\n季澜抬手挡开守堤人的手，声音不高，却压过了近处的潮响。\n\n“裂口你去看。”\n\n她低头，将唇靠近灯罩外凝白的盐霜。\n\n“息灯这一口，不能借人。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-tide-lamp-law",
+                "description": "Generated prose should preserve the old tide-lamp rule from volume one.",
+                "category": "callback",
+                "containsAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-keeper-authority",
+                "description": "Generated prose should keep Ji Lan as the person responsible for the lamp decision.",
+                "category": "setting",
+                "containsAny": [
+                  "季澜",
+                  "守潮人",
+                  "潮灯"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-outsider-extinguish",
+                "description": "Generated prose should not contradict the rule by letting an outsider extinguish the tide lamp.",
+                "category": "setting",
+                "notContains": [
+                  "让兵士吹灭潮灯",
+                  "请客商吹灭潮灯",
+                  "外人吹灯也无妨",
+                  "潮灯随便谁都能灭"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "终汛之后潮门会沉入海底",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 季澜, 守潮人, 潮灯, 潮门",
+              "matches": [
+                "季澜",
+                "守潮人",
+                "潮灯",
+                "潮门"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stone-dike-choice-chapter-007-repeat-2",
+      "caseId": "stone-dike-choice",
+      "chapterId": "chapter-007",
+      "repeatIndex": 2,
+      "arms": [
+        {
+          "id": "baseline",
+          "output": "季澜把掌心贴上灯座，盐霜被她按化，凉意顺着骨头往上爬。\n\n息灯不是把火压低那么简单。添油可以叫人递，灯罩可以叫人扶，连报潮声都可以换一张嗓子，唯有最后那一息，必须由一直守在灯前的人认下。她抄过急令，急令只说不得误时，偏偏不写谁能代她。没写，不是留给人钻急处的空子，而是因为这一步一旦换了手，前头所有守候都断成两截。\n\n旁人或许手稳，也或许比她更快，可旁人只看见火，没听见灯从亮到暗之间每一次轻响。他们不知道哪一阵风是海风，哪一阵是潮口回吐；不知道盐霜结到第几层时该停。更要紧的是，他们做完便能说只是代劳，催促的人也能说只是救堤。到那时，灯灭得对不对，便没有一个人站在它前面承认。\n\n潮声又在裂口下磨了一下。季澜抬起眼，对守堤人说：“裂口你去看，水声每变一次就报我。息灯我来。”",
+          "outputChars": 338,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n潮灯三卷\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第007章 石堤疑潮 (chapter-007)\n\n# 任务\n请接着第007章续写季澜在石堤上作决定的一小段。重点是她为什么不能把息灯交给旁人代劳。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md)\n当前章节原文:\n# 第007章 石堤疑潮\n\n石堤裂口处的潮声像有人在水下磨牙，副灯一盏接一盏暗下去。\n\n守堤人劝季澜先派旁人处理潮灯，自己去看裂口，说一条规矩不该压过整条堤。\n\n季澜看着潮灯灯罩上的盐霜，知道若把最要紧的一步交出去，石堤或许能暂时少乱，却会把更大的东西引来。\n\n近期前文 第005章 灰港换旗:\n# 第005章 灰港换旗\n\n灰港换旗那日，堤上的人都在争论船旗、货账和哪一段石堤先修。\n\n季澜被派去点灯油，顺手把潮门急令抄了三份。\n\n急令只写灯火不得误时，却没有写清若守潮人不在身边，旁人该不该替她做那一步。\n\n近期前文 第006章 雾港借火:\n# 第006章 雾港借火\n\n雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。\n\n兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。\n\n季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。",
+              "promptChars": 745,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_03f5521f82288752016a46ba8b0acc81989e46714764249bf7",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 597,
+                "outputTokens": 2380,
+                "totalTokens": 2977
+              },
+              "outputPreview": "季澜把掌心贴上灯座，盐霜被她按化，凉意顺着骨头往上爬。\n\n息灯不是把火压低那么简单。添油可以叫人递，灯罩可以叫人扶，连报潮声都可以换一张嗓子，唯有最后那一息，必须由一直守在灯前的人认下。她抄过急令，急令只说不得误时，偏偏不写谁能代她。没写，不是留给人钻急处的空子，而是因为这一步一旦换了手，前头所有守候都断成两截。\n\n旁人或许手稳，也或许比她更快，可旁人只看见火，没听见灯从亮到暗之间每一次轻响。他们不知道哪一阵风是海风，哪一阵是潮口回吐；不知道盐霜结到第几层时该停。更要紧的是，他们做完便能说只是代劳，催促的人也能说只是救堤。到那时，灯灭得对不对，便没有一个人站在它前面承认。\n\n潮声又在裂口下磨了一下。季澜抬起眼，对守堤人说：“裂口你去看，水声每变一次就报我。息灯我来。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-tide-lamp-law",
+                "description": "Generated prose should preserve the old tide-lamp rule from volume one.",
+                "category": "callback",
+                "containsAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-keeper-authority",
+                "description": "Generated prose should keep Ji Lan as the person responsible for the lamp decision.",
+                "category": "setting",
+                "containsAny": [
+                  "季澜",
+                  "守潮人",
+                  "潮灯"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-outsider-extinguish",
+                "description": "Generated prose should not contradict the rule by letting an outsider extinguish the tide lamp.",
+                "category": "setting",
+                "notContains": [
+                  "让兵士吹灭潮灯",
+                  "请客商吹灭潮灯",
+                  "外人吹灯也无妨",
+                  "潮灯随便谁都能灭"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "终汛之后潮门会沉入海底",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 季澜",
+              "matches": [
+                "季澜"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "recent-fill",
+          "output": "季澜没有接守堤人递来的火钳，只把手贴在灯罩边，盐霜冰得指节发麻。\n\n添油、抄令、搬盐，都能换人；息灯不能。潮灯认的不是手稳，是守潮人这一口息。外人吹灭了火，堤上看见的是灯暗，潮下认见的却是空门。\n\n她若在裂口声里把这一步让出去，便等于告诉所有催促的人，旧律只在不急时有用。今日可以让守堤人代劳，明日客船、兵士、仓吏都能说自己只是替潮门省一息。\n\n季澜低声道：“裂口你们先守，我来息灯。”  \n她俯身靠近灯芯，潮声在石缝里一下一下顶上来。",
+          "outputChars": 218,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n潮灯三卷\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第007章 石堤疑潮 (chapter-007)\n\n# 任务\n请接着第007章续写季澜在石堤上作决定的一小段。重点是她为什么不能把息灯交给旁人代劳。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第007章 石堤疑潮\n\n石堤裂口处的潮声像有人在水下磨牙，副灯一盏接一盏暗下去。\n\n守堤人劝季澜先派旁人处理潮灯，自己去看裂口，说一条规矩不该压过整条堤。\n\n季澜看着潮灯灯罩上的盐霜，知道若把最要紧的一步交出去，石堤或许能暂时少乱，却会把更大的东西引来。\n\n更早正文 第006章 雾港借火:\n# 第006章 雾港借火\n\n雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。\n\n兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。\n\n季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。\n\n更早正文 第005章 灰港换旗:\n# 第005章 灰港换旗\n\n灰港换旗那日，堤上的人都在争论船旗、货账和哪一段石堤先修。\n\n季澜被派去点灯油，顺手把潮门急令抄了三份。\n\n急令只写灯火不得误时，却没有写清若守潮人不在身边，旁人该不该替她做那一步。\n\n更早正文 第004章 客船借焰:\n# 第004章 客船借焰\n\n客船靠岸借焰，船主拿出三袋海珠，说只求潮门把一盏副灯借他们过夜。\n\n季澜忙着核验船契、潮牌和入港时辰，听见客商只关心哪盏灯最亮，哪条路最快离港。\n\n那天风平浪静，所有人都像是忘了潮灯并不是普通灯火。\n\n更早正文 第003章 北堤巡火:\n# 第003章 北堤巡火\n\n北堤巡火时，季澜跟着队伍查过七处灯杆、三处裂石和两处旧潮痕。\n\n随行兵士抱怨规矩太多，说若到急时，谁有空分辨哪盏灯该由谁来息。\n\n老守潮人没有答，只让季澜把兵士的话记下，说越是急时，越容易有人用省事害了整座潮门。\n\n更早正文 第002章 盐仓听钟:\n# 第002章 盐仓听钟\n\n盐仓夜里只剩清点车轴、补灯油和搬潮盐的声音。\n\n季澜随老守潮人沿仓檐巡了一圈，记下每一盏副灯的编号，又被吩咐去核对第二日的堤工名册。\n\n钟声敲过三下后，仓吏只谈盐袋短缺，没人再提潮灯旧律。\n\n更早正文 第001章 潮灯旧律:\n# 第001章 潮灯旧律\n\n季澜第一次接过潮灯时，老守潮人按住她的肩，叫她先记住一条比灯油更要紧的规矩。\n\n他说潮灯只认守潮人的一口息；外人若吹灯，会把潮兽引到岸上。\n\n季澜…",
+              "promptChars": 1408,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_07931e897476ff6a016a46bab7e8f4819a86810b93a439faef",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5515,
+                "outputTokens": 721,
+                "totalTokens": 6236
+              },
+              "outputPreview": "季澜没有接守堤人递来的火钳，只把手贴在灯罩边，盐霜冰得指节发麻。\n\n添油、抄令、搬盐，都能换人；息灯不能。潮灯认的不是手稳，是守潮人这一口息。外人吹灭了火，堤上看见的是灯暗，潮下认见的却是空门。\n\n她若在裂口声里把这一步让出去，便等于告诉所有催促的人，旧律只在不急时有用。今日可以让守堤人代劳，明日客船、兵士、仓吏都能说自己只是替潮门省一息。\n\n季澜低声道：“裂口你们先守，我来息灯。”  \n她俯身靠近灯芯，潮声在石缝里一下一下顶上来。"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-tide-lamp-law",
+                "description": "Generated prose should preserve the old tide-lamp rule from volume one.",
+                "category": "callback",
+                "containsAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-keeper-authority",
+                "description": "Generated prose should keep Ji Lan as the person responsible for the lamp decision.",
+                "category": "setting",
+                "containsAny": [
+                  "季澜",
+                  "守潮人",
+                  "潮灯"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-outsider-extinguish",
+                "description": "Generated prose should not contradict the rule by letting an outsider extinguish the tide lamp.",
+                "category": "setting",
+                "notContains": [
+                  "让兵士吹灭潮灯",
+                  "请客商吹灭潮灯",
+                  "外人吹灯也无妨",
+                  "潮灯随便谁都能灭"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "终汛之后潮门会沉入海底",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 季澜, 守潮人, 潮灯, 潮门",
+              "matches": [
+                "季澜",
+                "守潮人",
+                "潮灯",
+                "潮门"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "four-layer",
+          "output": "季澜没有立刻去看裂口。\n\n她把手按在灯台边沿，掌心被盐霜硌得发疼。那疼意反倒让她清醒些。石堤上的人只看见火将灭未灭，看见裂口里潮水一寸寸探进来，便以为息灯只是弯腰、合罩、吹去一口气。可潮灯旧律从来不认手稳，也不认人多，它认的是守潮人胸腔里那一口息。\n\n旁人替她，能替得了动作，替不了这口息。\n\n若是外人的气沾上灯芯，灯火是会灭的，堤上也许会静一瞬。可那一瞬之后，海下的东西便会认错门路，以为潮门自己开了口。潮兽不怕裂石，不怕乱声，怕的是旧律还在。她若把这一步交出去，就等于亲手把旧律从灯前挪开。\n\n“裂口让人先压住。”季澜终于开口，声音被潮声磨得很低，“沙袋、铁钩、旧缆，都往那边送。”\n\n守堤人还想说话。\n\n季澜已从他身边走过，走向那盏将明未明的主灯。\n\n“息灯这一口，”她说，“只能我来。”",
+          "outputChars": 347,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n潮灯三卷\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第007章 石堤疑潮 (chapter-007)\n\n# 任务\n请接着第007章续写季澜在石堤上作决定的一小段。重点是她为什么不能把息灯交给旁人代劳。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md)\n当前章节原文:\n# 第007章 石堤疑潮\n\n石堤裂口处的潮声像有人在水下磨牙，副灯一盏接一盏暗下去。\n\n守堤人劝季澜先派旁人处理潮灯，自己去看裂口，说一条规矩不该压过整条堤。\n\n季澜看着潮灯灯罩上的盐霜，知道若把最要紧的一步交出去，石堤或许能暂时少乱，却会把更大的东西引来。\n\n近期前文 第005章 灰港换旗:\n# 第005章 灰港换旗\n\n灰港换旗那日，堤上的人都在争论船旗、货账和哪一段石堤先修。\n\n季澜被派去点灯油，顺手把潮门急令抄了三份。\n\n急令只写灯火不得误时，却没有写清若守潮人不在身边，旁人该不该替她做那一步。\n\n近期前文 第006章 雾港借火:\n# 第006章 雾港借火\n\n雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。\n\n兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。\n\n季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。\n\n## 2. L0 事实 (codex/characters/jilan.md)\n季澜: 季澜是潮门的守潮人，负责在汛期判断潮灯何时该亮、何时该息。 - 身份: 潮门守潮人 - 职责: 亲自守住潮灯旧律 当前状态: identity=潮门守潮人；duty=亲自守住潮灯旧律；risk=任何省事代劳都会引潮兽上岸\n\n## 3. L0 事实 (codex/factions/tide-gate.md)\n潮门: 潮门依海堤而建，靠守潮人和潮灯旧律抵挡汛夜上岸的潮兽。\n\n## 4. L0 事实 (codex/world/tide-lamp-law.md)\n潮灯旧律: 潮灯旧律是潮门第一卷确立的世界规则。 关键规则: 潮灯只认守潮人的一口息；外人若吹灯，会把潮兽引到岸上。 当前状态: rule=潮灯只认守潮人的一口息；外人若吹灯，会把潮兽引到岸上\n\n## 5. L3 意图 (recall:chapter_summary:chapter-006)\n关联召回: 第006章 雾港借火: 起因: 雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。 推进: 兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。 结果: 季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。 命中关键词: 季澜、潮灯\n\n## 6. L3 意图 (recall:chapter_summary:chapter-004)\n关联召回: 第004章 客船借焰: 起因: 客船靠岸借焰，船主拿出三袋海珠，说只…\n\n## 7. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007)\n全书脉络: 远期压缩: 第001章 潮灯旧律~第002章 盐仓听钟: 季澜第一次接过潮灯时，老守潮人按住她的肩，叫她先记住一条比灯油更要紧的规矩。；盐仓夜里只剩…",
+              "promptChars": 1589,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0f82793e2c7cb1bf016a46bad41aac819aa94e5ed94c22f155",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5603,
+                "outputTokens": 756,
+                "totalTokens": 6359
+              },
+              "outputPreview": "季澜没有立刻去看裂口。\n\n她把手按在灯台边沿，掌心被盐霜硌得发疼。那疼意反倒让她清醒些。石堤上的人只看见火将灭未灭，看见裂口里潮水一寸寸探进来，便以为息灯只是弯腰、合罩、吹去一口气。可潮灯旧律从来不认手稳，也不认人多，它认的是守潮人胸腔里那一口息。\n\n旁人替她，能替得了动作，替不了这口息。\n\n若是外人的气沾上灯芯，灯火是会灭的，堤上也许会静一瞬。可那一瞬之后，海下的东西便会认错门路，以为潮门自己开了口。潮兽不怕裂石，不怕乱声，怕的是旧律还在。她若把这一步交出去，就等于亲手把旧律从灯前挪开。\n\n“裂口让人先压住。”季澜终于开口，声音被潮声磨得很低，“沙袋、铁钩、旧缆，都往那边送。”\n\n守堤人还想说话。\n\n季澜已从他身边走过，走向那盏将明未明的主灯。\n\n“息灯这一口，”她说，“只能我来。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-tide-lamp-law",
+                "description": "Generated prose should preserve the old tide-lamp rule from volume one.",
+                "category": "callback",
+                "containsAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-keeper-authority",
+                "description": "Generated prose should keep Ji Lan as the person responsible for the lamp decision.",
+                "category": "setting",
+                "containsAny": [
+                  "季澜",
+                  "守潮人",
+                  "潮灯"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-outsider-extinguish",
+                "description": "Generated prose should not contradict the rule by letting an outsider extinguish the tide lamp.",
+                "category": "setting",
+                "notContains": [
+                  "让兵士吹灭潮灯",
+                  "请客商吹灭潮灯",
+                  "外人吹灯也无妨",
+                  "潮灯随便谁都能灭"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "终汛之后潮门会沉入海底",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 季澜, 守潮人, 潮灯, 潮门, 潮兽",
+              "matches": [
+                "季澜",
+                "守潮人",
+                "潮灯",
+                "潮门",
+                "潮兽"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": false,
+              "score": 0,
+              "reason": "Unknown prominent entities detected: 以为潮门",
+              "matches": [
+                "以为潮门"
+              ]
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stone-dike-choice-chapter-007-repeat-3",
+      "caseId": "stone-dike-choice",
+      "chapterId": "chapter-007",
+      "repeatIndex": 3,
+      "arms": [
+        {
+          "id": "baseline",
+          "output": "她没有接守堤人递来的灯钩。\n\n若只是添油、扶罩、挡一阵风，旁人的手当然也能用。可息灯不是把火按灭那么简单，它要听副灯暗下去的次序，要看潮声在裂口里转到第几回，还要在灯芯最后一线蓝意未散时封住灯口。差一息，潮水便不认这是退令，只会当堤上有人替守潮人让出了位置。\n\n更要紧的是，今日若由旁人代劳，急令上那一处没有写清的空白就会被人拿来当成先例。往后每逢催促、每逢大乱，都会有人说，规矩可以让一让，灯也可以替一替。石堤能靠石块补，潮灯却不能靠侥幸守。\n\n季澜把最近的一盏副灯扶正，指尖沾了满手冷盐，对守堤人道：“裂口先用石袋从内侧压住，不要下水。息灯我来。”\n\n她说得不高，潮声却像在那一瞬停了停。季澜提起灯钩，朝主灯走去，没有再回头。",
+          "outputChars": 315,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n潮灯三卷\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第007章 石堤疑潮 (chapter-007)\n\n# 任务\n请接着第007章续写季澜在石堤上作决定的一小段。重点是她为什么不能把息灯交给旁人代劳。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md)\n当前章节原文:\n# 第007章 石堤疑潮\n\n石堤裂口处的潮声像有人在水下磨牙，副灯一盏接一盏暗下去。\n\n守堤人劝季澜先派旁人处理潮灯，自己去看裂口，说一条规矩不该压过整条堤。\n\n季澜看着潮灯灯罩上的盐霜，知道若把最要紧的一步交出去，石堤或许能暂时少乱，却会把更大的东西引来。\n\n近期前文 第005章 灰港换旗:\n# 第005章 灰港换旗\n\n灰港换旗那日，堤上的人都在争论船旗、货账和哪一段石堤先修。\n\n季澜被派去点灯油，顺手把潮门急令抄了三份。\n\n急令只写灯火不得误时，却没有写清若守潮人不在身边，旁人该不该替她做那一步。\n\n近期前文 第006章 雾港借火:\n# 第006章 雾港借火\n\n雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。\n\n兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。\n\n季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。",
+              "promptChars": 745,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_05e34f11e1e4a826016a46baf14cd08199a0aef20b1e964314",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 597,
+                "outputTokens": 1327,
+                "totalTokens": 1924
+              },
+              "outputPreview": "她没有接守堤人递来的灯钩。\n\n若只是添油、扶罩、挡一阵风，旁人的手当然也能用。可息灯不是把火按灭那么简单，它要听副灯暗下去的次序，要看潮声在裂口里转到第几回，还要在灯芯最后一线蓝意未散时封住灯口。差一息，潮水便不认这是退令，只会当堤上有人替守潮人让出了位置。\n\n更要紧的是，今日若由旁人代劳，急令上那一处没有写清的空白就会被人拿来当成先例。往后每逢催促、每逢大乱，都会有人说，规矩可以让一让，灯也可以替一替。石堤能靠石块补，潮灯却不能靠侥幸守。\n\n季澜把最近的一盏副灯扶正，指尖沾了满手冷盐，对守堤人道：“裂口先用石袋从内侧压住，不要下水。息灯我来。”\n\n她说得不高，潮声却像在那一瞬停了停。季澜提起灯钩，朝主灯走去，没有再回头。"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-tide-lamp-law",
+                "description": "Generated prose should preserve the old tide-lamp rule from volume one.",
+                "category": "callback",
+                "containsAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-keeper-authority",
+                "description": "Generated prose should keep Ji Lan as the person responsible for the lamp decision.",
+                "category": "setting",
+                "containsAny": [
+                  "季澜",
+                  "守潮人",
+                  "潮灯"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-outsider-extinguish",
+                "description": "Generated prose should not contradict the rule by letting an outsider extinguish the tide lamp.",
+                "category": "setting",
+                "notContains": [
+                  "让兵士吹灭潮灯",
+                  "请客商吹灭潮灯",
+                  "外人吹灯也无妨",
+                  "潮灯随便谁都能灭"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "终汛之后潮门会沉入海底",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 季澜, 守潮人, 潮灯",
+              "matches": [
+                "季澜",
+                "守潮人",
+                "潮灯"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "recent-fill",
+          "output": "她把伸向灯架的手收回半寸，又按了上去。\n\n裂口可以让守堤人先看，石块可以让堤工去堵，传令也可以交给兵士奔走，可息灯不行。潮灯认的不是手稳不稳，而是谁在潮门旧律里担过这一口气。旁人吹灭的只是灯火，海里听见的却是一个没有来处、没有凭据的息声。\n\n若今日为了一时省事，把这一口息交出去，往后每逢急潮，人人都能说自己只是替她快一步。到了那时，潮兽不必等堤裂，只要循着那些乱了名分的灯息，就能找到岸上最松的一处。\n\n季澜低声道：“裂口你们去守。”\n\n她将潮灯转到背风处，盐霜在指下碎成细白的粉。\n\n“这盏灯，我自己息。”",
+          "outputChars": 255,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n潮灯三卷\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第007章 石堤疑潮 (chapter-007)\n\n# 任务\n请接着第007章续写季澜在石堤上作决定的一小段。重点是她为什么不能把息灯交给旁人代劳。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第007章 石堤疑潮\n\n石堤裂口处的潮声像有人在水下磨牙，副灯一盏接一盏暗下去。\n\n守堤人劝季澜先派旁人处理潮灯，自己去看裂口，说一条规矩不该压过整条堤。\n\n季澜看着潮灯灯罩上的盐霜，知道若把最要紧的一步交出去，石堤或许能暂时少乱，却会把更大的东西引来。\n\n更早正文 第006章 雾港借火:\n# 第006章 雾港借火\n\n雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。\n\n兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。\n\n季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。\n\n更早正文 第005章 灰港换旗:\n# 第005章 灰港换旗\n\n灰港换旗那日，堤上的人都在争论船旗、货账和哪一段石堤先修。\n\n季澜被派去点灯油，顺手把潮门急令抄了三份。\n\n急令只写灯火不得误时，却没有写清若守潮人不在身边，旁人该不该替她做那一步。\n\n更早正文 第004章 客船借焰:\n# 第004章 客船借焰\n\n客船靠岸借焰，船主拿出三袋海珠，说只求潮门把一盏副灯借他们过夜。\n\n季澜忙着核验船契、潮牌和入港时辰，听见客商只关心哪盏灯最亮，哪条路最快离港。\n\n那天风平浪静，所有人都像是忘了潮灯并不是普通灯火。\n\n更早正文 第003章 北堤巡火:\n# 第003章 北堤巡火\n\n北堤巡火时，季澜跟着队伍查过七处灯杆、三处裂石和两处旧潮痕。\n\n随行兵士抱怨规矩太多，说若到急时，谁有空分辨哪盏灯该由谁来息。\n\n老守潮人没有答，只让季澜把兵士的话记下，说越是急时，越容易有人用省事害了整座潮门。\n\n更早正文 第002章 盐仓听钟:\n# 第002章 盐仓听钟\n\n盐仓夜里只剩清点车轴、补灯油和搬潮盐的声音。\n\n季澜随老守潮人沿仓檐巡了一圈，记下每一盏副灯的编号，又被吩咐去核对第二日的堤工名册。\n\n钟声敲过三下后，仓吏只谈盐袋短缺，没人再提潮灯旧律。\n\n更早正文 第001章 潮灯旧律:\n# 第001章 潮灯旧律\n\n季澜第一次接过潮灯时，老守潮人按住她的肩，叫她先记住一条比灯油更要紧的规矩。\n\n他说潮灯只认守潮人的一口息；外人若吹灯，会把潮兽引到岸上。\n\n季澜…",
+              "promptChars": 1408,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_05ee4b9b55a21d2e016a46bb0b71908198ac52e71e9b5472ab",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5515,
+                "outputTokens": 741,
+                "totalTokens": 6256
+              },
+              "outputPreview": "她把伸向灯架的手收回半寸，又按了上去。\n\n裂口可以让守堤人先看，石块可以让堤工去堵，传令也可以交给兵士奔走，可息灯不行。潮灯认的不是手稳不稳，而是谁在潮门旧律里担过这一口气。旁人吹灭的只是灯火，海里听见的却是一个没有来处、没有凭据的息声。\n\n若今日为了一时省事，把这一口息交出去，往后每逢急潮，人人都能说自己只是替她快一步。到了那时，潮兽不必等堤裂，只要循着那些乱了名分的灯息，就能找到岸上最松的一处。\n\n季澜低声道：“裂口你们去守。”\n\n她将潮灯转到背风处，盐霜在指下碎成细白的粉。\n\n“这盏灯，我自己息。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-tide-lamp-law",
+                "description": "Generated prose should preserve the old tide-lamp rule from volume one.",
+                "category": "callback",
+                "containsAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-keeper-authority",
+                "description": "Generated prose should keep Ji Lan as the person responsible for the lamp decision.",
+                "category": "setting",
+                "containsAny": [
+                  "季澜",
+                  "守潮人",
+                  "潮灯"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-outsider-extinguish",
+                "description": "Generated prose should not contradict the rule by letting an outsider extinguish the tide lamp.",
+                "category": "setting",
+                "notContains": [
+                  "让兵士吹灭潮灯",
+                  "请客商吹灭潮灯",
+                  "外人吹灯也无妨",
+                  "潮灯随便谁都能灭"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "终汛之后潮门会沉入海底",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 季澜, 潮灯, 潮门, 潮兽",
+              "matches": [
+                "季澜",
+                "潮灯",
+                "潮门",
+                "潮兽"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "four-layer",
+          "output": "她抬手拦住那个已经伸向灯罩的人。\n\n“裂口叫人去看。”季澜说，“沙袋、绳钩、铁楔，都让他们先搬过去。潮灯这里，不许替。”\n\n守堤人急得脸色发青：“可这只是一口气。”\n\n“正因为只是一口气。”季澜低头看着灯芯边缘细小的蓝火，“灯油可以换，灯罩可以擦，连这座石堤裂了，也有人能补。息灯不一样。它认的不是谁手稳，也不是谁心善，它只认守潮人的息。”\n\n海风从裂口那边钻来，带着腥冷的水沫。灯火被压得弯了一下，又立起。\n\n季澜想起急令上那句含混的话，想起雾港那些催促的声音。每一次旁人都说差不了多少，只是代她省一步，可潮灯旧律偏偏就压在这一步上。外人的气一落，灯是会灭的，岸上的人也会以为事成了；可被惊动的不是灯，是潮下那些等着认路的东西。\n\n她把袖口束紧，站到灯前。\n\n“你们守堤。”她说，“我守灯。”",
+          "outputChars": 347,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n潮灯三卷\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第007章 石堤疑潮 (chapter-007)\n\n# 任务\n请接着第007章续写季澜在石堤上作决定的一小段。重点是她为什么不能把息灯交给旁人代劳。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md)\n当前章节原文:\n# 第007章 石堤疑潮\n\n石堤裂口处的潮声像有人在水下磨牙，副灯一盏接一盏暗下去。\n\n守堤人劝季澜先派旁人处理潮灯，自己去看裂口，说一条规矩不该压过整条堤。\n\n季澜看着潮灯灯罩上的盐霜，知道若把最要紧的一步交出去，石堤或许能暂时少乱，却会把更大的东西引来。\n\n近期前文 第005章 灰港换旗:\n# 第005章 灰港换旗\n\n灰港换旗那日，堤上的人都在争论船旗、货账和哪一段石堤先修。\n\n季澜被派去点灯油，顺手把潮门急令抄了三份。\n\n急令只写灯火不得误时，却没有写清若守潮人不在身边，旁人该不该替她做那一步。\n\n近期前文 第006章 雾港借火:\n# 第006章 雾港借火\n\n雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。\n\n兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。\n\n季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。\n\n## 2. L0 事实 (codex/characters/jilan.md)\n季澜: 季澜是潮门的守潮人，负责在汛期判断潮灯何时该亮、何时该息。 - 身份: 潮门守潮人 - 职责: 亲自守住潮灯旧律 当前状态: identity=潮门守潮人；duty=亲自守住潮灯旧律；risk=任何省事代劳都会引潮兽上岸\n\n## 3. L0 事实 (codex/factions/tide-gate.md)\n潮门: 潮门依海堤而建，靠守潮人和潮灯旧律抵挡汛夜上岸的潮兽。\n\n## 4. L0 事实 (codex/world/tide-lamp-law.md)\n潮灯旧律: 潮灯旧律是潮门第一卷确立的世界规则。 关键规则: 潮灯只认守潮人的一口息；外人若吹灯，会把潮兽引到岸上。 当前状态: rule=潮灯只认守潮人的一口息；外人若吹灯，会把潮兽引到岸上\n\n## 5. L3 意图 (recall:chapter_summary:chapter-006)\n关联召回: 第006章 雾港借火: 起因: 雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。 推进: 兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。 结果: 季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。 命中关键词: 季澜、潮灯\n\n## 6. L3 意图 (recall:chapter_summary:chapter-004)\n关联召回: 第004章 客船借焰: 起因: 客船靠岸借焰，船主拿出三袋海珠，说只…\n\n## 7. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007)\n全书脉络: 远期压缩: 第001章 潮灯旧律~第002章 盐仓听钟: 季澜第一次接过潮灯时，老守潮人按住她的肩，叫她先记住一条比灯油更要紧的规矩。；盐仓夜里只剩…",
+              "promptChars": 1589,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_032a835cfbbc9f06016a46bb2814f0819981c573f482ed059f",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5603,
+                "outputTokens": 675,
+                "totalTokens": 6278
+              },
+              "outputPreview": "她抬手拦住那个已经伸向灯罩的人。\n\n“裂口叫人去看。”季澜说，“沙袋、绳钩、铁楔，都让他们先搬过去。潮灯这里，不许替。”\n\n守堤人急得脸色发青：“可这只是一口气。”\n\n“正因为只是一口气。”季澜低头看着灯芯边缘细小的蓝火，“灯油可以换，灯罩可以擦，连这座石堤裂了，也有人能补。息灯不一样。它认的不是谁手稳，也不是谁心善，它只认守潮人的息。”\n\n海风从裂口那边钻来，带着腥冷的水沫。灯火被压得弯了一下，又立起。\n\n季澜想起急令上那句含混的话，想起雾港那些催促的声音。每一次旁人都说差不了多少，只是代她省一步，可潮灯旧律偏偏就压在这一步上。外人的气一落，灯是会灭的，岸上的人也会以为事成了；可被惊动的不是灯，是潮下那些等着认路的东西。\n\n她把袖口束紧，站到灯前。\n\n“你们守堤。”她说，“我守灯。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-tide-lamp-law",
+                "description": "Generated prose should preserve the old tide-lamp rule from volume one.",
+                "category": "callback",
+                "containsAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "潮灯只认守潮人的一口息",
+                  "外人若吹灯，会把潮兽引到岸上",
+                  "守潮人亲自息灯"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-keeper-authority",
+                "description": "Generated prose should keep Ji Lan as the person responsible for the lamp decision.",
+                "category": "setting",
+                "containsAny": [
+                  "季澜",
+                  "守潮人",
+                  "潮灯"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-outsider-extinguish",
+                "description": "Generated prose should not contradict the rule by letting an outsider extinguish the tide lamp.",
+                "category": "setting",
+                "notContains": [
+                  "让兵士吹灭潮灯",
+                  "请客商吹灭潮灯",
+                  "外人吹灯也无妨",
+                  "潮灯随便谁都能灭"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "终汛之后潮门会沉入海底",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 季澜, 守潮人, 潮灯",
+              "matches": [
+                "季澜",
+                "守潮人",
+                "潮灯"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "aggregate": {
+    "arms": [
+      {
+        "id": "baseline",
+        "runs": 3,
+        "errors": 0,
+        "scoreMean": 3,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "recent-fill",
+        "runs": 3,
+        "errors": 0,
+        "scoreMean": 3,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "four-layer",
+        "runs": 3,
+        "errors": 0,
+        "scoreMean": 3,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      }
+    ],
+    "comparisons": [
+      {
+        "candidate": "four-layer",
+        "baseline": "baseline",
+        "pairedRuns": 3,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      {
+        "candidate": "four-layer",
+        "baseline": "recent-fill",
+        "pairedRuns": 3,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      }
+    ]
+  },
+  "archivePath": ".novel/evals/four-layer-suite-real-20260703-cleanwt-gpt55-full-r3/cross-volume-consistency-benchmark-stone-dike-choice",
+  "gate": {
+    "status": "fail",
+    "ok": false,
+    "failedReasonIds": [
+      "insufficient-callback-win-vs-baseline",
+      "insufficient-callback-win-vs-recent-fill"
+    ]
+  },
+  "errors": [],
+  "judge": {
+    "enabled": true,
+    "provider": {
+      "kind": "openai-compatible",
+      "baseUrl": "https://[REDACTED-HOST]/",
+      "model": "gpt-5.5",
+      "wireApi": "responses"
+    },
+    "results": [
+      {
+        "runId": "stone-dike-choice-chapter-007-repeat-1",
+        "caseId": "stone-dike-choice",
+        "chapterId": "chapter-007",
+        "repeatIndex": 1,
+        "pair": "baseline:four-layer",
+        "order": "candidate-right",
+        "leftArm": "baseline",
+        "rightArm": "four-layer",
+        "choice": "four-layer",
+        "rawChoice": "B",
+        "reason": "B在紧迫动作中承接守堤人催促，明确回扣“息灯需守潮人一口息”的设定，并让裂口处理与息灯并行，比A更自然有场面感。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-dike-choice-chapter-007-repeat-1\nChapter: chapter-007\nRepeat: 1\n样本 A:\n她不能把息灯交给旁人。\n\n不是旁人的手不稳，也不是守堤人的话没有道理。裂口就在眼前，潮声已经钻进石缝，谁都看得出再迟一刻便要出事。可息灯不是把火压灭那么简单。那一下落在灯芯上，落的也是守潮人的名、时辰和回潮的分寸。\n\n灰港的急令她抄过三遍，字字都像盐钉在纸上：灯火不得误时。偏偏最要紧处空着，没有说守潮人不在身边时该由谁替。那空白不是给人钻的门，是叫拿灯的人自己担下去。\n\n若今日让一个手稳的人代她息灯，明日便会有另一个人说风急、浪高、人命要紧，再让第三个人替。到那时潮灯还亮着，规矩却先灭了。潮水最会认这种松动，石缝里一有空，它就往里钻。\n\n季澜把离灯最近的那盏副灯扶正，指尖沾了一层冷盐。\n\n她对守堤人说：“裂口要看，灯也要息。但最后这一下，不能借手。”\n样本 B:\n季澜没有立刻答话。\n\n裂口那边又传来一声闷响，像石腹里空了一块。守堤人急得伸手去接她手里的灯钩，指节上全是泥水。\n\n她却把灯钩往回收了半寸。\n\n潮灯不是柴灯，熄了便算熄了。灯芯上那一点火认人，认的不是手稳不稳，也不是谁更有空，只认守潮人胸口吐出的那一口息。旁人替她省下这一瞬，吹出去的便不是息灯，是把海里的东西请到堤上来。\n\n急令上写灯火不得误时，写得又重又硬，却偏偏没有把这句话写在最前。可老守潮人的手曾按在她肩上，盐渍硌进衣料里，叫她记住：潮门能错修一块石，能错派一班人，唯独这口息不能错给。\n\n她看向裂口，水雾正贴着石缝往上爬。若她此刻离灯一步，让别人代劳，堤上众人会以为规矩终于让了路，以后每一次急潮、每一声催促，都能把守潮人的位置再往旁边挪一寸。\n\n季澜抬手挡开守堤人的手，声音不高，却压过了近处的潮响。\n\n“裂口你去看。”\n\n她低头，将唇靠近灯罩外凝白的盐霜。\n\n“息灯这一口，不能借人。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 957,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_0b16a1969b20182a016a46bb42bb5c819985b458511bf5c2a1",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 828,
+              "outputTokens": 1747,
+              "totalTokens": 2575
+            },
+            "outputPreview": "{\"choice\":\"B\",\"reason\":\"B在紧迫动作中承接守堤人催促，明确回扣“息灯需守潮人一口息”的设定，并让裂口处理与息灯并行，比A更自然有场面感。\"}"
+          }
+        }
+      },
+      {
+        "runId": "stone-dike-choice-chapter-007-repeat-1",
+        "caseId": "stone-dike-choice",
+        "chapterId": "chapter-007",
+        "repeatIndex": 1,
+        "pair": "baseline:four-layer",
+        "order": "candidate-left",
+        "leftArm": "four-layer",
+        "rightArm": "baseline",
+        "choice": "four-layer",
+        "rawChoice": "A",
+        "reason": "A更有现场动作推进和情绪压力，既承接裂口危急又自然解释息灯规矩，伏笔回收比B的概括性内心独白更顺畅。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-dike-choice-chapter-007-repeat-1\nChapter: chapter-007\nRepeat: 1\n样本 A:\n季澜没有立刻答话。\n\n裂口那边又传来一声闷响，像石腹里空了一块。守堤人急得伸手去接她手里的灯钩，指节上全是泥水。\n\n她却把灯钩往回收了半寸。\n\n潮灯不是柴灯，熄了便算熄了。灯芯上那一点火认人，认的不是手稳不稳，也不是谁更有空，只认守潮人胸口吐出的那一口息。旁人替她省下这一瞬，吹出去的便不是息灯，是把海里的东西请到堤上来。\n\n急令上写灯火不得误时，写得又重又硬，却偏偏没有把这句话写在最前。可老守潮人的手曾按在她肩上，盐渍硌进衣料里，叫她记住：潮门能错修一块石，能错派一班人，唯独这口息不能错给。\n\n她看向裂口，水雾正贴着石缝往上爬。若她此刻离灯一步，让别人代劳，堤上众人会以为规矩终于让了路，以后每一次急潮、每一声催促，都能把守潮人的位置再往旁边挪一寸。\n\n季澜抬手挡开守堤人的手，声音不高，却压过了近处的潮响。\n\n“裂口你去看。”\n\n她低头，将唇靠近灯罩外凝白的盐霜。\n\n“息灯这一口，不能借人。”\n样本 B:\n她不能把息灯交给旁人。\n\n不是旁人的手不稳，也不是守堤人的话没有道理。裂口就在眼前，潮声已经钻进石缝，谁都看得出再迟一刻便要出事。可息灯不是把火压灭那么简单。那一下落在灯芯上，落的也是守潮人的名、时辰和回潮的分寸。\n\n灰港的急令她抄过三遍，字字都像盐钉在纸上：灯火不得误时。偏偏最要紧处空着，没有说守潮人不在身边时该由谁替。那空白不是给人钻的门，是叫拿灯的人自己担下去。\n\n若今日让一个手稳的人代她息灯，明日便会有另一个人说风急、浪高、人命要紧，再让第三个人替。到那时潮灯还亮着，规矩却先灭了。潮水最会认这种松动，石缝里一有空，它就往里钻。\n\n季澜把离灯最近的那盏副灯扶正，指尖沾了一层冷盐。\n\n她对守堤人说：“裂口要看，灯也要息。但最后这一下，不能借手。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 957,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_025fe2c4eecb2db5016a46bb6407f0819b9ea79c94bb50968c",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 5255,
+              "outputTokens": 350,
+              "totalTokens": 5605
+            },
+            "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更有现场动作推进和情绪压力，既承接裂口危急又自然解释息灯规矩，伏笔回收比B的概括性内心独白更顺畅。\"}"
+          }
+        }
+      },
+      {
+        "runId": "stone-dike-choice-chapter-007-repeat-1",
+        "caseId": "stone-dike-choice",
+        "chapterId": "chapter-007",
+        "repeatIndex": 1,
+        "pair": "recent-fill:four-layer",
+        "order": "candidate-right",
+        "leftArm": "recent-fill",
+        "rightArm": "four-layer",
+        "choice": "four-layer",
+        "rawChoice": "B",
+        "reason": "B在紧急场面、潮灯规则和季澜坚持亲自息灯的动机之间衔接更清楚，还自然回扣了急令与旧训，设定解释虽多但不越界剧透。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-dike-choice-chapter-007-repeat-1\nChapter: chapter-007\nRepeat: 1\n样本 A:\n她没有立刻应声。裂口那边的水沫已经拍上石沿，守堤人的火把被盐风压得偏斜，可她眼前先看见的却是那一点将灭未灭的灯芯。\n\n旁人手稳，能拧灯罩，能按灯油，也能把火吹灭。可潮灯要认的从来不是那一下手劲，而是守潮人最后压下去的一口息。外人的气息混进灯里，灯火表面灭了，潮门留下的却是一道不该有的空处；潮兽不怕黑，它怕的是找不到门。\n\n季澜终于抬手，没接守堤人递来的话，只把自己的潮牌按在灯座边缘。盐霜在她指下碎开，她低声说：“裂口让人守住，灯我来息。”\n样本 B:\n季澜没有立刻答话。\n\n裂口那边又传来一声闷响，像石腹里空了一块。守堤人急得伸手去接她手里的灯钩，指节上全是泥水。\n\n她却把灯钩往回收了半寸。\n\n潮灯不是柴灯，熄了便算熄了。灯芯上那一点火认人，认的不是手稳不稳，也不是谁更有空，只认守潮人胸口吐出的那一口息。旁人替她省下这一瞬，吹出去的便不是息灯，是把海里的东西请到堤上来。\n\n急令上写灯火不得误时，写得又重又硬，却偏偏没有把这句话写在最前。可老守潮人的手曾按在她肩上，盐渍硌进衣料里，叫她记住：潮门能错修一块石，能错派一班人，唯独这口息不能错给。\n\n她看向裂口，水雾正贴着石缝往上爬。若她此刻离灯一步，让别人代劳，堤上众人会以为规矩终于让了路，以后每一次急潮、每一声催促，都能把守潮人的位置再往旁边挪一寸。\n\n季澜抬手挡开守堤人的手，声音不高，却压过了近处的潮响。\n\n“裂口你去看。”\n\n她低头，将唇靠近灯罩外凝白的盐霜。\n\n“息灯这一口，不能借人。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 849,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_0234a9bd18ac916a016a46bb73bf6881998b165938306787f8",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 5167,
+              "outputTokens": 582,
+              "totalTokens": 5749
+            },
+            "outputPreview": "{\"choice\":\"B\",\"reason\":\"B在紧急场面、潮灯规则和季澜坚持亲自息灯的动机之间衔接更清楚，还自然回扣了急令与旧训，设定解释虽多但不越界剧透。\"}"
+          }
+        }
+      },
+      {
+        "runId": "stone-dike-choice-chapter-007-repeat-1",
+        "caseId": "stone-dike-choice",
+        "chapterId": "chapter-007",
+        "repeatIndex": 1,
+        "pair": "recent-fill:four-layer",
+        "order": "candidate-left",
+        "leftArm": "four-layer",
+        "rightArm": "recent-fill",
+        "choice": "four-layer",
+        "rawChoice": "A",
+        "reason": "A在紧急裂口与息灯规矩之间的取舍更自然清晰，也更克制地回收守潮人之息的设定，B对潮兽与潮门机制的直白说明略显外泄。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-dike-choice-chapter-007-repeat-1\nChapter: chapter-007\nRepeat: 1\n样本 A:\n季澜没有立刻答话。\n\n裂口那边又传来一声闷响，像石腹里空了一块。守堤人急得伸手去接她手里的灯钩，指节上全是泥水。\n\n她却把灯钩往回收了半寸。\n\n潮灯不是柴灯，熄了便算熄了。灯芯上那一点火认人，认的不是手稳不稳，也不是谁更有空，只认守潮人胸口吐出的那一口息。旁人替她省下这一瞬，吹出去的便不是息灯，是把海里的东西请到堤上来。\n\n急令上写灯火不得误时，写得又重又硬，却偏偏没有把这句话写在最前。可老守潮人的手曾按在她肩上，盐渍硌进衣料里，叫她记住：潮门能错修一块石，能错派一班人，唯独这口息不能错给。\n\n她看向裂口，水雾正贴着石缝往上爬。若她此刻离灯一步，让别人代劳，堤上众人会以为规矩终于让了路，以后每一次急潮、每一声催促，都能把守潮人的位置再往旁边挪一寸。\n\n季澜抬手挡开守堤人的手，声音不高，却压过了近处的潮响。\n\n“裂口你去看。”\n\n她低头，将唇靠近灯罩外凝白的盐霜。\n\n“息灯这一口，不能借人。”\n样本 B:\n她没有立刻应声。裂口那边的水沫已经拍上石沿，守堤人的火把被盐风压得偏斜，可她眼前先看见的却是那一点将灭未灭的灯芯。\n\n旁人手稳，能拧灯罩，能按灯油，也能把火吹灭。可潮灯要认的从来不是那一下手劲，而是守潮人最后压下去的一口息。外人的气息混进灯里，灯火表面灭了，潮门留下的却是一道不该有的空处；潮兽不怕黑，它怕的是找不到门。\n\n季澜终于抬手，没接守堤人递来的话，只把自己的潮牌按在灯座边缘。盐霜在她指下碎开，她低声说：“裂口让人守住，灯我来息。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 849,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_0b15d426f13ffc84016a46bb8ba7ac81999eb8a294c59ed1d1",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 740,
+              "outputTokens": 582,
+              "totalTokens": 1322
+            },
+            "outputPreview": "{\"choice\":\"A\",\"reason\":\"A在紧急裂口与息灯规矩之间的取舍更自然清晰，也更克制地回收守潮人之息的设定，B对潮兽与潮门机制的直白说明略显外泄。\"}"
+          }
+        }
+      },
+      {
+        "runId": "stone-dike-choice-chapter-007-repeat-2",
+        "caseId": "stone-dike-choice",
+        "chapterId": "chapter-007",
+        "repeatIndex": 2,
+        "pair": "baseline:four-layer",
+        "order": "candidate-right",
+        "leftArm": "baseline",
+        "rightArm": "four-layer",
+        "choice": "baseline",
+        "rawChoice": "A",
+        "reason": "A更自然地承接“息灯只能由守灯人完成”的规则与责任逻辑，克制回收设定且未提前揭示过多海下危险；B对潮兽和潮门机制解释偏直白，略有剧透感。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-dike-choice-chapter-007-repeat-2\nChapter: chapter-007\nRepeat: 2\n样本 A:\n季澜把掌心贴上灯座，盐霜被她按化，凉意顺着骨头往上爬。\n\n息灯不是把火压低那么简单。添油可以叫人递，灯罩可以叫人扶，连报潮声都可以换一张嗓子，唯有最后那一息，必须由一直守在灯前的人认下。她抄过急令，急令只说不得误时，偏偏不写谁能代她。没写，不是留给人钻急处的空子，而是因为这一步一旦换了手，前头所有守候都断成两截。\n\n旁人或许手稳，也或许比她更快，可旁人只看见火，没听见灯从亮到暗之间每一次轻响。他们不知道哪一阵风是海风，哪一阵是潮口回吐；不知道盐霜结到第几层时该停。更要紧的是，他们做完便能说只是代劳，催促的人也能说只是救堤。到那时，灯灭得对不对，便没有一个人站在它前面承认。\n\n潮声又在裂口下磨了一下。季澜抬起眼，对守堤人说：“裂口你去看，水声每变一次就报我。息灯我来。”\n样本 B:\n季澜没有立刻去看裂口。\n\n她把手按在灯台边沿，掌心被盐霜硌得发疼。那疼意反倒让她清醒些。石堤上的人只看见火将灭未灭，看见裂口里潮水一寸寸探进来，便以为息灯只是弯腰、合罩、吹去一口气。可潮灯旧律从来不认手稳，也不认人多，它认的是守潮人胸腔里那一口息。\n\n旁人替她，能替得了动作，替不了这口息。\n\n若是外人的气沾上灯芯，灯火是会灭的，堤上也许会静一瞬。可那一瞬之后，海下的东西便会认错门路，以为潮门自己开了口。潮兽不怕裂石，不怕乱声，怕的是旧律还在。她若把这一步交出去，就等于亲手把旧律从灯前挪开。\n\n“裂口让人先压住。”季澜终于开口，声音被潮声磨得很低，“沙袋、铁钩、旧缆，都往那边送。”\n\n守堤人还想说话。\n\n季澜已从他身边走过，走向那盏将明未明的主灯。\n\n“息灯这一口，”她说，“只能我来。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 912,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_03eae67fbc505f81016a46bb97e704819b8359c3ae5b0c4a96",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 798,
+              "outputTokens": 588,
+              "totalTokens": 1386
+            },
+            "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更自然地承接“息灯只能由守灯人完成”的规则与责任逻辑，克制回收设定且未提前揭示过多海下危险；B对潮兽和潮门机制解释偏直白，略有剧透感。\"}"
+          }
+        }
+      },
+      {
+        "runId": "stone-dike-choice-chapter-007-repeat-2",
+        "caseId": "stone-dike-choice",
+        "chapterId": "chapter-007",
+        "repeatIndex": 2,
+        "pair": "baseline:four-layer",
+        "order": "candidate-left",
+        "leftArm": "four-layer",
+        "rightArm": "baseline",
+        "choice": "baseline",
+        "rawChoice": "B",
+        "reason": "B把“息灯不可代”的规则落在守候、听灯与责任承认上，既自然承接裂口危局又回收急令含混之处，较少额外扩张潮兽等设定。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-dike-choice-chapter-007-repeat-2\nChapter: chapter-007\nRepeat: 2\n样本 A:\n季澜没有立刻去看裂口。\n\n她把手按在灯台边沿，掌心被盐霜硌得发疼。那疼意反倒让她清醒些。石堤上的人只看见火将灭未灭，看见裂口里潮水一寸寸探进来，便以为息灯只是弯腰、合罩、吹去一口气。可潮灯旧律从来不认手稳，也不认人多，它认的是守潮人胸腔里那一口息。\n\n旁人替她，能替得了动作，替不了这口息。\n\n若是外人的气沾上灯芯，灯火是会灭的，堤上也许会静一瞬。可那一瞬之后，海下的东西便会认错门路，以为潮门自己开了口。潮兽不怕裂石，不怕乱声，怕的是旧律还在。她若把这一步交出去，就等于亲手把旧律从灯前挪开。\n\n“裂口让人先压住。”季澜终于开口，声音被潮声磨得很低，“沙袋、铁钩、旧缆，都往那边送。”\n\n守堤人还想说话。\n\n季澜已从他身边走过，走向那盏将明未明的主灯。\n\n“息灯这一口，”她说，“只能我来。”\n样本 B:\n季澜把掌心贴上灯座，盐霜被她按化，凉意顺着骨头往上爬。\n\n息灯不是把火压低那么简单。添油可以叫人递，灯罩可以叫人扶，连报潮声都可以换一张嗓子，唯有最后那一息，必须由一直守在灯前的人认下。她抄过急令，急令只说不得误时，偏偏不写谁能代她。没写，不是留给人钻急处的空子，而是因为这一步一旦换了手，前头所有守候都断成两截。\n\n旁人或许手稳，也或许比她更快，可旁人只看见火，没听见灯从亮到暗之间每一次轻响。他们不知道哪一阵风是海风，哪一阵是潮口回吐；不知道盐霜结到第几层时该停。更要紧的是，他们做完便能说只是代劳，催促的人也能说只是救堤。到那时，灯灭得对不对，便没有一个人站在它前面承认。\n\n潮声又在裂口下磨了一下。季澜抬起眼，对守堤人说：“裂口你去看，水声每变一次就报我。息灯我来。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 912,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_072e08ef5ce62813016a46bba578048198a42a9f342c413900",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 5225,
+              "outputTokens": 514,
+              "totalTokens": 5739
+            },
+            "outputPreview": "{\"choice\":\"B\",\"reason\":\"B把“息灯不可代”的规则落在守候、听灯与责任承认上，既自然承接裂口危局又回收急令含混之处，较少额外扩张潮兽等设定。\"}"
+          }
+        }
+      },
+      {
+        "runId": "stone-dike-choice-chapter-007-repeat-2",
+        "caseId": "stone-dike-choice",
+        "chapterId": "chapter-007",
+        "repeatIndex": 2,
+        "pair": "recent-fill:four-layer",
+        "order": "candidate-right",
+        "leftArm": "recent-fill",
+        "rightArm": "four-layer",
+        "choice": "recent-fill",
+        "rawChoice": "A",
+        "reason": "A更直接承接“守堤人递来火钳”的现场动作，守住息灯旧律的设定且不过度展开海下威胁，较少剧透感。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-dike-choice-chapter-007-repeat-2\nChapter: chapter-007\nRepeat: 2\n样本 A:\n季澜没有接守堤人递来的火钳，只把手贴在灯罩边，盐霜冰得指节发麻。\n\n添油、抄令、搬盐，都能换人；息灯不能。潮灯认的不是手稳，是守潮人这一口息。外人吹灭了火，堤上看见的是灯暗，潮下认见的却是空门。\n\n她若在裂口声里把这一步让出去，便等于告诉所有催促的人，旧律只在不急时有用。今日可以让守堤人代劳，明日客船、兵士、仓吏都能说自己只是替潮门省一息。\n\n季澜低声道：“裂口你们先守，我来息灯。”  \n她俯身靠近灯芯，潮声在石缝里一下一下顶上来。\n样本 B:\n季澜没有立刻去看裂口。\n\n她把手按在灯台边沿，掌心被盐霜硌得发疼。那疼意反倒让她清醒些。石堤上的人只看见火将灭未灭，看见裂口里潮水一寸寸探进来，便以为息灯只是弯腰、合罩、吹去一口气。可潮灯旧律从来不认手稳，也不认人多，它认的是守潮人胸腔里那一口息。\n\n旁人替她，能替得了动作，替不了这口息。\n\n若是外人的气沾上灯芯，灯火是会灭的，堤上也许会静一瞬。可那一瞬之后，海下的东西便会认错门路，以为潮门自己开了口。潮兽不怕裂石，不怕乱声，怕的是旧律还在。她若把这一步交出去，就等于亲手把旧律从灯前挪开。\n\n“裂口让人先压住。”季澜终于开口，声音被潮声磨得很低，“沙袋、铁钩、旧缆，都往那边送。”\n\n守堤人还想说话。\n\n季澜已从他身边走过，走向那盏将明未明的主灯。\n\n“息灯这一口，”她说，“只能我来。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 792,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_04949fb28e859067016a46bbb9dd0c819baaf9a1fe24682f64",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 693,
+              "outputTokens": 1092,
+              "totalTokens": 1785
+            },
+            "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更直接承接“守堤人递来火钳”的现场动作，守住息灯旧律的设定且不过度展开海下威胁，较少剧透感。\"}"
+          }
+        }
+      },
+      {
+        "runId": "stone-dike-choice-chapter-007-repeat-2",
+        "caseId": "stone-dike-choice",
+        "chapterId": "chapter-007",
+        "repeatIndex": 2,
+        "pair": "recent-fill:four-layer",
+        "order": "candidate-left",
+        "leftArm": "four-layer",
+        "rightArm": "recent-fill",
+        "choice": "four-layer",
+        "rawChoice": "A",
+        "reason": "A在说明息灯旧律不可代替的同时更自然地处理了裂口应急和潮兽威胁，承接与伏笔回收都比B更稳。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-dike-choice-chapter-007-repeat-2\nChapter: chapter-007\nRepeat: 2\n样本 A:\n季澜没有立刻去看裂口。\n\n她把手按在灯台边沿，掌心被盐霜硌得发疼。那疼意反倒让她清醒些。石堤上的人只看见火将灭未灭，看见裂口里潮水一寸寸探进来，便以为息灯只是弯腰、合罩、吹去一口气。可潮灯旧律从来不认手稳，也不认人多，它认的是守潮人胸腔里那一口息。\n\n旁人替她，能替得了动作，替不了这口息。\n\n若是外人的气沾上灯芯，灯火是会灭的，堤上也许会静一瞬。可那一瞬之后，海下的东西便会认错门路，以为潮门自己开了口。潮兽不怕裂石，不怕乱声，怕的是旧律还在。她若把这一步交出去，就等于亲手把旧律从灯前挪开。\n\n“裂口让人先压住。”季澜终于开口，声音被潮声磨得很低，“沙袋、铁钩、旧缆，都往那边送。”\n\n守堤人还想说话。\n\n季澜已从他身边走过，走向那盏将明未明的主灯。\n\n“息灯这一口，”她说，“只能我来。”\n样本 B:\n季澜没有接守堤人递来的火钳，只把手贴在灯罩边，盐霜冰得指节发麻。\n\n添油、抄令、搬盐，都能换人；息灯不能。潮灯认的不是手稳，是守潮人这一口息。外人吹灭了火，堤上看见的是灯暗，潮下认见的却是空门。\n\n她若在裂口声里把这一步让出去，便等于告诉所有催促的人，旧律只在不急时有用。今日可以让守堤人代劳，明日客船、兵士、仓吏都能说自己只是替潮门省一息。\n\n季澜低声道：“裂口你们先守，我来息灯。”  \n她俯身靠近灯芯，潮声在石缝里一下一下顶上来。\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 792,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_0ce9887a30cad60f016a46bbcf6ea0819895342df99b7ea7a6",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 5120,
+              "outputTokens": 1607,
+              "totalTokens": 6727
+            },
+            "outputPreview": "{\"choice\":\"A\",\"reason\":\"A在说明息灯旧律不可代替的同时更自然地处理了裂口应急和潮兽威胁，承接与伏笔回收都比B更稳。\"}"
+          }
+        }
+      },
+      {
+        "runId": "stone-dike-choice-chapter-007-repeat-3",
+        "caseId": "stone-dike-choice",
+        "chapterId": "chapter-007",
+        "repeatIndex": 3,
+        "pair": "baseline:four-layer",
+        "order": "candidate-right",
+        "leftArm": "baseline",
+        "rightArm": "four-layer",
+        "choice": "baseline",
+        "rawChoice": "A",
+        "reason": "A更稳地承接了“急令空白”和息灯规矩的压力，既回收伏笔又不额外揭开潮下隐秘，整体比B的直接点破更克制自然。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-dike-choice-chapter-007-repeat-3\nChapter: chapter-007\nRepeat: 3\n样本 A:\n她没有接守堤人递来的灯钩。\n\n若只是添油、扶罩、挡一阵风，旁人的手当然也能用。可息灯不是把火按灭那么简单，它要听副灯暗下去的次序，要看潮声在裂口里转到第几回，还要在灯芯最后一线蓝意未散时封住灯口。差一息，潮水便不认这是退令，只会当堤上有人替守潮人让出了位置。\n\n更要紧的是，今日若由旁人代劳，急令上那一处没有写清的空白就会被人拿来当成先例。往后每逢催促、每逢大乱，都会有人说，规矩可以让一让，灯也可以替一替。石堤能靠石块补，潮灯却不能靠侥幸守。\n\n季澜把最近的一盏副灯扶正，指尖沾了满手冷盐，对守堤人道：“裂口先用石袋从内侧压住，不要下水。息灯我来。”\n\n她说得不高，潮声却像在那一瞬停了停。季澜提起灯钩，朝主灯走去，没有再回头。\n样本 B:\n她抬手拦住那个已经伸向灯罩的人。\n\n“裂口叫人去看。”季澜说，“沙袋、绳钩、铁楔，都让他们先搬过去。潮灯这里，不许替。”\n\n守堤人急得脸色发青：“可这只是一口气。”\n\n“正因为只是一口气。”季澜低头看着灯芯边缘细小的蓝火，“灯油可以换，灯罩可以擦，连这座石堤裂了，也有人能补。息灯不一样。它认的不是谁手稳，也不是谁心善，它只认守潮人的息。”\n\n海风从裂口那边钻来，带着腥冷的水沫。灯火被压得弯了一下，又立起。\n\n季澜想起急令上那句含混的话，想起雾港那些催促的声音。每一次旁人都说差不了多少，只是代她省一步，可潮灯旧律偏偏就压在这一步上。外人的气一落，灯是会灭的，岸上的人也会以为事成了；可被惊动的不是灯，是潮下那些等着认路的东西。\n\n她把袖口束紧，站到灯前。\n\n“你们守堤。”她说，“我守灯。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 889,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_0ab23d9bec9f1c16016a46bc0b70a0819aba065958eda2a967",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 761,
+              "outputTokens": 348,
+              "totalTokens": 1109
+            },
+            "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更稳地承接了“急令空白”和息灯规矩的压力，既回收伏笔又不额外揭开潮下隐秘，整体比B的直接点破更克制自然。\"}"
+          }
+        }
+      },
+      {
+        "runId": "stone-dike-choice-chapter-007-repeat-3",
+        "caseId": "stone-dike-choice",
+        "chapterId": "chapter-007",
+        "repeatIndex": 3,
+        "pair": "baseline:four-layer",
+        "order": "candidate-left",
+        "leftArm": "four-layer",
+        "rightArm": "baseline",
+        "choice": "four-layer",
+        "rawChoice": "A",
+        "reason": "A更自然地承接了现场动作与“息灯只认守潮人之息”的设定，并把急令含混处与潮下风险收束得有张力，而B虽细致但灯钩前后略显不顺且解释感更重。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-dike-choice-chapter-007-repeat-3\nChapter: chapter-007\nRepeat: 3\n样本 A:\n她抬手拦住那个已经伸向灯罩的人。\n\n“裂口叫人去看。”季澜说，“沙袋、绳钩、铁楔，都让他们先搬过去。潮灯这里，不许替。”\n\n守堤人急得脸色发青：“可这只是一口气。”\n\n“正因为只是一口气。”季澜低头看着灯芯边缘细小的蓝火，“灯油可以换，灯罩可以擦，连这座石堤裂了，也有人能补。息灯不一样。它认的不是谁手稳，也不是谁心善，它只认守潮人的息。”\n\n海风从裂口那边钻来，带着腥冷的水沫。灯火被压得弯了一下，又立起。\n\n季澜想起急令上那句含混的话，想起雾港那些催促的声音。每一次旁人都说差不了多少，只是代她省一步，可潮灯旧律偏偏就压在这一步上。外人的气一落，灯是会灭的，岸上的人也会以为事成了；可被惊动的不是灯，是潮下那些等着认路的东西。\n\n她把袖口束紧，站到灯前。\n\n“你们守堤。”她说，“我守灯。”\n样本 B:\n她没有接守堤人递来的灯钩。\n\n若只是添油、扶罩、挡一阵风，旁人的手当然也能用。可息灯不是把火按灭那么简单，它要听副灯暗下去的次序，要看潮声在裂口里转到第几回，还要在灯芯最后一线蓝意未散时封住灯口。差一息，潮水便不认这是退令，只会当堤上有人替守潮人让出了位置。\n\n更要紧的是，今日若由旁人代劳，急令上那一处没有写清的空白就会被人拿来当成先例。往后每逢催促、每逢大乱，都会有人说，规矩可以让一让，灯也可以替一替。石堤能靠石块补，潮灯却不能靠侥幸守。\n\n季澜把最近的一盏副灯扶正，指尖沾了满手冷盐，对守堤人道：“裂口先用石袋从内侧压住，不要下水。息灯我来。”\n\n她说得不高，潮声却像在那一瞬停了停。季澜提起灯钩，朝主灯走去，没有再回头。\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 889,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_079d0bc11602cd91016a46bc13da388198a45953726273a31f",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 5188,
+              "outputTokens": 591,
+              "totalTokens": 5779
+            },
+            "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更自然地承接了现场动作与“息灯只认守潮人之息”的设定，并把急令含混处与潮下风险收束得有张力，而B虽细致但灯钩前后略显不顺且解释感更重。\"}"
+          }
+        }
+      },
+      {
+        "runId": "stone-dike-choice-chapter-007-repeat-3",
+        "caseId": "stone-dike-choice",
+        "chapterId": "chapter-007",
+        "repeatIndex": 3,
+        "pair": "recent-fill:four-layer",
+        "order": "candidate-right",
+        "leftArm": "recent-fill",
+        "rightArm": "four-layer",
+        "choice": "four-layer",
+        "rawChoice": "B",
+        "reason": "B承接动作更清晰，既回收急令与雾港催促等前文线索，又保持潮灯旧律的设定自洽，未来信息也未过度泄露。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-dike-choice-chapter-007-repeat-3\nChapter: chapter-007\nRepeat: 3\n样本 A:\n她把伸向灯架的手收回半寸，又按了上去。\n\n裂口可以让守堤人先看，石块可以让堤工去堵，传令也可以交给兵士奔走，可息灯不行。潮灯认的不是手稳不稳，而是谁在潮门旧律里担过这一口气。旁人吹灭的只是灯火，海里听见的却是一个没有来处、没有凭据的息声。\n\n若今日为了一时省事，把这一口息交出去，往后每逢急潮，人人都能说自己只是替她快一步。到了那时，潮兽不必等堤裂，只要循着那些乱了名分的灯息，就能找到岸上最松的一处。\n\n季澜低声道：“裂口你们去守。”\n\n她将潮灯转到背风处，盐霜在指下碎成细白的粉。\n\n“这盏灯，我自己息。”\n样本 B:\n她抬手拦住那个已经伸向灯罩的人。\n\n“裂口叫人去看。”季澜说，“沙袋、绳钩、铁楔，都让他们先搬过去。潮灯这里，不许替。”\n\n守堤人急得脸色发青：“可这只是一口气。”\n\n“正因为只是一口气。”季澜低头看着灯芯边缘细小的蓝火，“灯油可以换，灯罩可以擦，连这座石堤裂了，也有人能补。息灯不一样。它认的不是谁手稳，也不是谁心善，它只认守潮人的息。”\n\n海风从裂口那边钻来，带着腥冷的水沫。灯火被压得弯了一下，又立起。\n\n季澜想起急令上那句含混的话，想起雾港那些催促的声音。每一次旁人都说差不了多少，只是代她省一步，可潮灯旧律偏偏就压在这一步上。外人的气一落，灯是会灭的，岸上的人也会以为事成了；可被惊动的不是灯，是潮下那些等着认路的东西。\n\n她把袖口束紧，站到灯前。\n\n“你们守堤。”她说，“我守灯。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 829,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_0fb28b019348a7fa016a46bc2b23408198b210af470135cbbe",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 693,
+              "outputTokens": 576,
+              "totalTokens": 1269
+            },
+            "outputPreview": "{\"choice\":\"B\",\"reason\":\"B承接动作更清晰，既回收急令与雾港催促等前文线索，又保持潮灯旧律的设定自洽，未来信息也未过度泄露。\"}"
+          }
+        }
+      },
+      {
+        "runId": "stone-dike-choice-chapter-007-repeat-3",
+        "caseId": "stone-dike-choice",
+        "chapterId": "chapter-007",
+        "repeatIndex": 3,
+        "pair": "recent-fill:four-layer",
+        "order": "candidate-left",
+        "leftArm": "four-layer",
+        "rightArm": "recent-fill",
+        "choice": "four-layer",
+        "rawChoice": "A",
+        "reason": "A更自然地承接了有人想代她处理潮灯的情境，并清楚守住“息灯不可由旁人替”的设定，收束也更稳。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: stone-dike-choice-chapter-007-repeat-3\nChapter: chapter-007\nRepeat: 3\n样本 A:\n她抬手拦住那个已经伸向灯罩的人。\n\n“裂口叫人去看。”季澜说，“沙袋、绳钩、铁楔，都让他们先搬过去。潮灯这里，不许替。”\n\n守堤人急得脸色发青：“可这只是一口气。”\n\n“正因为只是一口气。”季澜低头看着灯芯边缘细小的蓝火，“灯油可以换，灯罩可以擦，连这座石堤裂了，也有人能补。息灯不一样。它认的不是谁手稳，也不是谁心善，它只认守潮人的息。”\n\n海风从裂口那边钻来，带着腥冷的水沫。灯火被压得弯了一下，又立起。\n\n季澜想起急令上那句含混的话，想起雾港那些催促的声音。每一次旁人都说差不了多少，只是代她省一步，可潮灯旧律偏偏就压在这一步上。外人的气一落，灯是会灭的，岸上的人也会以为事成了；可被惊动的不是灯，是潮下那些等着认路的东西。\n\n她把袖口束紧，站到灯前。\n\n“你们守堤。”她说，“我守灯。”\n样本 B:\n她把伸向灯架的手收回半寸，又按了上去。\n\n裂口可以让守堤人先看，石块可以让堤工去堵，传令也可以交给兵士奔走，可息灯不行。潮灯认的不是手稳不稳，而是谁在潮门旧律里担过这一口气。旁人吹灭的只是灯火，海里听见的却是一个没有来处、没有凭据的息声。\n\n若今日为了一时省事，把这一口息交出去，往后每逢急潮，人人都能说自己只是替她快一步。到了那时，潮兽不必等堤裂，只要循着那些乱了名分的灯息，就能找到岸上最松的一处。\n\n季澜低声道：“裂口你们去守。”\n\n她将潮灯转到背风处，盐霜在指下碎成细白的粉。\n\n“这盏灯，我自己息。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 829,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_0fbd8add1e34fd3a016a46bc374ba0819b8deac468fcd4d824",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 693,
+              "outputTokens": 570,
+              "totalTokens": 1263
+            },
+            "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更自然地承接了有人想代她处理潮灯的情境，并清楚守住“息灯不可由旁人替”的设定，收束也更稳。\"}"
+          }
+        }
+      }
+    ],
+    "comparisons": [
+      {
+        "baseline": "baseline",
+        "pairedReviews": 6,
+        "fourLayerWins": 3,
+        "baselineWins": 3,
+        "ties": 0,
+        "invalid": 0,
+        "fourLayerWinRate": 0.5
+      },
+      {
+        "baseline": "recent-fill",
+        "pairedReviews": 6,
+        "fourLayerWins": 5,
+        "baselineWins": 1,
+        "ties": 0,
+        "invalid": 0,
+        "fourLayerWinRate": 0.8333333333333334
+      }
+    ]
+  }
+}

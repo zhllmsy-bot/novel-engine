@@ -1,0 +1,496 @@
+{
+  "enabled": true,
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/",
+    "model": "gpt-5.5",
+    "wireApi": "responses"
+  },
+  "results": [
+    {
+      "runId": "rivergate-answer-chapter-006-repeat-1",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "pair": "baseline:four-layer",
+      "order": "candidate-right",
+      "leftArm": "baseline",
+      "rightArm": "four-layer",
+      "choice": "baseline",
+      "rawChoice": "A",
+      "reason": "A更自然承接白尾纸鸢与误信伏笔，保留人物犹疑和情感余地；B把旧约内容说得过满，像是在硬补设定。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-1\nChapter: chapter-006\nRepeat: 1\n样本 A:\n“我留着它，不是舍不得一张纸。”柳七低声说，“这些天人人看路单，看驿签，看水涨到哪里，我也跟着看，可我一摸到袖口，就记得还有一句话不是写在信上的，不能由旁人替我改。”\n\n他把那只白尾纸鸢托在掌心，湿纸贴着指节，像一小片没有散尽的旧雪。\n\n“我回河闸，是因为当年话断在这里。若你真不等了，也该由我站到你面前听你说；若你没有走，我也不能只凭一封误信，就把该回的地方绕过去。”\n样本 B:\n柳七低头抚平那截被雨水泡软的白尾，声音压得很稳：“我留着它，不是留一只旧纸鸢，是留你当年在河埠交到我手里的那句话。旁人催我换马、改路、赶水势，我都能应，唯独这件不能装作没听见。你说过，若它先到河闸，我就得跟着风回来。我回来，不为误信，也不为别的路数——是为这个约，也是为你。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 549,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_032cf4921ad20c4b016a46aa5bfad4819b88543d92a41842e5",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 451,
+            "outputTokens": 283,
+            "totalTokens": 734
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更自然承接白尾纸鸢与误信伏笔，保留人物犹疑和情感余地；B把旧约内容说得过满，像是在硬补设定。\"}"
+        }
+      }
+    },
+    {
+      "runId": "rivergate-answer-chapter-006-repeat-1",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "pair": "baseline:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "baseline",
+      "choice": "baseline",
+      "rawChoice": "B",
+      "reason": "B承接纸鸢、河闸与误信等伏笔更自然含蓄，人物情绪也更贴合既有设定且不过度直白。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-1\nChapter: chapter-006\nRepeat: 1\n样本 A:\n柳七低头抚平那截被雨水泡软的白尾，声音压得很稳：“我留着它，不是留一只旧纸鸢，是留你当年在河埠交到我手里的那句话。旁人催我换马、改路、赶水势，我都能应，唯独这件不能装作没听见。你说过，若它先到河闸，我就得跟着风回来。我回来，不为误信，也不为别的路数——是为这个约，也是为你。”\n样本 B:\n“我留着它，不是舍不得一张纸。”柳七低声说，“这些天人人看路单，看驿签，看水涨到哪里，我也跟着看，可我一摸到袖口，就记得还有一句话不是写在信上的，不能由旁人替我改。”\n\n他把那只白尾纸鸢托在掌心，湿纸贴着指节，像一小片没有散尽的旧雪。\n\n“我回河闸，是因为当年话断在这里。若你真不等了，也该由我站到你面前听你说；若你没有走，我也不能只凭一封误信，就把该回的地方绕过去。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 549,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_046ffa33d4f2d954016a46aa6343908199a839de0e059bc860",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 451,
+            "outputTokens": 360,
+            "totalTokens": 811
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B承接纸鸢、河闸与误信等伏笔更自然含蓄，人物情绪也更贴合既有设定且不过度直白。\"}"
+        }
+      }
+    },
+    {
+      "runId": "rivergate-answer-chapter-006-repeat-1",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-right",
+      "leftArm": "recent-fill",
+      "rightArm": "four-layer",
+      "choice": "recent-fill",
+      "rawChoice": "A",
+      "reason": "A更自然承接河闸、误信与白尾纸鸢的既有线索，情绪递进细腻且不额外引入不确定设定。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-1\nChapter: chapter-006\nRepeat: 1\n样本 A:\n他低头把白尾理平，声音被闸水压得很低：“我留着它，不是因为它还像当初那样好看。它早湿了，折痕也快散了，可它在我袖里，我就记得自己还有一句话没还。”\n\n他抬眼看向林秋，又看了看身后的闸门：“这几日到处都是账、船牌、驿签，人人都说该往前走，连误信也说你不等了。可我答应过你，白尾纸鸢一到河闸，我就回来。它没长脚，走不到这里来，我只能替它走。”\n\n柳七把纸鸢递近了一些：“所以我回到河闸，不是为了问那封信真假，也不是为了给谁看我守信。我只是怕自己再迟一步，就把你当年那句话，连同我自己的应声，一起弄丢在路上了。”\n样本 B:\n柳七低头抚平那截被雨水泡软的白尾，声音压得很稳：“我留着它，不是留一只旧纸鸢，是留你当年在河埠交到我手里的那句话。旁人催我换马、改路、赶水势，我都能应，唯独这件不能装作没听见。你说过，若它先到河闸，我就得跟着风回来。我回来，不为误信，也不为别的路数——是为这个约，也是为你。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 617,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0db29da9db8eeee7016a46aa6b710c819b8386ce6bf2eaf972",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 4943,
+            "outputTokens": 308,
+            "totalTokens": 5251
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更自然承接河闸、误信与白尾纸鸢的既有线索，情绪递进细腻且不额外引入不确定设定。\"}"
+        }
+      }
+    },
+    {
+      "runId": "rivergate-answer-chapter-006-repeat-1",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "recent-fill",
+      "choice": "recent-fill",
+      "rawChoice": "B",
+      "reason": "B更自然地承接河闸、误信与白尾纸鸢等既有线索，情绪推进细腻且不额外泄露后续走向。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-1\nChapter: chapter-006\nRepeat: 1\n样本 A:\n柳七低头抚平那截被雨水泡软的白尾，声音压得很稳：“我留着它，不是留一只旧纸鸢，是留你当年在河埠交到我手里的那句话。旁人催我换马、改路、赶水势，我都能应，唯独这件不能装作没听见。你说过，若它先到河闸，我就得跟着风回来。我回来，不为误信，也不为别的路数——是为这个约，也是为你。”\n样本 B:\n他低头把白尾理平，声音被闸水压得很低：“我留着它，不是因为它还像当初那样好看。它早湿了，折痕也快散了，可它在我袖里，我就记得自己还有一句话没还。”\n\n他抬眼看向林秋，又看了看身后的闸门：“这几日到处都是账、船牌、驿签，人人都说该往前走，连误信也说你不等了。可我答应过你，白尾纸鸢一到河闸，我就回来。它没长脚，走不到这里来，我只能替它走。”\n\n柳七把纸鸢递近了一些：“所以我回到河闸，不是为了问那封信真假，也不是为了给谁看我守信。我只是怕自己再迟一步，就把你当年那句话，连同我自己的应声，一起弄丢在路上了。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 617,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_072d12f3785b8049016a46aa78c7cc81989120548c63934100",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 4943,
+            "outputTokens": 571,
+            "totalTokens": 5514
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更自然地承接河闸、误信与白尾纸鸢等既有线索，情绪推进细腻且不额外泄露后续走向。\"}"
+        }
+      }
+    },
+    {
+      "runId": "rivergate-answer-chapter-006-repeat-2",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "pair": "baseline:four-layer",
+      "order": "candidate-right",
+      "leftArm": "baseline",
+      "rightArm": "four-layer",
+      "choice": "invalid",
+      "rawChoice": "invalid",
+      "reason": "Judge response could not be parsed.",
+      "error": "TimeoutError: The operation was aborted due to timeout"
+    },
+    {
+      "runId": "rivergate-answer-chapter-006-repeat-2",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "pair": "baseline:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "baseline",
+      "choice": "baseline",
+      "rawChoice": "B",
+      "reason": "B承接纸鸢、假信与河闸等既有线索更克制自然，没有额外硬塞过于具体的旧约设定，情绪推进也更符合长篇续写的留白。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-2\nChapter: chapter-006\nRepeat: 2\n样本 A:\n柳七把纸鸢托在掌心，低声说：“我留着的不是这几根竹篾，也不是这层旧纸。它在我袖里，是因为当年你把它塞给我的时候，话也一并塞进来了。后来有人说你走了，堤灯下的信也像真的，雨驿里催马催船的人更像真的，可我只要摸到它，就知道还有一句话没被水冲走。”\n\n他抬眼看向闸门下的林秋，声音被风吹得有些哑，却没有退：“你说过，只要白尾纸鸢先到河闸，我就得跟着风回来。它没有丢，我也不能装作没记得。所以我回到这里，不为船牌，不为路单，也不是为谁传来的信——是为你当年那句旧约。”\n样本 B:\n“我留着它，不是因为它还像从前那样好看。”柳七低头看着掌心那截白尾，纸边被水气泡软了，贴在指腹上，“这些天人人都催我往前走，信上也替你把话说尽了。可我一摸到它，就知道还有一句话没当面还给你。纸鸢若丢了，那句话便也成了别人传来的。”\n\n他把纸鸢收回掌中，声音被闸下的水声压得很低：“我回河闸，是因为当年话从这里断的。水路到这里要分，闸门到时辰要开合，假的信、急的马、赶路的人，都能把我推到别处去，只有这里不替我躲。我不是回来问你还等不等，只是回来把我该说的，亲口说完。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 690,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0ca9fb1850238dd9016a46ab0913ec819bae5173621b4f1456",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 5007,
+            "outputTokens": 580,
+            "totalTokens": 5587
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B承接纸鸢、假信与河闸等既有线索更克制自然，没有额外硬塞过于具体的旧约设定，情绪推进也更符合长篇续写的留白。\"}"
+        }
+      }
+    },
+    {
+      "runId": "rivergate-answer-chapter-006-repeat-2",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-right",
+      "leftArm": "recent-fill",
+      "rightArm": "four-layer",
+      "choice": "four-layer",
+      "rawChoice": "B",
+      "reason": "B更完整地回扣白尾纸鸢、堤灯信与旧约等既有线索，情感表达克制自然且不越界剧透。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-2\nChapter: chapter-006\nRepeat: 2\n样本 A:\n他低头把白尾抚平，指尖沾了一点泥水，才低声道：“我留着它，不是舍不得一团纸。那些天我手里记的都是别人的船牌、驿签和旧账，只有它还记着我自己说过的话。若把它丢了，我就能装作河埠那阵风没有吹过，也装作你那句话没有落在我袖里。”\n\n闸门里的水声沉了一沉。\n\n柳七抬眼看她：“我回河闸，不为船队，也不为赶路。你说白尾纸鸢先到这里，我就得跟着风回来。我把它带到这里，是怕旧约没有地方落脚。若问到底为了谁——林秋，是为了你。”\n样本 B:\n柳七把纸鸢托在掌心，低声说：“我留着的不是这几根竹篾，也不是这层旧纸。它在我袖里，是因为当年你把它塞给我的时候，话也一并塞进来了。后来有人说你走了，堤灯下的信也像真的，雨驿里催马催船的人更像真的，可我只要摸到它，就知道还有一句话没被水冲走。”\n\n他抬眼看向闸门下的林秋，声音被风吹得有些哑，却没有退：“你说过，只要白尾纸鸢先到河闸，我就得跟着风回来。它没有丢，我也不能装作没记得。所以我回到这里，不为船牌，不为路单，也不是为谁传来的信——是为你当年那句旧约。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 663,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0c624fc52286eca6016a46ab2075388198b314362515366a53",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 4977,
+            "outputTokens": 560,
+            "totalTokens": 5537
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更完整地回扣白尾纸鸢、堤灯信与旧约等既有线索，情感表达克制自然且不越界剧透。\"}"
+        }
+      }
+    },
+    {
+      "runId": "rivergate-answer-chapter-006-repeat-2",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "recent-fill",
+      "choice": "recent-fill",
+      "rawChoice": "B",
+      "reason": "B承接动作与水闸场景更自然，回收白尾纸鸢和旧约的方式克制明确，较少引入疑似额外情节信息。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-2\nChapter: chapter-006\nRepeat: 2\n样本 A:\n柳七把纸鸢托在掌心，低声说：“我留着的不是这几根竹篾，也不是这层旧纸。它在我袖里，是因为当年你把它塞给我的时候，话也一并塞进来了。后来有人说你走了，堤灯下的信也像真的，雨驿里催马催船的人更像真的，可我只要摸到它，就知道还有一句话没被水冲走。”\n\n他抬眼看向闸门下的林秋，声音被风吹得有些哑，却没有退：“你说过，只要白尾纸鸢先到河闸，我就得跟着风回来。它没有丢，我也不能装作没记得。所以我回到这里，不为船牌，不为路单，也不是为谁传来的信——是为你当年那句旧约。”\n样本 B:\n他低头把白尾抚平，指尖沾了一点泥水，才低声道：“我留着它，不是舍不得一团纸。那些天我手里记的都是别人的船牌、驿签和旧账，只有它还记着我自己说过的话。若把它丢了，我就能装作河埠那阵风没有吹过，也装作你那句话没有落在我袖里。”\n\n闸门里的水声沉了一沉。\n\n柳七抬眼看她：“我回河闸，不为船队，也不为赶路。你说白尾纸鸢先到这里，我就得跟着风回来。我把它带到这里，是怕旧约没有地方落脚。若问到底为了谁——林秋，是为了你。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 663,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0c115eec99547041016a46ab36a8a88198a0d4664b1b21ef3e",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 4977,
+            "outputTokens": 571,
+            "totalTokens": 5548
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B承接动作与水闸场景更自然，回收白尾纸鸢和旧约的方式克制明确，较少引入疑似额外情节信息。\"}"
+        }
+      }
+    },
+    {
+      "runId": "rivergate-answer-chapter-006-repeat-3",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "pair": "baseline:four-layer",
+      "order": "candidate-right",
+      "leftArm": "baseline",
+      "rightArm": "four-layer",
+      "choice": "baseline",
+      "rawChoice": "A",
+      "reason": "A更自然承接纸鸢、信和河闸等既有线索，情绪递进克制且未额外硬造旧约；B虽直白但引入“当年约定”显得突兀。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-3\nChapter: chapter-006\nRepeat: 3\n样本 A:\n柳七捏着纸鸢的尾骨，指节被风吹得发白。\n\n“我不丢它，不是因为它还好看。它早就湿透了，尾巴也折了，真要丢，哪一夜的雨都能替我丢干净。”\n\n他抬眼看向林秋，声音低下去，却没有避开她。\n\n“我留着它，是怕自己也信了那些信、那些路单、那些别人替我说好的去处。它在袖子里，我就还记得，有一句话没当面还给你，有一个人，我不能只凭传闻就当她已经走了。”\n\n河闸里的水撞了一下闸板，沉闷地响。\n\n柳七把纸鸢往掌心里收了收，又说：“我回来这里，是因为汀州的路我都算过，马也能换，船也能走，只有这道闸，水到这里总要停一停。人要是真错过了，也该在这里认清楚。”\n\n他看着她，终于把后半句说完。\n\n“不是为了谁叫我回来。是我自己不肯走。林秋，我怕把你弄丢了，又怕自己连回来认一句错的地方都没有。”\n样本 B:\n柳七把纸鸢摊在掌心，白尾被雨水浸得发沉，却还固执地垂着。\n\n“我不丢它，不是因为它好看，也不是因为路上少这一件旧物。”他声音被闸水声压低了些，“是你当年亲手塞给我的。你说，若有一日它先到河闸，我就得跟着风回来。后来信也好，账也好，催我走的人也好，都只是旁的声音；只有它在袖里，我才知道还有一句话没还。”\n\n他抬眼看向林秋。\n\n“我回到河闸，不是为了证明我没忘，也不是为了躲哪条路。我是按那句旧约回来的。”柳七顿了顿，把那只潮湿的纸鸢往前递了半寸，“为了你。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 792,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_003b60ff926b08c8016a46ab4d61188199af228f0b0fc64241",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 659,
+            "outputTokens": 353,
+            "totalTokens": 1012
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更自然承接纸鸢、信和河闸等既有线索，情绪递进克制且未额外硬造旧约；B虽直白但引入“当年约定”显得突兀。\"}"
+        }
+      }
+    },
+    {
+      "runId": "rivergate-answer-chapter-006-repeat-3",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "pair": "baseline:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "baseline",
+      "choice": "baseline",
+      "rawChoice": "B",
+      "reason": "B的情绪递进和纸鸢、信、路单、河闸等伏笔回收更自然，较少强行补出旧约式设定，也避免了过度直白的告白感。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-3\nChapter: chapter-006\nRepeat: 3\n样本 A:\n柳七把纸鸢摊在掌心，白尾被雨水浸得发沉，却还固执地垂着。\n\n“我不丢它，不是因为它好看，也不是因为路上少这一件旧物。”他声音被闸水声压低了些，“是你当年亲手塞给我的。你说，若有一日它先到河闸，我就得跟着风回来。后来信也好，账也好，催我走的人也好，都只是旁的声音；只有它在袖里，我才知道还有一句话没还。”\n\n他抬眼看向林秋。\n\n“我回到河闸，不是为了证明我没忘，也不是为了躲哪条路。我是按那句旧约回来的。”柳七顿了顿，把那只潮湿的纸鸢往前递了半寸，“为了你。”\n样本 B:\n柳七捏着纸鸢的尾骨，指节被风吹得发白。\n\n“我不丢它，不是因为它还好看。它早就湿透了，尾巴也折了，真要丢，哪一夜的雨都能替我丢干净。”\n\n他抬眼看向林秋，声音低下去，却没有避开她。\n\n“我留着它，是怕自己也信了那些信、那些路单、那些别人替我说好的去处。它在袖子里，我就还记得，有一句话没当面还给你，有一个人，我不能只凭传闻就当她已经走了。”\n\n河闸里的水撞了一下闸板，沉闷地响。\n\n柳七把纸鸢往掌心里收了收，又说：“我回来这里，是因为汀州的路我都算过，马也能换，船也能走，只有这道闸，水到这里总要停一停。人要是真错过了，也该在这里认清楚。”\n\n他看着她，终于把后半句说完。\n\n“不是为了谁叫我回来。是我自己不肯走。林秋，我怕把你弄丢了，又怕自己连回来认一句错的地方都没有。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 792,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0a32eb639bfeb746016a46ab55b418819a927eefd404938196",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 5086,
+            "outputTokens": 411,
+            "totalTokens": 5497
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B的情绪递进和纸鸢、信、路单、河闸等伏笔回收更自然，较少强行补出旧约式设定，也避免了过度直白的告白感。\"}"
+        }
+      }
+    },
+    {
+      "runId": "rivergate-answer-chapter-006-repeat-3",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-right",
+      "leftArm": "recent-fill",
+      "rightArm": "four-layer",
+      "choice": "recent-fill",
+      "rawChoice": "A",
+      "reason": "A更克制地承接纸鸢与旧约伏笔，并用船牌、驿签、旧账等既有语汇自然回收人物处境；B虽完整但“为了你”过于直白，略有情绪定性过早的问题。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-3\nChapter: chapter-006\nRepeat: 3\n样本 A:\n“我不是舍不得这一团纸。”柳七低声说，“我留着它，是怕自己在船牌、驿签和旧账里走得太远，把亲口应下的话也当成一笔糊账抹了。”\n\n他把白尾纸鸢摊在掌心，湿纸贴着指腹，已经看不出当初的干净样子。\n\n“我回河闸，也不是为那封信是真是假。是你当日在河埠说过，它若先到这里，我就得跟着风回来见你。如今它在我袖里一路到了河闸，我也该到。”\n样本 B:\n柳七把纸鸢摊在掌心，白尾被雨水浸得发沉，却还固执地垂着。\n\n“我不丢它，不是因为它好看，也不是因为路上少这一件旧物。”他声音被闸水声压低了些，“是你当年亲手塞给我的。你说，若有一日它先到河闸，我就得跟着风回来。后来信也好，账也好，催我走的人也好，都只是旁的声音；只有它在袖里，我才知道还有一句话没还。”\n\n他抬眼看向林秋。\n\n“我回到河闸，不是为了证明我没忘，也不是为了躲哪条路。我是按那句旧约回来的。”柳七顿了顿，把那只潮湿的纸鸢往前递了半寸，“为了你。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 618,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_02da9acdfa376411016a46ab6680e4819ab42bb6fc5c49f3c4",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 4940,
+            "outputTokens": 360,
+            "totalTokens": 5300
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更克制地承接纸鸢与旧约伏笔，并用船牌、驿签、旧账等既有语汇自然回收人物处境；B虽完整但“为了你”过于直白，略有情绪定性过早的问题。\"}"
+        }
+      }
+    },
+    {
+      "runId": "rivergate-answer-chapter-006-repeat-3",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "recent-fill",
+      "choice": "recent-fill",
+      "rawChoice": "B",
+      "reason": "B更克制地承接纸鸢旧约、船牌驿签旧账与信件真假等既有线索，情绪推进自然且没有过度拔高或预示未来。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-3\nChapter: chapter-006\nRepeat: 3\n样本 A:\n柳七把纸鸢摊在掌心，白尾被雨水浸得发沉，却还固执地垂着。\n\n“我不丢它，不是因为它好看，也不是因为路上少这一件旧物。”他声音被闸水声压低了些，“是你当年亲手塞给我的。你说，若有一日它先到河闸，我就得跟着风回来。后来信也好，账也好，催我走的人也好，都只是旁的声音；只有它在袖里，我才知道还有一句话没还。”\n\n他抬眼看向林秋。\n\n“我回到河闸，不是为了证明我没忘，也不是为了躲哪条路。我是按那句旧约回来的。”柳七顿了顿，把那只潮湿的纸鸢往前递了半寸，“为了你。”\n样本 B:\n“我不是舍不得这一团纸。”柳七低声说，“我留着它，是怕自己在船牌、驿签和旧账里走得太远，把亲口应下的话也当成一笔糊账抹了。”\n\n他把白尾纸鸢摊在掌心，湿纸贴着指腹，已经看不出当初的干净样子。\n\n“我回河闸，也不是为那封信是真是假。是你当日在河埠说过，它若先到这里，我就得跟着风回来见你。如今它在我袖里一路到了河闸，我也该到。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 618,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0f2d3e42627b7c8d016a46ab7595bc8198811e203ebaae245a",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 4940,
+            "outputTokens": 309,
+            "totalTokens": 5249
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更克制地承接纸鸢旧约、船牌驿签旧账与信件真假等既有线索，情绪推进自然且没有过度拔高或预示未来。\"}"
+        }
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "baseline": "baseline",
+      "pairedReviews": 6,
+      "fourLayerWins": 0,
+      "baselineWins": 5,
+      "ties": 0,
+      "invalid": 1,
+      "fourLayerWinRate": 0
+    },
+    {
+      "baseline": "recent-fill",
+      "pairedReviews": 6,
+      "fourLayerWins": 1,
+      "baselineWins": 5,
+      "ties": 0,
+      "invalid": 0,
+      "fourLayerWinRate": 0.16666666666666666
+    }
+  ]
+}

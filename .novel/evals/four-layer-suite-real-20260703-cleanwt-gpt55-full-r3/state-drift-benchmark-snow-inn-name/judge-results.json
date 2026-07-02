@@ -1,0 +1,496 @@
+{
+  "enabled": true,
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/",
+    "model": "gpt-5.5",
+    "wireApi": "responses"
+  },
+  "results": [
+    {
+      "runId": "snow-inn-name-chapter-007-repeat-1",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "repeatIndex": 1,
+      "pair": "baseline:four-layer",
+      "order": "candidate-right",
+      "leftArm": "baseline",
+      "rightArm": "four-layer",
+      "choice": "four-layer",
+      "rawChoice": "B",
+      "reason": "B更以当场动作和光影承接问名场景，回收霜桥横刀与榜纸伏笔也更自然，且较少额外展开旧案信息。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: snow-inn-name-chapter-007-repeat-1\nChapter: chapter-007\nRepeat: 1\n样本 A:\n孟回没有回头，只把肩上的雪抖了抖，像是把一路借来的那些假姓假话也一并抖在门槛外。\n\n“记上，”他说，“我叫孟回。”\n\n掌柜的脸色变了变，迟雁的脚步也在廊柱后停住。\n\n从前他总让她先退一步，先藏进暗处，先等风声过去，因为那时他们只要活过一夜就算赢。可榜纸贴到雪栈门口，迟雁再退，退的就不是一根廊柱的阴影，而是又退回那张没有人替她作证的旧案里。巡夜司认得她，客栈认得榜，连风里的人声都只会认得“迟雁”两个字；若孟回仍旧含糊其辞，所有麻烦便还是只落在她身上。\n\n他昨夜在霜桥上横过刀，已经不能再做那个与此无关的脚夫。\n\n“她不用藏。”孟回看着掌柜，又看了一眼门外被雪打湿的榜纸，“要问名，先问我的。”\n样本 B:\n檐下有人抬起灯，灯光越过掌柜的肩头，照在孟回脸上。\n\n“问名？”孟回把短刃压回袖底，声音不高，却没再含在齿间，“孟回。”\n\n迟雁的脚步停在廊柱旁。\n\n他没有回头叫她躲。这样的事他从前做得太熟，先把人塞进柴房、后窗、暗巷，再由自己低头赔笑，说只是路过，只是借宿，只是什么也不知道。可那样一来，迟雁就永远只能站在阴影里，巡夜司要找的也永远只是一个可以被搜出来的人。\n\n昨夜霜桥上他已经横过刀，再让她退一步，就等于把那一刀又收了回去。\n\n孟回往门槛外又迈了半步，正好挡住那张新榜，也挡住迟雁身前漏下的一线灯光。\n\n“她同我一路来的。”他说，“要问，先问我。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 796,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0b02a6d5104daa51016a46b3ab5f7c8198af94dfab43b381c3",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 683,
+            "outputTokens": 2126,
+            "totalTokens": 2809
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更以当场动作和光影承接问名场景，回收霜桥横刀与榜纸伏笔也更自然，且较少额外展开旧案信息。\"}"
+        }
+      }
+    },
+    {
+      "runId": "snow-inn-name-chapter-007-repeat-1",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "repeatIndex": 1,
+      "pair": "baseline:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "baseline",
+      "choice": "four-layer",
+      "rawChoice": "A",
+      "reason": "A承接动作更具体自然，用挡榜和挡灯光回收昨夜霜桥的选择，少一些解释性直白铺陈，人物转变也更克制可信。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: snow-inn-name-chapter-007-repeat-1\nChapter: chapter-007\nRepeat: 1\n样本 A:\n檐下有人抬起灯，灯光越过掌柜的肩头，照在孟回脸上。\n\n“问名？”孟回把短刃压回袖底，声音不高，却没再含在齿间，“孟回。”\n\n迟雁的脚步停在廊柱旁。\n\n他没有回头叫她躲。这样的事他从前做得太熟，先把人塞进柴房、后窗、暗巷，再由自己低头赔笑，说只是路过，只是借宿，只是什么也不知道。可那样一来，迟雁就永远只能站在阴影里，巡夜司要找的也永远只是一个可以被搜出来的人。\n\n昨夜霜桥上他已经横过刀，再让她退一步，就等于把那一刀又收了回去。\n\n孟回往门槛外又迈了半步，正好挡住那张新榜，也挡住迟雁身前漏下的一线灯光。\n\n“她同我一路来的。”他说，“要问，先问我。”\n样本 B:\n孟回没有回头，只把肩上的雪抖了抖，像是把一路借来的那些假姓假话也一并抖在门槛外。\n\n“记上，”他说，“我叫孟回。”\n\n掌柜的脸色变了变，迟雁的脚步也在廊柱后停住。\n\n从前他总让她先退一步，先藏进暗处，先等风声过去，因为那时他们只要活过一夜就算赢。可榜纸贴到雪栈门口，迟雁再退，退的就不是一根廊柱的阴影，而是又退回那张没有人替她作证的旧案里。巡夜司认得她，客栈认得榜，连风里的人声都只会认得“迟雁”两个字；若孟回仍旧含糊其辞，所有麻烦便还是只落在她身上。\n\n他昨夜在霜桥上横过刀，已经不能再做那个与此无关的脚夫。\n\n“她不用藏。”孟回看着掌柜，又看了一眼门外被雪打湿的榜纸，“要问名，先问我的。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 796,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_08052d22635330b1016a46b3d4b9a48199ae234af743b45a1a",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 683,
+            "outputTokens": 572,
+            "totalTokens": 1255
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A承接动作更具体自然，用挡榜和挡灯光回收昨夜霜桥的选择，少一些解释性直白铺陈，人物转变也更克制可信。\"}"
+        }
+      }
+    },
+    {
+      "runId": "snow-inn-name-chapter-007-repeat-1",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "repeatIndex": 1,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-right",
+      "leftArm": "recent-fill",
+      "rightArm": "four-layer",
+      "choice": "invalid",
+      "rawChoice": "invalid",
+      "reason": "Judge response could not be parsed.",
+      "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 503 upstream connect error or disconnect/reset before headers. reset reason: connection termination"
+    },
+    {
+      "runId": "snow-inn-name-chapter-007-repeat-1",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "repeatIndex": 1,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "recent-fill",
+      "choice": "recent-fill",
+      "rawChoice": "B",
+      "reason": "B更克制自然地承接问名场面，回收霜桥拔刀和孟回身份转变的伏笔，同时没有贸然推进到额外对抗。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: snow-inn-name-chapter-007-repeat-1\nChapter: chapter-007\nRepeat: 1\n样本 A:\n檐下有人抬起灯，灯光越过掌柜的肩头，照在孟回脸上。\n\n“问名？”孟回把短刃压回袖底，声音不高，却没再含在齿间，“孟回。”\n\n迟雁的脚步停在廊柱旁。\n\n他没有回头叫她躲。这样的事他从前做得太熟，先把人塞进柴房、后窗、暗巷，再由自己低头赔笑，说只是路过，只是借宿，只是什么也不知道。可那样一来，迟雁就永远只能站在阴影里，巡夜司要找的也永远只是一个可以被搜出来的人。\n\n昨夜霜桥上他已经横过刀，再让她退一步，就等于把那一刀又收了回去。\n\n孟回往门槛外又迈了半步，正好挡住那张新榜，也挡住迟雁身前漏下的一线灯光。\n\n“她同我一路来的。”他说，“要问，先问我。”\n样本 B:\n门外雪粉被风卷上台阶，榜纸拍在墙上，响得像一遍遍催人低头。\n\n掌柜的手还按在后窗那边，迟雁的半边身子已经让廊柱遮住。孟回没有回头叫她走，也没有像从前那样先把旁人的麻烦藏到自己看不见的地方。\n\n她若再躲，门口问的就仍是迟雁的案、迟雁的卷宗、迟雁一个人的生死；而他站在暗处，至多还是那个知道路、会避雪、遇事可以撇开的脚夫。\n\n昨夜他在霜桥上拔了刀，便不能今日又把话缩回喉咙里。\n\n榜下的人抬眼问姓名。\n\n孟回把腰后的短刃往衣摆里压了压，声音不高，却清清楚楚落在雪栈门槛外。\n\n“孟回。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 740,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0d0580edc1018190016a46b3e58ae4819b902e8239196c9e72",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 636,
+            "outputTokens": 570,
+            "totalTokens": 1206
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更克制自然地承接问名场面，回收霜桥拔刀和孟回身份转变的伏笔，同时没有贸然推进到额外对抗。\"}"
+        }
+      }
+    },
+    {
+      "runId": "snow-inn-name-chapter-007-repeat-2",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "repeatIndex": 2,
+      "pair": "baseline:four-layer",
+      "order": "candidate-right",
+      "leftArm": "baseline",
+      "rightArm": "four-layer",
+      "choice": "baseline",
+      "rawChoice": "A",
+      "reason": "A在动作、场景与“与脚夫无关”的旧伏笔回收上更自然完整，同时让迟雁不再躲藏的承接更清晰；B也顺畅但略显概括。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: snow-inn-name-chapter-007-repeat-2\nChapter: chapter-007\nRepeat: 2\n样本 A:\n门外风卷着榜纸一角，哗啦啦响。\n\n有人从街口停步，问：“栈里新来的，报个名。”\n\n孟回没有回头看迟雁，也没有把她往廊柱后推。雪地太白，门槛太窄，她只要退一步，脚印和惊色都会替她答话。更要紧的是，昨夜桥上那句“与脚夫无关”，他已经听够了。\n\n他站在榜下，把冻僵的手指从袖中松开，声音不高，却压过了风声。\n\n“孟回。”\n\n迟雁停在他身后半步，没有再往阴影里退。\n\n孟回这才侧了侧身，让门里昏黄的灯照到自己脸上。他从前让她先藏，是怕多一双眼睛就多一条追路；可到今日才明白，人人都等着她藏，等着她一藏便坐实旧案，等着他照旧低头做个无名脚夫。\n\n所以这一次，他先把自己的名字放在雪里。\n样本 B:\n他没有回头叫迟雁快走。\n\n从前他总以为把人先推到暗处，自己再在明处含糊几句，便算护得周全；可那样一来，迟雁永远只是榜纸上该被搜出的人，他也永远只是替麻烦绕路的脚夫。昨夜霜桥上他已经横过刀，今日若还让她先藏，便等于承认那一刀只敢挡在夜色里。\n\n门外巡夜司的人抬起眼来问名。\n\n孟回把手从袖中拿出，按在雪冷的门框上，声音不高，却没有避开半个字：“孟回。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 685,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0c92cf655167d167016a46b3f28038819196294e25d2c5b589",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 5014,
+            "outputTokens": 434,
+            "totalTokens": 5448
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A在动作、场景与“与脚夫无关”的旧伏笔回收上更自然完整，同时让迟雁不再躲藏的承接更清晰；B也顺畅但略显概括。\"}"
+        }
+      }
+    },
+    {
+      "runId": "snow-inn-name-chapter-007-repeat-2",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "repeatIndex": 2,
+      "pair": "baseline:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "baseline",
+      "choice": "baseline",
+      "rawChoice": "B",
+      "reason": "B在场景动作、榜纸与“脚夫无关”等前文伏笔的回收上更自然具体，人物选择也承接得更清晰，且没有明显越界剧透。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: snow-inn-name-chapter-007-repeat-2\nChapter: chapter-007\nRepeat: 2\n样本 A:\n他没有回头叫迟雁快走。\n\n从前他总以为把人先推到暗处，自己再在明处含糊几句，便算护得周全；可那样一来，迟雁永远只是榜纸上该被搜出的人，他也永远只是替麻烦绕路的脚夫。昨夜霜桥上他已经横过刀，今日若还让她先藏，便等于承认那一刀只敢挡在夜色里。\n\n门外巡夜司的人抬起眼来问名。\n\n孟回把手从袖中拿出，按在雪冷的门框上，声音不高，却没有避开半个字：“孟回。”\n样本 B:\n门外风卷着榜纸一角，哗啦啦响。\n\n有人从街口停步，问：“栈里新来的，报个名。”\n\n孟回没有回头看迟雁，也没有把她往廊柱后推。雪地太白，门槛太窄，她只要退一步，脚印和惊色都会替她答话。更要紧的是，昨夜桥上那句“与脚夫无关”，他已经听够了。\n\n他站在榜下，把冻僵的手指从袖中松开，声音不高，却压过了风声。\n\n“孟回。”\n\n迟雁停在他身后半步，没有再往阴影里退。\n\n孟回这才侧了侧身，让门里昏黄的灯照到自己脸上。他从前让她先藏，是怕多一双眼睛就多一条追路；可到今日才明白，人人都等着她藏，等着她一藏便坐实旧案，等着他照旧低头做个无名脚夫。\n\n所以这一次，他先把自己的名字放在雪里。\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 685,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0703eba07110234a016a46b404c634819ba9d29f0e625edd75",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 5014,
+            "outputTokens": 575,
+            "totalTokens": 5589
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B在场景动作、榜纸与“脚夫无关”等前文伏笔的回收上更自然具体，人物选择也承接得更清晰，且没有明显越界剧透。\"}"
+        }
+      }
+    },
+    {
+      "runId": "snow-inn-name-chapter-007-repeat-2",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "repeatIndex": 2,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-right",
+      "leftArm": "recent-fill",
+      "rightArm": "four-layer",
+      "choice": "recent-fill",
+      "rawChoice": "A",
+      "reason": "A以迟雁袖影、新榜和巡夜司问名等具体现场细节承接更自然，也更稳妥回收旧案与昨夜桥前伏笔。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: snow-inn-name-chapter-007-repeat-2\nChapter: chapter-007\nRepeat: 2\n样本 A:\n门外巡夜司的人已经看见了迟雁半边袖影。\n\n孟回没有再叫她退。若是在旧桥、码头、染坊，少露一回脸便少一分牵连；可新榜贴在雪栈门口，她再往阴影里避一步，旁人记住的仍只是迟雁旧案，记不住昨夜是谁拦在桥栏前。\n\n问名的差役把灯笼抬高。\n\n孟回站着没动，风把榜纸吹得一响一响。他知道自己从前能省一句是一句，省到最后，所有口供里都没有他，所有麻烦却都落在迟雁身上。\n\n于是他说：“孟回。”\n样本 B:\n他没有回头叫迟雁快走。\n\n从前他总以为把人先推到暗处，自己再在明处含糊几句，便算护得周全；可那样一来，迟雁永远只是榜纸上该被搜出的人，他也永远只是替麻烦绕路的脚夫。昨夜霜桥上他已经横过刀，今日若还让她先藏，便等于承认那一刀只敢挡在夜色里。\n\n门外巡夜司的人抬起眼来问名。\n\n孟回把手从袖中拿出，按在雪冷的门框上，声音不高，却没有避开半个字：“孟回。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 586,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0a55083d62357d0d016a46b41b9bd4819bbce035a8e041e73d",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 503,
+            "outputTokens": 1089,
+            "totalTokens": 1592
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A以迟雁袖影、新榜和巡夜司问名等具体现场细节承接更自然，也更稳妥回收旧案与昨夜桥前伏笔。\"}"
+        }
+      }
+    },
+    {
+      "runId": "snow-inn-name-chapter-007-repeat-2",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "repeatIndex": 2,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "recent-fill",
+      "choice": "recent-fill",
+      "rawChoice": "B",
+      "reason": "B更自然地承接门口问名的即时压力，并把新榜、袖影、昨夜拦桥等前情串回到孟回主动报出姓名的动机里，伏笔回收更具体顺畅。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: snow-inn-name-chapter-007-repeat-2\nChapter: chapter-007\nRepeat: 2\n样本 A:\n他没有回头叫迟雁快走。\n\n从前他总以为把人先推到暗处，自己再在明处含糊几句，便算护得周全；可那样一来，迟雁永远只是榜纸上该被搜出的人，他也永远只是替麻烦绕路的脚夫。昨夜霜桥上他已经横过刀，今日若还让她先藏，便等于承认那一刀只敢挡在夜色里。\n\n门外巡夜司的人抬起眼来问名。\n\n孟回把手从袖中拿出，按在雪冷的门框上，声音不高，却没有避开半个字：“孟回。”\n样本 B:\n门外巡夜司的人已经看见了迟雁半边袖影。\n\n孟回没有再叫她退。若是在旧桥、码头、染坊，少露一回脸便少一分牵连；可新榜贴在雪栈门口，她再往阴影里避一步，旁人记住的仍只是迟雁旧案，记不住昨夜是谁拦在桥栏前。\n\n问名的差役把灯笼抬高。\n\n孟回站着没动，风把榜纸吹得一响一响。他知道自己从前能省一句是一句，省到最后，所有口供里都没有他，所有麻烦却都落在迟雁身上。\n\n于是他说：“孟回。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 586,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0e07ab872d125c2a016a46b430fae0819abe09dc61ebb9ebbb",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 4930,
+            "outputTokens": 582,
+            "totalTokens": 5512
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更自然地承接门口问名的即时压力，并把新榜、袖影、昨夜拦桥等前情串回到孟回主动报出姓名的动机里，伏笔回收更具体顺畅。\"}"
+        }
+      }
+    },
+    {
+      "runId": "snow-inn-name-chapter-007-repeat-3",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "repeatIndex": 3,
+      "pair": "baseline:four-layer",
+      "order": "candidate-right",
+      "leftArm": "baseline",
+      "rightArm": "four-layer",
+      "choice": "baseline",
+      "rawChoice": "A",
+      "reason": "A更紧接问名场面，回收后窗、旧案和霜桥横刀等伏笔时不显拖沓，且没有像B那样重新铺陈问话而略显重复。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: snow-inn-name-chapter-007-repeat-3\nChapter: chapter-007\nRepeat: 3\n样本 A:\n檐下问名的人把灯举高了些。\n\n孟回说：“孟回。”\n\n迟雁的脚步在他身后停住，半边衣袖还贴着廊柱的影子。\n\n他没有回头叫她躲。那点阴影太薄，藏得住一时，藏不住榜上的名字，也藏不住霜桥上他已经横出去的刀。往常他让迟雁先避，是怕多一双眼睛认出她，怕多一句盘问牵出旧案；可昨夜他若已经挡在桥栏前，今日再让她独自退进暗处，便像是承认巡夜司问的只该是她，麻烦也只该落在她身上。\n\n掌柜在门里吸了一口冷气。\n\n孟回仍站在门槛外，声音不高，却比雪声清楚：“她不走后窗。你们要问，先问我。”\n样本 B:\n孟回没有回头去叫迟雁藏。\n\n他知道迟雁只要退进那根廊柱后，掌柜便会把后窗推开，雪地里又会多出两行匆忙脚印。那些脚印从前救过他们几回，可也把他们逼得一次比一次像贼。巡夜司要的正是她见不得光，要的是每一次查问时都只剩他一个脚夫含糊应声。\n\n他昨夜已经在霜桥上横过刀，若今日又让她先躲，便等于告诉门口这张新榜：旧案仍是巡夜司说了算，迟雁仍只能被搜、被追、被抹去姓名。\n\n风把榜纸刮得一响。\n\n门外提灯的人停住脚步，隔着雪光问：“栈里何人？”\n\n孟回站在门槛外，袖口没有去遮迟雁的影子，只把身子往前半步，挡在她与那张榜之间。\n\n“孟回。”他说，“城南脚夫孟回。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 736,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_0174f6f0c3ebc1d6016a46b4486694819bb8c46c1a6c64b23c",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 643,
+            "outputTokens": 3168,
+            "totalTokens": 3811
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更紧接问名场面，回收后窗、旧案和霜桥横刀等伏笔时不显拖沓，且没有像B那样重新铺陈问话而略显重复。\"}"
+        }
+      }
+    },
+    {
+      "runId": "snow-inn-name-chapter-007-repeat-3",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "repeatIndex": 3,
+      "pair": "baseline:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "baseline",
+      "choice": "baseline",
+      "rawChoice": "B",
+      "reason": "B承接问名场景更直接，动作与心理推进更自然，并把霜桥横刀、后窗躲避等伏笔收束到当下对峙中而不过度解释。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: snow-inn-name-chapter-007-repeat-3\nChapter: chapter-007\nRepeat: 3\n样本 A:\n孟回没有回头去叫迟雁藏。\n\n他知道迟雁只要退进那根廊柱后，掌柜便会把后窗推开，雪地里又会多出两行匆忙脚印。那些脚印从前救过他们几回，可也把他们逼得一次比一次像贼。巡夜司要的正是她见不得光，要的是每一次查问时都只剩他一个脚夫含糊应声。\n\n他昨夜已经在霜桥上横过刀，若今日又让她先躲，便等于告诉门口这张新榜：旧案仍是巡夜司说了算，迟雁仍只能被搜、被追、被抹去姓名。\n\n风把榜纸刮得一响。\n\n门外提灯的人停住脚步，隔着雪光问：“栈里何人？”\n\n孟回站在门槛外，袖口没有去遮迟雁的影子，只把身子往前半步，挡在她与那张榜之间。\n\n“孟回。”他说，“城南脚夫孟回。”\n样本 B:\n檐下问名的人把灯举高了些。\n\n孟回说：“孟回。”\n\n迟雁的脚步在他身后停住，半边衣袖还贴着廊柱的影子。\n\n他没有回头叫她躲。那点阴影太薄，藏得住一时，藏不住榜上的名字，也藏不住霜桥上他已经横出去的刀。往常他让迟雁先避，是怕多一双眼睛认出她，怕多一句盘问牵出旧案；可昨夜他若已经挡在桥栏前，今日再让她独自退进暗处，便像是承认巡夜司问的只该是她，麻烦也只该落在她身上。\n\n掌柜在门里吸了一口冷气。\n\n孟回仍站在门槛外，声音不高，却比雪声清楚：“她不走后窗。你们要问，先问我。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 736,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_014bfe0a6579444e016a46b4834118819ba48495c62d153d53",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 5070,
+            "outputTokens": 576,
+            "totalTokens": 5646
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B承接问名场景更直接，动作与心理推进更自然，并把霜桥横刀、后窗躲避等伏笔收束到当下对峙中而不过度解释。\"}"
+        }
+      }
+    },
+    {
+      "runId": "snow-inn-name-chapter-007-repeat-3",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "repeatIndex": 3,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-right",
+      "leftArm": "recent-fill",
+      "rightArm": "four-layer",
+      "choice": "recent-fill",
+      "rawChoice": "A",
+      "reason": "A更自然地承接贴榜搜人的现场，并用孟回报出姓名后把迟雁一并带到明处来回收霜桥伏笔，动作与台词更干净，B虽有气氛但内心阐释偏多且对迟雁姓名的处理略未落实。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: snow-inn-name-chapter-007-repeat-3\nChapter: chapter-007\nRepeat: 3\n样本 A:\n他把肩上的雪抖落些，声音不高，却足够让檐下的人听清。\n\n“孟回。”\n\n贴榜的小吏抬起头，笔尖悬在名册旁。掌柜在后头急得咳了一声，迟雁退到半步便停住了。\n\n孟回没有回身催她藏。雪栈的后廊窄，窗纸薄，她一躲，便仍是榜上那个只能被搜、被认、被人从暗处逼出来的人；而他若还像从前那样把自己的名姓藏干净，昨夜在霜桥上横出去的短刃，就只挡了她一夜。\n\n他站在门槛外，任风把榜纸吹得作响，又补了一句：“她同我一道来的。”\n样本 B:\n孟回没有回头去叫迟雁藏。\n\n他知道迟雁只要退进那根廊柱后，掌柜便会把后窗推开，雪地里又会多出两行匆忙脚印。那些脚印从前救过他们几回，可也把他们逼得一次比一次像贼。巡夜司要的正是她见不得光，要的是每一次查问时都只剩他一个脚夫含糊应声。\n\n他昨夜已经在霜桥上横过刀，若今日又让她先躲，便等于告诉门口这张新榜：旧案仍是巡夜司说了算，迟雁仍只能被搜、被追、被抹去姓名。\n\n风把榜纸刮得一响。\n\n门外提灯的人停住脚步，隔着雪光问：“栈里何人？”\n\n孟回站在门槛外，袖口没有去遮迟雁的影子，只把身子往前半步，挡在她与那张榜之间。\n\n“孟回。”他说，“城南脚夫孟回。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 703,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_09af94bcd73d6472016a46b49c47b0819b9d4a0d4184d11cf1",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 5040,
+            "outputTokens": 444,
+            "totalTokens": 5484
+          },
+          "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更自然地承接贴榜搜人的现场，并用孟回报出姓名后把迟雁一并带到明处来回收霜桥伏笔，动作与台词更干净，B虽有气氛但内心阐释偏多且对迟雁姓名的处理略未落实。\"}"
+        }
+      }
+    },
+    {
+      "runId": "snow-inn-name-chapter-007-repeat-3",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "repeatIndex": 3,
+      "pair": "recent-fill:four-layer",
+      "order": "candidate-left",
+      "leftArm": "four-layer",
+      "rightArm": "recent-fill",
+      "choice": "recent-fill",
+      "rawChoice": "B",
+      "reason": "B更自然地承接孟回报出姓名后的场面推进，并用“她同我一道来的”明确回收昨夜霜桥护人的动机，人物转变更有力度。",
+      "trace": {
+        "kind": "judge",
+        "wireApi": "responses",
+        "model": "gpt-5.5",
+        "endpoint": "https://[REDACTED-HOST]/v1/responses",
+        "request": {
+          "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+          "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: snow-inn-name-chapter-007-repeat-3\nChapter: chapter-007\nRepeat: 3\n样本 A:\n孟回没有回头去叫迟雁藏。\n\n他知道迟雁只要退进那根廊柱后，掌柜便会把后窗推开，雪地里又会多出两行匆忙脚印。那些脚印从前救过他们几回，可也把他们逼得一次比一次像贼。巡夜司要的正是她见不得光，要的是每一次查问时都只剩他一个脚夫含糊应声。\n\n他昨夜已经在霜桥上横过刀，若今日又让她先躲，便等于告诉门口这张新榜：旧案仍是巡夜司说了算，迟雁仍只能被搜、被追、被抹去姓名。\n\n风把榜纸刮得一响。\n\n门外提灯的人停住脚步，隔着雪光问：“栈里何人？”\n\n孟回站在门槛外，袖口没有去遮迟雁的影子，只把身子往前半步，挡在她与那张榜之间。\n\n“孟回。”他说，“城南脚夫孟回。”\n样本 B:\n他把肩上的雪抖落些，声音不高，却足够让檐下的人听清。\n\n“孟回。”\n\n贴榜的小吏抬起头，笔尖悬在名册旁。掌柜在后头急得咳了一声，迟雁退到半步便停住了。\n\n孟回没有回身催她藏。雪栈的后廊窄，窗纸薄，她一躲，便仍是榜上那个只能被搜、被认、被人从暗处逼出来的人；而他若还像从前那样把自己的名姓藏干净，昨夜在霜桥上横出去的短刃，就只挡了她一夜。\n\n他站在门槛外，任风把榜纸吹得作响，又补了一句：“她同我一道来的。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+          "promptChars": 703,
+          "maxOutputChars": 2000,
+          "temperature": 0,
+          "reasoningEffort": "xhigh",
+          "store": false
+        },
+        "response": {
+          "responseId": "resp_001e6a53ea614d20016a46b4ae838481988b6a4dc84949f864",
+          "statusCode": 200,
+          "object": "response",
+          "model": "gpt-5.5",
+          "finishedStatus": "completed",
+          "usage": {
+            "inputTokens": 5040,
+            "outputTokens": 574,
+            "totalTokens": 5614
+          },
+          "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更自然地承接孟回报出姓名后的场面推进，并用“她同我一道来的”明确回收昨夜霜桥护人的动机，人物转变更有力度。\"}"
+        }
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "baseline": "baseline",
+      "pairedReviews": 6,
+      "fourLayerWins": 2,
+      "baselineWins": 4,
+      "ties": 0,
+      "invalid": 0,
+      "fourLayerWinRate": 0.3333333333333333
+    },
+    {
+      "baseline": "recent-fill",
+      "pairedReviews": 6,
+      "fourLayerWins": 0,
+      "baselineWins": 5,
+      "ties": 0,
+      "invalid": 1,
+      "fourLayerWinRate": 0
+    }
+  ]
+}
