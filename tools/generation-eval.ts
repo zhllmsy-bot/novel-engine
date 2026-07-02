@@ -1301,7 +1301,10 @@ async function callOpenAICompatibleResponses(input: {
     )
   }
 
-  const payload = responsesApiResponseSchema.parse(await response.json())
+  const responseText = await response.text()
+  const payload = responsesApiResponseSchema.parse(
+    parseResponsesApiPayload(responseText),
+  )
   const output = trimToChars(
     extractResponsesApiText(payload).trim(),
     input.config.maxOutputChars,
@@ -1366,6 +1369,98 @@ function extractResponsesApiText(
     .map((part) => part.text || part.output_text || '')
     .filter(Boolean)
     .join('\n')
+}
+
+function parseResponsesApiPayload(source: string) {
+  const trimmed = source.trim()
+  if (!isServerSentEventPayload(trimmed)) {
+    return JSON.parse(trimmed)
+  }
+
+  const events = parseServerSentEventJson(trimmed)
+  const outputText = events
+    .map((event) =>
+      typeof event.delta === 'string' &&
+      typeof event.type === 'string' &&
+      event.type.includes('output_text.delta')
+        ? event.delta
+        : '',
+    )
+    .join('')
+  const completedPayload = [...events]
+    .reverse()
+    .map((event) => {
+      const record = event as { response?: unknown }
+      return isRecord(record.response) ? record.response : event
+    })
+    .find(isResponsesApiPayloadLike)
+
+  if (isRecord(completedPayload)) {
+    return {
+      ...completedPayload,
+      output_text:
+        typeof completedPayload.output_text === 'string'
+          ? completedPayload.output_text
+          : outputText,
+    }
+  }
+
+  return {
+    object: 'response',
+    status: 'completed',
+    output_text: outputText,
+  }
+}
+
+function isServerSentEventPayload(source: string) {
+  return source.startsWith('event:') || source.startsWith('data:')
+}
+
+function parseServerSentEventJson(source: string): Record<string, unknown>[] {
+  const events: Record<string, unknown>[] = []
+  let dataLines: string[] = []
+  const flush = () => {
+    if (dataLines.length === 0) return
+    const data = dataLines.join('\n').trim()
+    dataLines = []
+    if (!data || data === '[DONE]') return
+    try {
+      const parsed = JSON.parse(data)
+      if (isRecord(parsed)) {
+        events.push(parsed)
+      }
+    } catch {
+      // Ignore non-JSON SSE keepalive chunks; the final payload validation
+      // below still fails if no usable response data was present.
+    }
+  }
+
+  for (const line of source.split(/\r?\n/)) {
+    if (line.startsWith('data:')) {
+      dataLines.push(line.slice('data:'.length).trimStart())
+      continue
+    }
+    if (line.trim() === '') {
+      flush()
+    }
+  }
+  flush()
+
+  return events
+}
+
+function isResponsesApiPayloadLike(value: unknown): value is Record<string, unknown> {
+  if (!isRecord(value)) return false
+  return (
+    value.object === 'response' ||
+    value.status === 'completed' ||
+    typeof value.output_text === 'string' ||
+    Array.isArray(value.output)
+  )
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value) && typeof value === 'object' && !Array.isArray(value)
 }
 
 async function withProviderRetry(

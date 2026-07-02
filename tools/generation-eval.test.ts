@@ -105,6 +105,48 @@ describe('generation eval tool', () => {
     expect(report.runs[0].arms[0].output).toContain('镜湖钥')
   })
 
+  it('parses responses API server-sent event payloads', async () => {
+    const ssePayload = [
+      'event: response.created',
+      'data: {"type":"response.created","response":{"id":"resp_sse","object":"response","status":"in_progress"}}',
+      '',
+      'event: response.output_text.delta',
+      'data: {"type":"response.output_text.delta","delta":"灯灭之前，我会回来。"}',
+      '',
+      'event: response.output_text.delta',
+      'data: {"type":"response.output_text.delta","delta":"沈泊握着镜湖钥。"}',
+      '',
+      'event: response.completed',
+      'data: {"type":"response.completed","response":{"id":"resp_sse","object":"response","status":"completed","usage":{"input_tokens":10,"output_tokens":20,"total_tokens":30}}}',
+      '',
+    ].join('\n')
+    const fetchMock = vi.fn<typeof fetch>().mockImplementation(() =>
+      Promise.resolve(
+        new Response(ssePayload, {
+          status: 200,
+          headers: { 'Content-Type': 'text/event-stream' },
+        }),
+      ),
+    )
+    vi.stubGlobal('fetch', fetchMock)
+
+    const report = await evaluateGeneration({
+      rootPath: 'examples/long-memory-benchmark',
+      dryRun: false,
+      repeatCount: 1,
+      baseUrl: 'https://provider.test',
+      apiKey: 'test-key',
+      model: 'gpt-5.5',
+      wireApi: 'responses',
+    })
+
+    expect(fetchMock).toHaveBeenCalledTimes(3)
+    expect(report.runs[0].arms.every((arm) => !arm.error)).toBe(true)
+    expect(report.runs[0].arms[0].output).toBe(
+      '灯灭之前，我会回来。沈泊握着镜湖钥。',
+    )
+  })
+
   it('builds baseline and four-layer prompts for the long benchmark', async () => {
     const report = await evaluateGeneration({
       rootPath: 'examples/long-memory-benchmark',
