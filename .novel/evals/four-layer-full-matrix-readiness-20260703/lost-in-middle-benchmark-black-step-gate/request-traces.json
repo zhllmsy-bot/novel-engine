@@ -1,0 +1,16 @@
+{
+  "project": "回环墓中段",
+  "caseId": "black-step-gate",
+  "chapterId": "chapter-011",
+  "fingerprint": {
+    "gitCommit": "a8ff3554adb217618fb9a988aaa80de9e089a16a",
+    "datasetVersion": "eef26be7acf90a7b",
+    "datasetHash": "fcd41216287c8e47",
+    "configHash": "850265ad9905b855"
+  },
+  "provider": {
+    "kind": "dry-run"
+  },
+  "runs": [],
+  "judge": []
+}

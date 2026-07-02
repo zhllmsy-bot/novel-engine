@@ -1,0 +1,585 @@
+{
+  "enabled": false,
+  "reports": [
+    {
+      "project": "纸鸢旧约",
+      "caseId": "rivergate-answer",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/delayed-payoff-benchmark-rivergate-answer",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "south-canal-vow",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/delayed-payoff-benchmark-south-canal-vow",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "ledger-token",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/delayed-payoff-benchmark-ledger-token",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "flood-marker",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/delayed-payoff-benchmark-flood-marker",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "wind-return",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/delayed-payoff-benchmark-wind-return",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "frostbridge-stand",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/state-drift-benchmark-frostbridge-stand",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "snow-inn-name",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/state-drift-benchmark-snow-inn-name",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "charcoal-alley-proof",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/state-drift-benchmark-charcoal-alley-proof",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "north-gate-warrant",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/state-drift-benchmark-north-gate-warrant",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "old-bridge-fire",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/state-drift-benchmark-old-bridge-fire",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "潮灯三卷",
+      "caseId": "fog-harbor-lamp",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/cross-volume-consistency-benchmark-fog-harbor-lamp",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "潮灯三卷",
+      "caseId": "stone-dike-choice",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/cross-volume-consistency-benchmark-stone-dike-choice",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "潮灯三卷",
+      "caseId": "sunken-stele-proof",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/cross-volume-consistency-benchmark-sunken-stele-proof",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "潮灯三卷",
+      "caseId": "urgent-order",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/cross-volume-consistency-benchmark-urgent-order",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "潮灯三卷",
+      "caseId": "final-tide-shadow",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/cross-volume-consistency-benchmark-final-tide-shadow",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "iron-wall-needle",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/lost-in-middle-benchmark-iron-wall-needle",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "blind-corridor-echo",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/lost-in-middle-benchmark-blind-corridor-echo",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "stone-room-turn",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/lost-in-middle-benchmark-stone-room-turn",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "black-step-gate",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/lost-in-middle-benchmark-black-step-gate",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "tail-light-exit",
+      "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/lost-in-middle-benchmark-tail-light-exit",
+      "judge": {
+        "enabled": false,
+        "results": [],
+        "comparisons": [
+          {
+            "baseline": "baseline",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          },
+          {
+            "baseline": "recent-fill",
+            "pairedReviews": 0,
+            "fourLayerWins": 0,
+            "baselineWins": 0,
+            "ties": 0,
+            "invalid": 0,
+            "fourLayerWinRate": 0
+          }
+        ]
+      }
+    }
+  ]
+}

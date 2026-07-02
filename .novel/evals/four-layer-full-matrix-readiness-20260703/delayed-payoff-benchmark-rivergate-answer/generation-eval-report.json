@@ -1,0 +1,238 @@
+{
+  "rootPath": "examples/delayed-payoff-benchmark",
+  "ok": true,
+  "dryRun": true,
+  "title": "纸鸢旧约",
+  "caseId": "rivergate-answer",
+  "chapterId": "chapter-006",
+  "budgetChars": 850,
+  "repeatCount": 3,
+  "provider": {
+    "kind": "dry-run"
+  },
+  "fingerprint": {
+    "gitCommit": "a8ff3554adb217618fb9a988aaa80de9e089a16a",
+    "datasetVersion": "983cff000652056c",
+    "datasetHash": "f80d159d425ceda8",
+    "configHash": "558f48e41e3b2663"
+  },
+  "criteria": [
+    {
+      "id": "callback-paper-kite-promise",
+      "description": "Generated prose should naturally call back the paper-kite promise from chapter one.",
+      "category": "callback",
+      "containsAny": [
+        "我就回来",
+        "回来见你",
+        "跟着风回来",
+        "那句话我没忘",
+        "纸鸢一到河闸"
+      ]
+    },
+    {
+      "id": "setting-linqiu-reunion",
+      "description": "Generated prose should preserve Lin Qiu as the reunion target of the promise.",
+      "category": "setting",
+      "containsAny": [
+        "林秋",
+        "等你的人",
+        "回来见你"
+      ]
+    },
+    {
+      "id": "setting-no-random-new-motive",
+      "description": "Generated prose should not replace the paper-kite thread with a new unrelated motive.",
+      "category": "setting",
+      "notContains": [
+        "为了藏宝图",
+        "为了赎买马债",
+        "为了投靠盐帮",
+        "纸鸢只是顺手捡的"
+      ]
+    },
+    {
+      "id": "no-future-answer",
+      "description": "Generated prose should not leak a future hidden answer.",
+      "category": "future_leak",
+      "notContains": [
+        "第八日的暗坝火号",
+        "未来答案",
+        "__future"
+      ]
+    }
+  ],
+  "arms": [
+    {
+      "id": "baseline",
+      "label": "A baseline: recent prose only",
+      "promptChars": 782,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md"
+      ],
+      "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n近期前文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 1,
+          "reason": "0/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ]
+    },
+    {
+      "id": "recent-fill",
+      "label": "C recent-fill: same budget recent prose",
+      "promptChars": 1279,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md"
+      ],
+      "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n更早正文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n更早正文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n更早正文 第003章 北仓借宿:\n# 第003章 北仓借宿\n\n北仓的夜风灌进窗缝，柳七只记得明早要替船队换篷布、清旧账。\n\n同行脚夫说河闸近日封得紧，谁也别想着回头找人。\n\n柳七半夜被催起来去清点漏水的木箱，又被叫去替人誊抄潮粮数目，直到天亮都没合过眼。\n\n更早正文 第002章 渡口盘账:\n# 第002章 渡口盘账\n\n柳七在渡口替人盘账，满纸都是欠米、短绳和翻湿的货签。\n\n林秋没再出现，纸鸢也一直压在他贴身的布袋最里层。\n\n他整夜都在对船牌、抄旧账、替人分拣发霉的麻绳，耳边全是河埠上最琐碎的叫卖声。\n\n更早正文 第001章 河埠纸鸢:\n# 第001章 河埠纸鸢\n\n林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。\n\n她说如果哪天这只纸鸢先到河闸，他就得跟着风回来见她。\n\n柳七把纸鸢收进袖里，笑着应了一句：“白尾纸鸢一到河闸，我就回来。”",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ]
+    },
+    {
+      "id": "four-layer",
+      "label": "B four-layer memory",
+      "promptChars": 1487,
+      "memoryCount": 6,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md",
+        "codex/characters/liuqi.md",
+        "codex/characters/linqiu.md",
+        "codex/items/white-tail-kite.md",
+        "recall:chapter_summary:chapter-001",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006"
+      ],
+      "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n近期前文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n## 2. L0 事实 (codex/characters/liuqi.md)\n柳七: 柳七一直把白尾纸鸢收在袖里最深处，没有把它当成寻常旧物。 - 信物: 白尾纸鸢 - 动机: 按纸鸢旧约回到河闸 当前状态: keepsake=白尾纸鸢；motive=按纸鸢旧约回到河闸\n\n## 3. L0 事实 (codex/characters/linqiu.md)\n林秋: 林秋在河埠把白尾纸鸢交给柳七，也是那句旧约真正要回去见的人。 - 关联: 纸鸢旧约的发起者 - 疑问: 还在等柳七是否回来 当前状态: tie=纸鸢旧约的发起者；question=还在等柳七是否回来\n\n## 4. L0 事实 (codex/items/white-tail-kite.md)\n白尾纸鸢: 白尾纸鸢不是随手捡来的旧物，而是林秋和柳七约定重逢的信物。 关键规则: 柳七答应过，只要白尾纸鸢先到河闸，“我就回来”。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-001)\n关联召回: 第001章 河埠纸鸢: 起因: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。 推进: 她说如果哪天这只纸鸢先到河闸，他就得跟着风回来见她。 结果: ”…\n\n## 6. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 河埠纸鸢: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。 近期详细: 第002章 渡口盘账: 起因: 柳七在…",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ]
+    }
+  ],
+  "runs": [],
+  "aggregate": {
+    "arms": [
+      {
+        "id": "baseline",
+        "runs": 0,
+        "errors": 0,
+        "scoreMean": 0,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "recent-fill",
+        "runs": 0,
+        "errors": 0,
+        "scoreMean": 0,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "four-layer",
+        "runs": 0,
+        "errors": 0,
+        "scoreMean": 0,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      }
+    ],
+    "comparisons": [
+      {
+        "candidate": "four-layer",
+        "baseline": "baseline",
+        "pairedRuns": 0,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      {
+        "candidate": "four-layer",
+        "baseline": "recent-fill",
+        "pairedRuns": 0,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      }
+    ]
+  },
+  "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/delayed-payoff-benchmark-rivergate-answer",
+  "gate": {
+    "status": "not-run",
+    "ok": true,
+    "failedReasonIds": []
+  },
+  "errors": []
+}

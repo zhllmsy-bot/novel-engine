@@ -1,0 +1,16 @@
+{
+  "project": "潮灯三卷",
+  "caseId": "fog-harbor-lamp",
+  "chapterId": "chapter-006",
+  "fingerprint": {
+    "gitCommit": "a8ff3554adb217618fb9a988aaa80de9e089a16a",
+    "datasetVersion": "c65b628de9a8762c",
+    "datasetHash": "693bc709b3c363bd",
+    "configHash": "54c4994aac0ea2ad"
+  },
+  "provider": {
+    "kind": "dry-run"
+  },
+  "runs": [],
+  "judge": []
+}

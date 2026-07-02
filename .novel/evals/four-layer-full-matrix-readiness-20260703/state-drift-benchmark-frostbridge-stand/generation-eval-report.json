@@ -1,0 +1,239 @@
+{
+  "rootPath": "examples/state-drift-benchmark",
+  "ok": true,
+  "dryRun": true,
+  "title": "霜桥逆火",
+  "caseId": "frostbridge-stand",
+  "chapterId": "chapter-006",
+  "budgetChars": 850,
+  "repeatCount": 3,
+  "provider": {
+    "kind": "dry-run"
+  },
+  "fingerprint": {
+    "gitCommit": "a8ff3554adb217618fb9a988aaa80de9e089a16a",
+    "datasetVersion": "22462a49af6839c6",
+    "datasetHash": "89c4e33b6ec0ad36",
+    "configHash": "86f518d776ede2bb"
+  },
+  "criteria": [
+    {
+      "id": "callback-state-turn",
+      "description": "Generated prose should reflect Meng Hui's turn from avoidance to open defiance.",
+      "category": "callback",
+      "containsAny": [
+        "不再退",
+        "不再退让",
+        "挡在迟雁前",
+        "把迟雁留在身后",
+        "先从我面前过",
+        "这一次我不退"
+      ]
+    },
+    {
+      "id": "setting-chiyan-protection",
+      "description": "Generated prose should preserve Chi Yan as the person Meng Hui vowed to protect.",
+      "category": "setting",
+      "containsAny": [
+        "迟雁",
+        "替迟雁",
+        "护住迟雁"
+      ]
+    },
+    {
+      "id": "setting-no-regression-to-cowardice",
+      "description": "Generated prose should not regress Meng Hui back to surrender or retreat.",
+      "category": "setting",
+      "notContains": [
+        "孟回低头认错",
+        "孟回把迟雁交出去",
+        "孟回退到桥下",
+        "孟回又像从前一样躲开"
+      ]
+    },
+    {
+      "id": "no-future-answer",
+      "description": "Generated prose should not leak a future hidden answer.",
+      "category": "future_leak",
+      "notContains": [
+        "白狼旗会在明夜入城",
+        "未来答案",
+        "__future"
+      ]
+    }
+  ],
+  "arms": [
+    {
+      "id": "baseline",
+      "label": "A baseline: recent prose only",
+      "promptChars": 809,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md"
+      ],
+      "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 1,
+          "reason": "0/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ]
+    },
+    {
+      "id": "recent-fill",
+      "label": "C recent-fill: same budget recent prose",
+      "promptChars": 1291,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md"
+      ],
+      "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n更早正文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n更早正文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n更早正文 第003章 炉坊夜问:\n# 第003章 炉坊夜问\n\n炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。\n\n迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。\n\n他说谁要带迟雁走，先从他面前过。那一夜他知道，自己以后不会再退让。\n\n更早正文 第002章 抄录口供:\n# 第002章 抄录口供\n\n巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，连姓名都想少说一个字。\n\n迟雁看见他把能避开的视线都避开了，只在袖中悄悄攥紧那张写着旧案的薄纸。\n\n更早正文 第001章 旧桥避雪:\n# 第001章 旧桥避雪\n\n孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。\n\n他第一反应不是拔刀，而是把迟雁推进阴影里，自己低头装作替人搬炭的脚夫。\n\n迟雁问他为何总想着退，孟回只说活着比逞强重要。",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 1,
+          "reason": "0/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ]
+    },
+    {
+      "id": "four-layer",
+      "label": "B four-layer memory",
+      "promptChars": 1505,
+      "memoryCount": 6,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md",
+        "codex/characters/menghui.md",
+        "codex/characters/chiyan.md",
+        "codex/factions/nightwatch-office.md",
+        "recall:chapter_summary:chapter-005",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006"
+      ],
+      "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n## 2. L0 事实 (codex/characters/menghui.md)\n孟回: 孟回原本习惯避祸求生，总想先把人藏起来再说。 - 立场: 公开违抗巡夜司 - 誓言: 替迟雁挡下搜身令 当前状态: stance=公开违抗巡夜司；oath=替迟雁挡下搜身令；resolve=不再退让\n\n## 3. L0 事实 (codex/characters/chiyan.md)\n迟雁: 迟雁是巡夜司旧案的活证人，也是孟回如今必须护住的人。 - 风险: 被巡夜司追捕 - 秘密: 握有旧案卷宗 当前状态: risk=被巡夜司追捕；secret=握有旧案卷宗\n\n## 4. L0 事实 (codex/factions/nightwatch-office.md)\n巡夜司: 巡夜司正在封城搜人，目标是带着旧案卷宗的迟雁。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 城门风紧: 起因: 城门封得很紧，告示上全是巡夜司的搜捕令。 推进: 孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。 结果: 等到霜桥附近的风更冷时，孟回只记得哪块…\n\n## 6. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 旧桥避雪: 孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。 近期详细: 第002章 抄录口供: 起因: 巡夜…",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ]
+    }
+  ],
+  "runs": [],
+  "aggregate": {
+    "arms": [
+      {
+        "id": "baseline",
+        "runs": 0,
+        "errors": 0,
+        "scoreMean": 0,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "recent-fill",
+        "runs": 0,
+        "errors": 0,
+        "scoreMean": 0,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "four-layer",
+        "runs": 0,
+        "errors": 0,
+        "scoreMean": 0,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      }
+    ],
+    "comparisons": [
+      {
+        "candidate": "four-layer",
+        "baseline": "baseline",
+        "pairedRuns": 0,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      {
+        "candidate": "four-layer",
+        "baseline": "recent-fill",
+        "pairedRuns": 0,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      }
+    ]
+  },
+  "archivePath": ".novel/evals/four-layer-full-matrix-readiness-20260703/state-drift-benchmark-frostbridge-stand",
+  "gate": {
+    "status": "not-run",
+    "ok": true,
+    "failedReasonIds": []
+  },
+  "errors": []
+}

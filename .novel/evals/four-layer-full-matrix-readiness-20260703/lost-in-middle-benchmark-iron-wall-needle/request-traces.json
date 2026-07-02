@@ -1,0 +1,16 @@
+{
+  "project": "回环墓中段",
+  "caseId": "iron-wall-needle",
+  "chapterId": "chapter-008",
+  "fingerprint": {
+    "gitCommit": "a8ff3554adb217618fb9a988aaa80de9e089a16a",
+    "datasetVersion": "eef26be7acf90a7b",
+    "datasetHash": "fcd41216287c8e47",
+    "configHash": "9093fa7e5bd69c06"
+  },
+  "provider": {
+    "kind": "dry-run"
+  },
+  "runs": [],
+  "judge": []
+}

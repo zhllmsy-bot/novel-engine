@@ -1,0 +1,16 @@
+{
+  "project": "潮灯三卷",
+  "caseId": "urgent-order",
+  "chapterId": "chapter-009",
+  "fingerprint": {
+    "gitCommit": "a8ff3554adb217618fb9a988aaa80de9e089a16a",
+    "datasetVersion": "c65b628de9a8762c",
+    "datasetHash": "693bc709b3c363bd",
+    "configHash": "33674c3284ae2369"
+  },
+  "provider": {
+    "kind": "dry-run"
+  },
+  "runs": [],
+  "judge": []
+}

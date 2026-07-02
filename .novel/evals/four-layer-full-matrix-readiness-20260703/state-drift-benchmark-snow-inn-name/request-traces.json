@@ -1,0 +1,16 @@
+{
+  "project": "霜桥逆火",
+  "caseId": "snow-inn-name",
+  "chapterId": "chapter-007",
+  "fingerprint": {
+    "gitCommit": "a8ff3554adb217618fb9a988aaa80de9e089a16a",
+    "datasetVersion": "22462a49af6839c6",
+    "datasetHash": "89c4e33b6ec0ad36",
+    "configHash": "312849f9ef5cdf37"
+  },
+  "provider": {
+    "kind": "dry-run"
+  },
+  "runs": [],
+  "judge": []
+}
