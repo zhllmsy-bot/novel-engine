@@ -63,6 +63,46 @@
         "label": "汀州纪·第七日黄昏",
         "sort_key": 6
       }
+    },
+    {
+      "id": "chapter-007",
+      "title": "第007章 南渠听潮",
+      "path": "manuscript/volume-003/chapter-007.md",
+      "order": 7,
+      "story_time": {
+        "label": "汀州纪·第八日清晨",
+        "sort_key": 7
+      }
+    },
+    {
+      "id": "chapter-008",
+      "title": "第008章 账灯归岸",
+      "path": "manuscript/volume-003/chapter-008.md",
+      "order": 8,
+      "story_time": {
+        "label": "汀州纪·第八日夜",
+        "sort_key": 8
+      }
+    },
+    {
+      "id": "chapter-009",
+      "title": "第009章 洪牌换渡",
+      "path": "manuscript/volume-003/chapter-009.md",
+      "order": 9,
+      "story_time": {
+        "label": "汀州纪·第九日午后",
+        "sort_key": 9
+      }
+    },
+    {
+      "id": "chapter-010",
+      "title": "第010章 风口归言",
+      "path": "manuscript/volume-003/chapter-010.md",
+      "order": 10,
+      "story_time": {
+        "label": "汀州纪·第九日黄昏",
+        "sort_key": 10
+      }
     }
   ]
 }

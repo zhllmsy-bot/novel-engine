@@ -1,15 +1,13 @@
 {
   "$schema": "../../../schemas/generation-eval.schema.json",
-  "chapter_id": "chapter-006",
-  "budget_chars": 1050,
-  "instruction": "请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。",
+  "budget_chars": 850,
   "max_output_chars": 600,
   "criteria": [
     {
       "id": "callback-paper-kite-promise",
       "description": "Generated prose should naturally call back the paper-kite promise from chapter one.",
       "category": "callback",
-      "contains_any": ["我就回来", "回来见你", "跟着风回来", "那句话我没忘"]
+      "contains_any": ["我就回来", "回来见你", "跟着风回来", "那句话我没忘", "纸鸢一到河闸"]
     },
     {
       "id": "setting-linqiu-reunion",
@@ -28,6 +26,33 @@
       "description": "Generated prose should not leak a future hidden answer.",
       "category": "future_leak",
       "not_contains": ["第八日的暗坝火号", "未来答案", "__future"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "rivergate-answer",
+      "chapter_id": "chapter-006",
+      "instruction": "请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。"
+    },
+    {
+      "id": "south-canal-vow",
+      "chapter_id": "chapter-007",
+      "instruction": "请接着第007章续写柳七对南渠小吏的回答。重点是他为什么不愿把白尾纸鸢登记成寻常失物。只输出正文，不要解释。"
+    },
+    {
+      "id": "ledger-token",
+      "chapter_id": "chapter-008",
+      "instruction": "请接着第008章续写柳七在账灯下对林秋的低声解释。重点是那只纸鸢为什么比账册更要紧。只输出正文，不要解释。"
+    },
+    {
+      "id": "flood-marker",
+      "chapter_id": "chapter-009",
+      "instruction": "请接着第009章续写柳七面对换渡令时的选择。重点是他为什么仍把河闸当成必须回到的地方。只输出正文，不要解释。"
+    },
+    {
+      "id": "wind-return",
+      "chapter_id": "chapter-010",
+      "instruction": "请接着第010章续写柳七把白尾纸鸢系上风口后的话。重点是他如何把旧约真正说给林秋听。只输出正文，不要解释。"
     }
   ]
 }

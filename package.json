@@ -13,6 +13,7 @@
     "extensions:check": "node --experimental-strip-types tools/extensions-check.ts",
     "generation:eval": "node --experimental-strip-types tools/generation-eval.ts",
     "generation:eval:long": "node --experimental-strip-types tools/generation-eval.ts examples/long-memory-benchmark",
+    "generation:kappa": "node --experimental-strip-types tools/judge-kappa.ts",
     "lint": "oxlint",
     "memory:eval": "node --experimental-strip-types tools/memory-eval.ts",
     "memory:eval:long": "node --experimental-strip-types tools/memory-eval.ts examples/long-memory-benchmark",

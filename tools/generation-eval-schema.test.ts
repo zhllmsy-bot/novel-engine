@@ -3,15 +3,25 @@ import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
 describe('generation eval schema', () => {
+  const fullValidationBenchmarks = [
+    'delayed-payoff-benchmark',
+    'state-drift-benchmark',
+    'cross-volume-consistency-benchmark',
+    'lost-in-middle-benchmark',
+  ]
+
   it('ships a public schema for real-generation benchmark criteria', async () => {
     const generationEvalSchemaSource = await readFile(
       join(process.cwd(), 'schemas', 'generation-eval.schema.json'),
       'utf8',
     )
     const schema = JSON.parse(generationEvalSchemaSource) as {
-      required: string[]
+      anyOf: Array<{ required: string[] }>
       properties: {
         criteria: {
+          minItems: number
+        }
+        cases: {
           minItems: number
         }
       }
@@ -35,11 +45,24 @@ describe('generation eval schema', () => {
             }
           }
         }
+        case: {
+          required: string[]
+          additionalProperties: boolean
+          properties: {
+            criteria: {
+              minItems: number
+            }
+          }
+        }
       }
     }
 
-    expect(schema.required).toEqual(['instruction', 'criteria'])
+    expect(schema.anyOf).toEqual([
+      { required: ['instruction', 'criteria'] },
+      { required: ['cases'] },
+    ])
     expect(schema.properties.criteria.minItems).toBe(1)
+    expect(schema.properties.cases.minItems).toBe(1)
     expect(schema.$defs.criterionCategory.enum).toEqual([
       'callback',
       'setting',
@@ -59,6 +82,9 @@ describe('generation eval schema', () => {
     expect(schema.$defs.criterion.properties.contains.minItems).toBe(1)
     expect(schema.$defs.criterion.properties.contains_any.minItems).toBe(1)
     expect(schema.$defs.criterion.properties.not_contains.minItems).toBe(1)
+    expect(schema.$defs.case.required).toEqual(['id'])
+    expect(schema.$defs.case.additionalProperties).toBe(false)
+    expect(schema.$defs.case.properties.criteria.minItems).toBe(1)
   })
 
   it('keeps the long-memory generation eval config linked to the public schema', async () => {
@@ -107,5 +133,18 @@ describe('generation eval schema', () => {
     const raw = JSON.parse(source) as { $schema?: string }
 
     expect(raw.$schema).toBe('../../../schemas/generation-eval.schema.json')
+  })
+
+  it('keeps the full validation benchmark matrix at five cases per task', async () => {
+    for (const benchmark of fullValidationBenchmarks) {
+      const source = await readFile(
+        join(process.cwd(), 'examples', benchmark, 'meta', 'generation-eval.json'),
+        'utf8',
+      )
+      const raw = JSON.parse(source) as { $schema?: string; cases?: unknown[] }
+
+      expect(raw.$schema).toBe('../../../schemas/generation-eval.schema.json')
+      expect(raw.cases?.length).toBe(5)
+    }
   })
 })

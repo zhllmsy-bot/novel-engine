@@ -1,106 +1,106 @@
 {
   "$schema": "../../../schemas/project.schema.json",
   "schema_version": 1,
-  "title": "霜桥逆火",
+  "title": "潮灯三卷",
   "source_of_truth": "markdown",
   "chapters": [
     {
       "id": "chapter-001",
-      "title": "第001章 旧桥避雪",
+      "title": "第001章 潮灯旧律",
       "path": "manuscript/volume-001/chapter-001.md",
       "order": 1,
       "story_time": {
-        "label": "朔北纪·初雪夜",
+        "label": "潮门纪·初汛",
         "sort_key": 1
       }
     },
     {
       "id": "chapter-002",
-      "title": "第002章 抄录口供",
+      "title": "第002章 盐仓听钟",
       "path": "manuscript/volume-001/chapter-002.md",
       "order": 2,
       "story_time": {
-        "label": "朔北纪·次日午后",
+        "label": "潮门纪·初汛夜",
         "sort_key": 2
       }
     },
     {
       "id": "chapter-003",
-      "title": "第003章 炉坊夜问",
+      "title": "第003章 北堤巡火",
       "path": "manuscript/volume-001/chapter-003.md",
       "order": 3,
       "story_time": {
-        "label": "朔北纪·第三日夜",
+        "label": "潮门纪·次日",
         "sort_key": 3
       }
     },
     {
       "id": "chapter-004",
-      "title": "第004章 祠堂立誓",
+      "title": "第004章 客船借焰",
       "path": "manuscript/volume-002/chapter-004.md",
       "order": 4,
       "story_time": {
-        "label": "朔北纪·第五日夜",
+        "label": "潮门纪·第三日",
         "sort_key": 4
       }
     },
     {
       "id": "chapter-005",
-      "title": "第005章 城门风紧",
+      "title": "第005章 灰港换旗",
       "path": "manuscript/volume-002/chapter-005.md",
       "order": 5,
       "story_time": {
-        "label": "朔北纪·第六日黄昏",
+        "label": "潮门纪·第四日",
         "sort_key": 5
       }
     },
     {
       "id": "chapter-006",
-      "title": "第006章 霜桥回身",
+      "title": "第006章 雾港借火",
       "path": "manuscript/volume-002/chapter-006.md",
       "order": 6,
       "story_time": {
-        "label": "朔北纪·第七日夜",
+        "label": "潮门纪·第五日夜",
         "sort_key": 6
       }
     },
     {
       "id": "chapter-007",
-      "title": "第007章 雪栈问名",
+      "title": "第007章 石堤疑潮",
       "path": "manuscript/volume-003/chapter-007.md",
       "order": 7,
       "story_time": {
-        "label": "朔北纪·第八日清晨",
+        "label": "潮门纪·第六日",
         "sort_key": 7
       }
     },
     {
       "id": "chapter-008",
-      "title": "第008章 炭巷回证",
+      "title": "第008章 沉碑夜证",
       "path": "manuscript/volume-003/chapter-008.md",
       "order": 8,
       "story_time": {
-        "label": "朔北纪·第八日午后",
+        "label": "潮门纪·第六日夜",
         "sort_key": 8
       }
     },
     {
       "id": "chapter-009",
-      "title": "第009章 北门搜令",
+      "title": "第009章 潮门急令",
       "path": "manuscript/volume-003/chapter-009.md",
       "order": 9,
       "story_time": {
-        "label": "朔北纪·第八日黄昏",
+        "label": "潮门纪·第七日午后",
         "sort_key": 9
       }
     },
     {
       "id": "chapter-010",
-      "title": "第010章 旧桥明火",
+      "title": "第010章 终汛灯影",
       "path": "manuscript/volume-003/chapter-010.md",
       "order": 10,
       "story_time": {
-        "label": "朔北纪·第九日夜",
+        "label": "潮门纪·第七日夜",
         "sort_key": 10
       }
     }

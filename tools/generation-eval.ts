@@ -66,6 +66,7 @@ export type GenerationEvalRunArmReport = {
 
 export type GenerationEvalRunReport = {
   id: string
+  caseId?: string
   chapterId?: string
   repeatIndex: number
   arms: GenerationEvalRunArmReport[]
@@ -118,6 +119,7 @@ export type GenerationEvalJudgeChoice = 'four-layer' | 'baseline' | 'recent-fill
 
 export type GenerationEvalJudgeResult = {
   runId: string
+  caseId?: string
   chapterId?: string
   repeatIndex: number
   pair: string
@@ -187,6 +189,7 @@ export type GenerationEvalTraceRecord = {
 
 type GenerationEvalJudgeRow = {
   runId: string
+  caseId?: string
   chapterId?: string
   repeatIndex: number
   pair: string
@@ -196,11 +199,17 @@ type GenerationEvalJudgeRow = {
   prompt: string
 }
 
+type GenerationEvalHumanPairwiseRow = Omit<GenerationEvalJudgeRow, 'prompt'> & {
+  leftSample: string
+  rightSample: string
+}
+
 export type GenerationEvalReport = {
   rootPath: string
   ok: boolean
   dryRun: boolean
   title?: string
+  caseId?: string
   chapterId?: string
   budgetChars: number
   repeatCount: number
@@ -252,12 +261,17 @@ export type GenerationEvalSuiteReport = {
   errors: string[]
 }
 
-type GenerationEvalConfig = {
+type GenerationEvalCaseConfig = {
+  caseId?: string
   chapterId?: string
   budgetChars?: number
   instruction: string
   maxOutputChars: number
   criteria: GenerationEvalCriterion[]
+}
+
+type GenerationEvalConfig = GenerationEvalCaseConfig & {
+  cases: GenerationEvalCaseConfig[]
 }
 
 type OpenAICompatibleGenerationConfig = {
@@ -279,6 +293,7 @@ type OpenAICompatibleGenerationResult = {
 type CliOptions = {
   rootPath: string
   benchmarkProjects: string[]
+  caseId?: string
   chapterId?: string
   budgetChars?: number
   dryRun: boolean
@@ -348,16 +363,37 @@ const generationCriterionSchema = z
     'criterion must define contains, contains_any, or not_contains',
   )
 
+const generationEvalCaseSchema = z
+  .object({
+    id: z.string().regex(generationEvalIdPattern).optional(),
+    chapter_id: z.string().min(1).optional(),
+    budget_chars: z.number().int().positive().optional(),
+    instruction: z.string().min(1).optional(),
+    max_output_chars: z.number().int().positive().optional(),
+    criteria: z.array(generationCriterionSchema).min(1).optional(),
+  })
+  .strict()
+
 const generationEvalConfigSchema = z
   .object({
     $schema: z.string().min(1).optional(),
     chapter_id: z.string().min(1).optional(),
     budget_chars: z.number().int().positive().optional(),
-    instruction: z.string().min(1),
+    instruction: z.string().min(1).optional(),
     max_output_chars: z.number().int().positive().optional(),
-    criteria: z.array(generationCriterionSchema).min(1),
+    criteria: z.array(generationCriterionSchema).min(1).optional(),
+    cases: z
+      .array(generationEvalCaseSchema.extend({
+        id: z.string().regex(generationEvalIdPattern),
+      }))
+      .min(1)
+      .optional(),
   })
   .strict()
+  .refine(
+    (value) => Boolean((value.instruction && value.criteria?.length) || value.cases?.length),
+    'generation eval config must define top-level instruction+criteria or cases[]',
+  )
 
 const chatCompletionResponseSchema = z.object({
   choices: z
@@ -454,6 +490,7 @@ const chatCompletionResponseWithUsageSchema = z.object({
 
 export async function evaluateGeneration(input: {
   rootPath?: string
+  caseId?: string
   chapterId?: string
   budgetChars?: number
   dryRun?: boolean
@@ -494,6 +531,11 @@ export async function evaluateGeneration(input: {
 
   const config = await loadGenerationEvalConfig(rootPath)
   errors.push(...config.errors)
+  const generationConfig = config.value || defaultGenerationConfig()
+  const evalConfig = selectGenerationEvalCase(generationConfig, input.caseId)
+  if (!evalConfig) {
+    errors.push(`generation eval case not found: ${input.caseId}`)
+  }
 
   let project
   try {
@@ -509,8 +551,8 @@ export async function evaluateGeneration(input: {
   }
 
   const budgetChars =
-    input.budgetChars || config.value?.budgetChars || defaultBudgetChars
-  const chapterId = input.chapterId || config.value?.chapterId
+    input.budgetChars || evalConfig?.budgetChars || defaultBudgetChars
+  const chapterId = input.chapterId || evalConfig?.chapterId
   const chapter = pickChapter(project.chapters, chapterId)
   if (!chapter) {
     errors.push(
@@ -523,12 +565,24 @@ export async function evaluateGeneration(input: {
       dryRun,
       errors,
       title: project.title,
+      caseId: input.caseId,
       chapterId,
       budgetChars,
     })
   }
 
-  const evalConfig = config.value || defaultGenerationConfig()
+  if (!evalConfig) {
+    return emptyReport({
+      rootPath,
+      dryRun,
+      errors,
+      title: project.title,
+      caseId: input.caseId,
+      chapterId,
+      budgetChars,
+    })
+  }
+
   const maxOutputChars = input.maxOutputChars || evalConfig.maxOutputChars
   const chapterSummaries = buildEvaluationSummaries(
     project.chapters,
@@ -645,7 +699,8 @@ export async function evaluateGeneration(input: {
       }
 
       runs.push({
-        id: `${chapter.id}-repeat-${repeatIndex + 1}`,
+        id: `${evalConfig.caseId ? `${evalConfig.caseId}-` : ''}${chapter.id}-repeat-${repeatIndex + 1}`,
+        caseId: evalConfig.caseId,
         chapterId: chapter.id,
         repeatIndex: repeatIndex + 1,
         arms: runArms,
@@ -662,7 +717,9 @@ export async function evaluateGeneration(input: {
   })
   const fingerprint = await buildGenerationFingerprint({
     rootPath,
+    caseId: evalConfig.caseId,
     chapterId: chapter.id,
+    instruction: evalConfig.instruction,
     budgetChars,
     repeatCount,
     maxOutputChars,
@@ -686,6 +743,7 @@ export async function evaluateGeneration(input: {
     ok,
     dryRun,
     title: project.title,
+    caseId: evalConfig.caseId,
     chapterId: chapter.id,
     budgetChars,
     repeatCount,
@@ -750,6 +808,7 @@ export function formatGenerationEvalReport(report: GenerationEvalReport): string
     `Generation eval: ${report.dryRun ? 'DRY-RUN' : report.gate.status.toUpperCase()}`,
     `Root: ${report.rootPath}`,
     report.title ? `Title: ${report.title}` : undefined,
+    report.caseId ? `Case: ${report.caseId}` : undefined,
     report.chapterId ? `Chapter: ${report.chapterId}` : undefined,
     `Budget: ${report.budgetChars} chars`,
     `Repeats: ${report.repeatCount}`,
@@ -778,6 +837,7 @@ export function formatGenerationEvalReport(report: GenerationEvalReport): string
 
 export async function evaluateGenerationSuite(input: {
   rootPaths: string[]
+  caseId?: string
   chapterId?: string
   budgetChars?: number
   dryRun?: boolean
@@ -798,16 +858,23 @@ export async function evaluateGenerationSuite(input: {
   const reports: GenerationEvalReport[] = []
 
   for (const rootPath of input.rootPaths) {
-    const projectArchiveDir = input.archiveDir
-      ? join(input.archiveDir, safeArchiveSegment(rootPath))
-      : undefined
-    reports.push(
-      await evaluateGeneration({
-        ...input,
-        rootPath,
-        archiveDir: projectArchiveDir,
-      }),
-    )
+    const cases = input.caseId
+      ? [{ caseId: input.caseId }]
+      : await listGenerationEvalCases(rootPath)
+
+    for (const generationCase of cases) {
+      const projectArchiveDir = input.archiveDir
+        ? join(input.archiveDir, safeArchiveSegmentWithCase(rootPath, generationCase.caseId))
+        : undefined
+      reports.push(
+        await evaluateGeneration({
+          ...input,
+          rootPath,
+          caseId: generationCase.caseId,
+          archiveDir: projectArchiveDir,
+        }),
+      )
+    }
   }
 
   const comparisons = buildSuiteComparisons(reports)
@@ -861,7 +928,7 @@ export function formatGenerationEvalSuiteReport(
         `Suite ${comparison.candidate} vs ${comparison.baseline}: projects ${comparison.projectCount}, paired runs ${comparison.pairedRuns}, callback win ${formatPercent(comparison.callbackWinRateMean)}, callback diff ${formatNumber(comparison.callbackMeanDiff)}, setting violation diff ${formatNumber(comparison.settingViolationMeanDiff)}, future leak diff ${comparison.futureLeakDiff}`,
     ),
     ...suite.reports.flatMap((report) => [
-      `--- ${report.title || report.rootPath} ---`,
+      `--- ${formatReportLabel(report)} ---`,
       formatGenerationEvalReport(report),
     ]),
     ...suite.errors.map((error) => `ERROR ${error}`),
@@ -1362,21 +1429,32 @@ async function loadGenerationEvalConfig(rootPath: string): Promise<{
     const parsed = generationEvalConfigSchema.parse(
       JSON.parse(await readFile(configPath, 'utf8')),
     )
+    const topLevelCase = rawGenerationEvalCaseToConfig({
+      chapterId: parsed.chapter_id,
+      budgetChars: parsed.budget_chars,
+      instruction: parsed.instruction,
+      maxOutputChars: parsed.max_output_chars,
+      criteria: parsed.criteria,
+    })
+    const cases = parsed.cases?.length
+      ? parsed.cases.map((generationCase) =>
+          rawGenerationEvalCaseToConfig({
+            caseId: generationCase.id,
+            chapterId: generationCase.chapter_id || parsed.chapter_id,
+            budgetChars: generationCase.budget_chars || parsed.budget_chars,
+            instruction: generationCase.instruction || parsed.instruction,
+            maxOutputChars:
+              generationCase.max_output_chars || parsed.max_output_chars,
+            criteria: generationCase.criteria || parsed.criteria,
+          }),
+        )
+      : [topLevelCase]
+    const firstCase = cases[0] || topLevelCase
 
     return {
       value: {
-        chapterId: parsed.chapter_id,
-        budgetChars: parsed.budget_chars,
-        instruction: parsed.instruction,
-        maxOutputChars: parsed.max_output_chars || defaultMaxOutputChars,
-        criteria: parsed.criteria.map((criterion) => ({
-          id: criterion.id,
-          description: criterion.description,
-          category: criterion.category,
-          contains: criterion.contains,
-          containsAny: criterion.contains_any,
-          notContains: criterion.not_contains,
-        })),
+        ...firstCase,
+        cases,
       },
       errors: [],
     }
@@ -1387,12 +1465,65 @@ async function loadGenerationEvalConfig(rootPath: string): Promise<{
   }
 }
 
+async function listGenerationEvalCases(rootPath: string) {
+  const config = await loadGenerationEvalConfig(resolve(rootPath))
+  return config.value?.cases.length
+    ? config.value.cases.map((generationCase) => ({
+        caseId: generationCase.caseId,
+      }))
+    : [{ caseId: undefined }]
+}
+
 function defaultGenerationConfig(): GenerationEvalConfig {
+  const defaultCase = defaultGenerationCaseConfig()
+  return {
+    ...defaultCase,
+    cases: [defaultCase],
+  }
+}
+
+function defaultGenerationCaseConfig(): GenerationEvalCaseConfig {
   return {
     instruction: defaultInstruction,
     maxOutputChars: defaultMaxOutputChars,
     criteria: [],
   }
+}
+
+function rawGenerationEvalCaseToConfig(input: {
+  caseId?: string
+  chapterId?: string
+  budgetChars?: number
+  instruction?: string
+  maxOutputChars?: number
+  criteria?: Array<z.infer<typeof generationCriterionSchema>>
+}): GenerationEvalCaseConfig {
+  return {
+    caseId: input.caseId,
+    chapterId: input.chapterId,
+    budgetChars: input.budgetChars,
+    instruction: input.instruction || defaultInstruction,
+    maxOutputChars: input.maxOutputChars || defaultMaxOutputChars,
+    criteria: (input.criteria || []).map((criterion) => ({
+      id: criterion.id,
+      description: criterion.description,
+      category: criterion.category,
+      contains: criterion.contains,
+      containsAny: criterion.contains_any,
+      notContains: criterion.not_contains,
+    })),
+  }
+}
+
+function selectGenerationEvalCase(
+  config: GenerationEvalConfig,
+  caseId?: string,
+): GenerationEvalCaseConfig | undefined {
+  if (!caseId) {
+    return config.cases[0] || config
+  }
+
+  return config.cases.find((generationCase) => generationCase.caseId === caseId)
 }
 
 function buildRecentProseBaselinePlan(input: {
@@ -1698,6 +1829,7 @@ async function evaluateJudgeRow(input: {
 
     return {
       runId: input.row.runId,
+      caseId: input.row.caseId,
       chapterId: input.row.chapterId,
       repeatIndex: input.row.repeatIndex,
       pair: input.row.pair,
@@ -1716,6 +1848,7 @@ async function evaluateJudgeRow(input: {
   } catch (error) {
     return {
       runId: input.row.runId,
+      caseId: input.row.caseId,
       chapterId: input.row.chapterId,
       repeatIndex: input.row.repeatIndex,
       pair: input.row.pair,
@@ -1798,6 +1931,10 @@ async function archiveGenerationEvalReport(input: {
     buildHumanReviewCsv(archivedReport),
   )
   await writeFile(
+    join(archivePath, 'human-pairwise-review.csv'),
+    buildHumanPairwiseReviewCsv(archivedReport),
+  )
+  await writeFile(
     join(archivePath, 'judge-review-prompts.jsonl'),
     buildJudgeReviewJsonl(archivedReport),
   )
@@ -1831,6 +1968,10 @@ async function archiveGenerationEvalSuite(input: {
   await writeFile(
     join(archivePath, 'human-review.csv'),
     buildSuiteHumanReviewCsv(archivedSuite),
+  )
+  await writeFile(
+    join(archivePath, 'human-pairwise-review.csv'),
+    buildSuiteHumanPairwiseReviewCsv(archivedSuite),
   )
   await writeFile(
     join(archivePath, 'judge-review-prompts.jsonl'),
@@ -1894,6 +2035,7 @@ function buildGenerationEvalSummary(report: GenerationEvalReport) {
 
 - Status: ${report.gate.status}
 - Project: ${report.title || report.rootPath}
+- Case: ${report.caseId || 'default'}
 - Chapter: ${report.chapterId || 'unknown'}
 - Repeats: ${report.repeatCount}
 - Provider: ${formatProvider(report)}
@@ -1939,12 +2081,12 @@ function buildGenerationEvalSuiteSummary(suite: GenerationEvalSuiteReport) {
   )
   const projectLines = suite.reports.map(
     (report) =>
-      `- ${report.title || report.rootPath}: ${report.gate.status}, repeats ${report.repeatCount}, archive ${report.archivePath || 'none'}`,
+      `- ${formatReportLabel(report)}: ${report.gate.status}, repeats ${report.repeatCount}, archive ${report.archivePath || 'none'}`,
   )
   const judgeLines = suite.reports.flatMap((report) =>
     (report.judge?.comparisons || []).map(
       (comparison) =>
-        `- ${report.title || report.rootPath} four-layer vs ${comparison.baseline}: win rate ${formatPercent(comparison.fourLayerWinRate)} (${comparison.fourLayerWins}/${comparison.pairedReviews}), baseline wins ${comparison.baselineWins}, ties ${comparison.ties}, invalid ${comparison.invalid}`,
+        `- ${formatReportLabel(report)} four-layer vs ${comparison.baseline}: win rate ${formatPercent(comparison.fourLayerWinRate)} (${comparison.fourLayerWins}/${comparison.pairedReviews}), baseline wins ${comparison.baselineWins}, ties ${comparison.ties}, invalid ${comparison.invalid}`,
     ),
   )
 
@@ -1980,6 +2122,7 @@ function buildHumanReviewCsv(report: GenerationEvalReport) {
   const rows = [
     [
       'run_id',
+      'case_id',
       'chapter_id',
       'repeat_index',
       'arm_id',
@@ -1997,6 +2140,7 @@ function buildHumanReviewCsv(report: GenerationEvalReport) {
     run.arms.forEach((arm, index) => {
       rows.push([
         run.id,
+        run.caseId || report.caseId || '',
         run.chapterId || '',
         String(run.repeatIndex),
         arm.id,
@@ -2019,10 +2163,51 @@ function buildJudgeReviewJsonl(report: GenerationEvalReport) {
   return `${rows.map((row) => JSON.stringify(row)).join('\n')}${rows.length > 0 ? '\n' : ''}`
 }
 
+function buildHumanPairwiseReviewCsv(report: GenerationEvalReport) {
+  const rows = [
+    [
+      'run_id',
+      'case_id',
+      'chapter_id',
+      'repeat_index',
+      'pair',
+      'order',
+      'left_arm',
+      'right_arm',
+      'left_sample',
+      'right_sample',
+      'human_choice',
+      'human_notes',
+    ],
+  ]
+
+  for (const run of report.runs) {
+    for (const row of buildHumanPairwiseRowsForRun(run)) {
+      rows.push([
+        row.runId,
+        row.caseId || report.caseId || '',
+        row.chapterId || '',
+        String(row.repeatIndex),
+        row.pair,
+        row.order,
+        row.leftArm,
+        row.rightArm,
+        row.leftSample,
+        row.rightSample,
+        '',
+        '',
+      ])
+    }
+  }
+
+  return `${rows.map((row) => row.map(csvCell).join(',')).join('\n')}\n`
+}
+
 function buildSuiteHumanReviewCsv(suite: GenerationEvalSuiteReport) {
   const rows = [
     [
       'project',
+      'case_id',
       'run_id',
       'chapter_id',
       'repeat_index',
@@ -2042,6 +2227,7 @@ function buildSuiteHumanReviewCsv(suite: GenerationEvalSuiteReport) {
       run.arms.forEach((arm, index) => {
         rows.push([
           report.title || report.rootPath,
+          run.caseId || report.caseId || '',
           run.id,
           run.chapterId || '',
           String(run.repeatIndex),
@@ -2055,6 +2241,50 @@ function buildSuiteHumanReviewCsv(suite: GenerationEvalSuiteReport) {
           '',
         ])
       })
+    }
+  }
+
+  return `${rows.map((row) => row.map(csvCell).join(',')).join('\n')}\n`
+}
+
+function buildSuiteHumanPairwiseReviewCsv(suite: GenerationEvalSuiteReport) {
+  const rows = [
+    [
+      'project',
+      'case_id',
+      'run_id',
+      'chapter_id',
+      'repeat_index',
+      'pair',
+      'order',
+      'left_arm',
+      'right_arm',
+      'left_sample',
+      'right_sample',
+      'human_choice',
+      'human_notes',
+    ],
+  ]
+
+  for (const report of suite.reports) {
+    for (const run of report.runs) {
+      for (const row of buildHumanPairwiseRowsForRun(run)) {
+        rows.push([
+          report.title || report.rootPath,
+          row.caseId || report.caseId || '',
+          row.runId,
+          row.chapterId || '',
+          String(row.repeatIndex),
+          row.pair,
+          row.order,
+          row.leftArm,
+          row.rightArm,
+          row.leftSample,
+          row.rightSample,
+          '',
+          '',
+        ])
+      }
     }
   }
 
@@ -2078,6 +2308,7 @@ function buildSuiteJudgeResults(suite: GenerationEvalSuiteReport) {
     enabled: suite.reports.some((report) => report.judge?.enabled),
     reports: suite.reports.map((report) => ({
       project: report.title || report.rootPath,
+      caseId: report.caseId,
       archivePath: report.archivePath,
       judge: report.judge || emptyJudgeReport(),
     })),
@@ -2087,11 +2318,13 @@ function buildSuiteJudgeResults(suite: GenerationEvalSuiteReport) {
 function buildTraceArchive(report: GenerationEvalReport) {
   return {
     project: report.title || report.rootPath,
+    caseId: report.caseId,
     chapterId: report.chapterId,
     fingerprint: report.fingerprint,
     provider: sanitizeProviderMetadata(report.provider),
     runs: report.runs.map((run) => ({
       runId: run.id,
+      caseId: run.caseId,
       chapterId: run.chapterId,
       repeatIndex: run.repeatIndex,
       arms: run.arms.map((arm) => ({
@@ -2103,6 +2336,7 @@ function buildTraceArchive(report: GenerationEvalReport) {
     judge:
       report.judge?.results.map((result) => ({
         runId: result.runId,
+        caseId: result.caseId,
         chapterId: result.chapterId,
         repeatIndex: result.repeatIndex,
         pair: result.pair,
@@ -2150,6 +2384,48 @@ function emptyJudgeReport(): GenerationEvalJudgeReport {
   }
 }
 
+function buildHumanPairwiseRowsForRun(
+  run: GenerationEvalRunReport,
+): GenerationEvalHumanPairwiseRow[] {
+  const fourLayer = run.arms.find((arm) => arm.id === 'four-layer')
+  const baselines = run.arms.filter(
+    (arm) => arm.id === 'baseline' || arm.id === 'recent-fill',
+  )
+  if (!fourLayer?.output) return []
+  const fourLayerOutput = fourLayer.output
+
+  return baselines.flatMap((baseline) => {
+    if (!baseline.output) return []
+    const baselineOutput = baseline.output
+    const base = {
+      runId: run.id,
+      caseId: run.caseId,
+      chapterId: run.chapterId,
+      repeatIndex: run.repeatIndex,
+      pair: `${baseline.id}:four-layer`,
+    }
+
+    return [
+      {
+        ...base,
+        order: 'candidate-right',
+        leftArm: baseline.id,
+        rightArm: fourLayer.id,
+        leftSample: baselineOutput,
+        rightSample: fourLayerOutput,
+      },
+      {
+        ...base,
+        order: 'candidate-left',
+        leftArm: fourLayer.id,
+        rightArm: baseline.id,
+        leftSample: fourLayerOutput,
+        rightSample: baselineOutput,
+      },
+    ]
+  })
+}
+
 function buildJudgeRowsForRun(run: GenerationEvalRunReport): GenerationEvalJudgeRow[] {
   const fourLayer = run.arms.find((arm) => arm.id === 'four-layer')
   const baselines = run.arms.filter(
@@ -2164,6 +2440,7 @@ function buildJudgeRowsForRun(run: GenerationEvalRunReport): GenerationEvalJudge
 
     const base = {
       runId: run.id,
+      caseId: run.caseId,
       chapterId: run.chapterId,
       repeatIndex: run.repeatIndex,
       pair: `${baseline.id}:four-layer`,
@@ -2341,6 +2618,11 @@ function formatProvider(report: GenerationEvalReport) {
   return `${report.provider.kind} model=${report.provider.model} baseUrl=${report.provider.baseUrl} wire=${report.provider.wireApi || 'chat'}${report.provider.reasoningEffort ? ` reasoning=${report.provider.reasoningEffort}` : ''}`
 }
 
+function formatReportLabel(report: GenerationEvalReport) {
+  const label = report.title || report.rootPath
+  return report.caseId ? `${label} (${report.caseId})` : label
+}
+
 function formatSourceList(sources: string[]) {
   if (sources.length === 0) return 'none'
   const visibleSources = sources.slice(0, 3)
@@ -2360,6 +2642,7 @@ function emptyReport(input: {
   dryRun: boolean
   errors: string[]
   title?: string
+  caseId?: string
   chapterId?: string
   budgetChars?: number
 }): GenerationEvalReport {
@@ -2368,6 +2651,7 @@ function emptyReport(input: {
     ok: false,
     dryRun: input.dryRun,
     title: input.title,
+    caseId: input.caseId,
     chapterId: input.chapterId,
     budgetChars: input.budgetChars || defaultBudgetChars,
     repeatCount: defaultRepeatCount,
@@ -2391,7 +2675,9 @@ function emptyReport(input: {
 
 async function buildGenerationFingerprint(input: {
   rootPath: string
+  caseId?: string
   chapterId?: string
+  instruction: string
   budgetChars: number
   repeatCount: number
   maxOutputChars: number
@@ -2408,7 +2694,9 @@ async function buildGenerationFingerprint(input: {
   const datasetHash = await hashProjectDataset(input.rootPath)
   const configHash = hashString(
     JSON.stringify({
+      caseId: input.caseId,
       chapterId: input.chapterId,
+      instruction: input.instruction,
       budgetChars: input.budgetChars,
       repeatCount: input.repeatCount,
       maxOutputChars: input.maxOutputChars,
@@ -2744,6 +3032,10 @@ function safeArchiveSegment(path: string) {
     .slice(0, 80) || 'project'
 }
 
+function safeArchiveSegmentWithCase(path: string, caseId?: string) {
+  return caseId ? `${safeArchiveSegment(path)}-${caseId}` : safeArchiveSegment(path)
+}
+
 export function parseGenerationEvalArgs(args: string[]): CliOptions {
   const options: CliOptions = {
     rootPath: 'examples/long-memory-benchmark',
@@ -2768,6 +3060,9 @@ export function parseGenerationEvalArgs(args: string[]): CliOptions {
       options.help = true
     } else if (arg === '--chapter') {
       options.chapterId = args[index + 1]
+      index += 1
+    } else if (arg === '--case') {
+      options.caseId = args[index + 1]
       index += 1
     } else if (arg === '--budget') {
       options.budgetChars = Number(args[index + 1])
@@ -2888,6 +3183,7 @@ async function main() {
     options.benchmarkProjects.length > 0
       ? await evaluateGenerationSuite({
           rootPaths: options.benchmarkProjects,
+          caseId: options.caseId,
           chapterId: options.chapterId,
           budgetChars: options.budgetChars,
           dryRun: options.dryRun,
@@ -2907,6 +3203,7 @@ async function main() {
         })
       : await evaluateGeneration({
           rootPath: options.rootPath,
+          caseId: options.caseId,
           chapterId: options.chapterId,
           budgetChars: options.budgetChars,
           dryRun: options.dryRun,

@@ -1,0 +1,58 @@
+{
+  "$schema": "../../../schemas/generation-eval.schema.json",
+  "budget_chars": 900,
+  "max_output_chars": 600,
+  "criteria": [
+    {
+      "id": "callback-tide-lamp-law",
+      "description": "Generated prose should preserve the old tide-lamp rule from volume one.",
+      "category": "callback",
+      "contains_any": ["潮灯只认守潮人的一口息", "外人若吹灯，会把潮兽引到岸上", "守潮人亲自息灯"]
+    },
+    {
+      "id": "setting-keeper-authority",
+      "description": "Generated prose should keep Ji Lan as the person responsible for the lamp decision.",
+      "category": "setting",
+      "contains_any": ["季澜", "守潮人", "潮灯"]
+    },
+    {
+      "id": "setting-no-outsider-extinguish",
+      "description": "Generated prose should not contradict the rule by letting an outsider extinguish the tide lamp.",
+      "category": "setting",
+      "not_contains": ["让兵士吹灭潮灯", "请客商吹灭潮灯", "外人吹灯也无妨", "潮灯随便谁都能灭"]
+    },
+    {
+      "id": "no-future-answer",
+      "description": "Generated prose should not leak a future hidden answer.",
+      "category": "future_leak",
+      "not_contains": ["终汛之后潮门会沉入海底", "未来答案", "__future"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "fog-harbor-lamp",
+      "chapter_id": "chapter-006",
+      "instruction": "请接着第006章续写季澜回应众人催促的一小段。重点是她如何处理眼前潮灯，而不违背第一卷留下的旧律。只输出正文，不要解释。"
+    },
+    {
+      "id": "stone-dike-choice",
+      "chapter_id": "chapter-007",
+      "instruction": "请接着第007章续写季澜在石堤上作决定的一小段。重点是她为什么不能把息灯交给旁人代劳。只输出正文，不要解释。"
+    },
+    {
+      "id": "sunken-stele-proof",
+      "chapter_id": "chapter-008",
+      "instruction": "请接着第008章续写季澜向守堤人说明潮灯用法的一小段。重点是她如何把旧律用于眼前危局。只输出正文，不要解释。"
+    },
+    {
+      "id": "urgent-order",
+      "chapter_id": "chapter-009",
+      "instruction": "请接着第009章续写季澜拒绝急令中省事做法的一小段。重点是她如何维持跨卷设定一致。只输出正文，不要解释。"
+    },
+    {
+      "id": "final-tide-shadow",
+      "chapter_id": "chapter-010",
+      "instruction": "请接着第010章续写季澜在终汛灯影前的动作与一句话。重点是她如何遵守最早确立的潮灯规则。只输出正文，不要解释。"
+    }
+  ]
+}

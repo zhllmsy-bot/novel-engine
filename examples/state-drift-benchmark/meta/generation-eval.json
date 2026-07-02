@@ -1,8 +1,6 @@
 {
   "$schema": "../../../schemas/generation-eval.schema.json",
-  "chapter_id": "chapter-006",
-  "budget_chars": 1100,
-  "instruction": "请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。",
+  "budget_chars": 850,
   "max_output_chars": 600,
   "criteria": [
     {
@@ -28,6 +26,33 @@
       "description": "Generated prose should not leak a future hidden answer.",
       "category": "future_leak",
       "not_contains": ["白狼旗会在明夜入城", "未来答案", "__future"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "frostbridge-stand",
+      "chapter_id": "chapter-006",
+      "instruction": "请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。"
+    },
+    {
+      "id": "snow-inn-name",
+      "chapter_id": "chapter-007",
+      "instruction": "请接着第007章续写孟回在雪栈门口报出自己名字的一小段。重点是他为什么这次没有让迟雁先藏起来。只输出正文，不要解释。"
+    },
+    {
+      "id": "charcoal-alley-proof",
+      "chapter_id": "chapter-008",
+      "instruction": "请接着第008章续写孟回面对炭巷搜证人的反应。重点是他如何把迟雁和旧案卷宗护在身后。只输出正文，不要解释。"
+    },
+    {
+      "id": "north-gate-warrant",
+      "chapter_id": "chapter-009",
+      "instruction": "请接着第009章续写孟回听见北门搜令后的决定。重点是他为什么不再用退路换安全。只输出正文，不要解释。"
+    },
+    {
+      "id": "old-bridge-fire",
+      "chapter_id": "chapter-010",
+      "instruction": "请接着第010章续写孟回在旧桥明火前对巡夜司说的话。重点是他如何承认自己已经不是旧桥避雪时那个人。只输出正文，不要解释。"
     }
   ]
 }

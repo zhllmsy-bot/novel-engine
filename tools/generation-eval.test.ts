@@ -1,4 +1,4 @@
-import { mkdtemp, readFile, rm, stat } from 'node:fs/promises'
+import { mkdir, mkdtemp, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, describe, expect, it, vi } from 'vitest'
@@ -28,6 +28,8 @@ describe('generation eval tool', () => {
         '--show-prompts',
         '--repeat',
         '5',
+        '--case',
+        'case-a',
         '--archive-dir',
         '.novel/evals/test',
         '--model',
@@ -48,6 +50,7 @@ describe('generation eval tool', () => {
     ).toMatchObject({
       rootPath: 'examples/long-memory-benchmark',
       benchmarkProjects: ['examples/long-memory-benchmark'],
+      caseId: 'case-a',
       dryRun: true,
       showPrompts: true,
       repeatCount: 5,
@@ -169,6 +172,9 @@ describe('generation eval tool', () => {
       await expect(stat(join(root, 'generation-eval-summary.md'))).resolves.toBeTruthy()
       await expect(stat(join(root, 'human-review.csv'))).resolves.toBeTruthy()
       await expect(
+        stat(join(root, 'human-pairwise-review.csv')),
+      ).resolves.toBeTruthy()
+      await expect(
         stat(join(root, 'judge-review-prompts.jsonl')),
       ).resolves.toBeTruthy()
       await expect(stat(join(root, 'judge-results.json'))).resolves.toBeTruthy()
@@ -227,6 +233,9 @@ describe('generation eval tool', () => {
       ).resolves.toBeTruthy()
       await expect(stat(join(root, 'human-review.csv'))).resolves.toBeTruthy()
       await expect(
+        stat(join(root, 'human-pairwise-review.csv')),
+      ).resolves.toBeTruthy()
+      await expect(
         stat(join(root, 'judge-review-prompts.jsonl')),
       ).resolves.toBeTruthy()
       await expect(stat(join(root, 'judge-results.json'))).resolves.toBeTruthy()
@@ -246,6 +255,124 @@ describe('generation eval tool', () => {
       expect(
         await readFile(join(root, 'generation-eval-suite.json'), 'utf8'),
       ).toContain('"readiness"')
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it('expands generation eval suite cases into separate dry-run reports', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'generation-eval-cases-'))
+    const projectRoot = join(root, 'multi-case-benchmark')
+    const archiveRoot = join(root, 'archive')
+
+    try {
+      await mkdir(join(projectRoot, 'meta'), { recursive: true })
+      await mkdir(join(projectRoot, 'manuscript', 'volume-001'), {
+        recursive: true,
+      })
+      await mkdir(join(projectRoot, 'codex', 'items'), { recursive: true })
+      await writeFile(
+        join(projectRoot, 'meta', 'project.json'),
+        JSON.stringify(
+          {
+            title: '多入口测试',
+            source_of_truth: 'markdown',
+            chapters: [
+              {
+                id: 'chapter-001',
+                title: '第001章 信物',
+                path: 'manuscript/volume-001/chapter-001.md',
+                order: 1,
+              },
+              {
+                id: 'chapter-002',
+                title: '第002章 回声',
+                path: 'manuscript/volume-001/chapter-002.md',
+                order: 2,
+              },
+            ],
+          },
+          null,
+          2,
+        ),
+      )
+      await writeFile(
+        join(projectRoot, 'meta', 'generation-eval.json'),
+        JSON.stringify(
+          {
+            $schema: '../../../schemas/generation-eval.schema.json',
+            budget_chars: 800,
+            max_output_chars: 300,
+            criteria: [
+              {
+                id: 'callback-token',
+                description: 'Recall the token.',
+                category: 'callback',
+                contains_any: ['铜铃', '旧约'],
+              },
+            ],
+            cases: [
+              {
+                id: 'case-a',
+                chapter_id: 'chapter-001',
+                instruction: '续写第一章的信物回应。只输出正文。',
+              },
+              {
+                id: 'case-b',
+                chapter_id: 'chapter-002',
+                instruction: '续写第二章的回声回应。只输出正文。',
+              },
+            ],
+          },
+          null,
+          2,
+        ),
+      )
+      await writeFile(
+        join(projectRoot, 'manuscript', 'volume-001', 'chapter-001.md'),
+        '# 第001章 信物\n\n她把铜铃交给沈泊，说旧约未断。\n',
+      )
+      await writeFile(
+        join(projectRoot, 'manuscript', 'volume-001', 'chapter-002.md'),
+        '# 第002章 回声\n\n沈泊在雨声里又听见铜铃，想起旧约。\n',
+      )
+      await writeFile(
+        join(projectRoot, 'codex', 'items', 'bell.md'),
+        '---\nid: item-bell\nname: 铜铃\ntype: item\nkeywords: [铜铃, 旧约]\n---\n\n铜铃是旧约信物。\n',
+      )
+
+      const suite = await evaluateGenerationSuite({
+        rootPaths: [projectRoot],
+        dryRun: true,
+        includePrompts: true,
+        archiveDir: archiveRoot,
+      })
+
+      expect(suite.ok).toBe(true)
+      expect(suite.projectCount).toBe(2)
+      expect(suite.reports.map((report) => report.caseId)).toEqual([
+        'case-a',
+        'case-b',
+      ])
+      expect(suite.reports.map((report) => report.chapterId)).toEqual([
+        'chapter-001',
+        'chapter-002',
+      ])
+      await expect(
+        stat(join(archiveRoot, 'multi-case-benchmark-case-a')),
+      ).resolves.toBeTruthy()
+      await expect(
+        stat(join(archiveRoot, 'multi-case-benchmark-case-b')),
+      ).resolves.toBeTruthy()
+      expect(await readFile(join(archiveRoot, 'human-review.csv'), 'utf8')).toContain(
+        'case_id',
+      )
+      expect(
+        await readFile(join(archiveRoot, 'human-pairwise-review.csv'), 'utf8'),
+      ).toContain('human_choice')
+      expect(formatGenerationEvalSuiteReport(suite)).toContain(
+        '多入口测试 (case-a)',
+      )
     } finally {
       await rm(root, { recursive: true, force: true })
     }

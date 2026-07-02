@@ -1,0 +1,58 @@
+{
+  "$schema": "../../../schemas/generation-eval.schema.json",
+  "budget_chars": 900,
+  "max_output_chars": 600,
+  "criteria": [
+    {
+      "id": "callback-middle-compass-rule",
+      "description": "Generated prose should recall the middle-chapter compass rule rather than following the visible needle tip.",
+      "category": "callback",
+      "contains_any": ["反握罗盘", "针尾指的才是生门", "针背向真正的缺口"]
+    },
+    {
+      "id": "setting-compass-and-iron",
+      "description": "Generated prose should preserve the compass and true-north iron setup.",
+      "category": "setting",
+      "contains_any": ["倒置罗盘", "真北铁", "生门"]
+    },
+    {
+      "id": "setting-no-tip-mistake",
+      "description": "Generated prose should not choose the obvious but wrong needle-tip direction.",
+      "category": "setting",
+      "not_contains": ["顺着针尖走", "针尖就是生门", "按针尖开门", "把罗盘交给守墓人"]
+    },
+    {
+      "id": "no-future-answer",
+      "description": "Generated prose should not leak a future hidden answer.",
+      "category": "future_leak",
+      "not_contains": ["第十三章会出现第二只罗盘", "未来答案", "__future"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "iron-wall-needle",
+      "chapter_id": "chapter-008",
+      "instruction": "请接着第008章续写阿照面对铁墙和倒置罗盘的一小段。重点是他如何判断该看罗盘哪一端。只输出正文，不要解释。"
+    },
+    {
+      "id": "blind-corridor-echo",
+      "chapter_id": "chapter-009",
+      "instruction": "请接着第009章续写阿照在盲廊回声里作选择的一小段。重点是他如何避开眼前最显眼的错误方向。只输出正文，不要解释。"
+    },
+    {
+      "id": "stone-room-turn",
+      "chapter_id": "chapter-010",
+      "instruction": "请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。"
+    },
+    {
+      "id": "black-step-gate",
+      "chapter_id": "chapter-011",
+      "instruction": "请接着第011章续写阿照站在黑阶门前的一小段。重点是他如何从中段埋下的信息里找出生路。只输出正文，不要解释。"
+    },
+    {
+      "id": "tail-light-exit",
+      "chapter_id": "chapter-012",
+      "instruction": "请接着第012章续写阿照看见针尾微光后的动作。重点是他如何兑现中段线索，而不是被针尖误导。只输出正文，不要解释。"
+    }
+  ]
+}

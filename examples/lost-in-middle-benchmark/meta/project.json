@@ -1,107 +1,127 @@
 {
   "$schema": "../../../schemas/project.schema.json",
   "schema_version": 1,
-  "title": "霜桥逆火",
+  "title": "回环墓中段",
   "source_of_truth": "markdown",
   "chapters": [
     {
       "id": "chapter-001",
-      "title": "第001章 旧桥避雪",
+      "title": "第001章 雨墓入口",
       "path": "manuscript/volume-001/chapter-001.md",
       "order": 1,
       "story_time": {
-        "label": "朔北纪·初雪夜",
+        "label": "回环纪·入墓",
         "sort_key": 1
       }
     },
     {
       "id": "chapter-002",
-      "title": "第002章 抄录口供",
+      "title": "第002章 灯绳清点",
       "path": "manuscript/volume-001/chapter-002.md",
       "order": 2,
       "story_time": {
-        "label": "朔北纪·次日午后",
+        "label": "回环纪·第一更",
         "sort_key": 2
       }
     },
     {
       "id": "chapter-003",
-      "title": "第003章 炉坊夜问",
+      "title": "第003章 铜屑暗廊",
       "path": "manuscript/volume-001/chapter-003.md",
       "order": 3,
       "story_time": {
-        "label": "朔北纪·第三日夜",
+        "label": "回环纪·第二更",
         "sort_key": 3
       }
     },
     {
       "id": "chapter-004",
-      "title": "第004章 祠堂立誓",
-      "path": "manuscript/volume-002/chapter-004.md",
+      "title": "第004章 水声误路",
+      "path": "manuscript/volume-001/chapter-004.md",
       "order": 4,
       "story_time": {
-        "label": "朔北纪·第五日夜",
+        "label": "回环纪·第三更",
         "sort_key": 4
       }
     },
     {
       "id": "chapter-005",
-      "title": "第005章 城门风紧",
+      "title": "第005章 中段针尾",
       "path": "manuscript/volume-002/chapter-005.md",
       "order": 5,
       "story_time": {
-        "label": "朔北纪·第六日黄昏",
+        "label": "回环纪·墓心中段",
         "sort_key": 5
       }
     },
     {
       "id": "chapter-006",
-      "title": "第006章 霜桥回身",
+      "title": "第006章 碎碑抄名",
       "path": "manuscript/volume-002/chapter-006.md",
       "order": 6,
       "story_time": {
-        "label": "朔北纪·第七日夜",
+        "label": "回环纪·第四更",
         "sort_key": 6
       }
     },
     {
       "id": "chapter-007",
-      "title": "第007章 雪栈问名",
-      "path": "manuscript/volume-003/chapter-007.md",
+      "title": "第007章 盲井听砂",
+      "path": "manuscript/volume-002/chapter-007.md",
       "order": 7,
       "story_time": {
-        "label": "朔北纪·第八日清晨",
+        "label": "回环纪·第五更",
         "sort_key": 7
       }
     },
     {
       "id": "chapter-008",
-      "title": "第008章 炭巷回证",
+      "title": "第008章 铁墙试针",
       "path": "manuscript/volume-003/chapter-008.md",
       "order": 8,
       "story_time": {
-        "label": "朔北纪·第八日午后",
+        "label": "回环纪·第六更",
         "sort_key": 8
       }
     },
     {
       "id": "chapter-009",
-      "title": "第009章 北门搜令",
+      "title": "第009章 盲廊回声",
       "path": "manuscript/volume-003/chapter-009.md",
       "order": 9,
       "story_time": {
-        "label": "朔北纪·第八日黄昏",
+        "label": "回环纪·第六更末",
         "sort_key": 9
       }
     },
     {
       "id": "chapter-010",
-      "title": "第010章 旧桥明火",
+      "title": "第010章 石室换向",
       "path": "manuscript/volume-003/chapter-010.md",
       "order": 10,
       "story_time": {
-        "label": "朔北纪·第九日夜",
+        "label": "回环纪·第七更",
         "sort_key": 10
+      }
+    },
+    {
+      "id": "chapter-011",
+      "title": "第011章 黑阶临门",
+      "path": "manuscript/volume-003/chapter-011.md",
+      "order": 11,
+      "story_time": {
+        "label": "回环纪·第七更末",
+        "sort_key": 11
+      }
+    },
+    {
+      "id": "chapter-012",
+      "title": "第012章 针尾光",
+      "path": "manuscript/volume-003/chapter-012.md",
+      "order": 12,
+      "story_time": {
+        "label": "回环纪·出墓前",
+        "sort_key": 12
       }
     }
   ]
