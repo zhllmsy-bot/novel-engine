@@ -1,0 +1,81 @@
+{
+  "project": "纸鸢旧约",
+  "caseId": "rivergate-answer",
+  "chapterId": "chapter-006",
+  "fingerprint": {
+    "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+    "datasetVersion": "983cff000652056c",
+    "datasetHash": "f80d159d425ceda8",
+    "configHash": "b056f3d037220520"
+  },
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/",
+    "model": "gpt-5.5",
+    "wireApi": "responses",
+    "reasoningEffort": "xhigh"
+  },
+  "runs": [
+    {
+      "runId": "rivergate-answer-chapter-006-repeat-1",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        }
+      ]
+    },
+    {
+      "runId": "rivergate-answer-chapter-006-repeat-2",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        }
+      ]
+    },
+    {
+      "runId": "rivergate-answer-chapter-006-repeat-3",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        }
+      ]
+    }
+  ],
+  "judge": []
+}

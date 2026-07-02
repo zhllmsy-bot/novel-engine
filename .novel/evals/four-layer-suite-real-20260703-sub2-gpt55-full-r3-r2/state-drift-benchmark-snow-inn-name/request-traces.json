@@ -1,0 +1,81 @@
+{
+  "project": "霜桥逆火",
+  "caseId": "snow-inn-name",
+  "chapterId": "chapter-007",
+  "fingerprint": {
+    "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+    "datasetVersion": "22462a49af6839c6",
+    "datasetHash": "89c4e33b6ec0ad36",
+    "configHash": "c5e839254ba40baf"
+  },
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/",
+    "model": "gpt-5.5",
+    "wireApi": "responses",
+    "reasoningEffort": "xhigh"
+  },
+  "runs": [
+    {
+      "runId": "snow-inn-name-chapter-007-repeat-1",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        }
+      ]
+    },
+    {
+      "runId": "snow-inn-name-chapter-007-repeat-2",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "repeatIndex": 2,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        }
+      ]
+    },
+    {
+      "runId": "snow-inn-name-chapter-007-repeat-3",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "repeatIndex": 3,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        }
+      ]
+    }
+  ],
+  "judge": []
+}

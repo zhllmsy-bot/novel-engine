@@ -1,0 +1,81 @@
+{
+  "project": "回环墓中段",
+  "caseId": "stone-room-turn",
+  "chapterId": "chapter-010",
+  "fingerprint": {
+    "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+    "datasetVersion": "eef26be7acf90a7b",
+    "datasetHash": "fcd41216287c8e47",
+    "configHash": "9758fcc614cee7e7"
+  },
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/",
+    "model": "gpt-5.5",
+    "wireApi": "responses",
+    "reasoningEffort": "xhigh"
+  },
+  "runs": [
+    {
+      "runId": "stone-room-turn-chapter-010-repeat-1",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        }
+      ]
+    },
+    {
+      "runId": "stone-room-turn-chapter-010-repeat-2",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "repeatIndex": 2,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        }
+      ]
+    },
+    {
+      "runId": "stone-room-turn-chapter-010-repeat-3",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "repeatIndex": 3,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+        }
+      ]
+    }
+  ],
+  "judge": []
+}

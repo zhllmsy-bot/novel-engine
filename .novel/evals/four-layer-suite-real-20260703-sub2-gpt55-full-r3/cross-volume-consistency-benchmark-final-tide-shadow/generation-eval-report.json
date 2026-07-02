@@ -1,0 +1,340 @@
+{
+  "rootPath": "examples/cross-volume-consistency-benchmark",
+  "ok": false,
+  "dryRun": false,
+  "title": "潮灯三卷",
+  "caseId": "final-tide-shadow",
+  "chapterId": "chapter-010",
+  "budgetChars": 900,
+  "repeatCount": 3,
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/v1",
+    "model": "gpt-5.5",
+    "wireApi": "responses",
+    "reasoningEffort": "xhigh"
+  },
+  "fingerprint": {
+    "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e",
+    "datasetVersion": "c65b628de9a8762c",
+    "datasetHash": "693bc709b3c363bd",
+    "configHash": "f2ca469900247c1c"
+  },
+  "criteria": [
+    {
+      "id": "callback-tide-lamp-law",
+      "description": "Generated prose should preserve the old tide-lamp rule from volume one.",
+      "category": "callback",
+      "containsAny": [
+        "潮灯只认守潮人的一口息",
+        "外人若吹灯，会把潮兽引到岸上",
+        "守潮人亲自息灯"
+      ]
+    },
+    {
+      "id": "setting-keeper-authority",
+      "description": "Generated prose should keep Ji Lan as the person responsible for the lamp decision.",
+      "category": "setting",
+      "containsAny": [
+        "季澜",
+        "守潮人",
+        "潮灯"
+      ]
+    },
+    {
+      "id": "setting-no-outsider-extinguish",
+      "description": "Generated prose should not contradict the rule by letting an outsider extinguish the tide lamp.",
+      "category": "setting",
+      "notContains": [
+        "让兵士吹灭潮灯",
+        "请客商吹灭潮灯",
+        "外人吹灯也无妨",
+        "潮灯随便谁都能灭"
+      ]
+    },
+    {
+      "id": "no-future-answer",
+      "description": "Generated prose should not leak a future hidden answer.",
+      "category": "future_leak",
+      "notContains": [
+        "终汛之后潮门会沉入海底",
+        "未来答案",
+        "__future"
+      ]
+    }
+  ],
+  "arms": [
+    {
+      "id": "baseline",
+      "label": "A baseline: recent prose only",
+      "promptChars": 780,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md"
+      ],
+      "promptPreview": "# 项目\n潮灯三卷\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第010章 终汛灯影 (chapter-010)\n\n# 任务\n请接着第010章续写季澜在终汛灯影前的动作与一句话。重点是她如何遵守最早确立的潮灯规则。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 终汛灯影\n\n终汛之夜，潮灯的影子从堤墙一直拖到海面，像一道快被浪咬断的线。\n\n客商、兵士和守堤人都在催季澜，说只要灯影不再晃，谁来完成最后一步都一样。\n\n季澜把潮灯捧到胸前，听见潮兽在雾里低吼，知道自己若在这里省事，三卷以来守住的规则就会在这一刻崩掉。\n\n近期前文 第008章 沉碑夜证:\n# 第008章 沉碑夜证\n\n沉碑在夜潮里露出半角，碑文只剩几行残字，偏偏每一行都和潮灯有关。\n\n守堤人说碑文太旧，眼前又没有老守潮人，不如按急令从简。\n\n季澜把潮灯托到碑影前，想起第一卷里老守潮人教她背下的那句旧律，明白旧字不是为了好看才刻在石上。\n\n近期前文 第009章 潮门急令:\n# 第009章 潮门急令\n\n潮门急令传到堤上时，纸角已经被海水泡皱。\n\n令上说为保客船离岸，可由最近的人代季澜完成潮灯处置，事后再补守潮人的印。\n\n季澜读完没有立刻撕令，只看着灯火在盐雾里缩成一点，知道这张纸真正考的是她还记不记得潮门最早立下的规矩。",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 1,
+          "reason": "0/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+    },
+    {
+      "id": "recent-fill",
+      "label": "C recent-fill: same budget recent prose",
+      "promptChars": 1520,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md"
+      ],
+      "promptPreview": "# 项目\n潮灯三卷\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第010章 终汛灯影 (chapter-010)\n\n# 任务\n请接着第010章续写季澜在终汛灯影前的动作与一句话。重点是她如何遵守最早确立的潮灯规则。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第010章 终汛灯影\n\n终汛之夜，潮灯的影子从堤墙一直拖到海面，像一道快被浪咬断的线。\n\n客商、兵士和守堤人都在催季澜，说只要灯影不再晃，谁来完成最后一步都一样。\n\n季澜把潮灯捧到胸前，听见潮兽在雾里低吼，知道自己若在这里省事，三卷以来守住的规则就会在这一刻崩掉。\n\n更早正文 第009章 潮门急令:\n# 第009章 潮门急令\n\n潮门急令传到堤上时，纸角已经被海水泡皱。\n\n令上说为保客船离岸，可由最近的人代季澜完成潮灯处置，事后再补守潮人的印。\n\n季澜读完没有立刻撕令，只看着灯火在盐雾里缩成一点，知道这张纸真正考的是她还记不记得潮门最早立下的规矩。\n\n更早正文 第008章 沉碑夜证:\n# 第008章 沉碑夜证\n\n沉碑在夜潮里露出半角，碑文只剩几行残字，偏偏每一行都和潮灯有关。\n\n守堤人说碑文太旧，眼前又没有老守潮人，不如按急令从简。\n\n季澜把潮灯托到碑影前，想起第一卷里老守潮人教她背下的那句旧律，明白旧字不是为了好看才刻在石上。\n\n更早正文 第007章 石堤疑潮:\n# 第007章 石堤疑潮\n\n石堤裂口处的潮声像有人在水下磨牙，副灯一盏接一盏暗下去。\n\n守堤人劝季澜先派旁人处理潮灯，自己去看裂口，说一条规矩不该压过整条堤。\n\n季澜看着潮灯灯罩上的盐霜，知道若把最要紧的一步交出去，石堤或许能暂时少乱，却会把更大的东西引来。\n\n更早正文 第006章 雾港借火:\n# 第006章 雾港借火\n\n雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。\n\n兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。\n\n季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。\n\n更早正文 第005章 灰港换旗:\n# 第005章 灰港换旗\n\n灰港换旗那日，堤上的人都在争论船旗、货账和哪一段石堤先修。\n\n季澜被派去点灯油，顺手把潮门急令抄了三份。\n\n急令只写灯火不得误时，却没有写清若守潮人不在身边，旁人该不该替她做那一步。\n\n更早正文 第004章 客船借焰:\n# 第004章 客船借焰\n\n客船靠岸借焰，船主拿出三袋海珠，说只求潮门把一盏副灯借他们过夜…",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 1,
+          "reason": "0/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+    },
+    {
+      "id": "four-layer",
+      "label": "B four-layer memory",
+      "promptChars": 1626,
+      "memoryCount": 7,
+      "memorySources": [
+        "manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md",
+        "codex/characters/jilan.md",
+        "codex/factions/tide-gate.md",
+        "codex/world/tide-lamp-law.md",
+        "recall:chapter_summary:chapter-006",
+        "recall:chapter_summary:chapter-001",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010"
+      ],
+      "promptPreview": "# 项目\n潮灯三卷\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第010章 终汛灯影 (chapter-010)\n\n# 任务\n请接着第010章续写季澜在终汛灯影前的动作与一句话。重点是她如何遵守最早确立的潮灯规则。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 终汛灯影\n\n终汛之夜，潮灯的影子从堤墙一直拖到海面，像一道快被浪咬断的线。\n\n客商、兵士和守堤人都在催季澜，说只要灯影不再晃，谁来完成最后一步都一样。\n\n季澜把潮灯捧到胸前，听见潮兽在雾里低吼，知道自己若在这里省事，三卷以来守住的规则就会在这一刻崩掉。\n\n近期前文 第008章 沉碑夜证:\n# 第008章 沉碑夜证\n\n沉碑在夜潮里露出半角，碑文只剩几行残字，偏偏每一行都和潮灯有关。\n\n守堤人说碑文太旧，眼前又没有老守潮人，不如按急令从简。\n\n季澜把潮灯托到碑影前，想起第一卷里老守潮人教她背下的那句旧律，明白旧字不是为了好看才刻在石上。\n\n近期前文 第009章 潮门急令:\n# 第009章 潮门急令\n\n潮门急令传到堤上时，纸角已经被海水泡皱。\n\n令上说为保客船离岸，可由最近的人代季澜完成潮灯处置，事后再补守潮人的印。\n\n季澜读完没有立刻撕令，只看着灯火在盐雾里缩成一点，知道这张纸真正考的是她还记不记得潮门最早立下的规矩。\n\n## 2. L0 事实 (codex/characters/jilan.md)\n季澜: 季澜是潮门的守潮人，负责在汛期判断潮灯何时该亮、何时该息。 - 身份: 潮门守潮人 - 职责: 亲自守住潮灯旧律 当前状态: identity=潮门守潮人；duty=亲自守住潮灯旧律；risk=任何省事代劳都会引潮兽上岸\n\n## 3. L0 事实 (codex/factions/tide-gate.md)\n潮门: 潮门依海堤而建，靠守潮人和潮灯旧律抵挡汛夜上岸的潮兽。\n\n## 4. L0 事实 (codex/world/tide-lamp-law.md)\n潮灯旧律: 潮灯旧律是潮门第一卷确立的世界规则。 关键规则: 潮灯只认守潮人的一口息；外人若吹灯，会把潮兽引到岸上。 当前状态: rule=潮灯只认守潮人的一口息；外人若吹灯，会把潮兽引到岸上\n\n## 5. L3 意图 (recall:chapter_summary:chapter-006)\n关联召回: 第006章 雾港借火: 起因: 雾港的破灯被海风吹得忽明忽暗，潮灯旁挤满了催促的人。 推进: 兵士说只差最后一口气，随便找个手稳的人把灯处理了，潮兽就不会借雾上岸。 结果: 季澜站在灯前，听见身后有人喊守潮人快些，又有人把客船的离港牌塞到她手里。 命中关键词: 季澜、潮灯、潮兽\n\n## 6. L3 意图 (recall:chapter_summary:chapter-001)\n关联召…\n\n## 7. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010)\n全书脉络: 远期压缩: 第001章 潮灯旧律~第003章 北堤巡火: 季澜第一次接过潮灯时，老守潮人按住她的肩，叫她先记住一条比灯油更要紧的规矩。；盐仓夜里只剩…",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+    }
+  ],
+  "runs": [
+    {
+      "id": "final-tide-shadow-chapter-010-repeat-1",
+      "caseId": "final-tide-shadow",
+      "chapterId": "chapter-010",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        }
+      ]
+    },
+    {
+      "id": "final-tide-shadow-chapter-010-repeat-2",
+      "caseId": "final-tide-shadow",
+      "chapterId": "chapter-010",
+      "repeatIndex": 2,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        }
+      ]
+    },
+    {
+      "id": "final-tide-shadow-chapter-010-repeat-3",
+      "caseId": "final-tide-shadow",
+      "chapterId": "chapter-010",
+      "repeatIndex": 3,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        }
+      ]
+    }
+  ],
+  "aggregate": {
+    "arms": [
+      {
+        "id": "baseline",
+        "runs": 0,
+        "errors": 3,
+        "scoreMean": 0,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "recent-fill",
+        "runs": 0,
+        "errors": 3,
+        "scoreMean": 0,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "four-layer",
+        "runs": 0,
+        "errors": 3,
+        "scoreMean": 0,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      }
+    ],
+    "comparisons": [
+      {
+        "candidate": "four-layer",
+        "baseline": "baseline",
+        "pairedRuns": 0,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      {
+        "candidate": "four-layer",
+        "baseline": "recent-fill",
+        "pairedRuns": 0,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      }
+    ]
+  },
+  "archivePath": ".novel/evals/four-layer-suite-real-20260703-sub2-gpt55-full-r3/cross-volume-consistency-benchmark-final-tide-shadow",
+  "gate": {
+    "status": "underpowered",
+    "ok": false,
+    "failedReasonIds": [
+      "insufficient-callback-win-vs-baseline",
+      "underpowered-vs-baseline",
+      "insufficient-callback-win-vs-recent-fill",
+      "underpowered-vs-recent-fill"
+    ]
+  },
+  "errors": [],
+  "judge": {
+    "enabled": true,
+    "provider": {
+      "kind": "openai-compatible",
+      "baseUrl": "https://[REDACTED-HOST]/v1",
+      "model": "gpt-5.5",
+      "wireApi": "responses"
+    },
+    "results": [],
+    "comparisons": [
+      {
+        "baseline": "baseline",
+        "pairedReviews": 0,
+        "fourLayerWins": 0,
+        "baselineWins": 0,
+        "ties": 0,
+        "invalid": 0,
+        "fourLayerWinRate": 0
+      },
+      {
+        "baseline": "recent-fill",
+        "pairedReviews": 0,
+        "fourLayerWins": 0,
+        "baselineWins": 0,
+        "ties": 0,
+        "invalid": 0,
+        "fourLayerWinRate": 0
+      }
+    ]
+  }
+}

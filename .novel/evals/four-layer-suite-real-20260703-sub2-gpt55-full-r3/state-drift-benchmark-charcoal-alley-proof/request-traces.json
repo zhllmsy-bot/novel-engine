@@ -1,0 +1,81 @@
+{
+  "project": "霜桥逆火",
+  "caseId": "charcoal-alley-proof",
+  "chapterId": "chapter-008",
+  "fingerprint": {
+    "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e",
+    "datasetVersion": "22462a49af6839c6",
+    "datasetHash": "89c4e33b6ec0ad36",
+    "configHash": "da3d471281c587d9"
+  },
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/v1",
+    "model": "gpt-5.5",
+    "wireApi": "responses",
+    "reasoningEffort": "xhigh"
+  },
+  "runs": [
+    {
+      "runId": "charcoal-alley-proof-chapter-008-repeat-1",
+      "caseId": "charcoal-alley-proof",
+      "chapterId": "chapter-008",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        }
+      ]
+    },
+    {
+      "runId": "charcoal-alley-proof-chapter-008-repeat-2",
+      "caseId": "charcoal-alley-proof",
+      "chapterId": "chapter-008",
+      "repeatIndex": 2,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        }
+      ]
+    },
+    {
+      "runId": "charcoal-alley-proof-chapter-008-repeat-3",
+      "caseId": "charcoal-alley-proof",
+      "chapterId": "chapter-008",
+      "repeatIndex": 3,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 429 "
+        }
+      ]
+    }
+  ],
+  "judge": []
+}

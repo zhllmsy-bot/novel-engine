@@ -1,0 +1,81 @@
+{
+  "project": "霜桥逆火",
+  "caseId": "frostbridge-stand",
+  "chapterId": "chapter-006",
+  "fingerprint": {
+    "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e",
+    "datasetVersion": "22462a49af6839c6",
+    "datasetHash": "89c4e33b6ec0ad36",
+    "configHash": "6926cbf9f0110b46"
+  },
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/v1",
+    "model": "gpt-5.5",
+    "wireApi": "responses",
+    "reasoningEffort": "xhigh"
+  },
+  "runs": [
+    {
+      "runId": "frostbridge-stand-chapter-006-repeat-1",
+      "caseId": "frostbridge-stand",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        }
+      ]
+    },
+    {
+      "runId": "frostbridge-stand-chapter-006-repeat-2",
+      "caseId": "frostbridge-stand",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        }
+      ]
+    },
+    {
+      "runId": "frostbridge-stand-chapter-006-repeat-3",
+      "caseId": "frostbridge-stand",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        }
+      ]
+    }
+  ],
+  "judge": []
+}

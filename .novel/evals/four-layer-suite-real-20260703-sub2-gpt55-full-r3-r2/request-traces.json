@@ -1,0 +1,1625 @@
+{
+  "projectCount": 20,
+  "reports": [
+    {
+      "project": "纸鸢旧约",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "983cff000652056c",
+        "datasetHash": "f80d159d425ceda8",
+        "configHash": "b056f3d037220520"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "rivergate-answer-chapter-006-repeat-1",
+          "caseId": "rivergate-answer",
+          "chapterId": "chapter-006",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "rivergate-answer-chapter-006-repeat-2",
+          "caseId": "rivergate-answer",
+          "chapterId": "chapter-006",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "rivergate-answer-chapter-006-repeat-3",
+          "caseId": "rivergate-answer",
+          "chapterId": "chapter-006",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "south-canal-vow",
+      "chapterId": "chapter-007",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "983cff000652056c",
+        "datasetHash": "f80d159d425ceda8",
+        "configHash": "7eb4df8b96c4fa9c"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "south-canal-vow-chapter-007-repeat-1",
+          "caseId": "south-canal-vow",
+          "chapterId": "chapter-007",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "south-canal-vow-chapter-007-repeat-2",
+          "caseId": "south-canal-vow",
+          "chapterId": "chapter-007",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "south-canal-vow-chapter-007-repeat-3",
+          "caseId": "south-canal-vow",
+          "chapterId": "chapter-007",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "ledger-token",
+      "chapterId": "chapter-008",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "983cff000652056c",
+        "datasetHash": "f80d159d425ceda8",
+        "configHash": "e2d6a20074509cc5"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "ledger-token-chapter-008-repeat-1",
+          "caseId": "ledger-token",
+          "chapterId": "chapter-008",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "ledger-token-chapter-008-repeat-2",
+          "caseId": "ledger-token",
+          "chapterId": "chapter-008",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "ledger-token-chapter-008-repeat-3",
+          "caseId": "ledger-token",
+          "chapterId": "chapter-008",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "flood-marker",
+      "chapterId": "chapter-009",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "983cff000652056c",
+        "datasetHash": "f80d159d425ceda8",
+        "configHash": "c79da0850245cdf6"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "flood-marker-chapter-009-repeat-1",
+          "caseId": "flood-marker",
+          "chapterId": "chapter-009",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "flood-marker-chapter-009-repeat-2",
+          "caseId": "flood-marker",
+          "chapterId": "chapter-009",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "flood-marker-chapter-009-repeat-3",
+          "caseId": "flood-marker",
+          "chapterId": "chapter-009",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "wind-return",
+      "chapterId": "chapter-010",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "983cff000652056c",
+        "datasetHash": "f80d159d425ceda8",
+        "configHash": "c497b5be0c443810"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "wind-return-chapter-010-repeat-1",
+          "caseId": "wind-return",
+          "chapterId": "chapter-010",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "wind-return-chapter-010-repeat-2",
+          "caseId": "wind-return",
+          "chapterId": "chapter-010",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "wind-return-chapter-010-repeat-3",
+          "caseId": "wind-return",
+          "chapterId": "chapter-010",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "frostbridge-stand",
+      "chapterId": "chapter-006",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "22462a49af6839c6",
+        "datasetHash": "89c4e33b6ec0ad36",
+        "configHash": "6926cbf9f0110b46"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "frostbridge-stand-chapter-006-repeat-1",
+          "caseId": "frostbridge-stand",
+          "chapterId": "chapter-006",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "frostbridge-stand-chapter-006-repeat-2",
+          "caseId": "frostbridge-stand",
+          "chapterId": "chapter-006",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "frostbridge-stand-chapter-006-repeat-3",
+          "caseId": "frostbridge-stand",
+          "chapterId": "chapter-006",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "22462a49af6839c6",
+        "datasetHash": "89c4e33b6ec0ad36",
+        "configHash": "c5e839254ba40baf"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "snow-inn-name-chapter-007-repeat-1",
+          "caseId": "snow-inn-name",
+          "chapterId": "chapter-007",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "snow-inn-name-chapter-007-repeat-2",
+          "caseId": "snow-inn-name",
+          "chapterId": "chapter-007",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "snow-inn-name-chapter-007-repeat-3",
+          "caseId": "snow-inn-name",
+          "chapterId": "chapter-007",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "charcoal-alley-proof",
+      "chapterId": "chapter-008",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "22462a49af6839c6",
+        "datasetHash": "89c4e33b6ec0ad36",
+        "configHash": "da3d471281c587d9"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "charcoal-alley-proof-chapter-008-repeat-1",
+          "caseId": "charcoal-alley-proof",
+          "chapterId": "chapter-008",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "charcoal-alley-proof-chapter-008-repeat-2",
+          "caseId": "charcoal-alley-proof",
+          "chapterId": "chapter-008",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "charcoal-alley-proof-chapter-008-repeat-3",
+          "caseId": "charcoal-alley-proof",
+          "chapterId": "chapter-008",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "north-gate-warrant",
+      "chapterId": "chapter-009",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "22462a49af6839c6",
+        "datasetHash": "89c4e33b6ec0ad36",
+        "configHash": "b49acbc462748dca"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "north-gate-warrant-chapter-009-repeat-1",
+          "caseId": "north-gate-warrant",
+          "chapterId": "chapter-009",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "north-gate-warrant-chapter-009-repeat-2",
+          "caseId": "north-gate-warrant",
+          "chapterId": "chapter-009",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "north-gate-warrant-chapter-009-repeat-3",
+          "caseId": "north-gate-warrant",
+          "chapterId": "chapter-009",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "old-bridge-fire",
+      "chapterId": "chapter-010",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "22462a49af6839c6",
+        "datasetHash": "89c4e33b6ec0ad36",
+        "configHash": "fe4e9b2e1c74a4d4"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "old-bridge-fire-chapter-010-repeat-1",
+          "caseId": "old-bridge-fire",
+          "chapterId": "chapter-010",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "old-bridge-fire-chapter-010-repeat-2",
+          "caseId": "old-bridge-fire",
+          "chapterId": "chapter-010",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "old-bridge-fire-chapter-010-repeat-3",
+          "caseId": "old-bridge-fire",
+          "chapterId": "chapter-010",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "潮灯三卷",
+      "caseId": "fog-harbor-lamp",
+      "chapterId": "chapter-006",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "c65b628de9a8762c",
+        "datasetHash": "693bc709b3c363bd",
+        "configHash": "5deccece6c344923"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "fog-harbor-lamp-chapter-006-repeat-1",
+          "caseId": "fog-harbor-lamp",
+          "chapterId": "chapter-006",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "fog-harbor-lamp-chapter-006-repeat-2",
+          "caseId": "fog-harbor-lamp",
+          "chapterId": "chapter-006",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "fog-harbor-lamp-chapter-006-repeat-3",
+          "caseId": "fog-harbor-lamp",
+          "chapterId": "chapter-006",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "潮灯三卷",
+      "caseId": "stone-dike-choice",
+      "chapterId": "chapter-007",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "c65b628de9a8762c",
+        "datasetHash": "693bc709b3c363bd",
+        "configHash": "6daf6fe73f3d6b9e"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "stone-dike-choice-chapter-007-repeat-1",
+          "caseId": "stone-dike-choice",
+          "chapterId": "chapter-007",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "stone-dike-choice-chapter-007-repeat-2",
+          "caseId": "stone-dike-choice",
+          "chapterId": "chapter-007",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "stone-dike-choice-chapter-007-repeat-3",
+          "caseId": "stone-dike-choice",
+          "chapterId": "chapter-007",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "潮灯三卷",
+      "caseId": "sunken-stele-proof",
+      "chapterId": "chapter-008",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "c65b628de9a8762c",
+        "datasetHash": "693bc709b3c363bd",
+        "configHash": "edb994fb9602248b"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "sunken-stele-proof-chapter-008-repeat-1",
+          "caseId": "sunken-stele-proof",
+          "chapterId": "chapter-008",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "sunken-stele-proof-chapter-008-repeat-2",
+          "caseId": "sunken-stele-proof",
+          "chapterId": "chapter-008",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "sunken-stele-proof-chapter-008-repeat-3",
+          "caseId": "sunken-stele-proof",
+          "chapterId": "chapter-008",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "潮灯三卷",
+      "caseId": "urgent-order",
+      "chapterId": "chapter-009",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "c65b628de9a8762c",
+        "datasetHash": "693bc709b3c363bd",
+        "configHash": "ea99292fb8ee937d"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "urgent-order-chapter-009-repeat-1",
+          "caseId": "urgent-order",
+          "chapterId": "chapter-009",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "urgent-order-chapter-009-repeat-2",
+          "caseId": "urgent-order",
+          "chapterId": "chapter-009",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "urgent-order-chapter-009-repeat-3",
+          "caseId": "urgent-order",
+          "chapterId": "chapter-009",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "潮灯三卷",
+      "caseId": "final-tide-shadow",
+      "chapterId": "chapter-010",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "c65b628de9a8762c",
+        "datasetHash": "693bc709b3c363bd",
+        "configHash": "f2ca469900247c1c"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "final-tide-shadow-chapter-010-repeat-1",
+          "caseId": "final-tide-shadow",
+          "chapterId": "chapter-010",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "final-tide-shadow-chapter-010-repeat-2",
+          "caseId": "final-tide-shadow",
+          "chapterId": "chapter-010",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "final-tide-shadow-chapter-010-repeat-3",
+          "caseId": "final-tide-shadow",
+          "chapterId": "chapter-010",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "iron-wall-needle",
+      "chapterId": "chapter-008",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "eef26be7acf90a7b",
+        "datasetHash": "fcd41216287c8e47",
+        "configHash": "9130920dbe362387"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "iron-wall-needle-chapter-008-repeat-1",
+          "caseId": "iron-wall-needle",
+          "chapterId": "chapter-008",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "iron-wall-needle-chapter-008-repeat-2",
+          "caseId": "iron-wall-needle",
+          "chapterId": "chapter-008",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "iron-wall-needle-chapter-008-repeat-3",
+          "caseId": "iron-wall-needle",
+          "chapterId": "chapter-008",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "blind-corridor-echo",
+      "chapterId": "chapter-009",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "eef26be7acf90a7b",
+        "datasetHash": "fcd41216287c8e47",
+        "configHash": "b237b82f02c28ab5"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "blind-corridor-echo-chapter-009-repeat-1",
+          "caseId": "blind-corridor-echo",
+          "chapterId": "chapter-009",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "blind-corridor-echo-chapter-009-repeat-2",
+          "caseId": "blind-corridor-echo",
+          "chapterId": "chapter-009",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "blind-corridor-echo-chapter-009-repeat-3",
+          "caseId": "blind-corridor-echo",
+          "chapterId": "chapter-009",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "eef26be7acf90a7b",
+        "datasetHash": "fcd41216287c8e47",
+        "configHash": "9758fcc614cee7e7"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "stone-room-turn-chapter-010-repeat-1",
+          "caseId": "stone-room-turn",
+          "chapterId": "chapter-010",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "stone-room-turn-chapter-010-repeat-2",
+          "caseId": "stone-room-turn",
+          "chapterId": "chapter-010",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "stone-room-turn-chapter-010-repeat-3",
+          "caseId": "stone-room-turn",
+          "chapterId": "chapter-010",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "black-step-gate",
+      "chapterId": "chapter-011",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "eef26be7acf90a7b",
+        "datasetHash": "fcd41216287c8e47",
+        "configHash": "b16190ca6623ca49"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "black-step-gate-chapter-011-repeat-1",
+          "caseId": "black-step-gate",
+          "chapterId": "chapter-011",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "black-step-gate-chapter-011-repeat-2",
+          "caseId": "black-step-gate",
+          "chapterId": "chapter-011",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "black-step-gate-chapter-011-repeat-3",
+          "caseId": "black-step-gate",
+          "chapterId": "chapter-011",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "tail-light-exit",
+      "chapterId": "chapter-012",
+      "fingerprint": {
+        "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e-dirty",
+        "datasetVersion": "eef26be7acf90a7b",
+        "datasetHash": "fcd41216287c8e47",
+        "configHash": "c10e637130aad7ea"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "tail-light-exit-chapter-012-repeat-1",
+          "caseId": "tail-light-exit",
+          "chapterId": "chapter-012",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "tail-light-exit-chapter-012-repeat-2",
+          "caseId": "tail-light-exit",
+          "chapterId": "chapter-012",
+          "repeatIndex": 2,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        },
+        {
+          "runId": "tail-light-exit-chapter-012-repeat-3",
+          "caseId": "tail-light-exit",
+          "chapterId": "chapter-012",
+          "repeatIndex": 3,
+          "arms": [
+            {
+              "id": "baseline",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "recent-fill",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            },
+            {
+              "id": "four-layer",
+              "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 401 {\"code\":\"INVALID_API_KEY\",\"message\":\"Invalid API key\"}"
+            }
+          ]
+        }
+      ],
+      "judge": []
+    }
+  ]
+}

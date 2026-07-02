@@ -1,0 +1,81 @@
+{
+  "project": "纸鸢旧约",
+  "caseId": "ledger-token",
+  "chapterId": "chapter-008",
+  "fingerprint": {
+    "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e",
+    "datasetVersion": "983cff000652056c",
+    "datasetHash": "f80d159d425ceda8",
+    "configHash": "e2d6a20074509cc5"
+  },
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/v1",
+    "model": "gpt-5.5",
+    "wireApi": "responses",
+    "reasoningEffort": "xhigh"
+  },
+  "runs": [
+    {
+      "runId": "ledger-token-chapter-008-repeat-1",
+      "caseId": "ledger-token",
+      "chapterId": "chapter-008",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        }
+      ]
+    },
+    {
+      "runId": "ledger-token-chapter-008-repeat-2",
+      "caseId": "ledger-token",
+      "chapterId": "chapter-008",
+      "repeatIndex": 2,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        }
+      ]
+    },
+    {
+      "runId": "ledger-token-chapter-008-repeat-3",
+      "caseId": "ledger-token",
+      "chapterId": "chapter-008",
+      "repeatIndex": 3,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        }
+      ]
+    }
+  ],
+  "judge": []
+}

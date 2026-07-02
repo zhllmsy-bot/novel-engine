@@ -1,0 +1,81 @@
+{
+  "project": "纸鸢旧约",
+  "caseId": "south-canal-vow",
+  "chapterId": "chapter-007",
+  "fingerprint": {
+    "gitCommit": "76a22a0127d338661f4780e6c7af0f11967f598e",
+    "datasetVersion": "983cff000652056c",
+    "datasetHash": "f80d159d425ceda8",
+    "configHash": "7eb4df8b96c4fa9c"
+  },
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/v1",
+    "model": "gpt-5.5",
+    "wireApi": "responses",
+    "reasoningEffort": "xhigh"
+  },
+  "runs": [
+    {
+      "runId": "south-canal-vow-chapter-007-repeat-1",
+      "caseId": "south-canal-vow",
+      "chapterId": "chapter-007",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        }
+      ]
+    },
+    {
+      "runId": "south-canal-vow-chapter-007-repeat-2",
+      "caseId": "south-canal-vow",
+      "chapterId": "chapter-007",
+      "repeatIndex": 2,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        }
+      ]
+    },
+    {
+      "runId": "south-canal-vow-chapter-007-repeat-3",
+      "caseId": "south-canal-vow",
+      "chapterId": "chapter-007",
+      "repeatIndex": 3,
+      "arms": [
+        {
+          "id": "baseline",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "recent-fill",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        },
+        {
+          "id": "four-layer",
+          "error": "ProviderHttpError: OpenAI-compatible responses generation failed: 404 {\"error\":{\"message\":\"Invalid URL (POST /v1/v1/responses)\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":\"\"}}"
+        }
+      ]
+    }
+  ],
+  "judge": []
+}

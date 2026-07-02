@@ -1,0 +1,30 @@
+{
+  "enabled": true,
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/v1",
+    "model": "gpt-5.5",
+    "wireApi": "responses"
+  },
+  "results": [],
+  "comparisons": [
+    {
+      "baseline": "baseline",
+      "pairedReviews": 0,
+      "fourLayerWins": 0,
+      "baselineWins": 0,
+      "ties": 0,
+      "invalid": 0,
+      "fourLayerWinRate": 0
+    },
+    {
+      "baseline": "recent-fill",
+      "pairedReviews": 0,
+      "fourLayerWins": 0,
+      "baselineWins": 0,
+      "ties": 0,
+      "invalid": 0,
+      "fourLayerWinRate": 0
+    }
+  ]
+}
