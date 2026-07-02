@@ -507,6 +507,7 @@ export async function evaluateGeneration(input: {
   temperature?: number
   reasoningEffort?: string
   maxOutputChars?: number
+  fingerprintIgnorePaths?: string[]
 } = {}): Promise<GenerationEvalReport> {
   const rootPath = resolve(input.rootPath || 'examples/long-memory-benchmark')
   const dryRun = input.dryRun ?? false
@@ -729,6 +730,9 @@ export async function evaluateGeneration(input: {
       reasoningEffort: dryRun ? undefined : providerConfig.reasoningEffort,
     },
     criteria: evalConfig.criteria,
+    ignoreDirtyPaths:
+      input.fingerprintIgnorePaths ||
+      (input.archiveDir ? [input.archiveDir] : []),
   })
   const ok =
     errors.length === 0 &&
@@ -854,6 +858,7 @@ export async function evaluateGenerationSuite(input: {
   temperature?: number
   reasoningEffort?: string
   maxOutputChars?: number
+  fingerprintIgnorePaths?: string[]
 }): Promise<GenerationEvalSuiteReport> {
   const reports: GenerationEvalReport[] = []
 
@@ -872,6 +877,7 @@ export async function evaluateGenerationSuite(input: {
           rootPath,
           caseId: generationCase.caseId,
           archiveDir: projectArchiveDir,
+          fingerprintIgnorePaths: input.archiveDir ? [input.archiveDir] : undefined,
         }),
       )
     }
@@ -2687,6 +2693,7 @@ async function buildGenerationFingerprint(input: {
     reasoningEffort?: string
   }
   criteria: GenerationEvalCriterion[]
+  ignoreDirtyPaths?: string[]
 }): Promise<GenerationEvalFingerprint> {
   const datasetVersion = await readOptionalFile(
     join(input.rootPath, 'meta', 'project.json'),
@@ -2706,7 +2713,7 @@ async function buildGenerationFingerprint(input: {
   )
 
   return {
-    gitCommit: await gitCommitHash(),
+    gitCommit: await gitCommitHash(input.ignoreDirtyPaths),
     datasetVersion: hashString(datasetVersion || input.rootPath),
     datasetHash,
     configHash,
@@ -2785,20 +2792,53 @@ async function readOptionalFile(path: string) {
   }
 }
 
-async function gitCommitHash() {
+async function gitCommitHash(ignoreDirtyPaths: string[] = []) {
   try {
-    const [{ stdout }, { stdout: statusStdout }] = await Promise.all([
+    const [{ stdout }, { stdout: rootStdout }, { stdout: statusStdout }] =
+      await Promise.all([
       execFile('git', ['rev-parse', 'HEAD'], {
+        cwd: process.cwd(),
+      }),
+      execFile('git', ['rev-parse', '--show-toplevel'], {
         cwd: process.cwd(),
       }),
       execFile('git', ['status', '--porcelain'], {
         cwd: process.cwd(),
       }),
     ])
-    return `${stdout.trim()}${statusStdout.trim() ? '-dirty' : ''}`
+    const dirtyLines = gitStatusDirtyLines({
+      statusStdout,
+      repoRoot: rootStdout.trim() || process.cwd(),
+      ignoreDirtyPaths,
+    })
+    return `${stdout.trim()}${dirtyLines.length > 0 ? '-dirty' : ''}`
   } catch {
     return 'unknown'
   }
+}
+
+function gitStatusDirtyLines(input: {
+  statusStdout: string
+  repoRoot: string
+  ignoreDirtyPaths: string[]
+}) {
+  const ignoredPrefixes = input.ignoreDirtyPaths
+    .map((dirtyPath) => normalizePath(relative(input.repoRoot, resolve(dirtyPath))))
+    .map((dirtyPath) => dirtyPath.replace(/\/?$/, '/'))
+    .filter((dirtyPath) => dirtyPath && !dirtyPath.startsWith('..'))
+
+  return input.statusStdout
+    .split('\n')
+    .map((line) => line.trimEnd())
+    .filter(Boolean)
+    .filter((line) => {
+      const statusPath = normalizePath((line.slice(3).split(' -> ').pop() || '').trim())
+      return !ignoredPrefixes.some(
+        (ignoredPrefix) =>
+          statusPath === ignoredPrefix.slice(0, -1) ||
+          statusPath.startsWith(ignoredPrefix),
+      )
+    })
 }
 
 function hashString(value: string) {
