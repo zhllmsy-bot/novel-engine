@@ -1,0 +1,535 @@
+---
+id: "ledger-facts"
+name: "事实账本"
+type: "note"
+keywords: ["事实账本", "事实", "青石", "白塔", "商会", "林砚", "赵临川"]
+---
+
+# 事实账本
+
+- chapter: 1；fact: 林砚是青江市第七中学高三借读生，有打架处分，被同学和老师低估。；status: active
+- chapter: 1；fact: 林砚父亲林建成昏迷住院，母亲在夜市卖馄饨，家庭有高额医疗债务。；status: active
+- chapter: 1；fact: 林砚被人栽赃偷月考答案，周承骁是幕后嫌疑人但尚无公开证据。；status: active
+- chapter: 1；fact: 林砚佩戴父亲留下的青石吊坠。；status: active
+- chapter: 4；fact: 方启明确认林建成当年不是普通工地意外，并警告林砚不要暴露风险视野。；status: active
+- chapter: 5；fact: 沈知夏备份过教室走廊监控缓存，发现正式版本被剪掉三分钟。；status: active
+- chapter: 5；fact: 周柏年曾出现在南湾打印店相关画面中，蓝边银表成为识别特征。；status: active
+- chapter: 7；fact: 广播室被放入剪辑陷阱录音，意图让林砚亲手播放伪造认罪音频。；status: active
+- chapter: 8；fact: 林母夜市摊被砸，现场发现春江集团打火机和二院停车票。；status: active
+- chapter: 9；fact: 林父病房旧照片被春江物业人员取走，照片背面有白塔 1989 字样。；status: active
+- chapter: 10；fact: 校会广播公开播放证据，林砚停课观察暂停执行，周家阶段性败退。；status: active
+- chapter: 11；fact: 二院通知林家欠费超过警戒线，当天需补两万元，否则部分药物将停用。；status: active
+- chapter: 11；fact: 顾明远给林砚介绍闻溪斋老板许闻溪，江晚晴也提前提醒许闻溪关注林砚。；status: active
+- chapter: 12；fact: 许闻溪用一枚假玉扣试探林砚，玉扣孔中藏有“林建成，白塔，样本七”纸条。；status: active
+- chapter: 12；fact: 许闻溪替林砚向二院缴纳两万元，暂时解决林父药物停用危机。；status: active
+- chapter: 13；fact: 老焦用假风险误导林砚，导致许闻溪小腿受伤，证明风险视野可被训练者设计误导。；status: active
+- chapter: 14；fact: 方启明确认老焦曾给白塔跑腿，并透露林建成不是样本七。；status: active
+- chapter: 15；fact: 林砚在旧货仓不完全依赖能力，协助追回第二枚玉扣和微型胶片，获得三万元。；status: active
+- chapter: 15；fact: 许闻溪拿出林建成向青石会借款三十万的欠条复印件，日期在林建成出事前三天。；status: active
+- chapter: 16；fact: 青石会账房秦照正式登场，要求林家三天内还清债务或交出青石坠。；status: active
+- chapter: 16；fact: 青石坠不只是护身符，而被秦照称为钥匙。；status: active
+- chapter: 17；fact: 青石会通过匿名帖把林砚包装成古玩街偷玉者，试图让学校舆论再次反噬。；status: active
+- chapter: 17；fact: 沈知夏第一次为林砚利用规则缝隙撒谎，替他遮住旧货仓行动。；status: active
+- chapter: 18；fact: 白塔底片显示旧项目名为城市风险预判项目，林建成代号青鸦。；status: active
+- chapter: 18；fact: 青叶牌是人账入口，青石坠是钥匙，林建成曾留言“若我失联，找七号”。；status: active
+- chapter: 19；fact: 秦照在观澜堂内拍中拿假青叶牌做局，试图逼林砚当众触碰承认关联。；status: active
+- chapter: 19；fact: 阿栗被秦照收买，谎称闻溪斋失窃，意图把真玉扣和底片失窃嫁祸给林砚。；status: active
+- chapter: 20；fact: 内拍局被林砚、许闻溪、沈知夏反杀，秦照被迫暂缓三天追债期限。；status: active
+- chapter: 20；fact: 韩听雪在二楼录像观察林砚，留下旧体育馆邀请。；status: active
+- chapter: 21；fact: 林砚在观澜堂后眼角出血，被沈知夏发现并要求立即去二院急诊。；status: active
+- chapter: 22；fact: 江晚晴确认林砚右眼结膜下出血、眼底反应异常，并透露林建成当年也有类似眼底异常。；status: active
+- chapter: 23；fact: 韩听雪通过假快递员和护目镜试探林砚，林砚为保护沈知夏强行开眼后短暂失明。；status: active
+- chapter: 24；fact: 沈知夏牵着短暂失明的林砚过马路去二院，林砚十二分钟后恢复视力。；status: active
+- chapter: 24；fact: 江晚晴找回林建成旧病历片段，显示林建成曾三次失明，第三次后出事。；status: active
+- chapter: 25；fact: 韩听雪在旧体育馆训练林砚，确认白塔称这类能力者为风险眼。；status: active
+- chapter: 25；fact: 韩听雪提供护目镜和白塔训练记录 U 盘，并透露样本回收组已盯上林砚。；status: active
+- chapter: 25；fact: 韩听雪告诉沈知夏，她父亲旧案中的假材料不是春江集团制作，春江只是递刀者。；status: active
+- chapter: 26；fact: 林砚读取韩听雪 U 盘残片，发现七中旧校区是白塔保留的适配场景。；status: active
+- chapter: 26；fact: 林砚通过周承骁主动向春江集团传话，要求见能决定旧校区和二院地块的人。；status: active
+- chapter: 26；fact: 赵行舟以春江旧校区项目负责人身份约林砚在旧校区电教楼见面，并要求带青石坠。；status: active
+- chapter: 27；fact: 方启明用茶杯、账册和签收单测试林砚，让他看见风险可以通过签字、担保和责任转移给别人。；status: active
+- chapter: 27；fact: 林建成欠条上的担保人空白处与青石坠有暗红线关联，暗示林建成借的可能不是钱而是时间或风险承接。；status: active
+- chapter: 28；fact: 白塔名单显示林建成编号 A-01，代号青鸦，是风险眼初代观测对象，关联物为青石坠。；status: active
+- chapter: 28；fact: 沈知夏父亲沈怀序是春江旧校区与二院地块联合审查人，被白塔名单列为外部承压对象，状态为材料替换后停职。；status: active
+- chapter: 28；fact: 赵临川被列为南湾国际在校观察的风险线屏蔽适配对象。；status: active
+- chapter: 28；fact: 白塔系统为林砚生成编号 QJ-RISK-EYE-026，入库状态未完成，回收预案地点为七中旧校区电教楼。；status: active
+- chapter: 29；fact: 林砚首次突破三分钟边界，看见旧校区十九点零七分会发生阶梯教室踩踏风险。；status: active
+- chapter: 29；fact: 七中竞赛组临时借旧校区阶梯教室开保送讲座，五十七名学生卷入停电夜危机。；status: active
+- chapter: 30；fact: 旧校区停电夜中，林砚、沈知夏、许闻溪、郑小满等人协作疏散五十七名学生，避免踩踏。；status: active
+- chapter: 30；fact: 赵临川在旧校区档案室现身，确认参与对白塔编号 QJ-RISK-EYE-026 的入库前测。；status: active
+- chapter: 30；fact: 韩听雪带走写有林砚编号的档案，阻止林砚直接签收白塔准备的风险。；status: active
+- chapter: 31；fact: 旧校区获救学生公开感谢林砚等人，林砚在七中声望从坏学生开始转向救人者。；status: active
+- chapter: 31；fact: 春江安全顾问严某试图让林砚签署情况说明，将擅闯和现场保护困难责任转移给他。；status: active
+- chapter: 32；fact: 春江在学校说明会上播放剪辑视频，试图把旧校区事故定义为学生违规开启封闭通道。；status: active
+- chapter: 32；fact: 沈知夏提供撤离记录、视频证据和广播时间线，配合林砚当众挡下责任报告签名陷阱。；status: active
+- chapter: 32；fact: 赵行舟转而威胁林母夜市摊位许可证，成人规则开始压向林家家庭线。；status: active
+- chapter: 33；fact: 沈怀序保存的第一份旧校区报告显示西侧消防通道应保留，和旧校区停电夜被新锁封住形成矛盾。；status: active
+- chapter: 33；fact: 沈怀序透露白塔 BT-RISK 外部数据附件由赵行舟提交，曾被用于构陷其收钱改报告。；status: active
+- chapter: 33；fact: 沈怀序回忆十年前赵行舟身边有一个十七八岁、安静且疑似屏蔽风险的人。；status: active
+- chapter: 33；fact: 二院旧备份库可能保存沈怀序旧案原始附件，同时白塔刚调走林建成第三次失明前的片子。；status: active
+- chapter: 34；fact: 老梁在扫描仪转接头暴露后失踪，许闻溪追查到直播电商园小仓库。；status: active
+- chapter: 34；fact: 老梁仓库门把手被布置金属片，意图取得许闻溪血迹或指纹来制造签收痕迹。；status: active
+- chapter: 34；fact: 仓库中发现多个带灰色芯片的转接头和北辰安保旧设备仓快递底单。；status: active
+- chapter: 34；fact: 韩听雪提醒读取白塔名单的人会被芯片标记，林砚身边人也可能被纳入白塔视野。；status: active
+- chapter: 35；fact: 韩听雪拆开林砚编号档案第一页，确认林砚在三年前林建成出事当天已被建档。；status: active
+- chapter: 35；fact: 林砚编号档案第一页写有“候选继承：R-07 兼容观察”，暗示样本七或七号与林砚继承线有关。；status: active
+- chapter: 35；fact: 白塔芯片会记录名单读取环境、设备指纹和接触者生物痕迹，并通过下一次联网设备回传。；status: active
+- chapter: 35；fact: 白塔早期样本回传链使用二院医疗影像备份口，林建成第三次失明前片子是关键样本。；status: active
+- chapter: 35；fact: 林母来电称二院有人要以转科复查名义带走林建成，样本回收组开始按编号行动。；status: active
+- chapter: 36；fact: 样本回收组派假白大褂以影像复查名义转走林建成，被林母、江晚晴、林砚等人挡下。；status: active
+- chapter: 36；fact: 转运床下发现 BT-SYNC 同步贴，可在经过指定门禁口时把病人腕带和设备编号同步进回传链。；status: active
+- chapter: 36；fact: 江晚晴用急诊会诊名义冻结林建成非必要转运十二小时。；status: active
+- chapter: 36；fact: 赵行舟同时压向林母夜市摊位，试图制造病房和家庭生计双重选择。；status: active
+- chapter: 37；fact: 二院影像科旧机房中，江晚晴通过正式会诊协查单进入影像备份口，避免违规访问陷阱。；status: active
+- chapter: 37；fact: 林建成第三次失明前片子显示已外借到北辰安保旧设备仓，外借经办人被伪造成江晚晴。；status: active
+- chapter: 37；fact: 旧影像缩略图显示林建成握着 R-07 金属牌，随后机房被切电。；status: active
+- chapter: 38；fact: 沈知夏在夜市摊位现场识破无文号停摊承诺，帮助林母和摊主们拒签。；status: active
+- chapter: 38；fact: 导出盘在机房切电时由韩听雪带走并保住，许闻溪查到北辰安保旧设备仓地址。；status: active
+- chapter: 39；fact: 北辰旧设备仓保存训练镜、同步贴、门禁模块、感应腕带和编号墙。；status: active
+- chapter: 39；fact: 林砚在北辰训练场看见旧测试残影，韩听雪承认她曾观察的 B-03 风险眼在测试中死亡。；status: active
+- chapter: 39；fact: 赵临川在北辰旧仓出现，交出疑似真实 BT-ROOT 源芯片，并触发非法闯入报警局。；status: active
+- chapter: 39；fact: 北辰旧仓屏幕显示回传链将在四十五分钟后重启。；status: active
+- chapter: 40；fact: 林砚等人从北辰旧仓排水通道离开，经二院后街施工口赶回二院。；status: active
+- chapter: 40；fact: 江晚晴以急诊抢救设备异常排查名义合法打开二院影像备份口。；status: active
+- chapter: 40；fact: 林砚、江晚晴、韩听雪在录像记录下切断 QJ 回传链，系统显示释放五名标记对象。；status: active
+- chapter: 40；fact: R-07 主链未断开，第三次失明片子完整残帧显示十年前少年与赵临川相貌几乎相同。；status: active
+- chapter: 40；fact: 系统标注 R-07 不是样本，而是保管人；随后林建成苏醒。；status: active
+- chapter: 41；fact: 林建成苏醒后语言和记忆不稳定，只能说出“别看脸”“赵不是”“三分钟”“别追”等碎片。；status: active
+- chapter: 41；fact: 林建成看见林砚后确认认得儿子，并写下“三分钟”“别追”。；status: active
+- chapter: 41；fact: 医务处以切断医疗数据链异常为由调查江晚晴和林砚，并试图递交配合调查告知书。；status: active
+- chapter: 42；fact: 医务处曹主任用异常操作责任确认报告试图切断林建成苏醒与 QJ 回传链被切断之间的关联。；status: active
+- chapter: 42；fact: 沈知夏提交 BT-ROOT 弹窗截图、现场录像和设备排查单，迫使医务处暂缓追责。；status: active
+- chapter: 42；fact: 医院特护观察费用被加入“自愿申请”栏，许闻溪先垫费用，林砚接受但记为债。；status: active
+- chapter: 42；fact: 学校通知林砚和沈知夏因旧校区、二院事件影响过大，暂时停课配合调查。；status: active
+- chapter: 43；fact: 林建成每次清醒大约只能维持三分钟，且提醒林砚“别问全，问会亮”。；status: active
+- chapter: 43；fact: 林建成写下“找七号”，并画出青叶牌背面夹层和“审计”线索，指向沈怀序旧案。；status: active
+- chapter: 43；fact: 林建成提醒林砚“别恨保管”，但未说明完整原因。；status: active
+- chapter: 43；fact: 秦照带青石会账房封住方启明修表铺，要求交出人账。；status: active
+- chapter: 44；fact: 沈知夏用青石街封铺清账规矩指出秦照封条不完整，阻止青石会继续清账。；status: active
+- chapter: 44；fact: 秦照带出的账册下露出与沈怀序第二份报告相同的换页格式，编号为 JQ-07。；status: active
+- chapter: 44；fact: 方启明交出青叶牌背夹玉片，上面刻有 JQ-07 目录编号，指向青江商会档案室。；status: active
+- chapter: 45；fact: 青江商会档案与协调中心被揭示为青江旧账柜，保管多方账、证和把柄。；status: active
+- chapter: 45；fact: 赵临川称自己不是十年前那个人，但记得十年前那个人看过的东西。；status: active
+- chapter: 45；fact: 赵临川解释保管人不是样本，负责存下样本所见并交给下一张合适的脸。；status: active
+- chapter: 45；fact: 赵临川给出青江商会旧校区安全协调会访客卡，称赵行舟、周柏年和沈怀序名字都会出现。；status: active
+- chapter: 45；fact: 赵临川提醒林砚不要带林建成去商会，因为有人想让青鸦当众重新签字。；status: active
+- chapter: 46；fact: 林砚和沈知夏拒签七中“居家反思”停课通知，改签不认可纪律性措辞的拒收说明。；status: active
+- chapter: 46；fact: 顾明远作为七中教师代表参加商会协调会，并明确不做递刀的成年人。；status: active
+- chapter: 46；fact: 周承骁透露周柏年将在商会协调会上清掉旧校区责任，因为被困学生里有他的表妹。；status: active
+- chapter: 46；fact: 商会档案部副主任温棠登场，入场第一项要求确认林砚是否代表青鸦发言。；status: active
+- chapter: 47；fact: 林砚在商会记录中明确只代表自己，不代表青鸦或林建成。；status: active
+- chapter: 47；fact: 商会协调会议题包括旧校区安全责任、二院影像备份口异常、旧校区历史档案、青石街人账材料保管。；status: active
+- chapter: 47；fact: 沈知夏以沈怀序授权记录员身份坐上商会会议桌，避免被排除在正式名单外。；status: active
+- chapter: 47；fact: JQ-07 调阅需要原签署人、项目方和保管方共同确认，赵行舟试图把伪造换页弱化为历史报告争议。；status: active
+- chapter: 48；fact: JQ-07 封存索引显示原件二十七页，现存调解副本三十一页，存在四页差异。；status: active
+- chapter: 48；fact: JQ-07 保管变更记录显示赵行舟曾调阅，R-07 曾以临时保管人身份复核。；status: active
+- chapter: 48；fact: 林砚以发现异常者身份签署异常保管申请，避免沈怀序再次承担申请风险。；status: active
+- chapter: 48；fact: 商会启动 JQ-07 异常保管程序，原件暂停调阅等待三人复核。；status: active
+- chapter: 49；fact: 秦照向商会申请保管青石街人账和青叶牌材料，并附上青鸦旧账承认书。；status: active
+- chapter: 49；fact: 林砚通过仅收副本、不转交病人、不认可内容的送达记录，截住青鸦旧账承认书。；status: active
+- chapter: 49；fact: 周承骁提供录音，证明周柏年计划利用林砚接旧账将其定性为长期卷入社会纠纷并开除借读资格。；status: active
+- chapter: 50；fact: 顾明远在商会会议上公开播放周柏年录音，商会将开除计划纳入风险提示。；status: active
+- chapter: 50；fact: JQ-07 原件进入异常保管并被相关方确认存在，但内容未被打开。；status: active
+- chapter: 50；fact: 商会档案室内存在保管人和完整真青叶牌，青叶牌背后有极细裂缝。；status: active
+- chapter: 50；fact: 赵行舟对真青叶牌在商会档案室露出表现异常，暗示他也未完全掌控商会保管层。；status: active
+- chapter: 50；fact: 赵临川发短信提醒林砚看见了灯，并说下一次灯会看见林砚。；status: active
+- chapter: 51；fact: 青江商会阶段性备忘录确认 JQ-07 原件存在、页数异常、学校处分存在外部影响风险，同时要求林砚承担恶意申请责任风险。；status: active
+- chapter: 51；fact: 商会备忘录第六条要求涉及病人和学生的补充材料原则上不得通过公开电子链接上传，暗示电子链接可成为保管人层入口。；status: active
+- chapter: 51；fact: 林砚开始感到屏幕文字有被灯反向观看的风险，赵临川提醒他少看屏、纸能挡一半。；status: active
+- chapter: 52；fact: 七中处理会中，林砚识破借读资格处理意见在商会备忘录前已被起草，证明学校处分存在预设和外部影响。；status: active
+- chapter: 52；fact: 七中暂缓对林砚和沈知夏的纪律性处理，二人恢复正常听课，但暂不参加大型校外活动。；status: active
+- chapter: 52；fact: 江晚晴的二院病历系统权限被锁，医院线接续商会恶意申请责任开始反压。；status: active
+- chapter: 53；fact: 二院以商会恶意申请责任风险为由，质疑江晚晴调取林建成旧病历和影像备份口的会诊协查单。；status: active
+- chapter: 53；fact: 林建成短暂清醒，写下“名亮”“看灰”“别补缝”，提示名字可触发灯、青叶牌裂缝不能被修补。；status: active
+- chapter: 53；fact: 林建成床头姓名牌和病历号末尾 07 曾短暂发亮，说明名字与编号都可能成为保管人层入口。；status: active
+- chapter: 53；fact: 江晚晴被暂时调离急诊夜班并配合系统复核，但拒绝在病房签收任何涉及林建成的责任文本。；status: active
+- chapter: 54；fact: 韩听雪说明商会档案室的灯不是单纯的人，而是会因名字、编号、签名、影像被触发的值守入口。；status: active
+- chapter: 54；fact: 方启明说明电子屏比纸更容易触发入口，纸质材料也有风险但节奏更慢，能留下规避余地。；status: active
+- chapter: 54；fact: 众人确定针对 JQ-07 的安全补充问题：封存目录完整性、副本页数差异首次出现节点、第三复核席依据。；status: active
+- chapter: 54；fact: 韩听雪交出十年前旧校区训练照片，照片中赵行舟身后的安静少年疑似与复核席资格有关。；status: active
+- chapter: 55；fact: 有人伪造青江商会档案部邮件，诱导林砚通过线上验证同时打开 JQ-07、青叶、林砚和 R-07 等触发词。；status: active
+- chapter: 55；fact: 沈知夏电话确认温棠未发送线上验证要求，补充材料可由授权送达人纸质提交。；status: active
+- chapter: 55；fact: 伪装快递员试图让林砚签收“异常保管恶意申请责任预确认”，文件水印压印指向春江印务。；status: active
+- chapter: 55；fact: 商会收讫纸质补充材料，确认 JQ-07 三人复核次日九时启动，第三复核席将由保管人闭眼代章说明。；status: active
+- chapter: 56；fact: 林砚和沈知夏恢复回班听课后，班群出现伪造商会通告和二维码，被沈知夏纸质打印识破。；status: active
+- chapter: 56；fact: 周承骁的南湾旧邮箱被冒用群发假通告，他提供附件属性，显示来源为春江印务外包三号机。；status: active
+- chapter: 56；fact: 沈知夏将便携打印机交给林砚保管，作为不看屏、不点链接的临时安全工具。；status: active
+- chapter: 57；fact: 商会复核纳入假线上验证邮件、假快递签收文件、班群假通告和春江印务三号机属性作为附卷。；status: active
+- chapter: 57；fact: JQ-07 三人复核确认原件目录二十七页完整，调解副本四页差异存在。；status: active
+- chapter: 57；fact: JQ-07 副本四页差异首次登记于赵行舟调阅后的临时复核节点，并被标注为补充承压说明。；status: active
+- chapter: 57；fact: 闭眼代章对应青江旧校区风险承压复核第七席，依据指向二院 JY-07 纸质封存说明。；status: active
+- chapter: 58；fact: 二院 JY-07 纸质封存袋封条存在异常，昨日十八点二十一分曾被院外协同打印端调用。；status: active
+- chapter: 58；fact: JY-07 调用终端备注为 CJ-YW-PRINT-03，与伪造商会邮件和班群假通告来源一致。；status: active
+- chapter: 58；fact: 二院出具阶段性完整性说明，确认核查完成前不得以林建成病历作为任何责任认定依据。；status: active
+- chapter: 59；fact: 许闻溪和韩听雪在春江印务查到三号机登记，伪造材料由春江安全顾问严思程经办。；status: active
+- chapter: 59；fact: 春江印务碎纸显示第三席代章素材扫描来源为 JY-07 第七袋旧拓片。；status: active
+- chapter: 59；fact: 商会要求春江项目方提交严思程解除授权说明，并在此之前暂缓采信春江项目方补充材料。；status: active
+- chapter: 59；fact: 商会确认林砚恶意申请责任暂不成立，但第三席代章素材来源异常，需开启 JY-07 第七袋核验。；status: active
+- chapter: 60；fact: 二院地下旧病案库 JY-07 第七袋保存旧校区第七席缺口拓片和十年前封存交接单。；status: active
+- chapter: 60；fact: 第七席说明为只保管所见之灰，不承担正文责任。；status: active
+- chapter: 60；fact: JY-07 第七袋保存林建成 A-01 第三次失明记录，注明原始影像不得作为项目责任认定依据。；status: active
+- chapter: 60；fact: 商会确认春江印务所用缺口拓片不足以构成合法闭眼代章，JQ-07 异常保管成立，林砚恶意申请责任解除。；status: active
+- chapter: 60；fact: 商会将安排 JQ-07 页差说明会，林砚以异常发现人身份可参与。；status: active
+- chapter: 60；fact: 赵临川提示第七袋不是第七席、第七席也不是他，并提醒林砚看闭眼何时睁开。；status: active
+- chapter: 61；fact: 林建成三分钟清醒窗口提示四页补充承压说明不是多出来的内容，而是替责任落点。；status: active
+- chapter: 61；fact: 四页补充承压说明分别对应楼、病、学、账，即旧校区楼体、二院病历、学生现场行为和青石街旧账。；status: active
+- chapter: 61；fact: 林建成提醒别代签，并在闭眼睁开时不要问谁，要问少了什么。；status: active
+- chapter: 62；fact: 商会页差说明会以四只纸匣说明楼、病、学、账四页功能，不打开 JQ-07 原件全文。；status: active
+- chapter: 62；fact: 楼页将旧校区楼体维护风险从项目整改责任转写为沈怀序审计提示未充分履行。；status: active
+- chapter: 62；fact: 病页将旧项目风险回传异常转写为林建成个体病情波动和非项目性医疗事件，但与 JY-07 第七袋封存说明冲突。；status: active
+- chapter: 62；fact: 学页为学生现场行为补充承压说明，关联对象待填，试图把旧校区现场风险转写为学生代表组织行为引发。；status: active
+- chapter: 62；fact: 账页试图将青叶牌、人账与旧校区材料保管责任转写为青石街民间旧账争议。；status: active
+- chapter: 62；fact: 七中外部沟通记录显示刘主任在旧校区停电夜后两小时与严思程通话十一分钟。；status: active
+- chapter: 63；fact: 严思程向七中教务处发送过《学生现场组织行为见证说明》，见证人为七中教务处，被见证学生栏空白。；status: active
+- chapter: 63；fact: 七中见证说明格式与 JQ-07 学页格式高度一致，显示严思程可能持有调解副本模板。；status: active
+- chapter: 63；fact: 七中教务处印泥盒遗失，最后接触登记人为赵立。；status: active
+- chapter: 63；fact: 顾明远建议学校暂停刘主任参与旧校区和学生处分相关事务。；status: active
+- chapter: 63；fact: 被见证学生空白处浮出“替补”二字，说明学页承压机制会寻找替代对象。；status: active
+- chapter: 64；fact: 学页闭眼章出现缺灰，疑似被 JY-07 第七袋缺口拓片污染，开始寻找替补承压对象。；status: active
+- chapter: 64；fact: 赵立最后定位在七中旧校区附近，成为学页替补触发的目标。；status: active
+- chapter: 64；fact: 温棠出具临时协查记录，只写寻找学生，不写保管人或代章，避免进一步触发。；status: active
+- chapter: 65；fact: 严思程在七中旧校区诱导赵立签署学生现场组织行为见证说明，录音文件名为赵立签收确认。；status: active
+- chapter: 65；fact: 赵立没有签字，严思程到场及个人行为说法被临时协查记录固定。；status: active
+- chapter: 65；fact: 沈知夏以见证未签身份记录赵立未签字，破解学页替补触发。；status: active
+- chapter: 65；fact: 商会确认学页替补触发失败，学生现场行为补充承压说明暂不采信并封入异常附卷。；status: active
+- chapter: 65；fact: 赵临川提醒闭眼下一次会认得沈知夏，说明沈知夏被保管人层标记。；status: active
+- chapter: 66；fact: 沈知夏桌面出现来源不明的重复确认纸，要求她以见证人身份确认旧校区协查记录真实。；status: active
+- chapter: 66；fact: 周承骁的被困表妹也收到同款确认纸，显示闭眼开始识别见证人和被安置学生两类对象。；status: active
+- chapter: 66；fact: 七中决定申请旧校区被安置学生名单异常封存，避免五十七名学生被逐个补确认。；status: active
+- chapter: 66；fact: 春江项目方提交病页补充说明，要求二院恢复使用 A-01 原始影像作为医学事实。；status: active
+- chapter: 67；fact: 江晚晴提交医疗文书安全事件报告，围绕院外协同打印端调用 JY-07 和项目责任争议材料发起反击。；status: active
+- chapter: 67；fact: 病页补充说明缺医疗判断来源，没有主诊医生签名，不能由项目方法务替代医生判断病因。；status: active
+- chapter: 67；fact: A-01 第三次失明前七分钟存在 BT-RISK 外部场景同步失败记录，与个体病情波动说法冲突。；status: active
+- chapter: 67；fact: 二院恢复江晚晴急诊历史影像只读权限，病页暂不采信，A-01 原始影像不得单独作为项目责任认定依据。；status: active
+- chapter: 68；fact: 秦照带青鸦旧账原本复核申请到青石街，试图让账页接上青鸦旧账。；status: active
+- chapter: 68；fact: 林建成三年前借的三十万流入青江二院特种耗材预缴户，而非青石街人账。；status: active
+- chapter: 68；fact: 秦照提供的见账页伪造方启明和老陆见账，老陆名字格式暴露后补问题。；status: active
+- chapter: 68；fact: 闻溪斋旧账显示该三十万为非街账、代垫医口、勿入人账。；status: active
+- chapter: 68；fact: 二院查到三年前特种耗材预缴户缺号，经办关联赵行舟项目医疗协调账户。；status: active
+- chapter: 69；fact: 沈怀序收到春江律师函，要求其说明十年前旧校区审计提示不足，楼页正式回压沈怀序。；status: active
+- chapter: 69；fact: 沈怀序保留三次楼体安全隐患整改提示送达复印件，第三次送达对象为春江集团教育投资部且有缺角收件章。；status: active
+- chapter: 69；fact: 方启明保留春江集团教育投资部缺角章拓片，可与沈怀序第三送达复印件重合。；status: active
+- chapter: 69；fact: 商会记录楼页承压说明与原报告目录冲突，JQ-07 原件第十七页列入下一次定向核验。；status: active
+- chapter: 69；fact: 赵行舟和赵临川分别暗示真正少掉的是 JQ-07 第一页。；status: active
+- chapter: 70；fact: 众人发现 JQ-07 目录第一页标题栏为空，疑似不是报告标题而是钥匙页。；status: active
+- chapter: 70；fact: JQ-07 第一页可能让后续楼、病、学、账等材料从散案变成同一风险承压链。；status: active
+- chapter: 70；fact: 方启明确认青鸦曾把第一页拆成两半，一半为商会封存号，一半为青石街钥匙纹。；status: active
+- chapter: 70；fact: 许闻溪母亲留下的闻溪斋铺契夹层里藏有第一页钥匙纹半页。；status: active
+- chapter: 70；fact: 赵临川警告第一页不能合上，否则闭眼会完全睁开，而闭眼已经认得沈知夏。；status: active
+- chapter: 71；fact: 赵临川说明合页不只是物理叠合，同桌、同卷、同栏或同一份记录确认也会构成流程合页。；status: active
+- chapter: 71；fact: JQ-07 第一页两半的安全核验原则确定为隔纸偏位、只验缺口、不看完整纹路。；status: active
+- chapter: 71；fact: 沈知夏改为安全核验方式形成过程的旁听记录，不进入钥匙页见证栏。；status: active
+- chapter: 72；fact: 许闻溪母亲在铺契夹层针脚旁留下第二句提示：谁逼开契，问他拿谁的号来合。；status: active
+- chapter: 72；fact: 秦照以契面完整性受损为名申请保全，试图推动钥匙纹半页移交或入号，被许闻溪用影拓保全反制。；status: active
+- chapter: 72；fact: 闻溪斋铺契契面未拆，钥匙纹半页暂由闻溪斋原契承载，不入青石会账物。；status: active
+- chapter: 73；fact: 商会封存号半页编号为 JQ-07-K1-A，青石街钥匙纹半页按旧记录应为 K1-B。；status: active
+- chapter: 73；fact: K1-A 与 K1-B 通过隔纸偏位核验确认缺口同源，但未构成合页复原。；status: active
+- chapter: 73；fact: 商会因闻溪斋保全记录完整，放弃要求钥匙纹半页临时入商会同柜。；status: active
+- chapter: 74；fact: JQ-07 原件第十七页标题为旧校区楼体安全隐患强制整改建议。；status: active
+- chapter: 74；fact: 第十七页正文要求电教楼西侧连廊及三层旧梁区立即停止学生通行，并要求项目方七个工作日内提交结构复检和加固方案。；status: active
+- chapter: 74；fact: 第十七页抄送栏与沈怀序第三送达回执和缺角章拓片对应，楼页补充承压说明撤出当前采信序列。；status: active
+- chapter: 75；fact: K1 功能核验确认第一页疑似 JQ-07 入链索引页，楼、病、学、账是其索引位。；status: active
+- chapter: 75；fact: K1 安全核验只出现城市、承压四个功能性字，完整链名中间两字未被读取或确认。；status: active
+- chapter: 75；fact: 保管人层吐出 JQ-07 K1 临时协查承压对象预审名单，列入林砚、沈知夏、许闻溪、江晚晴，但名单缺少申请人。；status: active
+- chapter: 76；fact: K1 临时协查承压对象预审名单除申请人外还缺申请依据号，因缺栏被温棠封为异常来件，暂不入卷。；status: active
+- chapter: 76；fact: 温棠确立预审名单申请源三问：来件从哪里来、依据从哪里来、责任落到哪里去。；status: active
+- chapter: 76；fact: K1 异常名单发送回执显示来源终端 K1-AP-00，经由端口 CJ-YK-MED-COORD。；status: active
+- chapter: 77；fact: 七中收到写给沈知夏的 K1 临时协查承压对象到校确认纸袋，顾明远和校长未让其进班。；status: active
+- chapter: 77；fact: 沈知夏以黄线外旁听记录证明自己未进入 K1 页位，不能作到校确认。；status: active
+- chapter: 77；fact: 七中追加拒收依据，不组织学生个人确认任何 K1、协查承压、补充协查类材料。；status: active
+- chapter: 77；fact: 周承骁表妹收到旧校区被安置学生补充协查纸袋，纸袋右下角出现学校口编号 JQ-K1-SCH-05。；status: active
+- chapter: 78；fact: CJ-YK-MED-COORD 是春江项目医口协调端口，授权范围为旧校区风险材料医疗关联协查，授权状态为历史保留。；status: active
+- chapter: 78；fact: 该端口今天向商会旧库内部预审端发送 K1 临时协查承压对象预审请求，申请人为空，依据为历史保留授权，经办备注为自动补录。；status: active
+- chapter: 78；fact: K1 预审请求日志底部带有 CJ-YW-PRINT-03 打印标记，说明有人借春江印务三号机伪装自动补录。；status: active
+- chapter: 78；fact: 二院尝试冻结春江项目医口协调端口失败，系统显示上级历史授权占用，归属为春江旧校区联合风险协调组。；status: active
+- chapter: 79；fact: 闻溪斋铺契第三个针孔藏有止号粉，可证明该契只承载本铺，不入外号。；status: active
+- chapter: 79；fact: 许闻溪出具第三针止号说明，明确闻溪斋铺契不入青石会账号、商会 K1 号或春江旧校区联合风险协调组号。；status: active
+- chapter: 79；fact: 春江旧校区联合风险协调组通过秦照转送通知，要求青石街铺契类材料临时统一入号保管。；status: active
+- chapter: 80；fact: 春江旧校区联合风险协调组通知无章、无文号、无成员清单、无申请人，被商会暂不采信。；status: active
+- chapter: 80；fact: 秦照说明联合组通知来自春江印务三号机，且三号机直接吐纸，没有人送稿。；status: active
+- chapter: 80；fact: 春江印务三号机前身是青江商会旧库外联打印端，十年前移交给春江项目外包使用。；status: active
+- chapter: 80；fact: 三号机移交单缺失，但移交清册上出现 R-07 外联位。；status: active
+- chapter: 81；fact: 商会旧设备间保存旧库外联打印端移交清册副本，春江印务三号机旧编号为 QJ-SH-WL-07。；status: active
+- chapter: 81；fact: 旧库外联打印端移出位为商会旧库外联位，接收位为春江旧校区联合风险协调组临时联络位，见证位为 R-07 外联位。；status: active
+- chapter: 81；fact: R-07 外联位缺任期记录，旧打印端吐出的“任期沿用至 K1 完成”被温棠封为异常补缝来件。；status: active
+- chapter: 82；fact: JQ-K1-SCH-05 对应春江教育投资部学生安置五号口，南湾国际不是申请源，只是被要求组织学生说明。；status: active
+- chapter: 82；fact: 南湾国际收存周念安纸袋但不组织学生签署补充协查自述，周念安未确认七中撤离证词受诱导。；status: active
+- chapter: 82；fact: 赵临川留下 JQ-K1-FAM-02 纸角，提示 K1 除学校口外还有家属口。；status: active
+- chapter: 83；fact: 林建成三分钟窗口说明外联位给没有章的人送纸，家属口不是家人而是病人之外替病人接纸的位置。；status: active
+- chapter: 83；fact: JQ-K1-FAM-02 从 A-01 家属位延续，试图把林母拉回三年前病人家属承压位置。；status: active
+- chapter: 83；fact: 林建成称赵临川像门，说明赵临川与外联位或保管人继位规则存在入口关系。；status: active
+- chapter: 84；fact: 林母在夜市摊公开拒收 JQ-K1-FAM-02 家属口纸袋，并明确不签、不承接 K1 家属口材料。；status: active
+- chapter: 84；fact: 江晚晴代写 A-01 家属位不承接 K1 家属口材料说明，要求相关材料转交二院纸质病案封存线，不得影响夜市经营许可证和正常生计。；status: active
+- chapter: 84；fact: 送件人承认自己从家属口二号拿纸，纸从春江印务三号机吐出。；status: active
+- chapter: 84；fact: FAM-02 拒收触发商会旧库外联端回执，回执编号缺粉联；方启明确认粉联在他手里。；status: active
+- chapter: 85；fact: 方启明保管旧库外联打印端移交回执粉联，粉联显示设备旧编号 QJ-SH-WL-07、现用编号 CJ-YW-PRINT-03。；status: active
+- chapter: 85；fact: 粉联写明纸路仅限外联来件，不得作为承压对象确认入口。；status: active
+- chapter: 85；fact: 学校口、医口、家属口均经旧库外联打印端异常延展，与粉联授权范围冲突，被打回异常外联来件。；status: active
+- chapter: 85；fact: 粉联背面显示 R-07 外联位任期和继位来源存在但姓名被“勿揭姓名”纸条遮住，继位来源只露出“下一”二字。；status: active
+- chapter: 85；fact: 赵临川短信警告纸条别揭，揭开后他会进来。；status: active
+- chapter: 86；fact: 闻溪斋后堂确立 R-07 外联位任期安全核验预案：不揭纸条、不读姓名、不问继位人、不照脸、不追下一张脸、不做完整复原。；status: active
+- chapter: 86；fact: 勿揭姓名纸条四角与粉联纤维同塌，暂定为封门条；名字不是答案，而是钥匙孔。；status: active
+- chapter: 86；fact: 韩听雪解释赵临川所谓进来可能是入门、入席或入链。；status: active
+- chapter: 87；fact: 商会第三库遮名侧光核验显示 R-07 外联位任期从十年前七月十六日起，至旧校区协调期闭合后三十日止。；status: active
+- chapter: 87；fact: 粉联背面继位来源只展开到“下一席”，不展开姓名或候选来源。；status: active
+- chapter: 87；fact: 旧打印端吐出的任期沿用补正纸被温棠封为重复补缝来件，来源露出第七席临时交接。；status: active
+- chapter: 88；fact: JQ-K1-BLD-17 楼口临时位向城市建设资料中心递送旧校区楼体后续补勘确认函，试图让沈怀序或沈知夏倒签第十七页。；status: active
+- chapter: 88；fact: 楼口补勘函因缺补勘主体、现场和复验编号，被资料中心仅收存异常复印件，不入旧校区楼体资料盒。；status: active
+- chapter: 89；fact: 赵临川称自己不想进去，因为进去会成为当前 R-07 外联位的可用脸。；status: active
+- chapter: 89；fact: 赵临川给出第七席任期交接预备问询，安全问法为问上一任停位依据和当前位空缺依据，不问下一位候选来源。；status: active
+- chapter: 89；fact: 赵临川称自己看过十年前那个人看过的东西。；status: active
+- chapter: 90；fact: 商会复核确认 R-07 外联位任期不到 K1，CJ-YW-PRINT-03 不具备承压对象确认入口权限。；status: active
+- chapter: 90；fact: JQ-K1-SCH-05、CJ-YK-MED-COORD、JQ-K1-FAM-02、JQ-K1-BLD-17 均暂列异常外联延展，不入承压采信序列。；status: active
+- chapter: 90；fact: 第七席任期交接预告生成，要求风险眼 026 于三日内提交停位说明，候选来源暂不显示。；status: active
+- chapter: 91；fact: 第七席停位说明模板要求林砚以本人身份确认未承接、未持有交接物和知悉风险眼 026 停位义务，被识破为自证陷阱。；status: active
+- chapter: 91；fact: 林砚和沈知夏决定提交模板不适用说明，理由为无任命、无章、无座次、无交接物。；status: active
+- chapter: 91；fact: 七中收到学生身份补充核验表，要求确认林砚是否为风险眼 026 本人。；status: active
+- chapter: 92；fact: 七中用学籍身份不得替代外部项目编号确认说明挡下身份补充核验表。；status: active
+- chapter: 92；fact: 学校只确认学籍事实和在校行为，不确认外部编号、能力性质、项目身份或风险协调身份。；status: active
+- chapter: 92；fact: 南湾国际也收到周边确认表，要求确认周念安是否受风险眼 026 诱导、周承骁是否向风险眼 026 提供协查材料。；status: active
+- chapter: 93；fact: 第七席疑似交接物核验清单试图将青石坠、青叶牌和 K1 双半页钥匙纹列为席物。；status: active
+- chapter: 93；fact: 方启明拿出十年前青石坠私物寄修登记，备注为不得入会柜、不作席物。；status: active
+- chapter: 93；fact: 青石街只收存疑似交接物清单复印件，不确认清单定义；青石坠为林家私物寄修，不作第七席交接物。；status: active
+- chapter: 94；fact: 风险眼 026 未占席材料目录形成，声明不构成本人能力、编号、项目身份或席位义务确认。；status: active
+- chapter: 94；fact: 值守端要求林砚到灯前完成本人确认，沈知夏用本人不到灯前、材料不经灯前确认挡住。；status: active
+- chapter: 94；fact: 灯前确认会让林砚在风险视野里看见并接近编号 026 空椅。；status: active
+- chapter: 94；fact: 灯前确认被挡后，值守端要求提交眼底确认图。；status: active
+- chapter: 95；fact: 江晚晴出具拒绝提交眼底确认图的医疗文书安全说明，认定眼底确认图属于医学采样。；status: active
+- chapter: 95；fact: 温棠将灯前确认、眼底确认图要求列为异常，风险眼 026 未占席材料暂收。；status: active
+- chapter: 95；fact: 值守端要求提交 B-03 停位旧例参照，提示死亡风险眼旧例可能被用来套林砚。；status: active
+- chapter: 96；fact: 韩听雪交出 B-03 停止观察建议单正面，说明停止观察不等同停位确认。；status: active
+- chapter: 96；fact: 韩听雪称她写停止观察建议时 B-03 还活着，建议早于最后一次眼底采样。；status: active
+- chapter: 96；fact: B-03 不是停了，而是被留样。；status: active
+- chapter: 97；fact: B-03 观察员签认补页存在纸张、墨迹和栏位覆盖异常，不能证明韩听雪签署过停位确认。；status: active
+- chapter: 97；fact: 韩听雪明确写下不补签未曾签署之停位确认，不恢复旧观察员位。；status: active
+- chapter: 97；fact: 补签申请失败后，纸底露出可由受测者视野确认的替代路径。；status: active
+- chapter: 98；fact: B-03 眼底图元数据显示采集时间为停止观察建议后七分钟，采集机构为北辰训练场离线采集端，采集目的为停位参照，知情记录缺失。；status: active
+- chapter: 98；fact: BT-EYE-OFF-03 是北辰离线眼底采集端，不属于常规诊疗设备。；status: active
+- chapter: 98；fact: BT-EYE-OFF-03 曾于三年前接入二院影像备份口。；status: active
+- chapter: 99；fact: 赵临川看过 B-03 死例，提示不要调眼底图而要查清退单。；status: active
+- chapter: 99；fact: B-03 清退单号为 BT-SAMPLE-B03-CLEAR，状态栏为停位，死亡证明号缺失，接收位为白塔外勤第七组，见证位为下一席候选。；status: active
+- chapter: 99；fact: 赵临川称 B-03 看过下一席候选的一角，后来他死了，候选那一角没有消失。；status: active
+- chapter: 100；fact: 商会复核确认 B-03 停位旧例不作为风险眼 026 停位参照，B-03 相关异常另立旧例完整性复核。；status: active
+- chapter: 100；fact: 韩听雪持有 B-03 死前塞给她的 B-03-STOP 金属片，背面刻有“别换椅”。；status: active
+- chapter: 100；fact: B-03 旧例完整性复核要求调取清退转运路线，转运终点指向青江二院旧影像备份口。；status: active
+- chapter: 101；fact: 青江二院旧影像备份口 QJ-HOSP-IMG-BACKUP-OLD 仅为影像数据备份接口，不具备样本清退、人身转运或死亡证明接收资格。；status: active
+- chapter: 101；fact: BT-SAMPLE-B03-CLEAR 转运终点记录不能视为二院接收 B-03 本人。；status: active
+- chapter: 101；fact: B-03 清退路线接入 A-01 影像备份外部场景同步七分钟。；status: active
+- chapter: 102；fact: A-01-BT-SYNC-7M 索引显示三年前林建成第三次失明前七分钟，BT-EYE-OFF-03 作为外部场景源接入 A-01 影像备份同步。；status: active
+- chapter: 102；fact: A-01-BT-SYNC-7M 对应样本为 B-03 停位旧例，对应病人为 A-01，同步用途为场景稳定性测试。；status: active
+- chapter: 102；fact: 预演结果显示 A-01 未完成换椅，原因是青鸦主动断线，补救建议为启用家属位或子代风险眼。；status: active
+- chapter: 103；fact: A-01 病床位置现状确认纸试图让林母和林砚确认家属位/子代风险眼择一补救。；status: active
+- chapter: 103；fact: 林建成三分钟窗口确认病床不是椅子，当年是自己主动断线，并提醒林母别签床尾。；status: active
+- chapter: 103；fact: A-01 病床为医疗照护床位，不是第七席、外联位、停位椅或样本清退接收位。；status: active
+- chapter: 103；fact: 林建成写下“找腕带”。；status: active
+- chapter: 104；fact: 三年前当夜二院急诊蓝色腕带领用数量为二，用途为临时留观，一只作废并补登至 A-01 外部场景同步。；status: active
+- chapter: 104；fact: 二院地下库找到一截蓝色腕带，带 B-03 残码，贴有 A-01-SYNC 补登条。；status: active
+- chapter: 104；fact: B-03 清退路线存在人身管理痕迹，不能完全作为影像包或样本包闭合。；status: active
+- chapter: 105；fact: 商会确认腕带人身管理痕迹存在，但不确认 A-01-SYNC 补登定义。；status: active
+- chapter: 105；fact: B-03 清退转运路线异常成立，旧影像备份口、A-01 同步窗口和蓝色腕带补登均需独立复核；该路线不得接入 A-01、家属位或风险眼 026。；status: active
+- chapter: 105；fact: 赵临川提示三年前第二只蓝色腕带不在医院，而在南湾。；status: active
+- chapter: 106；fact: 南湾旧校医室收存簿显示第二只蓝色腕带来自二院旧急诊转存，收存于临时观察柜，用途为外来人员临时观察包附件。；status: active
+- chapter: 106；fact: 第二只蓝色腕带在南湾记录中缺学生档案号和佩戴确认，南湾只能确认收存位置，不能确认佩戴。；status: active
+- chapter: 107；fact: N-7 观察包属于访客临时观察包，不是学生健康档案包，不能进入周念安或其他学生学籍。；status: active
+- chapter: 107；fact: N-7 观察包回库清点显示蓝色腕带缺失，缺失处理为替换，替换后交旧北门静默通道暂存。；status: active
+- chapter: 108；fact: 旧北门静默通道记录显示蓝色腕带与白访客牌存在替换机制，可改变医院人身管理路线与南湾访客路线。；status: active
+- chapter: 108；fact: 赵临川称第二只蓝色腕带不是 B-03 的，而是关联看过死例的人，但不能问姓名。；status: active
+- chapter: 109；fact: 南湾历史使用补登说明页脚出现 JQ-K1-SCH-05，试图借蓝色腕带接入学校口，被压回异常外来医疗物件收存说明。；status: active
+- chapter: 109；fact: 南湾确认蓝色腕带为异常外来医疗物件收存，不确认发放、佩戴或身份，N-7 观察包不进入学生健康档案。；status: active
+- chapter: 110；fact: 七号柜为空置器材柜，不是人员接收位、观察位、第七席、下一席候选或风险眼 026 承接位置。；status: active
+- chapter: 110；fact: 第二只蓝色腕带路线只能证明异常医疗物件进入南湾旧库并发生腕带与白访客牌替换，不能确认下一席候选或风险眼 026。；status: active
+- chapter: 110；fact: 七号柜夹层露出无姓名旧白访客牌，正面写南湾旧观察室静默位，背面刻有听过第二次敲门的人不回座。；status: active
+- chapter: 111；fact: 静默位白访客牌不能直接拿起、补名或作持牌确认；安全方式为连同夹层底板原位保全，不作取出、不作持牌、不补姓名、不作回座确认。；status: active
+- chapter: 111；fact: 白访客牌背面编码为 BT-SILENT-WIT-02，疑似静默见证二号；赵临川提示一号是听见第一次敲门的人，但不能问姓名。；status: active
+- chapter: 112；fact: 南湾旧观察室规程显示原始名称为静默旁听位，用于访客临时观察流程中不发言、不签字、不接触受观察对象的旁观记录。；status: active
+- chapter: 112；fact: 静默旁听位不得作为学生座位、医疗留观床位或身份确认依据；白牌缺少旁听二字，不得扩展为座位、席位或回座义务。；status: active
+- chapter: 112；fact: 赵临川提示第二次敲门记录不在南湾，而在韩听雪手里。；status: active
+- chapter: 113；fact: 韩听雪交出旧录音笔和异常声源草稿，证明第二次敲门发生在受测室外放关闭后，属于回放记录。；status: active
+- chapter: 113；fact: 第二次敲门不能证明 B-03 实际听见，也不能生成静默旁听位回座义务。；status: active
+- chapter: 113；fact: 韩听雪补写当晚外放已关闭、第二次敲门非本人现场确认、未签回座记录，并再次声明不恢复旧观察员位。；status: active
+- chapter: 114；fact: 第二次敲门回放源为 NW-OBS-SILENT-ROOM，回放对象为 BT-ROOM-AUDIO-OFF，触发位置为静默旁听位二号，触发人缺失。；status: active
+- chapter: 114；fact: 静默旁听位二号原本给看过 B-03 死例的人准备，但 B-03 遗留警告、白塔流程定义和商会席位确认必须拆开。；status: active
+- chapter: 114；fact: 赵临川写下无名拒绝说明：当前到场人不作静默旁听位回座确认；纸未触发姓名或座位。；status: active
+- chapter: 115；fact: 商会确认静默旁听位二号仅证明南湾旧观察室曾存在旁听边界标记，不得作为持牌人、佩戴人、回座人、下一席候选来源或风险眼 026 依据。；status: active
+- chapter: 115；fact: 第二次敲门回放源异常且触发人缺失，不采为听见事实；第七席临时交接关于静默位回座依据补充采信申请暂不采信并另列异常。；status: active
+- chapter: 115；fact: 白访客牌底边露出 SILENT-MASTER-01 静默母牌一号编号；母牌不在南湾，接收位指向白塔外勤第七组。；status: active
+- chapter: 116；fact: 白塔外勤第七组旧外联箱编号 BT-FIELD-7-SILENT-BOX，箱内目录含静默母牌一号封存影印件、静默见证牌若干和缺封套的声音触发说明。；status: active
+- chapter: 116；fact: BT-FIELD-7-SILENT-BOX 目录显示样本清退物件和人员接收记录均无，白塔外勤第七组在此线中接收的是箱，不是人或样本。；status: active
+- chapter: 116；fact: 旧外联目录补页试图将接收对象预填为看过死例的人，被列为异常，不入目录。；status: active
+- chapter: 117；fact: 韩听雪持有声音触发说明封套残边，残边压印 SILENT-MASTER-01 和二次敲门触发封套，但她不持有完整说明、不确认看过内容、不恢复旧观察员位。；status: active
+- chapter: 117；fact: 声音触发说明封套残边存在疑似止号针孔，类似青石街铺契第三针止号粉针脚；赵临川提示可能与青鸦有关。；status: active
+- chapter: 118；fact: 林建成三分钟窗口确认青鸦止过声音触发说明封套，止的是听见号，听见号不得转为人员号。；status: active
+- chapter: 118；fact: 林建成确认白塔外勤第七组接收的是牌，不是人或样本，并警告别让牌找人。；status: active
+- chapter: 118；fact: 林建成解释不回座是不回旧位，并在床单上划出疑似站着二字。；status: active
+- chapter: 119；fact: 第七席临时交接提交静默母牌一号人员关联补正申请，试图反用青鸦止号证明曾有人员号，被商会列异常。；status: active
+- chapter: 119；fact: 商会确认静默母牌一号不得作为人员关联、观察对象离位、下一席候选来源或风险眼 026 依据；接收牌不得解释为接收人或样本。；status: active
+- chapter: 119；fact: BT-FIELD-7-SILENT-BOX 现存位置为商会旧库外联端退件柜，十年前有人拒收过这个箱。；status: active
+- chapter: 120；fact: 商会旧库外联端退件柜现场复核确认 BT-FIELD-7-SILENT-BOX 为退件箱，退件理由为接收定义不明，退件人缺失且不补。；status: active
+- chapter: 120；fact: 退件箱内仍有静默母牌一号封存影印件、静默见证牌残件两枚和声音触发说明目录页，缺声音触发说明封套；人员物品、人员接收记录、死亡证明、腕带、病历号均无。；status: active
+- chapter: 120；fact: 退件附注写有不回座者暂存外联端，待母牌定义清晰后再接；商会暂不解释为具体人员，不补姓名，不接入下一席候选。；status: active
+- chapter: 120；fact: 退件柜深处出现疑似第三次敲门声，赵临川称其为第三次。；status: active
+- chapter: 121；fact: 第三声经录音和线路初查确认不是第二次敲门回放，暂按外联端退件提醒异常处理，不采为现场听见事实，不确认敲门人。；status: active
+- chapter: 121；fact: 未亮柜区线路残码为 RETURN-KNOCK-03，并露出开柜见证位标签，显示第三声试图诱导开柜。；status: active
+- chapter: 122；fact: 沈知夏和温棠确认敲门不是开柜授权，当前到场风险眼不作开柜见证位确认，相关纸条被列异常。；status: active
+- chapter: 122；fact: 未亮柜锁孔侧光露出疑似止开柜号粉，红点熄灭后又露出未回旧位待立标签。；status: active
+- chapter: 123；fact: 待立状态被定义为不回旧位、不坐新位、不签接收、不离链，不能补姓名或确认下一席候选来源。；status: active
+- chapter: 123；fact: 待立人员补名表试图确认未回旧位者姓名和下一席候选来源，被沈知夏、韩听雪、江晚晴和许闻溪分别切断。；status: active
+- chapter: 124；fact: 第三声经江晚晴、韩听雪、许闻溪分别以墙体震动、录音波形和锁孔气流证明不以人耳为触发端，不采为听见事实。；status: active
+- chapter: 124；fact: 旧库地下二层线路图显示第三声声路来自未亮柜后的废弃检修缝，标签为旧库灯后裂缝。；status: active
+- chapter: 125；fact: 旧库外联端退件总册记录 QJ-SH-WL-RETURN-KNOCK-03，触发物为 BT-FIELD-7-SILENT-BOX 外观扫描，触发条件为接收定义不明满十年且母牌定义未清。；status: active
+- chapter: 125；fact: 退件总册确认第三次敲门输出方式为柜体回响提醒，不得据此开柜、补名、采听见事实或确认下一席候选来源。；status: active
+- chapter: 125；fact: 退件总册页底露出上一轮退件提示源为第三复核席灯后裂缝，赵临川提醒下一次别让灯先看林砚。；status: active
+- chapter: 126；fact: 第七席临时交接提交第三复核席灯后提示源灯前确认申请，试图让当前到场风险眼做灯前本人确认，被列异常。；status: active
+- chapter: 126；fact: 商会灯具维护规程显示灯后裂缝可走遮光侧验，限制为不照人、不照脸、不作本人确认；遮光罩 SH-LAMP-SHIELD-07 缺半片。；status: active
+- chapter: 127；fact: 遮光罩 SH-LAMP-SHIELD-07 被确认为设备遮光物件，遮光不等于闭眼，遮光罩不接闭眼代章、不采集眼底、不形成医学照面。；status: active
+- chapter: 127；fact: 遮光罩缺失半片曾在十年前由第三库灯后维护位取出又放回，赵临川称那半片是被拿去挡人。；status: active
+- chapter: 128；fact: 第三库灯后被确认为设备背照槽和维护位，不是第三复核席后方、席位、旁听位、待立位或到位确认依据。；status: active
+- chapter: 128；fact: 灯后裂缝旁露出代章线残字，安全问法为问代章线用途，不问代章人。；status: active
+- chapter: 129；fact: 韩听雪确认代章线只能暂存流程状态，代章不代人，不得作为本人到场、席位承接、候选来源或待立人员确认依据。；status: active
+- chapter: 129；fact: 灯后裂缝线标残码为 3R-SEAL-HOLD，状态暂存，触发条件为灯前不可照面，处理限制为待遮光复核。；status: active
+- chapter: 129；fact: 线标下一页压痕显示遮光复核未完成，原因为青鸦未签。；status: active
+- chapter: 130；fact: 遮光侧验让灯先看纸而不是看人，确认第三复核席灯后裂缝为退件提示源，代章线状态为暂存，遮光复核状态为可继续。；status: active
+- chapter: 130；fact: 侧验纸限制不得据此确认第三复核席承接人、待立人员、风险眼 026 或下一席候选来源。；status: active
+- chapter: 130；fact: 侧验纸浮出遮光复核待补项青鸦未签依据，第七席临时交接可申请补验；沈知夏和温棠确认补验不等于补签。；status: active
+- chapter: 130；fact: 赵临川称青鸦不是忘了签，而是不让那盏灯记住他的手。；status: active
+- chapter: 131；fact: 第七席临时交接提交遮光复核青鸦未签依据补验指引，试图要求青鸦本人手迹或家属代签确认，并确认补验后是否视为补签。；status: active
+- chapter: 131；fact: 沈知夏和温棠确认本轮只补验未签依据存在与否，不提交青鸦本人手迹，不接受家属代签，不推定补签。；status: active
+- chapter: 131；fact: 方启明拿出刻有青鸦字样的旧怀表，称怀表记录了青鸦未签后压断笔的时间。；status: active
+- chapter: 132；fact: 方启明拿出半截断笔；断笔可证明遮光复核当天青鸦没有完成签字动作，但不能证明想签，也不能替他补签。；status: active
+- chapter: 132；fact: 第七席提出青鸦手迹照灯核验建议，试图将断笔、怀表和现存青鸦手迹同置灯前，被列异常。；status: active
+- chapter: 132；fact: 商会确认青鸦未签依据补验采用三物分盒、隔纸偏位、只验时间断口与动作中止，不验手迹一致，不作本人到场确认。；status: active
+- chapter: 132；fact: 方启明透露青鸦当年看见自己的手在灯里多了一道影子。；status: active
+- chapter: 133；fact: 方启明拿出怀表原表镜，表镜残痕经遮光侧验显示遮光复核当日存在异常重影，足以解释青鸦中止签字动作。；status: active
+- chapter: 133；fact: 异常重影不构成第二只手、第二个人、代签人、待立者替签或候选来源；重影人员关联提示被列异常。；status: active
+- chapter: 133；fact: 赵临川称青鸦怕的不是多一只手，而是那只手替他签完。；status: active
+- chapter: 134；fact: 遮光复核页签名栏旁有浅拖痕，断笔断口旧墨可与拖痕外观比对，证明签字动作中止；拖痕不是签名。；status: active
+- chapter: 134；fact: 第七席提出遮光复核替签补成申请，试图由代章线暂存状态补成签字完成，被商会列异常。；status: active
+- chapter: 134；fact: 林砚代表林家当前到场人只作替签补成拒绝，不作青鸦未签原因确认，不作家属代签确认；使用口头拒绝和沈知夏安全文本，未签字。；status: active
+- chapter: 135；fact: 商会确认青鸦未签依据成立，依据为怀表停时、断笔断口、复核页拖痕与表镜异常重影。；status: active
+- chapter: 135；fact: 青鸦未签依据物证组只证明遮光复核签字动作中止，不构成本人手迹确认、家属代签、替签补成、第三复核席承接或下一席候选来源。；status: active
+- chapter: 135；fact: 青鸦未签依据补验完成，遮光复核可继续；下一待补项为遮光罩缺半片去向。；status: active
+- chapter: 135；fact: 方启明称遮光罩缺失半片可能在青鸦送修的第二只表里，而那只表不是青鸦的。；status: active
+- chapter: 136；fact: 方启明说明十年前雨夜青鸦送来两只表，第一只是刻青鸦字样的坏怀表，第二只外壳无字、表针停在三点零七。；status: active
+- chapter: 136；fact: 第二只表收修编号为 QY-WATCH-02，送修备注代存、不问主，修理事项夹层异响，表主栏空缺且不补。；status: active
+- chapter: 136；fact: QY-WATCH-02 收修簿显示夹层异响来源为铜片碰针，方启明称第二只表修好后又在第三次敲门后停过一次。；status: active
+- chapter: 137；fact: QY-WATCH-02 不开盖透影显示夹层内有半月形铜边，边缘带 SH-LAMP-SHIELD-07 残码，确认缺失半片遮光罩在第二只表夹层。；status: active
+- chapter: 137；fact: 第二只表表主补正提示试图确认夹层铜片持有人和待立状态相关人员，被列异常；铜片不是人，夹层持有不等于表主持有。；status: active
+- chapter: 137；fact: 方启明旧修理底纸记载夹层铜片遮光、表针避照，并解释半片铜罩挡的是灯后回照。；status: active
+- chapter: 138；fact: 韩听雪说明回照不是第二眼，而是补拍刚才没照完整的动作；半片铜罩让回照只能拍到表针，拍不到手。；status: active
+- chapter: 138；fact: 回照对象补全建议试图确认回照所补动作对应人员，被列异常；动作不是人员，回照不得作为第二次照面、第二眼确认或候选来源。；status: active
+- chapter: 138；fact: 林砚看见落笔动作灰线，赵临川警告不能看完，否则等于替灯补完那一笔。；status: active
+- chapter: 139；fact: 方启明说明青鸦让第二只表的表针替那只手停住；表针停只可采为技术性遮光中止，不采为人员停位。；status: active
+- chapter: 139；fact: 表针停位人员关联申请被列异常；表针不是人，替动作停不替人员停位，停针不得接入 B-03 停位旧例或医疗停位。；status: active
+- chapter: 139；fact: 赵临川提示表针替动作停了，但没有替回照的来源停。；status: active
+- chapter: 140；fact: QY-WATCH-02 收修簿背面设备压纹匹配 BT-EYE-OFF-03 外壳检修夹具；该压纹只证明接触过同类设备，不证明设备持有人或表主。；status: active
+- chapter: 140；fact: 回照来源人员关联补正试图确认 BT-EYE-OFF-03 经手人员、第二只表表主和待立人员是否接触设备，被列异常。；status: active
+- chapter: 140；fact: BT-EYE-OFF-03 旧功能附项包括离线眼底采集、场景稳定性测试和遮光回照校准。；status: active
+- chapter: 140；fact: 半片铜罩挡的是 BT-EYE-OFF-03 的遮光回照校准光；设备接触不等于采样对象，经手人员不等于回照对象，第二只表不补表主。；status: active
+- chapter: 141；fact: 设备功能归属确认表试图确认 BT-EYE-OFF-03 设备主人、三项功能经手人员和回照来源人员，被列异常；功能不是主人，功能分列不作人员归并。；status: active
+- chapter: 141；fact: BT-EYE-OFF-03 功能启用次序显示遮光回照校准早于离线眼底采集，说明该设备第一次危险可能不是采眼底，而是补未完成动作。；status: active
+- chapter: 142；fact: BT-EYE-OFF-03 接口图显示眼底采集口为 EYE-IN，场景稳定口为 SYNC-BACK，遮光校准侧口为 CAL-SIDE；第二只表背面夹具痕压的是 CAL-SIDE 侧边。；status: active
+- chapter: 142；fact: 接口进入人员登记被列异常；CAL-SIDE 是光路校准接口，不是人员进入口、样本入口或观察对象入口，不接眼底图、病历号或人体采样。；status: active
+- chapter: 142；fact: CAL-SIDE 接收介质为遮光校准底片和维护反光镜，无人员输入项；缺页编号为 BT-EYE-OFF-03-CAL-SLIP。；status: active
+- chapter: 143；fact: 外壳检修夹具登记册显示 BT-EYE-OFF-03 型外壳第三批检修夹具共三套，分别入北辰训练场、白塔外勤第七组维修箱和退回旧库状态不明。；status: active
+- chapter: 143；fact: 同台设备人员归并建议被列异常；第二只表只证明同型第三批夹具压纹，不能证明同一台设备、同一操作人或同一对象。；status: active
+- chapter: 143；fact: 白塔外勤第七组维修箱退回时夹具和维护反光镜在，遮光校准底片少一张，缺失编号为 BT-EYE-OFF-03-CAL-SLIP。；status: active
+- chapter: 144；fact: 遮光回照校准缩略图没有脸和手，只有灯线、遮挡标记和未完成动作坐标 PEN-END；校准对象人员补录被列异常。；status: active
+- chapter: 144；fact: 校准不找人，PEN-END 是动作终点不是人，遮挡标记是物件位置不是被遮挡者姓名，校准底片不得转作人员底片。；status: active
+- chapter: 144；fact: 校准缩略图边角露出 MIR-07-RETURN 维护反光镜编号；复检记录显示镜面有回照灰、未清洗，封存位置为北辰旧仓二层。；status: active
+- chapter: 145；fact: BT-EYE-OFF-03 三线归一说明试图将 B-03 离线眼底采集、A-01 场景稳定性测试和青鸦遮光复核并为同一关键人员，被列异常。；status: active
+- chapter: 145；fact: 商会阶段性意见确认 BT-EYE-OFF-03 目前只可确认功能组存在、第二只表接触 CAL-SIDE 相关同批夹具、缺失校准底片与 MIR-07-RETURN 维护反光镜有关。；status: active
+- chapter: 145；fact: 下一步复检 MIR-07-RETURN 维护反光镜，限制为遮布移运、不得正面照人；赵临川称那面镜子照过不肯坐回去的人。；status: active
+- chapter: 146；fact: MIR-07-RETURN 封存在北辰旧仓二层，旧牌用途为回照反射辅助，封存限制为镜面朝墙、不得正照活体。；status: active
+- chapter: 146；fact: 维护反光镜正面确认表试图要求当前风险眼正面照镜确认、旧观察员复位确认和待立者回座对照，被列异常；镜子不能照人。；status: active
+- chapter: 146；fact: MIR-07-RETURN 黑布内侧滑出仍有活性的回照灰，方启明确认为回照灰。；status: active
+- chapter: 147；fact: 回照灰面部比对申请试图采集当前到场人员面部与镜面灰痕比对，被列异常；回照灰不是脸，不接活体采样。；status: active
+- chapter: 147；fact: 回照灰成分为旧灯灰、铜粉和镜银氧化，证明镜子参与过 CAL-SIDE、维护反光镜、遮光铜片和 PEN-END 的折返光路，不证明照过谁。；status: active
+- chapter: 147；fact: 回照灰样第二段露出 CHAIR-BACK-LINE 椅背线断点，沈知夏预先写下椅背不能写成回座。；status: active
+- chapter: 148；fact: 椅背回座确认试图将 CHAIR-BACK-LINE 写成未回座人员对应座位，被列异常；椅背线只证明镜面校准参照，不证明人员座位或回座义务。；status: active
+- chapter: 148；fact: MIR-07-RETURN 镜背下方有 PEN-END 与 BACK-LINE 两颗调角螺丝，两颗螺丝之间有二次调角浅痕。；status: active
+- chapter: 149；fact: 二次换椅人员确认试图将 MIR-07-ANGLE-2 调角记录解释为对应人员、不回座者和下一席候选，被列异常；调角不是换椅。；status: active
+- chapter: 149；fact: 韩听雪说明第一次调 PEN-END 是让回照找落笔终点，第二次调 BACK-LINE 是试图把没坐回去的状态压回椅背线；看起来像坐过不等于事实。；status: active
+- chapter: 149；fact: 镜背维修备注显示二次调角失败，校准底片插入后在 BACK-LINE 后三毫米折断，镜背暗槽疑似仍卡着旧纸。；status: active
+- chapter: 150；fact: 校准底片取出人员补录试图确认取出人员、底片所补位置和不回座者姓名，被列异常；底片不补位，不回座者不补姓名。；status: active
+- chapter: 150；fact: 镜背暗槽取出半截校准底片，正面只有 PEN-END 与 BACK-LINE 两条线，自动补位框被疑似青石街第三针止号针脚打穿。；status: active
+- chapter: 150；fact: MIR-07-RETURN 复检结论为镜面回照灰证明其参与 CAL-SIDE 遮光回照光路；二次调角试图把未回座状态压入 BACK-LINE；校准底片自动补位框被止号针中止，不得确认人员、座位或候选来源。；status: active
+- chapter: 150；fact: 半截底片背面显示剩余半截去向为静默母牌封套；赵临川警告别找封套主人。；status: active
+- chapter: 151；fact: 静默母牌封套主人补录试图确认封套持有人、封套主人和剩余半截底片对应人员，被列异常；封套是材料容器，不是人员身份。；status: active
+- chapter: 151；fact: 白塔外勤第七组旧目录显示静默母牌一号封套编号为 SILENT-MASTER-01-ENV，原封内容包括母牌影印件、声音触发说明和被刮半编号的 CAL-SLIP 附夹页。；status: active
+- chapter: 151；fact: 第七席试图要求确认封套离箱时交付对象，被沈知夏和温棠挡下，下一步只查封套底边残影。；status: active
+- chapter: 152；fact: 封套残边持有人确认试图将韩听雪持有封套残边偷换成持有完整封套及剩余底片，被列异常；残边不是持有人。；status: active
+- chapter: 152；fact: 封套残边下缘针孔与半截底片自动补位框针孔针距一致、方向相反，确认为同一套止号针脚的正反边。；status: active
+- chapter: 152；fact: 止号针脚下针人确认被列异常；只确认针脚关系，不确认谁下针；封套残边底部浮出半个压码 NO-SEAT-FILL。；status: active
+- chapter: 153；fact: 静默母牌封套影印底页显示母牌影印件、声音触发说明目录页和一张窄条底片影同封；同封材料持有人归并被列异常。；status: active
+- chapter: 153；fact: 同封只证明材料曾在同一封套内，不证明同一持有人、同一接收人或同一对象；底片影不是取出记录。；status: active
+- chapter: 153；fact: 封套底缝透影显示 NO-SEAT-FILL 与 AUTO-SEAT-FRAME STOP；不补座是程序限制，不是人员名单。；status: active
+- chapter: 154；fact: 止号针脚共同下针人确认试图在青鸦、方启明和青石街相关人员之间确认下针人，被列异常；针脚只验用途、方向和止号对象。；status: active
+- chapter: 154；fact: 封套残边针孔止的是听见号转人员号，半截底片针孔止的是自动补位框转回座号；听见号和回座号都不能转人员号。；status: active
+- chapter: 154；fact: 第三针止号登记显示声路一针、光路一针、余一针未落，且方启明称余一针不在封套上。；status: active
+- chapter: 155；fact: 第三针落点人员预判试图确认第三针拟落对象及人员身份，被列异常；第三针未落不形成事实，不找人。；status: active
+- chapter: 155；fact: 第三针登记用途栏显示第一针止听见号转人员号，第二针止回座号转人员号，第三针止看见号转人员号。；status: active
+- chapter: 155；fact: 当前风险眼看见号预登记试图将林砚观察事实转为看见号，被列异常；看见事实不等于看见号，风险眼观察不自动转人员号。；status: active
+- chapter: 155；fact: 封套底缝影显示第三针暂存去向为青石钥匙纹半页背缝；赵临川警告现在别回青石街，因为第三针未落，纸会等林砚去看。；status: active
+- chapter: 156；fact: 当前风险眼到场看见确认试图要求林砚到青石街现场并亲眼看见 K1-B 背缝以触发看见号，被列异常；背缝不能让眼看。；status: active
+- chapter: 156；fact: 许闻溪调用第七十二章影拓保全形成的铺契背纹影拓副本，采用闭盒、隔纸、黑布和侧光代理侧验，林砚不直接观察也不远程确认影拓。；status: active
+- chapter: 156；fact: K1-B 影拓背缝浮出 TEMP-HOLD，确认第三针在青石钥匙纹半页背缝中暂存但尚未落针；代理看见号确认被列异常。；status: active
+- chapter: 157；fact: 第三针落针完成确认试图将背缝暂存偷换为止看见号程序已完成，被列异常；暂存不是落针，未形成穿透孔或程序闭合。；status: active
+- chapter: 157；fact: K1-B 背缝影显示第三针躺在针床浅槽内，两端未穿出纸缝；针床是暂存槽，不是落点。；status: active
+- chapter: 157；fact: 第三针保护对象确认试图确认当前风险眼、青石钥匙纹持有人或上一任看见号为保护对象，被列异常；保护功能不等于保护对象确认。；status: active
+- chapter: 157；fact: 背缝浅槽露出 HOLD ONLY、NO FALL 和落针条件：看见确认入纹，说明林砚直看可能触发第三针真正落下。；status: active
+- chapter: 158；fact: 钥匙纹眼纹比对试图将青石钥匙纹半页背缝与当前风险眼眼部纹路比对，被列异常；钥匙纹不是眼纹。；status: active
+- chapter: 158；fact: 青石钥匙纹被确认是铺契折纹、纸浆压纹和旧街契口，不是生物纹理；K1-B 不接眼部纹路、眼底反应、瞳孔变化或风险眼能力痕迹。；status: active
+- chapter: 158；fact: 借眼开纹说明试图借当前风险眼完成入纹确认，被列异常；青石钥匙纹只开纸缝，不开人的眼。；status: active
+- chapter: 158；fact: 背缝露出看纹位空，说明危险在于林砚看见钥匙纹后，纸会把他的看见补入空位。；status: active
+- chapter: 159；fact: 青石背缝下针人确认试图在许家上一任铺契保管人、方启明和青鸦之间确认下针人，被列异常；背缝影不是下针手。；status: active
+- chapter: 159；fact: 背缝影只可验针托、方向和压痕，不得从纸缝压影推定活体操作身份、亲属责任或旧观察员见证链。；status: active
+- chapter: 159；fact: 三针同手确认被列异常；三道压痕可说明同一套止号意图，不等于同一执行人。；status: active
+- chapter: 159；fact: K1-B 背缝与针床之间浮出未落针托纸，说明第三针暂存在托纸上，不直接落于 K1-B；赵临川警告别取。；status: active
+- chapter: 160；fact: 未落针托纸取出登记试图确认取出人、交接人、托纸持有人和第三针落点，被列异常；托纸不是针落。；status: active
+- chapter: 160；fact: 未落针托纸被确认为暂存介质，取出动作会制造新接触，未落针不得因取出登记补成已落针。；status: active
+- chapter: 160；fact: 托纸边影露出持针不持人、停号不停眼，确认第三针只能卡住看见号转人员号的转号口，不能停止林砚的能力代价或诱导风险。；status: active
+- chapter: 160；fact: 当前风险眼保护确认被列异常；林砚明确第三针当前保护的是边界，不是他这个人，商会记录为保护边界、不确认保护对象。；status: active
+- chapter: 160；fact: 未落针托纸边影露出 QSP-OLD-DEED-L2，指向青石旧铺契二层夹；赵临川提示第二层别在青石街开，要去没有眼的地方开。；status: active
+- chapter: 161；fact: 无眼人员确认试图确认无眼人、闭眼人或当前风险眼闭眼到场，被列异常；无眼不是无人，闭眼不是无眼。；status: active
+- chapter: 161；fact: 商会旧封存规程显示无照封存格用于受光即变、受镜即回、受见证即入位的材料，限制为无灯前确认、无镜面回照、无摄录采样、无活体见证位。；status: active
+- chapter: 161；fact: 无照封存格三号编号为 NO-EYE-BAY-03，启封方式为背签入格、不看正面；无照格不是见证席。；status: active
+- chapter: 162；fact: 暗处开启确认试图将关灯暗处偷换为无眼位置，被列异常；无照不是暗处，黑暗不能排除摄录、镜面、眼底反应和活体见证。；status: active
+- chapter: 162；fact: NO-EYE-BAY-03 启用单确认对象为 QSP-OLD-DEED-L2 影包，方式为背签入格、不看正面；影包正面确认被列异常。；status: active
+- chapter: 162；fact: 无照格三号旧封存记录显示预留用途为未落针托纸背签，不能询问预留给谁。；status: active
+- chapter: 163；fact: 背签人员背面确认试图确认背签人背面、到场背影和背向见证人，被列异常；背签不是背人。；status: active
+- chapter: 163；fact: 背签被定义为材料背面签记，不采集到场人员背影、体态或医学特征，也不形成旧观察员替代。；status: active
+- chapter: 163；fact: NO-EYE-BAY-03 抽格背侧显示 BACK-SEAL OK，QSP-OLD-DEED-L2 影包可入格；背签只验位置不读内容。；status: active
+- chapter: 163；fact: 二层夹影包在无照格背侧露出夹层边线和折口，提示开夹不取物。；status: active
+- chapter: 164；fact: 二层夹取出登记试图确认取出人、接收人和托纸持有人，被列异常；开夹不是取物，不开新接触链。；status: active
+- chapter: 164；fact: QSP-OLD-DEED-L2 夹边影显示二层夹是青石铺契底纸裁出来的一条边，不是另一个铺契正件。；status: active
+- chapter: 164；fact: 铺契底纸持有人确认和裁纸人确认被列异常；底纸不是底人，裁边不是裁纸人，纸源不形成亲属责任。；status: active
+- chapter: 164；fact: 二层夹纸影显示 QSP-BASE-CUT-03 青石铺契底纸裁边三号，字样为供托针、不供落针；第三针托纸纸源来自该裁边。；status: active
+- chapter: 164；fact: QSP-BASE-CUT-03 纸影末端带有商会无照格借封灰。；status: active
+- chapter: 165；fact: 无照格借封人员确认试图确认借封申请人、经办人和受益人，被列异常；借封不是借人。；status: active
+- chapter: 165；fact: 无照格借封灰只证明无灯、无镜、无采样、无见证的封存条件被借用，不证明谁借、谁办、谁受益，也不补旧观察员经办链。；status: active
+- chapter: 165；fact: 无照格三号纸影显示借封条件成立，限制为看纹位空不得入眼；二层夹不是给林砚看的，是给纸缝看的。；status: active
+- chapter: 165；fact: 纸缝观察确认被列异常；纸缝不是眼。；status: active
+- chapter: 165；fact: 无照格三号灰线指向 NO-LAMP-RETURN-7 无灯回执柜七号；温棠查目录确认十年前封过一次，回执写着看见号暂不入人，待回。；status: active
+- chapter: 166；fact: 无灯回执柜回灯确认试图将 NO-LAMP-RETURN-7 移至灯前并由当前到场风险眼见证，被列异常；回执柜不是灯。；status: active
+- chapter: 166；fact: 无灯回执柜七号只可验柜体封存状态，不验灯前反应、照面或活体见证；柜背锁吐出 NO-LAMP HOLD 与 RETURN CLOSED。；status: active
+- chapter: 167；fact: 暂不入人人员待入确认试图把暂不入人偷换成待入人、待入人员号和转入时限，被列异常；暂不入人不是待入人。；status: active
+- chapter: 167；fact: 回执折边确认看见号暂不入人意味着不列待入、不转人员、不补时限；暂存的是状态，不确认暂存人。；status: active
+- chapter: 168；fact: 待回人员返位确认和回灯后接收人补登被列异常；待回不是回人，回灯后接收人不存在。；status: active
+- chapter: 168；fact: 无灯回执柜柜背灰码显示待回条件为 PAPER-EDGE ONLY、NO PERSON、NO LAMP，待回只指回执纸边条件。；status: active
+- chapter: 169；fact: 回纸复写确认试图复写看见号旧回执全文以备回号，被列异常；回纸不是复写。；status: active
+- chapter: 169；fact: 看见号回号备份被列异常；回号不是备份号，看见号不回灯也不回人。；status: active
+- chapter: 169；fact: 无灯回执柜纸边露出 NO-LAMP-RETURN-7-BACK-EDGE，缺角旁压着 RETURN-HOLD-SLIP 暂扣条。；status: active
+- chapter: 170；fact: 缺角人员补缺确认和代回人安全见证被列异常；缺角不是缺人，代回不是代人。；status: active
+- chapter: 170；fact: RETURN-HOLD-SLIP 暂扣条只能验封舌边、不可取条，露出持回执不持人、止回灯不止眼痛、待回纸不待回号。；status: active
+- chapter: 170；fact: 暂扣条安全核验路径指向 NO-LAMP-SIDE-2 侧柜，下一步查侧柜。；status: active
+- chapter: 171；fact: 侧柜侧位人员确认和侧身安全见证试图确认侧位人、侧身见证人和侧柜协助人，被列异常；侧柜不是侧人。；status: active
+- chapter: 171；fact: NO-LAMP-SIDE-2 侧柜边灰露出 SIDE-HOLD、NO BODY、NO FACE，确认侧柜只保存侧柜状态，不采身体或脸。；status: active
+- chapter: 172；fact: 侧封眼部偏位确认和非正视安全确认试图让当前风险眼侧视或余光见证，被列异常；侧封不是侧眼，余光也是眼。；status: active
+- chapter: 172；fact: NO-LAMP-SIDE-2 侧封灰码显示 SIDE-SEAL OLD、ANGLE LOCK、NO EYE SAMPLE，侧封为旧封，角度锁定，不采眼样。；status: active
+- chapter: 173；fact: 侧纸看见号边录和侧录人员补签被列异常；侧纸不是侧号，边录不补人不补签。；status: active
+- chapter: 173；fact: NO-LAMP-SIDE-2 侧柜吐出 SIDE-PAPER SPARE EDGE 备边，显示 NO NUMBER、NO COPY，备边不是备号。；status: active
+- chapter: 174；fact: 侧针下针人确认和侧针保护对象确认被列异常；侧针线只证明纸边压痕，不证明下针人、递针人或被保护人。；status: active
+- chapter: 174；fact: 侧柜备边压针线为 SIDE-NEEDLE TRACE，功能是 BLOCK RETURN-LAMP、NO FALL，挡回灯但未落针。；status: active
+- chapter: 175；fact: 侧针与第三针同针确认和三针侧路归并说明被列异常；侧针不是第三针，三针侧路不归并。；status: active
+- chapter: 175；fact: 侧柜备边露出 QSP-SIDE-EDGE-OLD 青石旧街旧侧边，说明其借侧止灯、不借眼、不入号。；status: active
+- chapter: 175；fact: 青石旧街工印来源核验指向 QSP-WORK-SEAL-4；许闻溪认出工印四号是其母亲那代铺契修边用过的章，但不能问谁盖的。；status: active

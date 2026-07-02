@@ -1,0 +1,189 @@
+---
+id: "ledger-factions"
+name: "势力账本"
+type: "note"
+keywords: ["势力账本", "势力", "青石会", "白塔实验室", "春江集团", "青江商会"]
+---
+
+# 势力账本
+
+- chapter: 1；faction: 南湾圈；public_face: 以周承骁为核心的富家学生圈；real_goal: 控制班级话语权和沈知夏身边资源；relationship: hostile
+- chapter: 3；faction: 青石古玩街；public_face: 旧货、修表、玉器和古玩铺聚集地；real_goal: 隐藏着青石吊坠和林父旧事线索；relationship: unknown
+- chapter: 5；faction: 春江集团；public_face: 地产、物业、教育投资公司；real_goal: 通过校董和物业资源压制林砚与沈知夏父亲旧案线索；relationship: hostile
+- chapter: 6；faction: 南湾国际学生圈；public_face: 富家学生社交圈；real_goal: 为周承骁提供校外执行人和威慑资源；relationship: hostile
+- chapter: 10；faction: 白塔；public_face: 未知，可能与旧项目或实验室有关；real_goal: 与林建成旧照片和风险视野源头相关；relationship: unknown
+- chapter: 12；faction: 青石会；public_face: 古玩街安保、鉴定和债务联盟；real_goal: 通过假玉扣和欠条把林砚引入青石街债务局；relationship: hostile
+- chapter: 13；faction: 老焦一线；public_face: 做旧匠人和青石会跑腿人；real_goal: 测试林砚风险视野并转交白塔线索；relationship: hostile
+- chapter: 15；faction: 方启明旧街联盟；public_face: 古玩街普通店主和手艺人；real_goal: 保护青石街旧规矩，对抗白塔插手；relationship: conditional ally
+- chapter: 16；faction: 青石会账房；public_face: 合同、欠条、内拍、账册管理；real_goal: 确认青石坠与林砚的关联，夺回人账钥匙；relationship: hostile
+- chapter: 19；faction: 观澜堂内拍圈；public_face: 青石街旧货内拍和掌柜社交场；real_goal: 以规矩和面子维持灰色交易秩序；relationship: neutral
+- chapter: 20；faction: 韩听雪安保线；public_face: 青江市安保圈从业者；real_goal: 观察林砚是否可控，可能连接白塔旧项目；relationship: unknown
+- chapter: 22；faction: 二院医疗线；public_face: 青江市第二医院急诊和病历系统；real_goal: 保存或隐藏林建成旧病历异常记录；relationship: mixed
+- chapter: 25；faction: 白塔样本回收组；public_face: 未知；real_goal: 回收或毁掉失控风险眼样本；relationship: hostile
+- chapter: 25；faction: 风险眼训练体系；public_face: 白塔内部训练记录；real_goal: 训练风险眼停止追线并规避诱导；relationship: dangerous resource
+- chapter: 26；faction: 春江旧校区项目线；public_face: 旧校区改造与二院地块开发项目；real_goal: 通过赵行舟处理旧校区、沈怀序旧案和白塔回收预案的交叉风险；relationship: hostile
+- chapter: 28；faction: 白塔名单系统；public_face: 旧项目样本与承压对象档案；real_goal: 记录风险眼、观察员、承压对象和屏蔽适配对象；relationship: hostile intelligence source
+- chapter: 28；faction: 赵家线；public_face: 春江项目与南湾国际学生背景；real_goal: 使用赵行舟和赵临川分别控制成人项目与校园观察端；relationship: hostile
+- chapter: 30；faction: 白塔入库前测；public_face: 旧校区停电与应急事故；real_goal: 测试林砚是否能看见三分钟以外，并诱导他签收编号档案；relationship: hostile
+- chapter: 31；faction: 春江舆论与责任线；public_face: 安全顾问、说明会、本地热榜和保险理赔流程；real_goal: 把旧校区维护失责转移到林砚和学生组织身上；relationship: hostile
+- chapter: 34；faction: 北辰安保旧设备线；public_face: 旧设备仓和安保器材流转；real_goal: 可能流出白塔离线芯片和屏蔽训练设备；relationship: unknown
+- chapter: 35；faction: 白塔回传链；public_face: 二院医疗影像备份口和离线芯片回传机制；real_goal: 标记名单读取者并定位风险眼与承压对象；relationship: hostile
+- chapter: 36；faction: 样本回收组转科线；public_face: 院内转科复查和影像中心转运；real_goal: 通过 BT-SYNC 同步贴把林建成重新转入样本系统；relationship: hostile
+- chapter: 39；faction: 北辰旧仓训练体系；public_face: 废弃安保训练基地和旧设备仓；real_goal: 保存白塔训练、观察、同步和回传设备证据；relationship: dangerous resource
+- chapter: 40；faction: R-07 主链；public_face: 未知，隐藏在白塔回传链之上；real_goal: 保管或维持青鸦/R-07 继承序列；relationship: unknown high-tier threat
+- chapter: 42；faction: 二院医务处压力线；public_face: 医疗安全调查、特护观察费用和异常操作责任确认；real_goal: 切断林建成苏醒与 QJ 链之间的因果，并把责任压到林砚、江晚晴身上；relationship: hostile bureaucracy
+- chapter: 44；faction: 青石会人账线；public_face: 封铺清账和旧账规矩；real_goal: 抢夺人账和青叶牌背夹中的 JQ-07 目录线索；relationship: hostile
+- chapter: 45；faction: 青江商会；public_face: 商会档案与协调中心；real_goal: 保管青江各方旧账、证据和把柄，并主持旧校区安全协调会；relationship: dangerous neutral
+- chapter: 48；faction: 商会异常保管程序；public_face: 档案异常保护和三人复核；real_goal: 在不公开原件的前提下锁定争议档案，避免被任何一方单独调走；relationship: dangerous tool
+- chapter: 50；faction: 商会保管人层；public_face: 档案室灯、保管人和值守规则；real_goal: 守住真青叶牌和更深旧账，可能反向观察风险眼；relationship: unknown
+- chapter: 51；faction: 商会阶段性备忘录；public_face: 协调会后风险提示和复核安排；real_goal: 同时保护档案异常线索并给申请人套上恶意申请责任；relationship: double-edged tool
+- chapter: 53；faction: 二院系统复核线；public_face: 病历系统权限复核、夜班调整和历史影像访问限制；real_goal: 借商会恶意申请风险切断江晚晴与林建成旧病历证据链；relationship: hostile bureaucracy
+- chapter: 55；faction: 伪造线上验证线；public_face: 冒充商会档案部邮件、快递和电子签收；real_goal: 诱导林砚在电子屏上同时触发多个敏感词并预签恶意申请责任；relationship: hostile trap
+- chapter: 57；faction: 商会三人复核；public_face: JQ-07 异常保管复核程序；real_goal: 只核验目录、页差节点和第三席依据，不直接打开原件全文；relationship: dangerous but useful procedure
+- chapter: 58；faction: 二院纸质病案封存线；public_face: 旧病案库、纸质封存袋和完整性说明；real_goal: 保存林建成第三次失明及第七席代章相关证据，也可能被院外打印端调用篡用；relationship: contested evidence source
+- chapter: 59；faction: 春江印务外包线；public_face: 打印店、标书和外包文件制作；real_goal: 为春江安全顾问制作假商会通告、恶意申请预确认和代章素材扫描；relationship: hostile evidence trail
+- chapter: 60；faction: 旧校区风险承压第七席；public_face: 闭眼代章、缺口拓片和所见之灰；real_goal: 保管正文之外的灰痕，不承担正文责任，阻止病历和项目材料被用作责任转移；relationship: unknown legacy mechanism
+- chapter: 62；faction: JQ-07 四页承压说明；public_face: 楼、病、学、账四类补充说明；real_goal: 把旧校区、二院、学生现场和青石街旧账责任转移到沈怀序、林建成、学生代表和青石街；relationship: hostile mechanism
+- chapter: 63；faction: 七中教务见证线；public_face: 学生现场组织行为见证说明、教务处外联和印泥盒；real_goal: 给学页补见证人，使学生现场行为承压页成立；relationship: hostile school bureaucracy
+- chapter: 65；faction: 学页替补触发；public_face: 未完成学生承压页寻找替补见证和被见证对象；real_goal: 在原目标未签字时改抓可牺牲学生填入责任位置；relationship: active threat
+- chapter: 66；faction: 被安置学生名单线；public_face: 旧校区五十七名被救学生名单和确认纸；real_goal: 通过见证人和被安置学生外围确认让学页重新长出责任链；relationship: active threat
+- chapter: 67；faction: 病页补充说明线；public_face: 医学事实、A-01 原始影像和项目方法务意见；real_goal: 把项目回传异常转为林建成个体病情波动；relationship: hostile mechanism
+- chapter: 68；faction: 青鸦旧账复核线；public_face: 青石街账源三问和青鸦欠条原本；real_goal: 把医口代垫款包装成人账旧债，接活账页；relationship: hostile evidence trail
+- chapter: 69；faction: 楼页送达链；public_face: 旧校区楼体整改提示送达单、缺角章拓片和第十七页核验；real_goal: 证明沈怀序是否已尽到强制提示义务，决定楼页能否成立；relationship: contested evidence source
+- chapter: 70；faction: JQ-07 第一页钥匙；public_face: 商会封存号半页和青石街钥匙纹半页；real_goal: 把散落的楼、病、学、账材料合成同一风险承压链，同时可能让闭眼完全睁开；relationship: dangerous key
+- chapter: 71；faction: 流程合页规则；public_face: 核验记录、见证栏、同卷归档和同桌确认；real_goal: 在程序层面把 K1-A 与 K1-B 视为第一页复原；relationship: active procedural threat
+- chapter: 72；faction: 闻溪斋铺契保全线；public_face: 旧铺契、夹层针脚、影拓保全和青石街见证；real_goal: 保护 K1-B 不被青石会或商会借保全名义移交入号；relationship: ally-held evidence source
+- chapter: 73；faction: K1 隔纸偏位核验；public_face: 第三库木匣、K1-A 封存号半页、K1-B 影拓件和黄线外旁听记录；real_goal: 证明两半同源但不复原第一页；relationship: dangerous but useful procedure
+- chapter: 74；faction: 第十七页定向核验；public_face: JQ-07 原件第十七页、强制整改建议、抄送栏和缺角章回执；real_goal: 证明沈怀序曾把楼体风险送达春江教育投资部，压下楼页承压说明；relationship: contested evidence source
+- chapter: 75；faction: K1 临时协查承压名单；public_face: 传真预审名单和旧风险档案规则；real_goal: 把主动推动核验并接触四类落点材料的人拉入新的承压位置；relationship: active threat
+- chapter: 76；faction: K1 申请源三问；public_face: 申请人栏、申请依据栏、发送回执和端口来源；real_goal: 阻断缺栏名单直接入卷，并反追来件源头；relationship: defensive procedure
+- chapter: 77；faction: 学校口补充协查线；public_face: 到校确认纸袋、被安置学生补充协查和 JQ-K1-SCH-05 编号；real_goal: 绕过商会异常封存，从学生个人确认重接学页和 K1 链；relationship: active threat
+- chapter: 78；faction: 春江项目医口协调端口；public_face: CJ-YK-MED-COORD、历史保留授权和医疗关联协查；real_goal: 借医院旧授权向商会旧库递送 K1 预审请求，伪装自动补录；relationship: hostile legacy port
+- chapter: 78；faction: 春江旧校区联合风险协调组；public_face: 上级历史授权占用和联合风险材料协调名义；real_goal: 统合医口、学校口、商会旧库和青石街材料入号；relationship: emerging high-tier threat
+- chapter: 79；faction: 第三针止号线；public_face: 闻溪斋铺契第三针止号粉、影拓照片和旧街见证章；real_goal: 证明铺契只承载本铺，不入青石会、商会 K1 或联合组外号；relationship: ally-held defense
+- chapter: 80；faction: 春江印务三号机旧库端；public_face: 春江印务三号机、商会旧库外联打印端和十年前移交清册；real_goal: 作为保管人层、医口协调端口、学校口和青石街之间的纸质出口；relationship: dangerous evidence source
+- chapter: 80；faction: R-07 外联位；public_face: 三号机十年前移交清册上的旧编号；real_goal: 疑似负责商会旧库外联纸路和旧项目打印端移交；relationship: unknown high-tier position
+- chapter: 81；faction: 旧设备间外联耗材线；public_face: WL-07 箱、旧库外联打印端移交清册副本和旧打印端；real_goal: 保存三号机旧编号、移交位置和 R-07 外联位缺任期痕迹；relationship: dangerous evidence source
+- chapter: 82；faction: 春江教育投资部学生安置五号口；public_face: JQ-K1-SCH-05 和南湾国际补充协查自述；real_goal: 让被安置学生自证证词未受诱导，从外围削弱旧校区撤离证词；relationship: hostile school port
+- chapter: 83；faction: K1 家属口；public_face: JQ-K1-FAM-02 和病人之外替病人接纸的位置；real_goal: 从 A-01 家属位延续，把林母拉回三年前家属承压位置；relationship: active threat
+- chapter: 84；faction: 夜市家属位拒收线；public_face: 夜市摊、A-01 家属位不承接 K1 家属口说明和多方见证；real_goal: 阻断家属口绕过医院商会直接压林母和生计线；relationship: ally-held defense
+- chapter: 85；faction: 外联打印端粉联；public_face: 旧库外联打印端移交回执粉联和勿揭姓名纸条；real_goal: 限定三号机只能转外联来件，阻止其被用作承压对象确认入口，同时隐藏 R-07 外联位任期姓名；relationship: dangerous evidence source
+- chapter: 86；faction: R-07 封门条核验线；public_face: 勿揭姓名纸条、透明袋和安全核验预案；real_goal: 在不揭姓名的情况下验证任期，避免赵临川或其他继位来源入门入席入链；relationship: ally-held defense
+- chapter: 87；faction: 第七席临时交接；public_face: 任期沿用补正纸、商会收文框小票和“第七席临时交接”经办位置；real_goal: 在 R-07 任期不能延续后，借更高席位继续补外联位承接依据；relationship: new hostile mechanism
+- chapter: 88；faction: JQ-K1-BLD-17 楼口临时位；public_face: 旧校区楼体后续补勘确认函；real_goal: 让沈怀序或沈知夏倒签第十七页，把已压下的楼页重新接入 K1；relationship: hostile building port
+- chapter: 89；faction: 门缝可用脸机制；public_face: 赵临川、第七席任期交接预备问询和被划掉的下一位候选来源；real_goal: 寻找能被补成当前外联位或第七席承接脸的位置；relationship: dangerous ambiguous
+- chapter: 90；faction: 第七席任期交接预告；public_face: 商会档案室值守端自动提示和风险眼 026 停位说明要求；real_goal: 在四口异常延展被压住后，把林砚推入停位说明位置，逼他自证不承接第七席；relationship: active high-tier threat
+- chapter: 91；faction: 第七席停位说明模板；public_face: 风险眼 026 停位说明提交指引和本人确认栏；real_goal: 让林砚先承认可对第七席作出本人停位说明，再把未提交者默认纳入核验；relationship: hostile procedural trap
+- chapter: 92；faction: 风险眼 026 周边确认链；public_face: 七中学生身份补充核验表和南湾周边确认表；real_goal: 通过学校、周念安、周承骁等外围证人反向确认林砚身份和应门能力；relationship: hostile evidence chain
+- chapter: 93；faction: 第七席疑似交接物清单；public_face: 青石街账房抽屉自动出现的青石坠、青叶牌、K1 双半页核验清单；real_goal: 把林家私物和已封存证据改定义为席物，补足第七席交接物依据；relationship: hostile object-redefinition
+- chapter: 94；faction: 灯前确认；public_face: 商会收文台附加要求和风险视野中的 026 空椅；real_goal: 绕开书面不适用说明，让风险眼在灯前被值守端看见并坐入位置；relationship: dangerous confirmation ritual
+- chapter: 95；faction: B-03 停位旧例；public_face: 眼底确认图拒绝后出现的死亡风险眼旧例参照要求；real_goal: 用 B-03 的死亡样本或停位流程套用林砚，逼出韩听雪旧观察员线；relationship: new high-risk precedent
+- chapter: 96；faction: B-03 停止观察建议单；public_face: 韩听雪保存的 B-03 正面塑封卡；real_goal: 证明当年流程应为中止测试而非停位确认，揭示 B-03 被留样前的安全建议；relationship: ally-held evidence
+- chapter: 97；faction: 观察员签认补页；public_face: B-03 观察员签认补页和补签申请；real_goal: 把韩听雪后补回旧观察员位，补齐 B-03 停位旧例签认链；relationship: hostile signature trap
+- chapter: 98；faction: BT-EYE-OFF-03；public_face: 北辰训练场离线眼底采集端设备号和元数据；real_goal: 在停止观察建议后继续采样，并把眼底图做成停位参照；relationship: hostile sampling device
+- chapter: 99；faction: B-03 样本清退单；public_face: BT-SAMPLE-B03-CLEAR 清退单元数据；real_goal: 把 B-03 从活人测试转成样本清退，并接入下一席候选见证位；relationship: hostile clearance route
+- chapter: 100；faction: B-03-STOP 金属片；public_face: 韩听雪保存的薄金属片和背面“别换椅”划痕；real_goal: B-03 死前留下的警告，提示停位旧例的真正危险是换椅而非退出；relationship: dangerous clue
+- chapter: 100；faction: B-03 清退转运路线；public_face: 旧例完整性复核要求调取的转运路线，终点指向青江二院旧影像备份口；real_goal: 连接 B-03 死例、BT-EYE-OFF-03、三年前二院影像口和林建成线；relationship: active next target
+- chapter: 101；faction: 二院旧影像备份口；public_face: QJ-HOSP-IMG-BACKUP-OLD 和影像科技术说明章；real_goal: 原本只作影像数据备份，却被 B-03 清退路线接入 A-01 外部场景同步；relationship: compromised medical interface
+- chapter: 102；faction: A-01-BT-SYNC-7M；public_face: 林建成第三次失明前七分钟的外部场景同步索引；real_goal: 用 B-03 停位旧例对 A-01 进行换椅预演，失败后转向家属位或子代风险眼；relationship: hostile sync mechanism
+- chapter: 103；faction: A-01 病床确认纸；public_face: 病床位置现状确认和家属位/子代风险眼择一补救；real_goal: 把医疗床位改写成停位椅或样本清退接收位，重新压住林家；relationship: hostile bedside trap
+- chapter: 104；faction: 蓝色腕带线；public_face: 急诊腕带领用记录、地下库 B-03 残码腕带和 A-01-SYNC 补登条；real_goal: 证明 B-03 清退路线存在人身管理痕迹，同时暴露有人试图把腕带补登成 A-01 同步附件；relationship: dangerous evidence source
+- chapter: 105；faction: 第二只蓝色腕带；public_face: 三年前当夜领用两只蓝色腕带中未找到的一只；real_goal: 疑似连接南湾、下一席候选或另一个被换椅对象；relationship: active next target
+- chapter: 106；faction: 南湾旧校医室腕带收存线；public_face: 旧校医室收存簿、临时观察柜和蓝色腕带收存确认表；real_goal: 把外来医疗物件收存偷换成南湾学生佩戴确认；relationship: hostile school-record trap
+- chapter: 107；faction: N-7 访客临时观察包；public_face: 蓝边标签、回库清点单、白访客牌和缺失蓝色腕带；real_goal: 证明腕带进入南湾的是访客器材包路线，而非学生健康档案路线；relationship: contested evidence source
+- chapter: 108；faction: 旧北门静默通道；public_face: 旧门禁记录、蓝色腕带与白访客牌替换栏和校外观察车接驳；real_goal: 通过腕带与访客牌替换改变医院人身管理路线与南湾访客路线；relationship: dangerous route-switch
+- chapter: 109；faction: 南湾历史使用补登；public_face: 蓝色腕带历史使用补登说明和 JQ-K1-SCH-05 页脚；real_goal: 借学校口把外来医疗物件补成学生佩戴或历史使用记录；relationship: hostile school-port return
+- chapter: 110；faction: 七号空置器材柜；public_face: 南湾旧观察室七号柜、柜底压痕和空柜照片；real_goal: 试图把空柜定义成人员位置或候选承接点，接入下一席或 026；relationship: blocked position trap
+- chapter: 110；faction: 静默位白访客牌；public_face: 七号柜夹层内无姓名旧白访客牌和第二次敲门刻痕；real_goal: 疑似连接看过死例的人、第二次敲门和南湾旧观察室静默位；relationship: new dangerous clue
+- chapter: 111；faction: 静默见证二号；public_face: BT-SILENT-WIT-02 白访客牌和原位保全底板；real_goal: 通过取牌、持牌或回座确认把无名旁听标记补成人员位置；relationship: blocked evidence trap
+- chapter: 112；faction: 静默旁听位规程；public_face: 南湾国际部旧观察室访客临时管理说明第七条；real_goal: 原本限定为不发言、不签字、不接触对象的旁观记录，被删去旁听二字后可伪装为座位；relationship: defensive source
+- chapter: 113；faction: 第二次敲门异常声源；public_face: 韩听雪旧录音笔、BT-ROOM-AUDIO-OFF 标签和异常声源草稿；real_goal: 把回放声写成受测者实际听见，制造回座或不回座依据；relationship: hostile audio record
+- chapter: 114；faction: 南湾旧观察室静默房；public_face: NW-OBS-SILENT-ROOM 回放源和静默旁听位二号触发记录；real_goal: 从南湾向北辰受测室回放第二次敲门，混合看见、听见和不回座三类位置；relationship: dangerous source room
+- chapter: 115；faction: 静默位回座补充采信申请；public_face: 第七席临时交接递交的补充采信申请；real_goal: 将静默旁听位二号解释为下一席候选来源旁证，重新接入风险眼 026；relationship: blocked high-tier application
+- chapter: 115；faction: 静默母牌一号；public_face: SILENT-MASTER-01 编号和白塔外勤第七组接收位；real_goal: 疑似作为静默见证体系的上游母牌，连接第二次敲门和白塔外勤第七组；relationship: active next target
+- chapter: 116；faction: 白塔外勤第七组静默箱；public_face: BT-FIELD-7-SILENT-BOX 旧外联箱目录；real_goal: 保存静默母牌一号封存影印件、静默见证牌和声音触发说明，容易被第七席偷换成接收人；relationship: dangerous evidence source
+- chapter: 116；faction: 接收对象补页；public_face: 白塔外勤第七组接收对象补充说明；real_goal: 把接收位和接收物补成人员接收对象：看过死例的人；relationship: blocked wording trap
+- chapter: 117；faction: 声音触发说明封套残边；public_face: 韩听雪持有的声触说残边和 SILENT-MASTER-01 压印；real_goal: 证明声音触发说明曾与母牌同封，也可能诱导韩听雪成为完整说明持有人；relationship: ally-held partial evidence
+- chapter: 118；faction: 青鸦听见号止号；public_face: 林建成三分钟窗口证词和封套止号痕迹；real_goal: 阻止听见事实编号转为人员号，避免牌找人；relationship: legacy defensive rule
+- chapter: 119；faction: 静默母牌人员关联补正；public_face: 第七席临时交接提交的人员关联补正申请；real_goal: 反用青鸦止号，把母牌补成人员关联和候选来源旁证；relationship: blocked high-tier application
+- chapter: 120；faction: 旧库外联端退件柜；public_face: 商会地下二层退件柜和十年前退件箱；real_goal: 保存被拒收的 BT-FIELD-7-SILENT-BOX，同时用不回座者字样诱导补姓名；relationship: active dangerous storage
+- chapter: 120；faction: 第三次敲门；public_face: 退件柜深处传来的敲门声；real_goal: 疑似声音触发体系第三层，可能试图重开不回座者或母牌定义；relationship: new active hook
+- chapter: 121；faction: RETURN-KNOCK-03；public_face: 未亮柜区外联端退件提醒线路残码；real_goal: 把第三声包装成可追问敲门人的现场声，并诱导开柜见证位启动；relationship: dangerous reminder mechanism
+- chapter: 122；faction: 开柜见证位；public_face: 未亮柜红点和开柜见证位到场确认纸条；real_goal: 让当前到场风险眼或记录人见证开柜，再反写为见证柜内人员或声音；relationship: blocked authorization trap
+- chapter: 123；faction: 待立状态；public_face: 未回旧位待立标签和待立人员补名表；real_goal: 把不回旧位、不坐新位、不签接收、不离链的状态补成具体姓名和下一席候选来源；relationship: active identity trap
+- chapter: 124；faction: 旧库灯后裂缝；public_face: 地下二层废弃检修缝和线槽标签；real_goal: 作为第三声柜体震动提醒的上游声路，连接退件提醒、商会灯和第三复核席；relationship: new dangerous source
+- chapter: 125；faction: 旧库外联端退件总册；public_face: QJ-SH-WL-RETURN-KNOCK-03 退件总册记录；real_goal: 定义第三次敲门为退件提醒并限制不得开柜、补名、采听见事实或确认候选来源；relationship: defensive but dangerous record
+- chapter: 125；faction: 第三复核席灯后裂缝；public_face: 退件总册页底上一轮退件提示源压痕；real_goal: 将第三次敲门上游从未亮柜引回商会灯后和第三复核席；relationship: active next target
+- chapter: 126；faction: 灯前确认申请；public_face: 第七席临时交接递交的第三复核席灯后提示源灯前确认申请；real_goal: 把灯后提示源核验偷换成当前到场风险眼本人灯前确认和应灯确认；relationship: blocked high-tier application
+- chapter: 126；faction: 遮光侧验规程；public_face: 商会灯具维护规程中的遮光侧验条款；real_goal: 在不照人、不照脸、不作本人确认的前提下核验灯后线路和旧提示源；relationship: defensive procedure
+- chapter: 127；faction: SH-LAMP-SHIELD-07 遮光罩；public_face: 第三库灯具维护库中的缺半片遮光罩木盒；real_goal: 设备遮光物件，曾被取出挡人，也可能被第七席偷换成闭眼代章入口；relationship: dangerous evidence object
+- chapter: 127；faction: 遮光状态接入闭眼代章补充说明；public_face: 第七席临时交接吐出的补充说明纸；real_goal: 将设备遮光状态接入闭眼代章，补出第三复核席代确认依据；relationship: blocked definition trap
+- chapter: 128；faction: 第三库灯后维护位；public_face: 灯后背照槽、维护位和裂缝边缘代章线残字；real_goal: 真实为设备维护位置，但可被偷换成第三复核席后方或到位确认；relationship: contested equipment position
+- chapter: 129；faction: 3R-SEAL-HOLD 代章线；public_face: 灯后裂缝线标残码和暂存状态；real_goal: 暂存灯前不可照面时的流程状态，被第七席试图反写成代章持有人或席位承接人；relationship: dangerous temporary line
+- chapter: 130；faction: 遮光侧验纸；public_face: 三层厚纸夹铜粉的遮光核验材料；real_goal: 让灯先看纸而非看人，确认灯后裂缝为退件提示源并限制不得接入人、席、待立、候选或 026；relationship: ally-held defensive tool
+- chapter: 130；faction: 青鸦未签依据补验；public_face: 侧验纸底部浮出的遮光复核待补项；real_goal: 第七席临时交接可能借补验偷换成补签、手迹确认或灯记忆复原；relationship: active next threat
+- chapter: 131；faction: 青鸦旧怀表；public_face: 方启明保管的刻有青鸦字样的坏怀表；real_goal: 提供非手迹物证路径，记录青鸦压断笔的时间，避免本人手迹或家属代签；relationship: ally-held evidence
+- chapter: 132；faction: 青鸦断笔；public_face: 方启明保存的半截断笔和笔尖断口；real_goal: 证明遮光复核签字动作中止，但不能证明想签或补签；relationship: ally-held evidence
+- chapter: 132；faction: 青鸦手迹照灯核验建议；public_face: 第七席临时交接提出的同置灯前核验建议；real_goal: 把断笔、怀表、现存手迹同置灯前，写成同一人照面或本人到场确认；relationship: blocked lighting trap
+- chapter: 133；faction: 怀表表镜残痕；public_face: 怀表原表镜上的旧灯斑和异常重影；real_goal: 证明遮光复核当日存在手影异常，同时可能被第七席偷换成人员关联或待立者替签；relationship: dangerous evidence trace
+- chapter: 134；faction: 替签补成申请；public_face: 第七席临时交接提交的遮光复核替签补成申请；real_goal: 把代章线暂存状态补成青鸦签字完成；relationship: blocked surrogate-signature trap
+- chapter: 135；faction: 遮光复核未签依据物证组；public_face: 怀表停时、断笔断口、复核页拖痕和表镜异常重影四袋材料；real_goal: 证明青鸦签字动作中止，同时限制不得构成手迹确认、家属代签、席位承接或候选来源；relationship: defensive evidence set
+- chapter: 135；faction: 青鸦第二只表；public_face: 方启明提到的青鸦送修但非青鸦所有的第二只表；real_goal: 疑似藏有 SH-LAMP-SHIELD-07 缺失半片，指向遮光罩挡过的光和被保护对象；relationship: active next target
+- chapter: 136；faction: QY-WATCH-02 收修记录；public_face: 修表铺旧收修簿中的第二只表记录；real_goal: 证明第二只表为代存不问主且夹层异响，避免补表主姓名；relationship: ally-held evidence
+- chapter: 137；faction: 第二只表夹层铜片；public_face: QY-WATCH-02 夹层内带 SH-LAMP-SHIELD-07 残码的半月形铜片；real_goal: 遮挡灯后回照，也可能被第七席偷换成表主或待立者关联；relationship: dangerous evidence object
+- chapter: 138；faction: 回照对象补全建议；public_face: 旧打印机吐出的回照对象补全纸；real_goal: 把未完成动作补成对应人员、第二次照面或候选来源；relationship: blocked action-to-person trap
+- chapter: 139；faction: 表针停位人员关联申请；public_face: 旧打印机吐出的表针停位人员关联纸；real_goal: 将技术性遮光中止偷换成人员停位、医疗停位或 B-03 旧例关联；relationship: blocked stop-position trap
+- chapter: 140；faction: BT-EYE-OFF-03 遮光回照校准；public_face: 北辰离线眼底采集端旧功能附项和第二只表背面夹具压纹；real_goal: 补完未完成动作的回照来源，可将被询问者校准成来源；relationship: active high-risk device function
+- chapter: 141；faction: 设备功能归属确认表；public_face: BT-EYE-OFF-03 设备主人、三项功能经手人员和回照来源人员确认栏；real_goal: 把设备功能附项偷换成设备主人、经手人员或回照来源人员链；relationship: blocked function-to-person trap
+- chapter: 142；faction: CAL-SIDE 遮光校准侧口；public_face: BT-EYE-OFF-03 接口图中的侧边光路接口；real_goal: 真实为遮光校准介质接口，但可被偷换成人员进入口或样本入口；relationship: dangerous equipment interface
+- chapter: 143；faction: BT-EYE-OFF-03 型第三批检修夹具；public_face: 外壳检修夹具登记册和第二只表背面压纹；real_goal: 证明夹具批次来源，同时被第七席试图偷换成同台设备和同一人员链；relationship: contested device-batch evidence
+- chapter: 143；faction: 白塔外勤第七组维修箱；public_face: 夹具、维护反光镜和遮光校准底片清点表；real_goal: 保存 CAL-SIDE 维修介质，退回时缺失 BT-EYE-OFF-03-CAL-SLIP 底片；relationship: active next evidence source
+- chapter: 144；faction: BT-EYE-OFF-03-CAL-SLIP；public_face: 缺失的遮光校准底片编号和校准缩略图；real_goal: 记录回照补向、动作终点和遮挡位置，可能被偷换成人员底片；relationship: dangerous missing calibration slip
+- chapter: 144；faction: MIR-07-RETURN 维护反光镜；public_face: 校准缩略图边角编号和镜面回照灰复检记录；real_goal: 反射遮光回照校准光，封存在北辰旧仓二层，可能照过不肯坐回去的人；relationship: active next target
+- chapter: 145；faction: BT-EYE-OFF-03 三线归一说明；public_face: 将 B-03 采样、A-01 场景稳定和青鸦遮光复核并列的厚纸说明；real_goal: 把三个设备功能事件归并为同一关键人员，重新补出人员链；relationship: blocked three-line merge trap
+- chapter: 146；faction: 维护反光镜正面确认表；public_face: 当前风险眼正面照镜确认、旧观察员复位确认和待立者回座对照三栏；real_goal: 让 MIR-07-RETURN 正面照活体，把到场人拉成镜面确认对象；relationship: blocked mirror-face trap
+- chapter: 147；faction: 回照灰面部比对申请；public_face: 回照灰与当前到场人员面部比对请求；real_goal: 把光路残留偷换成脸和活体采样，生成照面或身份关联；relationship: blocked ash-to-face trap
+- chapter: 148；faction: CHAIR-BACK-LINE 椅背线；public_face: 回照灰样中的椅背线断点和镜面校准参照；real_goal: 可被偷换成未回座人员对应座位或回座义务；relationship: dangerous calibration reference
+- chapter: 149；faction: MIR-07-ANGLE-2 二次调角记录；public_face: 镜背调角螺丝浅痕和二次换椅人员确认纸；real_goal: 把镜面角度调整失败偷换成第二次换椅、人员移动或候选来源；relationship: blocked angle-to-seat trap
+- chapter: 150；faction: 半截校准底片；public_face: 镜背暗槽中取出的半截 BT-EYE-OFF-03-CAL-SLIP，含 PEN-END、BACK-LINE 和被止号针打穿的自动补位框；real_goal: 证明自动补位被中止，也可能被第七席偷换成取出人员、所补位置或不回座者姓名；relationship: dangerous partial evidence
+- chapter: 150；faction: 静默母牌封套去向；public_face: 半截底片背面显示剩余半截去向为静默母牌封套；real_goal: 连接校准底片和静默母牌封套，同时诱导寻找封套主人；relationship: active next target
+- chapter: 151；faction: 静默母牌封套主人补录；public_face: SILENT-MASTER-01-ENV 持有人、主人和剩余半截底片对应人员确认栏；real_goal: 把材料容器偷换成人员身份或封套主人；relationship: blocked envelope-owner trap
+- chapter: 151；faction: SILENT-MASTER-01-ENV；public_face: 静默母牌一号封套目录项，原封内容含母牌影印件、声音触发说明和 CAL-SLIP 附夹页；real_goal: 保存静默母牌体系材料和校准底片痕迹，也可诱导离箱对象确认；relationship: dangerous envelope evidence
+- chapter: 152；faction: 封套残边持有人确认；public_face: 韩听雪持有的声音触发说明封套残边；real_goal: 将残边持有偷换成完整封套和剩余底片持有责任；relationship: blocked edge-holder trap
+- chapter: 153；faction: 同封材料持有人归并；public_face: 母牌影印件、声音触发说明目录页和窄条底片影同封底页；real_goal: 把同封材料归并为同一持有人、接收人或对象；relationship: blocked same-envelope trap
+- chapter: 154；faction: 第三针止号登记；public_face: 声路一针、光路一针、余一针未落的封套底缝影登记；real_goal: 说明止号体系有未落第三针，也可能诱导寻找拟落人员；relationship: active next clue
+- chapter: 155；faction: 当前风险眼看见号预登记；public_face: 旧仓打印端针对林砚吐出的看见号预登记纸；real_goal: 把当前风险眼观察事实转为人员号或看见号；relationship: blocked risk-eye-number trap
+- chapter: 155；faction: 青石钥匙纹半页背缝；public_face: 第三针暂存去向所在的 K1-B 背缝位置；real_goal: 暂存止看见号转人员号的第三针，可能等待林砚回青石街触发；relationship: active next target
+- chapter: 156；faction: 当前风险眼到场看见确认；public_face: 要求林砚到青石街现场并亲眼看见 K1-B 背缝的确认纸；real_goal: 把林砚的到场和观察转成看见号触发依据；relationship: blocked risk-eye-site trap
+- chapter: 157；faction: 第三针针床浅槽；public_face: K1-B 影拓背缝中托住第三针的 TEMP-HOLD 浅槽；real_goal: 暂存第三针并等待看见确认入纹，也可能被偷换为落针完成或保护对象确认；relationship: dangerous temporary mechanism
+- chapter: 158；faction: 钥匙纹眼纹比对；public_face: 青石钥匙纹半页背缝与当前风险眼眼部纹路比对要求；real_goal: 借钥匙纹核验采集风险眼能力痕迹，把看见补入看纹位空；relationship: blocked key-eye trap
+- chapter: 159；faction: 未落针托纸；public_face: K1-B 背缝与针床之间浮出的托纸边影；real_goal: 暂存第三针并卡住看见号转人员号边界，也可诱导取出登记、持有人确认和落点补成；relationship: active dangerous evidence
+- chapter: 160；faction: 青石旧铺契二层夹；public_face: 未落针托纸边影露出的 QSP-OLD-DEED-L2 编号；real_goal: 许闻溪母亲留下的铺契第二层夹层，可能保存第三针托纸来源或下一段安全开启规则；relationship: active next target
+- chapter: 161；faction: 无眼人员确认；public_face: 无眼人、闭眼人和当前风险眼闭眼到场确认纸；real_goal: 把无照封存条件偷换成活体状态或林砚闭眼见证；relationship: blocked no-eye-person trap
+- chapter: 161；faction: NO-EYE-BAY-03 无照封存格三号；public_face: 商会旧封存规程中的无照封存格；real_goal: 在无灯前确认、无镜面回照、无摄录采样、无活体见证位条件下处理受光受见证即入位材料；relationship: active defensive location
+- chapter: 162；faction: 暗处开启确认；public_face: 关灯后开启二层夹的确认纸；real_goal: 把黑暗偷换成无眼条件，保留旧设备暗处采样和活体见证入口；relationship: blocked darkness trap
+- chapter: 163；faction: 背签人员背面确认；public_face: 背签人背面、到场背影和背向见证人确认纸；real_goal: 把材料背签偷换成人体背影或旧观察员替代见证；relationship: blocked back-person trap
+- chapter: 164；faction: QSP-BASE-CUT-03；public_face: 青石铺契底纸裁边三号，供托针、不供落针；real_goal: 作为未落针托纸纸源，证明第三针托纸来自纸源裁边而非人员持有或落针完成；relationship: dangerous paper-source evidence
+- chapter: 165；faction: 无照格借封灰；public_face: QSP-BASE-CUT-03 纸影末端的商会无照封存条件灰痕；real_goal: 证明无照封存条件被借用，也可能诱导确认借封申请人、经办人或受益人；relationship: blocked borrowed-seal trap
+- chapter: 165；faction: NO-LAMP-RETURN-7 无灯回执柜七号；public_face: 无照格三号灰线指向的十年前无灯回执柜；real_goal: 保存看见号暂不入人、待回的旧回执，可能诱导看见号回灯或人员确认；relationship: active next target
+- chapter: 166；faction: 无灯回执柜回灯确认；public_face: 要求 NO-LAMP-RETURN-7 移至灯前并由当前风险眼见证的确认纸；real_goal: 把无灯回执柜退回灯前口，形成照面、眼底反应或风险眼见证；relationship: blocked return-to-lamp trap
+- chapter: 166；faction: NO-LAMP-RETURN-7 背锁状态；public_face: 柜背封泥、背锁纸边和 NO-LAMP HOLD、RETURN CLOSED 灰码；real_goal: 证明回执柜仍处无灯封存状态，同时诱导下一步暂不入人改写；relationship: dangerous cabinet-state evidence
+- chapter: 167；faction: 暂不入人人员待入确认；public_face: 待入人姓名、待入人员号和转入时限三栏确认纸；real_goal: 把暂不入人改成等待转入人员号的队列；relationship: blocked pending-person trap
+- chapter: 168；faction: 待回人员返位确认；public_face: 返位人、返位座和回灯后接收人三栏确认纸；real_goal: 把待回状态偷换成回人、回座和回灯后接收；relationship: blocked return-person trap
+- chapter: 168；faction: PAPER-EDGE ONLY 待回条件；public_face: 无灯回执柜柜背浮出的待回条件灰码；real_goal: 限定待回只走纸边回路，不接人员、座位或灯前确认；relationship: defensive evidence condition
+- chapter: 169；faction: 回纸复写确认；public_face: 要求复写看见号旧回执全文以备回号的确认纸；real_goal: 通过复写生成新文本、新采样和新看见号备份；relationship: blocked copy-return trap
+- chapter: 169；faction: NO-LAMP-RETURN-7-BACK-EDGE；public_face: 无灯回执柜纸边缺角和封舌压痕；real_goal: 指向柜内 RETURN-HOLD-SLIP 暂扣条，也可能诱导缺角人员补缺；relationship: active next evidence edge
+- chapter: 170；faction: 缺角人员补缺确认；public_face: 缺失人、补缺人和代回人三栏确认纸；real_goal: 用回执纸缺角补出缺失人员、代回人员或回座对象；relationship: blocked missing-person trap
+- chapter: 170；faction: RETURN-HOLD-SLIP 暂扣条；public_face: NO-LAMP-RETURN-7 柜内封舌边露出的暂扣条；real_goal: 持回执不持人、止回灯不止眼痛、待回纸不待回号；下一安全路径指向 NO-LAMP-SIDE-2；relationship: active next clue
+- chapter: 170；faction: NO-LAMP-SIDE-2；public_face: 暂扣条安全核验路径指向的无灯侧柜二号；real_goal: 下一步需要查验的侧柜位置，暂不可推定为人、号或灯前回路；relationship: active next target
+- chapter: 171；faction: 侧柜侧位人员确认；public_face: 侧位人、侧身见证人和侧柜开启协助人三栏确认纸；real_goal: 把 NO-LAMP-SIDE-2 的侧柜位置偷换成侧位人员或旁位见证；relationship: blocked side-person trap
+- chapter: 171；faction: NO-LAMP-SIDE-2 侧柜状态；public_face: 侧柜边灰中的 SIDE-HOLD、NO BODY、NO FACE；real_goal: 证明侧柜只保存侧边封存状态，不采身体、脸或旁位人；relationship: dangerous side-cabinet evidence
+- chapter: 172；faction: 侧封眼部偏位确认；public_face: 要求当前风险眼侧视三秒或余光见证侧封偏位的确认纸；real_goal: 把侧封角度偷换成眼部偏位采样或能力痕迹；relationship: blocked side-eye trap
+- chapter: 172；faction: SIDE-SEAL OLD 旧侧封；public_face: NO-LAMP-SIDE-2 侧封灰码中的旧封和角度锁定状态；real_goal: 证明侧封为旧封且不采眼样，同时可诱导侧纸边录；relationship: dangerous side-seal evidence
+- chapter: 173；faction: 侧纸看见号边录；public_face: 侧纸编号、看见号边号和侧录人员三栏确认纸；real_goal: 把无号侧纸备边写成看见号边号或侧录人员记录；relationship: blocked side-number trap
+- chapter: 173；faction: SIDE-PAPER SPARE EDGE；public_face: NO-LAMP-SIDE-2 吐出的无号无复写侧柜备边；real_goal: 保存侧边止灯备边，也露出压针线索；relationship: active side-paper evidence
+- chapter: 174；faction: 侧针下针人确认；public_face: 下针人、递针人和被针保护人三栏确认纸；real_goal: 把侧针压痕偷换成执行人员、递针人员或保护对象；relationship: blocked side-needle-person trap
+- chapter: 174；faction: SIDE-NEEDLE TRACE；public_face: 侧柜备边上的压针线，显示 BLOCK RETURN-LAMP、NO FALL；real_goal: 挡回灯但未落针，可被诱导与第三针归并；relationship: dangerous side-needle trace
+- chapter: 175；faction: 侧针与第三针同针确认；public_face: 将侧针、第三针、回灯和看见号归并的确认纸；real_goal: 把挡回灯侧针和停看见号第三针拧成同一人员号入口；relationship: blocked needle-merge trap
+- chapter: 175；faction: QSP-SIDE-EDGE-OLD；public_face: 侧柜备边露出的青石旧街旧侧边和边印；real_goal: 说明借侧止灯、不借眼、不入号，指向青石旧街工印来源；relationship: active next clue
+- chapter: 175；faction: QSP-WORK-SEAL-4；public_face: 青石旧街工印来源核验指向的工印四号；real_goal: 许闻溪母亲那代铺契修边用过的章，可能连接侧边止灯来源但不得追问盖章人；relationship: active next target
