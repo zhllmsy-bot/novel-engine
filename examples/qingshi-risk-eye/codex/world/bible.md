@@ -2,7 +2,7 @@
 id: "world-qingshi-bible"
 name: "我能看见风险 Bible"
 type: "world"
-keywords: ["我能看见风险 Bible", "林砚", "风险视野", "青江市", "青石会", "白塔实验室", "春江集团", "沈知夏", "许闻溪", "赵临川"]
+keywords: ["我能看见风险 Bible", "核心设定", "卷结构", "能力限制", "类型承诺", "番茄男频"]
 ---
 
 # Bible

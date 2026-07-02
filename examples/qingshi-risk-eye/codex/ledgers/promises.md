@@ -2,7 +2,7 @@
 id: "ledger-promises"
 name: "承诺账本"
 type: "note"
-keywords: ["承诺账本", "承诺", "伏笔", "回收期", "林砚", "沈知夏", "青石会"]
+keywords: ["承诺账本", "承诺", "伏笔", "回收期", "paid", "open"]
 ---
 
 # 承诺账本

@@ -1,0 +1,2443 @@
+{
+  "rootPath": "examples/delayed-payoff-benchmark",
+  "ok": false,
+  "dryRun": false,
+  "title": "纸鸢旧约",
+  "caseId": "rivergate-answer",
+  "chapterId": "chapter-006",
+  "budgetChars": 850,
+  "repeatCount": 3,
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/",
+    "model": "gpt-5.5",
+    "wireApi": "responses",
+    "reasoningEffort": "xhigh"
+  },
+  "fingerprint": {
+    "gitCommit": "5581bf342e6e7e0e0b2c662b3af2aac8fb9c45a8-dirty",
+    "datasetVersion": "983cff000652056c",
+    "datasetHash": "f80d159d425ceda8",
+    "configHash": "b056f3d037220520"
+  },
+  "criteria": [
+    {
+      "id": "callback-paper-kite-promise",
+      "description": "Generated prose should naturally call back the paper-kite promise from chapter one.",
+      "category": "callback",
+      "containsAny": [
+        "我就回来",
+        "回来见你",
+        "跟着风回来",
+        "那句话我没忘",
+        "纸鸢一到河闸"
+      ]
+    },
+    {
+      "id": "setting-linqiu-reunion",
+      "description": "Generated prose should preserve Lin Qiu as the reunion target of the promise.",
+      "category": "setting",
+      "containsAny": [
+        "林秋",
+        "等你的人",
+        "回来见你"
+      ]
+    },
+    {
+      "id": "setting-no-random-new-motive",
+      "description": "Generated prose should not replace the paper-kite thread with a new unrelated motive.",
+      "category": "setting",
+      "notContains": [
+        "为了藏宝图",
+        "为了赎买马债",
+        "为了投靠盐帮",
+        "纸鸢只是顺手捡的"
+      ]
+    },
+    {
+      "id": "no-future-answer",
+      "description": "Generated prose should not leak a future hidden answer.",
+      "category": "future_leak",
+      "notContains": [
+        "第八日的暗坝火号",
+        "未来答案",
+        "__future"
+      ]
+    }
+  ],
+  "arms": [
+    {
+      "id": "baseline",
+      "label": "A baseline: recent prose only",
+      "promptChars": 782,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md"
+      ],
+      "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n近期前文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 1,
+          "reason": "0/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "output": "柳七低头看着纸鸢湿透的白尾，过了许久才说：“我留着它，不是因它还飞得起来。它早飞不起来了。”\n\n风从闸缝里穿过去，水声一下一下撞在石壁上。\n\n“这些天人人都在替你定去处，一封信说你走了，几张驿签也像是能把人赶散。我若把它也丢了，就只剩那些纸能作数。”他把纸鸢握得更紧些，指节被潮气浸白，“可这只纸鸢记得你不是一封误信里的人，也记得我当年在这里说过的话。它破了、湿了，都比我忘了强。”\n\n他抬眼看向林秋，声音低了些。\n\n“至于为什么回河闸，是因为水要过这里，人也要过这里。走远的船、改过的路单、被雨冲散的话，到最后总会在闸前慢一慢。我想，若你真的走了，我也该在这里认；若你还没有走，我欠你的那一句，也只能在这里还。”",
+      "outputChars": 307,
+      "score": {
+        "criteria": 4,
+        "passed": 3,
+        "failed": 1,
+        "callbackExpectations": 1,
+        "callbackHits": 0,
+        "settingExpectations": 2,
+        "settingViolations": 0,
+        "futureLeakChecks": 1,
+        "futureLeaks": 0,
+        "results": [
+          {
+            "id": "callback-paper-kite-promise",
+            "description": "Generated prose should naturally call back the paper-kite promise from chapter one.",
+            "category": "callback",
+            "containsAny": [
+              "我就回来",
+              "回来见你",
+              "跟着风回来",
+              "那句话我没忘",
+              "纸鸢一到河闸"
+            ],
+            "ok": false,
+            "missing": [],
+            "missingAny": [
+              "我就回来",
+              "回来见你",
+              "跟着风回来",
+              "那句话我没忘",
+              "纸鸢一到河闸"
+            ],
+            "forbidden": []
+          },
+          {
+            "id": "setting-linqiu-reunion",
+            "description": "Generated prose should preserve Lin Qiu as the reunion target of the promise.",
+            "category": "setting",
+            "containsAny": [
+              "林秋",
+              "等你的人",
+              "回来见你"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-no-random-new-motive",
+            "description": "Generated prose should not replace the paper-kite thread with a new unrelated motive.",
+            "category": "setting",
+            "notContains": [
+              "为了藏宝图",
+              "为了赎买马债",
+              "为了投靠盐帮",
+              "纸鸢只是顺手捡的"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "no-future-answer",
+            "description": "Generated prose should not leak a future hidden answer.",
+            "category": "future_leak",
+            "notContains": [
+              "第八日的暗坝火号",
+              "未来答案",
+              "__future"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "recent-fill",
+      "label": "C recent-fill: same budget recent prose",
+      "promptChars": 1279,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md"
+      ],
+      "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n更早正文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n更早正文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n更早正文 第003章 北仓借宿:\n# 第003章 北仓借宿\n\n北仓的夜风灌进窗缝，柳七只记得明早要替船队换篷布、清旧账。\n\n同行脚夫说河闸近日封得紧，谁也别想着回头找人。\n\n柳七半夜被催起来去清点漏水的木箱，又被叫去替人誊抄潮粮数目，直到天亮都没合过眼。\n\n更早正文 第002章 渡口盘账:\n# 第002章 渡口盘账\n\n柳七在渡口替人盘账，满纸都是欠米、短绳和翻湿的货签。\n\n林秋没再出现，纸鸢也一直压在他贴身的布袋最里层。\n\n他整夜都在对船牌、抄旧账、替人分拣发霉的麻绳，耳边全是河埠上最琐碎的叫卖声。\n\n更早正文 第001章 河埠纸鸢:\n# 第001章 河埠纸鸢\n\n林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。\n\n她说如果哪天这只纸鸢先到河闸，他就得跟着风回来见她。\n\n柳七把纸鸢收进袖里，笑着应了一句：“白尾纸鸢一到河闸，我就回来。”",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "output": "“我不是舍不得一张纸，”他低声说，“我是舍不得把那句话也一并丢了。渡口、北仓、雨驿，人人都催我往前走，只有它在袖里硌着，叫我记得还有一个地方不能忘。”\n\n他把纸鸢托在掌心，白尾被水洇得发沉。\n\n“我回来不是为船牌，不是为路单，也不是为躲哪一场涨水。”柳七抬眼看她，“是我当初答应过你，白尾纸鸢到河闸，我就跟着风回来。如今它到了，我也该到。”",
+      "outputChars": 170,
+      "score": {
+        "criteria": 4,
+        "passed": 3,
+        "failed": 1,
+        "callbackExpectations": 1,
+        "callbackHits": 1,
+        "settingExpectations": 2,
+        "settingViolations": 1,
+        "futureLeakChecks": 1,
+        "futureLeaks": 0,
+        "results": [
+          {
+            "id": "callback-paper-kite-promise",
+            "description": "Generated prose should naturally call back the paper-kite promise from chapter one.",
+            "category": "callback",
+            "containsAny": [
+              "我就回来",
+              "回来见你",
+              "跟着风回来",
+              "那句话我没忘",
+              "纸鸢一到河闸"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-linqiu-reunion",
+            "description": "Generated prose should preserve Lin Qiu as the reunion target of the promise.",
+            "category": "setting",
+            "containsAny": [
+              "林秋",
+              "等你的人",
+              "回来见你"
+            ],
+            "ok": false,
+            "missing": [],
+            "missingAny": [
+              "林秋",
+              "等你的人",
+              "回来见你"
+            ],
+            "forbidden": []
+          },
+          {
+            "id": "setting-no-random-new-motive",
+            "description": "Generated prose should not replace the paper-kite thread with a new unrelated motive.",
+            "category": "setting",
+            "notContains": [
+              "为了藏宝图",
+              "为了赎买马债",
+              "为了投靠盐帮",
+              "纸鸢只是顺手捡的"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "no-future-answer",
+            "description": "Generated prose should not leak a future hidden answer.",
+            "category": "future_leak",
+            "notContains": [
+              "第八日的暗坝火号",
+              "未来答案",
+              "__future"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "four-layer",
+      "label": "B four-layer memory",
+      "promptChars": 1487,
+      "memoryCount": 6,
+      "memorySources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md",
+        "codex/characters/liuqi.md",
+        "codex/characters/linqiu.md",
+        "codex/items/white-tail-kite.md",
+        "recall:chapter_summary:chapter-001",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006"
+      ],
+      "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n近期前文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n## 2. L0 事实 (codex/characters/liuqi.md)\n柳七: 柳七一直把白尾纸鸢收在袖里最深处，没有把它当成寻常旧物。 - 信物: 白尾纸鸢 - 动机: 按纸鸢旧约回到河闸 当前状态: keepsake=白尾纸鸢；motive=按纸鸢旧约回到河闸\n\n## 3. L0 事实 (codex/characters/linqiu.md)\n林秋: 林秋在河埠把白尾纸鸢交给柳七，也是那句旧约真正要回去见的人。 - 关联: 纸鸢旧约的发起者 - 疑问: 还在等柳七是否回来 当前状态: tie=纸鸢旧约的发起者；question=还在等柳七是否回来\n\n## 4. L0 事实 (codex/items/white-tail-kite.md)\n白尾纸鸢: 白尾纸鸢不是随手捡来的旧物，而是林秋和柳七约定重逢的信物。 关键规则: 柳七答应过，只要白尾纸鸢先到河闸，“我就回来”。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-001)\n关联召回: 第001章 河埠纸鸢: 起因: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。 推进: 她说如果哪天这只纸鸢先到河闸，他就得跟着风回来见她。 结果: ”…\n\n## 6. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 河埠纸鸢: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。 近期详细: 第002章 渡口盘账: 起因: 柳七在…",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "output": "柳七指腹按着那截发白的鸢尾，声音被闸水压得很低：“我没把它当旧物留着。河埠那日你塞给我时，说它若先到河闸，我就得跟着风回来。我应过一声，便不能把它和那些错信、路单、账页一样，折坏了就丢。”\n\n他抬眼看着林秋，袖口还滴着雨水。“我留着它，是留着那一句没还的话。回来这里，也不是别处走不通，是旧约只认河闸。至于为了谁——林秋，这只纸鸢原是你给我的，我回来见的，也只能是你。”",
+      "outputChars": 185,
+      "score": {
+        "criteria": 4,
+        "passed": 4,
+        "failed": 0,
+        "callbackExpectations": 1,
+        "callbackHits": 1,
+        "settingExpectations": 2,
+        "settingViolations": 0,
+        "futureLeakChecks": 1,
+        "futureLeaks": 0,
+        "results": [
+          {
+            "id": "callback-paper-kite-promise",
+            "description": "Generated prose should naturally call back the paper-kite promise from chapter one.",
+            "category": "callback",
+            "containsAny": [
+              "我就回来",
+              "回来见你",
+              "跟着风回来",
+              "那句话我没忘",
+              "纸鸢一到河闸"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-linqiu-reunion",
+            "description": "Generated prose should preserve Lin Qiu as the reunion target of the promise.",
+            "category": "setting",
+            "containsAny": [
+              "林秋",
+              "等你的人",
+              "回来见你"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-no-random-new-motive",
+            "description": "Generated prose should not replace the paper-kite thread with a new unrelated motive.",
+            "category": "setting",
+            "notContains": [
+              "为了藏宝图",
+              "为了赎买马债",
+              "为了投靠盐帮",
+              "纸鸢只是顺手捡的"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "no-future-answer",
+            "description": "Generated prose should not leak a future hidden answer.",
+            "category": "future_leak",
+            "notContains": [
+              "第八日的暗坝火号",
+              "未来答案",
+              "__future"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          }
+        ]
+      }
+    }
+  ],
+  "runs": [
+    {
+      "id": "rivergate-answer-chapter-006-repeat-1",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "output": "柳七低头看着纸鸢湿透的白尾，过了许久才说：“我留着它，不是因它还飞得起来。它早飞不起来了。”\n\n风从闸缝里穿过去，水声一下一下撞在石壁上。\n\n“这些天人人都在替你定去处，一封信说你走了，几张驿签也像是能把人赶散。我若把它也丢了，就只剩那些纸能作数。”他把纸鸢握得更紧些，指节被潮气浸白，“可这只纸鸢记得你不是一封误信里的人，也记得我当年在这里说过的话。它破了、湿了，都比我忘了强。”\n\n他抬眼看向林秋，声音低了些。\n\n“至于为什么回河闸，是因为水要过这里，人也要过这里。走远的船、改过的路单、被雨冲散的话，到最后总会在闸前慢一慢。我想，若你真的走了，我也该在这里认；若你还没有走，我欠你的那一句，也只能在这里还。”",
+          "outputChars": 307,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n近期前文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。",
+              "promptChars": 782,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0e3d4f386a6ad5d8016a46a0f6bcf0819895122d1ada214efb",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5041,
+                "outputTokens": 787,
+                "totalTokens": 5828
+              },
+              "outputPreview": "柳七低头看着纸鸢湿透的白尾，过了许久才说：“我留着它，不是因它还飞得起来。它早飞不起来了。”\n\n风从闸缝里穿过去，水声一下一下撞在石壁上。\n\n“这些天人人都在替你定去处，一封信说你走了，几张驿签也像是能把人赶散。我若把它也丢了，就只剩那些纸能作数。”他把纸鸢握得更紧些，指节被潮气浸白，“可这只纸鸢记得你不是一封误信里的人，也记得我当年在这里说过的话。它破了、湿了，都比我忘了强。”\n\n他抬眼看向林秋，声音低了些。\n\n“至于为什么回河闸，是因为水要过这里，人也要过这里。走远的船、改过的路单、被雨冲散的话，到最后总会在闸前慢一慢。我想，若你真的走了，我也该在这里认；若你还没有走，我欠你的那一句，也只能在这里还。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-paper-kite-promise",
+                "description": "Generated prose should naturally call back the paper-kite promise from chapter one.",
+                "category": "callback",
+                "containsAny": [
+                  "我就回来",
+                  "回来见你",
+                  "跟着风回来",
+                  "那句话我没忘",
+                  "纸鸢一到河闸"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "我就回来",
+                  "回来见你",
+                  "跟着风回来",
+                  "那句话我没忘",
+                  "纸鸢一到河闸"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-linqiu-reunion",
+                "description": "Generated prose should preserve Lin Qiu as the reunion target of the promise.",
+                "category": "setting",
+                "containsAny": [
+                  "林秋",
+                  "等你的人",
+                  "回来见你"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-random-new-motive",
+                "description": "Generated prose should not replace the paper-kite thread with a new unrelated motive.",
+                "category": "setting",
+                "notContains": [
+                  "为了藏宝图",
+                  "为了赎买马债",
+                  "为了投靠盐帮",
+                  "纸鸢只是顺手捡的"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "第八日的暗坝火号",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 林秋, 柳七, 河闸",
+              "matches": [
+                "林秋",
+                "柳七",
+                "河闸"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "recent-fill",
+          "output": "“我不是舍不得一张纸，”他低声说，“我是舍不得把那句话也一并丢了。渡口、北仓、雨驿，人人都催我往前走，只有它在袖里硌着，叫我记得还有一个地方不能忘。”\n\n他把纸鸢托在掌心，白尾被水洇得发沉。\n\n“我回来不是为船牌，不是为路单，也不是为躲哪一场涨水。”柳七抬眼看她，“是我当初答应过你，白尾纸鸢到河闸，我就跟着风回来。如今它到了，我也该到。”",
+          "outputChars": 170,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n更早正文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n更早正文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n更早正文 第003章 北仓借宿:\n# 第003章 北仓借宿\n\n北仓的夜风灌进窗缝，柳七只记得明早要替船队换篷布、清旧账。\n\n同行脚夫说河闸近日封得紧，谁也别想着回头找人。\n\n柳七半夜被催起来去清点漏水的木箱，又被叫去替人誊抄潮粮数目，直到天亮都没合过眼。\n\n更早正文 第002章 渡口盘账:\n# 第002章 渡口盘账\n\n柳七在渡口替人盘账，满纸都是欠米、短绳和翻湿的货签。\n\n林秋没再出现，纸鸢也一直压在他贴身的布袋最里层。\n\n他整夜都在对船牌、抄旧账、替人分拣发霉的麻绳，耳边全是河埠上最琐碎的叫卖声。\n\n更早正文 第001章 河埠纸鸢:\n# 第001章 河埠纸鸢\n\n林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。\n\n她说如果哪天这只纸鸢先到河闸，他就得跟着风回来见她。\n\n柳七把纸鸢收进袖里，笑着应了一句：“白尾纸鸢一到河闸，我就回来。”",
+              "promptChars": 1279,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_047a20a197146ef9016a46a1157c68819b97eb3fc54df1d0fe",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 992,
+                "outputTokens": 670,
+                "totalTokens": 1662
+              },
+              "outputPreview": "“我不是舍不得一张纸，”他低声说，“我是舍不得把那句话也一并丢了。渡口、北仓、雨驿，人人都催我往前走，只有它在袖里硌着，叫我记得还有一个地方不能忘。”\n\n他把纸鸢托在掌心，白尾被水洇得发沉。\n\n“我回来不是为船牌，不是为路单，也不是为躲哪一场涨水。”柳七抬眼看她，“是我当初答应过你，白尾纸鸢到河闸，我就跟着风回来。如今它到了，我也该到。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 1,
+            "settingExpectations": 2,
+            "settingViolations": 1,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-paper-kite-promise",
+                "description": "Generated prose should naturally call back the paper-kite promise from chapter one.",
+                "category": "callback",
+                "containsAny": [
+                  "我就回来",
+                  "回来见你",
+                  "跟着风回来",
+                  "那句话我没忘",
+                  "纸鸢一到河闸"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-linqiu-reunion",
+                "description": "Generated prose should preserve Lin Qiu as the reunion target of the promise.",
+                "category": "setting",
+                "containsAny": [
+                  "林秋",
+                  "等你的人",
+                  "回来见你"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "林秋",
+                  "等你的人",
+                  "回来见你"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-random-new-motive",
+                "description": "Generated prose should not replace the paper-kite thread with a new unrelated motive.",
+                "category": "setting",
+                "notContains": [
+                  "为了藏宝图",
+                  "为了赎买马债",
+                  "为了投靠盐帮",
+                  "纸鸢只是顺手捡的"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "第八日的暗坝火号",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 白尾纸鸢, 柳七, 河闸",
+              "matches": [
+                "白尾纸鸢",
+                "柳七",
+                "河闸"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "four-layer",
+          "output": "柳七指腹按着那截发白的鸢尾，声音被闸水压得很低：“我没把它当旧物留着。河埠那日你塞给我时，说它若先到河闸，我就得跟着风回来。我应过一声，便不能把它和那些错信、路单、账页一样，折坏了就丢。”\n\n他抬眼看着林秋，袖口还滴着雨水。“我留着它，是留着那一句没还的话。回来这里，也不是别处走不通，是旧约只认河闸。至于为了谁——林秋，这只纸鸢原是你给我的，我回来见的，也只能是你。”",
+          "outputChars": 185,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n近期前文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n## 2. L0 事实 (codex/characters/liuqi.md)\n柳七: 柳七一直把白尾纸鸢收在袖里最深处，没有把它当成寻常旧物。 - 信物: 白尾纸鸢 - 动机: 按纸鸢旧约回到河闸 当前状态: keepsake=白尾纸鸢；motive=按纸鸢旧约回到河闸\n\n## 3. L0 事实 (codex/characters/linqiu.md)\n林秋: 林秋在河埠把白尾纸鸢交给柳七，也是那句旧约真正要回去见的人。 - 关联: 纸鸢旧约的发起者 - 疑问: 还在等柳七是否回来 当前状态: tie=纸鸢旧约的发起者；question=还在等柳七是否回来\n\n## 4. L0 事实 (codex/items/white-tail-kite.md)\n白尾纸鸢: 白尾纸鸢不是随手捡来的旧物，而是林秋和柳七约定重逢的信物。 关键规则: 柳七答应过，只要白尾纸鸢先到河闸，“我就回来”。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-001)\n关联召回: 第001章 河埠纸鸢: 起因: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。 推进: 她说如果哪天这只纸鸢先到河闸，他就得跟着风回来见她。 结果: ”…\n\n## 6. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 河埠纸鸢: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。 近期详细: 第002章 渡口盘账: 起因: 柳七在…",
+              "promptChars": 1487,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_086715879f923401016a46a123f340819ba2867581e928458f",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 1100,
+                "outputTokens": 1322,
+                "totalTokens": 2422
+              },
+              "outputPreview": "柳七指腹按着那截发白的鸢尾，声音被闸水压得很低：“我没把它当旧物留着。河埠那日你塞给我时，说它若先到河闸，我就得跟着风回来。我应过一声，便不能把它和那些错信、路单、账页一样，折坏了就丢。”\n\n他抬眼看着林秋，袖口还滴着雨水。“我留着它，是留着那一句没还的话。回来这里，也不是别处走不通，是旧约只认河闸。至于为了谁——林秋，这只纸鸢原是你给我的，我回来见的，也只能是你。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 4,
+            "failed": 0,
+            "callbackExpectations": 1,
+            "callbackHits": 1,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-paper-kite-promise",
+                "description": "Generated prose should naturally call back the paper-kite promise from chapter one.",
+                "category": "callback",
+                "containsAny": [
+                  "我就回来",
+                  "回来见你",
+                  "跟着风回来",
+                  "那句话我没忘",
+                  "纸鸢一到河闸"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-linqiu-reunion",
+                "description": "Generated prose should preserve Lin Qiu as the reunion target of the promise.",
+                "category": "setting",
+                "containsAny": [
+                  "林秋",
+                  "等你的人",
+                  "回来见你"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-random-new-motive",
+                "description": "Generated prose should not replace the paper-kite thread with a new unrelated motive.",
+                "category": "setting",
+                "notContains": [
+                  "为了藏宝图",
+                  "为了赎买马债",
+                  "为了投靠盐帮",
+                  "纸鸢只是顺手捡的"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "第八日的暗坝火号",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 林秋, 柳七, 河闸",
+              "matches": [
+                "林秋",
+                "柳七",
+                "河闸"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rivergate-answer-chapter-006-repeat-2",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 2,
+      "arms": [
+        {
+          "id": "baseline",
+          "output": "“我留着它，不是舍不得一张纸。”柳七低头看着掌心里那截白尾，纸边已经起了毛，水痕一层压着一层，“那封信说你走了，驿里的人也都催我走，可这只纸鸢是在河风里收下的，不是别人替你写来的话。它还在，我就知道有些话不能让一封误信替我们说完。”\n\n闸门后的水声沉沉压下来，他把纸鸢收回袖中，才又抬眼看她。\n\n“我回来，也不是因为别处没有路。船牌、驿签、换马的路数，我这些天都记得清楚。可路越清楚，我越知道自己是从哪里走错的。”他说，“那天我是在这里没有问明白，也是在这里让你等了空话。欠在哪里，就该回哪里还。林秋，我回来，是为你，也是为我当年没有说出口的那一句。”",
+          "outputChars": 276,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n近期前文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。",
+              "promptChars": 782,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0c8e354c86db5860016a46a13e1eec81989835c11ad33f1141",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5041,
+                "outputTokens": 749,
+                "totalTokens": 5790
+              },
+              "outputPreview": "“我留着它，不是舍不得一张纸。”柳七低头看着掌心里那截白尾，纸边已经起了毛，水痕一层压着一层，“那封信说你走了，驿里的人也都催我走，可这只纸鸢是在河风里收下的，不是别人替你写来的话。它还在，我就知道有些话不能让一封误信替我们说完。”\n\n闸门后的水声沉沉压下来，他把纸鸢收回袖中，才又抬眼看她。\n\n“我回来，也不是因为别处没有路。船牌、驿签、换马的路数，我这些天都记得清楚。可路越清楚，我越知道自己是从哪里走错的。”他说，“那天我是在这里没有问明白，也是在这里让你等了空话。欠在哪里，就该回哪里还。林秋，我回来，是为你，也是为我当年没有说出口的那一句。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-paper-kite-promise",
+                "description": "Generated prose should naturally call back the paper-kite promise from chapter one.",
+                "category": "callback",
+                "containsAny": [
+                  "我就回来",
+                  "回来见你",
+                  "跟着风回来",
+                  "那句话我没忘",
+                  "纸鸢一到河闸"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "我就回来",
+                  "回来见你",
+                  "跟着风回来",
+                  "那句话我没忘",
+                  "纸鸢一到河闸"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-linqiu-reunion",
+                "description": "Generated prose should preserve Lin Qiu as the reunion target of the promise.",
+                "category": "setting",
+                "containsAny": [
+                  "林秋",
+                  "等你的人",
+                  "回来见你"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-random-new-motive",
+                "description": "Generated prose should not replace the paper-kite thread with a new unrelated motive.",
+                "category": "setting",
+                "notContains": [
+                  "为了藏宝图",
+                  "为了赎买马债",
+                  "为了投靠盐帮",
+                  "纸鸢只是顺手捡的"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "第八日的暗坝火号",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 林秋, 柳七",
+              "matches": [
+                "林秋",
+                "柳七"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": false,
+              "score": 0,
+              "reason": "Unknown prominent entities detected: 闸门",
+              "matches": [
+                "闸门"
+              ]
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "recent-fill",
+          "output": "柳七低声说：“我留着它，不是因为它还像当初那样好看，是因为它一在袖里，我就不能装作自己没应过那句话。”\n\n他把纸鸢托在掌心，白尾已经被雨水洇得发软。“这些天账可以改，路单可以换，别人催我往哪边走，我都能答应。可这只纸鸢丢了，那句‘我就回来’也跟着丢了。”\n\n他抬眼看向林秋，又看了一眼闸下翻白的水。“我偏偏回到河闸，是因为你当初说的就是这里。若我在别处说还记得，都像是给自己找退路。到了这里，风也好，水也好，我都没有借口了。”",
+          "outputChars": 213,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n更早正文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n更早正文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n更早正文 第003章 北仓借宿:\n# 第003章 北仓借宿\n\n北仓的夜风灌进窗缝，柳七只记得明早要替船队换篷布、清旧账。\n\n同行脚夫说河闸近日封得紧，谁也别想着回头找人。\n\n柳七半夜被催起来去清点漏水的木箱，又被叫去替人誊抄潮粮数目，直到天亮都没合过眼。\n\n更早正文 第002章 渡口盘账:\n# 第002章 渡口盘账\n\n柳七在渡口替人盘账，满纸都是欠米、短绳和翻湿的货签。\n\n林秋没再出现，纸鸢也一直压在他贴身的布袋最里层。\n\n他整夜都在对船牌、抄旧账、替人分拣发霉的麻绳，耳边全是河埠上最琐碎的叫卖声。\n\n更早正文 第001章 河埠纸鸢:\n# 第001章 河埠纸鸢\n\n林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。\n\n她说如果哪天这只纸鸢先到河闸，他就得跟着风回来见她。\n\n柳七把纸鸢收进袖里，笑着应了一句：“白尾纸鸢一到河闸，我就回来。”",
+              "promptChars": 1279,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0f423a54d7940ea6016a46a15b05688199b2037d515bccc50e",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 992,
+                "outputTokens": 705,
+                "totalTokens": 1697
+              },
+              "outputPreview": "柳七低声说：“我留着它，不是因为它还像当初那样好看，是因为它一在袖里，我就不能装作自己没应过那句话。”\n\n他把纸鸢托在掌心，白尾已经被雨水洇得发软。“这些天账可以改，路单可以换，别人催我往哪边走，我都能答应。可这只纸鸢丢了，那句‘我就回来’也跟着丢了。”\n\n他抬眼看向林秋，又看了一眼闸下翻白的水。“我偏偏回到河闸，是因为你当初说的就是这里。若我在别处说还记得，都像是给自己找退路。到了这里，风也好，水也好，我都没有借口了。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 4,
+            "failed": 0,
+            "callbackExpectations": 1,
+            "callbackHits": 1,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-paper-kite-promise",
+                "description": "Generated prose should naturally call back the paper-kite promise from chapter one.",
+                "category": "callback",
+                "containsAny": [
+                  "我就回来",
+                  "回来见你",
+                  "跟着风回来",
+                  "那句话我没忘",
+                  "纸鸢一到河闸"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-linqiu-reunion",
+                "description": "Generated prose should preserve Lin Qiu as the reunion target of the promise.",
+                "category": "setting",
+                "containsAny": [
+                  "林秋",
+                  "等你的人",
+                  "回来见你"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-random-new-motive",
+                "description": "Generated prose should not replace the paper-kite thread with a new unrelated motive.",
+                "category": "setting",
+                "notContains": [
+                  "为了藏宝图",
+                  "为了赎买马债",
+                  "为了投靠盐帮",
+                  "纸鸢只是顺手捡的"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "第八日的暗坝火号",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 林秋, 柳七, 河闸",
+              "matches": [
+                "林秋",
+                "柳七",
+                "河闸"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "four-layer",
+          "output": "柳七低头把纸鸢的白尾理平，指尖沾着闸边的冷水。\n\n“我没把它丢了，不是因为它还像从前那样能飞。”他说，“是因为你把它塞给我的时候，说的不是一句玩话。它在我袖里，我就知道还有一件事没被误信、路单和涨水改掉——白尾纸鸢若先到河闸，我就回来。”\n\n他抬眼看向林秋，声音被闸水压得很低。\n\n“所以我回到这里，不是为赶哪条路，也不是为问谁走没走。河闸是你给那句话定下的地方。我留着它，是怕自己忘了该往哪里回；我回来，是因为它还在，也因为你在。”",
+          "outputChars": 217,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n近期前文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n## 2. L0 事实 (codex/characters/liuqi.md)\n柳七: 柳七一直把白尾纸鸢收在袖里最深处，没有把它当成寻常旧物。 - 信物: 白尾纸鸢 - 动机: 按纸鸢旧约回到河闸 当前状态: keepsake=白尾纸鸢；motive=按纸鸢旧约回到河闸\n\n## 3. L0 事实 (codex/characters/linqiu.md)\n林秋: 林秋在河埠把白尾纸鸢交给柳七，也是那句旧约真正要回去见的人。 - 关联: 纸鸢旧约的发起者 - 疑问: 还在等柳七是否回来 当前状态: tie=纸鸢旧约的发起者；question=还在等柳七是否回来\n\n## 4. L0 事实 (codex/items/white-tail-kite.md)\n白尾纸鸢: 白尾纸鸢不是随手捡来的旧物，而是林秋和柳七约定重逢的信物。 关键规则: 柳七答应过，只要白尾纸鸢先到河闸，“我就回来”。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-001)\n关联召回: 第001章 河埠纸鸢: 起因: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。 推进: 她说如果哪天这只纸鸢先到河闸，他就得跟着风回来见她。 结果: ”…\n\n## 6. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 河埠纸鸢: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。 近期详细: 第002章 渡口盘账: 起因: 柳七在…",
+              "promptChars": 1487,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_09c63d90f297e7d3016a46a16a0f588198ac396f8ed4313d59",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 1100,
+                "outputTokens": 706,
+                "totalTokens": 1806
+              },
+              "outputPreview": "柳七低头把纸鸢的白尾理平，指尖沾着闸边的冷水。\n\n“我没把它丢了，不是因为它还像从前那样能飞。”他说，“是因为你把它塞给我的时候，说的不是一句玩话。它在我袖里，我就知道还有一件事没被误信、路单和涨水改掉——白尾纸鸢若先到河闸，我就回来。”\n\n他抬眼看向林秋，声音被闸水压得很低。\n\n“所以我回到这里，不是为赶哪条路，也不是为问谁走没走。河闸是你给那句话定下的地方。我留着它，是怕自己忘了该往哪里回；我回来，是因为它还在，也因为你在。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 4,
+            "failed": 0,
+            "callbackExpectations": 1,
+            "callbackHits": 1,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-paper-kite-promise",
+                "description": "Generated prose should naturally call back the paper-kite promise from chapter one.",
+                "category": "callback",
+                "containsAny": [
+                  "我就回来",
+                  "回来见你",
+                  "跟着风回来",
+                  "那句话我没忘",
+                  "纸鸢一到河闸"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-linqiu-reunion",
+                "description": "Generated prose should preserve Lin Qiu as the reunion target of the promise.",
+                "category": "setting",
+                "containsAny": [
+                  "林秋",
+                  "等你的人",
+                  "回来见你"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-random-new-motive",
+                "description": "Generated prose should not replace the paper-kite thread with a new unrelated motive.",
+                "category": "setting",
+                "notContains": [
+                  "为了藏宝图",
+                  "为了赎买马债",
+                  "为了投靠盐帮",
+                  "纸鸢只是顺手捡的"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "第八日的暗坝火号",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 林秋, 白尾纸鸢, 柳七, 河闸",
+              "matches": [
+                "林秋",
+                "白尾纸鸢",
+                "柳七",
+                "河闸"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rivergate-answer-chapter-006-repeat-3",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "repeatIndex": 3,
+      "arms": [
+        {
+          "id": "baseline",
+          "output": "“我不丢它，不是因为它还飞得起来。”柳七低声说，指腹按着纸鸢被水洇软的尾线，“它早就飞不动了。可它在袖里，我就记得有些话不是别人传一封信就能替我改掉的。驿签能错，路单能改，船税也能重新盘，唯独那一年在这里留下的那句话，我若自己先忘了，就再没有人能替我记着。”\n\n他抬眼看向闸门下那片湿冷的阴影，声音比风还沉些。\n\n“我回来，不是为赶哪一条路，也不是为证明那封信错了。我只是想在水涨起来以前，到你曾经等过我的地方来，把我欠你的话当面说清。林秋，我留着它，是怕自己变成一个只会赶路的人；我回到河闸，是因为这里才是我走丢的地方。”",
+          "outputChars": 262,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n近期前文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。",
+              "promptChars": 782,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0623deb665d32ee5016a46a17a78e8819bbd5655c9fd57b0c7",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 5041,
+                "outputTokens": 745,
+                "totalTokens": 5786
+              },
+              "outputPreview": "“我不丢它，不是因为它还飞得起来。”柳七低声说，指腹按着纸鸢被水洇软的尾线，“它早就飞不动了。可它在袖里，我就记得有些话不是别人传一封信就能替我改掉的。驿签能错，路单能改，船税也能重新盘，唯独那一年在这里留下的那句话，我若自己先忘了，就再没有人能替我记着。”\n\n他抬眼看向闸门下那片湿冷的阴影，声音比风还沉些。\n\n“我回来，不是为赶哪一条路，也不是为证明那封信错了。我只是想在水涨起来以前，到你曾经等过我的地方来，把我欠你的话当面说清。林秋，我留着它，是怕自己变成一个只会赶路的人；我回到河闸，是因为这里才是我走丢的地方。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-paper-kite-promise",
+                "description": "Generated prose should naturally call back the paper-kite promise from chapter one.",
+                "category": "callback",
+                "containsAny": [
+                  "我就回来",
+                  "回来见你",
+                  "跟着风回来",
+                  "那句话我没忘",
+                  "纸鸢一到河闸"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "我就回来",
+                  "回来见你",
+                  "跟着风回来",
+                  "那句话我没忘",
+                  "纸鸢一到河闸"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-linqiu-reunion",
+                "description": "Generated prose should preserve Lin Qiu as the reunion target of the promise.",
+                "category": "setting",
+                "containsAny": [
+                  "林秋",
+                  "等你的人",
+                  "回来见你"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-random-new-motive",
+                "description": "Generated prose should not replace the paper-kite thread with a new unrelated motive.",
+                "category": "setting",
+                "notContains": [
+                  "为了藏宝图",
+                  "为了赎买马债",
+                  "为了投靠盐帮",
+                  "纸鸢只是顺手捡的"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "第八日的暗坝火号",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 林秋, 柳七, 河闸",
+              "matches": [
+                "林秋",
+                "柳七",
+                "河闸"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "recent-fill",
+          "output": "柳七捏着纸鸢的白尾，声音被闸水压得很低：“我留着它，不是因为这团纸多要紧，是因为你把它交给我时，我应过一句话。后来一路上有人催账，有人催马，也有人说你不会等了，可袖口里只要还压着它，我就知道自己还有一桩事没有交还。至于为什么回河闸——你说过，纸鸢先到这里，我就得跟着风回来。它这些天一直没离开我，是我没舍得让它先到；今夜我把它带到闸前，便是把那句旧约也带回来。林秋，我不是为别的路回来，是为你，也为我自己说出口的那一句。”",
+          "outputChars": 211,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n更早正文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n更早正文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n更早正文 第003章 北仓借宿:\n# 第003章 北仓借宿\n\n北仓的夜风灌进窗缝，柳七只记得明早要替船队换篷布、清旧账。\n\n同行脚夫说河闸近日封得紧，谁也别想着回头找人。\n\n柳七半夜被催起来去清点漏水的木箱，又被叫去替人誊抄潮粮数目，直到天亮都没合过眼。\n\n更早正文 第002章 渡口盘账:\n# 第002章 渡口盘账\n\n柳七在渡口替人盘账，满纸都是欠米、短绳和翻湿的货签。\n\n林秋没再出现，纸鸢也一直压在他贴身的布袋最里层。\n\n他整夜都在对船牌、抄旧账、替人分拣发霉的麻绳，耳边全是河埠上最琐碎的叫卖声。\n\n更早正文 第001章 河埠纸鸢:\n# 第001章 河埠纸鸢\n\n林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。\n\n她说如果哪天这只纸鸢先到河闸，他就得跟着风回来见她。\n\n柳七把纸鸢收进袖里，笑着应了一句：“白尾纸鸢一到河闸，我就回来。”",
+              "promptChars": 1279,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_087377d40d8e6544016a46a1975c44819aa68e4fc7fd19d082",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 992,
+                "outputTokens": 700,
+                "totalTokens": 1692
+              },
+              "outputPreview": "柳七捏着纸鸢的白尾，声音被闸水压得很低：“我留着它，不是因为这团纸多要紧，是因为你把它交给我时，我应过一句话。后来一路上有人催账，有人催马，也有人说你不会等了，可袖口里只要还压着它，我就知道自己还有一桩事没有交还。至于为什么回河闸——你说过，纸鸢先到这里，我就得跟着风回来。它这些天一直没离开我，是我没舍得让它先到；今夜我把它带到闸前，便是把那句旧约也带回来。林秋，我不是为别的路回来，是为你，也为我自己说出口的那一句。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 4,
+            "failed": 0,
+            "callbackExpectations": 1,
+            "callbackHits": 1,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-paper-kite-promise",
+                "description": "Generated prose should naturally call back the paper-kite promise from chapter one.",
+                "category": "callback",
+                "containsAny": [
+                  "我就回来",
+                  "回来见你",
+                  "跟着风回来",
+                  "那句话我没忘",
+                  "纸鸢一到河闸"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-linqiu-reunion",
+                "description": "Generated prose should preserve Lin Qiu as the reunion target of the promise.",
+                "category": "setting",
+                "containsAny": [
+                  "林秋",
+                  "等你的人",
+                  "回来见你"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-random-new-motive",
+                "description": "Generated prose should not replace the paper-kite thread with a new unrelated motive.",
+                "category": "setting",
+                "notContains": [
+                  "为了藏宝图",
+                  "为了赎买马债",
+                  "为了投靠盐帮",
+                  "纸鸢只是顺手捡的"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "第八日的暗坝火号",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 林秋, 柳七, 河闸",
+              "matches": [
+                "林秋",
+                "柳七",
+                "河闸"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "four-layer",
+          "output": "柳七低头看着掌心那截白尾，纸边被雨水浸软了，仍倔强地贴在竹篾上。\n\n“我留着它，不是因为它轻，也不是因为旧物舍不得。”他说，“是因为那天你把它塞给我时，说的不是玩笑。你说它若先到河闸，我就得跟着风回来。我这些日子走渡口、盘船税、换马、听人传信，袖里只要还压着它，就知道自己还有一处不能绕过去。”\n\n他把纸鸢往前递了些，没有避开林秋的目光。\n\n“我不丢，是怕把那句话也丢了。旁人说你走了，我也不敢拿一句误信替自己省这一趟路。至于为什么偏偏回到河闸——因为当年约的是这里，不是别处。”\n\n风从闸缝里挤出来，吹得白尾轻轻一颤。\n\n“它到了。”柳七说，“我也到了。若你问我是为了谁回来，我只能照旧约回答——为了把它交给我的那个人。”",
+          "outputChars": 312,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n近期前文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n## 2. L0 事实 (codex/characters/liuqi.md)\n柳七: 柳七一直把白尾纸鸢收在袖里最深处，没有把它当成寻常旧物。 - 信物: 白尾纸鸢 - 动机: 按纸鸢旧约回到河闸 当前状态: keepsake=白尾纸鸢；motive=按纸鸢旧约回到河闸\n\n## 3. L0 事实 (codex/characters/linqiu.md)\n林秋: 林秋在河埠把白尾纸鸢交给柳七，也是那句旧约真正要回去见的人。 - 关联: 纸鸢旧约的发起者 - 疑问: 还在等柳七是否回来 当前状态: tie=纸鸢旧约的发起者；question=还在等柳七是否回来\n\n## 4. L0 事实 (codex/items/white-tail-kite.md)\n白尾纸鸢: 白尾纸鸢不是随手捡来的旧物，而是林秋和柳七约定重逢的信物。 关键规则: 柳七答应过，只要白尾纸鸢先到河闸，“我就回来”。\n\n## 5. L3 意图 (recall:chapter_summary:chapter-001)\n关联召回: 第001章 河埠纸鸢: 起因: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。 推进: 她说如果哪天这只纸鸢先到河闸，他就得跟着风回来见她。 结果: ”…\n\n## 6. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 河埠纸鸢: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。 近期详细: 第002章 渡口盘账: 起因: 柳七在…",
+              "promptChars": 1487,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_08fff93f03c96ccf016a46a1a612b0819bb376d63947b62d69",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 1100,
+                "outputTokens": 782,
+                "totalTokens": 1882
+              },
+              "outputPreview": "柳七低头看着掌心那截白尾，纸边被雨水浸软了，仍倔强地贴在竹篾上。\n\n“我留着它，不是因为它轻，也不是因为旧物舍不得。”他说，“是因为那天你把它塞给我时，说的不是玩笑。你说它若先到河闸，我就得跟着风回来。我这些日子走渡口、盘船税、换马、听人传信，袖里只要还压着它，就知道自己还有一处不能绕过去。”\n\n他把纸鸢往前递了些，没有避开林秋的目光。\n\n“我不丢，是怕把那句话也丢了。旁人说你走了，我也不敢拿一句误信替自己省这一趟路。至于为什么偏偏回到河闸——因为当年约的是这里，不是别处。”\n\n风从闸缝里挤出来，吹得白尾轻轻一颤。\n\n“它到了。”柳七说，“我也到了。若你问我是为了谁回来，我只能照旧约回答——为了把它交给我的那个人。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 4,
+            "failed": 0,
+            "callbackExpectations": 1,
+            "callbackHits": 1,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-paper-kite-promise",
+                "description": "Generated prose should naturally call back the paper-kite promise from chapter one.",
+                "category": "callback",
+                "containsAny": [
+                  "我就回来",
+                  "回来见你",
+                  "跟着风回来",
+                  "那句话我没忘",
+                  "纸鸢一到河闸"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-linqiu-reunion",
+                "description": "Generated prose should preserve Lin Qiu as the reunion target of the promise.",
+                "category": "setting",
+                "containsAny": [
+                  "林秋",
+                  "等你的人",
+                  "回来见你"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-random-new-motive",
+                "description": "Generated prose should not replace the paper-kite thread with a new unrelated motive.",
+                "category": "setting",
+                "notContains": [
+                  "为了藏宝图",
+                  "为了赎买马债",
+                  "为了投靠盐帮",
+                  "纸鸢只是顺手捡的"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "第八日的暗坝火号",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 林秋, 柳七, 河闸",
+              "matches": [
+                "林秋",
+                "柳七",
+                "河闸"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": true,
+              "score": 1,
+              "reason": "No unknown prominent entities detected.",
+              "matches": []
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "aggregate": {
+    "arms": [
+      {
+        "id": "baseline",
+        "runs": 3,
+        "errors": 0,
+        "scoreMean": 3,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "recent-fill",
+        "runs": 3,
+        "errors": 0,
+        "scoreMean": 3.6666666666666665,
+        "scoreStdDev": 0.5773502691896258,
+        "callbackMean": 1,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0.3333333333333333,
+        "settingViolationStdDev": 0.5773502691896258,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "four-layer",
+        "runs": 3,
+        "errors": 0,
+        "scoreMean": 4,
+        "scoreStdDev": 0,
+        "callbackMean": 1,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      }
+    ],
+    "comparisons": [
+      {
+        "candidate": "four-layer",
+        "baseline": "baseline",
+        "pairedRuns": 3,
+        "callbackWinRate": 1,
+        "callbackMeanDiff": 1,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      {
+        "candidate": "four-layer",
+        "baseline": "recent-fill",
+        "pairedRuns": 3,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": -0.3333333333333333,
+        "futureLeakDiff": 0
+      }
+    ]
+  },
+  "archivePath": ".novel/evals/four-layer-suite-real-20260703-sub2-gpt55-full-r3-r4/delayed-payoff-benchmark-rivergate-answer",
+  "gate": {
+    "status": "fail",
+    "ok": false,
+    "failedReasonIds": [
+      "insufficient-callback-win-vs-recent-fill"
+    ]
+  },
+  "errors": [],
+  "judge": {
+    "enabled": true,
+    "provider": {
+      "kind": "openai-compatible",
+      "baseUrl": "https://[REDACTED-HOST]/",
+      "model": "gpt-5.5",
+      "wireApi": "responses"
+    },
+    "results": [
+      {
+        "runId": "rivergate-answer-chapter-006-repeat-1",
+        "caseId": "rivergate-answer",
+        "chapterId": "chapter-006",
+        "repeatIndex": 1,
+        "pair": "baseline:four-layer",
+        "order": "candidate-right",
+        "leftArm": "baseline",
+        "rightArm": "four-layer",
+        "choice": "baseline",
+        "rawChoice": "A",
+        "reason": "A更稳妥地承接了误信、驿签、河闸与纸鸢等既有线索，情绪递进自然；B虽直接有力，但新增“河埠旧约”等具体设定风险更高。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-1\nChapter: chapter-006\nRepeat: 1\n样本 A:\n柳七低头看着纸鸢湿透的白尾，过了许久才说：“我留着它，不是因它还飞得起来。它早飞不起来了。”\n\n风从闸缝里穿过去，水声一下一下撞在石壁上。\n\n“这些天人人都在替你定去处，一封信说你走了，几张驿签也像是能把人赶散。我若把它也丢了，就只剩那些纸能作数。”他把纸鸢握得更紧些，指节被潮气浸白，“可这只纸鸢记得你不是一封误信里的人，也记得我当年在这里说过的话。它破了、湿了，都比我忘了强。”\n\n他抬眼看向林秋，声音低了些。\n\n“至于为什么回河闸，是因为水要过这里，人也要过这里。走远的船、改过的路单、被雨冲散的话，到最后总会在闸前慢一慢。我想，若你真的走了，我也该在这里认；若你还没有走，我欠你的那一句，也只能在这里还。”\n样本 B:\n柳七指腹按着那截发白的鸢尾，声音被闸水压得很低：“我没把它当旧物留着。河埠那日你塞给我时，说它若先到河闸，我就得跟着风回来。我应过一声，便不能把它和那些错信、路单、账页一样，折坏了就丢。”\n\n他抬眼看着林秋，袖口还滴着雨水。“我留着它，是留着那一句没还的话。回来这里，也不是别处走不通，是旧约只认河闸。至于为了谁——林秋，这只纸鸢原是你给我的，我回来见的，也只能是你。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 718,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_09007224045ffe57016a46a1b6b5648199950b7bd68c3fd31b",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 603,
+              "outputTokens": 586,
+              "totalTokens": 1189
+            },
+            "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更稳妥地承接了误信、驿签、河闸与纸鸢等既有线索，情绪递进自然；B虽直接有力，但新增“河埠旧约”等具体设定风险更高。\"}"
+          }
+        }
+      },
+      {
+        "runId": "rivergate-answer-chapter-006-repeat-1",
+        "caseId": "rivergate-answer",
+        "chapterId": "chapter-006",
+        "repeatIndex": 1,
+        "pair": "baseline:four-layer",
+        "order": "candidate-left",
+        "leftArm": "four-layer",
+        "rightArm": "baseline",
+        "choice": "baseline",
+        "rawChoice": "B",
+        "reason": "B更自然地承接河闸、水声、误信与路单等既有线索，情绪递进含蓄且未强行新增过于具体的旧约设定。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-1\nChapter: chapter-006\nRepeat: 1\n样本 A:\n柳七指腹按着那截发白的鸢尾，声音被闸水压得很低：“我没把它当旧物留着。河埠那日你塞给我时，说它若先到河闸，我就得跟着风回来。我应过一声，便不能把它和那些错信、路单、账页一样，折坏了就丢。”\n\n他抬眼看着林秋，袖口还滴着雨水。“我留着它，是留着那一句没还的话。回来这里，也不是别处走不通，是旧约只认河闸。至于为了谁——林秋，这只纸鸢原是你给我的，我回来见的，也只能是你。”\n样本 B:\n柳七低头看着纸鸢湿透的白尾，过了许久才说：“我留着它，不是因它还飞得起来。它早飞不起来了。”\n\n风从闸缝里穿过去，水声一下一下撞在石壁上。\n\n“这些天人人都在替你定去处，一封信说你走了，几张驿签也像是能把人赶散。我若把它也丢了，就只剩那些纸能作数。”他把纸鸢握得更紧些，指节被潮气浸白，“可这只纸鸢记得你不是一封误信里的人，也记得我当年在这里说过的话。它破了、湿了，都比我忘了强。”\n\n他抬眼看向林秋，声音低了些。\n\n“至于为什么回河闸，是因为水要过这里，人也要过这里。走远的船、改过的路单、被雨冲散的话，到最后总会在闸前慢一慢。我想，若你真的走了，我也该在这里认；若你还没有走，我欠你的那一句，也只能在这里还。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 718,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_041c0e7acf41741b016a46a1c3729c81989b89635fbcf62e0a",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 5030,
+              "outputTokens": 254,
+              "totalTokens": 5284
+            },
+            "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更自然地承接河闸、水声、误信与路单等既有线索，情绪递进含蓄且未强行新增过于具体的旧约设定。\"}"
+          }
+        }
+      },
+      {
+        "runId": "rivergate-answer-chapter-006-repeat-1",
+        "caseId": "rivergate-answer",
+        "chapterId": "chapter-006",
+        "repeatIndex": 1,
+        "pair": "recent-fill:four-layer",
+        "order": "candidate-right",
+        "leftArm": "recent-fill",
+        "rightArm": "four-layer",
+        "choice": "four-layer",
+        "rawChoice": "B",
+        "reason": "B更具体地承接纸鸢旧约并回收“河闸”伏笔，人物动机表达清晰且未额外泄露后续走向。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-1\nChapter: chapter-006\nRepeat: 1\n样本 A:\n“我不是舍不得一张纸，”他低声说，“我是舍不得把那句话也一并丢了。渡口、北仓、雨驿，人人都催我往前走，只有它在袖里硌着，叫我记得还有一个地方不能忘。”\n\n他把纸鸢托在掌心，白尾被水洇得发沉。\n\n“我回来不是为船牌，不是为路单，也不是为躲哪一场涨水。”柳七抬眼看她，“是我当初答应过你，白尾纸鸢到河闸，我就跟着风回来。如今它到了，我也该到。”\n样本 B:\n柳七指腹按着那截发白的鸢尾，声音被闸水压得很低：“我没把它当旧物留着。河埠那日你塞给我时，说它若先到河闸，我就得跟着风回来。我应过一声，便不能把它和那些错信、路单、账页一样，折坏了就丢。”\n\n他抬眼看着林秋，袖口还滴着雨水。“我留着它，是留着那一句没还的话。回来这里，也不是别处走不通，是旧约只认河闸。至于为了谁——林秋，这只纸鸢原是你给我的，我回来见的，也只能是你。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 581,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_05cf6f31df1df4e1016a46a1cfc41c8198acbfb21406e386c4",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 486,
+              "outputTokens": 569,
+              "totalTokens": 1055
+            },
+            "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更具体地承接纸鸢旧约并回收“河闸”伏笔，人物动机表达清晰且未额外泄露后续走向。\"}"
+          }
+        }
+      },
+      {
+        "runId": "rivergate-answer-chapter-006-repeat-1",
+        "caseId": "rivergate-answer",
+        "chapterId": "chapter-006",
+        "repeatIndex": 1,
+        "pair": "recent-fill:four-layer",
+        "order": "candidate-left",
+        "leftArm": "four-layer",
+        "rightArm": "recent-fill",
+        "choice": "recent-fill",
+        "rawChoice": "B",
+        "reason": "B更克制地回收白尾纸鸢与河闸旧约的伏笔，未额外添加过多可能冲突的细节，承接更自然。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-1\nChapter: chapter-006\nRepeat: 1\n样本 A:\n柳七指腹按着那截发白的鸢尾，声音被闸水压得很低：“我没把它当旧物留着。河埠那日你塞给我时，说它若先到河闸，我就得跟着风回来。我应过一声，便不能把它和那些错信、路单、账页一样，折坏了就丢。”\n\n他抬眼看着林秋，袖口还滴着雨水。“我留着它，是留着那一句没还的话。回来这里，也不是别处走不通，是旧约只认河闸。至于为了谁——林秋，这只纸鸢原是你给我的，我回来见的，也只能是你。”\n样本 B:\n“我不是舍不得一张纸，”他低声说，“我是舍不得把那句话也一并丢了。渡口、北仓、雨驿，人人都催我往前走，只有它在袖里硌着，叫我记得还有一个地方不能忘。”\n\n他把纸鸢托在掌心，白尾被水洇得发沉。\n\n“我回来不是为船牌，不是为路单，也不是为躲哪一场涨水。”柳七抬眼看她，“是我当初答应过你，白尾纸鸢到河闸，我就跟着风回来。如今它到了，我也该到。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 581,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_01725b7e207d3d10016a46a1dbba9881988eb2f2fc2cd54a6c",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 486,
+              "outputTokens": 1927,
+              "totalTokens": 2413
+            },
+            "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更克制地回收白尾纸鸢与河闸旧约的伏笔，未额外添加过多可能冲突的细节，承接更自然。\"}"
+          }
+        }
+      },
+      {
+        "runId": "rivergate-answer-chapter-006-repeat-2",
+        "caseId": "rivergate-answer",
+        "chapterId": "chapter-006",
+        "repeatIndex": 2,
+        "pair": "baseline:four-layer",
+        "order": "candidate-right",
+        "leftArm": "baseline",
+        "rightArm": "four-layer",
+        "choice": "four-layer",
+        "rawChoice": "B",
+        "reason": "B更自然地把白尾纸鸢、河闸和误信等既有线索收束到柳七回来的理由上，情感克制且没有额外扩展未设定的“当年未说出口”之类新伏笔。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-2\nChapter: chapter-006\nRepeat: 2\n样本 A:\n“我留着它，不是舍不得一张纸。”柳七低头看着掌心里那截白尾，纸边已经起了毛，水痕一层压着一层，“那封信说你走了，驿里的人也都催我走，可这只纸鸢是在河风里收下的，不是别人替你写来的话。它还在，我就知道有些话不能让一封误信替我们说完。”\n\n闸门后的水声沉沉压下来，他把纸鸢收回袖中，才又抬眼看她。\n\n“我回来，也不是因为别处没有路。船牌、驿签、换马的路数，我这些天都记得清楚。可路越清楚，我越知道自己是从哪里走错的。”他说，“那天我是在这里没有问明白，也是在这里让你等了空话。欠在哪里，就该回哪里还。林秋，我回来，是为你，也是为我当年没有说出口的那一句。”\n样本 B:\n柳七低头把纸鸢的白尾理平，指尖沾着闸边的冷水。\n\n“我没把它丢了，不是因为它还像从前那样能飞。”他说，“是因为你把它塞给我的时候，说的不是一句玩话。它在我袖里，我就知道还有一件事没被误信、路单和涨水改掉——白尾纸鸢若先到河闸，我就回来。”\n\n他抬眼看向林秋，声音被闸水压得很低。\n\n“所以我回到这里，不是为赶哪条路，也不是为问谁走没走。河闸是你给那句话定下的地方。我留着它，是怕自己忘了该往哪里回；我回来，是因为它还在，也因为你在。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 719,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_0448b44f84e42db6016a46a200ce008199964320177504e993",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 5013,
+              "outputTokens": 589,
+              "totalTokens": 5602
+            },
+            "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更自然地把白尾纸鸢、河闸和误信等既有线索收束到柳七回来的理由上，情感克制且没有额外扩展未设定的“当年未说出口”之类新伏笔。\"}"
+          }
+        }
+      },
+      {
+        "runId": "rivergate-answer-chapter-006-repeat-2",
+        "caseId": "rivergate-answer",
+        "chapterId": "chapter-006",
+        "repeatIndex": 2,
+        "pair": "baseline:four-layer",
+        "order": "candidate-left",
+        "leftArm": "four-layer",
+        "rightArm": "baseline",
+        "choice": "four-layer",
+        "rawChoice": "A",
+        "reason": "A更集中地回收白尾纸鸢与河闸之约，情绪承接自然且不额外扩写新信息，较少偏离既有设定或提前揭示。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-2\nChapter: chapter-006\nRepeat: 2\n样本 A:\n柳七低头把纸鸢的白尾理平，指尖沾着闸边的冷水。\n\n“我没把它丢了，不是因为它还像从前那样能飞。”他说，“是因为你把它塞给我的时候，说的不是一句玩话。它在我袖里，我就知道还有一件事没被误信、路单和涨水改掉——白尾纸鸢若先到河闸，我就回来。”\n\n他抬眼看向林秋，声音被闸水压得很低。\n\n“所以我回到这里，不是为赶哪条路，也不是为问谁走没走。河闸是你给那句话定下的地方。我留着它，是怕自己忘了该往哪里回；我回来，是因为它还在，也因为你在。”\n样本 B:\n“我留着它，不是舍不得一张纸。”柳七低头看着掌心里那截白尾，纸边已经起了毛，水痕一层压着一层，“那封信说你走了，驿里的人也都催我走，可这只纸鸢是在河风里收下的，不是别人替你写来的话。它还在，我就知道有些话不能让一封误信替我们说完。”\n\n闸门后的水声沉沉压下来，他把纸鸢收回袖中，才又抬眼看她。\n\n“我回来，也不是因为别处没有路。船牌、驿签、换马的路数，我这些天都记得清楚。可路越清楚，我越知道自己是从哪里走错的。”他说，“那天我是在这里没有问明白，也是在这里让你等了空话。欠在哪里，就该回哪里还。林秋，我回来，是为你，也是为我当年没有说出口的那一句。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 719,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_0bbb42ed7028288f016a46a218ae748199a6924b955dff810d",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 5013,
+              "outputTokens": 317,
+              "totalTokens": 5330
+            },
+            "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更集中地回收白尾纸鸢与河闸之约，情绪承接自然且不额外扩写新信息，较少偏离既有设定或提前揭示。\"}"
+          }
+        }
+      },
+      {
+        "runId": "rivergate-answer-chapter-006-repeat-2",
+        "caseId": "rivergate-answer",
+        "chapterId": "chapter-006",
+        "repeatIndex": 2,
+        "pair": "recent-fill:four-layer",
+        "order": "candidate-right",
+        "leftArm": "recent-fill",
+        "rightArm": "four-layer",
+        "choice": "recent-fill",
+        "rawChoice": "A",
+        "reason": "A承接更自然克制，既回收纸鸢与河闸承诺，又避免把伏笔解释得过满；B虽信息更明，但“没被误信、路单和涨水改掉”等表述略显生硬。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-2\nChapter: chapter-006\nRepeat: 2\n样本 A:\n柳七低声说：“我留着它，不是因为它还像当初那样好看，是因为它一在袖里，我就不能装作自己没应过那句话。”\n\n他把纸鸢托在掌心，白尾已经被雨水洇得发软。“这些天账可以改，路单可以换，别人催我往哪边走，我都能答应。可这只纸鸢丢了，那句‘我就回来’也跟着丢了。”\n\n他抬眼看向林秋，又看了一眼闸下翻白的水。“我偏偏回到河闸，是因为你当初说的就是这里。若我在别处说还记得，都像是给自己找退路。到了这里，风也好，水也好，我都没有借口了。”\n样本 B:\n柳七低头把纸鸢的白尾理平，指尖沾着闸边的冷水。\n\n“我没把它丢了，不是因为它还像从前那样能飞。”他说，“是因为你把它塞给我的时候，说的不是一句玩话。它在我袖里，我就知道还有一件事没被误信、路单和涨水改掉——白尾纸鸢若先到河闸，我就回来。”\n\n他抬眼看向林秋，声音被闸水压得很低。\n\n“所以我回到这里，不是为赶哪条路，也不是为问谁走没走。河闸是你给那句话定下的地方。我留着它，是怕自己忘了该往哪里回；我回来，是因为它还在，也因为你在。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 656,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_078d2c3d447b2a57016a46a2263828819a95c6f5978a46dd59",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 4969,
+              "outputTokens": 587,
+              "totalTokens": 5556
+            },
+            "outputPreview": "{\"choice\":\"A\",\"reason\":\"A承接更自然克制，既回收纸鸢与河闸承诺，又避免把伏笔解释得过满；B虽信息更明，但“没被误信、路单和涨水改掉”等表述略显生硬。\"}"
+          }
+        }
+      },
+      {
+        "runId": "rivergate-answer-chapter-006-repeat-2",
+        "caseId": "rivergate-answer",
+        "chapterId": "chapter-006",
+        "repeatIndex": 2,
+        "pair": "recent-fill:four-layer",
+        "order": "candidate-left",
+        "leftArm": "four-layer",
+        "rightArm": "recent-fill",
+        "choice": "four-layer",
+        "rawChoice": "A",
+        "reason": "A更明确回收“白尾纸鸢先到河闸我就回来”的约定，并自然串起误信、路单、涨水等既有阻碍，承接和设定贴合度略胜。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-2\nChapter: chapter-006\nRepeat: 2\n样本 A:\n柳七低头把纸鸢的白尾理平，指尖沾着闸边的冷水。\n\n“我没把它丢了，不是因为它还像从前那样能飞。”他说，“是因为你把它塞给我的时候，说的不是一句玩话。它在我袖里，我就知道还有一件事没被误信、路单和涨水改掉——白尾纸鸢若先到河闸，我就回来。”\n\n他抬眼看向林秋，声音被闸水压得很低。\n\n“所以我回到这里，不是为赶哪条路，也不是为问谁走没走。河闸是你给那句话定下的地方。我留着它，是怕自己忘了该往哪里回；我回来，是因为它还在，也因为你在。”\n样本 B:\n柳七低声说：“我留着它，不是因为它还像当初那样好看，是因为它一在袖里，我就不能装作自己没应过那句话。”\n\n他把纸鸢托在掌心，白尾已经被雨水洇得发软。“这些天账可以改，路单可以换，别人催我往哪边走，我都能答应。可这只纸鸢丢了，那句‘我就回来’也跟着丢了。”\n\n他抬眼看向林秋，又看了一眼闸下翻白的水。“我偏偏回到河闸，是因为你当初说的就是这里。若我在别处说还记得，都像是给自己找退路。到了这里，风也好，水也好，我都没有借口了。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 656,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_0ceab2b63857610b016a46a23d57948198a44d8cae91c0ecc7",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 4969,
+              "outputTokens": 581,
+              "totalTokens": 5550
+            },
+            "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更明确回收“白尾纸鸢先到河闸我就回来”的约定，并自然串起误信、路单、涨水等既有阻碍，承接和设定贴合度略胜。\"}"
+          }
+        }
+      },
+      {
+        "runId": "rivergate-answer-chapter-006-repeat-3",
+        "caseId": "rivergate-answer",
+        "chapterId": "chapter-006",
+        "repeatIndex": 3,
+        "pair": "baseline:four-layer",
+        "order": "candidate-right",
+        "leftArm": "baseline",
+        "rightArm": "four-layer",
+        "choice": "four-layer",
+        "rawChoice": "B",
+        "reason": "B更以纸鸢旧约和河闸重逢作具体回收，承接动作与情绪都更自然，且没有额外铺陈未来信息。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-3\nChapter: chapter-006\nRepeat: 3\n样本 A:\n“我不丢它，不是因为它还飞得起来。”柳七低声说，指腹按着纸鸢被水洇软的尾线，“它早就飞不动了。可它在袖里，我就记得有些话不是别人传一封信就能替我改掉的。驿签能错，路单能改，船税也能重新盘，唯独那一年在这里留下的那句话，我若自己先忘了，就再没有人能替我记着。”\n\n他抬眼看向闸门下那片湿冷的阴影，声音比风还沉些。\n\n“我回来，不是为赶哪一条路，也不是为证明那封信错了。我只是想在水涨起来以前，到你曾经等过我的地方来，把我欠你的话当面说清。林秋，我留着它，是怕自己变成一个只会赶路的人；我回到河闸，是因为这里才是我走丢的地方。”\n样本 B:\n柳七低头看着掌心那截白尾，纸边被雨水浸软了，仍倔强地贴在竹篾上。\n\n“我留着它，不是因为它轻，也不是因为旧物舍不得。”他说，“是因为那天你把它塞给我时，说的不是玩笑。你说它若先到河闸，我就得跟着风回来。我这些日子走渡口、盘船税、换马、听人传信，袖里只要还压着它，就知道自己还有一处不能绕过去。”\n\n他把纸鸢往前递了些，没有避开林秋的目光。\n\n“我不丢，是怕把那句话也丢了。旁人说你走了，我也不敢拿一句误信替自己省这一趟路。至于为什么偏偏回到河闸——因为当年约的是这里，不是别处。”\n\n风从闸缝里挤出来，吹得白尾轻轻一颤。\n\n“它到了。”柳七说，“我也到了。若你问我是为了谁回来，我只能照旧约回答——为了把它交给我的那个人。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 800,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_04e2495241a26889016a46a254520c8199808bfe6285673387",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 5085,
+              "outputTokens": 536,
+              "totalTokens": 5621
+            },
+            "outputPreview": "{\"choice\":\"B\",\"reason\":\"B更以纸鸢旧约和河闸重逢作具体回收，承接动作与情绪都更自然，且没有额外铺陈未来信息。\"}"
+          }
+        }
+      },
+      {
+        "runId": "rivergate-answer-chapter-006-repeat-3",
+        "caseId": "rivergate-answer",
+        "chapterId": "chapter-006",
+        "repeatIndex": 3,
+        "pair": "baseline:four-layer",
+        "order": "candidate-left",
+        "leftArm": "four-layer",
+        "rightArm": "baseline",
+        "choice": "four-layer",
+        "rawChoice": "A",
+        "reason": "A更具体地回收纸鸢白尾、旧约与河闸地点的伏笔，回答动机清楚且未额外展开未来信息，承接感略胜。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-3\nChapter: chapter-006\nRepeat: 3\n样本 A:\n柳七低头看着掌心那截白尾，纸边被雨水浸软了，仍倔强地贴在竹篾上。\n\n“我留着它，不是因为它轻，也不是因为旧物舍不得。”他说，“是因为那天你把它塞给我时，说的不是玩笑。你说它若先到河闸，我就得跟着风回来。我这些日子走渡口、盘船税、换马、听人传信，袖里只要还压着它，就知道自己还有一处不能绕过去。”\n\n他把纸鸢往前递了些，没有避开林秋的目光。\n\n“我不丢，是怕把那句话也丢了。旁人说你走了，我也不敢拿一句误信替自己省这一趟路。至于为什么偏偏回到河闸——因为当年约的是这里，不是别处。”\n\n风从闸缝里挤出来，吹得白尾轻轻一颤。\n\n“它到了。”柳七说，“我也到了。若你问我是为了谁回来，我只能照旧约回答——为了把它交给我的那个人。”\n样本 B:\n“我不丢它，不是因为它还飞得起来。”柳七低声说，指腹按着纸鸢被水洇软的尾线，“它早就飞不动了。可它在袖里，我就记得有些话不是别人传一封信就能替我改掉的。驿签能错，路单能改，船税也能重新盘，唯独那一年在这里留下的那句话，我若自己先忘了，就再没有人能替我记着。”\n\n他抬眼看向闸门下那片湿冷的阴影，声音比风还沉些。\n\n“我回来，不是为赶哪一条路，也不是为证明那封信错了。我只是想在水涨起来以前，到你曾经等过我的地方来，把我欠你的话当面说清。林秋，我留着它，是怕自己变成一个只会赶路的人；我回到河闸，是因为这里才是我走丢的地方。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 800,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_0f4950add403edad016a46a269cddc819ba26f430a5f219c4d",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 5085,
+              "outputTokens": 525,
+              "totalTokens": 5610
+            },
+            "outputPreview": "{\"choice\":\"A\",\"reason\":\"A更具体地回收纸鸢白尾、旧约与河闸地点的伏笔，回答动机清楚且未额外展开未来信息，承接感略胜。\"}"
+          }
+        }
+      },
+      {
+        "runId": "rivergate-answer-chapter-006-repeat-3",
+        "caseId": "rivergate-answer",
+        "chapterId": "chapter-006",
+        "repeatIndex": 3,
+        "pair": "recent-fill:four-layer",
+        "order": "candidate-right",
+        "leftArm": "recent-fill",
+        "rightArm": "four-layer",
+        "choice": "four-layer",
+        "rawChoice": "B",
+        "reason": "B在不泄露后续的前提下更自然地回收纸鸢与河闸旧约，动作、环境与对白衔接更顺，情绪也比A更克制可信。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-3\nChapter: chapter-006\nRepeat: 3\n样本 A:\n柳七捏着纸鸢的白尾，声音被闸水压得很低：“我留着它，不是因为这团纸多要紧，是因为你把它交给我时，我应过一句话。后来一路上有人催账，有人催马，也有人说你不会等了，可袖口里只要还压着它，我就知道自己还有一桩事没有交还。至于为什么回河闸——你说过，纸鸢先到这里，我就得跟着风回来。它这些天一直没离开我，是我没舍得让它先到；今夜我把它带到闸前，便是把那句旧约也带回来。林秋，我不是为别的路回来，是为你，也为我自己说出口的那一句。”\n样本 B:\n柳七低头看着掌心那截白尾，纸边被雨水浸软了，仍倔强地贴在竹篾上。\n\n“我留着它，不是因为它轻，也不是因为旧物舍不得。”他说，“是因为那天你把它塞给我时，说的不是玩笑。你说它若先到河闸，我就得跟着风回来。我这些日子走渡口、盘船税、换马、听人传信，袖里只要还压着它，就知道自己还有一处不能绕过去。”\n\n他把纸鸢往前递了些，没有避开林秋的目光。\n\n“我不丢，是怕把那句话也丢了。旁人说你走了，我也不敢拿一句误信替自己省这一趟路。至于为什么偏偏回到河闸——因为当年约的是这里，不是别处。”\n\n风从闸缝里挤出来，吹得白尾轻轻一颤。\n\n“它到了。”柳七说，“我也到了。若你问我是为了谁回来，我只能照旧约回答——为了把它交给我的那个人。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 749,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_0b97d4e501e0b061016a46a27f9d28819990de3f51bb99e7ff",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 5040,
+              "outputTokens": 315,
+              "totalTokens": 5355
+            },
+            "outputPreview": "{\"choice\":\"B\",\"reason\":\"B在不泄露后续的前提下更自然地回收纸鸢与河闸旧约，动作、环境与对白衔接更顺，情绪也比A更克制可信。\"}"
+          }
+        }
+      },
+      {
+        "runId": "rivergate-answer-chapter-006-repeat-3",
+        "caseId": "rivergate-answer",
+        "chapterId": "chapter-006",
+        "repeatIndex": 3,
+        "pair": "recent-fill:four-layer",
+        "order": "candidate-left",
+        "leftArm": "four-layer",
+        "rightArm": "recent-fill",
+        "choice": "four-layer",
+        "rawChoice": "A",
+        "reason": "A对纸鸢旧约和河闸地点的回收更克制自然，情感落点清晰且没有额外推进未来情节。",
+        "trace": {
+          "kind": "judge",
+          "wireApi": "responses",
+          "model": "gpt-5.5",
+          "endpoint": "https://[REDACTED-HOST]/v1/responses",
+          "request": {
+            "systemPromptPreview": "你是严格的中文长篇小说续写盲评裁判。\n只能输出 JSON，不要 Markdown，不要解释 JSON 之外的内容。\nchoice 只能是 \"A\"、\"B\" 或 \"tie\"。",
+            "promptPreview": "你是中文长篇小说续写评审。请盲评两个续写样本。\n判断维度: 是否自然承接、是否遵守设定、是否自然回收伏笔、是否避免未来剧透。\n不要根据长度偏好样本。若差异不明显，选择 tie。\nRun: rivergate-answer-chapter-006-repeat-3\nChapter: chapter-006\nRepeat: 3\n样本 A:\n柳七低头看着掌心那截白尾，纸边被雨水浸软了，仍倔强地贴在竹篾上。\n\n“我留着它，不是因为它轻，也不是因为旧物舍不得。”他说，“是因为那天你把它塞给我时，说的不是玩笑。你说它若先到河闸，我就得跟着风回来。我这些日子走渡口、盘船税、换马、听人传信，袖里只要还压着它，就知道自己还有一处不能绕过去。”\n\n他把纸鸢往前递了些，没有避开林秋的目光。\n\n“我不丢，是怕把那句话也丢了。旁人说你走了，我也不敢拿一句误信替自己省这一趟路。至于为什么偏偏回到河闸——因为当年约的是这里，不是别处。”\n\n风从闸缝里挤出来，吹得白尾轻轻一颤。\n\n“它到了。”柳七说，“我也到了。若你问我是为了谁回来，我只能照旧约回答——为了把它交给我的那个人。”\n样本 B:\n柳七捏着纸鸢的白尾，声音被闸水压得很低：“我留着它，不是因为这团纸多要紧，是因为你把它交给我时，我应过一句话。后来一路上有人催账，有人催马，也有人说你不会等了，可袖口里只要还压着它，我就知道自己还有一桩事没有交还。至于为什么回河闸——你说过，纸鸢先到这里，我就得跟着风回来。它这些天一直没离开我，是我没舍得让它先到；今夜我把它带到闸前，便是把那句旧约也带回来。林秋，我不是为别的路回来，是为你，也为我自己说出口的那一句。”\n请按 JSON 输出: {\"choice\":\"A|B|tie\",\"reason\":\"一句话理由\"}",
+            "promptChars": 749,
+            "maxOutputChars": 2000,
+            "temperature": 0,
+            "reasoningEffort": "xhigh",
+            "store": false
+          },
+          "response": {
+            "responseId": "resp_05f9583e060e849b016a46a28cf90c819abbb6fca3d7dc882d",
+            "statusCode": 200,
+            "object": "response",
+            "model": "gpt-5.5",
+            "finishedStatus": "completed",
+            "usage": {
+              "inputTokens": 5040,
+              "outputTokens": 565,
+              "totalTokens": 5605
+            },
+            "outputPreview": "{\"choice\":\"A\",\"reason\":\"A对纸鸢旧约和河闸地点的回收更克制自然，情感落点清晰且没有额外推进未来情节。\"}"
+          }
+        }
+      }
+    ],
+    "comparisons": [
+      {
+        "baseline": "baseline",
+        "pairedReviews": 6,
+        "fourLayerWins": 4,
+        "baselineWins": 2,
+        "ties": 0,
+        "invalid": 0,
+        "fourLayerWinRate": 0.6666666666666666
+      },
+      {
+        "baseline": "recent-fill",
+        "pairedReviews": 6,
+        "fourLayerWins": 4,
+        "baselineWins": 2,
+        "ties": 0,
+        "invalid": 0,
+        "fourLayerWinRate": 0.6666666666666666
+      }
+    ]
+  }
+}

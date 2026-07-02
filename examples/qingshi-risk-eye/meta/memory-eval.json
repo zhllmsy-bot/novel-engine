@@ -1,0 +1,21 @@
+{
+  "$schema": "../../../schemas/memory-eval.schema.json",
+  "chapter_id": "chapter-175",
+  "budget_chars": 2400,
+  "minimum_gain": 1,
+  "expectations": [
+    {
+      "id": "l2-current-prose",
+      "description": "L2 preserves the current continuation prose for chapter 175.",
+      "layer": "L2 风格",
+      "contains": ["当前章节原文", "侧针不是第三针"]
+    },
+    {
+      "id": "l0-ability-rule",
+      "description": "L0 recalls the active side-needle versus third-needle rule boundary.",
+      "layer": "L0 事实",
+      "contains": ["侧针", "第三针"],
+      "source_families": ["codex"]
+    }
+  ]
+}
