@@ -19,6 +19,7 @@ describe('generation eval tool', () => {
     vi.restoreAllMocks()
     delete process.env.NOVEL_ENGINE_EVAL_MAX_RETRIES
     delete process.env.NOVEL_ENGINE_EVAL_REQUEST_DELAY_MS
+    delete process.env.NOVEL_ENGINE_EVAL_REQUEST_TIMEOUT_MS
   })
 
   it('parses dry-run generation eval options', () => {
@@ -144,6 +145,43 @@ describe('generation eval tool', () => {
     expect(report.runs[0].arms.every((arm) => !arm.error)).toBe(true)
     expect(report.runs[0].arms[0].output).toBe(
       '灯灭之前，我会回来。沈泊握着镜湖钥。',
+    )
+  })
+
+  it('times out stalled responses API bodies during real generation', async () => {
+    process.env.NOVEL_ENGINE_EVAL_REQUEST_TIMEOUT_MS = '5'
+    const encoder = new TextEncoder()
+    const fetchMock = vi.fn<typeof fetch>().mockImplementation(() =>
+      Promise.resolve(
+        new Response(
+          new ReadableStream({
+            start(controller) {
+              controller.enqueue(encoder.encode('{"id":"partial"'))
+            },
+          }),
+          {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' },
+          },
+        ),
+      ),
+    )
+    vi.stubGlobal('fetch', fetchMock)
+
+    const report = await evaluateGeneration({
+      rootPath: 'examples/long-memory-benchmark',
+      dryRun: false,
+      repeatCount: 1,
+      baseUrl: 'https://provider.test',
+      apiKey: 'test-key',
+      model: 'gpt-5.5',
+      wireApi: 'responses',
+    })
+
+    expect(fetchMock).toHaveBeenCalledTimes(3)
+    expect(report.runs[0].arms.every((arm) => arm.error)).toBe(true)
+    expect(report.runs[0].arms[0].error).toContain(
+      'provider response body read timed out',
     )
   })
 

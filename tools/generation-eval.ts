@@ -325,7 +325,7 @@ const defaultInstruction =
 const defaultMaxOutputChars = 600
 const defaultBudgetChars = 1_200
 const defaultRepeatCount = 3
-const requestTimeoutMs = 120_000
+const defaultRequestTimeoutMs = 120_000
 const retryableProviderStatusCodes = new Set([
   408, 409, 425, 429, 500, 502, 503, 504,
 ])
@@ -1211,7 +1211,7 @@ async function callOpenAICompatibleGeneration(input: {
   const response = await withProviderRetry(() =>
     fetch(`${baseUrl}/v1/chat/completions`, {
       method: 'POST',
-      signal: AbortSignal.timeout(requestTimeoutMs),
+      signal: AbortSignal.timeout(getRequestTimeoutMs()),
       headers: {
         Authorization: `Bearer ${input.config.apiKey}`,
         'Content-Type': 'application/json',
@@ -1221,7 +1221,7 @@ async function callOpenAICompatibleGeneration(input: {
   )
 
   if (!response.ok) {
-    const body = await response.text()
+    const body = await readResponseTextWithTimeout(response)
     throw new ProviderHttpError(
       `OpenAI-compatible generation failed: ${response.status} ${sanitizeText(body)}`,
       response.status,
@@ -1303,7 +1303,7 @@ async function callOpenAICompatibleResponses(input: {
   const response = await withProviderRetry(() =>
     fetch(`${baseUrl}/v1/responses`, {
       method: 'POST',
-      signal: AbortSignal.timeout(requestTimeoutMs),
+      signal: AbortSignal.timeout(getRequestTimeoutMs()),
       headers: {
         Authorization: `Bearer ${input.config.apiKey}`,
         'Content-Type': 'application/json',
@@ -1313,14 +1313,14 @@ async function callOpenAICompatibleResponses(input: {
   )
 
   if (!response.ok) {
-    const responseBody = await response.text()
+    const responseBody = await readResponseTextWithTimeout(response)
     throw new ProviderHttpError(
       `OpenAI-compatible responses generation failed: ${response.status} ${sanitizeText(responseBody)}`,
       response.status,
     )
   }
 
-  const responseText = await response.text()
+  const responseText = await readResponseTextWithTimeout(response)
   const payload = responsesApiResponseSchema.parse(
     parseResponsesApiPayload(responseText),
   )
@@ -1482,6 +1482,35 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === 'object' && !Array.isArray(value)
 }
 
+async function readResponseTextWithTimeout(response: Response) {
+  const timeoutMs = getRequestTimeoutMs()
+  let timeout: ReturnType<typeof setTimeout> | undefined
+
+  try {
+    return await Promise.race([
+      response.text(),
+      new Promise<string>((_, reject) => {
+        timeout = setTimeout(() => {
+          try {
+            void response.body?.cancel().catch(() => undefined)
+          } catch {
+            // response.text() may already hold the stream lock.
+          }
+          reject(
+            new Error(
+              `provider response body read timed out after ${timeoutMs}ms`,
+            ),
+          )
+        }, timeoutMs)
+      }),
+    ])
+  } finally {
+    if (timeout) {
+      clearTimeout(timeout)
+    }
+  }
+}
+
 async function withProviderRetry(
   request: () => Promise<Response>,
 ): Promise<Response> {
@@ -1531,6 +1560,13 @@ function nonNegativeIntegerFromEnv(name: string, fallback: number) {
 function positiveIntegerFromEnv(name: string, fallback: number) {
   const parsed = Number(process.env[name])
   return Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : fallback
+}
+
+function getRequestTimeoutMs() {
+  return positiveIntegerFromEnv(
+    'NOVEL_ENGINE_EVAL_REQUEST_TIMEOUT_MS',
+    defaultRequestTimeoutMs,
+  )
 }
 
 function sleep(ms: number) {
