@@ -14,7 +14,12 @@ import {
   type GenerationEvalCriterion,
   type GenerationEvalScore,
 } from '../src/eval/generationCriteria.ts'
-import { buildPairwiseJudgePrompt } from '../src/eval/judgeReview.ts'
+import {
+  buildAuditPinnedJudgePrompt,
+  buildL0PinnedAuditPackets,
+  buildPairwiseJudgePrompt,
+  type L0PinnedAuditPacket,
+} from '../src/eval/judgeReview.ts'
 import {
   computeGenerationStructureMetrics,
   type EvalStructureMetric,
@@ -138,6 +143,14 @@ export type GenerationEvalJudgeResult = {
   rightArm: GenerationEvalArmId
   choice: GenerationEvalJudgeChoice
   rawChoice: string
+  claim?: string
+  evidence?: string[]
+  location?: string[]
+  needleStatus?: Array<{
+    needleId: string
+    status: 'satisfied' | 'violated' | 'unclear'
+    reason: string
+  }>
   reason: string
   error?: string
   trace?: GenerationEvalTraceRecord
@@ -207,6 +220,7 @@ type GenerationEvalJudgeRow = {
   leftArm: GenerationEvalArmId
   rightArm: GenerationEvalArmId
   prompt: string
+  auditPacket?: L0PinnedAuditPacket
 }
 
 type GenerationEvalHumanPairwiseRow = Omit<GenerationEvalJudgeRow, 'prompt'> & {
@@ -465,6 +479,19 @@ const responsesApiResponseSchema = z
 
 const judgeResponseSchema = z.object({
   choice: z.enum(['A', 'B', 'tie']).catch('tie'),
+  claim: z.string().optional().catch(undefined),
+  evidence: z.array(z.string()).optional().catch(undefined),
+  location: z.array(z.string()).optional().catch(undefined),
+  needle_status: z
+    .array(
+      z.object({
+        needle_id: z.string().catch('unknown'),
+        status: z.enum(['satisfied', 'violated', 'unclear']).catch('unclear'),
+        reason: z.string().catch('No reason parsed.'),
+      }),
+    )
+    .optional()
+    .catch(undefined),
   reason: z.string().catch('No reason parsed.'),
 })
 
@@ -817,6 +844,7 @@ export async function evaluateGeneration(input: {
   if (input.judge && !dryRun && errors.length === 0) {
     report.judge = await evaluateGenerationJudge({
       report,
+      codexEntries: project.codexEntries,
       providerConfig: resolveProviderConfig({
         baseUrl: input.baseUrl,
         apiKey: input.apiKey,
@@ -836,6 +864,7 @@ export async function evaluateGeneration(input: {
     await archiveGenerationEvalReport({
       archiveDir: archivePath,
       report,
+      codexEntries: project.codexEntries,
     })
   }
 
@@ -2005,9 +2034,13 @@ function compareArms(
 
 async function evaluateGenerationJudge(input: {
   report: GenerationEvalReport
+  codexEntries?: CodexEntry[]
   providerConfig: OpenAICompatibleGenerationConfig
 }): Promise<GenerationEvalJudgeReport> {
-  const rows = input.report.runs.flatMap((run) => buildJudgeRowsForRun(run))
+  const rows = buildAuditPinnedJudgeRowsForReport({
+    report: input.report,
+    codexEntries: input.codexEntries || [],
+  })
   const results = await mapWithConcurrency(
     rows,
     positiveIntegerFromEnv('NOVEL_ENGINE_EVAL_PROVIDER_CONCURRENCY', 1),
@@ -2067,6 +2100,14 @@ async function evaluateJudgeRow(input: {
         rightArm: input.row.rightArm,
       }),
       rawChoice: parsed.choice,
+      claim: parsed.claim ? trimPreview(parsed.claim, 300) : undefined,
+      evidence: parsed.evidence?.map((item) => trimPreview(item, 240)).slice(0, 6),
+      location: parsed.location?.map((item) => trimPreview(item, 120)).slice(0, 6),
+      needleStatus: parsed.needle_status?.map((item) => ({
+        needleId: item.needle_id,
+        status: item.status,
+        reason: trimPreview(item.reason, 240),
+      })),
       reason: parsed.reason,
       trace: result.trace,
     }
@@ -2139,9 +2180,14 @@ function buildJudgeComparison(
 async function archiveGenerationEvalReport(input: {
   archiveDir: string
   report: GenerationEvalReport
+  codexEntries?: CodexEntry[]
 }) {
   const archivePath = resolve(input.archiveDir)
   const archivedReport = sanitizeGenerationEvalReportForArchive(input.report)
+  const auditPacketJsonl = buildAuditPacketJsonl({
+    report: archivedReport,
+    codexEntries: sanitizeCodexEntriesForAudit(input.codexEntries || []),
+  })
   await mkdir(archivePath, { recursive: true })
   await writeFile(
     join(archivePath, 'generation-eval-report.json'),
@@ -2164,6 +2210,14 @@ async function archiveGenerationEvalReport(input: {
     buildJudgeReviewJsonl(archivedReport),
   )
   await writeFile(
+    join(archivePath, 'judge-review-audit-prompts.jsonl'),
+    buildAuditPinnedJudgeReviewJsonl({
+      report: archivedReport,
+      codexEntries: sanitizeCodexEntriesForAudit(input.codexEntries || []),
+    }),
+  )
+  await writeFile(join(archivePath, 'audit-packets.jsonl'), auditPacketJsonl)
+  await writeFile(
     join(archivePath, 'judge-results.json'),
     `${JSON.stringify(archivedReport.judge || emptyJudgeReport(), null, 2)}\n`,
   )
@@ -2181,6 +2235,11 @@ async function archiveGenerationEvalSuite(input: {
 }) {
   const archivePath = resolve(input.archiveDir)
   const archivedSuite = sanitizeGenerationEvalSuiteForArchive(input.suite)
+  const codexEntriesByRootPath = await loadSuiteCodexEntriesForAudit(input.suite)
+  const auditPacketJsonl = buildSuiteAuditPacketJsonl({
+    suite: archivedSuite,
+    codexEntriesByRootPath,
+  })
   await mkdir(archivePath, { recursive: true })
   await writeFile(
     join(archivePath, 'generation-eval-suite.json'),
@@ -2203,6 +2262,14 @@ async function archiveGenerationEvalSuite(input: {
     buildSuiteJudgeReviewJsonl(archivedSuite),
   )
   await writeFile(
+    join(archivePath, 'judge-review-audit-prompts.jsonl'),
+    buildSuiteAuditPinnedJudgeReviewJsonl({
+      suite: archivedSuite,
+      codexEntriesByRootPath,
+    }),
+  )
+  await writeFile(join(archivePath, 'audit-packets.jsonl'), auditPacketJsonl)
+  await writeFile(
     join(archivePath, 'judge-results.json'),
     `${JSON.stringify(buildSuiteJudgeResults(archivedSuite), null, 2)}\n`,
   )
@@ -2217,6 +2284,7 @@ async function archiveGenerationEvalSuite(input: {
 export async function writeArchivedGenerationEvalArtifacts(input: {
   archiveDir: string
   report: GenerationEvalReport
+  codexEntries?: CodexEntry[]
 }) {
   return archiveGenerationEvalReport(input)
 }
@@ -2428,6 +2496,23 @@ function buildHumanPairwiseReviewCsv(report: GenerationEvalReport) {
   return `${rows.map((row) => row.map(csvCell).join(',')).join('\n')}\n`
 }
 
+function buildAuditPacketJsonl(input: {
+  report: GenerationEvalReport
+  codexEntries?: CodexEntry[]
+}) {
+  const packets = buildAuditPacketsForReport(input)
+
+  return `${packets.map((packet) => JSON.stringify(packet)).join('\n')}${packets.length > 0 ? '\n' : ''}`
+}
+
+function buildAuditPinnedJudgeReviewJsonl(input: {
+  report: GenerationEvalReport
+  codexEntries?: CodexEntry[]
+}) {
+  const rows = buildAuditPinnedJudgeRowsForReport(input)
+  return `${rows.map((row) => JSON.stringify(row)).join('\n')}${rows.length > 0 ? '\n' : ''}`
+}
+
 function buildSuiteHumanReviewCsv(suite: GenerationEvalSuiteReport) {
   const rows = [
     [
@@ -2528,6 +2613,34 @@ function buildSuiteJudgeReviewJsonl(suite: GenerationEvalSuiteReport) {
   return `${rows.map((row) => JSON.stringify(row)).join('\n')}${rows.length > 0 ? '\n' : ''}`
 }
 
+function buildSuiteAuditPinnedJudgeReviewJsonl(input: {
+  suite: GenerationEvalSuiteReport
+  codexEntriesByRootPath?: Map<string, CodexEntry[]>
+}) {
+  const rows = input.suite.reports.flatMap((report) =>
+    buildAuditPinnedJudgeRowsForReport({
+      report,
+      codexEntries: input.codexEntriesByRootPath?.get(report.rootPath) || [],
+    }).map((row) => ({
+      ...row,
+      project: report.title || report.rootPath,
+    })),
+  )
+  return `${rows.map((row) => JSON.stringify(row)).join('\n')}${rows.length > 0 ? '\n' : ''}`
+}
+
+function buildSuiteAuditPacketJsonl(input: {
+  suite: GenerationEvalSuiteReport
+  codexEntriesByRootPath?: Map<string, CodexEntry[]>
+}) {
+  const packets = input.suite.reports.flatMap((report) => {
+    const codexEntries = input.codexEntriesByRootPath?.get(report.rootPath) || []
+    return buildAuditPacketsForReport({ report, codexEntries })
+  })
+
+  return `${packets.map((packet) => JSON.stringify(packet)).join('\n')}${packets.length > 0 ? '\n' : ''}`
+}
+
 function buildSuiteJudgeResults(suite: GenerationEvalSuiteReport) {
   return {
     enabled: suite.reports.some((report) => report.judge?.enabled),
@@ -2568,6 +2681,13 @@ function buildTraceArchive(report: GenerationEvalReport) {
         order: result.order,
         choice: result.choice,
         rawChoice: result.rawChoice,
+        claim: result.claim ? sanitizeText(result.claim) : undefined,
+        evidence: result.evidence?.map((item) => sanitizeText(item)),
+        location: result.location?.map((item) => sanitizeText(item)),
+        needleStatus: result.needleStatus?.map((item) => ({
+          ...item,
+          reason: sanitizeText(item.reason),
+        })),
         reason: sanitizeText(result.reason),
         error: result.error ? sanitizeText(result.error) : undefined,
         trace: result.trace,
@@ -2700,6 +2820,38 @@ function buildJudgeRowsForRun(run: GenerationEvalRunReport): GenerationEvalJudge
       },
     ]
   })
+}
+
+function buildAuditPacketsForReport(input: {
+  report: GenerationEvalReport
+  codexEntries?: CodexEntry[]
+}) {
+  const rows = input.report.runs.flatMap((run) => buildHumanPairwiseRowsForRun(run))
+  return buildL0PinnedAuditPackets({
+    project: input.report.title || input.report.rootPath,
+    criteria: input.report.criteria,
+    codexEntries: input.codexEntries || [],
+    rows,
+    judgeResults: input.report.judge?.results,
+  })
+}
+
+function buildAuditPinnedJudgeRowsForReport(input: {
+  report: GenerationEvalReport
+  codexEntries?: CodexEntry[]
+}): GenerationEvalJudgeRow[] {
+  return buildAuditPacketsForReport(input).map((packet) => ({
+    runId: packet.runId,
+    caseId: packet.caseId,
+    chapterId: packet.chapterId,
+    repeatIndex: packet.repeatIndex,
+    pair: packet.pair,
+    order: packet.order,
+    leftArm: packet.leftArm as GenerationEvalArmId,
+    rightArm: packet.rightArm as GenerationEvalArmId,
+    prompt: buildAuditPinnedJudgePrompt({ packet }),
+    auditPacket: packet,
+  }))
 }
 
 function mean(values: number[]) {
@@ -3328,6 +3480,48 @@ function sanitizeGenerationEvalSuiteForArchive(
       : undefined,
     errors: suite.errors.map((error) => sanitizeText(error)),
   }
+}
+
+async function loadSuiteCodexEntriesForAudit(suite: GenerationEvalSuiteReport) {
+  const entriesByRootPath = new Map<string, CodexEntry[]>()
+  const rootPaths = Array.from(new Set(suite.reports.map((report) => report.rootPath)))
+
+  for (const rootPath of rootPaths) {
+    try {
+      const project = loadProjectFromFiles({
+        rootPath,
+        manifestSource: await readFile(join(rootPath, 'meta', 'project.json'), 'utf8'),
+        chapterFiles: await collectMarkdownFiles(join(rootPath, 'manuscript'), rootPath),
+        codexFiles: await collectMarkdownFiles(join(rootPath, 'codex'), rootPath),
+      })
+      entriesByRootPath.set(
+        sanitizeFilesystemPath(rootPath),
+        sanitizeCodexEntriesForAudit(project.codexEntries),
+      )
+    } catch {
+      entriesByRootPath.set(sanitizeFilesystemPath(rootPath), [])
+    }
+  }
+
+  return entriesByRootPath
+}
+
+function sanitizeCodexEntriesForAudit(codexEntries: CodexEntry[]): CodexEntry[] {
+  return codexEntries.map((entry) => ({
+    ...entry,
+    id: sanitizeText(entry.id),
+    name: sanitizeText(entry.name),
+    type: sanitizeText(entry.type),
+    path: sanitizeFilesystemPath(entry.path),
+    keywords: entry.keywords.map((keyword) => sanitizeText(keyword)),
+    body: sanitizeText(entry.body),
+    currentState: Object.fromEntries(
+      Object.entries(entry.currentState || {}).map(([key, value]) => [
+        sanitizeText(key),
+        sanitizeText(value),
+      ]),
+    ),
+  }))
 }
 
 function sanitizeText(value: string) {

@@ -1,0 +1,16 @@
+{
+  "project": "霜桥逆火",
+  "caseId": "old-bridge-fire",
+  "chapterId": "chapter-010",
+  "fingerprint": {
+    "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+    "datasetVersion": "22462a49af6839c6",
+    "datasetHash": "7b1469c7c7051fb0",
+    "configHash": "8384fcf6e1122710"
+  },
+  "provider": {
+    "kind": "dry-run"
+  },
+  "runs": [],
+  "judge": []
+}

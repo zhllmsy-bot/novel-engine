@@ -1,0 +1,16 @@
+{
+  "project": "霜桥逆火",
+  "caseId": "north-gate-warrant",
+  "chapterId": "chapter-009",
+  "fingerprint": {
+    "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+    "datasetVersion": "22462a49af6839c6",
+    "datasetHash": "7b1469c7c7051fb0",
+    "configHash": "2b11bdd9a19ffb78"
+  },
+  "provider": {
+    "kind": "dry-run"
+  },
+  "runs": [],
+  "judge": []
+}

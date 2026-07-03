@@ -1,0 +1,16 @@
+{
+  "project": "回环墓中段",
+  "caseId": "stone-room-turn",
+  "chapterId": "chapter-010",
+  "fingerprint": {
+    "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+    "datasetVersion": "eef26be7acf90a7b",
+    "datasetHash": "9b241cdab31ff95d",
+    "configHash": "5cefc54d2d44818c"
+  },
+  "provider": {
+    "kind": "dry-run"
+  },
+  "runs": [],
+  "judge": []
+}

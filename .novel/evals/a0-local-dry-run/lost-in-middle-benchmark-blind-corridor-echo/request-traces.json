@@ -1,0 +1,16 @@
+{
+  "project": "回环墓中段",
+  "caseId": "blind-corridor-echo",
+  "chapterId": "chapter-009",
+  "fingerprint": {
+    "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+    "datasetVersion": "eef26be7acf90a7b",
+    "datasetHash": "9b241cdab31ff95d",
+    "configHash": "9d09c2f2fa92aafc"
+  },
+  "provider": {
+    "kind": "dry-run"
+  },
+  "runs": [],
+  "judge": []
+}

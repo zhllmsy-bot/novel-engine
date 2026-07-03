@@ -1,0 +1,16 @@
+{
+  "project": "纸鸢旧约",
+  "caseId": "rivergate-answer",
+  "chapterId": "chapter-006",
+  "fingerprint": {
+    "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+    "datasetVersion": "983cff000652056c",
+    "datasetHash": "3f393b88a5a9b34f",
+    "configHash": "8710d176a35ce30c"
+  },
+  "provider": {
+    "kind": "dry-run"
+  },
+  "runs": [],
+  "judge": []
+}

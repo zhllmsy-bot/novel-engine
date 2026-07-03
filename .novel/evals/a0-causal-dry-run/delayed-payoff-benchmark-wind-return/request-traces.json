@@ -1,0 +1,16 @@
+{
+  "project": "纸鸢旧约",
+  "caseId": "wind-return",
+  "chapterId": "chapter-010",
+  "fingerprint": {
+    "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+    "datasetVersion": "983cff000652056c",
+    "datasetHash": "3f393b88a5a9b34f",
+    "configHash": "e767165e85b642ca"
+  },
+  "provider": {
+    "kind": "dry-run"
+  },
+  "runs": [],
+  "judge": []
+}

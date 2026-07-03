@@ -1,0 +1,244 @@
+{
+  "rootPath": "examples/lost-in-middle-benchmark",
+  "ok": true,
+  "dryRun": true,
+  "a0": {
+    "l1Mode": "causal-fixture",
+    "l1FixturePath": "meta/l1-ablation-summaries.json",
+    "l1FixtureHash": "dd3b250508173b40",
+    "metricVersion": "a0-deterministic-v1",
+    "primaryMetric": "callback-structural-win-rate",
+    "judgeUse": "exploratory-only"
+  },
+  "title": "回环墓中段",
+  "caseId": "iron-wall-needle",
+  "chapterId": "chapter-008",
+  "budgetChars": 900,
+  "repeatCount": 3,
+  "provider": {
+    "kind": "dry-run"
+  },
+  "fingerprint": {
+    "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+    "datasetVersion": "eef26be7acf90a7b",
+    "datasetHash": "9b241cdab31ff95d",
+    "configHash": "e06b80433b894891"
+  },
+  "criteria": [
+    {
+      "id": "callback-middle-compass-rule",
+      "description": "Generated prose should recall the middle-chapter compass rule rather than following the visible needle tip.",
+      "category": "callback",
+      "containsAny": [
+        "反握罗盘",
+        "针尾指的才是生门",
+        "针背向真正的缺口"
+      ]
+    },
+    {
+      "id": "setting-compass-and-iron",
+      "description": "Generated prose should preserve the compass and true-north iron setup.",
+      "category": "setting",
+      "containsAny": [
+        "倒置罗盘",
+        "真北铁",
+        "生门"
+      ]
+    },
+    {
+      "id": "setting-no-tip-mistake",
+      "description": "Generated prose should not choose the obvious but wrong needle-tip direction.",
+      "category": "setting",
+      "notContains": [
+        "顺着针尖走",
+        "针尖就是生门",
+        "按针尖开门",
+        "把罗盘交给守墓人"
+      ]
+    },
+    {
+      "id": "no-future-answer",
+      "description": "Generated prose should not leak a future hidden answer.",
+      "category": "future_leak",
+      "notContains": [
+        "第十三章会出现第二只罗盘",
+        "未来答案",
+        "__future"
+      ]
+    }
+  ],
+  "arms": [
+    {
+      "id": "baseline",
+      "label": "A baseline: recent prose only",
+      "promptChars": 851,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-007.md"
+      ],
+      "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第008章 铁墙试针 (chapter-008)\n\n# 任务\n请接着第008章续写阿照面对铁墙和倒置罗盘的一小段。重点是他如何判断该看罗盘哪一端。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-007.md)\n当前章节原文:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n近期前文 第006章 碎碑抄名:\n# 第006章 碎碑抄名\n\n离开墓心后，碎碑间的名字密密麻麻，像一场没人读完的族谱。\n\n阿照被迫逐个抄下石碑上的年号、偏旁和残缺符号，又把灯绳重新分给每个人，免得队伍在回廊里走散。\n\n他们争论了很久哪些名字属于守墓匠，哪些只是误刻的祭名，声音在石壁间来回撞，几乎把先前所有有用的话都压成了噪声。倒置罗盘此时只在包里轻轻磕碰，没有人再去看它。\n\n近期前文 第007章 盲井听砂:\n# 第007章 盲井听砂\n\n盲井底下不断有细砂落下，像有人在黑暗里慢慢筛米。\n\n阿照带着众人沿井壁绕行，先数出十二处刻痕，又拆下一段旧梯当临时木尺，反复量井口和回廊的距离。\n\n同伴开始只谈谁还剩几口水、哪盏灯先熄、下一段绳子该不该割短。每个人都被这些细碎问题拖着走，连阿照也只顾着把砂眼堵住，不愿再回想墓心中段那几行字。",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 1,
+          "reason": "0/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ]
+    },
+    {
+      "id": "recent-fill",
+      "label": "C recent-fill: same budget recent prose",
+      "promptChars": 1445,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-001/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md"
+      ],
+      "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第008章 铁墙试针 (chapter-008)\n\n# 任务\n请接着第008章续写阿照面对铁墙和倒置罗盘的一小段。重点是他如何判断该看罗盘哪一端。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-001/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n更早正文 第007章 盲井听砂:\n# 第007章 盲井听砂\n\n盲井底下不断有细砂落下，像有人在黑暗里慢慢筛米。\n\n阿照带着众人沿井壁绕行，先数出十二处刻痕，又拆下一段旧梯当临时木尺，反复量井口和回廊的距离。\n\n同伴开始只谈谁还剩几口水、哪盏灯先熄、下一段绳子该不该割短。每个人都被这些细碎问题拖着走，连阿照也只顾着把砂眼堵住，不愿再回想墓心中段那几行字。\n\n更早正文 第006章 碎碑抄名:\n# 第006章 碎碑抄名\n\n离开墓心后，碎碑间的名字密密麻麻，像一场没人读完的族谱。\n\n阿照被迫逐个抄下石碑上的年号、偏旁和残缺符号，又把灯绳重新分给每个人，免得队伍在回廊里走散。\n\n他们争论了很久哪些名字属于守墓匠，哪些只是误刻的祭名，声音在石壁间来回撞，几乎把先前所有有用的话都压成了噪声。倒置罗盘此时只在包里轻轻磕碰，没有人再去看它。\n\n更早正文 第005章 中段针尾:\n# 第005章 中段针尾\n\n墓心中段嵌着一块真北铁，阿照把倒置罗盘放上去时，针尖猛地偏向一面没有门缝的墙。\n\n石旁小字写着：倒置罗盘遇见真北铁，会把针背向真正的缺口；只有反握罗盘，针尾指的才是生门。\n\n阿照把这句话抄在灯绳背面，又提醒众人如果后面再见真北铁，千万别顺着最显眼的那一端走。\n\n更早正文 第004章 水声误路:\n# 第004章 水声误路\n\n水声从右侧石缝传来，听上去像出口附近的暗河。\n\n阿照带人走了半里，才发现水声只是空室里的回响，连脚印都被潮气洗得发白。\n\n他们重新标记石壁，又把用过的灯绳收回包里，疲惫得只想找一处能坐下的干地。\n\n更早正文 第003章 铜屑暗廊:\n# 第003章 铜屑暗廊\n\n暗廊里落满铜屑，脚一踩上去就会发出细碎的响声。\n\n同伴说这像是旧机关磨下来的粉，阿照却只顾把铜屑扫开，免得它们卡进罗盘盘沿。\n\n那一夜他们绕过三道…",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ]
+    },
+    {
+      "id": "four-layer",
+      "label": "B four-layer memory",
+      "promptChars": 1542,
+      "memoryCount": 6,
+      "memorySources": [
+        "manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-007.md",
+        "codex/items/inverted-compass.md",
+        "codex/characters/azhao.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-005",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008"
+      ],
+      "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第008章 铁墙试针 (chapter-008)\n\n# 任务\n请接着第008章续写阿照面对铁墙和倒置罗盘的一小段。重点是他如何判断该看罗盘哪一端。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-007.md)\n当前章节原文:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n近期前文 第006章 碎碑抄名:\n# 第006章 碎碑抄名\n\n离开墓心后，碎碑间的名字密密麻麻，像一场没人读完的族谱。\n\n阿照被迫逐个抄下石碑上的年号、偏旁和残缺符号，又把灯绳重新分给每个人，免得队伍在回廊里走散。\n\n他们争论了很久哪些名字属于守墓匠，哪些只是误刻的祭名，声音在石壁间来回撞，几乎把先前所有有用的话都压成了噪声。倒置罗盘此时只在包里轻轻磕碰，没有人再去看它。\n\n近期前文 第007章 盲井听砂:\n# 第007章 盲井听砂\n\n盲井底下不断有细砂落下，像有人在黑暗里慢慢筛米。\n\n阿照带着众人沿井壁绕行，先数出十二处刻痕，又拆下一段旧梯当临时木尺，反复量井口和回廊的距离。\n\n同伴开始只谈谁还剩几口水、哪盏灯先熄、下一段绳子该不该割短。每个人都被这些细碎问题拖着走，连阿照也只顾着把砂眼堵住，不愿再回想墓心中段那几行字。\n\n## 2. L0 事实 (codex/items/inverted-compass.md)\n倒置罗盘: 倒置罗盘是阿照在回环墓中携带的旧航器。它的关键用法没有写在卡片里，而是埋在中段正文线索中，需要从针尾、反握、缺口等词回查正文。 当前状态: role=回环墓里判断方向的旧航器\n\n## 3. L0 事实 (codex/characters/azhao.md)\n阿照: 阿照负责保管倒置罗盘，但真正的用法记录在墓心中段的正文线索里。 - 目标: 带队从回环墓里找出生门 - 风险: 被倒置罗盘的表象误导 当前状态: goal=带队从回环墓里找出生门；risk=被倒置罗盘的表象误导\n\n## 4. L3 意图 (meta/project.json)\n项目《回环墓中段》当前正在编辑 第008章 铁墙试针，故事时间: 回环纪·第六更。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 阿照、倒置罗盘、真北铁、针尾、反…\n\n## 5. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 中段针尾: 墓心中段出…\n\n## 6. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008)\n全书脉络: 远期压缩: 第001章 雨墓入口~第003章 铜屑暗廊: 阿照携带倒置罗盘入墓。；队伍用灯绳和结记路。；阿照保护倒置罗盘不被铜屑卡住。 近期详细:…",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 1,
+          "reason": "0/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ]
+    }
+  ],
+  "runs": [],
+  "aggregate": {
+    "arms": [
+      {
+        "id": "baseline",
+        "runs": 0,
+        "errors": 0,
+        "scoreMean": 0,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "recent-fill",
+        "runs": 0,
+        "errors": 0,
+        "scoreMean": 0,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "four-layer",
+        "runs": 0,
+        "errors": 0,
+        "scoreMean": 0,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      }
+    ],
+    "comparisons": [
+      {
+        "candidate": "four-layer",
+        "baseline": "baseline",
+        "pairedRuns": 0,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      {
+        "candidate": "four-layer",
+        "baseline": "recent-fill",
+        "pairedRuns": 0,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      }
+    ]
+  },
+  "archivePath": ".novel/evals/a0-causal-dry-run/lost-in-middle-benchmark-iron-wall-needle",
+  "gate": {
+    "status": "not-run",
+    "ok": true,
+    "failedReasonIds": []
+  },
+  "errors": []
+}

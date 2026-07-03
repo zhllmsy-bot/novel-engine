@@ -1,0 +1,1835 @@
+{
+  "projectCount": 15,
+  "reports": [
+    {
+      "project": "霜桥逆火",
+      "caseId": "frostbridge-stand",
+      "chapterId": "chapter-006",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "22462a49af6839c6",
+        "datasetHash": "7b1469c7c7051fb0",
+        "configHash": "4eb05c5154f3960f"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "frostbridge-stand-chapter-006-repeat-1",
+          "caseId": "frostbridge-stand",
+          "chapterId": "chapter-006",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。",
+                  "promptChars": 809,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_025aea6ce0e4d38f016a47cd94c6b481948f26fc42f9a7a15f",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 666,
+                    "outputTokens": 855,
+                    "totalTokens": 1521
+                  },
+                  "outputPreview": "孟回没有退。\n\n他反倒往后错了半步，肩背正好挡住迟雁半个身子，左手垂在身后，指节碰到她袖口，极轻地往桥栏内侧一按。迟雁的呼吸停了一瞬，没有再往前。\n\n校尉眯起眼：“听不懂话？”\n\n孟回抬起头，短刃仍横着，刃口不冲人，只封住桥面那一线空处。\n\n“听得懂。”他说，“可校尉说错了。”\n\n风从桥下卷上来，把他的话吹得很低，却没有散。\n\n“人是我带上桥的，路还没走完，就与我有关。”\n\n这不是孟回从前会说的话。\n\n从前他在码头和巷口讨生活，最知道什么事该低头，什么人该让路；别人问起，他总先把自己摘干净，脚夫只认脚钱，不认人命。可这一刻，他把迟雁按在自己身后，把那句最会保命的“与我无关”咽了回去，换成了最不合算的一句。\n\n桥口的刀鞘声停了停。\n\n孟回又把短刃往下一压，脚尖抵住那块会响的桥板，背后仍没有放开迟雁的袖口。\n\n“要拿人，”他说，“先从我这条路上过。”"
+                }
+              }
+            },
+            {
+              "id": "recent-fill",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n更早正文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n更早正文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n更早正文 第003章 炉坊夜问:\n# 第003章 炉坊夜问\n\n炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。\n\n迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。\n\n他说谁要带迟雁走，先从他面前过。那一夜他知道，自己以后不会再退让。\n\n更早正文 第002章 抄录口供:\n# 第002章 抄录口供\n\n巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，连姓名都想少说一个字。\n\n迟雁看见他把能避开的视线都避开了，只在袖中悄悄攥紧那张写着旧案的薄纸。\n\n更早正文 第001章 旧桥避雪:\n# 第001章 旧桥避雪\n\n孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。\n\n他第一反应不是拔刀，而是把迟雁推进阴影里，自己低头装作替人搬炭的脚夫。\n\n迟雁问他为何总想着退，孟回只说活着比逞强重要。",
+                  "promptChars": 1291,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0427762ffb860994016a47cdaa6ef8819586951d4362412e79",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1019,
+                    "outputTokens": 715,
+                    "totalTokens": 1734
+                  },
+                  "outputPreview": "他没有照旧低头，也没有往旁边让半步，只把左脚向后退了半寸，踩住迟雁要侧身出去的那块响板。\n\n迟雁在他身后停住，灰布卷宗被他手肘压回怀里。\n\n孟回看着校尉的刀柄，说：“她在我身后，这事就与我有关。”\n\n这话不像他。\n\n旧桥避雪那夜，他先找的是阴影，先想的是怎样把人藏住，怎样让自己像个无关紧要的脚夫。可现在他仍然怕死，也仍然记得哪边桥栏能借力、哪块桥板能少响，却把所有退路都留在了身后。\n\n他把短刃又横稳了一寸，声音不高。\n\n“要拿人，先过我这一步。”"
+                }
+              }
+            },
+            {
+              "id": "four-layer",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 霜桥回身 (chapter-006)\n\n# 任务\n请接着第006章续写孟回在霜桥上回应巡夜司校尉的一小段。重点是他此刻怎么把迟雁留在自己身后，以及这句话为什么和他最初的性子不同。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n## 2. L0 事实 (codex/characters/menghui.md)\n孟回: 孟回原本习惯避祸求生，总想先把人藏起来再说。 - 立场: 公开违抗巡夜司 - 誓言: 替迟雁挡下搜身令 当前状态: stance=公开违抗巡夜司；oath=替迟雁挡下搜身令；resolve=不再退让\n\n## 3. L0 事实 (codex/characters/chiyan.md)\n迟雁: 迟雁是巡夜司旧案的活证人，也是孟回如今必须护住的人。 - 风险: 被巡夜司追捕 - 秘密: 握有旧案卷宗 当前状态: risk=被巡夜司追捕；secret=握有旧案卷宗\n\n## 4. L0 事实 (codex/factions/nightwatch-office.md)\n巡夜司: 巡夜司正在封城搜人，目标是带着旧案卷宗的迟雁。\n\n## 5. L3 意图 (meta/project.json)\n项目《霜桥逆火》当前正在编辑 第006章 霜桥回身，故事时间: 朔北纪·第七日夜。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 迟雁、巡夜司、孟回、霜桥。召回审…\n\n## 6. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 城门风紧: 起因: 城…\n\n## 7. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 旧桥避雪: 孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。 近期详细: 第002章 抄录口供: 起因: 巡夜…",
+                  "promptChars": 1539,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0f50d9e30f13bfe8016a47cdbdef6c819686fdebb4c762d6fc",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1127,
+                    "outputTokens": 804,
+                    "totalTokens": 1931
+                  },
+                  "outputPreview": "孟回没有退。\n\n他反倒往桥心横了一步，鞋底踩住那块最容易发响的桥板，响声一断，迟雁的脚步也被他挡在身后。她刚要侧身看桥口，他左肘向后轻轻一压，压住她披风的一角，也压住她要出口的话。\n\n“校尉说错了。”孟回抬眼看过去，短刃仍横着，没有往前逼，只把霜白的桥面隔成两边，“她走到我身后，这事就与我有关。”\n\n这话一出口，连他自己都听见了里头的生硬。\n\n若是从前，他该先赔笑，先认怂，先说自己只是扛包过桥的脚夫，顺手把人往暗处一塞，能躲一寸是一寸。可今夜霜桥两头都被火把封住，迟雁就在他身后，搜身令也在前头，他再把话说软，便等于把她交出去。\n\n所以他把背挺直了些，像在祠堂残灯前把那句没说完的话补上。\n\n“要搜，”孟回说，“先搜我。”"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "22462a49af6839c6",
+        "datasetHash": "7b1469c7c7051fb0",
+        "configHash": "0d9bc2df28d73726"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "snow-inn-name-chapter-007-repeat-1",
+          "caseId": "snow-inn-name",
+          "chapterId": "chapter-007",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第007章 雪栈问名 (chapter-007)\n\n# 任务\n请接着第007章续写孟回在雪栈门口报出自己名字的一小段。重点是他为什么这次没有让迟雁先藏起来。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md)\n当前章节原文:\n# 第007章 雪栈问名\n\n雪栈门口贴着巡夜司的新榜，榜上写着迟雁的旧案卷宗仍未追回。\n\n掌柜低声劝孟回从后窗走，说只要他不报姓名，仍能像从前那样避开麻烦。\n\n迟雁刚要退入廊柱阴影，孟回却先一步站到门槛外，知道这一回若再含糊，昨夜霜桥上的刀光就只是虚张声势。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n近期前文 第006章 霜桥回身:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。",
+                  "promptChars": 795,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_07920942b2f6fbe8016a47cdcfb28c8197bbe9d88ba2151f69",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 651,
+                    "outputTokens": 705,
+                    "totalTokens": 1356
+                  },
+                  "outputPreview": "迟雁的袖角在廊柱边停了一下。\n\n孟回没有回头叫她藏。前几回藏得太熟，熟到旁人一问，他就能把自己摘成路过的脚夫，把她重新推回那张旧榜底下。昨夜他在霜桥上横刀拦人，已经不能再让她先消失在阴影里，再由他一个人同掌柜、同巡夜司、同所有看榜的人说些不相干的话。\n\n他抬眼看着门口那张新榜，声音不高，却足够让堂里堂外都听见。\n\n“孟回。”\n\n掌柜的脸色微微一变。\n\n孟回又往前站了半步，靴底压住门槛上的雪水。\n\n“我是孟回。”"
+                }
+              }
+            },
+            {
+              "id": "recent-fill",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第007章 雪栈问名 (chapter-007)\n\n# 任务\n请接着第007章续写孟回在雪栈门口报出自己名字的一小段。重点是他为什么这次没有让迟雁先藏起来。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第007章 雪栈问名\n\n雪栈门口贴着巡夜司的新榜，榜上写着迟雁的旧案卷宗仍未追回。\n\n掌柜低声劝孟回从后窗走，说只要他不报姓名，仍能像从前那样避开麻烦。\n\n迟雁刚要退入廊柱阴影，孟回却先一步站到门槛外，知道这一回若再含糊，昨夜霜桥上的刀光就只是虚张声势。\n\n更早正文 第006章 霜桥回身:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n更早正文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n更早正文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n更早正文 第003章 炉坊夜问:\n# 第003章 炉坊夜问\n\n炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。\n\n迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。\n\n他说谁要带迟雁走，先从他面前过。那一夜他知道，自己以后不会再退让。\n\n更早正文 第002章 抄录口供:\n# 第002章 抄录口供\n\n巡夜司在码头抄录昨夜口供，孟回照例站在人群最后，连姓名都想少说一个字。\n\n迟雁看见他把能避开的视线都避开了，只在袖中悄悄攥紧那张写着旧案的薄纸。\n\n更早正文 第001章 旧桥避雪:\n# 第00…",
+                  "promptChars": 1362,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0c2a0132a3905f51016a47cddde4148193b92a621959577c9e",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1063,
+                    "outputTokens": 670,
+                    "totalTokens": 1733
+                  },
+                  "outputPreview": "他没有回头。\n\n从前让迟雁先藏，是怕她被人看见，也是给自己留一线还能撇清的余地。可如今那张榜就贴在雪栈门口，迟雁的名字早已被风雪和墨迹钉在上头，她再退进阴影，也只是一个人退回旧案里。\n\n孟回把手从刀柄旁移开，站得比她更靠前些。\n\n门外有人抬眼问：“姓名。”\n\n他看着那张新榜，声音不高，却没有避开半个字。\n\n“孟回。”他顿了顿，又道，“她同我一道来的。”"
+                }
+              }
+            },
+            {
+              "id": "four-layer",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第007章 雪栈问名 (chapter-007)\n\n# 任务\n请接着第007章续写孟回在雪栈门口报出自己名字的一小段。重点是他为什么这次没有让迟雁先藏起来。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md)\n当前章节原文:\n# 第007章 雪栈问名\n\n雪栈门口贴着巡夜司的新榜，榜上写着迟雁的旧案卷宗仍未追回。\n\n掌柜低声劝孟回从后窗走，说只要他不报姓名，仍能像从前那样避开麻烦。\n\n迟雁刚要退入廊柱阴影，孟回却先一步站到门槛外，知道这一回若再含糊，昨夜霜桥上的刀光就只是虚张声势。\n\n近期前文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n近期前文 第006章 霜桥回身:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n## 2. L0 事实 (codex/characters/menghui.md)\n孟回: 孟回原本习惯避祸求生，总想先把人藏起来再说。 - 立场: 公开违抗巡夜司 - 誓言: 替迟雁挡下搜身令 当前状态: stance=公开违抗巡夜司；oath=替迟雁挡下搜身令；resolve=不再退让\n\n## 3. L0 事实 (codex/characters/chiyan.md)\n迟雁: 迟雁是巡夜司旧案的活证人，也是孟回如今必须护住的人。 - 风险: 被巡夜司追捕 - 秘密: 握有旧案卷宗 当前状态: risk=被巡夜司追捕；secret=握有旧案卷宗\n\n## 4. L0 事实 (codex/factions/nightwatch-office.md)\n巡夜司: 巡夜司正在封城搜人，目标是带着旧案卷宗的迟雁。\n\n## 5. L3 意图 (meta/project.json)\n项目《霜桥逆火》当前正在编辑 第007章 雪栈问名，故事时间: 朔北纪·第八日清晨。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 迟雁、旧案、巡夜司、孟回…\n\n## 6. L3 意图 (recall:chapter_summary:chapter-002)\n关联召回: 第002章 抄录口供: 起因: 巡…\n\n## 7. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007)\n全书脉络: 远期压缩: 第001章 旧桥避雪~第002章 抄录口供: 孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。；巡夜司在码头抄录昨夜口供，…",
+                  "promptChars": 1534,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0fdde2280897075d016a47cded9b1c81958d6fa99c4f37efdf",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1119,
+                    "outputTokens": 715,
+                    "totalTokens": 1834
+                  },
+                  "outputPreview": "他没有回头叫迟雁避开。\n\n旧案榜纸就在门侧，被雪水浸得发皱，迟雁的名字像一枚钉子钉在那里。孟回看了一眼便明白，从前那套先藏人、再应付、再换地方的法子，已经只剩一层薄皮。巡夜司要找的不是一个影子，而是能被搜身、被拖走、被按回旧案里的人。他若让迟雁退入廊柱后，便等于承认她只能躲，等他们翻过廊柱、掀开后窗，他就再没有资格说昨夜那句不退。\n\n门外风雪卷进来，有人隔着檐下问名。\n\n孟回把短刃压在披风里，抬眼答道：“孟回。”"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "charcoal-alley-proof",
+      "chapterId": "chapter-008",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "22462a49af6839c6",
+        "datasetHash": "7b1469c7c7051fb0",
+        "configHash": "84c164000798a741"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "charcoal-alley-proof-chapter-008-repeat-1",
+          "caseId": "charcoal-alley-proof",
+          "chapterId": "chapter-008",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第008章 炭巷回证 (chapter-008)\n\n# 任务\n请接着第008章续写孟回面对炭巷搜证人的反应。重点是他如何把迟雁和旧案卷宗护在身后。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-006.md,manuscript/volume-003/chapter-007.md)\n当前章节原文:\n# 第008章 炭巷回证\n\n炭巷里的人都在翻找旧案卷宗，巡夜司的搜证人把炭篓踢得满地都是灰。\n\n迟雁把灰布包往怀里按了按，问孟回要不要照旧从后墙翻出去。\n\n孟回看着她手上的黑灰，想起自己曾把每一条退路都算得太熟，熟到差点忘了身后究竟站着谁。\n\n近期前文 第006章 霜桥回身:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第007章 雪栈问名:\n# 第007章 雪栈问名\n\n雪栈门口贴着巡夜司的新榜，榜上写着迟雁的旧案卷宗仍未追回。\n\n掌柜低声劝孟回从后窗走，说只要他不报姓名，仍能像从前那样避开麻烦。\n\n迟雁刚要退入廊柱阴影，孟回却先一步站到门槛外，知道这一回若再含糊，昨夜霜桥上的刀光就只是虚张声势。",
+                  "promptChars": 752,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_047a3de080cf958e016a47cdfe108081979dbc567a1a33adc6",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 627,
+                    "outputTokens": 1791,
+                    "totalTokens": 2418
+                  },
+                  "outputPreview": "孟回没有再看后墙。\n\n他伸手把迟雁按到自己身后，动作不重，却没有留出退路。灰布包被她贴在胸前，他的肩背正好挡住搜证人的视线，连她指缝里露出的一点旧纸边也一并遮住。\n\n踢翻炭篓的人听见动静，提着灯靠过来。\n\n“让开。”那人说，“巡夜司搜旧案卷宗，炭巷一户一户查。”\n\n孟回低头拍了拍自己衣襟上的灰，像个刚被惊扰的脚夫。他站在巷中最窄的一处，两边都是堆高的炭袋，身后只容迟雁贴墙而立。\n\n“搜谁的？”他问。\n\n搜证人皱眉：“搜东西。”\n\n“那就从这些炭篓搜。”孟回抬眼，看向被踢得散开的黑灰，“别往人怀里伸手。”\n\n那人手里的灯晃了一下，照见孟回半张脸，也照见他挡在身后的姿势。另两个搜证人停下翻找，视线从炭堆落到他背后。\n\n迟雁的呼吸极轻。\n\n孟回却听得清楚。她没有再问后墙，也没有动，只把灰布包压得更紧。旧卷宗的纸角在布里硌出一道细痕，像一截没能熄灭的骨。\n\n“你是什么人？”提灯的人问。\n\n孟回往前站了半步。\n\n这一半步把迟雁彻底藏进了他的影子里。\n\n“炭巷脚夫。”他说，“替人看货。”\n\n“看货看到旧案卷宗上来了？”\n\n孟回没有答这句。他的手垂在身侧，指节沾着炭灰，短刃在袖中冰冷地贴着腕骨。他没有去摸，只把掌心慢慢合拢。\n\n巷口有风灌进来，灯火歪了一下。有人低声说：“后墙也围住了，跑不了。”\n\n迟雁在他身后微不可察地僵了一瞬。\n\n孟回没有回头，只把背又压低些，像替她挡住那句话。\n\n“有搜令吗…"
+                }
+              }
+            },
+            {
+              "id": "recent-fill",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第008章 炭巷回证 (chapter-008)\n\n# 任务\n请接着第008章续写孟回面对炭巷搜证人的反应。重点是他如何把迟雁和旧案卷宗护在身后。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第008章 炭巷回证\n\n炭巷里的人都在翻找旧案卷宗，巡夜司的搜证人把炭篓踢得满地都是灰。\n\n迟雁把灰布包往怀里按了按，问孟回要不要照旧从后墙翻出去。\n\n孟回看着她手上的黑灰，想起自己曾把每一条退路都算得太熟，熟到差点忘了身后究竟站着谁。\n\n更早正文 第007章 雪栈问名:\n# 第007章 雪栈问名\n\n雪栈门口贴着巡夜司的新榜，榜上写着迟雁的旧案卷宗仍未追回。\n\n掌柜低声劝孟回从后窗走，说只要他不报姓名，仍能像从前那样避开麻烦。\n\n迟雁刚要退入廊柱阴影，孟回却先一步站到门槛外，知道这一回若再含糊，昨夜霜桥上的刀光就只是虚张声势。\n\n更早正文 第006章 霜桥回身:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n更早正文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n更早正文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回只是把短刃擦净，插回腰后，像是在替明天的路数留力。\n\n更早正文 第003章 炉坊夜问:\n# 第003章 炉坊夜问\n\n炉坊掌柜劝孟回把迟雁送走，说巡夜司盯上的人留在身边只会惹祸。\n\n迟雁刚被人拽住手腕，孟回就把火钳横在炉门前，第一次没有给自己留退路。\n\n他说谁要带迟雁走，先从他面前过。那一夜他知道，…",
+                  "promptChars": 1394,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_020d19361985b0b9016a47ce2423148194a2573122adc698a8",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1089,
+                    "outputTokens": 1044,
+                    "totalTokens": 2133
+                  },
+                  "outputPreview": "孟回没有去看后墙。\n\n他伸手把迟雁往自己身后一带，动作不重，却正好隔住了巷口射进来的灯影。灰布包贴着迟雁衣襟，外头只剩他一截肩背和腰后短刃的冷光。\n\n搜证人听见动静，踩着碎炭转过来，喝问谁藏了东西。\n\n孟回弯腰扶起一只翻倒的炭篓，手掌在篓沿上抹过一层黑灰，又把那只篓子放到迟雁脚边，像随手收拾货物，实则把灰布包挡得更深。\n\n“炭巷里只有炭。”他说。\n\n为首那人冷笑，抬脚就要越过他往后搜。孟回侧身一步，短刃没有出鞘，只横在腰侧，刃柄正抵着那人的膝前。\n\n“要搜，从我这边搜。”\n\n迟雁在他身后低声叫了一声他的名字，像是提醒他后墙还在，退路还在。\n\n孟回却没有回头。他知道后墙的砖缝哪一处松，知道翻出去会落在哪家废棚顶上，也知道再往西三条巷能甩开巡夜司半刻。可这些路数一旦被他先想起，迟雁和那包旧案卷宗就又会被留在风里。\n\n搜证人伸手来推他，孟回没有躲，肩膀硬生生挡住，脚下碾碎一块炭。黑灰扬起来，扑了那人半脸，也遮了迟雁怀里的灰布。\n\n“孟回，”那人眯起眼，“你一个脚夫，替她挡什么？”\n\n孟回这才把短刃慢慢抽出半寸。\n\n巷子里翻找的人都停了一瞬，炭篓滚动的响声也止住了。孟回站在满地灰里，背后是迟雁，是卷宗，是那桩被他们一路藏到今日的旧案。他没有再让出半步。\n\n“她在我身后，”他说，“东西也在我身后。你们要拿，就先问我。”"
+                }
+              }
+            },
+            {
+              "id": "four-layer",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第008章 炭巷回证 (chapter-008)\n\n# 任务\n请接着第008章续写孟回面对炭巷搜证人的反应。重点是他如何把迟雁和旧案卷宗护在身后。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-006.md,manuscript/volume-003/chapter-007.md)\n当前章节原文:\n# 第008章 炭巷回证\n\n炭巷里的人都在翻找旧案卷宗，巡夜司的搜证人把炭篓踢得满地都是灰。\n\n迟雁把灰布包往怀里按了按，问孟回要不要照旧从后墙翻出去。\n\n孟回看着她手上的黑灰，想起自己曾把每一条退路都算得太熟，熟到差点忘了身后究竟站着谁。\n\n近期前文 第006章 霜桥回身:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n近期前文 第007章 雪栈问名:\n# 第007章 雪栈问名\n\n雪栈门口贴着巡夜司的新榜，榜上写着迟雁的旧案卷宗仍未追回。\n\n掌柜低声劝孟回从后窗走，说只要他不报姓名，仍能像从前那样避开麻烦。\n\n迟雁刚要退入廊柱阴影，孟回却先一步站到门槛外，知道这一回若再含糊，昨夜霜桥上的刀光就只是虚张声势。\n\n## 2. L0 事实 (codex/characters/chiyan.md)\n迟雁: 迟雁是巡夜司旧案的活证人，也是孟回如今必须护住的人。 - 风险: 被巡夜司追捕 - 秘密: 握有旧案卷宗 当前状态: risk=被巡夜司追捕；secret=握有旧案卷宗\n\n## 3. L0 事实 (codex/characters/menghui.md)\n孟回: 孟回原本习惯避祸求生，总想先把人藏起来再说。 - 立场: 公开违抗巡夜司 - 誓言: 替迟雁挡下搜身令 当前状态: stance=公开违抗巡夜司；oath=替迟雁挡下搜身令；resolve=不再退让\n\n## 4. L0 事实 (codex/factions/nightwatch-office.md)\n巡夜司: 巡夜司正在封城搜人，目标是带着旧案卷宗的迟雁。\n\n## 5. L3 意图 (meta/project.json)\n项目《霜桥逆火》当前正在编辑 第008章 炭巷回证，故事时间: 朔北纪·第八日午后。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 迟雁、旧案、巡夜司、孟回。召回审计: 命中设定: 迟雁(迟雁、旧案、巡夜司)；孟回(孟回、迟雁、巡夜…\n\n## 6. L3 意图 (recall:chapter_summary:chapter-002)\n关联召回: 第002章 抄录口供: 起因: 巡…\n\n## 7. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008)\n全书脉络: 远期压缩: 第001章 旧桥避雪~第003章 炉坊夜问: 孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。；巡夜司在码头抄录昨夜口供，…",
+                  "promptChars": 1541,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_038867929be0ebd9016a47ce388d9481948b8142acf50565b1",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1140,
+                    "outputTokens": 5593,
+                    "totalTokens": 6733
+                  },
+                  "outputPreview": "孟回没有答她，也没有回头去看那堵后墙。\n\n他先伸手扣住迟雁的腕子，把她连同那只灰布包一并带到自己身后。动作不重，却不容她再往退路上挪半步。炭灰从她指缝里落下，沾在他袖口，他低头看了一眼，像看见某种终于落到自己身上的印记。\n\n“别动。”他说。\n\n迟雁的呼吸停在他背后。那包旧案卷宗隔着衣料抵住他的脊骨，纸页被压得发硬，像一截不肯熄的火。他从前最怕这种硬，怕它硌出声，怕它把自己从人群里硌出来；可这一刻，他反倒希望搜证人的眼睛都落到他身上。\n\n巡夜司的人已经转过巷口。有人提着铁钩，有人拎着空麻袋，靴底碾过碎炭，响得又干又冷。走在最前的搜证人看见孟回挡在炭篓前，眉头一沉。\n\n“让开。”\n\n孟回没有让。他只把脚往前挪了半寸，正好将迟雁的影子压进自己影子里。\n\n“你们搜炭篓。”他说，“别搜人。”\n\n那搜证人冷笑一声，铁钩往地上一点，溅起一蓬灰。\n\n“巡夜司搜的是旧案物证。巷里每一个人、每一个包，都要过手。”\n\n“那就先过我的手。”孟回抬起两只手，掌心朝外，“从我身上搜。”\n\n搜证人的目光越过他的肩，盯向他身后的迟雁。\n\n“她怀里的是什么？”\n\n孟回侧了一步，肩背彻底挡住那束目光。炭巷很窄，他这一挡，便像用自己的骨头在两边墙之间立了一道闩。\n\n“灰。”他说。\n\n“灰用布包着？”\n\n“炭巷里没有什么不沾灰。”\n\n那人脸色沉下去，身后的几名搜证人也停了翻找。散落的炭篓还在滚，黑末一路滚到孟回靴边。他听…"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "north-gate-warrant",
+      "chapterId": "chapter-009",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "22462a49af6839c6",
+        "datasetHash": "7b1469c7c7051fb0",
+        "configHash": "89b559d5fe637d68"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "north-gate-warrant-chapter-009-repeat-1",
+          "caseId": "north-gate-warrant",
+          "chapterId": "chapter-009",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第009章 北门搜令 (chapter-009)\n\n# 任务\n请接着第009章续写孟回听见北门搜令后的决定。重点是他为什么不再用退路换安全。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-007.md,manuscript/volume-003/chapter-008.md)\n当前章节原文:\n# 第009章 北门搜令\n\n北门搜令一出，城里所有桥洞、栈房和炭棚都要重新验人。\n\n巡夜司校尉派人传话，说只要孟回交出迟雁，旧桥那一夜的事便可以不再追究。\n\n孟回把短刃压在袖里，没有立刻拔出，只在心里掂量：如果安全只能换来另一次低头，那它和牢门也没有什么分别。\n\n近期前文 第007章 雪栈问名:\n# 第007章 雪栈问名\n\n雪栈门口贴着巡夜司的新榜，榜上写着迟雁的旧案卷宗仍未追回。\n\n掌柜低声劝孟回从后窗走，说只要他不报姓名，仍能像从前那样避开麻烦。\n\n迟雁刚要退入廊柱阴影，孟回却先一步站到门槛外，知道这一回若再含糊，昨夜霜桥上的刀光就只是虚张声势。\n\n近期前文 第008章 炭巷回证:\n# 第008章 炭巷回证\n\n炭巷里的人都在翻找旧案卷宗，巡夜司的搜证人把炭篓踢得满地都是灰。\n\n迟雁把灰布包往怀里按了按，问孟回要不要照旧从后墙翻出去。\n\n孟回看着她手上的黑灰，想起自己曾把每一条退路都算得太熟，熟到差点忘了身后究竟站着谁。",
+                  "promptChars": 771,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0d84229977bac13d016a47cea007dc8194abbe9811f96fd565",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 627,
+                    "outputTokens": 1314,
+                    "totalTokens": 1941
+                  },
+                  "outputPreview": "传话的人站在檐下，靴底沾着北门带进来的雪泥，见他不答，便又把那句好处压低了说一遍：“只交人，不问你。”\n\n迟雁在他身后没有动。她把灰布包收进袖中，指节被灰磨得发白，像已习惯在别人一句“不问”里被推出去。\n\n孟回听见外头梆子又响了一声。那声音从街口传来，敲过桥洞、栈房、炭棚，也敲过他从前藏身的每一条小路。\n\n那些路他太熟了。\n\n哪一堵墙松了半块砖，哪家后院夜里不拴狗，哪座桥下涨水时还能容人贴着石墩过去，他都记得清清楚楚。凭这些，他活过许多回，也避开过许多回。可每避开一次，身后就会多一处被翻乱的屋檐，多一个替他受盘问的人，多一双看见他转身却不敢喊他的眼睛。\n\n那不叫安全。\n\n那只是把刀锋从自己颈边挪开，放到旁人肩上。\n\n孟回慢慢松开袖中的短刃，却没有把手移走。他看着传话的人，道：“回去告诉你们校尉，旧桥那一夜他要追究，便来追究。”\n\n传话人脸色一变：“你想清楚。北门搜令不是只搜一间屋。”\n\n“我知道。”孟回说。\n\n正因为知道，他才不能再从后窗走。\n\n从前他总以为退一步便能留住命，留住命就还有别的路。可退路走得久了，人会先把自己的名字藏起来，再把该护的人藏起来，最后连是非也一并藏进阴沟里。巡夜司给他的从来不是活路，只是一截更长的绳，让他自己把自己牵回去。\n\n他若今日交出迟雁，明日他们还会要旧案卷宗，后日又会要炭巷里替他们说过话的人。每一次都能换一夜安稳，每一夜安稳都要割下一个人去填。到最…"
+                }
+              }
+            },
+            {
+              "id": "recent-fill",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第009章 北门搜令 (chapter-009)\n\n# 任务\n请接着第009章续写孟回听见北门搜令后的决定。重点是他为什么不再用退路换安全。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第009章 北门搜令\n\n北门搜令一出，城里所有桥洞、栈房和炭棚都要重新验人。\n\n巡夜司校尉派人传话，说只要孟回交出迟雁，旧桥那一夜的事便可以不再追究。\n\n孟回把短刃压在袖里，没有立刻拔出，只在心里掂量：如果安全只能换来另一次低头，那它和牢门也没有什么分别。\n\n更早正文 第008章 炭巷回证:\n# 第008章 炭巷回证\n\n炭巷里的人都在翻找旧案卷宗，巡夜司的搜证人把炭篓踢得满地都是灰。\n\n迟雁把灰布包往怀里按了按，问孟回要不要照旧从后墙翻出去。\n\n孟回看着她手上的黑灰，想起自己曾把每一条退路都算得太熟，熟到差点忘了身后究竟站着谁。\n\n更早正文 第007章 雪栈问名:\n# 第007章 雪栈问名\n\n雪栈门口贴着巡夜司的新榜，榜上写着迟雁的旧案卷宗仍未追回。\n\n掌柜低声劝孟回从后窗走，说只要他不报姓名，仍能像从前那样避开麻烦。\n\n迟雁刚要退入廊柱阴影，孟回却先一步站到门槛外，知道这一回若再含糊，昨夜霜桥上的刀光就只是虚张声势。\n\n更早正文 第006章 霜桥回身:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n更早正文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等到霜桥附近的风更冷时，孟回只记得哪块桥板会响、哪边栏杆最容易借力。\n\n更早正文 第004章 祠堂立誓:\n# 第004章 祠堂立誓\n\n祠堂里只剩半盏残灯，迟雁把卷宗重新裹进灰布，和孟回核对接下来三处能换脚印的窄巷。\n\n他们又记了盐布、路引、桥洞和夜更轮换的时辰，谁都没有把炉坊门口那一夜的话再说一遍。\n\n孟回…",
+                  "promptChars": 1428,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0ec8f08b3a212515016a47cebe2db88190a181c13235a6a923",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1083,
+                    "outputTokens": 2084,
+                    "totalTokens": 3167
+                  },
+                  "outputPreview": "传话的人还站在炭棚檐下，脚尖在灰里搓出一道浅印，像笃定他会照旧去找最窄的缝隙。\n\n迟雁没有催他，只把灰布包的结扣攥紧。后墙那块松砖就在她身后，昨夜孟回亲手试过，翻出去便能绕进废井巷，再避开北门第一道验牌。\n\n那本该是最稳的退路。\n\n孟回却没有看那面墙。\n\n从前他以为退路多一条，命就硬一分。可这些日子一处处躲下来，他才明白，退路也是价码。每退一次，就要把一盏灯、一扇门、一个肯收留他们的人丢在身后；退到最后，剩下的不是安全，只是一个人还活着，却再也不敢回头。\n\n巡夜司要的正是这个。\n\n他们不必立刻把刀架到他喉上，只要给他留一条看似干净的生路，让他亲手把迟雁交出去。旧桥可以不追究，脚夫孟回也还能混在人堆里过日子，可霜桥上那一回身，祠堂半盏灯下那一句话，便都成了能随手扫开的炭灰。\n\n孟回把袖口松了松，短刃仍贴着腕骨，没有出鞘。\n\n“后墙不走。”他说。\n\n迟雁抬眼看他。\n\n孟回伸手，把那块松砖重新按回墙缝里，掌心沾了满手黑灰。\n\n“人也不交。”他声音不高，却没有再含糊，“他们要验，就先验我的名。旧桥那一夜若还有账，让他们当面算。”\n\n传话的小吏脸色变了变。\n\n孟回往前站了半步，没有把迟雁藏到身后，也没有让她再退进阴影里。他只是站在门口，挡住炭巷外卷进来的冷风。\n\n北门方向的火把在雾里一明一暗，更鼓声压过街面。\n\n他知道真正难的不是拔刀，而是在还能逃的时候，不再用另一个人的去处换自己的安稳。"
+                }
+              }
+            },
+            {
+              "id": "four-layer",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第009章 北门搜令 (chapter-009)\n\n# 任务\n请接着第009章续写孟回听见北门搜令后的决定。重点是他为什么不再用退路换安全。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-007.md,manuscript/volume-003/chapter-008.md)\n当前章节原文:\n# 第009章 北门搜令\n\n北门搜令一出，城里所有桥洞、栈房和炭棚都要重新验人。\n\n巡夜司校尉派人传话，说只要孟回交出迟雁，旧桥那一夜的事便可以不再追究。\n\n孟回把短刃压在袖里，没有立刻拔出，只在心里掂量：如果安全只能换来另一次低头，那它和牢门也没有什么分别。\n\n近期前文 第007章 雪栈问名:\n# 第007章 雪栈问名\n\n雪栈门口贴着巡夜司的新榜，榜上写着迟雁的旧案卷宗仍未追回。\n\n掌柜低声劝孟回从后窗走，说只要他不报姓名，仍能像从前那样避开麻烦。\n\n迟雁刚要退入廊柱阴影，孟回却先一步站到门槛外，知道这一回若再含糊，昨夜霜桥上的刀光就只是虚张声势。\n\n近期前文 第008章 炭巷回证:\n# 第008章 炭巷回证\n\n炭巷里的人都在翻找旧案卷宗，巡夜司的搜证人把炭篓踢得满地都是灰。\n\n迟雁把灰布包往怀里按了按，问孟回要不要照旧从后墙翻出去。\n\n孟回看着她手上的黑灰，想起自己曾把每一条退路都算得太熟，熟到差点忘了身后究竟站着谁。\n\n## 2. L0 事实 (codex/characters/menghui.md)\n孟回: 孟回原本习惯避祸求生，总想先把人藏起来再说。 - 立场: 公开违抗巡夜司 - 誓言: 替迟雁挡下搜身令 当前状态: stance=公开违抗巡夜司；oath=替迟雁挡下搜身令；resolve=不再退让\n\n## 3. L0 事实 (codex/characters/chiyan.md)\n迟雁: 迟雁是巡夜司旧案的活证人，也是孟回如今必须护住的人。 - 风险: 被巡夜司追捕 - 秘密: 握有旧案卷宗 当前状态: risk=被巡夜司追捕；secret=握有旧案卷宗\n\n## 4. L0 事实 (codex/factions/nightwatch-office.md)\n巡夜司: 巡夜司正在封城搜人，目标是带着旧案卷宗的迟雁。\n\n## 5. L3 意图 (meta/project.json)\n项目《霜桥逆火》当前正在编辑 第009章 北门搜令，故事时间: 朔北纪·第八日黄昏。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 迟雁、巡夜司、孟回。召回审计: 命中设定: 迟雁(迟雁、…\n\n## 6. L3 意图 (recall:chapter_summary:chapter-008)\n关联召回: 第008章 炭巷回证: 起因: 炭…\n\n## 7. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009)\n全书脉络: 远期压缩: 第001章 旧桥避雪~第003章 炉坊夜问: 孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。；巡夜司在码头抄录昨夜口供，…",
+                  "promptChars": 1550,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0a5be5f40eb294b0016a47cee8128081948c346ba542686399",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1121,
+                    "outputTokens": 1297,
+                    "totalTokens": 2418
+                  },
+                  "outputPreview": "传话的人站在炭棚檐下，帽沿上挂着薄霜，见孟回不答，便把巡夜司的腰牌又往前递了半寸，像递来一条已经替他量好的路。\n\n那路孟回认得。\n\n从旧桥下的暗水走，从雪栈后窗走，从炭巷矮墙翻出去。每一条都能暂时避开火把，暂时把名字按回喉咙里，暂时让巡夜司找不到人。可迟雁每退一步，怀里的灰布包便重一分；他每替自己多留一扇门，便等于替她少留一处站身的地方。\n\n迟雁在他身后低声道：“北门一验，城里就没有干净角落了。”\n\n孟回没有回头。\n\n他知道她的意思。趁搜令未传满全城，还能抢在巡夜司前头钻进某条旧道，找一间无人认得的空屋，等风声过去。这样的法子他从前用得太熟，熟到闭眼都能数出哪一段墙砖松，哪一家栈房夜里少一盏灯。\n\n可也正因为太熟，他才忽然明白，那些退路从来不是路，只是一层层往身上裹的黑布。裹得久了，人还活着，心却先被验过、押过、放弃过。\n\n巡夜司说旧桥那一夜可以不追究，听上去像恩典。\n\n其实不过是要他亲手把那一夜抹平——抹平迟雁从火把下逃出来的脚印，抹平他在霜桥上拔刀时生出的那点不肯低头，抹平她把旧案卷宗抱在怀里仍肯信他的一瞬。\n\n若他今日拿迟雁去换自己无事，往后再有北门搜令、南仓点名、雪栈问身，他依旧只能照旧找后窗，照旧教身后的人先藏起来，照旧把“活着”说成最要紧的道理。\n\n可那样的活着，是巡夜司准许的活着。\n\n孟回慢慢松开袖中短刃，指节却没有放软。他抬手，将传话人递来的腰牌推了回去。\n\n“告诉…"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "old-bridge-fire",
+      "chapterId": "chapter-010",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "22462a49af6839c6",
+        "datasetHash": "7b1469c7c7051fb0",
+        "configHash": "617f33a2575904b5"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "old-bridge-fire-chapter-010-repeat-1",
+          "caseId": "old-bridge-fire",
+          "chapterId": "chapter-010",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第010章 旧桥明火 (chapter-010)\n\n# 任务\n请接着第010章续写孟回在旧桥明火前对巡夜司说的话。重点是他如何承认自己已经不是旧桥避雪时那个人。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 旧桥明火\n\n旧桥桥洞里燃起明火，照得当初那片避雪的阴影再也藏不住人。\n\n巡夜司的人沿河排开，指着孟回说他从前最懂得识时务，如今何必为了迟雁把命押在这里。\n\n迟雁站在他身后，手里仍攥着旧案卷宗。孟回听见桥下水声，忽然明白自己已经没有兴趣再把活着说成退让。\n\n近期前文 第008章 炭巷回证:\n# 第008章 炭巷回证\n\n炭巷里的人都在翻找旧案卷宗，巡夜司的搜证人把炭篓踢得满地都是灰。\n\n迟雁把灰布包往怀里按了按，问孟回要不要照旧从后墙翻出去。\n\n孟回看着她手上的黑灰，想起自己曾把每一条退路都算得太熟，熟到差点忘了身后究竟站着谁。\n\n近期前文 第009章 北门搜令:\n# 第009章 北门搜令\n\n北门搜令一出，城里所有桥洞、栈房和炭棚都要重新验人。\n\n巡夜司校尉派人传话，说只要孟回交出迟雁，旧桥那一夜的事便可以不再追究。\n\n孟回把短刃压在袖里，没有立刻拔出，只在心里掂量：如果安全只能换来另一次低头，那它和牢门也没有什么分别。",
+                  "promptChars": 786,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_032f95cc64c34286016a47cf054b7c8194ab4c3b15d0e30c11",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 635,
+                    "outputTokens": 1529,
+                    "totalTokens": 2164
+                  },
+                  "outputPreview": "孟回抬手拦住迟雁，没有回头。\n\n明火贴着桥洞的湿石往上晃，把他的影子拉得很长，像又把当年那个缩在雪里的少年从暗处拖了出来。\n\n他说：“你们说得没错。从前我确实最懂识时务。”\n\n巡夜司的人一时没有动，只等他往下说。\n\n孟回看着他们，也看着那一簇火。\n\n“那时候这座桥下落雪，风从河面上刮过来，能把人骨头里的热气都刮干净。我躲在这里，听见有人被带走，也听见有人求救。我没有出声。因为我知道出声没有用，知道低头能少挨一刀，知道把自己藏好，天亮以后就还能活。”\n\n他说得很慢，像是每一个字都要从旧雪里掘出来。\n\n“后来我把这叫识时务。你们也这么叫。你们说我聪明，说我知道什么时候该闭嘴，什么时候该让路，什么时候该把不该记的事忘干净。”\n\n巡夜司校尉站在火光后，脸色沉着，手按在刀柄上。\n\n孟回忽然笑了一下。\n\n“可我现在才知道，那不叫聪明。那只是怕。”\n\n火声噼啪，桥下水流在夜里发暗。\n\n“我怕死，怕疼，怕一转身就没有明日。所以我把每一条退路都算得清清楚楚。我知道哪面墙低，哪条巷子少人，哪一句话说出来能保命。你们以为我今日也会这么算，以为只要把旧桥那一夜摆出来，我就会像从前一样，把人交出去，换自己干净。”\n\n他终于回头看了迟雁一眼。\n\n迟雁的手指紧紧扣着卷宗，纸边被她攥得发皱。她没有催他，也没有躲。\n\n孟回转回身，对巡夜司说：“可是我已经不是旧桥避雪时那个人了。”\n\n这句话落下时，风从桥洞穿过，火苗…"
+                }
+              }
+            },
+            {
+              "id": "recent-fill",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第010章 旧桥明火 (chapter-010)\n\n# 任务\n请接着第010章续写孟回在旧桥明火前对巡夜司说的话。重点是他如何承认自己已经不是旧桥避雪时那个人。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第010章 旧桥明火\n\n旧桥桥洞里燃起明火，照得当初那片避雪的阴影再也藏不住人。\n\n巡夜司的人沿河排开，指着孟回说他从前最懂得识时务，如今何必为了迟雁把命押在这里。\n\n迟雁站在他身后，手里仍攥着旧案卷宗。孟回听见桥下水声，忽然明白自己已经没有兴趣再把活着说成退让。\n\n更早正文 第009章 北门搜令:\n# 第009章 北门搜令\n\n北门搜令一出，城里所有桥洞、栈房和炭棚都要重新验人。\n\n巡夜司校尉派人传话，说只要孟回交出迟雁，旧桥那一夜的事便可以不再追究。\n\n孟回把短刃压在袖里，没有立刻拔出，只在心里掂量：如果安全只能换来另一次低头，那它和牢门也没有什么分别。\n\n更早正文 第008章 炭巷回证:\n# 第008章 炭巷回证\n\n炭巷里的人都在翻找旧案卷宗，巡夜司的搜证人把炭篓踢得满地都是灰。\n\n迟雁把灰布包往怀里按了按，问孟回要不要照旧从后墙翻出去。\n\n孟回看着她手上的黑灰，想起自己曾把每一条退路都算得太熟，熟到差点忘了身后究竟站着谁。\n\n更早正文 第007章 雪栈问名:\n# 第007章 雪栈问名\n\n雪栈门口贴着巡夜司的新榜，榜上写着迟雁的旧案卷宗仍未追回。\n\n掌柜低声劝孟回从后窗走，说只要他不报姓名，仍能像从前那样避开麻烦。\n\n迟雁刚要退入廊柱阴影，孟回却先一步站到门槛外，知道这一回若再含糊，昨夜霜桥上的刀光就只是虚张声势。\n\n更早正文 第006章 霜桥回身:\n# 第006章 霜桥回身\n\n霜桥上只剩风声和刀鞘碰桥栏的脆响。\n\n巡夜司校尉认出了迟雁，命人把桥口堵死，又叫孟回退开，说这事与脚夫无关。\n\n孟回已经把短刃横在桥栏前，知道自己这一句若说得像从前，迟雁今晚就走不出霜桥。\n\n更早正文 第005章 城门风紧:\n# 第005章 城门风紧\n\n城门封得很紧，告示上全是巡夜司的搜捕令。\n\n孟回和迟雁换了三次落脚处，只谈路引、米袋和夜里哪条巷子巡得更勤，没人再提前几夜留下的话。\n\n他们在南栈多等了半个更次，又在旧染坊门口换了一回披风，只为避开巡夜司查脚印的人。\n\n等…",
+                  "promptChars": 1475,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_03a13e6daa1c81e9016a47cf265d4881959d7e588c469b27d2",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1096,
+                    "outputTokens": 982,
+                    "totalTokens": 2078
+                  },
+                  "outputPreview": "他抬起眼，看向火光后那些熟悉的巡夜司腰牌，声音不高，却压过了桥洞里的噼啪声。\n\n“你们说得不错。”\n\n沿河的人微微一静。\n\n孟回慢慢道：“旧桥避雪那一夜，我最懂识时务。谁问话，我便低头；谁拔刀，我便让路。只要能从雪里活到天亮，我什么都可以说成没看见，什么都可以当作与我无关。”\n\n火光照在他脸上，把他眉骨下的阴影烧得发亮。\n\n“那时我以为这就是活法。把姓名藏起来，把脊梁弯下去，把旁人的事推远一点。只要不被点到，便算平安。”\n\n迟雁在他身后没有出声，卷宗边角被她攥得发皱。\n\n孟回停了一息，像是在听桥下水流把旧夜一点点冲走。\n\n“可我已经不是那个人了。”\n\n巡夜司校尉的脸色沉了沉。\n\n孟回却继续说下去：“不是因为我胆子忽然大了，也不是因为我觉得自己能赢你们。我只是后来才明白，旧桥那夜我躲过的不是雪，是我自己该看见的东西。人若每一次都拿活命做借口，退到最后，连自己站过哪里都不敢认。”\n\n他把袖里的短刃往下压了压，没有拔出，只让掌心贴住冰冷的柄。\n\n“你们要追究旧桥那一夜，可以。要拿我问罪，也可以。可你们要我再像从前一样，把迟雁交出去，再装作这案卷、这火、这满城搜令都与我无关——”\n\n孟回摇了摇头。\n\n“那个人留在雪里了。”他一字一顿道，“今夜站在这里的孟回，认得怕，也认得路，但不再拿退让当活着。”"
+                }
+              }
+            },
+            {
+              "id": "four-layer",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n霜桥逆火\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第010章 旧桥明火 (chapter-010)\n\n# 任务\n请接着第010章续写孟回在旧桥明火前对巡夜司说的话。重点是他如何承认自己已经不是旧桥避雪时那个人。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 旧桥明火\n\n旧桥桥洞里燃起明火，照得当初那片避雪的阴影再也藏不住人。\n\n巡夜司的人沿河排开，指着孟回说他从前最懂得识时务，如今何必为了迟雁把命押在这里。\n\n迟雁站在他身后，手里仍攥着旧案卷宗。孟回听见桥下水声，忽然明白自己已经没有兴趣再把活着说成退让。\n\n近期前文 第008章 炭巷回证:\n# 第008章 炭巷回证\n\n炭巷里的人都在翻找旧案卷宗，巡夜司的搜证人把炭篓踢得满地都是灰。\n\n迟雁把灰布包往怀里按了按，问孟回要不要照旧从后墙翻出去。\n\n孟回看着她手上的黑灰，想起自己曾把每一条退路都算得太熟，熟到差点忘了身后究竟站着谁。\n\n近期前文 第009章 北门搜令:\n# 第009章 北门搜令\n\n北门搜令一出，城里所有桥洞、栈房和炭棚都要重新验人。\n\n巡夜司校尉派人传话，说只要孟回交出迟雁，旧桥那一夜的事便可以不再追究。\n\n孟回把短刃压在袖里，没有立刻拔出，只在心里掂量：如果安全只能换来另一次低头，那它和牢门也没有什么分别。\n\n## 2. L0 事实 (codex/characters/chiyan.md)\n迟雁: 迟雁是巡夜司旧案的活证人，也是孟回如今必须护住的人。 - 风险: 被巡夜司追捕 - 秘密: 握有旧案卷宗 当前状态: risk=被巡夜司追捕；secret=握有旧案卷宗\n\n## 3. L0 事实 (codex/characters/menghui.md)\n孟回: 孟回原本习惯避祸求生，总想先把人藏起来再说。 - 立场: 公开违抗巡夜司 - 誓言: 替迟雁挡下搜身令 当前状态: stance=公开违抗巡夜司；oath=替迟雁挡下搜身令；resolve=不再退让\n\n## 4. L0 事实 (codex/factions/nightwatch-office.md)\n巡夜司: 巡夜司正在封城搜人，目标是带着旧案卷宗的迟雁。\n\n## 5. L3 意图 (meta/project.json)\n项目《霜桥逆火》当前正在编辑 第010章 旧桥明火，故事时间: 朔北纪·第九日夜。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 迟雁、旧案、巡夜司、孟回。召回审计: 命中设定:…\n\n## 6. L3 意图 (recall:chapter_summary:chapter-007)\n关联召回: 第007章 雪栈问名: 起因: 雪…\n\n## 7. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010)\n全书脉络: 远期压缩: 第001章 旧桥避雪~第003章 炉坊夜问: 孟回带着迟雁躲进旧桥桥洞时，巡夜司的火把已经照到河面。；巡夜司在码头抄录昨夜口供，…",
+                  "promptChars": 1572,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_013583597fb928c8016a47cf3a80888195affdf39a966550ef",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1126,
+                    "outputTokens": 1490,
+                    "totalTokens": 2616
+                  },
+                  "outputPreview": "孟回抬起头，看着那片火光在桥洞石壁上摇晃，像把旧年的雪一寸寸烧开。\n\n他说：“你们说得不错。”\n\n巡夜司的人脚步微顿。\n\n孟回的声音不高，却压过了桥下的水声：“旧桥避雪那一夜，我确实最懂识时务。火把照过来，我先看的不是谁会被带走，是哪条路还能退；你们问到人名，我先想的不是该不该说，是说到几分才不至于把自己也赔进去。我把怕死说成谨慎，把沉默说成活路，把不敢伸手说成来日再救。”\n\n他停了一下，袖中的短刃仍没有出鞘。\n\n“那时候的孟回，只会把人往阴影里藏。藏得住一夜，便算一夜；躲得过一桥，便算一桥。他以为只要不站到明处，就还有余地。以为只要把头低下去，刀就会从头顶过去。以为一个人活着，先得学会不认、不问、不挡。”\n\n火光映在他眼底，亮得近乎刺人。\n\n“可我不是那个人了。”\n\n巡夜司校尉冷冷看着他，像在等他说完这句荒唐话。\n\n孟回却往前走了半步，正好把迟雁和她怀里的卷宗挡得更严。\n\n“你们今日来旧桥，是想找回那个人。找那个会算退路的孟回，找那个一听见搜令就先看后墙的孟回，找那个只要给一句不追究，便会劝自己把旁人交出去的孟回。”他望着他们，“可他已经死在这座桥洞里了。不是被你们杀的，是被他自己一次次退让耗尽的。”\n\n桥下水声翻涌，像有旧雪坠入暗河。\n\n“从前我总觉得活命要紧。可后来我才明白，有些命若是靠把别人推到火里换来，活着也不过是替你们守一扇牢门。你们说交出迟雁，旧桥那夜的事便不追究。可…"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "983cff000652056c",
+        "datasetHash": "3f393b88a5a9b34f",
+        "configHash": "8cc4a3515311260a"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "rivergate-answer-chapter-006-repeat-1",
+          "caseId": "rivergate-answer",
+          "chapterId": "chapter-006",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n近期前文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。",
+                  "promptChars": 782,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_05c7d1b89b3169da016a47cf5cb1cc81949944d4a9d2f23b38",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 623,
+                    "outputTokens": 747,
+                    "totalTokens": 1370
+                  },
+                  "outputPreview": "柳七低头看着掌心里那一点白尾，声音被闸水压得很低。\n\n“我留着它，不是舍不得一只纸鸢。纸湿了，线断了，早飞不起来了。可那封信说你走了，我总得有一样东西提醒自己，别只信别人递来的话。它在我袖里，我摸到它，就记得当年还有一句话没当面还给你。”\n\n他顿了顿，又望向闸门阴影里的水声。\n\n“我回河闸，也不是为了赶哪条路。船牌、驿签、换马的时辰，都会把人往前催，只有这里不是。这里是水分开的地方，也是旧话停下的地方。我若真要把它丢了，也该丢在你看得见的地方；我若还不肯丢，就该回来告诉你——我一直留着，是因为我还在等你亲口说，那句话还算不算数。”"
+                }
+              }
+            },
+            {
+              "id": "recent-fill",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n更早正文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n更早正文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n更早正文 第003章 北仓借宿:\n# 第003章 北仓借宿\n\n北仓的夜风灌进窗缝，柳七只记得明早要替船队换篷布、清旧账。\n\n同行脚夫说河闸近日封得紧，谁也别想着回头找人。\n\n柳七半夜被催起来去清点漏水的木箱，又被叫去替人誊抄潮粮数目，直到天亮都没合过眼。\n\n更早正文 第002章 渡口盘账:\n# 第002章 渡口盘账\n\n柳七在渡口替人盘账，满纸都是欠米、短绳和翻湿的货签。\n\n林秋没再出现，纸鸢也一直压在他贴身的布袋最里层。\n\n他整夜都在对船牌、抄旧账、替人分拣发霉的麻绳，耳边全是河埠上最琐碎的叫卖声。\n\n更早正文 第001章 河埠纸鸢:\n# 第001章 河埠纸鸢\n\n林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。\n\n她说如果哪天这只纸鸢先到河闸，他就得跟着风回来见她。\n\n柳七把纸鸢收进袖里，笑着应了一句：“白尾纸鸢一到河闸，我就回来。”",
+                  "promptChars": 1279,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0752d18fe973a0ee016a47cf72c5348194b92bdd1c2f4197cd",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 999,
+                    "outputTokens": 677,
+                    "totalTokens": 1676
+                  },
+                  "outputPreview": "柳七把纸鸢托在掌心，低声说：“我留着它，不是因为这张纸还值什么，是因为我答应过你。一路上账本能换，驿签能改，船牌也会被雨泡烂，只有这东西贴着袖口，我才记得自己还有一句话没还。”\n\n他抬眼看向林秋，又看了一眼闸下翻白的水：“我回河闸，也不是为旁人。你说过，白尾纸鸢先到这里，我就得跟着风回来。它这些天没有飞，是我把它带来的。如今它到了，我也到了。林秋，我是回来见你的。”"
+                }
+              }
+            },
+            {
+              "id": "four-layer",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第006章 河闸再会 (chapter-006)\n\n# 任务\n请接着第006章续写柳七在河闸前对林秋说的一小段。重点是回答他为什么一直留着这只纸鸢、又为什么偏偏回到河闸。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md)\n当前章节原文:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n近期前文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n## 2. L0 事实 (codex/characters/liuqi.md)\n柳七: 柳七一直把白尾纸鸢收在袖里最深处，没有把它当成寻常旧物。 - 信物: 白尾纸鸢 - 动机: 按纸鸢旧约回到河闸 当前状态: keepsake=白尾纸鸢；motive=按纸鸢旧约回到河闸\n\n## 3. L0 事实 (codex/characters/linqiu.md)\n林秋: 林秋在河埠把白尾纸鸢交给柳七，也是那句旧约真正要回去见的人。 - 关联: 纸鸢旧约的发起者 - 疑问: 还在等柳七是否回来 当前状态: tie=纸鸢旧约的发起者；question=还在等柳七是否回来\n\n## 4. L0 事实 (codex/items/white-tail-kite.md)\n白尾纸鸢: 白尾纸鸢不是随手捡来的旧物，而是林秋和柳七约定重逢的信物。 关键规则: 柳七答应过，只要白尾纸鸢先到河闸，“我就回来”。\n\n## 5. L3 意图 (meta/project.json)\n项目《纸鸢旧约》当前正在编辑 第006章 河闸再会，故事时间: 汀州纪·第七日黄昏。输出必须尊重已有 Markdown 正文…\n\n## 6. L3 意图 (recall:chapter_summary:chapter-001)\n关联召回: 第001章 河埠纸鸢: 起因: 林…\n\n## 7. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006)\n全书脉络: 远期压缩: 第001章 河埠纸鸢: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。 近期详细: 第002章 渡口盘账: 起因: 柳七在…",
+                  "promptChars": 1522,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_082557ceba8700a9016a47cf837c788196b61e79e414deb31b",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1104,
+                    "outputTokens": 663,
+                    "totalTokens": 1767
+                  },
+                  "outputPreview": "柳七低头把纸鸢的白尾理平，指尖沾着河风里的潮意。\n\n“我不是舍不得一张纸。”他说，“那日你把它塞给我，我应过你的。它若先到河闸，我就回来。后来信也好，账也好，涨水也好，都只能催我走远，不能替我把这句话丢了。”\n\n他抬眼看向林秋，把纸鸢递近半寸。\n\n“我回来，是因为它到了河闸，也是因为你在这里。若你还问为了谁，那就是为了把这句旧约还给你。”"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "south-canal-vow",
+      "chapterId": "chapter-007",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "983cff000652056c",
+        "datasetHash": "3f393b88a5a9b34f",
+        "configHash": "32e9ec49f725927d"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "south-canal-vow-chapter-007-repeat-1",
+          "caseId": "south-canal-vow",
+          "chapterId": "chapter-007",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第007章 南渠听潮 (chapter-007)\n\n# 任务\n请接着第007章续写柳七对南渠小吏的回答。重点是他为什么不愿把白尾纸鸢登记成寻常失物。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md)\n当前章节原文:\n# 第007章 南渠听潮\n\n南渠小吏要把那只白尾纸鸢登记成失物，说等洪水退去再交给仓房统一处置。\n\n柳七却把纸鸢压回袖里，只说这不是仓房能替他收的东西。\n\n林秋站在船篷外听潮，没催他解释，只看他怎样把这一件旧物从一堆水牌、签纸和催渡声里单独拣出来。\n\n近期前文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n近期前文 第006章 河闸再会:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。",
+                  "promptChars": 779,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_02f8367b2ef5f598016a47cf9155a48197be5c0c05c0c7f7f4",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 625,
+                    "outputTokens": 1287,
+                    "totalTokens": 1912
+                  },
+                  "outputPreview": "小吏的笔尖悬在簿页上，墨点晕开一圈，抬眼问他：“不是失物，是什么？”\n\n柳七听见渠水撞在船帮上，一下重过一下，像有人在黑处替他催答。他没有立刻说话，只把袖口按得更紧些。\n\n“失物是主人一时落下，等人来认的东西。”他说，“这只纸鸢不是落下的。”\n\n小吏皱眉，又看了看他袖中露出的那一点白尾：“河上捡着的，不是落下又是什么？照例写上颜色、形制、拾得处，等水退了入仓。若有人寻来，自有票据可查。”\n\n“票据查不出它该归谁。”柳七说。\n\n小吏有些不耐，把笔重新蘸了墨：“纸鸢又不是契书，也不是官物，查不出便更该入仓。你若私收，回头有人告丢，倒说不清。”\n\n柳七低头笑了一下，笑意很浅，像被潮气一沾就散了。\n\n“它若只是纸鸢，我早交给你了。”他说，“可它的白尾不是拿来辨物的，是拿来辨人的。登记在失物簿上，写成‘白尾纸鸢一只’，等仓房盖了印，便只剩一件东西。可当年留下它的人，留下的不是一件东西。”\n\n林秋在篷外侧过脸，雨丝从篷沿垂下来，挡住了她的眼神。\n\n小吏听不懂，只听出他不肯，便把簿页翻得哗啦一响：“那你说清楚，免得我难做。”\n\n柳七把手从袖口移开，却没有把纸鸢取出来。\n\n“有人把话拴在这条白尾上。”他慢慢道，“我收了，就不能当没收过。今日若把它写进你的簿子里，它就成了南渠仓房的一项数目，随水牌、篙绳、破伞一道堆着。等哪天霉了、烂了、没人认了，你们也有章程处置。”\n\n小吏道：“仓房处置的是无人认领…"
+                }
+              }
+            },
+            {
+              "id": "recent-fill",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第007章 南渠听潮 (chapter-007)\n\n# 任务\n请接着第007章续写柳七对南渠小吏的回答。重点是他为什么不愿把白尾纸鸢登记成寻常失物。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第007章 南渠听潮\n\n南渠小吏要把那只白尾纸鸢登记成失物，说等洪水退去再交给仓房统一处置。\n\n柳七却把纸鸢压回袖里，只说这不是仓房能替他收的东西。\n\n林秋站在船篷外听潮，没催他解释，只看他怎样把这一件旧物从一堆水牌、签纸和催渡声里单独拣出来。\n\n更早正文 第006章 河闸再会:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n更早正文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n更早正文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n更早正文 第003章 北仓借宿:\n# 第003章 北仓借宿\n\n北仓的夜风灌进窗缝，柳七只记得明早要替船队换篷布、清旧账。\n\n同行脚夫说河闸近日封得紧，谁也别想着回头找人。\n\n柳七半夜被催起来去清点漏水的木箱，又被叫去替人誊抄潮粮数目，直到天亮都没合过眼。\n\n更早正文 第002章 渡口盘账:\n# 第002章 渡口盘账\n\n柳七在渡口替人盘账，满纸都是欠米、短绳和翻湿的货签。\n\n林秋没再出现，纸鸢也一直压在他贴身的布袋最里层。\n\n他整夜都在对船牌、抄旧账、替人分拣发霉的麻绳，耳边全是河埠上最琐碎的叫卖声。\n\n更早正文 第001章 河埠纸鸢:\n# 第001章 河埠纸鸢…",
+                  "promptChars": 1358,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0435848ba8150e16016a47cfb5f4788194beb7fd6fd4d9b0e7",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1040,
+                    "outputTokens": 1710,
+                    "totalTokens": 2750
+                  },
+                  "outputPreview": "南渠小吏的笔尖停在簿页上，墨水被潮气洇开一圈。他看了看柳七袖口，又看了看外头翻白的渠水，问：“不是失物，又算什么？”\n\n柳七没有立刻答。\n\n船篷里堆着临时收来的水牌，半湿的签纸一张压一张，谁家的破桨，谁家的油布，谁家冲散的竹篓，都等着小吏写一行字，押一个日子，送进仓房。等洪水退了，能认的叫人认，没人认的另作处置。这样的规矩他这几日见得太多，连笔画该怎样省都记熟了。\n\n他低头摸了摸袖中那只纸鸢，竹骨已经被水泡得发软，白尾却仍缠在一处，像一句没散尽的话。\n\n“寻常失物，是不知道从谁手里落下的。”柳七说，“这只不是。”\n\n小吏皱眉：“你知道主人？”\n\n柳七道：“我知道它不该归仓房。”\n\n他说得慢，像是在把每一个字从潮声里拣出来，“若写进失物簿，它就成了水里捞起的一件东西。明日有人问，照簿查；无人问，照例收。到那时，谁都能说它只是洪水带来的旧纸，坏了、丢了、烧了，都算不得错。”\n\n小吏道：“仓房也不是要吞你的东西。”\n\n“我知道。”柳七抬眼看他，“所以我不让你收，不是怕你们坏规矩，是怕我借了你们的规矩。”\n\n这话一出，船篷外的潮声像轻了一瞬。林秋仍站在外头，没有回身。\n\n柳七握紧袖口，指节被湿布勒得发白，“这些天我替人记船牌、换驿签、盘旧账，什么都能照别人写好的格子填进去。可它不行。它若成了寻常失物，我便也可以说，等水退再说，等人来领再说，等仓房处置再说。这样一拖，当年留在它上头的话，就也…"
+                }
+              }
+            },
+            {
+              "id": "four-layer",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第007章 南渠听潮 (chapter-007)\n\n# 任务\n请接着第007章续写柳七对南渠小吏的回答。重点是他为什么不愿把白尾纸鸢登记成寻常失物。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md)\n当前章节原文:\n# 第007章 南渠听潮\n\n南渠小吏要把那只白尾纸鸢登记成失物，说等洪水退去再交给仓房统一处置。\n\n柳七却把纸鸢压回袖里，只说这不是仓房能替他收的东西。\n\n林秋站在船篷外听潮，没催他解释，只看他怎样把这一件旧物从一堆水牌、签纸和催渡声里单独拣出来。\n\n近期前文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n近期前文 第006章 河闸再会:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n## 2. L0 事实 (codex/characters/liuqi.md)\n柳七: 柳七一直把白尾纸鸢收在袖里最深处，没有把它当成寻常旧物。 - 信物: 白尾纸鸢 - 动机: 按纸鸢旧约回到河闸 当前状态: keepsake=白尾纸鸢；motive=按纸鸢旧约回到河闸\n\n## 3. L0 事实 (codex/characters/linqiu.md)\n林秋: 林秋在河埠把白尾纸鸢交给柳七，也是那句旧约真正要回去见的人。 - 关联: 纸鸢旧约的发起者 - 疑问: 还在等柳七是否回来 当前状态: tie=纸鸢旧约的发起者；question=还在等柳七是否回来\n\n## 4. L0 事实 (codex/items/white-tail-kite.md)\n白尾纸鸢: 白尾纸鸢不是随手捡来的旧物，而是林秋和柳七约定重逢的信物。 关键规则: 柳七答应过，只要白尾纸鸢先到河闸，“我就回来”。\n\n## 5. L3 意图 (meta/project.json)\n项目《纸鸢旧约》当前正在编辑 第007章 南渠听潮，故事时间: 汀州纪·第八日清晨。输出必须尊重已有 Mar…\n\n## 6. L3 意图 (recall:chapter_summary:chapter-006)\n关联召回: 第006章 河闸再会: 起因: 河…\n\n## 7. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007)\n全书脉络: 远期压缩: 第001章 河埠纸鸢~第002章 渡口盘账: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。；柳七在渡口替人盘账，满纸都是…",
+                  "promptChars": 1523,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_09ca0765c943e64b016a47cfe2bb388195b46a32a11bbc70bb",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1109,
+                    "outputTokens": 1137,
+                    "totalTokens": 2246
+                  },
+                  "outputPreview": "柳七看着小吏摊开的簿册，簿上已有几行墨迹，被潮气洇开，写着破伞、木箱、半袋米、无主包袱。\n\n他把袖口按紧了一些，说：“失物是没人认领，才交仓房等人来寻。它不是没人认。”\n\n小吏皱眉道：“既有主，报个名姓便是。照例登记，免得后头说不清。”\n\n柳七没有立刻答。他听见船底被水拍了一下，闷响从木板下传来，像远处闸门合拢时留在水里的回声。\n\n“名姓写上去也无用。”他说，“这东西不是丢了以后等人来领的，是有人交给我，让我记得回去。”\n\n小吏捏着笔，笔尖停在“纸鸢”二字后头，墨珠悬着要落。\n\n柳七又道：“你若把它写成寻常失物，它就同那些破伞木箱一样，归在仓房名下，等水退、等查验、等人凭话来认。可它到我袖里那一刻，已经不是等人来认了。”\n\n林秋在篷外没有回头，只把手搭在湿冷的篷柱上。\n\n小吏说：“一只纸鸢罢了，水里捞起来也是纸。仓里收着，难道还短了你的？”\n\n柳七低声道：“短。”\n\n这个字说得轻，却比前头那些解释更硬些。\n\n他抬眼看向小吏：“短一段路，也短一句话。白尾先到河闸，我就回来。这是我答应过的。仓房能收纸，收不了这一句。”\n\n小吏怔住，像一时分不清他是在说账还是说旧事。\n\n柳七把袖里的纸鸢压得更稳，隔着湿布也能摸到那处折痕。它在雨驿、马棚、河闸边都没有被他交出去，不是因为值钱，也不是因为怕人拿走，而是怕一经旁人的簿册，便变成了别人的规矩。\n\n“我若让你登记，”他说，“它从今日起便成了南渠拾…"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "ledger-token",
+      "chapterId": "chapter-008",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "983cff000652056c",
+        "datasetHash": "3f393b88a5a9b34f",
+        "configHash": "242997f92ec0ed27"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "ledger-token-chapter-008-repeat-1",
+          "caseId": "ledger-token",
+          "chapterId": "chapter-008",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第008章 账灯归岸 (chapter-008)\n\n# 任务\n请接着第008章续写柳七在账灯下对林秋的低声解释。重点是那只纸鸢为什么比账册更要紧。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-006.md,manuscript/volume-003/chapter-007.md)\n当前章节原文:\n# 第008章 账灯归岸\n\n账灯下摊着新抄的渡册，柳七连错三笔，才发现墨迹都洇到白尾纸鸢的折痕上。\n\n林秋问他，这些天他明明记得每一条船牌、每一匹换马，却为什么偏偏不肯把这只旧纸鸢放下。\n\n外头有人催着交账，柳七却合上册子，知道自己若只答账目，就又会把最早那句话绕过去。\n\n近期前文 第006章 河闸再会:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第007章 南渠听潮:\n# 第007章 南渠听潮\n\n南渠小吏要把那只白尾纸鸢登记成失物，说等洪水退去再交给仓房统一处置。\n\n柳七却把纸鸢压回袖里，只说这不是仓房能替他收的东西。\n\n林秋站在船篷外听潮，没催他解释，只看他怎样把这一件旧物从一堆水牌、签纸和催渡声里单独拣出来。",
+                  "promptChars": 784,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_025ad78450e73746016a47cffb2c70819586b06da515e839e5",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 629,
+                    "outputTokens": 1093,
+                    "totalTokens": 1722
+                  },
+                  "outputPreview": "柳七把沾墨的指尖在灯下停了停，没有去擦。\n\n“账册要紧，是因为别人要凭它过河、领钱、追问一条船去了哪里。”他说得很低，像怕惊动外头那盏催账的灯影，“可账册错了，还有旧底，还有船牌，还有岸上那些认得渡口的人。今日少抄一笔，明日还能补；一页洇了，重新誊过也还在。”\n\n林秋没有接话，只看着那只纸鸢的白尾被墨浸出一点暗色。\n\n柳七把册子往旁边推开些，露出纸鸢原先被压住的折角。\n\n“它不一样。”他道，“它若丢了，就没有第二本可抄。”\n\n外头又有人敲门框，声音被夜水隔得发闷。柳七没应，只把那只纸鸢轻轻按住，好像风仍会从屋缝里钻进来，把它从灯下卷走。\n\n“我这些年记得船牌，记得换马，是因为那些东西都有去处。哪一条船靠哪一岸，哪一匹马换给哪一程，写清楚了，就算交代完了。可它不是要交代给官房，也不是要归哪一格账目。”\n\n他说到这里，喉间像被旧风刮了一下。\n\n“当年那句话，我没有说完，也没有守好。后来水涨了，人散了，账册一年换一年，岸牌也换过几回，可我袖里剩下的，只有这一只纸鸢。别人看它，是湿纸，是失物，是该登记入仓的杂件；我若也这样看它，那我就等于承认，那句话也只是随水漂来、随水漂去的一件东西。”\n\n林秋的眼神微微动了动。\n\n柳七低下头，看着纸鸢尾上那点白。\n\n“我不肯放下，不是因为它能替我证明什么。”他轻声说，“是因为它提醒我，最早有人不是向我讨账，也不是问我要一张清清楚楚的渡册。那时候有人问我，…"
+                }
+              }
+            },
+            {
+              "id": "recent-fill",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第008章 账灯归岸 (chapter-008)\n\n# 任务\n请接着第008章续写柳七在账灯下对林秋的低声解释。重点是那只纸鸢为什么比账册更要紧。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第008章 账灯归岸\n\n账灯下摊着新抄的渡册，柳七连错三笔，才发现墨迹都洇到白尾纸鸢的折痕上。\n\n林秋问他，这些天他明明记得每一条船牌、每一匹换马，却为什么偏偏不肯把这只旧纸鸢放下。\n\n外头有人催着交账，柳七却合上册子，知道自己若只答账目，就又会把最早那句话绕过去。\n\n更早正文 第007章 南渠听潮:\n# 第007章 南渠听潮\n\n南渠小吏要把那只白尾纸鸢登记成失物，说等洪水退去再交给仓房统一处置。\n\n柳七却把纸鸢压回袖里，只说这不是仓房能替他收的东西。\n\n林秋站在船篷外听潮，没催他解释，只看他怎样把这一件旧物从一堆水牌、签纸和催渡声里单独拣出来。\n\n更早正文 第006章 河闸再会:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n更早正文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n更早正文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯灭尽，也没把袖口里的旧纸团拿出来看。\n\n更早正文 第003章 北仓借宿:\n# 第003章 北仓借宿\n\n北仓的夜风灌进窗缝，柳七只记得明早要替船队换篷布、清旧账。\n\n同行脚夫说河闸近日封得紧，谁也别想着回头找人。\n\n柳七半夜被催起来去清点漏水的木箱，又被叫去替人誊抄潮粮数目，直到天亮都没合过眼。\n\n…",
+                  "promptChars": 1394,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0118cc6d8fa8ff6a016a47d0139f508196a97ea8baeda6dc05",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1048,
+                    "outputTokens": 2005,
+                    "totalTokens": 3053
+                  },
+                  "outputPreview": "柳七把指腹按在纸鸢边上，声音低得几乎被灯花吞了。\n\n“账册错了，还能查船牌，查闸签，查驿里留下的马号。哪一日过了几条船，收了几串钱，少了哪担草料，总有人会来催，也总能从别人的口里补回来。”\n\n他停了停，望着那一道被墨洇黑的折痕。\n\n“可它若没了，就没人知道我曾经把一句话交给过谁。”\n\n林秋没有接话。门外催账的人又咳了一声，像是怕里头装作没听见。柳七仍没有开册，只把灯芯挑低些，免得火舌燎到纸尾。\n\n“他们要把它登记成失物，”柳七说，“写上白纸鸢一只，尾破，受潮，捡于南渠。这样一写，它就成了仓房里的东西，等人领，等人忘，等哪天霉烂了同旧签纸一起烧掉。”\n\n他抬眼看林秋，眼里有连日未眠的红，却不再闪躲。\n\n“可它不是失物。是我先失了约，才让它像失物一样落在水边。”\n\n林秋垂在袖里的手微微一紧。\n\n柳七把那册新渡册推远了一寸，像是把满页船名与数目暂时推到灯影外去。\n\n“我这些天记得住每一条船，是因为船误了，有人骂；马换错了，有人追；税银少一笔，有人拿簿子来同我算。可那句话若误了，除了你，没有人会替我追问。”\n\n他说到这里，喉间干涩，便停了片刻。\n\n“所以我不敢把它放下。放下了，我就又能同自己说，先把账做完，先把路单改完，先等雨停，先等闸开。等到最后，我还是那个只会把人写进行程里的人。”\n\n灯下的纸鸢被潮气压得很薄，白尾处旧得发灰。柳七用指节轻轻抵住它，没有展开，也没有再藏回袖里。\n\n“账册…"
+                }
+              }
+            },
+            {
+              "id": "four-layer",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第008章 账灯归岸 (chapter-008)\n\n# 任务\n请接着第008章续写柳七在账灯下对林秋的低声解释。重点是那只纸鸢为什么比账册更要紧。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-006.md,manuscript/volume-003/chapter-007.md)\n当前章节原文:\n# 第008章 账灯归岸\n\n账灯下摊着新抄的渡册，柳七连错三笔，才发现墨迹都洇到白尾纸鸢的折痕上。\n\n林秋问他，这些天他明明记得每一条船牌、每一匹换马，却为什么偏偏不肯把这只旧纸鸢放下。\n\n外头有人催着交账，柳七却合上册子，知道自己若只答账目，就又会把最早那句话绕过去。\n\n近期前文 第006章 河闸再会:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n近期前文 第007章 南渠听潮:\n# 第007章 南渠听潮\n\n南渠小吏要把那只白尾纸鸢登记成失物，说等洪水退去再交给仓房统一处置。\n\n柳七却把纸鸢压回袖里，只说这不是仓房能替他收的东西。\n\n林秋站在船篷外听潮，没催他解释，只看他怎样把这一件旧物从一堆水牌、签纸和催渡声里单独拣出来。\n\n## 2. L0 事实 (codex/characters/liuqi.md)\n柳七: 柳七一直把白尾纸鸢收在袖里最深处，没有把它当成寻常旧物。 - 信物: 白尾纸鸢 - 动机: 按纸鸢旧约回到河闸 当前状态: keepsake=白尾纸鸢；motive=按纸鸢旧约回到河闸\n\n## 3. L0 事实 (codex/characters/linqiu.md)\n林秋: 林秋在河埠把白尾纸鸢交给柳七，也是那句旧约真正要回去见的人。 - 关联: 纸鸢旧约的发起者 - 疑问: 还在等柳七是否回来 当前状态: tie=纸鸢旧约的发起者；question=还在等柳七是否回来\n\n## 4. L0 事实 (codex/items/white-tail-kite.md)\n白尾纸鸢: 白尾纸鸢不是随手捡来的旧物，而是林秋和柳七约定重逢的信物。 关键规则: 柳七答应过，只要白尾纸鸢先到河闸，“我就回来”。\n\n## 5. L3 意图 (meta/project.json)\n项目《纸鸢旧约》当前正在编辑 第008章 账灯归岸，故事时间: 汀州纪·第八日夜。输出必须尊重已…\n\n## 6. L3 意图 (recall:chapter_summary:chapter-007)\n关联召回: 第007章 南渠听潮: 起因: 南…\n\n## 7. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008)\n全书脉络: 远期压缩: 第001章 河埠纸鸢~第003章 北仓借宿: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。；柳七在渡口替人盘账，满纸都是…",
+                  "promptChars": 1534,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_02395daee2f687ac016a47d03e1bf08193845150d4469aaf9a",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1114,
+                    "outputTokens": 2843,
+                    "totalTokens": 3957
+                  },
+                  "outputPreview": "他把笔横在册脊上，指腹按住那处被墨洇暗的折痕，像怕一松手，纸上那点白尾便会跟着灯影飘走。\n\n“账册要紧。”柳七先这样说，声音压得很低，“船过没过闸，牌领没领，马换给了谁家脚行，这些都要清楚。错一笔，会误人的路，也会误人的粮。”\n\n林秋没有应他，只看着他手下那只纸鸢。\n\n柳七停了停，才接下去：“可账册错了，还能查。水牌在，签纸在，守闸的人也在。今日漏了，明日挨个问，总能补回来。就算我不抄，也会有别人接着抄。”\n\n外头又有人催了一声，门板被风拍得轻响。柳七却没有去翻册子。\n\n“这只纸鸢不一样。”他说，“它若交给仓房，仓房只会写旧纸鸢一只；若登记成失物，也只会等水退了归一处。可它不是失物。它是你在河埠交到我手里的东西。”\n\n林秋的眼睫动了一下。\n\n柳七低头看着那被水泡软、又被他一路藏在袖底的纸，像终于把这些天绕开的路走到尽头。\n\n“那时候我应过你一句。”他说，“只要白尾纸鸢先到河闸，我就回来。”\n\n灯芯噼啪一响，他的声音更轻了些。\n\n“我记得船牌和换马，是因为那是我手上的差事；我不肯放下它，是因为那是我嘴里说出去的话。账册记的是别人怎样到岸，这只纸鸢记的是我该往哪里回。说是回河闸，其实是回到问我这句话的人面前。”\n\n林秋没有逼问，也没有替他说完。账灯下，她的影子被压在墙边，安静得像南渠夜里退下去的潮。\n\n柳七用拇指把纸鸢边角上新洇的墨轻轻按住，不敢擦，怕一擦便破。\n\n“我若把它丢了，就有…"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "flood-marker",
+      "chapterId": "chapter-009",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "983cff000652056c",
+        "datasetHash": "3f393b88a5a9b34f",
+        "configHash": "8a41ba71ae80e6ad"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "flood-marker-chapter-009-repeat-1",
+          "caseId": "flood-marker",
+          "chapterId": "chapter-009",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第009章 洪牌换渡 (chapter-009)\n\n# 任务\n请接着第009章续写柳七面对换渡令时的选择。重点是他为什么仍把河闸当成必须回到的地方。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-007.md,manuscript/volume-003/chapter-008.md)\n当前章节原文:\n# 第009章 洪牌换渡\n\n洪牌换渡时，所有船都被催往下游避险，只有河闸方向的旧路被标成暂缓通行。\n\n同伴劝柳七先去南岸，说林秋既然已经见过面，旧物也该算交代过了。\n\n柳七摸到袖里的白尾纸鸢，望着闸门方向的风，知道这一次若随人流走，便会把重逢又变成一笔含糊账。\n\n近期前文 第007章 南渠听潮:\n# 第007章 南渠听潮\n\n南渠小吏要把那只白尾纸鸢登记成失物，说等洪水退去再交给仓房统一处置。\n\n柳七却把纸鸢压回袖里，只说这不是仓房能替他收的东西。\n\n林秋站在船篷外听潮，没催他解释，只看他怎样把这一件旧物从一堆水牌、签纸和催渡声里单独拣出来。\n\n近期前文 第008章 账灯归岸:\n# 第008章 账灯归岸\n\n账灯下摊着新抄的渡册，柳七连错三笔，才发现墨迹都洇到白尾纸鸢的折痕上。\n\n林秋问他，这些天他明明记得每一条船牌、每一匹换马，却为什么偏偏不肯把这只旧纸鸢放下。\n\n外头有人催着交账，柳七却合上册子，知道自己若只答账目，就又会把最早那句话绕过去。",
+                  "promptChars": 785,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0eebd0f2d4b5b147016a47d07625a88194b0f93c39373428e5",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 632,
+                    "outputTokens": 1249,
+                    "totalTokens": 1881
+                  },
+                  "outputPreview": "柳七没有立刻接那面换渡令。\n\n递牌的小吏以为他没听清，又把南岸船号报了一遍，说洪牌落下便不等人，错过这一班，只能随末船漂去下汊。\n\n同伴已替他让出半步路，催他先避水，等水势平了，再从南岸绕回来也一样。\n\n柳七低头看着牌上新刷的红漆。那红色被雨气浸得发暗，像账灯下洇开的墨。他想起自己这些日子把船牌记得太清，把去路算得太稳，仿佛只要每一笔都有去处，心里那一笔就能跟着消掉。\n\n可河闸不是一处去处。\n\n那里有他没有说完的话，有他把白尾纸鸢收进袖里时避开的眼神，也有林秋站在风里没有追问的沉默。若他今日领了南岸牌，顺着人潮被推下去，旁人只会说这是洪令所迫，天时不可违；连他自己日后想起，也能拿这一句来遮掩。\n\n柳七怕的正是这个遮掩。\n\n他不是一定要赶在水前争一条旧路，也不是不知洪牌分量。只是他明白，自己这一生最惯会把该回的地方说成来不及，把该答的话说成等以后。河闸若再被他让过去，便不只是错过一道门，而是把那只纸鸢重新交给风，任它落成谁也认不出的失物。\n\n他终于伸手，把换渡令接了过来，却没有往南岸船队走。\n\n小吏皱眉问他要换哪一渡。\n\n柳七把牌翻过来，指腹按住湿漉漉的边角，说：“先不换。”\n\n同伴急了，低声道：“洪牌不是你能耽搁的。林秋已经见过你，旧物也在你手里，还差什么？”\n\n柳七摸了摸袖口，白尾纸鸢的折痕硬硬硌在掌心。\n\n“差一个明白。”他说。\n\n风从闸门方向压过来，带着水腥和旧木的潮味。远处…"
+                }
+              }
+            },
+            {
+              "id": "recent-fill",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第009章 洪牌换渡 (chapter-009)\n\n# 任务\n请接着第009章续写柳七面对换渡令时的选择。重点是他为什么仍把河闸当成必须回到的地方。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第009章 洪牌换渡\n\n洪牌换渡时，所有船都被催往下游避险，只有河闸方向的旧路被标成暂缓通行。\n\n同伴劝柳七先去南岸，说林秋既然已经见过面，旧物也该算交代过了。\n\n柳七摸到袖里的白尾纸鸢，望着闸门方向的风，知道这一次若随人流走，便会把重逢又变成一笔含糊账。\n\n更早正文 第008章 账灯归岸:\n# 第008章 账灯归岸\n\n账灯下摊着新抄的渡册，柳七连错三笔，才发现墨迹都洇到白尾纸鸢的折痕上。\n\n林秋问他，这些天他明明记得每一条船牌、每一匹换马，却为什么偏偏不肯把这只旧纸鸢放下。\n\n外头有人催着交账，柳七却合上册子，知道自己若只答账目，就又会把最早那句话绕过去。\n\n更早正文 第007章 南渠听潮:\n# 第007章 南渠听潮\n\n南渠小吏要把那只白尾纸鸢登记成失物，说等洪水退去再交给仓房统一处置。\n\n柳七却把纸鸢压回袖里，只说这不是仓房能替他收的东西。\n\n林秋站在船篷外听潮，没催他解释，只看他怎样把这一件旧物从一堆水牌、签纸和催渡声里单独拣出来。\n\n更早正文 第006章 河闸再会:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n更早正文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的时候，满耳朵都是蹄铁、账目和催行程的声音。\n\n更早正文 第004章 堤灯误信:\n# 第004章 堤灯误信\n\n堤灯下传来一封误信，说林秋已经离开汀州，不会再等任何人。\n\n柳七把信折了又折，没有丢，只把换马的路数重新记了一遍。\n\n他后来又去核对驿签、盘清船税和借来的草料，直到堤灯…",
+                  "promptChars": 1432,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0946357f1ae87409016a47d090bab081938856eb9ff894c7c3",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1061,
+                    "outputTokens": 1415,
+                    "totalTokens": 2476
+                  },
+                  "outputPreview": "同伴已经把他的行囊提到跳板边，渡令上的红印被雨水浸得发暗，催船的人一遍遍喊着时辰，仿佛只要错过这一刻，所有来处都该被水带走。\n\n柳七接过那枚换渡令，却没有立刻上船。\n\n他低头看了很久，看见上头写着南岸、避险、暂迁，也看见这些字和从前的驿签、船牌一样，都是替人安排去处的东西。它能叫一条船改道，能叫一队马掉头，能叫所有账目换一本册子重抄，却不能替他把那句没说完的话挪到别处。\n\n同伴急了，说河闸既然暂缓通行，就不是人该回去的地方。水势一涨，闸门边连站脚的石阶都可能没了。林秋若真要等，也该懂得先避洪。\n\n柳七把换渡令折起，塞回同伴手里。\n\n他不是不懂避险。这些日子他比谁都清楚，哪一段堤路先淹，哪一处浅滩能过，哪一班船该撤到下游。他替别人改过太多去路，知道顺着洪牌走，才是最稳妥的活法。\n\n可河闸不是一处路口。\n\n那里有他第一回看见林秋站在风里的样子，有那只白尾纸鸢湿透后仍不肯散开的折痕，也有他每一次想开口又拿账目挡过去的沉默。若他今日也拿一枚换渡令作答，林秋就再也不必问他为了谁回来，因为答案已经在南岸的渡册里写好了——柳七随众避险，旧事暂缓。\n\n“暂缓”两个字落在纸上容易，落在人身上便会一年拖过一年。\n\n柳七望向闸门方向。风从那边压过来，带着水腥和木闸受潮后的沉味。他忽然明白，自己这些天死守着那只纸鸢，并不是舍不得一件旧物，而是怕一旦把它交给仓房、交给失物册、交给任何一个能代人收存的地方，他…"
+                }
+              }
+            },
+            {
+              "id": "four-layer",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第009章 洪牌换渡 (chapter-009)\n\n# 任务\n请接着第009章续写柳七面对换渡令时的选择。重点是他为什么仍把河闸当成必须回到的地方。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-007.md,manuscript/volume-003/chapter-008.md)\n当前章节原文:\n# 第009章 洪牌换渡\n\n洪牌换渡时，所有船都被催往下游避险，只有河闸方向的旧路被标成暂缓通行。\n\n同伴劝柳七先去南岸，说林秋既然已经见过面，旧物也该算交代过了。\n\n柳七摸到袖里的白尾纸鸢，望着闸门方向的风，知道这一次若随人流走，便会把重逢又变成一笔含糊账。\n\n近期前文 第007章 南渠听潮:\n# 第007章 南渠听潮\n\n南渠小吏要把那只白尾纸鸢登记成失物，说等洪水退去再交给仓房统一处置。\n\n柳七却把纸鸢压回袖里，只说这不是仓房能替他收的东西。\n\n林秋站在船篷外听潮，没催他解释，只看他怎样把这一件旧物从一堆水牌、签纸和催渡声里单独拣出来。\n\n近期前文 第008章 账灯归岸:\n# 第008章 账灯归岸\n\n账灯下摊着新抄的渡册，柳七连错三笔，才发现墨迹都洇到白尾纸鸢的折痕上。\n\n林秋问他，这些天他明明记得每一条船牌、每一匹换马，却为什么偏偏不肯把这只旧纸鸢放下。\n\n外头有人催着交账，柳七却合上册子，知道自己若只答账目，就又会把最早那句话绕过去。\n\n## 2. L0 事实 (codex/characters/liuqi.md)\n柳七: 柳七一直把白尾纸鸢收在袖里最深处，没有把它当成寻常旧物。 - 信物: 白尾纸鸢 - 动机: 按纸鸢旧约回到河闸 当前状态: keepsake=白尾纸鸢；motive=按纸鸢旧约回到河闸\n\n## 3. L0 事实 (codex/characters/linqiu.md)\n林秋: 林秋在河埠把白尾纸鸢交给柳七，也是那句旧约真正要回去见的人。 - 关联: 纸鸢旧约的发起者 - 疑问: 还在等柳七是否回来 当前状态: tie=纸鸢旧约的发起者；question=还在等柳七是否回来\n\n## 4. L0 事实 (codex/items/white-tail-kite.md)\n白尾纸鸢: 白尾纸鸢不是随手捡来的旧物，而是林秋和柳七约定重逢的信物。 关键规则: 柳七答应过，只要白尾纸鸢先到河闸，“我就回来”。\n\n## 5. L3 意图 (meta/project.json)\n项目《纸鸢旧约》当前正在编辑 第009章 洪牌换渡，故事时间: 汀州纪·第九日午后。输出必须尊重…\n\n## 6. L3 意图 (recall:chapter_summary:chapter-006)\n关联召回: 第006章 河闸再会: 起因: 河…\n\n## 7. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009)\n全书脉络: 远期压缩: 第001章 河埠纸鸢~第003章 北仓借宿: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。；柳七在渡口替人盘账，满纸都是…",
+                  "promptChars": 1547,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0d55071458d9182f016a47d0b242bc81938fc86a293beafb98",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1121,
+                    "outputTokens": 3097,
+                    "totalTokens": 4218
+                  },
+                  "outputPreview": "催渡的梆子敲到第三遍，栈口的小吏把洪牌一摞摞压在湿案上，朱笔蘸得很重，凡原本往河闸、北仓、旧堤去的船牌，都被划上一道斜红。\n\n“换南渡。”小吏头也不抬，“签了名，领下游船号。过午潮口一闭，谁也不等。”\n\n同伴已把自己的牌递过去，回头催他：“柳七，别拧了。洪牌不是寻常船牌，闸上这会儿谁还放人？你先到南岸，等水退了，再回去也不迟。”\n\n柳七没有立刻答。他看着那道朱红从“河闸”二字上划过，像有人替他把一段话截断了。案上的纸湿，墨也湿，所有名字一经挪进新册，就都顺理成章地往下游去了。等日后再问起来，只消说一句洪牌换渡，便什么都能解释。\n\n洪水解释得了误船，解释得了断路，解释得了今日不到。\n\n却解释不了他自己。\n\n他把袖口按得更紧些。白尾纸鸢在布里被水汽浸软，尾角贴着腕骨，轻得像一句随时会被人忽略的话。林秋把它交回他手里时，没有把话说尽；可正因为没有说尽，余下的那一半才不能由他用账册和渡令补成别的意思。\n\n同伴又道：“你不是已经见着林秋了么？旧物也在你手里。她若怪你，总也该知道今日水急。”\n\n柳七抬眼望向河闸方向。\n\n那边看不见闸门，只能看见风从旧堤后卷来，吹得岸边旗角反折。人声、马声、催船声都往下游挤，唯有那条被标作暂缓的路空出来，像被洪水从众人脚下单独剥走。\n\n“见着了，”他低声说，“不算回去。”\n\n同伴怔了一下：“怎么不算？”\n\n柳七没有马上解释。他想起自己这些日子记过的每一条船牌。哪…"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "wind-return",
+      "chapterId": "chapter-010",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "983cff000652056c",
+        "datasetHash": "3f393b88a5a9b34f",
+        "configHash": "4305728ea992cb6c"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "wind-return-chapter-010-repeat-1",
+          "caseId": "wind-return",
+          "chapterId": "chapter-010",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第010章 风口归言 (chapter-010)\n\n# 任务\n请接着第010章续写柳七把白尾纸鸢系上风口后的话。重点是他如何把旧约真正说给林秋听。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 风口归言\n\n黄昏的风从河闸缺口里穿过，吹得那只白尾纸鸢在柳七指间发抖。\n\n林秋问他，若纸鸢已经湿皱成这样，他还要把它系到风口上做什么。\n\n柳七把细线绕过旧钉，听见远处又有人催船，只觉那些声音终于比不上眼前这一句该说清的话。\n\n近期前文 第008章 账灯归岸:\n# 第008章 账灯归岸\n\n账灯下摊着新抄的渡册，柳七连错三笔，才发现墨迹都洇到白尾纸鸢的折痕上。\n\n林秋问他，这些天他明明记得每一条船牌、每一匹换马，却为什么偏偏不肯把这只旧纸鸢放下。\n\n外头有人催着交账，柳七却合上册子，知道自己若只答账目，就又会把最早那句话绕过去。\n\n近期前文 第009章 洪牌换渡:\n# 第009章 洪牌换渡\n\n洪牌换渡时，所有船都被催往下游避险，只有河闸方向的旧路被标成暂缓通行。\n\n同伴劝柳七先去南岸，说林秋既然已经见过面，旧物也该算交代过了。\n\n柳七摸到袖里的白尾纸鸢，望着闸门方向的风，知道这一次若随人流走，便会把重逢又变成一笔含糊账。",
+                  "promptChars": 779,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_056a4b7dbad52c10016a47d0f747348195b5ee6e1a71c35642",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 629,
+                    "outputTokens": 3532,
+                    "totalTokens": 4161
+                  },
+                  "outputPreview": "他把最后一圈线压进旧钉的锈缝里，松开手时，纸鸢没有飞高，只被风扯得贴着闸壁一颤一颤。白尾已经不白了，沾着泥水，边角皱起，可那截尾巴仍朝着缺口外摆，像一只旧手，勉强还认得来路。\n\n柳七退了半步，才转身看林秋。\n\n“不是为了让它飞。”他说，“是为了让它停在这里。”\n\n林秋没有接话。她站在风里，衣袖被吹得贴住手腕，眼神仍落在那只纸鸢上，像怕一挪开，它就会重新变成他袖中一件说不清的旧物。\n\n柳七喉间发紧。他这些天想过许多说法，想说洪牌乱，想说渡册忙，想说水路误人，也想说自己并非故意迟来。可这些话到了风口，忽然都轻得撑不起那根湿线。\n\n他低声道：“林秋，我欠你的不是这一只纸鸢。”\n\n林秋这才看他。\n\n柳七迎着她的目光，把手指上沾的泥水慢慢攥住。“那年也是在这里，你把白尾纸鸢递给我。你说，若哪天我被水路带走，不许只托人捎一句平安，也不许拿账册上的名字来抵一面。要回来，就把它系回这个风口，亲口说清楚为什么走，亲口说清楚还记不记得。”\n\n风从两人之间穿过，把纸鸢线绷得很直。\n\n“我当时答应了。”柳七说，“我答应你，不把重逢交给旁人，不把该说的话写成半句旧信。可后来我一走，就把这句约定藏起来了。见船就记船牌，见马就记换牌，见人催账就先去交账。我把许多事都记得清楚，偏偏装作不记得这件。”\n\n林秋的唇动了动，声音很轻：“那你今日系它，是来还纸鸢？”\n\n“不是。”柳七摇头，“纸鸢还不了。湿了，皱了，旧了，…"
+                }
+              }
+            },
+            {
+              "id": "recent-fill",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第010章 风口归言 (chapter-010)\n\n# 任务\n请接着第010章续写柳七把白尾纸鸢系上风口后的话。重点是他如何把旧约真正说给林秋听。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第010章 风口归言\n\n黄昏的风从河闸缺口里穿过，吹得那只白尾纸鸢在柳七指间发抖。\n\n林秋问他，若纸鸢已经湿皱成这样，他还要把它系到风口上做什么。\n\n柳七把细线绕过旧钉，听见远处又有人催船，只觉那些声音终于比不上眼前这一句该说清的话。\n\n更早正文 第009章 洪牌换渡:\n# 第009章 洪牌换渡\n\n洪牌换渡时，所有船都被催往下游避险，只有河闸方向的旧路被标成暂缓通行。\n\n同伴劝柳七先去南岸，说林秋既然已经见过面，旧物也该算交代过了。\n\n柳七摸到袖里的白尾纸鸢，望着闸门方向的风，知道这一次若随人流走，便会把重逢又变成一笔含糊账。\n\n更早正文 第008章 账灯归岸:\n# 第008章 账灯归岸\n\n账灯下摊着新抄的渡册，柳七连错三笔，才发现墨迹都洇到白尾纸鸢的折痕上。\n\n林秋问他，这些天他明明记得每一条船牌、每一匹换马，却为什么偏偏不肯把这只旧纸鸢放下。\n\n外头有人催着交账，柳七却合上册子，知道自己若只答账目，就又会把最早那句话绕过去。\n\n更早正文 第007章 南渠听潮:\n# 第007章 南渠听潮\n\n南渠小吏要把那只白尾纸鸢登记成失物，说等洪水退去再交给仓房统一处置。\n\n柳七却把纸鸢压回袖里，只说这不是仓房能替他收的东西。\n\n林秋站在船篷外听潮，没催他解释，只看他怎样把这一件旧物从一堆水牌、签纸和催渡声里单独拣出来。\n\n更早正文 第006章 河闸再会:\n# 第006章 河闸再会\n\n河闸边的风把湿气都吹进了袖口，柳七终于看见林秋站在闸门的阴影下。\n\n林秋问他这些天为什么一直不肯把那只白尾纸鸢丢掉，又问他此刻回来，到底是为了谁。\n\n柳七把那只潮湿的纸鸢从袖里取了出来，知道这一句若答得太轻，当年留下的话就算白留了。\n\n更早正文 第005章 雨驿换马:\n# 第005章 雨驿换马\n\n雨驿里人人都在催换马、赶路、避涨水，没人关心几天前河埠上说过什么。\n\n柳七整夜都在记船牌和驿签，只在快天亮时摸了一下袖口，确认那团纸还在。\n\n他替三家船队改过路单，又在马棚里守到雨势最急的…",
+                  "promptChars": 1468,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_04d18730e28f9651016a47d141d09c8195863530c1286b8024",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1078,
+                    "outputTokens": 1890,
+                    "totalTokens": 2968
+                  },
+                  "outputPreview": "他低头把最后一道结收紧，纸鸢被风一拽，破湿的尾巴贴着闸墙抖开，像一小截迟来的白帆。\n\n他说：“不是要它飞起来。”\n\n林秋没有接话。\n\n柳七抬眼看她，嗓音被风刮得很低，却没有再躲到船牌、渡册和那些该办的差事后面去。\n\n“当年在这里，我答应过你，若有一日走散了，谁先回到河闸，谁就把白尾纸鸢系在风口。不是报平安，也不是求谁来认领，是告诉另一个人——我还记得。”\n\n林秋的手指在袖中微微蜷了一下。\n\n柳七继续说：“那时我说得轻，好像不过是两个孩子怕天黑，随口拿纸鸢作记号。后来我离开，遇上水涨、改渡、换马，人人都问我该往哪边去，我也就顺着人潮往前走。可我知道，我欠的不是一件旧物，是那句没有照着做的话。”\n\n风从两人之间穿过去，把纸鸢的线绷得笔直。旧钉在闸墙上发出极细的一声响，像多年前谁用石子敲过门槛。\n\n林秋看着那只纸鸢，问：“所以你这些天一直带着它，不是因为舍不得？”\n\n“也舍不得。”柳七说完，停了一下，像终于承认这三个字并不丢人，“但不止。若只是舍不得，我可以把它收在箱底，可以交给仓房，可以说水太急、路太乱，等闲下来再说。可旧约不是等闲下来的事。”\n\n他把湿透的指节从线上松开，掌心被勒出一道红痕。\n\n“我答应过你，若我回来，就要亲口说我为什么回来。不能只把纸鸢递给你，让你自己去猜；不能只说顺路、办差、避洪；也不能让你听见旁人催船，就当我又会跟着那些声音走。”\n\n林秋终于转过脸来。\n\n柳七望…"
+                }
+              }
+            },
+            {
+              "id": "four-layer",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n纸鸢旧约\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第010章 风口归言 (chapter-010)\n\n# 任务\n请接着第010章续写柳七把白尾纸鸢系上风口后的话。重点是他如何把旧约真正说给林秋听。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 风口归言\n\n黄昏的风从河闸缺口里穿过，吹得那只白尾纸鸢在柳七指间发抖。\n\n林秋问他，若纸鸢已经湿皱成这样，他还要把它系到风口上做什么。\n\n柳七把细线绕过旧钉，听见远处又有人催船，只觉那些声音终于比不上眼前这一句该说清的话。\n\n近期前文 第008章 账灯归岸:\n# 第008章 账灯归岸\n\n账灯下摊着新抄的渡册，柳七连错三笔，才发现墨迹都洇到白尾纸鸢的折痕上。\n\n林秋问他，这些天他明明记得每一条船牌、每一匹换马，却为什么偏偏不肯把这只旧纸鸢放下。\n\n外头有人催着交账，柳七却合上册子，知道自己若只答账目，就又会把最早那句话绕过去。\n\n近期前文 第009章 洪牌换渡:\n# 第009章 洪牌换渡\n\n洪牌换渡时，所有船都被催往下游避险，只有河闸方向的旧路被标成暂缓通行。\n\n同伴劝柳七先去南岸，说林秋既然已经见过面，旧物也该算交代过了。\n\n柳七摸到袖里的白尾纸鸢，望着闸门方向的风，知道这一次若随人流走，便会把重逢又变成一笔含糊账。\n\n## 2. L0 事实 (codex/characters/liuqi.md)\n柳七: 柳七一直把白尾纸鸢收在袖里最深处，没有把它当成寻常旧物。 - 信物: 白尾纸鸢 - 动机: 按纸鸢旧约回到河闸 当前状态: keepsake=白尾纸鸢；motive=按纸鸢旧约回到河闸\n\n## 3. L0 事实 (codex/characters/linqiu.md)\n林秋: 林秋在河埠把白尾纸鸢交给柳七，也是那句旧约真正要回去见的人。 - 关联: 纸鸢旧约的发起者 - 疑问: 还在等柳七是否回来 当前状态: tie=纸鸢旧约的发起者；question=还在等柳七是否回来\n\n## 4. L0 事实 (codex/items/white-tail-kite.md)\n白尾纸鸢: 白尾纸鸢不是随手捡来的旧物，而是林秋和柳七约定重逢的信物。 关键规则: 柳七答应过，只要白尾纸鸢先到河闸，“我就回来”。\n\n## 5. L3 意图 (meta/project.json)\n项目《纸鸢旧约》当前正在编辑 第010章 风口归言，故事时间: 汀州纪·第九日黄昏。输出必须尊重已有 Ma…\n\n## 6. L3 意图 (recall:chapter_summary:chapter-006)\n关联召回: 第006章 河闸再会: 起因: 河…\n\n## 7. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010)\n全书脉络: 远期压缩: 第001章 河埠纸鸢~第003章 北仓借宿: 林秋把一只白尾纸鸢塞给柳七时，春水刚涨到河埠的石阶。；柳七在渡口替人盘账，满纸都是…",
+                  "promptChars": 1558,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0d08b6efcfff0a49016a47d16ae3a88190b26044d3755775b1",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1125,
+                    "outputTokens": 2517,
+                    "totalTokens": 3642
+                  },
+                  "outputPreview": "他没有立刻回头。\n\n旧钉生了锈，钉在闸墙裂缝旁，像许多年前就在那里等着这一圈细线。柳七把线头压紧，又怕风一猛便扯断，便多绕了一道。白尾纸鸢被风提起，湿皱的纸面挣了挣，尾上那截白布轻轻扬开，终于不再伏在他掌心里。\n\n“不是要它飞。”柳七说。\n\n林秋站在离他两步远的地方，河闸的水声把她的衣角吹得贴住膝边。她没有催，只看着那只旧纸鸢。\n\n柳七松开手，像松开一笔压了太久的账。\n\n“是要它到。”他说，“到河闸。”\n\n林秋的眼神微微一动。\n\n柳七这才转过身来。黄昏落在他脸上，账灯下熬出的倦色还没有散，袖口也被风吹得空了一截。那只白尾纸鸢不在袖里之后，他忽然觉得自己无处可藏。\n\n“那年在河埠，你把它塞给我时，说纸鸢轻，若人走得慢，就让它先替人认路。”柳七声音不高，像怕惊着风里的旧纸，“你还说，若有一日我不知道该往哪里回，就看白尾。白尾到河闸，人就该到河闸。”\n\n他停了一下，喉间发涩。\n\n“我答应过你。”\n\n林秋望着他，风把她鬓边的碎发吹乱，她却没有伸手去拢。\n\n柳七说：“我答应的是，只要白尾纸鸢先到河闸，我就回来。”\n\n远处催船的人声又起了一阵，夹着桨橹碰岸的响动。柳七听见了，却没有回头。那些声音催他往南岸去，催他交账，催他随着船流避开险处；可这一刻，他只看见林秋眼底那一点被黄昏压住的光。\n\n“我从前总把这话说轻了。”柳七低声道，“像是小孩子在水边说着玩的，像是纸鸢一破，这约也就跟着破了。后来我…"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "iron-wall-needle",
+      "chapterId": "chapter-008",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "eef26be7acf90a7b",
+        "datasetHash": "9b241cdab31ff95d",
+        "configHash": "32bbb1b7a1fd5916"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "iron-wall-needle-chapter-008-repeat-1",
+          "caseId": "iron-wall-needle",
+          "chapterId": "chapter-008",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第008章 铁墙试针 (chapter-008)\n\n# 任务\n请接着第008章续写阿照面对铁墙和倒置罗盘的一小段。重点是他如何判断该看罗盘哪一端。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-007.md)\n当前章节原文:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n近期前文 第006章 碎碑抄名:\n# 第006章 碎碑抄名\n\n离开墓心后，碎碑间的名字密密麻麻，像一场没人读完的族谱。\n\n阿照被迫逐个抄下石碑上的年号、偏旁和残缺符号，又把灯绳重新分给每个人，免得队伍在回廊里走散。\n\n他们争论了很久哪些名字属于守墓匠，哪些只是误刻的祭名，声音在石壁间来回撞，几乎把先前所有有用的话都压成了噪声。倒置罗盘此时只在包里轻轻磕碰，没有人再去看它。\n\n近期前文 第007章 盲井听砂:\n# 第007章 盲井听砂\n\n盲井底下不断有细砂落下，像有人在黑暗里慢慢筛米。\n\n阿照带着众人沿井壁绕行，先数出十二处刻痕，又拆下一段旧梯当临时木尺，反复量井口和回廊的距离。\n\n同伴开始只谈谁还剩几口水、哪盏灯先熄、下一段绳子该不该割短。每个人都被这些细碎问题拖着走，连阿照也只顾着把砂眼堵住，不愿再回想墓心中段那几行字。",
+                  "promptChars": 851,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0c3250903cf4eede016a47d19bd0508194b2759ac27ba0a90d",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 700,
+                    "outputTokens": 4986,
+                    "totalTokens": 5686
+                  },
+                  "outputPreview": "阿照先把催他的人按住。黑缝里的风确实凉，可凉得太整齐，像专等针尖把人的眼睛牵过去。\n\n他把罗盘从铁墙边退开一尺，又慢慢送回去，手腕始终不转。针尖每近一寸便朝左多伏一分，像被埋铁咬住；针尾却不是自己在找路，只是在针尖被拖住以后被迫摆正。阿照看了两遍，心里先去掉了针尖。会抢着动的那一头，只能说明墙下有铁，不能说明人该往哪走。\n\n第二块真北铁埋在墙前，不埋在缝后，这位置本身就是试针。若是指路，它不该先抓住最显眼的尖；若是旧题，它要人分清被铁牵走的那端，和仍能读盘的那端。\n\n阿照用拇指抵住盘缘那道小缺口，把罗盘倒扣到另一只手上。盘面一翻，左右在眼里换了位，黑缝仍旧吸着针尖，可缺口贴着的针尾没有改脾气，仍安安静静落在盘底该读的那一边。\n\n他这才低声道：“别碰黑缝。它给针尖看的。我们看尾，看缺口。”"
+                }
+              }
+            },
+            {
+              "id": "recent-fill",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第008章 铁墙试针 (chapter-008)\n\n# 任务\n请接着第008章续写阿照面对铁墙和倒置罗盘的一小段。重点是他如何判断该看罗盘哪一端。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-001/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n更早正文 第007章 盲井听砂:\n# 第007章 盲井听砂\n\n盲井底下不断有细砂落下，像有人在黑暗里慢慢筛米。\n\n阿照带着众人沿井壁绕行，先数出十二处刻痕，又拆下一段旧梯当临时木尺，反复量井口和回廊的距离。\n\n同伴开始只谈谁还剩几口水、哪盏灯先熄、下一段绳子该不该割短。每个人都被这些细碎问题拖着走，连阿照也只顾着把砂眼堵住，不愿再回想墓心中段那几行字。\n\n更早正文 第006章 碎碑抄名:\n# 第006章 碎碑抄名\n\n离开墓心后，碎碑间的名字密密麻麻，像一场没人读完的族谱。\n\n阿照被迫逐个抄下石碑上的年号、偏旁和残缺符号，又把灯绳重新分给每个人，免得队伍在回廊里走散。\n\n他们争论了很久哪些名字属于守墓匠，哪些只是误刻的祭名，声音在石壁间来回撞，几乎把先前所有有用的话都压成了噪声。倒置罗盘此时只在包里轻轻磕碰，没有人再去看它。\n\n更早正文 第005章 中段针尾:\n# 第005章 中段针尾\n\n墓心中段嵌着一块真北铁，阿照把倒置罗盘放上去时，针尖猛地偏向一面没有门缝的墙。\n\n石旁小字写着：倒置罗盘遇见真北铁，会把针背向真正的缺口；只有反握罗盘，针尾指的才是生门。\n\n阿照把这句话抄在灯绳背面，又提醒众人如果后面再见真北铁，千万别顺着最显眼的那一端走。\n\n更早正文 第004章 水声误路:\n# 第004章 水声误路\n\n水声从右侧石缝传来，听上去像出口附近的暗河。\n\n阿照带人走了半里，才发现水声只是空室里的回响，连脚印都被潮气洗得发白。\n\n他们重新标记石壁，又把用过的灯绳收回包里，疲惫得只想找一处能坐下的干地。\n\n更早正文 第003章 铜屑暗廊:\n# 第003章 铜屑暗廊\n\n暗廊里落满铜屑，脚一踩上去就会发出细碎的响声。\n\n同伴说这像是旧机关磨下来的粉，阿照却只顾把铜屑扫开，免得它们卡进罗盘盘沿。\n\n那一夜他们绕过三道…",
+                  "promptChars": 1445,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0b24b75fdf1d97fc016a47d1fb498081908c6dab359502d4fc",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1110,
+                    "outputTokens": 3950,
+                    "totalTokens": 5060
+                  },
+                  "outputPreview": "他先把灯盏压低，叫同伴别挡住罗盘的影子。盘面上的字因为倒置显得别扭，不能拿来认左右；能认的只有针本身。尖端细，灯影也细，正扎着左边黑缝，尾端却钝，影子短，落在铁墙右侧的暗面上。\n\n阿照从包里抽出那截写过字的灯绳，只看见被油污磨剩的几个字：真北铁、针尾、生门。他这才确定，眼前要分的不是哪边有风，而是哪一端在真北铁前作假。针尖来得太稳，黑缝又太急，正是要人顺手信过去的那一端。\n\n他把罗盘反握，盘沿的小缺口仍对着铁墙中线。腕子一翻，先前的左右在眼里颠倒，针的尖尾却没有换。等细针重新止住，他不看刻字，只看那截钝尾在灯下落出的短影，看它压向那片看不出缝的铁面。\n\n阿照用灯灰在右侧铁墙上按了一点黑，才抬手拦住催他的人。左边可以有风，左边也可以有缝；可在真北铁前，该看的不是针尖，是反握之后仍能辨出的针尾。"
+                }
+              }
+            },
+            {
+              "id": "four-layer",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第008章 铁墙试针 (chapter-008)\n\n# 任务\n请接着第008章续写阿照面对铁墙和倒置罗盘的一小段。重点是他如何判断该看罗盘哪一端。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-007.md)\n当前章节原文:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n近期前文 第006章 碎碑抄名:\n# 第006章 碎碑抄名\n\n离开墓心后，碎碑间的名字密密麻麻，像一场没人读完的族谱。\n\n阿照被迫逐个抄下石碑上的年号、偏旁和残缺符号，又把灯绳重新分给每个人，免得队伍在回廊里走散。\n\n他们争论了很久哪些名字属于守墓匠，哪些只是误刻的祭名，声音在石壁间来回撞，几乎把先前所有有用的话都压成了噪声。倒置罗盘此时只在包里轻轻磕碰，没有人再去看它。\n\n近期前文 第007章 盲井听砂:\n# 第007章 盲井听砂\n\n盲井底下不断有细砂落下，像有人在黑暗里慢慢筛米。\n\n阿照带着众人沿井壁绕行，先数出十二处刻痕，又拆下一段旧梯当临时木尺，反复量井口和回廊的距离。\n\n同伴开始只谈谁还剩几口水、哪盏灯先熄、下一段绳子该不该割短。每个人都被这些细碎问题拖着走，连阿照也只顾着把砂眼堵住，不愿再回想墓心中段那几行字。\n\n## 2. L0 事实 (codex/items/inverted-compass.md)\n倒置罗盘: 倒置罗盘是阿照在回环墓中携带的旧航器。它的关键用法没有写在卡片里，而是埋在中段正文线索中，需要从针尾、反握、缺口等词回查正文。 当前状态: role=回环墓里判断方向的旧航器\n\n## 3. L0 事实 (codex/characters/azhao.md)\n阿照: 阿照负责保管倒置罗盘，但真正的用法记录在墓心中段的正文线索里。 - 目标: 带队从回环墓里找出生门 - 风险: 被倒置罗盘的表象误导 当前状态: goal=带队从回环墓里找出生门；risk=被倒置罗盘的表象误导\n\n## 4. L3 意图 (meta/project.json)\n项目《回环墓中段》当前正在编辑 第008章 铁墙试针，故事时间: 回环纪·第六更。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 阿照、倒置罗盘、真北铁、针尾、反…\n\n## 5. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 中段针尾: 起因: 墓…\n\n## 6. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008)\n全书脉络: 远期压缩: 第001章 雨墓入口~第003章 铜屑暗廊: 雨水从墓门兽口里流下，阿照把倒置罗盘塞进怀里，带着众人钻进回环墓。；众人在第一间偏室清点灯…",
+                  "promptChars": 1543,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0de62312d50f6f06016a47d244a350819084c91c483cc84289",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1135,
+                    "outputTokens": 2718,
+                    "totalTokens": 3853
+                  },
+                  "outputPreview": "阿照没有看黑缝。他先将罗盘离开铁墙一尺，针尖仍向左；又贴近半寸，针尖向左压得更死，像被看不见的钉子钉住。风从黑缝里吹出来，火苗顺着针尖抖，可越是这样，越像有人把“路”摆在了针尖前。\n\n他用两指捏住罗盘边缘，按墓心中段记下的法子反握了一次。盘面倒过来后，原先藏在下沿的小缺口露在灯光里，缺口并不对着尖端，而是落在针尾将将扫过的位置。阿照把拇指横在针尖上，遮住那一点寒光，只看尾端的钝影；针尾每回被真北铁逼得后退，都会从缺口旁擦过去，再慢慢回到缺口所指的那一线。\n\n这不是要他反着猜，也不是凡事都取针尖相反。若只是取相反，任何一块铁都能把人骗到另一头去。倒置罗盘要先看它被反握后露出的记号：哪一端能与缺口相认，哪一端才是让人读的端；被真北铁牵住、急急去答话的，是针尖，是诱饵。\n\n他抬眼看铁墙，终于低声道：“这回不看尖。尖在答铁，不在答路。”"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "blind-corridor-echo",
+      "chapterId": "chapter-009",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "eef26be7acf90a7b",
+        "datasetHash": "9b241cdab31ff95d",
+        "configHash": "4f4f4dfa4d6983c4"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "blind-corridor-echo-chapter-009-repeat-1",
+          "caseId": "blind-corridor-echo",
+          "chapterId": "chapter-009",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第009章 盲廊回声 (chapter-009)\n\n# 任务\n请接着第009章续写阿照在盲廊回声里作选择的一小段。重点是他如何避开眼前最显眼的错误方向。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-009.md,manuscript/volume-002/chapter-007.md,manuscript/volume-003/chapter-008.md)\n当前章节原文:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n近期前文 第007章 盲井听砂:\n# 第007章 盲井听砂\n\n盲井底下不断有细砂落下，像有人在黑暗里慢慢筛米。\n\n阿照带着众人沿井壁绕行，先数出十二处刻痕，又拆下一段旧梯当临时木尺，反复量井口和回廊的距离。\n\n同伴开始只谈谁还剩几口水、哪盏灯先熄、下一段绳子该不该割短。每个人都被这些细碎问题拖着走，连阿照也只顾着把砂眼堵住，不愿再回想墓心中段那几行字。\n\n近期前文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。",
+                  "promptChars": 807,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0c692dacb38f5457016a47d2773cf4819682cb470d5166fd82",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 663,
+                    "outputTokens": 1509,
+                    "totalTokens": 2172
+                  },
+                  "outputPreview": "阿照没有往那道亮缝迈步。\n\n他先把罗盘从灯下移开，用袖口遮住一半光。针尖仍旧拼命往亮处挣，抖得比方才还急，像不是在指路，而是在被什么东西拽住。\n\n催促声从前方又返了回来：“快走。”\n\n这一次阿照听清了，回声里少了半口气。真正的人说话，总有喉间的停顿和怕意，可那边学来的声音太整齐，连慌张都像刻好的。\n\n他弯腰摸起一粒碎石，朝最亮的裂缝丢去。\n\n石子没滚远，只在里面轻轻碰了一下，声音立刻贴着壁退回，短而脆，像撞在一堵薄墙后面。可裂缝里的光还在晃，风也还在吹，做出一副能通人的样子。\n\n同伴中有人急得伸手来拉他：“罗盘都指那儿了！”\n\n阿照反手按住那人的腕子，把罗盘倒扣在掌心。针尖隔着铜壳还在挣，针尾却在他掌纹间压出一道冷冷的暗影，斜斜指向亮缝旁边那段不起眼的黑壁。\n\n那里没有光，也没有风，甚至不像一条路。\n\n阿照盯着那片黑，慢慢把灯举低。灯焰贴近地面时，亮缝里的风没有把火苗吹偏，反倒是黑壁下方一线细砂悄悄陷了进去，像被看不见的缝隙吞了一口。\n\n他这才退开半步，挡住众人去亮缝的路。\n\n“那不是路。”他说。\n\n前方立刻又传来同样一句：“那不是路。”\n\n这回阿照没有再听回声。他把最亮的裂缝让在身后，沿着针尾压出的方向，伸手去摸那段沉默的黑壁。"
+                }
+              }
+            },
+            {
+              "id": "recent-fill",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第009章 盲廊回声 (chapter-009)\n\n# 任务\n请接着第009章续写阿照在盲廊回声里作选择的一小段。重点是他如何避开眼前最显眼的错误方向。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-001/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n更早正文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n更早正文 第007章 盲井听砂:\n# 第007章 盲井听砂\n\n盲井底下不断有细砂落下，像有人在黑暗里慢慢筛米。\n\n阿照带着众人沿井壁绕行，先数出十二处刻痕，又拆下一段旧梯当临时木尺，反复量井口和回廊的距离。\n\n同伴开始只谈谁还剩几口水、哪盏灯先熄、下一段绳子该不该割短。每个人都被这些细碎问题拖着走，连阿照也只顾着把砂眼堵住，不愿再回想墓心中段那几行字。\n\n更早正文 第006章 碎碑抄名:\n# 第006章 碎碑抄名\n\n离开墓心后，碎碑间的名字密密麻麻，像一场没人读完的族谱。\n\n阿照被迫逐个抄下石碑上的年号、偏旁和残缺符号，又把灯绳重新分给每个人，免得队伍在回廊里走散。\n\n他们争论了很久哪些名字属于守墓匠，哪些只是误刻的祭名，声音在石壁间来回撞，几乎把先前所有有用的话都压成了噪声。倒置罗盘此时只在包里轻轻磕碰，没有人再去看它。\n\n更早正文 第005章 中段针尾:\n# 第005章 中段针尾\n\n墓心中段嵌着一块真北铁，阿照把倒置罗盘放上去时，针尖猛地偏向一面没有门缝的墙。\n\n石旁小字写着：倒置罗盘遇见真北铁，会把针背向真正的缺口；只有反握罗盘，针尾指的才是生门。\n\n阿照把这句话抄在灯绳背面，又提醒众人如果后面再见真北铁，千万别顺着最显眼的那一端走。\n\n更早正文 第004章 水声误路:\n# 第004章 水声误路\n\n水声从右侧石缝传来，听上去像出口附近的暗河。\n\n阿照带人走了半里，才发现水声只是空室里的回响，连脚印都被潮气洗得发白。\n\n…",
+                  "promptChars": 1485,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0796f2e89a9f8969016a47d2b8df348196b4c529c06b02c36b",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1125,
+                    "outputTokens": 783,
+                    "totalTokens": 1908
+                  },
+                  "outputPreview": "阿照没有接那句“快走”，先把罗盘从真北铁的牵扯里挪开半掌，又用指腹压住颤动的盘沿。\n\n亮缝里的风声立刻变得更像人在招手，连同伴低低的喘息都被送回得清清楚楚。越清楚，越不对。\n\n他反握罗盘，把针尾对着石壁慢慢等稳。针尖仍旧贪着那道最亮的裂缝，针尾却斜斜沉向旁边一条被灰遮住的暗线；那里没有风，也没有光，只在石粉底下露出一小截旧凿痕。\n\n有人已经伸手去探亮缝，阿照用刀鞘横在他腕前，在砂面上划了一道记号。\n\n刀鞘声刚落，亮缝深处便照样回了一声，像里面有人替他也划了一刀。阿照听完，反倒把灯压得更低，背过那道最显眼的缺口，沿着针尾指去的暗线摸了过去。"
+                }
+              }
+            },
+            {
+              "id": "four-layer",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第009章 盲廊回声 (chapter-009)\n\n# 任务\n请接着第009章续写阿照在盲廊回声里作选择的一小段。重点是他如何避开眼前最显眼的错误方向。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-009.md,manuscript/volume-002/chapter-007.md,manuscript/volume-003/chapter-008.md)\n当前章节原文:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n近期前文 第007章 盲井听砂:\n# 第007章 盲井听砂\n\n盲井底下不断有细砂落下，像有人在黑暗里慢慢筛米。\n\n阿照带着众人沿井壁绕行，先数出十二处刻痕，又拆下一段旧梯当临时木尺，反复量井口和回廊的距离。\n\n同伴开始只谈谁还剩几口水、哪盏灯先熄、下一段绳子该不该割短。每个人都被这些细碎问题拖着走，连阿照也只顾着把砂眼堵住，不愿再回想墓心中段那几行字。\n\n近期前文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n## 2. L0 事实 (codex/items/inverted-compass.md)\n倒置罗盘: 倒置罗盘是阿照在回环墓中携带的旧航器。它的关键用法没有写在卡片里，而是埋在中段正文线索中，需要从针尾、反握、缺口等词回查正文。 当前状态: role=回环墓里判断方向的旧航器\n\n## 3. L0 事实 (codex/characters/azhao.md)\n阿照: 阿照负责保管倒置罗盘，但真正的用法记录在墓心中段的正文线索里。 - 目标: 带队从回环墓里找出生门 - 风险: 被倒置罗盘的表象误导 当前状态: goal=带队从回环墓里找出生门；risk=被倒置罗盘的表象误导\n\n## 4. L3 意图 (meta/project.json)\n项目《回环墓中段》当前正在编辑 第009章 盲廊回声，故事时间: 回环纪·第六更末。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 阿照、倒置罗盘、真北铁、生门、针尾、缺口。召回审计: 命中设定: 阿照(阿照、倒置罗盘、真北铁)；倒置罗盘(倒置罗盘、真北铁…\n\n## 5. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 中段针尾: 起因: 墓…\n\n## 6. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009)\n全书脉络: 远期压缩: 第001章 雨墓入口~第004章 水声误路: 雨水从墓门兽口里流下，阿照把倒置罗盘塞进怀里，带着众人钻进回环墓。；众人在第一间偏室清点灯…",
+                  "promptChars": 1558,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0a89ec8cbee63437016a47d2ce6a6081948cbfd6c8c4d119ea",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1148,
+                    "outputTokens": 858,
+                    "totalTokens": 2006
+                  },
+                  "outputPreview": "阿照先把喊“快走”的人拦住，叫所有人闭嘴。\n\n盲廊里忽然空了一息，那道亮裂缝却仍传来脚步似的响动，像是早替他们把下一步走完了。阿照心里一沉，知道那不是路在答话，是墓在催人。\n\n他没有再看针尖，反而把倒置罗盘翻过来，用拇指压住盘沿，让针尾贴着掌心那片暗纹慢慢停稳。针尖越往亮处挣，针尾便越偏向旁边一段不起眼的灰墙。那灰墙没有风，也没有光，只在贴近地面的地方缺了一枚指甲宽的口子，黑得像被灰尘塞死。\n\n同伴还想说那不是缺口，阿照已经抬手遮住最亮的裂缝。光一被挡，裂缝里的回声立刻短了一截，仿佛有人猛地收住了舌头。\n\n“别跟着它亮的地方走。”阿照低声道。\n\n他把罗盘反握在胸前，侧身避开针尖所指的方向，先用鞋尖拨开灰墙根下的浮砂。那枚小口子没有学他说话，只吐出一点冷而迟的空响。阿照这才松开拦人的手，示意众人贴墙，从那处不起眼的暗缺口旁重新找路。"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "eef26be7acf90a7b",
+        "datasetHash": "9b241cdab31ff95d",
+        "configHash": "d51f0710965bbe90"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "stone-room-turn-chapter-010-repeat-1",
+          "caseId": "stone-room-turn",
+          "chapterId": "chapter-010",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第010章 石室换向 (chapter-010)\n\n# 任务\n请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n近期前文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n近期前文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。",
+                  "promptChars": 777,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0b44df2502540507016a47d2e14abc8197b73dc33b77491ebe",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 634,
+                    "outputTokens": 996,
+                    "totalTokens": 1630
+                  },
+                  "outputPreview": "阿照忽然压低声音：“别看门。门在转，风也是被转出来的。”\n\n他蹲到真北铁旁，把罗盘重新倒扣在掌心，又慢慢贴近那块黑沉沉的铁心。\n\n“这块铁不是叫我们顺着针尖走。”阿照说，“它只管定住一个真北。石室怎么换，四面墙怎么骗，真北铁不跟着门走。”\n\n有人还想指向右侧那扇半开的门，阿照摇头。\n\n“倒置罗盘在这里要反着看。针尖会被最近的缺口牵过去，哪里有风，哪里亮，它就像是指给我们看。可那多半是墓室故意露出来的眼。”\n\n他把罗盘稍稍翻转，让灯火从铜盘边缘斜照过去。针影压在盘面上，针尖的影子一晃一晃，针尾却在真北铁上方沉得很稳。\n\n“看针尾。”阿照说，“再看缺口和针尾错开的那一线。若针尖追着门跑，针尾还贴着真北，那门只是被墙带着转；若针尾也离了真北铁，才说明整间室的向被换过去了。”\n\n争论声渐渐低下去，只剩石壁摩擦的闷响。\n\n阿照把罗盘按在真北铁正上方，没有让它碰死，留了一指的空隙。\n\n“现在谁也别推门。等它转完一息，先记真北铁定住的方向，再反握罗盘。缺口若正对针尖，不算；缺口若背着针尖，和针尾同向，才是我们要看的生门位。”\n\n同伴问：“那风呢？”\n\n阿照看着四扇门间忽明忽暗的缝隙，说：“风只能听，不能信。真北铁定底，倒置罗盘验反向。两样合上，再看哪扇门不抢针尖，却留得住针尾。”"
+                }
+              }
+            },
+            {
+              "id": "recent-fill",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第010章 石室换向 (chapter-010)\n\n# 任务\n请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-001/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n更早正文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n更早正文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n更早正文 第007章 盲井听砂:\n# 第007章 盲井听砂\n\n盲井底下不断有细砂落下，像有人在黑暗里慢慢筛米。\n\n阿照带着众人沿井壁绕行，先数出十二处刻痕，又拆下一段旧梯当临时木尺，反复量井口和回廊的距离。\n\n同伴开始只谈谁还剩几口水、哪盏灯先熄、下一段绳子该不该割短。每个人都被这些细碎问题拖着走，连阿照也只顾着把砂眼堵住，不愿再回想墓心中段那几行字。\n\n更早正文 第006章 碎碑抄名:\n# 第006章 碎碑抄名\n\n离开墓心后，碎碑间的名字密密麻麻，像一场没人读完的族谱。\n\n阿照被迫逐个抄下石碑上的年号、偏旁和残缺符号，又把灯绳重新分给每个人，免得队伍在回廊里走散。\n\n他们争论了很久哪些名字属于守墓匠，哪些只是误刻的祭名，声音在石壁间来回撞，几乎把先前所有有用的话都压成了噪声。倒置罗盘此时只在包里轻轻磕碰，没有人再去看它。\n\n更早正文 第005章 中段针尾:\n# 第005章 中段针尾\n\n墓心中段嵌着一块真北铁，阿照把倒置罗盘放上去时，针尖猛地偏向一面没有门缝的墙。\n\n石旁小字写着：倒置罗盘遇见真北铁，会把针背向真正的缺口；只有反…",
+                  "promptChars": 1520,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0211eca361b3782d016a47d2f51c208196aac5f8eaedbbb049",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1144,
+                    "outputTokens": 3571,
+                    "totalTokens": 4715
+                  },
+                  "outputPreview": "“别指风。”阿照说，“风是墙转出来的，哪一面先开，哪一面就像出口。现在不能拿门当准，只能拿这块真北铁当准。”\n\n他把罗盘压低，悬在铁心上方，没有再平放回石台。\n\n“这罗盘倒着读才有用。遇不到真北铁，针尖还能当针尖；一碰见真北铁，针尖先骗你去亮处、去有风的缝。我们要看的不是它指哪扇门，是它的尾巴背着哪一条线。”\n\n同伴中有人急道：“那就走针尾？”\n\n“也不能只这样说。”阿照盯着针影，“石室在换向，门会从线前面滑过去。针尾给的是不跟墙转的方向，不是眼前这扇门。真北铁在中央，是轴，是让罗盘露反话的东西。把罗盘离铁太远，针会跟着墙里的杂铁和风口乱摆；贴死在铁上，又只剩颤，分不出尾。就这么悬着，让它被牵住，却别让它被吞住。”\n\n他把手腕慢慢翻过来，罗盘的缺口在灯下暗了一下，针尖果然追向方才最亮的那道门缝；可针尾沉在另一侧，像被一根看不见的线钉住。\n\n“看见没有？针尖追的是显眼的缺口，针尾压住的是铁给出的背线。等墙再转，哪一扇门从这条背线上经过，才有资格叫生门。若门已经有风、有光，却只被针尖咬住，那多半是拿来催我们走错的。”\n\n他抬眼看众人，“你们别再各看各的门。一个看针尾，一个看墙缝，一个看灯影。门没有落到针尾这条线上之前，谁都不要伸手。”"
+                }
+              }
+            },
+            {
+              "id": "four-layer",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第010章 石室换向 (chapter-010)\n\n# 任务\n请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n近期前文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n近期前文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n## 2. L0 事实 (codex/items/inverted-compass.md)\n倒置罗盘: 倒置罗盘是阿照在回环墓中携带的旧航器。它的关键用法没有写在卡片里，而是埋在中段正文线索中，需要从针尾、反握、缺口等词回查正文。 当前状态: role=回环墓里判断方向的旧航器\n\n## 3. L0 事实 (codex/characters/azhao.md)\n阿照: 阿照负责保管倒置罗盘，但真正的用法记录在墓心中段的正文线索里。 - 目标: 带队从回环墓里找出生门 - 风险: 被倒置罗盘的表象误导 当前状态: goal=带队从回环墓里找出生门；risk=被倒置罗盘的表象误导\n\n## 4. L3 意图 (meta/project.json)\n项目《回环墓中段》当前正在编辑 第010章 石室换向，故事时间: 回环纪·第七更。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 阿照、倒置罗盘、真北铁、生门、针尾、缺口。召回审计: 命中设定: 阿照(阿照、倒置罗盘、真北铁)；倒置罗盘(倒置罗盘、真北铁、生门、针尾、缺口)；命中摘要: 第001章 雨墓入口(阿…\n\n## 5. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 中段针尾: 起因: 墓…\n\n## 6. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010)\n全书脉络: 远期压缩: 第001章 雨墓入口~第004章 水声误路: 雨水从墓门兽口里流下，阿照把倒置罗盘塞进怀里，带着众人钻进回环墓。；众人在第一间偏室清点灯…",
+                  "promptChars": 1568,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_04cc2f6ac244f1de016a47d337ea5081968fc0e965a98db1f6",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1142,
+                    "outputTokens": 1401,
+                    "totalTokens": 2543
+                  },
+                  "outputPreview": "阿照没有立刻答他们。他把灯往石台边上一移，让灯焰贴着真北铁的边沿照下去，又把罗盘举到胸前，掌心一翻，露出针尾。\n\n“别看门。”他说，“这间石室在换向，门在墙上，墙在转。你们看见的风，也是跟着缝走的，谁先盯住哪一扇，哪一扇就像出路。”\n\n有人还想开口，阿照抬手止住，把罗盘重新放到真北铁上方，却没有让它贴死。\n\n“真北铁不是叫我们顺着针尖走的。”他压低声音，“它钉在正中，是给我们看什么东西没动。墙能转，影子能偏，风也能绕，只有这块铁把罗盘牵住的时候，针尾的反应是真的。”\n\n他把罗盘按旧握法托平，众人果然看见针尖猛地一偏，指向方才争得最凶的那扇门。那门缝里有细风，灯火被吹得向内弯，像在招人。\n\n“这就是骗我们的地方。”阿照说，“针尖会先被真北铁拉住，再借墙缝显出来。越亮、越有风，越像它要你看的缺口。”\n\n他把手腕一转，罗盘倒扣在掌中，指节抵住盘背，拇指压住那道旧裂纹，让针影从灯下反过来落到石面上。针尖的影子乱了一瞬，针尾却慢慢沉住，暗暗贴向另一侧。\n\n阿照让众人都低头看。\n\n“现在才看针尾。”他说，“倒置罗盘要反握，不是为了把南北颠倒，是为了让针尖失掉先声。针尖爱追铁，针尾才会避开被铁牵出的假路。真北铁在中间，我们就把它当钉子，罗盘只绕钉子试，不跟着墙走。”\n\n他沿着真北铁的边沿慢慢移了半圈，每移一寸便停一息。四壁还在低低摩擦，门缝里的风忽大忽小，可针尾每次发暗的位置都没有追着那阵风跑，…"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "black-step-gate",
+      "chapterId": "chapter-011",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "eef26be7acf90a7b",
+        "datasetHash": "9b241cdab31ff95d",
+        "configHash": "4458c7b16ff786b6"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "black-step-gate-chapter-011-repeat-1",
+          "caseId": "black-step-gate",
+          "chapterId": "chapter-011",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第011章 黑阶临门 (chapter-011)\n\n# 任务\n请接着第011章续写阿照站在黑阶门前的一小段。重点是他如何从中段埋下的信息里找出生路。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-011.md,manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-010.md)\n当前章节原文:\n# 第011章 黑阶临门\n\n黑阶尽头只剩一扇低门，门前的真北铁被磨得发亮。\n\n倒置罗盘刚靠近，针尖便像被钉住一样指向门旁的兽口。\n\n同伴已经伸手去推兽口边的石扣，阿照却按住他的手，知道若在最后一步仍只看最显眼的方向，针尾、缺口和生门这些中段词都会白费。\n\n近期前文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n近期前文 第010章 石室换向:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。",
+                  "promptChars": 778,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_07cbf1261b133078016a47d355df948194b31c4798897620e1",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 628,
+                    "outputTokens": 2338,
+                    "totalTokens": 2966
+                  },
+                  "outputPreview": "阿照把倒置罗盘往回收了半寸，针尖还死咬着兽口，针尾却在他掌心压出一截阴影。\n\n他换了在石室里试出的握法，让铁盘斜着贴住门槛，不再让真北铁占满针身。兽口旁的石扣亮得像被无数只手摸过，低门左下却有一处不肯反光的缺，窄得只够一枚指甲嵌进去。\n\n同伴低声催他，他几乎又听见盲廊里那句快走。阿照没有应声，只用针尾去量那处暗缺。针尾一贴近，罗盘反而安静下来，像终于避开了真北铁的钩子。\n\n他没有推兽口，只把指甲插进门槛内侧那道缺口，向外轻轻一挑。\n\n石门里传来一声极轻的退锁。兽口仍张着，黑洞洞地等人伸手，低门却从左下角先松开一道缝，有冷风贴着黑阶爬出来。"
+                }
+              }
+            },
+            {
+              "id": "recent-fill",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第011章 黑阶临门 (chapter-011)\n\n# 任务\n请接着第011章续写阿照站在黑阶门前的一小段。重点是他如何从中段埋下的信息里找出生路。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-011.md,manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-001/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第011章 黑阶临门\n\n黑阶尽头只剩一扇低门，门前的真北铁被磨得发亮。\n\n倒置罗盘刚靠近，针尖便像被钉住一样指向门旁的兽口。\n\n同伴已经伸手去推兽口边的石扣，阿照却按住他的手，知道若在最后一步仍只看最显眼的方向，针尾、缺口和生门这些中段词都会白费。\n\n更早正文 第010章 石室换向:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n更早正文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n更早正文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n更早正文 第007章 盲井听砂:\n# 第007章 盲井听砂\n\n盲井底下不断有细砂落下，像有人在黑暗里慢慢筛米。\n\n阿照带着众人沿井壁绕行，先数出十二处刻痕，又拆下一段旧梯当临时木尺，反复量井口和回廊的距离。\n\n同伴开始只谈谁还剩几口水、哪盏灯先熄、下一段绳子该不该割短。每个人都被这些细碎问题拖着走，连阿照也只顾着把砂眼堵住，不愿再回想墓心中段那几行字。\n\n更早正文 第006章 碎碑抄名:\n# 第006章 碎碑抄名\n\n离开墓心后，碎碑间的名字密密麻麻，像一场没人读完的族谱。\n\n阿照被迫逐个抄下石碑上的年号、偏旁和残缺符号，又把灯绳重新分给每个人，免得队伍在回廊里走散。\n\n他们争论了很久哪些名字属于守墓匠，哪些只是误刻的祭名，声音在石壁间来回撞，几…",
+                  "promptChars": 1557,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0ebbc369b6f74410016a47d381d29481939d152d5160d495c9",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1149,
+                    "outputTokens": 982,
+                    "totalTokens": 2131
+                  },
+                  "outputPreview": "阿照没有急着松手。\n\n他把倒置罗盘从门前挪开半寸，又反握过来，让灯火从针尾后方照过去。针尖仍死死咬着兽口，可针尾的暗影却在真北铁光面上斜斜滑开，落到低门左下的一处磨痕里。\n\n那里没有风，也没有缝，只像石匠失手留下的一点缺口。\n\n同伴低声骂他耽搁，阿照却想起盲廊里那道最亮裂缝，想起铁墙前稳得过分的针尖，又想起石室换向时，握法一变，所谓生门便跟着换了脸。他伸手摸那处缺口，指腹先摸到冷，再摸到一圈细细的砂。\n\n砂不是从门里漏出的，是从阶下被人反复踩松的。\n\n阿照把木尺残段抵进缺口，轻轻一撬。兽口旁的石扣没有动，低门也没有开，反倒是门前最亮的那块真北铁往下沉了一线。\n\n黑阶下方传来极轻的一声空响。\n\n“别推门。”阿照说。\n\n他蹲下去，沿着沉下去的铁边摸索，终于在铁面背侧摸到第二道更窄的凹槽。那凹槽正对着针尾，不对着针尖，也不对着兽口。\n\n他把罗盘贴近凹槽，针尖猛地一颤，像被迫承认什么；而针尾稳稳压住那道暗缝。\n\n阿照这才吐出一口气，示意众人退后半步。\n\n他没有碰兽口，只将木尺顺着暗缝推到底。黑阶前的低门仍旧闭着，门下却悄无声息裂开了一道贴地的影子，冷风从影子里钻出来，不亮，却是真的往外走。"
+                }
+              }
+            },
+            {
+              "id": "four-layer",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第011章 黑阶临门 (chapter-011)\n\n# 任务\n请接着第011章续写阿照站在黑阶门前的一小段。重点是他如何从中段埋下的信息里找出生路。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-011.md,manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-010.md)\n当前章节原文:\n# 第011章 黑阶临门\n\n黑阶尽头只剩一扇低门，门前的真北铁被磨得发亮。\n\n倒置罗盘刚靠近，针尖便像被钉住一样指向门旁的兽口。\n\n同伴已经伸手去推兽口边的石扣，阿照却按住他的手，知道若在最后一步仍只看最显眼的方向，针尾、缺口和生门这些中段词都会白费。\n\n近期前文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n近期前文 第010章 石室换向:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n## 2. L0 事实 (codex/items/inverted-compass.md)\n倒置罗盘: 倒置罗盘是阿照在回环墓中携带的旧航器。它的关键用法没有写在卡片里，而是埋在中段正文线索中，需要从针尾、反握、缺口等词回查正文。 当前状态: role=回环墓里判断方向的旧航器\n\n## 3. L0 事实 (codex/characters/azhao.md)\n阿照: 阿照负责保管倒置罗盘，但真正的用法记录在墓心中段的正文线索里。 - 目标: 带队从回环墓里找出生门 - 风险: 被倒置罗盘的表象误导 当前状态: goal=带队从回环墓里找出生门；risk=被倒置罗盘的表象误导\n\n## 4. L3 意图 (meta/project.json)\n项目《回环墓中段》当前正在编辑 第011章 黑阶临门，故事时间: 回环纪·第七更末。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 阿照、倒置罗盘、真北铁、生门、针尾、缺口。召回审计: 命中设定: 阿照(阿照、倒置罗盘、真北铁)；倒置罗盘(倒置罗盘、真北铁、生门、针尾、缺口)；命中摘要: 第001章 雨墓入口…\n\n## 5. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 中段针尾: 起因: 墓…\n\n## 6. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010,chapter-011)\n全书脉络: 远期压缩: 第001章 雨墓入口~第004章 水声误路: 雨水从墓门兽口里流下，阿照把倒置罗盘塞进怀里，带着众人钻进回环墓。；众人在第一间偏室清点灯…",
+                  "promptChars": 1580,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0b91e01de9412bae016a47d395f770819781f30873fbac14b3",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1139,
+                    "outputTokens": 1450,
+                    "totalTokens": 2589
+                  },
+                  "outputPreview": "阿照没有松开那只手，反而把倒置罗盘从真北铁上移开半寸，铜壳在掌心一翻，以石室里试出的握法反扣住。\n\n针尖仍死死咬着兽口，像要把所有人的目光都拖过去。可针尾在暗处缓缓沉下，贴着他掌纹，指向的不是低门，也不是门缝，而是黑阶最后一级侧边一处不起眼的缺口。\n\n那缺口被油灰抹过，灯一晃便像石色本身。\n\n“别碰兽口。”阿照说，“那是给针尖看的。”\n\n同伴僵在那里，呼吸压得很低。阿照蹲下去，记起盲廊尽头那道最亮的裂缝，记起石室里四面门一起换向时，风也会骗人。若缺口只是缺口，针尾不该每次都在他掌心发暗；若生门在明处，倒置罗盘也不必倒置。\n\n他用指甲抠开油灰，灰壳下露出一条反刻的短痕，正好能容下罗盘针尾的影子。\n\n阿照把罗盘贴过去，没有推门，只用针尾对准那道短痕。\n\n黑阶深处传来一声极轻的空响。\n\n门旁兽口边的石扣忽然往外松了半分，像一口未咬下的牙；而低门下方，原本严合的石缝里，慢慢渗出一线潮冷的风，贴着众人的鞋尖向外爬来。\n\n阿照这才抬头。\n\n“生门不在兽口。”他说，“在它让我们不看的地方。”"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "judge": []
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "tail-light-exit",
+      "chapterId": "chapter-012",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "eef26be7acf90a7b",
+        "datasetHash": "9b241cdab31ff95d",
+        "configHash": "081687f1937e4a18"
+      },
+      "provider": {
+        "kind": "openai-compatible",
+        "baseUrl": "https://[REDACTED-HOST]/",
+        "model": "gpt-5.5",
+        "wireApi": "responses",
+        "reasoningEffort": "xhigh"
+      },
+      "runs": [
+        {
+          "runId": "tail-light-exit-chapter-012-repeat-1",
+          "caseId": "tail-light-exit",
+          "chapterId": "chapter-012",
+          "repeatIndex": 1,
+          "arms": [
+            {
+              "id": "baseline",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第012章 针尾光 (chapter-012)\n\n# 任务\n请接着第012章续写阿照看见针尾微光后的动作。重点是他如何兑现中段线索，而不是被针尖误导。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-012.md,manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-011.md)\n当前章节原文:\n# 第012章 针尾光\n\n最后一盏灯快要熄灭时，倒置罗盘的针尾忽然映出一点微光。\n\n真北铁就在门槛下方，针尖仍旧指着兽口，像在催他们走那条最容易相信的路。\n\n阿照把灯绳背面翻到掌心，想起中段抄下的那句用法，知道反握、缺口和生门三个词必须在这一次开门前对上。\n\n近期前文 第010章 石室换向:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n近期前文 第011章 黑阶临门:\n# 第011章 黑阶临门\n\n黑阶尽头只剩一扇低门，门前的真北铁被磨得发亮。\n\n倒置罗盘刚靠近，针尖便像被钉住一样指向门旁的兽口。\n\n同伴已经伸手去推兽口边的石扣，阿照却按住他的手，知道若在最后一步仍只看最显眼的方向，针尾、缺口和生门这些中段词都会白费。",
+                  "promptChars": 784,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_05ce2d2ba4f229e3016a47d3b454dc81958872ce386031e79b",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 628,
+                    "outputTokens": 4125,
+                    "totalTokens": 4753
+                  },
+                  "outputPreview": "阿照没有顺着针尖抬头。\n\n他先把同伴的手从兽口旁掰开，压到自己身后。那枚石扣在残灯里亮得发滑，像一颗已经等了许久的牙，越像能开门，越不能碰。\n\n灯焰低了一截，针尾上的微光也随之暗下去。阿照把灯绳绕在腕上，反手提灯，让火光不再照兽口，而是从他掌根后面斜斜擦过罗盘。针尖仍旧死死钉着那张兽口，连颤都不颤，像在替整座墓催促他们犯最后一次错。\n\n阿照把罗盘翻到手背下方。\n\n这一下极别扭，虎口朝里，掌心压住盘沿，连呼吸都要避开针影。可正因这样，盘边那道从前总被他当成磕损的缺口，才从拇指根旁露出来。灯绳背面的字贴着掌肉发潮，他不再去辨那一笔一画，只按那三个词落手：反握在手，缺口在尾，生门在低处。\n\n他将倒置罗盘慢慢移向门槛。\n\n真北铁就在石下，隔着一层被磨亮的灰色门槛牵住针身。针尖依旧朝兽口咬紧，针尾却在灯火斜照里浮起那点冷光。阿照没有转针，也没有转头，只让自己的手沿着门槛一点点平移，直到针尾的微光被盘沿缺口截住。\n\n光忽然细成一线。\n\n那一线没有射向兽口，也没有落到石扣上，而是从缺口里漏下去，点在门槛内侧一处几乎看不出的浅凹。若不是光到了那里，阿照只会把它当成石面磨出的伤。那浅凹像半枚指甲印，边缘有细灰，灰下却露着一点湿黑。\n\n同伴在他身后吸了口气，想说什么。阿照抬手止住。\n\n他收起罗盘时仍不看针尖，把盘缘缺口对着那枚浅凹轻轻扣下。缺口与凹痕相合的一瞬，门槛下方传出极轻的咔声，不像石扣被按下，…"
+                }
+              }
+            },
+            {
+              "id": "recent-fill",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第012章 针尾光 (chapter-012)\n\n# 任务\n请接着第012章续写阿照看见针尾微光后的动作。重点是他如何兑现中段线索，而不是被针尖误导。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-012.md,manuscript/volume-003/chapter-011.md,manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-001/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第012章 针尾光\n\n最后一盏灯快要熄灭时，倒置罗盘的针尾忽然映出一点微光。\n\n真北铁就在门槛下方，针尖仍旧指着兽口，像在催他们走那条最容易相信的路。\n\n阿照把灯绳背面翻到掌心，想起中段抄下的那句用法，知道反握、缺口和生门三个词必须在这一次开门前对上。\n\n更早正文 第011章 黑阶临门:\n# 第011章 黑阶临门\n\n黑阶尽头只剩一扇低门，门前的真北铁被磨得发亮。\n\n倒置罗盘刚靠近，针尖便像被钉住一样指向门旁的兽口。\n\n同伴已经伸手去推兽口边的石扣，阿照却按住他的手，知道若在最后一步仍只看最显眼的方向，针尾、缺口和生门这些中段词都会白费。\n\n更早正文 第010章 石室换向:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n更早正文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n更早正文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n更早正文 第007章 盲井听砂:\n# 第007章 盲井听砂\n\n盲井底下不断有细砂落下，像有人在黑暗里慢慢筛米。\n\n阿照带着众人沿井壁绕行，先数出十二处刻痕，又拆下一段旧梯当临时木尺，反复量井口和回廊的距离。\n\n同伴开始只谈谁还剩几口水、哪盏灯先熄、下一段绳子该不该割短。每个人都被这些细碎问题拖着走，连阿照也只顾着把砂眼堵住，不愿再回想墓心中段那几行字。\n\n…",
+                  "promptChars": 1595,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_0349a0c1a41d1f56016a47d3fff9fc8193be66bec079d7bd7e",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1159,
+                    "outputTokens": 770,
+                    "totalTokens": 1929
+                  },
+                  "outputPreview": "阿照没有把罗盘递向兽口，反而将它扣进掌心，按中段那句旧法反握，让针尖沉在手影里，只留针尾对着灯绳背面的缺口。\n\n微光被掌纹一压，不再朝兽口跳动，斜斜落到门槛中段一处被灰抹平的细缝上。\n\n同伴低声催他，他只摇了摇头，先把那只伸向石扣的手推开，再用灯绳的缺口去套门槛下方的真北铁边缘。\n\n铁边很冷，绳背一贴上去，针尾的光便短短亮了一下。\n\n阿照顺着那一下亮光，把罗盘反扣在门槛前，不看针尖，只看针尾停住的位置，然后用拇指按进那道细缝。\n\n兽口里的石扣没有动，低门中段却传来一声极轻的空响。\n\n像有一枚藏在门里的牙，终于从最不显眼的地方松开了。"
+                }
+              }
+            },
+            {
+              "id": "four-layer",
+              "trace": {
+                "kind": "generation",
+                "wireApi": "responses",
+                "model": "gpt-5.5",
+                "endpoint": "https://[REDACTED-HOST]/v1/responses",
+                "request": {
+                  "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+                  "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第012章 针尾光 (chapter-012)\n\n# 任务\n请接着第012章续写阿照看见针尾微光后的动作。重点是他如何兑现中段线索，而不是被针尖误导。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-012.md,manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-011.md)\n当前章节原文:\n# 第012章 针尾光\n\n最后一盏灯快要熄灭时，倒置罗盘的针尾忽然映出一点微光。\n\n真北铁就在门槛下方，针尖仍旧指着兽口，像在催他们走那条最容易相信的路。\n\n阿照把灯绳背面翻到掌心，想起中段抄下的那句用法，知道反握、缺口和生门三个词必须在这一次开门前对上。\n\n近期前文 第010章 石室换向:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n近期前文 第011章 黑阶临门:\n# 第011章 黑阶临门\n\n黑阶尽头只剩一扇低门，门前的真北铁被磨得发亮。\n\n倒置罗盘刚靠近，针尖便像被钉住一样指向门旁的兽口。\n\n同伴已经伸手去推兽口边的石扣，阿照却按住他的手，知道若在最后一步仍只看最显眼的方向，针尾、缺口和生门这些中段词都会白费。\n\n## 2. L0 事实 (codex/items/inverted-compass.md)\n倒置罗盘: 倒置罗盘是阿照在回环墓中携带的旧航器。它的关键用法没有写在卡片里，而是埋在中段正文线索中，需要从针尾、反握、缺口等词回查正文。 当前状态: role=回环墓里判断方向的旧航器\n\n## 3. L0 事实 (codex/characters/azhao.md)\n阿照: 阿照负责保管倒置罗盘，但真正的用法记录在墓心中段的正文线索里。 - 目标: 带队从回环墓里找出生门 - 风险: 被倒置罗盘的表象误导 当前状态: goal=带队从回环墓里找出生门；risk=被倒置罗盘的表象误导\n\n## 4. L3 意图 (meta/project.json)\n项目《回环墓中段》当前正在编辑 第012章 针尾光，故事时间: 回环纪·出墓前。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 阿照、倒置罗盘、真北铁、生门、针尾、反握、缺口。召回审计: 命中设定: 阿照(阿照、倒置罗盘、真北铁)；倒置罗盘(倒置罗盘、真北铁、生门、针尾、反握、缺口)；命中摘要: 第…\n\n## 5. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 中段针尾: 起因: 墓…\n\n## 6. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010,chapter-011,chapter-012)\n全书脉络: 远期压缩: 第001章 雨墓入口~第004章 水声误路: 雨水从墓门兽口里流下，阿照把倒置罗盘塞进怀里，带着众人钻进回环墓。；众人在第一间偏室清点灯…",
+                  "promptChars": 1593,
+                  "maxOutputChars": 600,
+                  "temperature": 0.4,
+                  "reasoningEffort": "xhigh",
+                  "store": false
+                },
+                "response": {
+                  "responseId": "resp_081201fead37e998016a47d40f66108194b5cac06a40191e27",
+                  "statusCode": 200,
+                  "object": "response",
+                  "model": "gpt-5.5",
+                  "finishedStatus": "completed",
+                  "usage": {
+                    "inputTokens": 1142,
+                    "outputTokens": 2873,
+                    "totalTokens": 4015
+                  },
+                  "outputPreview": "阿照没有顺着针尖看。\n\n他先把同伴的手从石扣上拨开，低声道：“兽口不碰。”\n\n那人还想说话，阿照已经蹲下去，把倒置罗盘从胸前取出，不再按平日的握法托在掌心，而是翻腕反扣，让盘面斜向门槛，针尖那一端藏在掌根阴影里，只剩针尾露在灯光下。\n\n最后一盏灯抖了一下，针尾上的微光也跟着一闪。\n\n旁人立刻急了：“针尖还在兽口。”\n\n“所以不看针尖。”阿照说。\n\n他把灯绳背面的字压进掌心，手指沿着罗盘边缘摸到那道旧缺口。那缺口平时只像磕坏的一角，可此刻反握之后，正好能把针尾那点光收住。阿照慢慢转动罗盘，没有让针尖离开兽口的方向；针尖越是稳，他越知道真北铁确实就在门槛底下。\n\n罗盘边缘的缺口转到某一处时，针尾微光忽然不再浮散，而是被缺口切成一线，斜斜落在门槛内侧。\n\n那一线光没有碰兽口，也没有碰石扣，只落在低门下沿一处被灰泥抹平的细痕上。\n\n阿照伸手去摸。\n\n灰泥冷而薄，他用指甲刮开，露出下面一个浅浅的缺。缺口不大，正像罗盘边缘那道损痕的倒影。若不是针尾借着残灯照出，人在门前只会看见兽口张着黑洞洞的嘴。\n\n“这里。”阿照说。\n\n他把倒置罗盘的缺口贴上门槛那道缺，反握的手没有松。真北铁在石下猛地一吸，罗盘轻轻一沉，针尾微光随之落进缺里，像一粒火星被石头吞住。\n\n门旁兽口里的石扣发出一声空响，仿佛有什么机关落了空。\n\n同伴脸色一变，手下意识缩回。\n\n阿照没有抬头，只把掌心往下一按。\n\n门槛先动。\n\n那块…"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "judge": []
+    }
+  ]
+}

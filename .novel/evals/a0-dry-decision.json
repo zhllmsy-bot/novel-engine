@@ -1,0 +1,466 @@
+{
+  "status": "underpowered",
+  "ok": false,
+  "failedReasonIds": [
+    "underpowered-no-paired-runs"
+  ],
+  "localArchive": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/.novel/evals/a0-local-dry-run",
+  "fixtureArchive": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/.novel/evals/a0-causal-dry-run",
+  "primaryMetric": "callback-structural-win-rate",
+  "judgeUse": "excluded-uncalibrated",
+  "thresholds": {
+    "callbackWinRateDelta": 0.15,
+    "fixtureWilsonLower": 0.5
+  },
+  "aggregate": {
+    "key": "aggregate",
+    "local": {
+      "pairedRuns": 0,
+      "callbackWins": 0,
+      "callbackWinRate": 0,
+      "callbackWilson95": {
+        "lower": 0,
+        "upper": 0
+      },
+      "settingViolationMeanDiff": 0,
+      "futureLeakDiff": 0
+    },
+    "fixture": {
+      "pairedRuns": 0,
+      "callbackWins": 0,
+      "callbackWinRate": 0,
+      "callbackWilson95": {
+        "lower": 0,
+        "upper": 0
+      },
+      "settingViolationMeanDiff": 0,
+      "futureLeakDiff": 0
+    },
+    "callbackWinRateDelta": 0,
+    "settingViolationRegression": 0,
+    "futureLeakRegression": 0
+  },
+  "reports": [
+    {
+      "key": "霜桥逆火\u001ffrostbridge-stand\u001fchapter-006",
+      "local": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "fixture": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "callbackWinRateDelta": 0,
+      "settingViolationRegression": 0,
+      "futureLeakRegression": 0
+    },
+    {
+      "key": "霜桥逆火\u001fsnow-inn-name\u001fchapter-007",
+      "local": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "fixture": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "callbackWinRateDelta": 0,
+      "settingViolationRegression": 0,
+      "futureLeakRegression": 0
+    },
+    {
+      "key": "霜桥逆火\u001fcharcoal-alley-proof\u001fchapter-008",
+      "local": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "fixture": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "callbackWinRateDelta": 0,
+      "settingViolationRegression": 0,
+      "futureLeakRegression": 0
+    },
+    {
+      "key": "霜桥逆火\u001fnorth-gate-warrant\u001fchapter-009",
+      "local": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "fixture": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "callbackWinRateDelta": 0,
+      "settingViolationRegression": 0,
+      "futureLeakRegression": 0
+    },
+    {
+      "key": "霜桥逆火\u001fold-bridge-fire\u001fchapter-010",
+      "local": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "fixture": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "callbackWinRateDelta": 0,
+      "settingViolationRegression": 0,
+      "futureLeakRegression": 0
+    },
+    {
+      "key": "纸鸢旧约\u001frivergate-answer\u001fchapter-006",
+      "local": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "fixture": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "callbackWinRateDelta": 0,
+      "settingViolationRegression": 0,
+      "futureLeakRegression": 0
+    },
+    {
+      "key": "纸鸢旧约\u001fsouth-canal-vow\u001fchapter-007",
+      "local": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "fixture": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "callbackWinRateDelta": 0,
+      "settingViolationRegression": 0,
+      "futureLeakRegression": 0
+    },
+    {
+      "key": "纸鸢旧约\u001fledger-token\u001fchapter-008",
+      "local": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "fixture": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "callbackWinRateDelta": 0,
+      "settingViolationRegression": 0,
+      "futureLeakRegression": 0
+    },
+    {
+      "key": "纸鸢旧约\u001fflood-marker\u001fchapter-009",
+      "local": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "fixture": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "callbackWinRateDelta": 0,
+      "settingViolationRegression": 0,
+      "futureLeakRegression": 0
+    },
+    {
+      "key": "纸鸢旧约\u001fwind-return\u001fchapter-010",
+      "local": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "fixture": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "callbackWinRateDelta": 0,
+      "settingViolationRegression": 0,
+      "futureLeakRegression": 0
+    },
+    {
+      "key": "回环墓中段\u001firon-wall-needle\u001fchapter-008",
+      "local": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "fixture": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "callbackWinRateDelta": 0,
+      "settingViolationRegression": 0,
+      "futureLeakRegression": 0
+    },
+    {
+      "key": "回环墓中段\u001fblind-corridor-echo\u001fchapter-009",
+      "local": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "fixture": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "callbackWinRateDelta": 0,
+      "settingViolationRegression": 0,
+      "futureLeakRegression": 0
+    },
+    {
+      "key": "回环墓中段\u001fstone-room-turn\u001fchapter-010",
+      "local": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "fixture": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "callbackWinRateDelta": 0,
+      "settingViolationRegression": 0,
+      "futureLeakRegression": 0
+    },
+    {
+      "key": "回环墓中段\u001fblack-step-gate\u001fchapter-011",
+      "local": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "fixture": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "callbackWinRateDelta": 0,
+      "settingViolationRegression": 0,
+      "futureLeakRegression": 0
+    },
+    {
+      "key": "回环墓中段\u001ftail-light-exit\u001fchapter-012",
+      "local": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "fixture": {
+        "pairedRuns": 0,
+        "callbackWins": 0,
+        "callbackWinRate": 0,
+        "callbackWilson95": {
+          "lower": 0,
+          "upper": 0
+        },
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      "callbackWinRateDelta": 0,
+      "settingViolationRegression": 0,
+      "futureLeakRegression": 0
+    }
+  ],
+  "warnings": []
+}

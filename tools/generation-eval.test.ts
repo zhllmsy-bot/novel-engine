@@ -260,6 +260,10 @@ describe('generation eval tool', () => {
       await expect(
         stat(join(root, 'judge-review-prompts.jsonl')),
       ).resolves.toBeTruthy()
+      await expect(
+        stat(join(root, 'judge-review-audit-prompts.jsonl')),
+      ).resolves.toBeTruthy()
+      await expect(stat(join(root, 'audit-packets.jsonl'))).resolves.toBeTruthy()
       await expect(stat(join(root, 'judge-results.json'))).resolves.toBeTruthy()
       await expect(stat(join(root, 'request-traces.json'))).resolves.toBeTruthy()
       expect(
@@ -321,6 +325,10 @@ describe('generation eval tool', () => {
       await expect(
         stat(join(root, 'judge-review-prompts.jsonl')),
       ).resolves.toBeTruthy()
+      await expect(
+        stat(join(root, 'judge-review-audit-prompts.jsonl')),
+      ).resolves.toBeTruthy()
+      await expect(stat(join(root, 'audit-packets.jsonl'))).resolves.toBeTruthy()
       await expect(stat(join(root, 'judge-results.json'))).resolves.toBeTruthy()
       await expect(stat(join(root, 'request-traces.json'))).resolves.toBeTruthy()
       await expect(
@@ -638,7 +646,14 @@ describe('generation eval tool', () => {
         datasetHash: 'dataset-hash',
         configHash: 'config-hash',
       },
-      criteria: [],
+      criteria: [
+        {
+          id: 'callback-key',
+          description: 'Recall the key.',
+          category: 'callback',
+          containsAny: ['镜湖钥'],
+        },
+      ],
       arms: [],
       runs: [
         {
@@ -646,6 +661,11 @@ describe('generation eval tool', () => {
           chapterId: 'chapter-006',
           repeatIndex: 1,
           arms: [
+            {
+              id: 'baseline',
+              output: '基线输出',
+              outputChars: 4,
+            },
             {
               id: 'four-layer',
               output: '示例输出',
@@ -749,6 +769,20 @@ describe('generation eval tool', () => {
       await writeArchivedGenerationEvalArtifacts({
         archiveDir: root,
         report,
+        codexEntries: [
+          {
+            id: 'item-key',
+            name: '镜湖钥',
+            type: 'item',
+            path: join(repoRoot, 'examples', 'long-memory-benchmark', 'codex', 'items', 'key.md'),
+            keywords: ['镜湖钥', 'sk-12345678901234567890'],
+            body: '镜湖钥不能交给黑潮司。Bearer codex-secret sk-12345678901234567890',
+            frontmatter: {},
+            currentState: {
+              holder: '沈泊',
+            },
+          },
+        ],
       })
 
       const reportArchive = await readFile(
@@ -764,12 +798,22 @@ describe('generation eval tool', () => {
         join(root, 'request-traces.json'),
         'utf8',
       )
+      const auditArchive = await readFile(
+        join(root, 'audit-packets.jsonl'),
+        'utf8',
+      )
+      const auditPromptArchive = await readFile(
+        join(root, 'judge-review-audit-prompts.jsonl'),
+        'utf8',
+      )
 
       for (const archived of [
         reportArchive,
         summaryArchive,
         judgeArchive,
         traceArchive,
+        auditArchive,
+        auditPromptArchive,
       ]) {
         expect(archived).not.toContain('sub.kedaya.xyz')
         expect(archived).not.toContain('/Users/admin/Documents/Codex')
@@ -785,6 +829,14 @@ describe('generation eval tool', () => {
       expect(reportArchive).toContain(
         '"archivePath": "examples/long-memory-benchmark/.novel/evals/phase0-real-001"',
       )
+      expect(auditArchive).toContain('"packetId":"chapter-006-repeat-1:baseline:four-layer:candidate-right"')
+      expect(auditArchive).toContain('"mappedCriteria":1')
+      expect(auditArchive).toContain('"establishedChapterId":"unknown"')
+      expect(auditArchive).toContain('[REDACTED-KEY]')
+      expect(auditArchive).toContain('[REDACTED-AUTH]')
+      expect(auditPromptArchive).toContain('L0 codex 钉屏事实')
+      expect(auditPromptArchive).toContain('codex=item-key')
+      expect(auditPromptArchive).toContain('needle_status')
     } finally {
       await rm(root, { recursive: true, force: true })
     }

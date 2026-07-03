@@ -1,0 +1,245 @@
+{
+  "projectCount": 15,
+  "reports": [
+    {
+      "project": "霜桥逆火",
+      "caseId": "frostbridge-stand",
+      "chapterId": "chapter-006",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "22462a49af6839c6",
+        "datasetHash": "7b1469c7c7051fb0",
+        "configHash": "be1e925dbc62aeed"
+      },
+      "provider": {
+        "kind": "dry-run"
+      },
+      "runs": [],
+      "judge": []
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "22462a49af6839c6",
+        "datasetHash": "7b1469c7c7051fb0",
+        "configHash": "c250f0eb2395c5fc"
+      },
+      "provider": {
+        "kind": "dry-run"
+      },
+      "runs": [],
+      "judge": []
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "charcoal-alley-proof",
+      "chapterId": "chapter-008",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "22462a49af6839c6",
+        "datasetHash": "7b1469c7c7051fb0",
+        "configHash": "548f6626ebdeaf46"
+      },
+      "provider": {
+        "kind": "dry-run"
+      },
+      "runs": [],
+      "judge": []
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "north-gate-warrant",
+      "chapterId": "chapter-009",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "22462a49af6839c6",
+        "datasetHash": "7b1469c7c7051fb0",
+        "configHash": "9595cf7a35f9333a"
+      },
+      "provider": {
+        "kind": "dry-run"
+      },
+      "runs": [],
+      "judge": []
+    },
+    {
+      "project": "霜桥逆火",
+      "caseId": "old-bridge-fire",
+      "chapterId": "chapter-010",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "22462a49af6839c6",
+        "datasetHash": "7b1469c7c7051fb0",
+        "configHash": "c86ace16b34b6782"
+      },
+      "provider": {
+        "kind": "dry-run"
+      },
+      "runs": [],
+      "judge": []
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "983cff000652056c",
+        "datasetHash": "3f393b88a5a9b34f",
+        "configHash": "e4a87029d66246c1"
+      },
+      "provider": {
+        "kind": "dry-run"
+      },
+      "runs": [],
+      "judge": []
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "south-canal-vow",
+      "chapterId": "chapter-007",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "983cff000652056c",
+        "datasetHash": "3f393b88a5a9b34f",
+        "configHash": "d387b25ea996959d"
+      },
+      "provider": {
+        "kind": "dry-run"
+      },
+      "runs": [],
+      "judge": []
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "ledger-token",
+      "chapterId": "chapter-008",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "983cff000652056c",
+        "datasetHash": "3f393b88a5a9b34f",
+        "configHash": "65723ff728568055"
+      },
+      "provider": {
+        "kind": "dry-run"
+      },
+      "runs": [],
+      "judge": []
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "flood-marker",
+      "chapterId": "chapter-009",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "983cff000652056c",
+        "datasetHash": "3f393b88a5a9b34f",
+        "configHash": "586beb38f9ecbcee"
+      },
+      "provider": {
+        "kind": "dry-run"
+      },
+      "runs": [],
+      "judge": []
+    },
+    {
+      "project": "纸鸢旧约",
+      "caseId": "wind-return",
+      "chapterId": "chapter-010",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "983cff000652056c",
+        "datasetHash": "3f393b88a5a9b34f",
+        "configHash": "483f1fb8b2043916"
+      },
+      "provider": {
+        "kind": "dry-run"
+      },
+      "runs": [],
+      "judge": []
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "iron-wall-needle",
+      "chapterId": "chapter-008",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "eef26be7acf90a7b",
+        "datasetHash": "9b241cdab31ff95d",
+        "configHash": "f6e10d197b93d964"
+      },
+      "provider": {
+        "kind": "dry-run"
+      },
+      "runs": [],
+      "judge": []
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "blind-corridor-echo",
+      "chapterId": "chapter-009",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "eef26be7acf90a7b",
+        "datasetHash": "9b241cdab31ff95d",
+        "configHash": "9d09c2f2fa92aafc"
+      },
+      "provider": {
+        "kind": "dry-run"
+      },
+      "runs": [],
+      "judge": []
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "eef26be7acf90a7b",
+        "datasetHash": "9b241cdab31ff95d",
+        "configHash": "5cefc54d2d44818c"
+      },
+      "provider": {
+        "kind": "dry-run"
+      },
+      "runs": [],
+      "judge": []
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "black-step-gate",
+      "chapterId": "chapter-011",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "eef26be7acf90a7b",
+        "datasetHash": "9b241cdab31ff95d",
+        "configHash": "438779f014e7a00b"
+      },
+      "provider": {
+        "kind": "dry-run"
+      },
+      "runs": [],
+      "judge": []
+    },
+    {
+      "project": "回环墓中段",
+      "caseId": "tail-light-exit",
+      "chapterId": "chapter-012",
+      "fingerprint": {
+        "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+        "datasetVersion": "eef26be7acf90a7b",
+        "datasetHash": "9b241cdab31ff95d",
+        "configHash": "d0ad53446db1bfbd"
+      },
+      "provider": {
+        "kind": "dry-run"
+      },
+      "runs": [],
+      "judge": []
+    }
+  ]
+}

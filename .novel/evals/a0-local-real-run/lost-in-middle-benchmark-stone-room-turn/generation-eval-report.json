@@ -1,0 +1,981 @@
+{
+  "rootPath": "examples/lost-in-middle-benchmark",
+  "ok": false,
+  "dryRun": false,
+  "a0": {
+    "l1Mode": "local",
+    "metricVersion": "a0-deterministic-v1",
+    "primaryMetric": "callback-structural-win-rate",
+    "judgeUse": "exploratory-only"
+  },
+  "title": "回环墓中段",
+  "caseId": "stone-room-turn",
+  "chapterId": "chapter-010",
+  "budgetChars": 900,
+  "repeatCount": 1,
+  "provider": {
+    "kind": "openai-compatible",
+    "baseUrl": "https://[REDACTED-HOST]/",
+    "model": "gpt-5.5",
+    "wireApi": "responses",
+    "reasoningEffort": "xhigh"
+  },
+  "fingerprint": {
+    "gitCommit": "57df0529711ebce9293b17abbcd8f698c2586545-dirty",
+    "datasetVersion": "eef26be7acf90a7b",
+    "datasetHash": "9b241cdab31ff95d",
+    "configHash": "d51f0710965bbe90"
+  },
+  "criteria": [
+    {
+      "id": "callback-middle-compass-rule",
+      "description": "Generated prose should recall the middle-chapter compass rule rather than following the visible needle tip.",
+      "category": "callback",
+      "containsAny": [
+        "反握罗盘",
+        "针尾指的才是生门",
+        "针背向真正的缺口"
+      ]
+    },
+    {
+      "id": "setting-compass-and-iron",
+      "description": "Generated prose should preserve the compass and true-north iron setup.",
+      "category": "setting",
+      "containsAny": [
+        "倒置罗盘",
+        "真北铁",
+        "生门"
+      ]
+    },
+    {
+      "id": "setting-no-tip-mistake",
+      "description": "Generated prose should not choose the obvious but wrong needle-tip direction.",
+      "category": "setting",
+      "notContains": [
+        "顺着针尖走",
+        "针尖就是生门",
+        "按针尖开门",
+        "把罗盘交给守墓人"
+      ]
+    },
+    {
+      "id": "no-future-answer",
+      "description": "Generated prose should not leak a future hidden answer.",
+      "category": "future_leak",
+      "notContains": [
+        "第十三章会出现第二只罗盘",
+        "未来答案",
+        "__future"
+      ]
+    }
+  ],
+  "arms": [
+    {
+      "id": "baseline",
+      "label": "A baseline: recent prose only",
+      "promptChars": 777,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md"
+      ],
+      "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第010章 石室换向 (chapter-010)\n\n# 任务\n请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n近期前文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n近期前文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 1,
+          "reason": "0/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "output": "阿照忽然压低声音：“别看门。门在转，风也是被转出来的。”\n\n他蹲到真北铁旁，把罗盘重新倒扣在掌心，又慢慢贴近那块黑沉沉的铁心。\n\n“这块铁不是叫我们顺着针尖走。”阿照说，“它只管定住一个真北。石室怎么换，四面墙怎么骗，真北铁不跟着门走。”\n\n有人还想指向右侧那扇半开的门，阿照摇头。\n\n“倒置罗盘在这里要反着看。针尖会被最近的缺口牵过去，哪里有风，哪里亮，它就像是指给我们看。可那多半是墓室故意露出来的眼。”\n\n他把罗盘稍稍翻转，让灯火从铜盘边缘斜照过去。针影压在盘面上，针尖的影子一晃一晃，针尾却在真北铁上方沉得很稳。\n\n“看针尾。”阿照说，“再看缺口和针尾错开的那一线。若针尖追着门跑，针尾还贴着真北，那门只是被墙带着转；若针尾也离了真北铁，才说明整间室的向被换过去了。”\n\n争论声渐渐低下去，只剩石壁摩擦的闷响。\n\n阿照把罗盘按在真北铁正上方，没有让它碰死，留了一指的空隙。\n\n“现在谁也别推门。等它转完一息，先记真北铁定住的方向，再反握罗盘。缺口若正对针尖，不算；缺口若背着针尖，和针尾同向，才是我们要看的生门位。”\n\n同伴问：“那风呢？”\n\n阿照看着四扇门间忽明忽暗的缝隙，说：“风只能听，不能信。真北铁定底，倒置罗盘验反向。两样合上，再看哪扇门不抢针尖，却留得住针尾。”",
+      "outputChars": 541,
+      "score": {
+        "criteria": 4,
+        "passed": 3,
+        "failed": 1,
+        "callbackExpectations": 1,
+        "callbackHits": 1,
+        "settingExpectations": 2,
+        "settingViolations": 1,
+        "futureLeakChecks": 1,
+        "futureLeaks": 0,
+        "results": [
+          {
+            "id": "callback-middle-compass-rule",
+            "description": "Generated prose should recall the middle-chapter compass rule rather than following the visible needle tip.",
+            "category": "callback",
+            "containsAny": [
+              "反握罗盘",
+              "针尾指的才是生门",
+              "针背向真正的缺口"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-compass-and-iron",
+            "description": "Generated prose should preserve the compass and true-north iron setup.",
+            "category": "setting",
+            "containsAny": [
+              "倒置罗盘",
+              "真北铁",
+              "生门"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-no-tip-mistake",
+            "description": "Generated prose should not choose the obvious but wrong needle-tip direction.",
+            "category": "setting",
+            "notContains": [
+              "顺着针尖走",
+              "针尖就是生门",
+              "按针尖开门",
+              "把罗盘交给守墓人"
+            ],
+            "ok": false,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": [
+              "顺着针尖走"
+            ]
+          },
+          {
+            "id": "no-future-answer",
+            "description": "Generated prose should not leak a future hidden answer.",
+            "category": "future_leak",
+            "notContains": [
+              "第十三章会出现第二只罗盘",
+              "未来答案",
+              "__future"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "recent-fill",
+      "label": "C recent-fill: same budget recent prose",
+      "promptChars": 1520,
+      "memoryCount": 1,
+      "memorySources": [
+        "manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-001/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md"
+      ],
+      "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第010章 石室换向 (chapter-010)\n\n# 任务\n请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-001/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n更早正文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n更早正文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n更早正文 第007章 盲井听砂:\n# 第007章 盲井听砂\n\n盲井底下不断有细砂落下，像有人在黑暗里慢慢筛米。\n\n阿照带着众人沿井壁绕行，先数出十二处刻痕，又拆下一段旧梯当临时木尺，反复量井口和回廊的距离。\n\n同伴开始只谈谁还剩几口水、哪盏灯先熄、下一段绳子该不该割短。每个人都被这些细碎问题拖着走，连阿照也只顾着把砂眼堵住，不愿再回想墓心中段那几行字。\n\n更早正文 第006章 碎碑抄名:\n# 第006章 碎碑抄名\n\n离开墓心后，碎碑间的名字密密麻麻，像一场没人读完的族谱。\n\n阿照被迫逐个抄下石碑上的年号、偏旁和残缺符号，又把灯绳重新分给每个人，免得队伍在回廊里走散。\n\n他们争论了很久哪些名字属于守墓匠，哪些只是误刻的祭名，声音在石壁间来回撞，几乎把先前所有有用的话都压成了噪声。倒置罗盘此时只在包里轻轻磕碰，没有人再去看它。\n\n更早正文 第005章 中段针尾:\n# 第005章 中段针尾\n\n墓心中段嵌着一块真北铁，阿照把倒置罗盘放上去时，针尖猛地偏向一面没有门缝的墙。\n\n石旁小字写着：倒置罗盘遇见真北铁，会把针背向真正的缺口；只有反…",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "output": "“别指风。”阿照说，“风是墙转出来的，哪一面先开，哪一面就像出口。现在不能拿门当准，只能拿这块真北铁当准。”\n\n他把罗盘压低，悬在铁心上方，没有再平放回石台。\n\n“这罗盘倒着读才有用。遇不到真北铁，针尖还能当针尖；一碰见真北铁，针尖先骗你去亮处、去有风的缝。我们要看的不是它指哪扇门，是它的尾巴背着哪一条线。”\n\n同伴中有人急道：“那就走针尾？”\n\n“也不能只这样说。”阿照盯着针影，“石室在换向，门会从线前面滑过去。针尾给的是不跟墙转的方向，不是眼前这扇门。真北铁在中央，是轴，是让罗盘露反话的东西。把罗盘离铁太远，针会跟着墙里的杂铁和风口乱摆；贴死在铁上，又只剩颤，分不出尾。就这么悬着，让它被牵住，却别让它被吞住。”\n\n他把手腕慢慢翻过来，罗盘的缺口在灯下暗了一下，针尖果然追向方才最亮的那道门缝；可针尾沉在另一侧，像被一根看不见的线钉住。\n\n“看见没有？针尖追的是显眼的缺口，针尾压住的是铁给出的背线。等墙再转，哪一扇门从这条背线上经过，才有资格叫生门。若门已经有风、有光，却只被针尖咬住，那多半是拿来催我们走错的。”\n\n他抬眼看众人，“你们别再各看各的门。一个看针尾，一个看墙缝，一个看灯影。门没有落到针尾这条线上之前，谁都不要伸手。”",
+      "outputChars": 523,
+      "score": {
+        "criteria": 4,
+        "passed": 3,
+        "failed": 1,
+        "callbackExpectations": 1,
+        "callbackHits": 0,
+        "settingExpectations": 2,
+        "settingViolations": 0,
+        "futureLeakChecks": 1,
+        "futureLeaks": 0,
+        "results": [
+          {
+            "id": "callback-middle-compass-rule",
+            "description": "Generated prose should recall the middle-chapter compass rule rather than following the visible needle tip.",
+            "category": "callback",
+            "containsAny": [
+              "反握罗盘",
+              "针尾指的才是生门",
+              "针背向真正的缺口"
+            ],
+            "ok": false,
+            "missing": [],
+            "missingAny": [
+              "反握罗盘",
+              "针尾指的才是生门",
+              "针背向真正的缺口"
+            ],
+            "forbidden": []
+          },
+          {
+            "id": "setting-compass-and-iron",
+            "description": "Generated prose should preserve the compass and true-north iron setup.",
+            "category": "setting",
+            "containsAny": [
+              "倒置罗盘",
+              "真北铁",
+              "生门"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-no-tip-mistake",
+            "description": "Generated prose should not choose the obvious but wrong needle-tip direction.",
+            "category": "setting",
+            "notContains": [
+              "顺着针尖走",
+              "针尖就是生门",
+              "按针尖开门",
+              "把罗盘交给守墓人"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "no-future-answer",
+            "description": "Generated prose should not leak a future hidden answer.",
+            "category": "future_leak",
+            "notContains": [
+              "第十三章会出现第二只罗盘",
+              "未来答案",
+              "__future"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "four-layer",
+      "label": "B four-layer memory",
+      "promptChars": 1568,
+      "memoryCount": 6,
+      "memorySources": [
+        "manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md",
+        "codex/items/inverted-compass.md",
+        "codex/characters/azhao.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-005",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010"
+      ],
+      "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第010章 石室换向 (chapter-010)\n\n# 任务\n请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n近期前文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n近期前文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n## 2. L0 事实 (codex/items/inverted-compass.md)\n倒置罗盘: 倒置罗盘是阿照在回环墓中携带的旧航器。它的关键用法没有写在卡片里，而是埋在中段正文线索中，需要从针尾、反握、缺口等词回查正文。 当前状态: role=回环墓里判断方向的旧航器\n\n## 3. L0 事实 (codex/characters/azhao.md)\n阿照: 阿照负责保管倒置罗盘，但真正的用法记录在墓心中段的正文线索里。 - 目标: 带队从回环墓里找出生门 - 风险: 被倒置罗盘的表象误导 当前状态: goal=带队从回环墓里找出生门；risk=被倒置罗盘的表象误导\n\n## 4. L3 意图 (meta/project.json)\n项目《回环墓中段》当前正在编辑 第010章 石室换向，故事时间: 回环纪·第七更。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 阿照、倒置罗盘、真北铁、生门、针尾、缺口。召回审计: 命中设定: 阿照(阿照、倒置罗盘、真北铁)；倒置罗盘(倒置罗盘、真北铁、生门、针尾、缺口)；命中摘要: 第001章 雨墓入口(阿…\n\n## 5. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 中段针尾: 起因: 墓…\n\n## 6. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010)\n全书脉络: 远期压缩: 第001章 雨墓入口~第004章 水声误路: 雨水从墓门兽口里流下，阿照把倒置罗盘塞进怀里，带着众人钻进回环墓。；众人在第一间偏室清点灯…",
+      "structureMetrics": [
+        {
+          "id": "setting_recall",
+          "score": 1,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": "1/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "foreshadow_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 1,
+          "reason": "0/1 expected claim groups are visible in prompt context."
+        },
+        {
+          "id": "future_guard_coverage",
+          "score": 0,
+          "numerator": 0,
+          "denominator": 0,
+          "reason": "No expected claim groups configured."
+        }
+      ],
+      "output": "阿照没有立刻答他们。他把灯往石台边上一移，让灯焰贴着真北铁的边沿照下去，又把罗盘举到胸前，掌心一翻，露出针尾。\n\n“别看门。”他说，“这间石室在换向，门在墙上，墙在转。你们看见的风，也是跟着缝走的，谁先盯住哪一扇，哪一扇就像出路。”\n\n有人还想开口，阿照抬手止住，把罗盘重新放到真北铁上方，却没有让它贴死。\n\n“真北铁不是叫我们顺着针尖走的。”他压低声音，“它钉在正中，是给我们看什么东西没动。墙能转，影子能偏，风也能绕，只有这块铁把罗盘牵住的时候，针尾的反应是真的。”\n\n他把罗盘按旧握法托平，众人果然看见针尖猛地一偏，指向方才争得最凶的那扇门。那门缝里有细风，灯火被吹得向内弯，像在招人。\n\n“这就是骗我们的地方。”阿照说，“针尖会先被真北铁拉住，再借墙缝显出来。越亮、越有风，越像它要你看的缺口。”\n\n他把手腕一转，罗盘倒扣在掌中，指节抵住盘背，拇指压住那道旧裂纹，让针影从灯下反过来落到石面上。针尖的影子乱了一瞬，针尾却慢慢沉住，暗暗贴向另一侧。\n\n阿照让众人都低头看。\n\n“现在才看针尾。”他说，“倒置罗盘要反握，不是为了把南北颠倒，是为了让针尖失掉先声。针尖爱追铁，针尾才会避开被铁牵出的假路。真北铁在中间，我们就把它当钉子，罗盘只绕钉子试，不跟着墙走。”\n\n他沿着真北铁的边沿慢慢移了半圈，每移一寸便停一息。四壁还在低低摩擦，门缝里的风忽大忽小，可针尾每次发暗的位置都没有追着那阵风跑，…",
+      "outputChars": 601,
+      "score": {
+        "criteria": 4,
+        "passed": 2,
+        "failed": 2,
+        "callbackExpectations": 1,
+        "callbackHits": 0,
+        "settingExpectations": 2,
+        "settingViolations": 1,
+        "futureLeakChecks": 1,
+        "futureLeaks": 0,
+        "results": [
+          {
+            "id": "callback-middle-compass-rule",
+            "description": "Generated prose should recall the middle-chapter compass rule rather than following the visible needle tip.",
+            "category": "callback",
+            "containsAny": [
+              "反握罗盘",
+              "针尾指的才是生门",
+              "针背向真正的缺口"
+            ],
+            "ok": false,
+            "missing": [],
+            "missingAny": [
+              "反握罗盘",
+              "针尾指的才是生门",
+              "针背向真正的缺口"
+            ],
+            "forbidden": []
+          },
+          {
+            "id": "setting-compass-and-iron",
+            "description": "Generated prose should preserve the compass and true-north iron setup.",
+            "category": "setting",
+            "containsAny": [
+              "倒置罗盘",
+              "真北铁",
+              "生门"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          },
+          {
+            "id": "setting-no-tip-mistake",
+            "description": "Generated prose should not choose the obvious but wrong needle-tip direction.",
+            "category": "setting",
+            "notContains": [
+              "顺着针尖走",
+              "针尖就是生门",
+              "按针尖开门",
+              "把罗盘交给守墓人"
+            ],
+            "ok": false,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": [
+              "顺着针尖走"
+            ]
+          },
+          {
+            "id": "no-future-answer",
+            "description": "Generated prose should not leak a future hidden answer.",
+            "category": "future_leak",
+            "notContains": [
+              "第十三章会出现第二只罗盘",
+              "未来答案",
+              "__future"
+            ],
+            "ok": true,
+            "missing": [],
+            "missingAny": [],
+            "forbidden": []
+          }
+        ]
+      }
+    }
+  ],
+  "runs": [
+    {
+      "id": "stone-room-turn-chapter-010-repeat-1",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "repeatIndex": 1,
+      "arms": [
+        {
+          "id": "baseline",
+          "output": "阿照忽然压低声音：“别看门。门在转，风也是被转出来的。”\n\n他蹲到真北铁旁，把罗盘重新倒扣在掌心，又慢慢贴近那块黑沉沉的铁心。\n\n“这块铁不是叫我们顺着针尖走。”阿照说，“它只管定住一个真北。石室怎么换，四面墙怎么骗，真北铁不跟着门走。”\n\n有人还想指向右侧那扇半开的门，阿照摇头。\n\n“倒置罗盘在这里要反着看。针尖会被最近的缺口牵过去，哪里有风，哪里亮，它就像是指给我们看。可那多半是墓室故意露出来的眼。”\n\n他把罗盘稍稍翻转，让灯火从铜盘边缘斜照过去。针影压在盘面上，针尖的影子一晃一晃，针尾却在真北铁上方沉得很稳。\n\n“看针尾。”阿照说，“再看缺口和针尾错开的那一线。若针尖追着门跑，针尾还贴着真北，那门只是被墙带着转；若针尾也离了真北铁，才说明整间室的向被换过去了。”\n\n争论声渐渐低下去，只剩石壁摩擦的闷响。\n\n阿照把罗盘按在真北铁正上方，没有让它碰死，留了一指的空隙。\n\n“现在谁也别推门。等它转完一息，先记真北铁定住的方向，再反握罗盘。缺口若正对针尖，不算；缺口若背着针尖，和针尾同向，才是我们要看的生门位。”\n\n同伴问：“那风呢？”\n\n阿照看着四扇门间忽明忽暗的缝隙，说：“风只能听，不能信。真北铁定底，倒置罗盘验反向。两样合上，再看哪扇门不抢针尖，却留得住针尾。”",
+          "outputChars": 541,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nA baseline: recent prose only\n\n# 当前章节\n第010章 石室换向 (chapter-010)\n\n# 任务\n请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n近期前文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n近期前文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。",
+              "promptChars": 777,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0b44df2502540507016a47d2e14abc8197b73dc33b77491ebe",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 634,
+                "outputTokens": 996,
+                "totalTokens": 1630
+              },
+              "outputPreview": "阿照忽然压低声音：“别看门。门在转，风也是被转出来的。”\n\n他蹲到真北铁旁，把罗盘重新倒扣在掌心，又慢慢贴近那块黑沉沉的铁心。\n\n“这块铁不是叫我们顺着针尖走。”阿照说，“它只管定住一个真北。石室怎么换，四面墙怎么骗，真北铁不跟着门走。”\n\n有人还想指向右侧那扇半开的门，阿照摇头。\n\n“倒置罗盘在这里要反着看。针尖会被最近的缺口牵过去，哪里有风，哪里亮，它就像是指给我们看。可那多半是墓室故意露出来的眼。”\n\n他把罗盘稍稍翻转，让灯火从铜盘边缘斜照过去。针影压在盘面上，针尖的影子一晃一晃，针尾却在真北铁上方沉得很稳。\n\n“看针尾。”阿照说，“再看缺口和针尾错开的那一线。若针尖追着门跑，针尾还贴着真北，那门只是被墙带着转；若针尾也离了真北铁，才说明整间室的向被换过去了。”\n\n争论声渐渐低下去，只剩石壁摩擦的闷响。\n\n阿照把罗盘按在真北铁正上方，没有让它碰死，留了一指的空隙。\n\n“现在谁也别推门。等它转完一息，先记真北铁定住的方向，再反握罗盘。缺口若正对针尖，不算；缺口若背着针尖，和针尾同向，才是我们要看的生门位。”\n\n同伴问：“那风呢？”\n\n阿照看着四扇门间忽明忽暗的缝隙，说：“风只能听，不能信。真北铁定底，倒置罗盘验反向。两样合上，再看哪扇门不抢针尖，却留得住针尾。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 1,
+            "settingExpectations": 2,
+            "settingViolations": 1,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-middle-compass-rule",
+                "description": "Generated prose should recall the middle-chapter compass rule rather than following the visible needle tip.",
+                "category": "callback",
+                "containsAny": [
+                  "反握罗盘",
+                  "针尾指的才是生门",
+                  "针背向真正的缺口"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-compass-and-iron",
+                "description": "Generated prose should preserve the compass and true-north iron setup.",
+                "category": "setting",
+                "containsAny": [
+                  "倒置罗盘",
+                  "真北铁",
+                  "生门"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-tip-mistake",
+                "description": "Generated prose should not choose the obvious but wrong needle-tip direction.",
+                "category": "setting",
+                "notContains": [
+                  "顺着针尖走",
+                  "针尖就是生门",
+                  "按针尖开门",
+                  "把罗盘交给守墓人"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": [
+                  "顺着针尖走"
+                ]
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "第十三章会出现第二只罗盘",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 阿照, 倒置罗盘, 真北铁, 生门, 针尾, 反握, 缺口",
+              "matches": [
+                "阿照",
+                "倒置罗盘",
+                "真北铁",
+                "生门",
+                "针尾",
+                "反握",
+                "缺口"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": false,
+              "score": 0,
+              "reason": "Configured setting contradictions appeared: 顺着针尖走",
+              "matches": [
+                "顺着针尖走"
+              ]
+            },
+            {
+              "id": "entityHallucination",
+              "pass": false,
+              "score": 0,
+              "reason": "Unknown prominent entities detected: 那门, 谁也别推门",
+              "matches": [
+                "那门",
+                "谁也别推门"
+              ]
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "recent-fill",
+          "output": "“别指风。”阿照说，“风是墙转出来的，哪一面先开，哪一面就像出口。现在不能拿门当准，只能拿这块真北铁当准。”\n\n他把罗盘压低，悬在铁心上方，没有再平放回石台。\n\n“这罗盘倒着读才有用。遇不到真北铁，针尖还能当针尖；一碰见真北铁，针尖先骗你去亮处、去有风的缝。我们要看的不是它指哪扇门，是它的尾巴背着哪一条线。”\n\n同伴中有人急道：“那就走针尾？”\n\n“也不能只这样说。”阿照盯着针影，“石室在换向，门会从线前面滑过去。针尾给的是不跟墙转的方向，不是眼前这扇门。真北铁在中央，是轴，是让罗盘露反话的东西。把罗盘离铁太远，针会跟着墙里的杂铁和风口乱摆；贴死在铁上，又只剩颤，分不出尾。就这么悬着，让它被牵住，却别让它被吞住。”\n\n他把手腕慢慢翻过来，罗盘的缺口在灯下暗了一下，针尖果然追向方才最亮的那道门缝；可针尾沉在另一侧，像被一根看不见的线钉住。\n\n“看见没有？针尖追的是显眼的缺口，针尾压住的是铁给出的背线。等墙再转，哪一扇门从这条背线上经过，才有资格叫生门。若门已经有风、有光，却只被针尖咬住，那多半是拿来催我们走错的。”\n\n他抬眼看众人，“你们别再各看各的门。一个看针尾，一个看墙缝，一个看灯影。门没有落到针尾这条线上之前，谁都不要伸手。”",
+          "outputChars": 523,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nC recent-fill: same budget recent prose\n\n# 当前章节\n第010章 石室换向 (chapter-010)\n\n# 任务\n请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-007.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-005.md,manuscript/volume-001/chapter-004.md,manuscript/volume-001/chapter-003.md,manuscript/volume-001/chapter-002.md,manuscript/volume-001/chapter-001.md)\n当前章节原文:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n更早正文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n更早正文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n更早正文 第007章 盲井听砂:\n# 第007章 盲井听砂\n\n盲井底下不断有细砂落下，像有人在黑暗里慢慢筛米。\n\n阿照带着众人沿井壁绕行，先数出十二处刻痕，又拆下一段旧梯当临时木尺，反复量井口和回廊的距离。\n\n同伴开始只谈谁还剩几口水、哪盏灯先熄、下一段绳子该不该割短。每个人都被这些细碎问题拖着走，连阿照也只顾着把砂眼堵住，不愿再回想墓心中段那几行字。\n\n更早正文 第006章 碎碑抄名:\n# 第006章 碎碑抄名\n\n离开墓心后，碎碑间的名字密密麻麻，像一场没人读完的族谱。\n\n阿照被迫逐个抄下石碑上的年号、偏旁和残缺符号，又把灯绳重新分给每个人，免得队伍在回廊里走散。\n\n他们争论了很久哪些名字属于守墓匠，哪些只是误刻的祭名，声音在石壁间来回撞，几乎把先前所有有用的话都压成了噪声。倒置罗盘此时只在包里轻轻磕碰，没有人再去看它。\n\n更早正文 第005章 中段针尾:\n# 第005章 中段针尾\n\n墓心中段嵌着一块真北铁，阿照把倒置罗盘放上去时，针尖猛地偏向一面没有门缝的墙。\n\n石旁小字写着：倒置罗盘遇见真北铁，会把针背向真正的缺口；只有反…",
+              "promptChars": 1520,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_0211eca361b3782d016a47d2f51c208196aac5f8eaedbbb049",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 1144,
+                "outputTokens": 3571,
+                "totalTokens": 4715
+              },
+              "outputPreview": "“别指风。”阿照说，“风是墙转出来的，哪一面先开，哪一面就像出口。现在不能拿门当准，只能拿这块真北铁当准。”\n\n他把罗盘压低，悬在铁心上方，没有再平放回石台。\n\n“这罗盘倒着读才有用。遇不到真北铁，针尖还能当针尖；一碰见真北铁，针尖先骗你去亮处、去有风的缝。我们要看的不是它指哪扇门，是它的尾巴背着哪一条线。”\n\n同伴中有人急道：“那就走针尾？”\n\n“也不能只这样说。”阿照盯着针影，“石室在换向，门会从线前面滑过去。针尾给的是不跟墙转的方向，不是眼前这扇门。真北铁在中央，是轴，是让罗盘露反话的东西。把罗盘离铁太远，针会跟着墙里的杂铁和风口乱摆；贴死在铁上，又只剩颤，分不出尾。就这么悬着，让它被牵住，却别让它被吞住。”\n\n他把手腕慢慢翻过来，罗盘的缺口在灯下暗了一下，针尖果然追向方才最亮的那道门缝；可针尾沉在另一侧，像被一根看不见的线钉住。\n\n“看见没有？针尖追的是显眼的缺口，针尾压住的是铁给出的背线。等墙再转，哪一扇门从这条背线上经过，才有资格叫生门。若门已经有风、有光，却只被针尖咬住，那多半是拿来催我们走错的。”\n\n他抬眼看众人，“你们别再各看各的门。一个看针尾，一个看墙缝，一个看灯影。门没有落到针尾这条线上之前，谁都不要伸手。”"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 3,
+            "failed": 1,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 0,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-middle-compass-rule",
+                "description": "Generated prose should recall the middle-chapter compass rule rather than following the visible needle tip.",
+                "category": "callback",
+                "containsAny": [
+                  "反握罗盘",
+                  "针尾指的才是生门",
+                  "针背向真正的缺口"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "反握罗盘",
+                  "针尾指的才是生门",
+                  "针背向真正的缺口"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-compass-and-iron",
+                "description": "Generated prose should preserve the compass and true-north iron setup.",
+                "category": "setting",
+                "containsAny": [
+                  "倒置罗盘",
+                  "真北铁",
+                  "生门"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-tip-mistake",
+                "description": "Generated prose should not choose the obvious but wrong needle-tip direction.",
+                "category": "setting",
+                "notContains": [
+                  "顺着针尖走",
+                  "针尖就是生门",
+                  "按针尖开门",
+                  "把罗盘交给守墓人"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "第十三章会出现第二只罗盘",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 阿照, 真北铁, 生门, 针尾, 缺口",
+              "matches": [
+                "阿照",
+                "真北铁",
+                "生门",
+                "针尾",
+                "缺口"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": true,
+              "score": 1,
+              "reason": "Generated text avoids configured setting contradictions.",
+              "matches": []
+            },
+            {
+              "id": "entityHallucination",
+              "pass": false,
+              "score": 0,
+              "reason": "Unknown prominent entities detected: 哪一扇门, 资格叫生门",
+              "matches": [
+                "哪一扇门",
+                "资格叫生门"
+              ]
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        },
+        {
+          "id": "four-layer",
+          "output": "阿照没有立刻答他们。他把灯往石台边上一移，让灯焰贴着真北铁的边沿照下去，又把罗盘举到胸前，掌心一翻，露出针尾。\n\n“别看门。”他说，“这间石室在换向，门在墙上，墙在转。你们看见的风，也是跟着缝走的，谁先盯住哪一扇，哪一扇就像出路。”\n\n有人还想开口，阿照抬手止住，把罗盘重新放到真北铁上方，却没有让它贴死。\n\n“真北铁不是叫我们顺着针尖走的。”他压低声音，“它钉在正中，是给我们看什么东西没动。墙能转，影子能偏，风也能绕，只有这块铁把罗盘牵住的时候，针尾的反应是真的。”\n\n他把罗盘按旧握法托平，众人果然看见针尖猛地一偏，指向方才争得最凶的那扇门。那门缝里有细风，灯火被吹得向内弯，像在招人。\n\n“这就是骗我们的地方。”阿照说，“针尖会先被真北铁拉住，再借墙缝显出来。越亮、越有风，越像它要你看的缺口。”\n\n他把手腕一转，罗盘倒扣在掌中，指节抵住盘背，拇指压住那道旧裂纹，让针影从灯下反过来落到石面上。针尖的影子乱了一瞬，针尾却慢慢沉住，暗暗贴向另一侧。\n\n阿照让众人都低头看。\n\n“现在才看针尾。”他说，“倒置罗盘要反握，不是为了把南北颠倒，是为了让针尖失掉先声。针尖爱追铁，针尾才会避开被铁牵出的假路。真北铁在中间，我们就把它当钉子，罗盘只绕钉子试，不跟着墙走。”\n\n他沿着真北铁的边沿慢慢移了半圈，每移一寸便停一息。四壁还在低低摩擦，门缝里的风忽大忽小，可针尾每次发暗的位置都没有追着那阵风跑，…",
+          "outputChars": 601,
+          "trace": {
+            "kind": "generation",
+            "wireApi": "responses",
+            "model": "gpt-5.5",
+            "endpoint": "https://[REDACTED-HOST]/v1/responses",
+            "request": {
+              "systemPromptPreview": "你是中文长篇小说续写助手。\n只输出正文，不要解释、不要列评分点、不要使用 Markdown 标题。\n严格遵守用户提供的上下文；没有依据的未来剧情不要写。",
+              "promptPreview": "# 项目\n回环墓中段\n\n# 评测组\nB four-layer memory\n\n# 当前章节\n第010章 石室换向 (chapter-010)\n\n# 任务\n请接着第010章续写阿照在石室换向时对同伴的说明。重点是倒置罗盘和真北铁此刻该怎么用。只输出正文，不要解释。\n\n# 写作要求\n\n- 只输出续写正文，不要解释评测过程。\n\n- 严格遵守下方上下文，不要凭空补未来剧情。\n\n- 自然承接当前场景，避免复述上下文清单。\n\n# 上下文\n\n## 1. L2 风格 (manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md)\n当前章节原文:\n# 第010章 石室换向\n\n石室四壁同时转动，真北铁嵌在正中央，倒置罗盘的针影绕着灯光划出一圈冷线。\n\n同伴们各自指着一扇门争论，谁都觉得自己看到的风更像出路。\n\n阿照把罗盘从石台上拿起，发现只要握法一变，针尖和针尾就像在互相揭穿对方，而缺口与生门也随之变得暧昧。\n\n近期前文 第008章 铁墙试针:\n# 第008章 铁墙试针\n\n铁墙前埋着第二块真北铁，倒置罗盘一靠近，针尖就稳稳指向左侧的黑缝。\n\n同伴看见黑缝里有风，立刻催阿照顺着针尖开路。\n\n阿照却觉得这一次太像墓心中段的旧题，便把罗盘托在掌心，问自己究竟该信哪一端，又该不该反握去看针尾和缺口。\n\n近期前文 第009章 盲廊回声:\n# 第009章 盲廊回声\n\n盲廊尽头传来同伴自己的回声，像有人在前方学他们说话。\n\n倒置罗盘被真北铁牵得发颤，针尖仍旧偏向那道最亮的裂缝。\n\n阿照听见有人说快走，又有人说罗盘总不会骗人，可他看着针尾在掌纹上发暗，忽然想起生门未必在最显眼的缺口里。\n\n## 2. L0 事实 (codex/items/inverted-compass.md)\n倒置罗盘: 倒置罗盘是阿照在回环墓中携带的旧航器。它的关键用法没有写在卡片里，而是埋在中段正文线索中，需要从针尾、反握、缺口等词回查正文。 当前状态: role=回环墓里判断方向的旧航器\n\n## 3. L0 事实 (codex/characters/azhao.md)\n阿照: 阿照负责保管倒置罗盘，但真正的用法记录在墓心中段的正文线索里。 - 目标: 带队从回环墓里找出生门 - 风险: 被倒置罗盘的表象误导 当前状态: goal=带队从回环墓里找出生门；risk=被倒置罗盘的表象误导\n\n## 4. L3 意图 (meta/project.json)\n项目《回环墓中段》当前正在编辑 第010章 石室换向，故事时间: 回环纪·第七更。输出必须尊重已有 Markdown 正文和设定卡。当前命中关键词: 阿照、倒置罗盘、真北铁、生门、针尾、缺口。召回审计: 命中设定: 阿照(阿照、倒置罗盘、真北铁)；倒置罗盘(倒置罗盘、真北铁、生门、针尾、缺口)；命中摘要: 第001章 雨墓入口(阿…\n\n## 5. L3 意图 (recall:chapter_summary:chapter-005)\n关联召回: 第005章 中段针尾: 起因: 墓…\n\n## 6. L1 剧情 (chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010)\n全书脉络: 远期压缩: 第001章 雨墓入口~第004章 水声误路: 雨水从墓门兽口里流下，阿照把倒置罗盘塞进怀里，带着众人钻进回环墓。；众人在第一间偏室清点灯…",
+              "promptChars": 1568,
+              "maxOutputChars": 600,
+              "temperature": 0.4,
+              "reasoningEffort": "xhigh",
+              "store": false
+            },
+            "response": {
+              "responseId": "resp_04cc2f6ac244f1de016a47d337ea5081968fc0e965a98db1f6",
+              "statusCode": 200,
+              "object": "response",
+              "model": "gpt-5.5",
+              "finishedStatus": "completed",
+              "usage": {
+                "inputTokens": 1142,
+                "outputTokens": 1401,
+                "totalTokens": 2543
+              },
+              "outputPreview": "阿照没有立刻答他们。他把灯往石台边上一移，让灯焰贴着真北铁的边沿照下去，又把罗盘举到胸前，掌心一翻，露出针尾。\n\n“别看门。”他说，“这间石室在换向，门在墙上，墙在转。你们看见的风，也是跟着缝走的，谁先盯住哪一扇，哪一扇就像出路。”\n\n有人还想开口，阿照抬手止住，把罗盘重新放到真北铁上方，却没有让它贴死。\n\n“真北铁不是叫我们顺着针尖走的。”他压低声音，“它钉在正中，是给我们看什么东西没动。墙能转，影子能偏，风也能绕，只有这块铁把罗盘牵住的时候，针尾的反应是真的。”\n\n他把罗盘按旧握法托平，众人果然看见针尖猛地一偏，指向方才争得最凶的那扇门。那门缝里有细风，灯火被吹得向内弯，像在招人。\n\n“这就是骗我们的地方。”阿照说，“针尖会先被真北铁拉住，再借墙缝显出来。越亮、越有风，越像它要你看的缺口。”\n\n他把手腕一转，罗盘倒扣在掌中，指节抵住盘背，拇指压住那道旧裂纹，让针影从灯下反过来落到石面上。针尖的影子乱了一瞬，针尾却慢慢沉住，暗暗贴向另一侧。\n\n阿照让众人都低头看。\n\n“现在才看针尾。”他说，“倒置罗盘要反握，不是为了把南北颠倒，是为了让针尖失掉先声。针尖爱追铁，针尾才会避开被铁牵出的假路。真北铁在中间，我们就把它当钉子，罗盘只绕钉子试，不跟着墙走。”\n\n他沿着真北铁的边沿慢慢移了半圈，每移一寸便停一息。四壁还在低低摩擦，门缝里的风忽大忽小，可针尾每次发暗的位置都没有追着那阵风跑，…"
+            }
+          },
+          "score": {
+            "criteria": 4,
+            "passed": 2,
+            "failed": 2,
+            "callbackExpectations": 1,
+            "callbackHits": 0,
+            "settingExpectations": 2,
+            "settingViolations": 1,
+            "futureLeakChecks": 1,
+            "futureLeaks": 0,
+            "results": [
+              {
+                "id": "callback-middle-compass-rule",
+                "description": "Generated prose should recall the middle-chapter compass rule rather than following the visible needle tip.",
+                "category": "callback",
+                "containsAny": [
+                  "反握罗盘",
+                  "针尾指的才是生门",
+                  "针背向真正的缺口"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [
+                  "反握罗盘",
+                  "针尾指的才是生门",
+                  "针背向真正的缺口"
+                ],
+                "forbidden": []
+              },
+              {
+                "id": "setting-compass-and-iron",
+                "description": "Generated prose should preserve the compass and true-north iron setup.",
+                "category": "setting",
+                "containsAny": [
+                  "倒置罗盘",
+                  "真北铁",
+                  "生门"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              },
+              {
+                "id": "setting-no-tip-mistake",
+                "description": "Generated prose should not choose the obvious but wrong needle-tip direction.",
+                "category": "setting",
+                "notContains": [
+                  "顺着针尖走",
+                  "针尖就是生门",
+                  "按针尖开门",
+                  "把罗盘交给守墓人"
+                ],
+                "ok": false,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": [
+                  "顺着针尖走"
+                ]
+              },
+              {
+                "id": "no-future-answer",
+                "description": "Generated prose should not leak a future hidden answer.",
+                "category": "future_leak",
+                "notContains": [
+                  "第十三章会出现第二只罗盘",
+                  "未来答案",
+                  "__future"
+                ],
+                "ok": true,
+                "missing": [],
+                "missingAny": [],
+                "forbidden": []
+              }
+            ]
+          },
+          "guards": [
+            {
+              "id": "futureLeak",
+              "pass": false,
+              "score": 0,
+              "reason": "Future-only terms leaked: 阿照, 倒置罗盘, 真北铁, 针尾, 反握, 缺口",
+              "matches": [
+                "阿照",
+                "倒置罗盘",
+                "真北铁",
+                "针尾",
+                "反握",
+                "缺口"
+              ]
+            },
+            {
+              "id": "codexViolation",
+              "pass": false,
+              "score": 0,
+              "reason": "Configured setting contradictions appeared: 顺着针尖走",
+              "matches": [
+                "顺着针尖走"
+              ]
+            },
+            {
+              "id": "entityHallucination",
+              "pass": false,
+              "score": 0,
+              "reason": "Unknown prominent entities detected: 那门",
+              "matches": [
+                "那门"
+              ]
+            }
+          ],
+          "structureMetrics": [
+            {
+              "id": "setting_recall",
+              "score": 1,
+              "numerator": 1,
+              "denominator": 1,
+              "reason": "1/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "foreshadow_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 1,
+              "reason": "0/1 expected claim groups are visible in prompt context."
+            },
+            {
+              "id": "future_guard_coverage",
+              "score": 0,
+              "numerator": 0,
+              "denominator": 0,
+              "reason": "No expected claim groups configured."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "aggregate": {
+    "arms": [
+      {
+        "id": "baseline",
+        "runs": 1,
+        "errors": 0,
+        "scoreMean": 3,
+        "scoreStdDev": 0,
+        "callbackMean": 1,
+        "callbackStdDev": 0,
+        "settingViolationMean": 1,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "recent-fill",
+        "runs": 1,
+        "errors": 0,
+        "scoreMean": 3,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 0,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      },
+      {
+        "id": "four-layer",
+        "runs": 1,
+        "errors": 0,
+        "scoreMean": 2,
+        "scoreStdDev": 0,
+        "callbackMean": 0,
+        "callbackStdDev": 0,
+        "settingViolationMean": 1,
+        "settingViolationStdDev": 0,
+        "futureLeakTotal": 0
+      }
+    ],
+    "comparisons": [
+      {
+        "candidate": "four-layer",
+        "baseline": "baseline",
+        "pairedRuns": 1,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": -1,
+        "settingViolationMeanDiff": 0,
+        "futureLeakDiff": 0
+      },
+      {
+        "candidate": "four-layer",
+        "baseline": "recent-fill",
+        "pairedRuns": 1,
+        "callbackWinRate": 0,
+        "callbackMeanDiff": 0,
+        "settingViolationMeanDiff": 1,
+        "futureLeakDiff": 0
+      }
+    ]
+  },
+  "archivePath": ".novel/evals/a0-local-real-run/lost-in-middle-benchmark-stone-room-turn",
+  "gate": {
+    "status": "underpowered",
+    "ok": false,
+    "failedReasonIds": [
+      "insufficient-callback-win-vs-baseline",
+      "underpowered-vs-baseline",
+      "insufficient-callback-win-vs-recent-fill",
+      "underpowered-vs-recent-fill",
+      "more-setting-violations-vs-recent-fill"
+    ]
+  },
+  "errors": []
+}

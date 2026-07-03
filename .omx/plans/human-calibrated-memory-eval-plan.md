@@ -73,8 +73,8 @@ The current weak signal may be caused by L1 compressing away causal transition c
    - Archive both the raw fixture summaries and their hash.
 
 4. Add an A0 summary comparator.
-   - New command option: `--compare-archive <archive-a> --compare-archive <archive-b>` can be deferred if too large.
-   - Minimal first version can rely on reading two `generation-eval-suite.json` files and reporting deltas for four-layer vs recent-fill callback win rate, setting violation diff, and future leak diff.
+   - Command: `npm run generation:a0 -- --local-archive <archive-a> --fixture-archive <archive-b>`.
+   - Minimal first version reads two `generation-eval-report.json` or `generation-eval-suite.json` archives and reports deltas for four-layer vs recent-fill callback win rate, setting violation diff, and future leak diff.
    - If judge results exist, show them in a separate `uncalibratedJudgeExploratory` block that is never used by the A0 branch decision.
    - Include Wilson intervals for the primary callback structural win rate and for any binary auxiliary rate.
 
@@ -101,7 +101,40 @@ Proceed to L1 implementation before judge calibration only if the pre-registered
 
 Setting violation improvement is auxiliary evidence. Uncalibrated judge win rate is exploratory evidence only. If the primary metric does not pass, proceed to System A calibration first. If oracle fixtures do not move the metric, L1 is strongly deprioritized as the bottleneck. If oracle fixtures do move the metric, L1 becomes a candidate bottleneck, but this is necessary-not-sufficient evidence: the next L1 task must prove that automatic generated causal summaries can approach the oracle effect.
 
+### A0 Real Run Result
+
+Executed on 2026-07-03 with `gpt-5.5`, `responses`, `xhigh`, `repeat=1` over `state-drift`, `delayed-payoff`, and `lost-in-middle`.
+
+- Local archive: `.novel/evals/a0-local-real-run`
+- Causal fixture archive: `.novel/evals/a0-causal-real-run`
+- Decision artifact: `.novel/evals/a0-decision.json`
+- Result: `fail`
+- Failed reason: `insufficient-callback-delta`
+- Local callback win rate: `3/15 = 20%`
+- Fixture callback win rate: `3/15 = 20%`
+- Primary delta: `0`, below the pre-registered `+15pp` threshold.
+- Fixture Wilson 95% interval: `7%-45%`
+- Safety: setting violation regression `-0.13`, future leak regression `0`
+
+Branch consequence: do not take the L1-first branch on this oracle fixture evidence. Proceed to System A judge calibration before investing in L1 implementation, unless a separately pre-registered A0 expansion is approved.
+
 ## Phase 2: System A Judge Calibration
+
+### Current Minimal Implementation Status
+
+Implemented in the bounded System A pass:
+
+- `generation-eval` archives `audit-packets.jsonl` and `judge-review-audit-prompts.jsonl` so the judge and human reviewer can share L0-pinned facts.
+- `tools/judge-kappa.ts --build-human-audit` creates `human-audit.tsv` from archived audit packets.
+- `tools/judge-kappa.ts --build-review-queue` creates `review-queue.tsv` as a superset of `human-audit.tsv`, with deterministic `canonical|duplicate` rows.
+- Duplicate rows preserve the canonical packet content, get their own `review_item_id`, point back through `duplicate_of`, and are excluded from canonical kappa counts.
+- `judge-kappa` reports `duplicateRows`, `duplicatePairs`, `duplicateConsistent`, `duplicateBlankRows`, and `duplicateConsistency`.
+- `okToTrustJudge` now fails closed when canonical audit accept/reject cells are blank, audit pass rate is below `0.9`, duplicate cells are blank, or duplicate consistency is below `0.9`.
+
+Not implemented in this bounded pass:
+
+- Gold rows, because they require curated obvious-case fixtures rather than heuristic generation.
+- Multi-annotator overlap, elapsed/fatigue certification, kappa confidence intervals, and full certification semantics.
 
 ### 2.1 L0-Pinned Audit Packets
 
@@ -177,10 +210,10 @@ Add a deterministic review queue generator rather than hand-editing `human-pairw
 Command:
 
 ```bash
-npm run generation:review-queue -- --archive-dir .novel/evals/run-001 --out .novel/evals/run-001/review-queue.csv
+npm run generation:kappa -- --archive-dir .novel/evals/run-001 --build-review-queue --out .novel/evals/run-001/review-queue.tsv
 ```
 
-If adding a new script feels too large, fold it into `generation:kappa` as `--build-review-queue`, but a separate tool is cleaner.
+The first implementation folds this into `generation:kappa` as `--build-review-queue` to avoid a new script while the core experiment is still unresolved.
 
 Queue row fields:
 
@@ -199,6 +232,7 @@ Gold rows:
 - Start with fixture gold rows checked into `examples/*/meta/gold-review.json`.
 - Gold rows should be obvious cases only: clear setting contradiction, clear callback success, clear future leak, or malformed/no-evidence judge claim.
 - Avoid generating gold labels heuristically from deterministic criteria alone; that risks encoding the same blind spots.
+- Status: deferred until curated fixtures exist.
 
 Duplicate rows:
 
@@ -292,8 +326,8 @@ Implementation is gated on:
 4. Decide L1-first vs calibration-first using only the pre-registered deterministic A0 acceptance line.
 5. Land L0 audit packet archive.
 6. Upgrade judge schema and prompts to use audit packets.
-7. Add review queue generation with gold and duplicate rows.
-8. Extend trust reporting beyond kappa.
+7. Add review queue generation with duplicate rows; gold rows remain gated on curated fixtures.
+8. Extend trust reporting beyond kappa with audit pass rate and duplicate consistency; full certification metrics remain future work.
 9. Update docs with the System B roadmap gate.
 
 ## Verification Commands
@@ -311,6 +345,11 @@ npm run generation:eval -- --dry-run --l1-mode causal-fixture \
   --benchmark-project examples/lost-in-middle-benchmark \
   --archive-dir .novel/evals/a0-causal-dry-run
 
+npm run generation:a0 -- \
+  --local-archive .novel/evals/a0-local-real-run \
+  --fixture-archive .novel/evals/a0-causal-real-run \
+  --out .novel/evals/a0-decision.json
+
 npm run test -- tools/generation-eval.test.ts tools/judge-kappa.test.ts src/eval/judgeReview.test.ts
 npm run typecheck
 ```
@@ -318,7 +357,8 @@ npm run typecheck
 After real provider runs:
 
 ```bash
-npm run generation:kappa -- --archive-dir .novel/evals/phase0-real-001 --json
+npm run generation:kappa -- --archive-dir .novel/evals/phase0-real-001 --build-review-queue
+npm run generation:kappa -- --archive-dir .novel/evals/phase0-real-001 --human-audit .novel/evals/phase0-real-001/review-queue.tsv --json
 ```
 
 The exact command name for the richer reliability report should be added with the implementation, preferably:
