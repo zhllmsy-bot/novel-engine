@@ -616,6 +616,39 @@ describe('generation eval tool', () => {
     expect(report.errors.join('\n')).toContain('meta/l1-ablation-summaries.json')
   })
 
+  it('keeps lost-in-middle answer rules out of recent-prose controls', async () => {
+    const caseIds = [
+      'iron-wall-needle',
+      'blind-corridor-echo',
+      'stone-room-turn',
+      'black-step-gate',
+      'tail-light-exit',
+    ]
+
+    for (const caseId of caseIds) {
+      const report = await evaluateGeneration({
+        rootPath: 'examples/lost-in-middle-benchmark',
+        caseId,
+        dryRun: true,
+        includePrompts: true,
+        l1Mode: 'causal-fixture',
+        fingerprintIgnorePaths: ['.novel/evals'],
+      })
+      const baseline = report.arms.find((arm) => arm.id === 'baseline')
+      const recentFill = report.arms.find((arm) => arm.id === 'recent-fill')
+      const fourLayer = report.arms.find((arm) => arm.id === 'four-layer')
+
+      expect(baseline?.promptPreview).not.toContain('针尾指的才是生门')
+      expect(baseline?.promptPreview).not.toContain('针背向真正的缺口')
+      expect(recentFill?.promptPreview).not.toContain('针尾指的才是生门')
+      expect(recentFill?.promptPreview).not.toContain('针背向真正的缺口')
+      expect(fourLayer?.promptPreview).toContain(
+        'recall:chapter_summary:chapter-005',
+      )
+      expect(fourLayer?.promptPreview).toContain('针尾指的才是生门')
+    }
+  })
+
   it('redacts provider endpoints and absolute paths in archived eval artifacts', async () => {
     const root = await mkdtemp(join(tmpdir(), 'generation-eval-redaction-'))
     const repoRoot = process.cwd()

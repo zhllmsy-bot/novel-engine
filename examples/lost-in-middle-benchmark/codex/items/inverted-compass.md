@@ -2,7 +2,7 @@
 id: item-inverted-compass
 name: 倒置罗盘
 type: item
-keywords: [倒置罗盘, 真北铁, 生门, 针尾, 反握, 缺口]
+keywords: [倒置罗盘, 真北铁, 生门, 针尾, 反握, 缺口, 石旁小字]
 current_state:
   role: 回环墓里判断方向的旧航器
 ---
