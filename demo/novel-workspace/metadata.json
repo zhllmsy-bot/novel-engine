@@ -1,0 +1,6 @@
+{
+  "name": "Novel Workspace",
+  "description": "时髦新颖的小说创作工作台，内置四层叙事记忆引擎、AI智能协同、Codex实体档案及关系图谱",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

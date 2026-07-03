@@ -44,6 +44,8 @@ describe('generation eval tool', () => {
         'responses',
         '--reasoning-effort',
         'xhigh',
+        '--l1-mode',
+        'causal-fixture',
         '--benchmark-project',
         'examples/long-memory-benchmark',
         'examples/long-memory-benchmark',
@@ -62,6 +64,7 @@ describe('generation eval tool', () => {
       judgeModel: 'judge-model',
       judgeWireApi: 'responses',
       reasoningEffort: 'xhigh',
+      l1Mode: 'causal-fixture',
     })
   })
 
@@ -458,6 +461,153 @@ describe('generation eval tool', () => {
     }
   })
 
+  it('uses causal fixture summaries only for the four-layer A0 prompt', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'generation-eval-l1-fixture-'))
+    const projectRoot = join(root, 'fixture-benchmark')
+    const archiveRoot = join(root, 'archive')
+
+    try {
+      await mkdir(join(projectRoot, 'meta'), { recursive: true })
+      await mkdir(join(projectRoot, 'manuscript', 'volume-001'), {
+        recursive: true,
+      })
+      await mkdir(join(projectRoot, 'codex', 'items'), { recursive: true })
+      await writeFile(
+        join(projectRoot, 'meta', 'project.json'),
+        JSON.stringify(
+          {
+            title: '因果摘要测试',
+            source_of_truth: 'markdown',
+            chapters: [
+              {
+                id: 'chapter-001',
+                title: '第001章 铜铃',
+                path: 'manuscript/volume-001/chapter-001.md',
+                order: 1,
+              },
+              {
+                id: 'chapter-002',
+                title: '第002章 回声',
+                path: 'manuscript/volume-001/chapter-002.md',
+                order: 2,
+              },
+            ],
+          },
+          null,
+          2,
+        ),
+      )
+      await writeFile(
+        join(projectRoot, 'meta', 'generation-eval.json'),
+        JSON.stringify(
+          {
+            $schema: '../../../schemas/generation-eval.schema.json',
+            chapter_id: 'chapter-002',
+            budget_chars: 900,
+            instruction: '请接着第二章续写沈泊解释铜铃的一小段。只输出正文。',
+            max_output_chars: 300,
+            criteria: [
+              {
+                id: 'callback-bell',
+                description: 'Recall the bell setup.',
+                category: 'callback',
+                contains_any: ['铜铃'],
+              },
+            ],
+          },
+          null,
+          2,
+        ),
+      )
+      await writeFile(
+        join(projectRoot, 'meta', 'l1-ablation-summaries.json'),
+        JSON.stringify(
+          {
+            summaries: [
+              {
+                chapter_id: 'chapter-001',
+                summary: 'ORACLE_CAUSAL_CHAIN: 铜铃不是信物本身，而是沈泊拒绝逃避旧约的因果转折。',
+                key_events: ['ORACLE_CAUSAL_CHAIN'],
+                characters_involved: ['item-bell'],
+              },
+              {
+                chapter_id: 'chapter-002',
+                summary: '沈泊在雨声里再次听见铜铃。',
+                key_events: ['铜铃回响'],
+                characters_involved: ['item-bell'],
+              },
+            ],
+          },
+          null,
+          2,
+        ),
+      )
+      await writeFile(
+        join(projectRoot, 'manuscript', 'volume-001', 'chapter-001.md'),
+        '# 第001章 铜铃\n\n沈泊收起铜铃。\n',
+      )
+      await writeFile(
+        join(projectRoot, 'manuscript', 'volume-001', 'chapter-002.md'),
+        '# 第002章 回声\n\n雨声里，沈泊又听见铜铃。\n',
+      )
+      await writeFile(
+        join(projectRoot, 'codex', 'items', 'bell.md'),
+        '---\nid: item-bell\nname: 铜铃\ntype: item\nkeywords: [铜铃]\n---\n\n铜铃是旧约信物。\n',
+      )
+
+      const report = await evaluateGeneration({
+        rootPath: projectRoot,
+        l1Mode: 'causal-fixture',
+        dryRun: true,
+        includePrompts: true,
+        archiveDir: archiveRoot,
+      })
+      const baseline = report.arms.find((arm) => arm.id === 'baseline')
+      const recentFill = report.arms.find((arm) => arm.id === 'recent-fill')
+      const fourLayer = report.arms.find((arm) => arm.id === 'four-layer')
+      const archived = await readFile(
+        join(archiveRoot, 'generation-eval-report.json'),
+        'utf8',
+      )
+
+      expect(report.ok).toBe(true)
+      expect(report.a0).toMatchObject({
+        l1Mode: 'causal-fixture',
+        l1FixturePath: 'meta/l1-ablation-summaries.json',
+        primaryMetric: 'callback-structural-win-rate',
+        judgeUse: 'exploratory-only',
+      })
+      expect(report.a0.l1FixtureHash).toMatch(/^[a-f0-9]{16}$/)
+      expect(fourLayer?.prompt).toContain('ORACLE_CAUSAL_CHAIN')
+      expect(baseline?.prompt).not.toContain('ORACLE_CAUSAL_CHAIN')
+      expect(recentFill?.prompt).not.toContain('ORACLE_CAUSAL_CHAIN')
+      expect(archived).toContain('"l1Mode": "causal-fixture"')
+      expect(archived).toContain('"l1FixtureHash"')
+      expect(formatGenerationEvalReport(report)).toContain(
+        'A0: l1=causal-fixture',
+      )
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it('fails causal fixture mode when the oracle summary file is missing', async () => {
+    const report = await evaluateGeneration({
+      rootPath: 'examples/long-memory-benchmark',
+      l1Mode: 'causal-fixture',
+      dryRun: true,
+      includePrompts: true,
+    })
+
+    expect(report.ok).toBe(false)
+    expect(report.a0).toMatchObject({
+      l1Mode: 'causal-fixture',
+      l1FixturePath: 'meta/l1-ablation-summaries.json',
+      judgeUse: 'exploratory-only',
+    })
+    expect(report.errors.join('\n')).toContain('meta/l1-ablation-summaries.json')
+  })
+
   it('redacts provider endpoints and absolute paths in archived eval artifacts', async () => {
     const root = await mkdtemp(join(tmpdir(), 'generation-eval-redaction-'))
     const repoRoot = process.cwd()
@@ -465,6 +615,12 @@ describe('generation eval tool', () => {
       rootPath: join(repoRoot, 'examples', 'long-memory-benchmark'),
       ok: false,
       dryRun: false,
+      a0: {
+        l1Mode: 'local',
+        metricVersion: 'a0-deterministic-v1',
+        primaryMetric: 'callback-structural-win-rate',
+        judgeUse: 'exploratory-only',
+      },
       title: '青灯镜湖',
       chapterId: 'chapter-006',
       budgetChars: 1200,

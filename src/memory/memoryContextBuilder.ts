@@ -79,6 +79,7 @@ export const memoryBudgetLayerOrder = [
 
 export const memoryBudgetPolicy = {
   safetyWindowRatio: 0.6,
+  minimumUsefulLayerBudgetChars: 24,
   recentChapterCount: 3,
   dynamicRecallTopN: 6,
   dynamicRecallGuaranteedTopN: {
@@ -117,6 +118,7 @@ export const memoryBudgetPolicy = {
   },
 } as const satisfies {
   safetyWindowRatio: number
+  minimumUsefulLayerBudgetChars: number
   recentChapterCount: number
   dynamicRecallTopN: number
   dynamicRecallGuaranteedTopN: {
@@ -432,7 +434,10 @@ function buildIntentMemory(
     layer: 'L3 意图',
     body: `项目《${projectTitle}》当前正在编辑 ${formatChapterIntentLabel(chapter)}。输出必须尊重已有 Markdown 正文和设定卡。${recallNote}${recallAudit}`,
     source: 'meta/project.json',
-    priority: getMemoryLayerPriority('L3 意图'),
+    priority: getMemoryLayerPriority(
+      'L3 意图',
+      auditParts.length > 0 ? memoryBudgetPolicy.layers['L3 意图'].maxBoost : 0,
+    ),
   }
 }
 
@@ -840,14 +845,20 @@ function buildLayerMinimumBudgets(
 ) {
   const presentLayers = new Set(memories.map((memory) => memory.layer))
   const rawTargets = Object.fromEntries(
-    memoryBudgetLayerOrder.map((layer) => [
-      layer,
-      presentLayers.has(layer)
+    memoryBudgetLayerOrder.map((layer) => {
+      const target = presentLayers.has(layer)
         ? Math.round(
             memoryBudgetPolicy.layers[layer].targetBudgetShare[0] * totalBudget,
           )
-        : 0,
-    ]),
+        : 0
+      const usefulTarget =
+        layer === 'L2 风格' ||
+        target >= memoryBudgetPolicy.minimumUsefulLayerBudgetChars
+          ? target
+          : 0
+
+      return [layer, usefulTarget]
+    }),
   ) as Record<NarrativeMemory['layer'], number>
 
   let assigned = sumBy(Object.values(rawTargets), (value) => value)
@@ -878,6 +889,10 @@ function consumeBudgetForLayer(input: {
 }) {
   let spent = 0
 
+  if (input.layer === 'L3 意图') {
+    spent += reserveConcreteRecallBudget(input)
+  }
+
   for (const [index, memory] of input.sorted.entries()) {
     if (input.layer && memory.layer !== input.layer) {
       continue
@@ -904,6 +919,44 @@ function consumeBudgetForLayer(input: {
   }
 
   return spent
+}
+
+function reserveConcreteRecallBudget(input: {
+  layer?: NarrativeMemory['layer']
+  sorted: WeightedMemory[]
+  allocatedCharsByIndex: Map<number, number>
+  budgetChars: number
+}) {
+  const minimumChars = memoryBudgetPolicy.minimumUsefulLayerBudgetChars
+  if (input.budgetChars < minimumChars * 2) {
+    return 0
+  }
+
+  const recallIndex = input.sorted.findIndex(
+    (memory) => memory.layer === 'L3 意图' && memory.source.startsWith('recall:'),
+  )
+  if (recallIndex < 0) {
+    return 0
+  }
+
+  const memory = input.sorted[recallIndex]
+  const alreadyAllocated = input.allocatedCharsByIndex.get(recallIndex) || 0
+  const remainingCharsInMemory = Math.max(0, memory.body.length - alreadyAllocated)
+  if (alreadyAllocated >= minimumChars || remainingCharsInMemory <= 0) {
+    return 0
+  }
+
+  const nextAllocation = Math.min(
+    minimumChars - alreadyAllocated,
+    remainingCharsInMemory,
+    input.budgetChars,
+  )
+  if (nextAllocation <= 0) {
+    return 0
+  }
+
+  input.allocatedCharsByIndex.set(recallIndex, alreadyAllocated + nextAllocation)
+  return nextAllocation
 }
 
 function renderBudgetedBody(body: string, allocatedChars: number) {

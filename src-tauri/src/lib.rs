@@ -3,14 +3,14 @@ mod secrets;
 
 use project::{
     create_project, init_cache, insert_chapter_version, insert_character_state_log,
-    list_chapter_summaries, list_chapter_versions, list_chapters, list_character_state_logs,
-    list_codex_files, list_plot_threads, list_provider_adapter_files,
+    import_existing_project, list_chapter_summaries, list_chapter_versions, list_chapters,
+    list_character_state_logs, list_codex_files, list_plot_threads, list_provider_adapter_files,
     list_publisher_adapter_files, list_skill_files, list_volume_summaries, read_chapter_file,
     read_graph_snapshot, read_project_manifest, search_chapter_index, upsert_chapter_summary,
     write_chapter_file, write_graph_snapshot,
     ChapterInfo, ChapterSearchResult, ChapterSummaryInfo,
     ChapterSummaryPayload, ChapterVersionInfo, ChapterVersionPayload, CharacterStateLogInfo,
-    CharacterStateLogPayload, MarkdownFileInfo, PlotThreadInfo, PlotThreadPayload,
+    CharacterStateLogPayload, ImportedNovelProjectReport, MarkdownFileInfo, PlotThreadInfo, PlotThreadPayload,
     ProviderAdapterFileInfo, PublisherAdapterFileInfo, SkillFileInfo,
     VolumeSummaryInfo, VolumeSummaryPayload, upsert_plot_thread, upsert_volume_summary,
 };
@@ -48,6 +48,21 @@ type AppResult<T> = Result<T, AppError>;
 fn create_novel_project(path: String, title: String) -> AppResult<()> {
     create_project(path, title)?;
     Ok(())
+}
+
+#[tauri::command]
+fn import_existing_novel_project(
+    source_path: String,
+    output_path: String,
+    title: Option<String>,
+    chapters_per_volume: Option<usize>,
+) -> AppResult<ImportedNovelProjectReport> {
+    Ok(import_existing_project(
+        source_path,
+        output_path,
+        title,
+        chapters_per_volume,
+    )?)
 }
 
 #[tauri::command]
@@ -203,6 +218,7 @@ pub fn run() {
         .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![
             create_novel_project,
+            import_existing_novel_project,
             initialize_project_cache,
             scan_project_chapters,
             search_project_chapter_index,

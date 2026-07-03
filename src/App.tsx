@@ -22,8 +22,16 @@ import {
   type NovelAgentToolResult,
 } from './agent-tools/novelAgentRuntime'
 import type { NovelAgentToolName } from './agent-tools/novelAgentTools'
+import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from '@/components/ui/field'
+import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
 import { TooltipProvider } from '@/components/ui/tooltip'
@@ -100,9 +108,14 @@ import { loadDemoProject } from './project/demoProjectRepository'
 import { createGraphSnapshotPersistence } from './project/graphSnapshotPersistence'
 import { createPlotThreadPersistence } from './project/plotThreadPersistence'
 import { createProjectPersistence } from './project/projectPersistence'
-import { pickAndLoadTauriProject } from './project/tauriProjectRepository'
+import {
+  pickAndLoadTauriProject,
+  pickCreateAndLoadTauriProject,
+  pickImportAndLoadTauriProject,
+} from './project/tauriProjectRepository'
 import { createVolumeSummaryPersistence } from './project/volumeSummaryPersistence'
-import type { ProjectChapter } from './project/projectTypes'
+import type { NovelProject, ProjectChapter } from './project/projectTypes'
+import { isTauriRuntime } from './platform/runtime'
 import {
   searchProjectChapterIndex,
   type ChapterSearchResult,
@@ -183,6 +196,11 @@ function App() {
   const [workspace, setWorkspace] = useState<WorkspaceState>(() =>
     createWorkspaceState(),
   )
+  const [workspaceReady, setWorkspaceReady] = useState(false)
+  const [newProjectTitle, setNewProjectTitle] = useState('未命名小说')
+  const [projectGateAction, setProjectGateAction] = useState<
+    'new' | 'import' | 'demo' | null
+  >(null)
   const {
     project,
     draftStore,
@@ -1070,70 +1088,117 @@ function App() {
     }
   }
 
-  async function openProject() {
+  async function activateProject(loadedProject: NovelProject) {
+    const [
+      loadedSummaries,
+      loadedVolumeSummaries,
+      loadedVersions,
+      loadedStateLogs,
+      loadedPlotThreads,
+      loadedGraphSnapshot,
+    ] = loadedProject.rootPath
+      ? await Promise.all([
+          summaryPersistence.loadChapterSummaries(loadedProject.rootPath),
+          volumeSummaryPersistence.loadVolumeSummaries(loadedProject.rootPath),
+          versionPersistence.loadChapterVersions(loadedProject.rootPath),
+          stateLogPersistence.loadCharacterStateLogs(loadedProject.rootPath),
+          plotThreadPersistence.loadPlotThreads(loadedProject.rootPath),
+          loadOptionalGraphSnapshot(loadedProject.rootPath),
+        ])
+      : [[], [], [], [], [], null]
+    const initialVolumeSummaries =
+      loadedVolumeSummaries.length > 0
+        ? loadedVolumeSummaries
+        : buildLocalVolumeSummaries({
+            projectChapters: loadedProject.chapters,
+            chapterSummaries: loadedSummaries,
+          })
+
+    setWorkspace(
+      createWorkspaceState(
+        loadedProject,
+        loadedSummaries,
+        loadedVersions,
+        loadedStateLogs,
+        loadedPlotThreads,
+        initialVolumeSummaries,
+      ),
+    )
+    setWorkspaceReady(true)
+    setSkillCatalog(loadSkillCatalog())
+    setPublisherAdapterCatalog({
+      adapters: listEditorPublisherAdapters(),
+      errors: [],
+    })
+    setProviderAdapterCatalog({
+      adapters: listProviderAdapterManifests(),
+      errors: [],
+    })
+    setSelectedText('')
+    setLastResult(null)
+    setLastSkillAudit(null)
+    setRewritePatch(null)
+    setPublisherReport(null)
+    setGraphSnapshot(loadedGraphSnapshot)
+    setDraftRevision((revision) => revision + 1)
+    setSummaryRevision((revision) => revision + 1)
+    setVolumeSummaryRevision((revision) => revision + 1)
+    setVersionRevision((revision) => revision + 1)
+    setStateLogRevision((revision) => revision + 1)
+    setPlotThreadRevision((revision) => revision + 1)
+  }
+
+  async function createNewProject() {
     setRuntimeError(null)
+    setProjectGateAction('new')
 
     try {
-      const loadedProject = await pickAndLoadTauriProject()
+      const loadedProject = await pickCreateAndLoadTauriProject(
+        newProjectTitle.trim() || '未命名小说',
+      )
+
+      if (loadedProject) {
+        await activateProject(loadedProject)
+      }
+    } catch (error) {
+      setRuntimeError(error instanceof Error ? error.message : String(error))
+    } finally {
+      setProjectGateAction(null)
+    }
+  }
+
+  async function openProject(action: 'import' | 'open' = 'open') {
+    setRuntimeError(null)
+    setProjectGateAction(action === 'import' ? 'import' : null)
+
+    try {
+      const loadedProject =
+        action === 'import'
+          ? await pickImportAndLoadTauriProject()
+          : await pickAndLoadTauriProject()
 
       if (!loadedProject) {
         return
       }
 
-      const [
-        loadedSummaries,
-        loadedVolumeSummaries,
-        loadedVersions,
-        loadedStateLogs,
-        loadedPlotThreads,
-        loadedGraphSnapshot,
-      ] = loadedProject.rootPath
-        ? await Promise.all([
-            summaryPersistence.loadChapterSummaries(loadedProject.rootPath),
-            volumeSummaryPersistence.loadVolumeSummaries(loadedProject.rootPath),
-            versionPersistence.loadChapterVersions(loadedProject.rootPath),
-            stateLogPersistence.loadCharacterStateLogs(loadedProject.rootPath),
-            plotThreadPersistence.loadPlotThreads(loadedProject.rootPath),
-            loadOptionalGraphSnapshot(loadedProject.rootPath),
-          ])
-        : [[], [], [], [], [], null]
-      const initialVolumeSummaries =
-        loadedVolumeSummaries.length > 0
-          ? loadedVolumeSummaries
-          : buildLocalVolumeSummaries({
-              projectChapters: loadedProject.chapters,
-              chapterSummaries: loadedSummaries,
-            })
-
-      setWorkspace(
-        createWorkspaceState(
-          loadedProject,
-          loadedSummaries,
-          loadedVersions,
-          loadedStateLogs,
-          loadedPlotThreads,
-          initialVolumeSummaries,
-        ),
-      )
-      setSkillCatalog(loadSkillCatalog())
-      setPublisherAdapterCatalog({
-        adapters: listEditorPublisherAdapters(),
-        errors: [],
-      })
-      setSelectedText('')
-      setLastResult(null)
-      setLastSkillAudit(null)
-      setRewritePatch(null)
-      setPublisherReport(null)
-      setGraphSnapshot(loadedGraphSnapshot)
-      setDraftRevision((revision) => revision + 1)
-      setSummaryRevision((revision) => revision + 1)
-      setVolumeSummaryRevision((revision) => revision + 1)
-      setVersionRevision((revision) => revision + 1)
-      setStateLogRevision((revision) => revision + 1)
-      setPlotThreadRevision((revision) => revision + 1)
+      await activateProject(loadedProject)
     } catch (error) {
       setRuntimeError(error instanceof Error ? error.message : String(error))
+    } finally {
+      setProjectGateAction(null)
+    }
+  }
+
+  async function openDemoProject() {
+    setRuntimeError(null)
+    setProjectGateAction('demo')
+
+    try {
+      await activateProject(loadDemoProject())
+    } catch (error) {
+      setRuntimeError(error instanceof Error ? error.message : String(error))
+    } finally {
+      setProjectGateAction(null)
     }
   }
 
@@ -1166,6 +1231,23 @@ function App() {
           setRuntimeError(error instanceof Error ? error.message : String(error))
         })
     }
+  }
+
+  if (!workspaceReady) {
+    return (
+      <TooltipProvider>
+        <ProjectGateway
+          canUseLocalProjects={isTauriRuntime()}
+          error={runtimeError}
+          newProjectTitle={newProjectTitle}
+          onCreateNew={() => void createNewProject()}
+          onImportExisting={() => void openProject('import')}
+          onOpenDemo={() => void openDemoProject()}
+          onTitleChange={setNewProjectTitle}
+          runningAction={projectGateAction}
+        />
+      </TooltipProvider>
+    )
   }
 
   return (
@@ -1449,6 +1531,127 @@ function App() {
         />
       </main>
     </TooltipProvider>
+  )
+}
+
+type ProjectGatewayProps = {
+  canUseLocalProjects: boolean
+  error: string | null
+  newProjectTitle: string
+  runningAction: 'new' | 'import' | 'demo' | null
+  onTitleChange(title: string): void
+  onCreateNew(): void
+  onImportExisting(): void
+  onOpenDemo(): void
+}
+
+function ProjectGateway({
+  canUseLocalProjects,
+  error,
+  newProjectTitle,
+  runningAction,
+  onTitleChange,
+  onCreateNew,
+  onImportExisting,
+  onOpenDemo,
+}: ProjectGatewayProps) {
+  const localActionDisabled = !canUseLocalProjects || runningAction !== null
+  const demoDisabled = runningAction !== null
+
+  return (
+    <main className="project-gate">
+      <section className="project-gate-shell" aria-labelledby="project-gate-title">
+        <div className="project-gate-heading">
+          <Badge variant="secondary">Novel Engine</Badge>
+          <h1 id="project-gate-title">选择写作入口</h1>
+          <p>选择一个入口进入本地写作工作台。</p>
+        </div>
+
+        {error ? (
+          <Alert className="project-gate-alert" variant="destructive">
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        ) : null}
+
+        {!canUseLocalProjects ? (
+          <Alert className="project-gate-alert">
+            <AlertDescription>
+              本地创建和导入需要桌面端运行时；浏览器模式可先打开演示项目。
+            </AlertDescription>
+          </Alert>
+        ) : null}
+
+        <div className="project-gate-options">
+          <section className="project-gate-option" aria-labelledby="new-project-title">
+            <div className="project-gate-option-header">
+              <BookOpen aria-hidden="true" />
+              <div>
+                <h2 id="new-project-title">开始新小说</h2>
+                <p>创建 Markdown-first 项目并进入第001章。</p>
+              </div>
+            </div>
+            <FieldGroup>
+              <Field>
+                <FieldLabel htmlFor="new-project-title-input">书名</FieldLabel>
+                <Input
+                  id="new-project-title-input"
+                  onChange={(event) => onTitleChange(event.target.value)}
+                  value={newProjectTitle}
+                />
+                <FieldDescription>
+                  桌面端会选择一个本地文件夹作为项目根目录。
+                </FieldDescription>
+              </Field>
+            </FieldGroup>
+            <Button
+              disabled={localActionDisabled}
+              onClick={onCreateNew}
+              type="button"
+            >
+              <BookOpen data-icon="inline-start" aria-hidden="true" />
+              {runningAction === 'new' ? '创建中' : '开始新小说'}
+            </Button>
+          </section>
+
+          <section className="project-gate-option" aria-labelledby="import-project-title">
+            <div className="project-gate-option-header">
+              <FolderOpen aria-hidden="true" />
+              <div>
+                <h2 id="import-project-title">导入已有小说</h2>
+                <p>选择源稿和目标文件夹，生成可续写项目。</p>
+              </div>
+            </div>
+            <div className="project-gate-checklist" aria-label="Import readiness">
+              <span>章节清单</span>
+              <span>设定卡</span>
+              <span>续写状态</span>
+              <span>导入评估</span>
+            </div>
+            <Button
+              disabled={localActionDisabled}
+              onClick={onImportExisting}
+              type="button"
+              variant="secondary"
+            >
+              <FolderOpen data-icon="inline-start" aria-hidden="true" />
+              {runningAction === 'import' ? '导入中' : '导入已有小说'}
+            </Button>
+          </section>
+        </div>
+
+        <div className="project-gate-footer">
+          <Button
+            disabled={demoDisabled}
+            onClick={onOpenDemo}
+            type="button"
+            variant="ghost"
+          >
+            <PenLine data-icon="inline-start" aria-hidden="true" />
+            {runningAction === 'demo' ? '载入中' : '打开演示项目'}
+          </Button>
+        </div>
+      </section>
+    </main>
   )
 }
 

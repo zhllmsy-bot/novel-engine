@@ -120,7 +120,7 @@ describe('narrative memory context builder', () => {
     expect(memories[0].body.length).toBeLessThanOrEqual(60)
   })
 
-  it('keeps minimum coverage for all four layers when the budget is tight', () => {
+  it('keeps minimum coverage for all four layers when the budget can hold useful slices', () => {
     const project = loadDemoProject()
     const chapter = project.chapters[0]
     const plan = buildNarrativeMemoryPlan({
@@ -128,7 +128,7 @@ describe('narrative memory context builder', () => {
       documentText: chapter.content,
       codexEntries: project.codexEntries,
       projectTitle: project.title,
-      budgetChars: 60,
+      budgetChars: 900,
     })
 
     const nonEmptyLayers = new Set(
@@ -834,6 +834,66 @@ describe('narrative memory context builder', () => {
     })
     expect(recallMemory?.body).toContain('关联召回: 第001章 山门雨')
     expect(recallMemory?.body).toContain('命中关键词: 李长老、玄铁剑')
+  })
+
+  it('keeps a concrete L3 recall slice visible when long prose consumes the remaining budget', () => {
+    const project = loadDemoProject()
+    const previousChapter = {
+      ...project.chapters[0],
+      id: 'chapter-001',
+      title: '第001章 山门雨',
+      path: 'manuscript/volume-001/chapter-001.md',
+      order: 1,
+      content: '沈微第一次听见玄铁剑，并被李长老问起师父。',
+    }
+    const chapter = {
+      ...project.chapters[0],
+      id: 'chapter-002',
+      title: '第002章 长卷续写',
+      path: 'manuscript/volume-001/chapter-002.md',
+      order: 2,
+      content: [
+        '# 第002章 长卷续写',
+        '沈微再次听见玄铁剑低鸣，想起李长老追问师父下落。',
+        '他在石阶前反复复盘旧线索。'.repeat(260),
+      ].join('\n\n'),
+    }
+    const plan = buildNarrativeMemoryPlan({
+      chapter,
+      projectChapters: [previousChapter, chapter],
+      documentText: chapter.content,
+      codexEntries: project.codexEntries,
+      chapterSummaries: [
+        {
+          chapterId: previousChapter.id,
+          chapterTitle: previousChapter.title,
+          summary: '沈微第一次听见玄铁剑，并被李长老问起师父。',
+          keyEvents: [],
+          charactersInvolved: [],
+          sourceHash: 'hash-1',
+          isEdited: false,
+          updatedAt: '2026-06-25T00:00:00.000Z',
+        },
+      ],
+      projectTitle: project.title,
+      budgetChars: 2_400,
+    })
+    const intentEntry = plan.audit.entries.find(
+      (entry) => entry.source === 'meta/project.json',
+    )
+    const recallEntry = plan.audit.entries.find(
+      (entry) => entry.source === 'recall:chapter_summary:chapter-001',
+    )
+
+    expect(intentEntry?.selectedChars).toBeGreaterThan(0)
+    expect(recallEntry?.selectedChars).toBeGreaterThanOrEqual(
+      memoryBudgetPolicy.minimumUsefulLayerBudgetChars,
+    )
+    expect(
+      plan.memories.find(
+        (memory) => memory.source === 'recall:chapter_summary:chapter-001',
+      )?.body,
+    ).toContain('关联召回')
   })
 
   it('includes indexed desktop search results as concrete L3 recall memory', () => {

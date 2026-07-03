@@ -36,6 +36,16 @@ import type { CodexEntry, ProjectChapter } from '../src/project/projectTypes.ts'
 import type { NarrativeMemory } from '../src/types/domain.ts'
 
 export type GenerationEvalArmId = 'baseline' | 'recent-fill' | 'four-layer'
+export type GenerationEvalL1Mode = 'local' | 'causal-fixture'
+
+export type GenerationEvalA0Metadata = {
+  l1Mode: GenerationEvalL1Mode
+  l1FixturePath?: string
+  l1FixtureHash?: string
+  metricVersion: 'a0-deterministic-v1'
+  primaryMetric: 'callback-structural-win-rate'
+  judgeUse: 'exploratory-only'
+}
 
 export type GenerationEvalArmReport = {
   id: GenerationEvalArmId
@@ -208,6 +218,7 @@ export type GenerationEvalReport = {
   rootPath: string
   ok: boolean
   dryRun: boolean
+  a0: GenerationEvalA0Metadata
   title?: string
   caseId?: string
   chapterId?: string
@@ -293,6 +304,7 @@ type OpenAICompatibleGenerationResult = {
 type CliOptions = {
   rootPath: string
   benchmarkProjects: string[]
+  l1Mode?: GenerationEvalL1Mode
   caseId?: string
   chapterId?: string
   budgetChars?: number
@@ -456,6 +468,24 @@ const judgeResponseSchema = z.object({
   reason: z.string().catch('No reason parsed.'),
 })
 
+const l1AblationSummarySchema = z
+  .object({
+    summaries: z
+      .array(
+        z
+          .object({
+            chapter_id: z.string().min(1),
+            chapter_title: z.string().min(1).optional(),
+            summary: z.string().min(1),
+            key_events: z.array(z.string().min(1)).optional(),
+            characters_involved: z.array(z.string().min(1)).optional(),
+          })
+          .strict(),
+      )
+      .min(1),
+  })
+  .strict()
+
 const chatCompletionResponseWithUsageSchema = z.object({
   id: z.string().optional(),
   object: z.string().optional(),
@@ -490,6 +520,7 @@ const chatCompletionResponseWithUsageSchema = z.object({
 
 export async function evaluateGeneration(input: {
   rootPath?: string
+  l1Mode?: GenerationEvalL1Mode
   caseId?: string
   chapterId?: string
   budgetChars?: number
@@ -511,6 +542,7 @@ export async function evaluateGeneration(input: {
 } = {}): Promise<GenerationEvalReport> {
   const rootPath = resolve(input.rootPath || 'examples/long-memory-benchmark')
   const dryRun = input.dryRun ?? false
+  const l1Mode = input.l1Mode || 'local'
   const repeatCount = Math.max(
     1,
     Math.floor(input.repeatCount || defaultRepeatCount),
@@ -585,10 +617,14 @@ export async function evaluateGeneration(input: {
   }
 
   const maxOutputChars = input.maxOutputChars || evalConfig.maxOutputChars
-  const chapterSummaries = buildEvaluationSummaries(
-    project.chapters,
-    project.codexEntries,
-  )
+  const chapterSummariesResult = await buildEvaluationSummariesForMode({
+    rootPath,
+    chapters: project.chapters,
+    codexEntries: project.codexEntries,
+    l1Mode,
+  })
+  errors.push(...chapterSummariesResult.errors)
+  const chapterSummaries = chapterSummariesResult.summaries
   const fourLayerPlan = buildNarrativeMemoryPlan({
     chapter,
     projectChapters: project.chapters,
@@ -730,6 +766,7 @@ export async function evaluateGeneration(input: {
     budgetChars,
     repeatCount,
     maxOutputChars,
+    a0: chapterSummariesResult.a0,
     provider: {
       model: dryRun ? undefined : providerConfig.model,
       wireApi: dryRun ? undefined : providerConfig.wireApi,
@@ -752,6 +789,7 @@ export async function evaluateGeneration(input: {
     rootPath,
     ok,
     dryRun,
+    a0: chapterSummariesResult.a0,
     title: project.title,
     caseId: evalConfig.caseId,
     chapterId: chapter.id,
@@ -823,6 +861,7 @@ export function formatGenerationEvalReport(report: GenerationEvalReport): string
     `Budget: ${report.budgetChars} chars`,
     `Repeats: ${report.repeatCount}`,
     `Provider: ${formatProvider(report)}`,
+    `A0: l1=${report.a0.l1Mode} primary=${report.a0.primaryMetric} judge=${report.a0.judgeUse}${report.a0.l1FixtureHash ? ` fixture=${report.a0.l1FixtureHash}` : ''}`,
     `Fingerprint: git=${report.fingerprint.gitCommit} dataset=${report.fingerprint.datasetHash} config=${report.fingerprint.configHash}`,
     `Criteria: ${formatCriteriaSummary(report.criteria)}`,
     fourLayerVsBaseline && fourLayerVsBaseline.pairedRuns > 0
@@ -847,6 +886,7 @@ export function formatGenerationEvalReport(report: GenerationEvalReport): string
 
 export async function evaluateGenerationSuite(input: {
   rootPaths: string[]
+  l1Mode?: GenerationEvalL1Mode
   caseId?: string
   chapterId?: string
   budgetChars?: number
@@ -896,6 +936,7 @@ export async function evaluateGenerationSuite(input: {
       evaluateGeneration({
         ...input,
         rootPath: reportInput.rootPath,
+        l1Mode: input.l1Mode,
         caseId: reportInput.caseId,
         archiveDir: reportInput.archiveDir,
         fingerprintIgnorePaths: input.archiveDir ? [input.archiveDir] : undefined,
@@ -2717,6 +2758,81 @@ function buildEvaluationSummaries(
   })
 }
 
+async function buildEvaluationSummariesForMode(input: {
+  rootPath: string
+  chapters: ProjectChapter[]
+  codexEntries: CodexEntry[]
+  l1Mode: GenerationEvalL1Mode
+}): Promise<{
+  summaries: ChapterSummary[]
+  a0: GenerationEvalA0Metadata
+  errors: string[]
+}> {
+  if (input.l1Mode === 'local') {
+    return {
+      summaries: buildEvaluationSummaries(input.chapters, input.codexEntries),
+      a0: defaultA0Metadata('local'),
+      errors: [],
+    }
+  }
+
+  const fixturePath = join(input.rootPath, 'meta', 'l1-ablation-summaries.json')
+  try {
+    const fixtureSource = await readFile(fixturePath, 'utf8')
+    const parsed = l1AblationSummarySchema.parse(JSON.parse(fixtureSource))
+    const chaptersById = new Map(input.chapters.map((chapter) => [chapter.id, chapter]))
+    const summaries = parsed.summaries.map((summary): ChapterSummary => {
+      const chapter = chaptersById.get(summary.chapter_id)
+      return {
+        chapterId: summary.chapter_id,
+        chapterTitle: summary.chapter_title || chapter?.title || summary.chapter_id,
+        summary: summary.summary.trim(),
+        keyEvents: (summary.key_events || []).map((event) => event.trim()).filter(Boolean),
+        charactersInvolved: (summary.characters_involved || [])
+          .map((character) => character.trim())
+          .filter(Boolean),
+        sourceHash: `a0-causal-fixture:${hashString(fixtureSource)}`,
+        isEdited: false,
+        updatedAt: '1970-01-01T00:00:00.000Z',
+      }
+    })
+
+    return {
+      summaries,
+      a0: defaultA0Metadata('causal-fixture', {
+        l1FixturePath: normalizePath(relative(input.rootPath, fixturePath)),
+        l1FixtureHash: hashString(fixtureSource),
+      }),
+      errors: [],
+    }
+  } catch (error) {
+    return {
+      summaries: [],
+      a0: defaultA0Metadata('causal-fixture', {
+        l1FixturePath: normalizePath(relative(input.rootPath, fixturePath)),
+      }),
+      errors: [`meta/l1-ablation-summaries.json: ${String(error)}`],
+    }
+  }
+}
+
+function defaultA0Metadata(
+  l1Mode: GenerationEvalL1Mode,
+  input: {
+    l1FixturePath?: string
+    l1FixtureHash?: string
+  } = {},
+): GenerationEvalA0Metadata {
+  return {
+    l1Mode,
+    l1FixturePath: input.l1FixturePath,
+    l1FixtureHash: input.l1FixtureHash,
+    metricVersion: 'a0-deterministic-v1',
+    primaryMetric: 'callback-structural-win-rate',
+    judgeUse: 'exploratory-only',
+  }
+}
+
 function resolveProviderConfig(input: {
   baseUrl?: string
   apiKey?: string
@@ -2825,6 +2941,7 @@ function emptyReport(input: {
   rootPath: string
   dryRun: boolean
   errors: string[]
+  a0?: GenerationEvalA0Metadata
   title?: string
   caseId?: string
   chapterId?: string
@@ -2834,6 +2951,7 @@ function emptyReport(input: {
     rootPath: input.rootPath,
     ok: false,
     dryRun: input.dryRun,
+    a0: input.a0 || defaultA0Metadata('local'),
     title: input.title,
     caseId: input.caseId,
     chapterId: input.chapterId,
@@ -2865,6 +2983,7 @@ async function buildGenerationFingerprint(input: {
   budgetChars: number
   repeatCount: number
   maxOutputChars: number
+  a0: GenerationEvalA0Metadata
   provider: {
     model?: string
     wireApi?: OpenAICompatibleWireApi
@@ -2885,6 +3004,7 @@ async function buildGenerationFingerprint(input: {
       budgetChars: input.budgetChars,
       repeatCount: input.repeatCount,
       maxOutputChars: input.maxOutputChars,
+      a0: input.a0,
       provider: input.provider,
       criteria: input.criteria,
     }),
@@ -3237,6 +3357,14 @@ function normalizeWireApi(value?: string): OpenAICompatibleWireApi | undefined {
   return undefined
 }
 
+function normalizeL1Mode(value?: string): GenerationEvalL1Mode | undefined {
+  if (value === 'local' || value === 'causal-fixture') {
+    return value
+  }
+
+  return undefined
+}
+
 function trimToChars(text: string, maxChars: number) {
   return text.length <= maxChars ? text : `${text.slice(0, maxChars)}…`
 }
@@ -3296,6 +3424,9 @@ export function parseGenerationEvalArgs(args: string[]): CliOptions {
       index += 1
     } else if (arg === '--wire-api') {
       options.wireApi = normalizeWireApi(args[index + 1])
+      index += 1
+    } else if (arg === '--l1-mode') {
+      options.l1Mode = normalizeL1Mode(args[index + 1])
       index += 1
     } else if (arg === '--judge') {
       options.judge = true
@@ -3401,6 +3532,7 @@ async function main() {
     options.benchmarkProjects.length > 0
       ? await evaluateGenerationSuite({
           rootPaths: options.benchmarkProjects,
+          l1Mode: options.l1Mode,
           caseId: options.caseId,
           chapterId: options.chapterId,
           budgetChars: options.budgetChars,
@@ -3421,6 +3553,7 @@ async function main() {
         })
       : await evaluateGeneration({
           rootPath: options.rootPath,
+          l1Mode: options.l1Mode,
           caseId: options.caseId,
           chapterId: options.chapterId,
           budgetChars: options.budgetChars,

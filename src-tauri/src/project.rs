@@ -18,6 +18,8 @@ pub enum ProjectError {
     Json(#[from] serde_json::Error),
     #[error("invalid project path")]
     InvalidPath,
+    #[error("{0}")]
+    InvalidImport(String),
 }
 
 #[derive(Debug, Serialize)]
@@ -206,6 +208,166 @@ pub struct PlotThreadPayload {
     pub source_skill_id: String,
     pub confirmed_at: String,
     pub updated_at: String,
+}
+
+#[derive(Debug, Serialize)]
+pub struct ImportedNovelChapterInfo {
+    pub id: String,
+    pub title: String,
+    pub path: String,
+    pub order: usize,
+}
+
+#[derive(Debug, Serialize)]
+pub struct ImportedNovelStats {
+    pub chapters: usize,
+    pub codex_entries: usize,
+    pub source_markdown_files: usize,
+    pub raw_ledger_files: usize,
+}
+
+#[derive(Debug, Serialize)]
+pub struct ImportedNovelProjectReport {
+    pub path: String,
+    pub source_path: String,
+    pub title: String,
+    pub latest_chapter: Option<ImportedNovelChapterInfo>,
+    pub next_chapter_path: Option<String>,
+    pub stats: ImportedNovelStats,
+    pub warnings: Vec<String>,
+}
+
+struct SourceImportChapter {
+    number: usize,
+    content: String,
+}
+
+struct ImportedChapter {
+    id: String,
+    title: String,
+    target_path: String,
+    order: usize,
+    content: String,
+}
+
+pub fn import_existing_project(
+    source_path: String,
+    output_path: String,
+    title: Option<String>,
+    chapters_per_volume: Option<usize>,
+) -> Result<ImportedNovelProjectReport, ProjectError> {
+    let source_root = normalize_project_path(source_path)?;
+    let output_root = normalize_project_path(output_path)?;
+    let chapters_per_volume = chapters_per_volume.unwrap_or(30);
+    if chapters_per_volume == 0 {
+        return Err(ProjectError::InvalidImport(
+            "chapters_per_volume must be a positive integer".to_string(),
+        ));
+    }
+    if !source_root.is_dir() {
+        return Err(ProjectError::InvalidImport(format!(
+            "source path is not a directory: {}",
+            source_root.to_string_lossy()
+        )));
+    }
+    assert_import_output_is_safe(&output_root)?;
+
+    let source_chapters = discover_import_chapters(&source_root)?;
+    if source_chapters.is_empty() {
+        return Err(ProjectError::InvalidImport(format!(
+            "no Markdown chapters found under {}",
+            source_root.to_string_lossy()
+        )));
+    }
+
+    let title = title
+        .filter(|value| !value.trim().is_empty())
+        .unwrap_or_else(|| infer_import_title(&source_root));
+    let mut imported_chapters = Vec::new();
+    for chapter in source_chapters {
+        let target_path = manuscript_path_for_order(chapter.number, chapters_per_volume);
+        let title = markdown_title(&chapter.content, &format!("第{:03}章", chapter.number));
+        let target_file = output_root.join(&target_path);
+        if let Some(parent) = target_file.parent() {
+            fs::create_dir_all(parent)?;
+        }
+        fs::write(&target_file, &chapter.content)?;
+        imported_chapters.push(ImportedChapter {
+            id: format!("chapter-{:03}", chapter.number),
+            title,
+            target_path,
+            order: chapter.number,
+            content: chapter.content,
+        });
+    }
+
+    fs::create_dir_all(output_root.join("meta"))?;
+    fs::write(
+        output_root.join("meta").join("project.json"),
+        serde_json::to_string_pretty(&import_project_manifest(&title, &imported_chapters))?,
+    )?;
+    fs::write(
+        output_root.join("meta").join("memory-eval.json"),
+        serde_json::to_string_pretty(&import_memory_eval_config(&imported_chapters))?,
+    )?;
+    fs::write(
+        output_root.join(".gitignore"),
+        ".DS_Store\n.novel/*.db\n.novel/*.db-*\n",
+    )?;
+
+    let codex_entries =
+        write_import_codex(&source_root, &output_root, &title, &imported_chapters)?;
+    let source_markdown_files = copy_import_source_references(&source_root, &output_root)?;
+    let raw_ledger_files = copy_import_ledger_references(&source_root, &output_root)?;
+    copy_import_upload_references(&source_root, &output_root)?;
+    let mut warnings = Vec::new();
+    if let Some(claimed) = infer_claimed_chapter_count(&source_root) {
+        if claimed != imported_chapters.len() {
+            warnings.push(format!(
+                "source README claims {} chapters, but {} chapter files were imported.",
+                claimed,
+                imported_chapters.len()
+            ));
+        }
+    }
+
+    let latest = imported_chapters.last().map(|chapter| ImportedNovelChapterInfo {
+        id: chapter.id.clone(),
+        title: chapter.title.clone(),
+        path: chapter.target_path.clone(),
+        order: chapter.order,
+    });
+    let next_chapter_path = imported_chapters
+        .last()
+        .map(|chapter| manuscript_path_for_order(chapter.order + 1, chapters_per_volume));
+
+    write_import_file(
+        &output_root.join("references").join("import-report.md"),
+        &import_report_markdown(
+            &source_root,
+            &output_root,
+            &title,
+            &imported_chapters,
+            next_chapter_path.as_deref(),
+            &warnings,
+        ),
+    )?;
+    init_cache(output_root.to_string_lossy().to_string())?;
+
+    Ok(ImportedNovelProjectReport {
+        path: output_root.to_string_lossy().to_string(),
+        source_path: source_root.to_string_lossy().to_string(),
+        title,
+        latest_chapter: latest,
+        next_chapter_path,
+        stats: ImportedNovelStats {
+            chapters: imported_chapters.len(),
+            codex_entries,
+            source_markdown_files,
+            raw_ledger_files,
+        },
+        warnings,
+    })
 }
 
 pub fn create_project(path: String, title: String) -> Result<(), ProjectError> {
@@ -1014,6 +1176,584 @@ pub fn upsert_plot_thread(path: String, thread: PlotThreadPayload) -> Result<(),
     Ok(())
 }
 
+fn assert_import_output_is_safe(path: &Path) -> Result<(), ProjectError> {
+    if !path.exists() {
+        return Ok(());
+    }
+    if !path.is_dir() {
+        return Err(ProjectError::InvalidImport(format!(
+            "output path is not a directory: {}",
+            path.to_string_lossy()
+        )));
+    }
+
+    let has_content = fs::read_dir(path)?.any(|entry| {
+        entry
+            .ok()
+            .and_then(|entry| entry.file_name().into_string().ok())
+            .map(|name| name != ".DS_Store")
+            .unwrap_or(true)
+    });
+
+    if has_content {
+        return Err(ProjectError::InvalidImport(
+            "导入目标文件夹必须为空，避免覆盖已有稿件。".to_string(),
+        ));
+    }
+
+    Ok(())
+}
+
+fn discover_import_chapters(source_root: &Path) -> Result<Vec<SourceImportChapter>, ProjectError> {
+    let chapters_root = source_root.join("chapters");
+    let root = if chapters_root.is_dir() {
+        chapters_root
+    } else {
+        source_root.to_path_buf()
+    };
+    let mut chapters = Vec::new();
+
+    for entry in fs::read_dir(root)? {
+        let entry = entry?;
+        if !entry.file_type()?.is_file() {
+            continue;
+        }
+        let path = entry.path();
+        if path.extension().and_then(|value| value.to_str()) != Some("md") {
+            continue;
+        }
+        let Some(stem) = path.file_stem().and_then(|value| value.to_str()) else {
+            continue;
+        };
+        if !stem.chars().all(|ch| ch.is_ascii_digit()) {
+            continue;
+        }
+        let Ok(number) = stem.parse::<usize>() else {
+            continue;
+        };
+        chapters.push(SourceImportChapter {
+            number,
+            content: fs::read_to_string(path)?,
+        });
+    }
+
+    chapters.sort_by_key(|chapter| chapter.number);
+    Ok(chapters)
+}
+
+fn import_project_manifest(title: &str, chapters: &[ImportedChapter]) -> serde_json::Value {
+    serde_json::json!({
+        "schema_version": 1,
+        "title": title,
+        "source_of_truth": "markdown",
+        "chapters": chapters.iter().map(|chapter| {
+            serde_json::json!({
+                "id": &chapter.id,
+                "title": &chapter.title,
+                "path": &chapter.target_path,
+                "order": chapter.order,
+            })
+        }).collect::<Vec<_>>()
+    })
+}
+
+fn import_memory_eval_config(chapters: &[ImportedChapter]) -> serde_json::Value {
+    let latest = chapters.last();
+    serde_json::json!({
+        "chapter_id": latest.map(|chapter| chapter.id.as_str()).unwrap_or("chapter-001"),
+        "budget_chars": 1200,
+        "minimum_gain": 0,
+        "expectations": [
+            {
+                "id": "import-l2-current-prose",
+                "description": "Imported project keeps the latest chapter prose available for continuation.",
+                "layer": "L2 风格",
+                "contains": ["当前章节原文", latest.map(|chapter| chapter.title.as_str()).unwrap_or("当前章节原文")]
+            },
+            {
+                "id": "import-l0-continuation-card",
+                "description": "Imported project exposes a continuation-state card for the next writing step.",
+                "layer": "L0 事实",
+                "contains": ["续写状态"],
+                "source_contains": ["codex/notes/continuation-state.md"],
+                "source_families": ["codex"]
+            }
+        ]
+    })
+}
+
+fn write_import_codex(
+    source_root: &Path,
+    output_root: &Path,
+    title: &str,
+    chapters: &[ImportedChapter],
+) -> Result<usize, ProjectError> {
+    let mut count = 0;
+    let known_markdown = [
+        (
+            "README.md",
+            "codex/notes/source-readme.md",
+            "note-source-readme",
+            "源项目说明",
+            "note",
+            vec!["源项目说明", "导入来源", "续写原则"],
+        ),
+        (
+            "bible.md",
+            "codex/world/bible.md",
+            "world-source-bible",
+            "小说 Bible",
+            "world",
+            vec!["小说 Bible", "核心设定", "角色", "势力", "能力", "卷结构"],
+        ),
+        (
+            "outline-first-30.md",
+            "codex/notes/outline-first-30.md",
+            "note-outline-first-30",
+            "前30章大纲",
+            "note",
+            vec!["前30章大纲", "前30章", "大纲", "节奏", "爽点"],
+        ),
+        (
+            "quality-check.md",
+            "codex/notes/quality-check.md",
+            "note-quality-check",
+            "质量检查",
+            "note",
+            vec!["质量检查", "续写", "爽点", "风险", "未解伏笔"],
+        ),
+    ];
+
+    for (file_name, target_path, id, name, card_type, keywords) in known_markdown {
+        let source_path = source_root.join(file_name);
+        if !source_path.is_file() {
+            continue;
+        }
+        write_import_file(
+            &output_root.join(target_path),
+            &codex_card(
+                id,
+                name,
+                card_type,
+                unique_strings([vec![name.to_string(), title.to_string()], strings(keywords)].concat()),
+                &fs::read_to_string(source_path)?,
+            ),
+        )?;
+        count += 1;
+    }
+
+    count += write_import_ledgers(source_root, output_root, title)?;
+    write_import_file(
+        &output_root.join("codex").join("notes").join("continuation-state.md"),
+        &continuation_state_card(title, chapters),
+    )?;
+    count += 1;
+
+    Ok(count)
+}
+
+fn write_import_ledgers(
+    source_root: &Path,
+    output_root: &Path,
+    title: &str,
+) -> Result<usize, ProjectError> {
+    let ledgers_root = source_root.join("ledgers");
+    if !ledgers_root.is_dir() {
+        return Ok(0);
+    }
+
+    let mut count = 0;
+    for entry in fs::read_dir(ledgers_root)? {
+        let entry = entry?;
+        if !entry.file_type()?.is_file() {
+            continue;
+        }
+        let path = entry.path();
+        let stem = path
+            .file_stem()
+            .and_then(|value| value.to_str())
+            .unwrap_or("ledger");
+        let label = import_ledger_label(stem);
+        let source = fs::read_to_string(&path)?;
+        let body = if path.extension().and_then(|value| value.to_str()) == Some("jsonl") {
+            jsonl_to_markdown(&source, &label)
+        } else {
+            source
+        };
+        write_import_file(
+            &output_root
+                .join("codex")
+                .join("ledgers")
+                .join(format!("{}.md", stem)),
+            &codex_card(
+                &format!("ledger-{}", slug_for_import(stem)),
+                &label,
+                "note",
+                ledger_keywords(stem, &label, title),
+                &body,
+            ),
+        )?;
+        count += 1;
+    }
+
+    Ok(count)
+}
+
+fn continuation_state_card(title: &str, chapters: &[ImportedChapter]) -> String {
+    let latest = chapters.last();
+    let next_order = latest.map(|chapter| chapter.order + 1).unwrap_or(1);
+    let latest_tail = latest
+        .map(|chapter| latest_chapter_tail(&chapter.content))
+        .unwrap_or_default();
+    let mut keywords = vec![
+        "续写状态".to_string(),
+        title.to_string(),
+        format!("第{}章", next_order),
+    ];
+    if let Some(chapter) = latest {
+        keywords.push(chapter.title.clone());
+    }
+    keywords.extend(code_terms(&latest_tail).into_iter().take(5));
+
+    codex_card(
+        "note-continuation-state",
+        "续写状态",
+        "note",
+        unique_strings(keywords),
+        &format!(
+            "# 续写状态\n\n- 当前已导入 {} 章。{}\n- 下一章建议从第 {} 章接续。\n{}\n## 最新章节末段锚点\n\n{}",
+            chapters.len(),
+            latest
+                .map(|chapter| format!("最新章节是《{}》。", chapter.title))
+                .unwrap_or_default(),
+            next_order,
+            latest
+                .map(|chapter| format!("- 最新章节路径：{}\n", chapter.target_path))
+                .unwrap_or_default(),
+            if latest_tail.is_empty() { "暂无。".to_string() } else { latest_tail }
+        ),
+    )
+}
+
+fn copy_import_source_references(source_root: &Path, output_root: &Path) -> Result<usize, ProjectError> {
+    let mut count = 0;
+    for entry in fs::read_dir(source_root)? {
+        let entry = entry?;
+        if !entry.file_type()?.is_file() {
+            continue;
+        }
+        let path = entry.path();
+        if path.extension().and_then(|value| value.to_str()) != Some("md") {
+            continue;
+        }
+        let Some(file_name) = path.file_name() else {
+            continue;
+        };
+        copy_import_file(&path, &output_root.join("references").join("source").join(file_name))?;
+        count += 1;
+    }
+
+    Ok(count)
+}
+
+fn copy_import_ledger_references(source_root: &Path, output_root: &Path) -> Result<usize, ProjectError> {
+    copy_import_reference_dir(source_root, output_root, "ledgers", "ledgers")
+}
+
+fn copy_import_upload_references(source_root: &Path, output_root: &Path) -> Result<(), ProjectError> {
+    copy_import_reference_dir(source_root, output_root, "upload", "upload")?;
+    Ok(())
+}
+
+fn copy_import_reference_dir(
+    source_root: &Path,
+    output_root: &Path,
+    source_dir: &str,
+    target_dir: &str,
+) -> Result<usize, ProjectError> {
+    let root = source_root.join(source_dir);
+    if !root.is_dir() {
+        return Ok(0);
+    }
+    let mut count = 0;
+    for entry in fs::read_dir(root)? {
+        let entry = entry?;
+        if !entry.file_type()?.is_file() {
+            continue;
+        }
+        let path = entry.path();
+        let Some(file_name) = path.file_name() else {
+            continue;
+        };
+        copy_import_file(&path, &output_root.join("references").join(target_dir).join(file_name))?;
+        count += 1;
+    }
+    Ok(count)
+}
+
+fn import_report_markdown(
+    source_root: &Path,
+    output_root: &Path,
+    title: &str,
+    chapters: &[ImportedChapter],
+    next_chapter_path: Option<&str>,
+    warnings: &[String],
+) -> String {
+    let latest = chapters.last();
+    let warning_section = if warnings.is_empty() {
+        String::new()
+    } else {
+        format!(
+            "\n## Warnings\n\n{}\n",
+            warnings
+                .iter()
+                .map(|warning| format!("- {}", warning))
+                .collect::<Vec<_>>()
+                .join("\n")
+        )
+    };
+
+    format!(
+        "# 导入说明\n\n- Source: {}\n- Output: {}\n- Title: {}\n- Imported chapters: {}\n- Chapter layout: generated under manuscript/volume-xxx while preserving order in meta/project.json.\n{}{}{}",
+        source_root.to_string_lossy(),
+        output_root.to_string_lossy(),
+        title,
+        chapters.len(),
+        latest
+            .map(|chapter| format!(
+                "- Latest chapter: {}\n- Latest chapter path: {}\n",
+                chapter.title, chapter.target_path
+            ))
+            .unwrap_or_default(),
+        next_chapter_path
+            .map(|path| format!("- Next continuation chapter path: {}\n", path))
+            .unwrap_or_default(),
+        warning_section
+    )
+}
+
+fn write_import_file(path: &Path, content: &str) -> Result<(), ProjectError> {
+    if let Some(parent) = path.parent() {
+        fs::create_dir_all(parent)?;
+    }
+    fs::write(path, content)?;
+    Ok(())
+}
+
+fn copy_import_file(source: &Path, target: &Path) -> Result<(), ProjectError> {
+    if let Some(parent) = target.parent() {
+        fs::create_dir_all(parent)?;
+    }
+    fs::copy(source, target)?;
+    Ok(())
+}
+
+fn infer_import_title(source_root: &Path) -> String {
+    if let Ok(readme) = fs::read_to_string(source_root.join("README.md")) {
+        if let Some(line) = readme.lines().find(|line| line.trim_start().starts_with('#')) {
+            let title = line
+                .trim_start_matches('#')
+                .trim()
+                .trim_start_matches('《')
+                .trim_end_matches('》')
+                .trim_end_matches("项目包")
+                .trim();
+            if !title.is_empty() {
+                return title.to_string();
+            }
+        }
+    }
+
+    source_root
+        .file_name()
+        .and_then(|value| value.to_str())
+        .unwrap_or("ImportedNovel")
+        .to_string()
+}
+
+fn infer_claimed_chapter_count(source_root: &Path) -> Option<usize> {
+    let readme = fs::read_to_string(source_root.join("README.md")).ok()?;
+    let mut numbers = Vec::new();
+    let mut current = String::new();
+    for ch in readme.chars() {
+        if ch.is_ascii_digit() {
+            current.push(ch);
+            continue;
+        }
+        if ch.is_whitespace() && !current.is_empty() {
+            continue;
+        }
+        if ch == '章' && !current.is_empty() {
+            if let Ok(value) = current.parse::<usize>() {
+                numbers.push(value);
+            }
+        }
+        current.clear();
+    }
+
+    numbers.into_iter().max()
+}
+
+fn manuscript_path_for_order(order: usize, chapters_per_volume: usize) -> String {
+    let volume = (order + chapters_per_volume - 1) / chapters_per_volume;
+    format!(
+        "manuscript/volume-{:03}/chapter-{:03}.md",
+        volume, order
+    )
+}
+
+fn markdown_title(content: &str, fallback: &str) -> String {
+    content
+        .lines()
+        .find(|line| line.trim_start().starts_with('#'))
+        .map(|line| line.trim().trim_start_matches('#').trim().to_string())
+        .filter(|line| !line.is_empty())
+        .unwrap_or_else(|| fallback.to_string())
+}
+
+fn latest_chapter_tail(content: &str) -> String {
+    let lines: Vec<_> = content
+        .lines()
+        .map(str::trim)
+        .filter(|line| !line.is_empty())
+        .collect();
+    let start = lines.len().saturating_sub(36);
+    lines[start..].join("\n")
+}
+
+fn code_terms(input: &str) -> Vec<String> {
+    let mut terms = Vec::new();
+    for raw in input.split(|ch: char| !ch.is_ascii_alphanumeric() && ch != '-') {
+        let token = raw.trim();
+        if token.len() >= 4 && token.chars().any(|ch| ch.is_ascii_uppercase()) {
+            terms.push(token.to_string());
+        }
+    }
+    unique_strings(terms)
+}
+
+fn import_ledger_label(stem: &str) -> String {
+    match stem {
+        "ability" => "能力账本".to_string(),
+        "facts" => "事实账本".to_string(),
+        "factions" => "势力账本".to_string(),
+        "promises" => "承诺账本".to_string(),
+        "relationships" => "关系账本".to_string(),
+        _ => format!("{} ledger", stem),
+    }
+}
+
+fn ledger_keywords(stem: &str, label: &str, title: &str) -> Vec<String> {
+    let base = match stem {
+        "ability" => vec!["能力", "能力账本", "风险线", "代价"],
+        "facts" => vec!["事实", "事实账本", "阶段性答案", "异常成立"],
+        "factions" => vec!["势力", "势力账本", "组织", "资源"],
+        "promises" => vec!["承诺", "承诺账本", "伏笔", "回收期"],
+        "relationships" => vec!["关系", "关系账本", "关系线", "信任"],
+        "timeline" => vec!["时间线", "时间线账本", "故事时间"],
+        "unresolved" => vec!["未解问题", "未解问题账本", "下一步"],
+        _ => vec![stem, label],
+    };
+    unique_strings([vec![label.to_string(), title.to_string()], strings(base)].concat())
+        .into_iter()
+        .take(8)
+        .collect()
+}
+
+fn jsonl_to_markdown(source: &str, title: &str) -> String {
+    let mut lines = Vec::new();
+    for line in source.lines().map(str::trim).filter(|line| !line.is_empty()) {
+        let rendered = serde_json::from_str::<serde_json::Value>(line)
+            .ok()
+            .and_then(|value| value.as_object().cloned())
+            .map(|object| {
+                object
+                    .iter()
+                    .map(|(key, value)| format!("{}: {}", key, render_import_json_value(value)))
+                    .collect::<Vec<_>>()
+                    .join("；")
+            })
+            .unwrap_or_else(|| line.to_string());
+        lines.push(format!("- {}", rendered));
+    }
+
+    format!("# {}\n\n{}\n", title, lines.join("\n"))
+}
+
+fn render_import_json_value(value: &serde_json::Value) -> String {
+    match value {
+        serde_json::Value::Array(items) => items
+            .iter()
+            .map(render_import_json_value)
+            .collect::<Vec<_>>()
+            .join("、"),
+        serde_json::Value::String(value) => value.clone(),
+        _ => value.to_string(),
+    }
+}
+
+fn codex_card(
+    id: &str,
+    name: &str,
+    card_type: &str,
+    keywords: Vec<String>,
+    body: &str,
+) -> String {
+    format!(
+        "---\nid: {}\nname: {}\ntype: {}\nkeywords: [{}]\n---\n\n{}\n",
+        yaml_string(id),
+        yaml_string(name),
+        yaml_string(card_type),
+        keywords
+            .iter()
+            .map(|value| yaml_string(value))
+            .collect::<Vec<_>>()
+            .join(", "),
+        body.trim()
+    )
+}
+
+fn yaml_string(value: &str) -> String {
+    serde_json::to_string(value).unwrap_or_else(|_| "\"\"".to_string())
+}
+
+fn slug_for_import(value: &str) -> String {
+    let ascii = value
+        .trim()
+        .to_lowercase()
+        .chars()
+        .map(|ch| if ch.is_ascii_alphanumeric() { ch } else { '-' })
+        .collect::<String>()
+        .trim_matches('-')
+        .to_string();
+
+    if !ascii.is_empty() {
+        return ascii;
+    }
+
+    value
+        .chars()
+        .map(|ch| format!("{:x}", ch as u32))
+        .collect::<Vec<_>>()
+        .join("-")
+}
+
+fn unique_strings(values: Vec<String>) -> Vec<String> {
+    let mut unique: Vec<String> = Vec::new();
+    for value in values {
+        let value = value.trim();
+        if value.is_empty() || unique.iter().any(|existing| existing.as_str() == value) {
+            continue;
+        }
+        unique.push(value.to_string());
+    }
+    unique
+}
+
+fn strings(values: Vec<&str>) -> Vec<String> {
+    values.into_iter().map(str::to_string).collect()
+}
+
 fn normalize_project_path(path: String) -> Result<PathBuf, ProjectError> {
     let root = PathBuf::from(path);
     if root.as_os_str().is_empty() {
@@ -1443,6 +2183,68 @@ mod tests {
         let query = normalize_fts_query("玄铁剑, 青灯誓：镜湖钥");
 
         assert_eq!(query, "\"玄铁剑\" OR \"镜湖钥\" OR \"青灯誓\"");
+    }
+
+    #[test]
+    fn import_existing_project_writes_checkable_continuation_project() {
+        let source = unique_test_project_root("import-source");
+        let output = unique_test_project_root("import-output");
+        fs::create_dir_all(source.join("chapters")).unwrap();
+        fs::create_dir_all(source.join("ledgers")).unwrap();
+        fs::write(
+            source.join("README.md"),
+            "# 《旧稿项目包》\n\n当前交付：前 2 章正文。\n",
+        )
+        .unwrap();
+        fs::write(source.join("chapters").join("001.md"), "# 第一章\n\n林砚被点名。").unwrap();
+        fs::write(source.join("chapters").join("002.md"), "# 第二章\n\n风险线落下。").unwrap();
+        fs::write(
+            source.join("chapters").join("003.md"),
+            "# 第三章 工印四号\n\n下一步路径指向 HOOK-03。",
+        )
+        .unwrap();
+        fs::write(
+            source.join("ledgers").join("promises.jsonl"),
+            "{\"chapter\":1,\"promise\":\"林砚要洗清嫌疑。\"}\n",
+        )
+        .unwrap();
+
+        let report = import_existing_project(
+            source.to_string_lossy().to_string(),
+            output.to_string_lossy().to_string(),
+            Some("我能看见风险".to_string()),
+            Some(2),
+        )
+        .unwrap();
+
+        assert_eq!(report.stats.chapters, 3);
+        assert_eq!(
+            report.latest_chapter.as_ref().map(|chapter| chapter.path.as_str()),
+            Some("manuscript/volume-002/chapter-003.md")
+        );
+        assert_eq!(
+            report.next_chapter_path.as_deref(),
+            Some("manuscript/volume-002/chapter-004.md")
+        );
+        assert!(report.warnings[0].contains("claims 2 chapters"));
+
+        let manifest = fs::read_to_string(output.join("meta").join("project.json")).unwrap();
+        assert!(manifest.contains("\"title\": \"我能看见风险\""));
+        assert!(manifest.contains("chapter-003"));
+
+        let continuation =
+            fs::read_to_string(output.join("codex").join("notes").join("continuation-state.md"))
+                .unwrap();
+        assert!(continuation.contains("续写状态"));
+        assert!(continuation.contains("HOOK-03"));
+        let import_report =
+            fs::read_to_string(output.join("references").join("import-report.md")).unwrap();
+        assert!(import_report.contains("Imported chapters: 3"));
+        assert!(import_report.contains("README claims 2 chapters"));
+        assert_eq!(list_chapters(output.to_string_lossy().to_string()).unwrap().len(), 3);
+
+        fs::remove_dir_all(source).unwrap();
+        fs::remove_dir_all(output).unwrap();
     }
 
     fn unique_test_project_root(name: &str) -> PathBuf {

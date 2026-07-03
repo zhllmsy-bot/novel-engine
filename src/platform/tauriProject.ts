@@ -37,6 +37,26 @@ export type ScannedProviderAdapterFile = {
   content: string
 }
 
+export type ImportedNovelProjectReport = {
+  path: string
+  source_path: string
+  title: string
+  latest_chapter?: {
+    id: string
+    title: string
+    path: string
+    order: number
+  }
+  next_chapter_path?: string
+  stats: {
+    chapters: number
+    codex_entries: number
+    source_markdown_files: number
+    raw_ledger_files: number
+  }
+  warnings: string[]
+}
+
 export type CachedChapterSummary = {
   chapter_id: string
   chapter_title: string
@@ -135,6 +155,20 @@ export type PlotThreadUpsert = CachedPlotThread
 
 export function createNovelProject(path: string, title: string) {
   return invoke<void>('create_novel_project', { path, title })
+}
+
+export function importExistingNovelProject(input: {
+  sourcePath: string
+  outputPath: string
+  title?: string
+  chaptersPerVolume?: number
+}) {
+  return invoke<ImportedNovelProjectReport>('import_existing_novel_project', {
+    sourcePath: input.sourcePath,
+    outputPath: input.outputPath,
+    title: input.title,
+    chaptersPerVolume: input.chaptersPerVolume,
+  })
 }
 
 export function initializeProjectCache(path: string) {
