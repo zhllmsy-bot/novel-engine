@@ -832,7 +832,10 @@ describe('narrative memory context builder', () => {
       layer: 'L3 意图',
       source: 'recall:chapter_summary:chapter-001',
     })
-    expect(recallMemory?.body).toContain('关联召回: 第001章 山门雨')
+    expect(recallMemory?.body).toContain(
+      '关联召回: 沈微第一次听见玄铁剑',
+    )
+    expect(recallMemory?.body).toContain('来源: 第001章 山门雨')
     expect(recallMemory?.body).toContain('命中关键词: 李长老、玄铁剑')
   })
 
@@ -893,7 +896,92 @@ describe('narrative memory context builder', () => {
       plan.memories.find(
         (memory) => memory.source === 'recall:chapter_summary:chapter-001',
       )?.body,
-    ).toContain('关联召回')
+    ).toContain('关联召回: 沈微第一次')
+  })
+
+  it('prioritizes concrete rule summaries over nearer generic summary recalls', () => {
+    const chapter = {
+      id: 'chapter-012',
+      title: '第012章 残光临门',
+      status: '编辑中' as const,
+      path: 'manuscript/chapter-012.md',
+      order: 12,
+      content: '倒置罗盘压在真北铁上，阿照想起石旁小字。',
+      wordCount: 0,
+    }
+    const projectChapters = [
+      {
+        ...chapter,
+        id: 'chapter-005',
+        title: '第005章 墓心小字',
+        path: 'manuscript/chapter-005.md',
+        order: 5,
+      },
+      {
+        ...chapter,
+        id: 'chapter-008',
+        title: '第008章 铁墙试针',
+        path: 'manuscript/chapter-008.md',
+        order: 8,
+      },
+      chapter,
+    ]
+    const plan = buildNarrativeMemoryPlan({
+      chapter,
+      projectChapters,
+      documentText: chapter.content,
+      codexEntries: [
+        {
+          id: 'item-inverted-compass',
+          name: '倒置罗盘',
+          type: 'item',
+          path: 'codex/items/inverted-compass.md',
+          keywords: ['倒置罗盘', '真北铁', '石旁小字'],
+          body: '倒置罗盘的具体用法藏在正文规则里。',
+          frontmatter: {},
+          currentState: {},
+        },
+      ],
+      chapterSummaries: [
+        {
+          chapterId: 'chapter-005',
+          chapterTitle: '第005章 墓心小字',
+          summary: '规则: 针尾指的才是生门；会把针背向真正的缺口；只有反握罗盘。倒置罗盘遇见真北铁时必须按石旁小字行动。',
+          keyEvents: ['针尾指的才是生门；会把针背向真正的缺口；只有反握罗盘。'],
+          charactersInvolved: [],
+          sourceHash: 'rule',
+          isEdited: false,
+          updatedAt: '2026-06-25T00:00:00.000Z',
+        },
+        {
+          chapterId: 'chapter-008',
+          chapterTitle: '第008章 铁墙试针',
+          summary: '倒置罗盘和真北铁再次出现，阿照看见石旁小字的影子，不要被最亮裂缝牵着走。',
+          keyEvents: ['不要被最亮裂缝牵着走。'],
+          charactersInvolved: [],
+          sourceHash: 'generic',
+          isEdited: false,
+          updatedAt: '2026-06-25T00:00:00.000Z',
+        },
+      ],
+      projectTitle: '回环墓',
+      budgetChars: 900,
+    })
+    const ruleRecallEntry = plan.audit.entries.find(
+      (entry) => entry.source === 'recall:chapter_summary:chapter-005',
+    )
+    const genericRecallEntry = plan.audit.entries.find(
+      (entry) => entry.source === 'recall:chapter_summary:chapter-008',
+    )
+
+    expect(ruleRecallEntry?.priority).toBeGreaterThan(
+      genericRecallEntry?.priority || 0,
+    )
+    expect(
+      plan.memories.some(
+        (memory) => memory.source === 'recall:chapter_summary:chapter-005',
+      ),
+    ).toBe(true)
   })
 
   it('includes indexed desktop search results as concrete L3 recall memory', () => {

@@ -476,11 +476,15 @@ function buildRecallMemories(
         Number.isFinite(currentOrder) && Number.isFinite(summaryOrder)
           ? Math.max(0, 12 - Math.max(0, currentOrder - summaryOrder))
           : 0
-      const boost = 12 + match.keywords.length * 8 + recencyBoost
+      const boost =
+        12 +
+        match.keywords.length * 8 +
+        recencyBoost +
+        concreteRuleSignalBoost(match.summary)
 
       const memory: WeightedMemory = {
         layer: 'L3 意图',
-        body: `关联召回: ${match.summary.chapterTitle}: ${match.summary.summary} 命中关键词: ${match.keywords.join('、')}`,
+        body: `关联召回: ${match.summary.summary} 来源: ${match.summary.chapterTitle} 命中关键词: ${match.keywords.join('、')}`,
         source: `recall:chapter_summary:${match.summary.chapterId}`,
         priority: getMemoryLayerPriority('L3 意图', boost),
       }
@@ -727,6 +731,18 @@ function volumeSummaryCoversGroup(
 function compactSummarySignal(summary: ChapterSummary) {
   const signal = summary.keyEvents.find(Boolean) || summary.summary
   return limitText(signal, 48)
+}
+
+function concreteRuleSignalBoost(summary: ChapterSummary) {
+  const signalText = [summary.summary, ...summary.keyEvents].join('\n')
+  const matches = [
+    /(只有|才是)/,
+    /(必须|不能|不要|千万别|绝不)/,
+    /(真正|正确|错误|缺口|生门|出口|方向)/,
+    /(反握|针尾|针背|钥|令|誓言|用法)/,
+  ].filter((pattern) => pattern.test(signalText)).length
+
+  return Math.min(16, matches * 4)
 }
 
 function pickCompressionSignals(signals: string[]) {

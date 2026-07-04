@@ -95,7 +95,9 @@ export function createMemoryChapterSummaryStore(
 export function generateLocalChapterSummary(
   input: GenerateChapterSummaryInput,
 ): ChapterSummary {
-  const keyEvents = selectKeyEventSentences(input.content, input.codexEntries)
+  const keyEvents = prioritizeCausalRuleEvents(
+    selectKeyEventSentences(input.content, input.codexEntries),
+  )
   const charactersInvolved = input.codexEntries
     .filter((entry) =>
       [entry.name, ...entry.keywords].some((keyword) =>
@@ -160,6 +162,32 @@ function selectKeyEventSentences(content: string, codexEntries: CodexEntry[]) {
     .map((index) => sentences[index])
 }
 
+function prioritizeCausalRuleEvents(events: string[]) {
+  const uniqueEvents = uniqueStrings(events)
+  const ruleEvent = uniqueEvents
+    .map((event, index) => ({
+      event,
+      index,
+      score: scoreCausalRuleEvent(event),
+    }))
+    .filter((candidate) => candidate.score > 0)
+    .toSorted((left, right) => right.score - left.score || left.index - right.index)
+    .at(0)?.event
+
+  if (!ruleEvent) {
+    return uniqueEvents
+  }
+
+  const compactRule = compactCausalRuleEvent(ruleEvent)
+  const prioritizedRule =
+    compactRule === ruleEvent ? ruleEvent : `${compactRule} ${ruleEvent}`
+
+  return [
+    prioritizedRule,
+    ...uniqueEvents.filter((event) => event !== ruleEvent),
+  ]
+}
+
 function scoreSummarySentence(
   sentence: string,
   index: number,
@@ -194,6 +222,47 @@ function scoreSummarySentence(
   return score
 }
 
+function scoreCausalRuleEvent(sentence: string) {
+  let score = 0
+
+  if (/(规则|用法|写着|提醒|警告|要求|命令|承诺|誓言)/.test(sentence)) {
+    score += 2
+  }
+  if (/(如果|若|只有|才是|必须|不能|不要|千万别|绝不)/.test(sentence)) {
+    score += 3
+  }
+  if (/(真正|正确|错误|显眼|最亮|最急|缺口|生门|方向|出口)/.test(sentence)) {
+    score += 2
+  }
+  if (/(会把|会让|导致|否则|免得|为此|所以|因为)/.test(sentence)) {
+    score += 1
+  }
+
+  return score
+}
+
+function compactCausalRuleEvent(sentence: string) {
+  const clauses = sentence
+    .split(/[，,；;。！？!?：:]/)
+    .map((clause) => clause.trim())
+    .filter(Boolean)
+  const ruleClauses = clauses
+    .map((clause, index) => ({
+      clause,
+      index,
+      score: scoreCausalRuleEvent(clause),
+    }))
+    .filter((candidate) => candidate.score >= 3)
+    .toSorted((left, right) => right.score - left.score || left.index - right.index)
+    .map((candidate) => candidate.clause)
+
+  if (ruleClauses.length === 0) {
+    return sentence
+  }
+
+  return `${uniqueStrings(ruleClauses).slice(0, 3).join('；')}。`
+}
+
 function buildStructuredSummary(keyEvents: string[]) {
   const events = uniqueStrings(keyEvents.map((event) => event.trim()).filter(Boolean))
   if (events.length === 0) {
@@ -204,9 +273,13 @@ function buildStructuredSummary(keyEvents: string[]) {
     return events[0]
   }
 
-  const opening = events[0]
-  const ending = events.at(-1) || opening
-  const middleEvents = events.slice(1, -1)
+  const primaryRule = events.find((event) => scoreCausalRuleEvent(event) > 0)
+  const progressionEvents = primaryRule
+    ? events.filter((event) => event !== primaryRule)
+    : events
+  const opening = progressionEvents[0] || primaryRule || events[0]
+  const ending = progressionEvents.at(-1) || opening
+  const middleEvents = progressionEvents.slice(1, -1)
   const pivot =
     middleEvents.find((event) => /(因为|所以|于是|随后|却|但|然而|发现|意识到|决定|结果|最终)/.test(event)) ||
     middleEvents[0]
@@ -219,7 +292,8 @@ function buildStructuredSummary(keyEvents: string[]) {
         ),
       ) || undefined
 
-  const parts = [`起因: ${opening}`]
+  const parts = primaryRule ? [`规则: ${primaryRule}`] : []
+  parts.push(`起因: ${opening}`)
 
   if (pivot && pivot !== opening && pivot !== ending) {
     parts.push(`推进: ${pivot}`)

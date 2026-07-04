@@ -59,10 +59,55 @@ describe('chapter summary store', () => {
 
     expect(summary.summary).toContain('赤羽令')
     expect(summary.summary).toContain('暗河司')
+    expect(summary.summary).toContain('规则:')
     expect(summary.summary).toContain('起因:')
     expect(summary.summary).toContain('结果:')
-    expect(summary.keyEvents.at(-1)).toContain('绝不能交给暗河司')
+    expect(summary.keyEvents[0]).toContain('绝不能交给暗河司')
     expect(summary.charactersInvolved).toEqual(['item-red-feather-token'])
+  })
+
+  it('front-loads operational causal rules so budgeted prompts keep them', () => {
+    const chapter: ProjectChapter = {
+      id: 'chapter-compass-rule',
+      title: '第005章 墓心小字',
+      status: '编辑中',
+      path: 'manuscript/chapter-compass-rule.md',
+      order: 5,
+      content: '',
+      wordCount: 0,
+    }
+    const codexEntries: CodexEntry[] = [
+      {
+        id: 'item-inverted-compass',
+        name: '倒置罗盘',
+        type: 'item',
+        path: 'codex/items/inverted-compass.md',
+        keywords: ['倒置罗盘', '真北铁', '罗盘'],
+        body: '倒置罗盘会被真北铁触发反向规则。',
+        frontmatter: {},
+        currentState: {},
+      },
+    ]
+    const content = [
+      '# 第005章 墓心小字',
+      '',
+      '墓心中段嵌着一块真北铁，阿照把倒置罗盘放上去时，针尖猛地偏向一面没有门缝的墙。',
+      '石旁小字写着：倒置罗盘遇见真北铁，会把针背向真正的缺口；只有反握罗盘，针尾指的才是生门。',
+      '阿照把这句话抄在灯绳背面，又提醒众人如果后面再见真北铁，千万别顺着最显眼的那一端走。',
+    ].join('\n')
+    const store = createMemoryChapterSummaryStore()
+    const summary = store.upsertGeneratedSummary({
+      chapter,
+      content,
+      codexEntries,
+    })
+
+    expect(summary.keyEvents[0]).toContain('针尾指的才是生门')
+    expect(summary.summary.startsWith('规则:')).toBe(true)
+    expect(summary.summary).toContain('反握罗盘')
+    expect(summary.summary.indexOf('针尾指的才是生门')).toBeLessThan(
+      summary.summary.indexOf('墓心中段嵌着一块真北铁'),
+    )
   })
 
   it('builds a structured fallback summary that preserves causal progression', () => {

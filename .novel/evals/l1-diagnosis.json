@@ -22,14 +22,14 @@
     "positiveCriteria": 30,
     "localSummaryHits": 30,
     "causalSummaryHits": 30,
-    "localPromptHits": 25,
+    "localPromptHits": 30,
     "causalPromptHits": 30,
     "baselinePromptLeaks": 18,
     "recentFillPromptLeaks": 21,
     "classifications": {
-      "covered-by-local": 25,
+      "covered-by-local": 30,
       "local-l1-summary-gap": 0,
-      "four-layer-budget-or-ranking-gap": 5,
+      "four-layer-budget-or-ranking-gap": 0,
       "causal-fixture-missing-coverage": 0,
       "no-positive-criteria": 0
     }
@@ -213,7 +213,7 @@
         "codex/characters/linqiu.md",
         "codex/items/white-tail-kite.md",
         "meta/project.json",
-        "recall:chapter_summary:chapter-007",
+        "recall:chapter_summary:chapter-006",
         "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008"
       ],
       "errors": []
@@ -354,10 +354,10 @@
             "针尾指的才是生门",
             "针背向真正的缺口"
           ],
-          "classification": "four-layer-budget-or-ranking-gap",
+          "classification": "covered-by-local",
           "localSummaryCovered": true,
           "causalSummaryCovered": true,
-          "localPromptCovered": false,
+          "localPromptCovered": true,
           "causalPromptCovered": true,
           "baselinePromptCovered": false,
           "recentFillPromptCovered": false
@@ -409,10 +409,10 @@
             "针尾指的才是生门",
             "针背向真正的缺口"
           ],
-          "classification": "four-layer-budget-or-ranking-gap",
+          "classification": "covered-by-local",
           "localSummaryCovered": true,
           "causalSummaryCovered": true,
-          "localPromptCovered": false,
+          "localPromptCovered": true,
           "causalPromptCovered": true,
           "baselinePromptCovered": false,
           "recentFillPromptCovered": false
@@ -464,10 +464,10 @@
             "针尾指的才是生门",
             "针背向真正的缺口"
           ],
-          "classification": "four-layer-budget-or-ranking-gap",
+          "classification": "covered-by-local",
           "localSummaryCovered": true,
           "causalSummaryCovered": true,
-          "localPromptCovered": false,
+          "localPromptCovered": true,
           "causalPromptCovered": true,
           "baselinePromptCovered": false,
           "recentFillPromptCovered": false
@@ -521,10 +521,10 @@
             "针尾指的才是生门",
             "针背向真正的缺口"
           ],
-          "classification": "four-layer-budget-or-ranking-gap",
+          "classification": "covered-by-local",
           "localSummaryCovered": true,
           "causalSummaryCovered": true,
-          "localPromptCovered": false,
+          "localPromptCovered": true,
           "causalPromptCovered": true,
           "baselinePromptCovered": false,
           "recentFillPromptCovered": false
@@ -578,10 +578,10 @@
             "针尾指的才是生门",
             "针背向真正的缺口"
           ],
-          "classification": "four-layer-budget-or-ranking-gap",
+          "classification": "covered-by-local",
           "localSummaryCovered": true,
           "causalSummaryCovered": true,
-          "localPromptCovered": false,
+          "localPromptCovered": true,
           "causalPromptCovered": true,
           "baselinePromptCovered": false,
           "recentFillPromptCovered": false
@@ -608,7 +608,7 @@
         "codex/characters/azhao.md",
         "codex/items/inverted-compass.md",
         "meta/project.json",
-        "recall:chapter_summary:chapter-008",
+        "recall:chapter_summary:chapter-005",
         "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010,chapter-011,chapter-012"
       ],
       "causalFourLayerSources": [
@@ -926,7 +926,7 @@
         "codex/characters/menghui.md",
         "codex/factions/nightwatch-office.md",
         "meta/project.json",
-        "recall:chapter_summary:chapter-002",
+        "recall:chapter_summary:chapter-008",
         "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010"
       ],
       "errors": []
