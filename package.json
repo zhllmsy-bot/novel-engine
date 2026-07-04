@@ -14,6 +14,7 @@
     "generation:a0": "node --experimental-strip-types tools/generation-a0.ts",
     "generation:eval": "node --experimental-strip-types tools/generation-eval.ts",
     "generation:eval:long": "node --experimental-strip-types tools/generation-eval.ts examples/long-memory-benchmark",
+    "generation:l1-diagnose": "node --experimental-strip-types tools/generation-l1-diagnose.ts",
     "generation:kappa": "node --experimental-strip-types tools/judge-kappa.ts",
     "lint": "oxlint",
     "memory:eval": "node --experimental-strip-types tools/memory-eval.ts",

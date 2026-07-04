@@ -56,6 +56,13 @@ npm run generation:eval -- --dry-run \
   --archive-dir .novel/evals/suite-dry-run
 ```
 
+Diagnose whether local L1 summaries preserve the same positive callback and
+setting signals as A0 causal fixtures before spending provider tokens:
+
+```bash
+npm run generation:l1-diagnose -- --out .novel/evals/l1-diagnosis.json
+```
+
 Use `--json` for machine-readable console output. Use `--archive-dir` for the
 real deliverable: prompt, output, score, guard, structure-metric, summary,
 `human-review.csv`, and `judge-review-prompts.jsonl` files that can be reviewed
@@ -91,6 +98,7 @@ is the final Phase 0 decision.
       coverage in prompt context.
 - [x] Add position-swapped judge prompts that compare outputs without seeing
       arm labels.
+- [x] Add local-vs-causal L1 diagnosis for A0 summary quality follow-up.
 - [ ] Add promptfoo wrapper config around the reusable guards/metrics once the
       local harness has enough benchmark projects.
 - [x] Add at least two more benchmark corpora with different failure modes:

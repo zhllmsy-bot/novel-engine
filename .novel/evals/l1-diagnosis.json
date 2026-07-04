@@ -1,0 +1,936 @@
+{
+  "ok": true,
+  "benchmarkProjects": [
+    "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/cross-volume-consistency-benchmark",
+    "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/delayed-payoff-benchmark",
+    "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/long-memory-benchmark",
+    "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/lost-in-middle-benchmark",
+    "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/state-drift-benchmark"
+  ],
+  "analyzedCases": 15,
+  "skippedProjects": [
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/cross-volume-consistency-benchmark",
+      "reason": "missing-causal-fixture"
+    },
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/long-memory-benchmark",
+      "reason": "missing-causal-fixture"
+    }
+  ],
+  "aggregate": {
+    "positiveCriteria": 30,
+    "localSummaryHits": 30,
+    "causalSummaryHits": 30,
+    "localPromptHits": 25,
+    "causalPromptHits": 30,
+    "baselinePromptLeaks": 18,
+    "recentFillPromptLeaks": 21,
+    "classifications": {
+      "covered-by-local": 25,
+      "local-l1-summary-gap": 0,
+      "four-layer-budget-or-ranking-gap": 5,
+      "causal-fixture-missing-coverage": 0,
+      "no-positive-criteria": 0
+    }
+  },
+  "cases": [
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/delayed-payoff-benchmark",
+      "title": "纸鸢旧约",
+      "caseId": "rivergate-answer",
+      "chapterId": "chapter-006",
+      "criteria": [
+        {
+          "criterionId": "callback-paper-kite-promise",
+          "category": "callback",
+          "expected": [
+            "我就回来",
+            "回来见你",
+            "跟着风回来",
+            "那句话我没忘",
+            "纸鸢一到河闸"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": false,
+          "recentFillPromptCovered": true
+        },
+        {
+          "criterionId": "setting-linqiu-reunion",
+          "category": "setting",
+          "expected": [
+            "林秋",
+            "等你的人",
+            "回来见你"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        }
+      ],
+      "localFourLayerSources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md",
+        "codex/characters/liuqi.md",
+        "codex/characters/linqiu.md",
+        "codex/items/white-tail-kite.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-001",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006"
+      ],
+      "causalFourLayerSources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md",
+        "codex/characters/liuqi.md",
+        "codex/characters/linqiu.md",
+        "codex/items/white-tail-kite.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-001",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006"
+      ],
+      "errors": []
+    },
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/delayed-payoff-benchmark",
+      "title": "纸鸢旧约",
+      "caseId": "south-canal-vow",
+      "chapterId": "chapter-007",
+      "criteria": [
+        {
+          "criterionId": "callback-paper-kite-promise",
+          "category": "callback",
+          "expected": [
+            "我就回来",
+            "回来见你",
+            "跟着风回来",
+            "那句话我没忘",
+            "纸鸢一到河闸"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": false,
+          "recentFillPromptCovered": false
+        },
+        {
+          "criterionId": "setting-linqiu-reunion",
+          "category": "setting",
+          "expected": [
+            "林秋",
+            "等你的人",
+            "回来见你"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        }
+      ],
+      "localFourLayerSources": [
+        "manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md",
+        "codex/characters/liuqi.md",
+        "codex/characters/linqiu.md",
+        "codex/items/white-tail-kite.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-006",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007"
+      ],
+      "causalFourLayerSources": [
+        "manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md",
+        "codex/characters/liuqi.md",
+        "codex/characters/linqiu.md",
+        "codex/items/white-tail-kite.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-006",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007"
+      ],
+      "errors": []
+    },
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/delayed-payoff-benchmark",
+      "title": "纸鸢旧约",
+      "caseId": "ledger-token",
+      "chapterId": "chapter-008",
+      "criteria": [
+        {
+          "criterionId": "callback-paper-kite-promise",
+          "category": "callback",
+          "expected": [
+            "我就回来",
+            "回来见你",
+            "跟着风回来",
+            "那句话我没忘",
+            "纸鸢一到河闸"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": false,
+          "recentFillPromptCovered": false
+        },
+        {
+          "criterionId": "setting-linqiu-reunion",
+          "category": "setting",
+          "expected": [
+            "林秋",
+            "等你的人",
+            "回来见你"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        }
+      ],
+      "localFourLayerSources": [
+        "manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-006.md,manuscript/volume-003/chapter-007.md",
+        "codex/characters/liuqi.md",
+        "codex/characters/linqiu.md",
+        "codex/items/white-tail-kite.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-007",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008"
+      ],
+      "causalFourLayerSources": [
+        "manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-006.md,manuscript/volume-003/chapter-007.md",
+        "codex/characters/liuqi.md",
+        "codex/characters/linqiu.md",
+        "codex/items/white-tail-kite.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-007",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008"
+      ],
+      "errors": []
+    },
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/delayed-payoff-benchmark",
+      "title": "纸鸢旧约",
+      "caseId": "flood-marker",
+      "chapterId": "chapter-009",
+      "criteria": [
+        {
+          "criterionId": "callback-paper-kite-promise",
+          "category": "callback",
+          "expected": [
+            "我就回来",
+            "回来见你",
+            "跟着风回来",
+            "那句话我没忘",
+            "纸鸢一到河闸"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": false,
+          "recentFillPromptCovered": false
+        },
+        {
+          "criterionId": "setting-linqiu-reunion",
+          "category": "setting",
+          "expected": [
+            "林秋",
+            "等你的人",
+            "回来见你"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        }
+      ],
+      "localFourLayerSources": [
+        "manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-007.md,manuscript/volume-003/chapter-008.md",
+        "codex/characters/liuqi.md",
+        "codex/characters/linqiu.md",
+        "codex/items/white-tail-kite.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-006",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009"
+      ],
+      "causalFourLayerSources": [
+        "manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-007.md,manuscript/volume-003/chapter-008.md",
+        "codex/characters/liuqi.md",
+        "codex/characters/linqiu.md",
+        "codex/items/white-tail-kite.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-006",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009"
+      ],
+      "errors": []
+    },
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/delayed-payoff-benchmark",
+      "title": "纸鸢旧约",
+      "caseId": "wind-return",
+      "chapterId": "chapter-010",
+      "criteria": [
+        {
+          "criterionId": "callback-paper-kite-promise",
+          "category": "callback",
+          "expected": [
+            "我就回来",
+            "回来见你",
+            "跟着风回来",
+            "那句话我没忘",
+            "纸鸢一到河闸"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": false,
+          "recentFillPromptCovered": false
+        },
+        {
+          "criterionId": "setting-linqiu-reunion",
+          "category": "setting",
+          "expected": [
+            "林秋",
+            "等你的人",
+            "回来见你"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        }
+      ],
+      "localFourLayerSources": [
+        "manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md",
+        "codex/characters/liuqi.md",
+        "codex/characters/linqiu.md",
+        "codex/items/white-tail-kite.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-006",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010"
+      ],
+      "causalFourLayerSources": [
+        "manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md",
+        "codex/characters/liuqi.md",
+        "codex/characters/linqiu.md",
+        "codex/items/white-tail-kite.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-006",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010"
+      ],
+      "errors": []
+    },
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/lost-in-middle-benchmark",
+      "title": "回环墓中段",
+      "caseId": "iron-wall-needle",
+      "chapterId": "chapter-008",
+      "criteria": [
+        {
+          "criterionId": "callback-middle-compass-rule",
+          "category": "callback",
+          "expected": [
+            "反握罗盘",
+            "针尾指的才是生门",
+            "针背向真正的缺口"
+          ],
+          "classification": "four-layer-budget-or-ranking-gap",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": false,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": false,
+          "recentFillPromptCovered": false
+        },
+        {
+          "criterionId": "setting-compass-and-iron",
+          "category": "setting",
+          "expected": [
+            "倒置罗盘",
+            "真北铁",
+            "生门"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        }
+      ],
+      "localFourLayerSources": [
+        "manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-007.md",
+        "codex/characters/azhao.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-005",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008"
+      ],
+      "causalFourLayerSources": [
+        "manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-007.md",
+        "codex/characters/azhao.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-005",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008"
+      ],
+      "errors": []
+    },
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/lost-in-middle-benchmark",
+      "title": "回环墓中段",
+      "caseId": "blind-corridor-echo",
+      "chapterId": "chapter-009",
+      "criteria": [
+        {
+          "criterionId": "callback-middle-compass-rule",
+          "category": "callback",
+          "expected": [
+            "反握罗盘",
+            "针尾指的才是生门",
+            "针背向真正的缺口"
+          ],
+          "classification": "four-layer-budget-or-ranking-gap",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": false,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": false,
+          "recentFillPromptCovered": false
+        },
+        {
+          "criterionId": "setting-compass-and-iron",
+          "category": "setting",
+          "expected": [
+            "倒置罗盘",
+            "真北铁",
+            "生门"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        }
+      ],
+      "localFourLayerSources": [
+        "manuscript/volume-003/chapter-009.md,manuscript/volume-002/chapter-007.md,manuscript/volume-003/chapter-008.md",
+        "codex/characters/azhao.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-005",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009"
+      ],
+      "causalFourLayerSources": [
+        "manuscript/volume-003/chapter-009.md,manuscript/volume-002/chapter-007.md,manuscript/volume-003/chapter-008.md",
+        "codex/characters/azhao.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-005",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009"
+      ],
+      "errors": []
+    },
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/lost-in-middle-benchmark",
+      "title": "回环墓中段",
+      "caseId": "stone-room-turn",
+      "chapterId": "chapter-010",
+      "criteria": [
+        {
+          "criterionId": "callback-middle-compass-rule",
+          "category": "callback",
+          "expected": [
+            "反握罗盘",
+            "针尾指的才是生门",
+            "针背向真正的缺口"
+          ],
+          "classification": "four-layer-budget-or-ranking-gap",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": false,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": false,
+          "recentFillPromptCovered": false
+        },
+        {
+          "criterionId": "setting-compass-and-iron",
+          "category": "setting",
+          "expected": [
+            "倒置罗盘",
+            "真北铁",
+            "生门"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        }
+      ],
+      "localFourLayerSources": [
+        "manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md",
+        "codex/characters/azhao.md",
+        "codex/items/inverted-compass.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-005",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010"
+      ],
+      "causalFourLayerSources": [
+        "manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md",
+        "codex/characters/azhao.md",
+        "codex/items/inverted-compass.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-005",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010"
+      ],
+      "errors": []
+    },
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/lost-in-middle-benchmark",
+      "title": "回环墓中段",
+      "caseId": "black-step-gate",
+      "chapterId": "chapter-011",
+      "criteria": [
+        {
+          "criterionId": "callback-middle-compass-rule",
+          "category": "callback",
+          "expected": [
+            "反握罗盘",
+            "针尾指的才是生门",
+            "针背向真正的缺口"
+          ],
+          "classification": "four-layer-budget-or-ranking-gap",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": false,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": false,
+          "recentFillPromptCovered": false
+        },
+        {
+          "criterionId": "setting-compass-and-iron",
+          "category": "setting",
+          "expected": [
+            "倒置罗盘",
+            "真北铁",
+            "生门"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        }
+      ],
+      "localFourLayerSources": [
+        "manuscript/volume-003/chapter-011.md,manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-010.md",
+        "codex/characters/azhao.md",
+        "codex/items/inverted-compass.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-005",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010,chapter-011"
+      ],
+      "causalFourLayerSources": [
+        "manuscript/volume-003/chapter-011.md,manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-010.md",
+        "codex/characters/azhao.md",
+        "codex/items/inverted-compass.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-005",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010,chapter-011"
+      ],
+      "errors": []
+    },
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/lost-in-middle-benchmark",
+      "title": "回环墓中段",
+      "caseId": "tail-light-exit",
+      "chapterId": "chapter-012",
+      "criteria": [
+        {
+          "criterionId": "callback-middle-compass-rule",
+          "category": "callback",
+          "expected": [
+            "反握罗盘",
+            "针尾指的才是生门",
+            "针背向真正的缺口"
+          ],
+          "classification": "four-layer-budget-or-ranking-gap",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": false,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": false,
+          "recentFillPromptCovered": false
+        },
+        {
+          "criterionId": "setting-compass-and-iron",
+          "category": "setting",
+          "expected": [
+            "倒置罗盘",
+            "真北铁",
+            "生门"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        }
+      ],
+      "localFourLayerSources": [
+        "manuscript/volume-003/chapter-012.md,manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-011.md",
+        "codex/characters/azhao.md",
+        "codex/items/inverted-compass.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-008",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010,chapter-011,chapter-012"
+      ],
+      "causalFourLayerSources": [
+        "manuscript/volume-003/chapter-012.md,manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-011.md",
+        "codex/characters/azhao.md",
+        "codex/items/inverted-compass.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-005",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010,chapter-011,chapter-012"
+      ],
+      "errors": []
+    },
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/state-drift-benchmark",
+      "title": "霜桥逆火",
+      "caseId": "frostbridge-stand",
+      "chapterId": "chapter-006",
+      "criteria": [
+        {
+          "criterionId": "callback-state-turn",
+          "category": "callback",
+          "expected": [
+            "不再退",
+            "不再退让",
+            "挡在迟雁前",
+            "把迟雁留在身后",
+            "先从我面前过",
+            "这一次我不退"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        },
+        {
+          "criterionId": "setting-chiyan-protection",
+          "category": "setting",
+          "expected": [
+            "迟雁",
+            "替迟雁",
+            "护住迟雁"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        }
+      ],
+      "localFourLayerSources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md",
+        "codex/characters/menghui.md",
+        "codex/characters/chiyan.md",
+        "codex/factions/nightwatch-office.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-005",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006"
+      ],
+      "causalFourLayerSources": [
+        "manuscript/volume-002/chapter-006.md,manuscript/volume-002/chapter-004.md,manuscript/volume-002/chapter-005.md",
+        "codex/characters/menghui.md",
+        "codex/characters/chiyan.md",
+        "codex/factions/nightwatch-office.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-005",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006"
+      ],
+      "errors": []
+    },
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/state-drift-benchmark",
+      "title": "霜桥逆火",
+      "caseId": "snow-inn-name",
+      "chapterId": "chapter-007",
+      "criteria": [
+        {
+          "criterionId": "callback-state-turn",
+          "category": "callback",
+          "expected": [
+            "不再退",
+            "不再退让",
+            "挡在迟雁前",
+            "把迟雁留在身后",
+            "先从我面前过",
+            "这一次我不退"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": false,
+          "recentFillPromptCovered": true
+        },
+        {
+          "criterionId": "setting-chiyan-protection",
+          "category": "setting",
+          "expected": [
+            "迟雁",
+            "替迟雁",
+            "护住迟雁"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        }
+      ],
+      "localFourLayerSources": [
+        "manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md",
+        "codex/characters/menghui.md",
+        "codex/characters/chiyan.md",
+        "codex/factions/nightwatch-office.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-002",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007"
+      ],
+      "causalFourLayerSources": [
+        "manuscript/volume-003/chapter-007.md,manuscript/volume-002/chapter-005.md,manuscript/volume-002/chapter-006.md",
+        "codex/characters/menghui.md",
+        "codex/characters/chiyan.md",
+        "codex/factions/nightwatch-office.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-002",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007"
+      ],
+      "errors": []
+    },
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/state-drift-benchmark",
+      "title": "霜桥逆火",
+      "caseId": "charcoal-alley-proof",
+      "chapterId": "chapter-008",
+      "criteria": [
+        {
+          "criterionId": "callback-state-turn",
+          "category": "callback",
+          "expected": [
+            "不再退",
+            "不再退让",
+            "挡在迟雁前",
+            "把迟雁留在身后",
+            "先从我面前过",
+            "这一次我不退"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": false,
+          "recentFillPromptCovered": true
+        },
+        {
+          "criterionId": "setting-chiyan-protection",
+          "category": "setting",
+          "expected": [
+            "迟雁",
+            "替迟雁",
+            "护住迟雁"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        }
+      ],
+      "localFourLayerSources": [
+        "manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-006.md,manuscript/volume-003/chapter-007.md",
+        "codex/characters/chiyan.md",
+        "codex/characters/menghui.md",
+        "codex/factions/nightwatch-office.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-002",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008"
+      ],
+      "causalFourLayerSources": [
+        "manuscript/volume-003/chapter-008.md,manuscript/volume-002/chapter-006.md,manuscript/volume-003/chapter-007.md",
+        "codex/characters/chiyan.md",
+        "codex/characters/menghui.md",
+        "codex/factions/nightwatch-office.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-002",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008"
+      ],
+      "errors": []
+    },
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/state-drift-benchmark",
+      "title": "霜桥逆火",
+      "caseId": "north-gate-warrant",
+      "chapterId": "chapter-009",
+      "criteria": [
+        {
+          "criterionId": "callback-state-turn",
+          "category": "callback",
+          "expected": [
+            "不再退",
+            "不再退让",
+            "挡在迟雁前",
+            "把迟雁留在身后",
+            "先从我面前过",
+            "这一次我不退"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        },
+        {
+          "criterionId": "setting-chiyan-protection",
+          "category": "setting",
+          "expected": [
+            "迟雁",
+            "替迟雁",
+            "护住迟雁"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        }
+      ],
+      "localFourLayerSources": [
+        "manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-007.md,manuscript/volume-003/chapter-008.md",
+        "codex/characters/menghui.md",
+        "codex/characters/chiyan.md",
+        "codex/factions/nightwatch-office.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-008",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009"
+      ],
+      "causalFourLayerSources": [
+        "manuscript/volume-003/chapter-009.md,manuscript/volume-003/chapter-007.md,manuscript/volume-003/chapter-008.md",
+        "codex/characters/menghui.md",
+        "codex/characters/chiyan.md",
+        "codex/factions/nightwatch-office.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-006",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009"
+      ],
+      "errors": []
+    },
+    {
+      "rootPath": "/Users/admin/Documents/Codex/2026-06-25/git-git-git-commit-branch-merge/work/novel-engine/examples/state-drift-benchmark",
+      "title": "霜桥逆火",
+      "caseId": "old-bridge-fire",
+      "chapterId": "chapter-010",
+      "criteria": [
+        {
+          "criterionId": "callback-state-turn",
+          "category": "callback",
+          "expected": [
+            "不再退",
+            "不再退让",
+            "挡在迟雁前",
+            "把迟雁留在身后",
+            "先从我面前过",
+            "这一次我不退"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        },
+        {
+          "criterionId": "setting-chiyan-protection",
+          "category": "setting",
+          "expected": [
+            "迟雁",
+            "替迟雁",
+            "护住迟雁"
+          ],
+          "classification": "covered-by-local",
+          "localSummaryCovered": true,
+          "causalSummaryCovered": true,
+          "localPromptCovered": true,
+          "causalPromptCovered": true,
+          "baselinePromptCovered": true,
+          "recentFillPromptCovered": true
+        }
+      ],
+      "localFourLayerSources": [
+        "manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md",
+        "codex/characters/chiyan.md",
+        "codex/characters/menghui.md",
+        "codex/factions/nightwatch-office.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-007",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010"
+      ],
+      "causalFourLayerSources": [
+        "manuscript/volume-003/chapter-010.md,manuscript/volume-003/chapter-008.md,manuscript/volume-003/chapter-009.md",
+        "codex/characters/chiyan.md",
+        "codex/characters/menghui.md",
+        "codex/factions/nightwatch-office.md",
+        "meta/project.json",
+        "recall:chapter_summary:chapter-002",
+        "chapter_summary:chapter-001,chapter-002,chapter-003,chapter-004,chapter-005,chapter-006,chapter-007,chapter-008,chapter-009,chapter-010"
+      ],
+      "errors": []
+    }
+  ],
+  "errors": []
+}
